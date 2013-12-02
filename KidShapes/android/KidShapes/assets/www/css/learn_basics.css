@@ -1,0 +1,84 @@
+#learn-basics-page #status-bar {
+	top: 0;
+}
+
+#learn-basics-page .page img {
+	max-width: 95%;
+	max-height: 95%;
+	display: block;
+	border-radius: 10px;
+	box-shadow: 1px 1px 0 #999, 2px 2px 0 #999, 5px 5px 5px rgba(0, 0, 0, 0.5);
+	margin: 0 auto;
+	position: relative;
+	top: 2%;
+}
+
+#learn-basics-page .page {
+	position: relative;
+}
+
+#work-space .image-wrapper {
+	transform: translate3d(0px, 0px, 0px); /* anti blink for iOS6 */
+
+	-o-transform: translate3d(0px, 0px, 0px);
+	-ms-transform: translate3d(0px, 0px, 0px);
+	-moz-transform: translate3d(0px, 0px, 0px);
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+
+#work-space {
+	background-image: none;
+}
+
+body {
+	background-image: url(../i/bg-home.jpg);
+	background-size: cover;
+}
+
+.slide-button {
+	position: absolute;
+	z-index: 23;
+	background-image: url('../i/arrows.png');
+	background-size: 102px 102px;
+	opacity: 0.5;
+}
+
+.slide-up {
+	background-position: 0 -45px;
+	top: 0;
+	left: 50%;
+	width: 46px;
+	height: 57px;
+	margin-left: -23px;
+}
+
+.slide-down {
+	background-position: -57px 0;
+	bottom: 0;
+	left: 50%;
+	width: 45px;
+	height: 57px;
+	margin-left: -23px;
+}
+
+.slide-left {
+	background-position: 0 0;
+	left: 0;
+	top: 50%;
+	width: 57px;
+	height: 46px;
+	margin-top: -22px;
+}
+
+.slide-right {
+	background-position: -45px -56px;
+	right: 0;
+	top: 50%;
+	width: 57px;
+	height: 46px;
+	margin-top: -22px;
+}
+
+
+
+

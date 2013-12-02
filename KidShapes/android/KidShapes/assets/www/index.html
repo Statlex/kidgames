@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+	<meta name="keywords" content="kids game shape">
+	<meta name="description" content="kids game shape">
+	<link rel="icon" href="i/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="i/favicon.ico" type="image/x-icon">
+	<title>KG - Shapes</title>
+	<link href="css/general.css" type="text/css" rel="stylesheet">
+	<script src="js/db.js" type="text/javascript"></script>
+	<script src="js/general.js" type="text/javascript"></script>
+	<script src="js/state.js" type="text/javascript"></script>
+	<script src="js/message.js" type="text/javascript"></script>
+	<script src="js/volume.js" type="text/javascript"></script>
+	<script src="js/test_audio.js" type="text/javascript"></script>
+	<script type="text/javascript" src="cordova-2.7.0.js"></script>
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+</head>
+<body id="home-page">
+<!-- status bar -->
+<!-- To Do: need create some solution for not repeat this on every page -->
+<div id="status-bar">
+	<div id="wrapper-button">
+		<div id="back" title="back">Home</div>
+		<div id="save" title="save">save</div>
+		<div id="clear" title="clear">clear</div>
+	</div>
+	<div id="about"></div>
+	<div id="volume"></div>
+	<div id="volume-control">
+		<div id="volume-line">
+			<div id="volume-point"></div>
+		</div>
+	</div>
+	<div id="score">
+		<span title="Score:">Score:</span>
+		<span id="score-count">1000</span>
+	</div>
+</div>
+<!-- message wrapper -->
+<div id="message" class="hidden">
+	<div class="message-text"></div>
+	<div class="OK">OK</div>
+</div>
+<div id="volume-bg"></div>
+<div id="message-bg"></div>
+<!-- // message wrapper -->
+<!-- info -->
+<div id="info" class="hidden">
+	<div class="about">
+		We are two programmer which like children.
+	</div>
+</div>
+<!-- // info -->
+<!-- // status bar -->
+<div id="work-space">
+	<div id="container">
+
+<!--
+		<div class="page">
+			<div class="wrapper-title-button p1">
+				<div class="button" id="start-game" title="Start">Start</div>
+			</div>
+		</div>
+-->
+
+		<div class="page">
+			<div class="wrapper-title-button p2">
+				<a href="learn_basics.html" class="button" id="learn-basics" title="learn basics">learn basics</a>
+				<div href="find_it.html" class="button" id="find-it" title="find it">find it</div>
+				<div href="pin_it.html" class="button" id="pin-it" title="pin it">pin it</div>
+				<div href="remember_it.html" class="button" id="remember-it" title="remember it">remember it</div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="wrapper-title-button p3">
+				<a href="#" class="button" id="kinder-garden" title="kinder garden">kinder garden</a>
+				<a href="#" class="button" id="school" title="school">school</a>
+				<a href="#" class="button" id="university" title="university">university</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

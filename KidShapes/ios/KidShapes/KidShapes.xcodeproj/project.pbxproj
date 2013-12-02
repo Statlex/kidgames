@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		073638CC1195E67B000995B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073638CB1195E67B000995B8 /* UIKit.framework */; };
+		073638CE1195E67B000995B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073638CD1195E67B000995B8 /* Foundation.framework */; };
+		073638D01195E67B000995B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073638CF1195E67B000995B8 /* CoreGraphics.framework */; };
+		073638D61195E67B000995B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 073638D41195E67B000995B8 /* InfoPlist.strings */; };
+		073638D81195E67B000995B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 073638D71195E67B000995B8 /* main.m */; };
+		073638DC1195E67B000995B8 /* com_kidgamesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 073638DB1195E67B000995B8 /* com_kidgamesAppDelegate.m */; };
+		073638DF1195E67B000995B8 /* com_kidgamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073638DE1195E67B000995B8 /* com_kidgamesViewController.m */; };
+		073638E21195E67B000995B8 /* com_kidgamesViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073638E01195E67B000995B8 /* com_kidgamesViewController_iPhone.xib */; };
+		073638E51195E67B000995B8 /* com_kidgamesViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073638E31195E67B000995B8 /* com_kidgamesViewController_iPad.xib */; };
+		07AD961117821568000131A7 /* iPad29SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960517821568000131A7 /* iPad29SettingsIcon.png */; };
+		07AD961217821568000131A7 /* iPad50SpotlightIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960617821568000131A7 /* iPad50SpotlightIcon.png */; };
+		07AD961317821568000131A7 /* iPad58SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960717821568000131A7 /* iPad58SettingsIcon@2x.png */; };
+		07AD961417821568000131A7 /* iPad72HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960817821568000131A7 /* iPad72HomeIcon.png */; };
+		07AD961517821568000131A7 /* iPad100SpotlightIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960917821568000131A7 /* iPad100SpotlightIcon@2x.png */; };
+		07AD961617821568000131A7 /* iPad144HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960A17821568000131A7 /* iPad144HomeIcon@2x.png */; };
+		07AD961717821568000131A7 /* iPhone29SettingsSpotlightIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960B17821568000131A7 /* iPhone29SettingsSpotlightIcon.png */; };
+		07AD961817821568000131A7 /* iPhone57HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960C17821568000131A7 /* iPhone57HomeIcon.png */; };
+		07AD961917821568000131A7 /* iPhone58SettingsSpotlightIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960D17821568000131A7 /* iPhone58SettingsSpotlightIcon@2x.png */; };
+		07AD961A17821568000131A7 /* iPhone114HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960E17821568000131A7 /* iPhone114HomeIcon@2x.png */; };
+		07AD961B17821568000131A7 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 07AD960F17821568000131A7 /* iTunesArtwork */; };
+		07AD961C17821568000131A7 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 07AD961017821568000131A7 /* iTunesArtwork@2x */; };
+		07AD961F178217C2000131A7 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 07AD961E178217C2000131A7 /* www */; };
+		AD00D3D117F42E8D00CCDD7B /* iPad76HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD00D3CE17F42E8D00CCDD7B /* iPad76HomeIcon.png */; };
+		AD00D3D217F42E8D00CCDD7B /* iPad152HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD00D3CF17F42E8D00CCDD7B /* iPad152HomeIcon@2x.png */; };
+		AD00D3D317F42E8D00CCDD7B /* iPhone120HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD00D3D017F42E8D00CCDD7B /* iPhone120HomeIcon@2x.png */; };
+		AD00D3D617F4315C00CCDD7B /* iPad40SpotlightIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD00D3D417F4315C00CCDD7B /* iPad40SpotlightIcon.png */; };
+		AD00D3D717F4315C00CCDD7B /* iPhone80SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD00D3D517F4315C00CCDD7B /* iPhone80SettingsIcon@2x.png */; };
+		ADAFD6D817F1831000C446EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAFD6D717F1831000C446EE /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		073638C71195E67B000995B8 /* KidShapes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidShapes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		073638CB1195E67B000995B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		073638CD1195E67B000995B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		073638CF1195E67B000995B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		073638D31195E67B000995B8 /* KidShapes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KidShapes-Info.plist"; sourceTree = "<group>"; };
+		073638D51195E67B000995B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		073638D71195E67B000995B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		073638D91195E67B000995B8 /* KidShapes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KidShapes-Prefix.pch"; sourceTree = "<group>"; };
+		073638DA1195E67B000995B8 /* com_kidgamesAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_kidgamesAppDelegate.h; sourceTree = "<group>"; };
+		073638DB1195E67B000995B8 /* com_kidgamesAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_kidgamesAppDelegate.m; sourceTree = "<group>"; };
+		073638DD1195E67B000995B8 /* com_kidgamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_kidgamesViewController.h; sourceTree = "<group>"; };
+		073638DE1195E67B000995B8 /* com_kidgamesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_kidgamesViewController.m; sourceTree = "<group>"; };
+		073638E11195E67B000995B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/com_kidgamesViewController_iPhone.xib; sourceTree = "<group>"; };
+		073638E41195E67B000995B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/com_kidgamesViewController_iPad.xib; sourceTree = "<group>"; };
+		07AD960517821568000131A7 /* iPad29SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad29SettingsIcon.png; path = KidShapes/icons/iPad29SettingsIcon.png; sourceTree = "<group>"; };
+		07AD960617821568000131A7 /* iPad50SpotlightIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad50SpotlightIcon.png; path = KidShapes/icons/iPad50SpotlightIcon.png; sourceTree = "<group>"; };
+		07AD960717821568000131A7 /* iPad58SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad58SettingsIcon@2x.png"; path = "KidShapes/icons/iPad58SettingsIcon@2x.png"; sourceTree = "<group>"; };
+		07AD960817821568000131A7 /* iPad72HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad72HomeIcon.png; path = KidShapes/icons/iPad72HomeIcon.png; sourceTree = "<group>"; };
+		07AD960917821568000131A7 /* iPad100SpotlightIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad100SpotlightIcon@2x.png"; path = "KidShapes/icons/iPad100SpotlightIcon@2x.png"; sourceTree = "<group>"; };
+		07AD960A17821568000131A7 /* iPad144HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad144HomeIcon@2x.png"; path = "KidShapes/icons/iPad144HomeIcon@2x.png"; sourceTree = "<group>"; };
+		07AD960B17821568000131A7 /* iPhone29SettingsSpotlightIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone29SettingsSpotlightIcon.png; path = KidShapes/icons/iPhone29SettingsSpotlightIcon.png; sourceTree = "<group>"; };
+		07AD960C17821568000131A7 /* iPhone57HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone57HomeIcon.png; path = KidShapes/icons/iPhone57HomeIcon.png; sourceTree = "<group>"; };
+		07AD960D17821568000131A7 /* iPhone58SettingsSpotlightIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone58SettingsSpotlightIcon@2x.png"; path = "KidShapes/icons/iPhone58SettingsSpotlightIcon@2x.png"; sourceTree = "<group>"; };
+		07AD960E17821568000131A7 /* iPhone114HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone114HomeIcon@2x.png"; path = "KidShapes/icons/iPhone114HomeIcon@2x.png"; sourceTree = "<group>"; };
+		07AD960F17821568000131A7 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = KidShapes/icons/iTunesArtwork; sourceTree = "<group>"; };
+		07AD961017821568000131A7 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "KidShapes/icons/iTunesArtwork@2x"; sourceTree = "<group>"; };
+		07AD961E178217C2000131A7 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = KidShapes/www; sourceTree = "<group>"; };
+		AD00D3CE17F42E8D00CCDD7B /* iPad76HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad76HomeIcon.png; path = KidShapes/icons/iPad76HomeIcon.png; sourceTree = "<group>"; };
+		AD00D3CF17F42E8D00CCDD7B /* iPad152HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad152HomeIcon@2x.png"; path = "KidShapes/icons/iPad152HomeIcon@2x.png"; sourceTree = "<group>"; };
+		AD00D3D017F42E8D00CCDD7B /* iPhone120HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone120HomeIcon@2x.png"; path = "KidShapes/icons/iPhone120HomeIcon@2x.png"; sourceTree = "<group>"; };
+		AD00D3D417F4315C00CCDD7B /* iPad40SpotlightIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad40SpotlightIcon.png; path = KidShapes/icons/iPad40SpotlightIcon.png; sourceTree = "<group>"; };
+		AD00D3D517F4315C00CCDD7B /* iPhone80SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone80SettingsIcon@2x.png"; path = "KidShapes/icons/iPhone80SettingsIcon@2x.png"; sourceTree = "<group>"; };
+		ADAFD6D717F1831000C446EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		073638C41195E67B000995B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073638CC1195E67B000995B8 /* UIKit.framework in Frameworks */,
+				073638CE1195E67B000995B8 /* Foundation.framework in Frameworks */,
+				073638D01195E67B000995B8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		073638BC1195E67B000995B8 = {
+			isa = PBXGroup;
+			children = (
+				ADAFD6D717F1831000C446EE /* Default-568h@2x.png */,
+				07AD961E178217C2000131A7 /* www */,
+				0751EB7D119D4A3600DF4C3E /* Resources */,
+				073638D11195E67B000995B8 /* KidShapes */,
+				073638CA1195E67B000995B8 /* Frameworks */,
+				073638C81195E67B000995B8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		073638C81195E67B000995B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				073638C71195E67B000995B8 /* KidShapes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		073638CA1195E67B000995B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				073638CB1195E67B000995B8 /* UIKit.framework */,
+				073638CD1195E67B000995B8 /* Foundation.framework */,
+				073638CF1195E67B000995B8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		073638D11195E67B000995B8 /* KidShapes */ = {
+			isa = PBXGroup;
+			children = (
+				073638DA1195E67B000995B8 /* com_kidgamesAppDelegate.h */,
+				073638DB1195E67B000995B8 /* com_kidgamesAppDelegate.m */,
+				073638DD1195E67B000995B8 /* com_kidgamesViewController.h */,
+				073638DE1195E67B000995B8 /* com_kidgamesViewController.m */,
+				073638E01195E67B000995B8 /* com_kidgamesViewController_iPhone.xib */,
+				073638E31195E67B000995B8 /* com_kidgamesViewController_iPad.xib */,
+				073638D21195E67B000995B8 /* Supporting Files */,
+			);
+			path = KidShapes;
+			sourceTree = "<group>";
+		};
+		073638D21195E67B000995B8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				073638D31195E67B000995B8 /* KidShapes-Info.plist */,
+				073638D41195E67B000995B8 /* InfoPlist.strings */,
+				073638D71195E67B000995B8 /* main.m */,
+				073638D91195E67B000995B8 /* KidShapes-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0751EB7D119D4A3600DF4C3E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				07AD960F17821568000131A7 /* iTunesArtwork */,
+				07AD961017821568000131A7 /* iTunesArtwork@2x */,
+				AD00D3D417F4315C00CCDD7B /* iPad40SpotlightIcon.png */,
+				AD00D3D517F4315C00CCDD7B /* iPhone80SettingsIcon@2x.png */,
+				AD00D3CE17F42E8D00CCDD7B /* iPad76HomeIcon.png */,
+				AD00D3CF17F42E8D00CCDD7B /* iPad152HomeIcon@2x.png */,
+				AD00D3D017F42E8D00CCDD7B /* iPhone120HomeIcon@2x.png */,
+				07AD960517821568000131A7 /* iPad29SettingsIcon.png */,
+				07AD960617821568000131A7 /* iPad50SpotlightIcon.png */,
+				07AD960717821568000131A7 /* iPad58SettingsIcon@2x.png */,
+				07AD960817821568000131A7 /* iPad72HomeIcon.png */,
+				07AD960917821568000131A7 /* iPad100SpotlightIcon@2x.png */,
+				07AD960A17821568000131A7 /* iPad144HomeIcon@2x.png */,
+				07AD960B17821568000131A7 /* iPhone29SettingsSpotlightIcon.png */,
+				07AD960C17821568000131A7 /* iPhone57HomeIcon.png */,
+				07AD960D17821568000131A7 /* iPhone58SettingsSpotlightIcon@2x.png */,
+				07AD960E17821568000131A7 /* iPhone114HomeIcon@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		073638C61195E67B000995B8 /* KidShapes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 073638E81195E67B000995B8 /* Build configuration list for PBXNativeTarget "KidShapes" */;
+			buildPhases = (
+				073638C31195E67B000995B8 /* Sources */,
+				073638C41195E67B000995B8 /* Frameworks */,
+				073638C51195E67B000995B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KidShapes;
+			productName = KidShapes;
+			productReference = 073638C71195E67B000995B8 /* KidShapes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		073638BE1195E67B000995B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = home;
+				TargetAttributes = {
+					073638C61195E67B000995B8 = {
+						DevelopmentTeam = UB283X48VQ;
+					};
+				};
+			};
+			buildConfigurationList = 073638C11195E67B000995B8 /* Build configuration list for PBXProject "KidShapes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 073638BC1195E67B000995B8;
+			productRefGroup = 073638C81195E67B000995B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				073638C61195E67B000995B8 /* KidShapes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		073638C51195E67B000995B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073638D61195E67B000995B8 /* InfoPlist.strings in Resources */,
+				073638E21195E67B000995B8 /* com_kidgamesViewController_iPhone.xib in Resources */,
+				073638E51195E67B000995B8 /* com_kidgamesViewController_iPad.xib in Resources */,
+				07AD961117821568000131A7 /* iPad29SettingsIcon.png in Resources */,
+				07AD961217821568000131A7 /* iPad50SpotlightIcon.png in Resources */,
+				07AD961317821568000131A7 /* iPad58SettingsIcon@2x.png in Resources */,
+				07AD961417821568000131A7 /* iPad72HomeIcon.png in Resources */,
+				07AD961517821568000131A7 /* iPad100SpotlightIcon@2x.png in Resources */,
+				ADAFD6D817F1831000C446EE /* Default-568h@2x.png in Resources */,
+				07AD961617821568000131A7 /* iPad144HomeIcon@2x.png in Resources */,
+				07AD961717821568000131A7 /* iPhone29SettingsSpotlightIcon.png in Resources */,
+				07AD961817821568000131A7 /* iPhone57HomeIcon.png in Resources */,
+				AD00D3D117F42E8D00CCDD7B /* iPad76HomeIcon.png in Resources */,
+				AD00D3D717F4315C00CCDD7B /* iPhone80SettingsIcon@2x.png in Resources */,
+				AD00D3D317F42E8D00CCDD7B /* iPhone120HomeIcon@2x.png in Resources */,
+				AD00D3D617F4315C00CCDD7B /* iPad40SpotlightIcon.png in Resources */,
+				07AD961917821568000131A7 /* iPhone58SettingsSpotlightIcon@2x.png in Resources */,
+				AD00D3D217F42E8D00CCDD7B /* iPad152HomeIcon@2x.png in Resources */,
+				07AD961A17821568000131A7 /* iPhone114HomeIcon@2x.png in Resources */,
+				07AD961B17821568000131A7 /* iTunesArtwork in Resources */,
+				07AD961C17821568000131A7 /* iTunesArtwork@2x in Resources */,
+				07AD961F178217C2000131A7 /* www in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		073638C31195E67B000995B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073638D81195E67B000995B8 /* main.m in Sources */,
+				073638DC1195E67B000995B8 /* com_kidgamesAppDelegate.m in Sources */,
+				073638DF1195E67B000995B8 /* com_kidgamesViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		073638D41195E67B000995B8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073638D51195E67B000995B8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		073638E01195E67B000995B8 /* com_kidgamesViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073638E11195E67B000995B8 /* en */,
+			);
+			name = com_kidgamesViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		073638E31195E67B000995B8 /* com_kidgamesViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073638E41195E67B000995B8 /* en */,
+			);
+			name = com_kidgamesViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		073638E61195E67B000995B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "5AF81D45-E3F6-4341-9E8D-31BC7721DE29";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		073638E71195E67B000995B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "5AF81D45-E3F6-4341-9E8D-31BC7721DE29";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		073638E91195E67B000995B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KidShapes/KidShapes-Prefix.pch";
+				INFOPLIST_FILE = "KidShapes/KidShapes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		073638EA1195E67B000995B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KidShapes/KidShapes-Prefix.pch";
+				INFOPLIST_FILE = "KidShapes/KidShapes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		073638C11195E67B000995B8 /* Build configuration list for PBXProject "KidShapes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073638E61195E67B000995B8 /* Debug */,
+				073638E71195E67B000995B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		073638E81195E67B000995B8 /* Build configuration list for PBXNativeTarget "KidShapes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073638E91195E67B000995B8 /* Debug */,
+				073638EA1195E67B000995B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 073638BE1195E67B000995B8 /* Project object */;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+	<meta name="keywords" content="kids game shape">
+	<meta name="description" content="kids game shape">
+	<link rel="icon" href="i/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="i/favicon.ico" type="image/x-icon">
+	<title>KG - Shapes</title>
+	<link href="css/general.css" type="text/css" rel="stylesheet">
+	<link href="css/learn_basics.css" type="text/css" rel="stylesheet">
+	<script src="js/db.js" type="text/javascript"></script>
+	<script src="js/general.js" type="text/javascript"></script>
+	<script src="js/state.js" type="text/javascript"></script>
+	<script src="js/message.js" type="text/javascript"></script>
+	<script src="js/volume.js" type="text/javascript"></script>
+	<script src="js/c_swipe.js" type="text/javascript"></script>
+	<script src="js/learn_basics.js" type="text/javascript"></script>
+	<script src="js/test_audio.js" type="text/javascript"></script>
+
+	<!--add scripts for learning basics-->
+</head>
+<body id="learn-basics-page">
+
+<!-- status bar -->
+<!-- To Do: need create some solution for not repeat this on every page -->
+<div id="status-bar">
+	<div id="wrapper-button">
+		<a href="index.html" id="back" title="home">Menu</a>
+
+		<div id="save" title="save">save</div>
+		<div id="clear" title="clear">clear</div>
+	</div>
+	<div id="about"></div>
+	<div id="volume"></div>
+	<div id="volume-control">
+		<div id="volume-line">
+			<div id="volume-point"></div>
+		</div>
+	</div>
+	<div id="score">
+		<span title="Score:">Score:</span>
+		<span id="score-count">1000</span>
+	</div>
+</div>
+<!-- message wrapper -->
+<div id="message" class="hidden">
+	<div class="message-text"></div>
+	<div class="OK">OK</div>
+</div>
+<div id="volume-bg"></div>
+<div id="message-bg"></div>
+<!-- // message wrapper -->
+<!-- info -->
+<div id="info" class="hidden">
+	<div class="about">
+		We are two programmer which like children.
+	</div>
+</div>
+<!-- // info -->
+<!-- // status bar -->
+<div id="work-space">
+	<div id="container">
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-circle-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-circle-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-circle-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-circle-3-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-circle-4-small.png" alt=""></div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-rectangle-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rectangle-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rectangle-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rectangle-3-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rectangle-4-small.png" alt=""></div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-oval-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-oval-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-oval-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-oval-3-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-oval-4-small.png" alt=""></div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-rhomb-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rhomb-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rhomb-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-rhomb-3-small.png" alt=""></div>
+			</div>
+		</div>
+
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-square-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-square-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-square-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-square-3-small.png" alt=""></div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-star-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-star-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-star-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-star-3-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-star-4-small.png" alt=""></div>
+			</div>
+		</div>
+
+		<div class="page">
+			<div class="vertical-container">
+				<div class="image-wrapper"><img src="images/lb/lb-triangle-0-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-triangle-1-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-triangle-2-small.png" alt=""></div>
+				<div class="image-wrapper"><img src="images/lb/lb-triangle-3-small.png" alt=""></div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	(function() {
+		// detect retina
+
+		function addBigImages() {
+			var images, i, len, src;
+			images = document.querySelectorAll('#work-space img');
+			for (i = 0, len = images.length; i < len; i += 1) {
+				src = images[i].src;
+				src = src.replace('-small.png', '.png');
+				images[i].src = src;
+			}
+
+			console.log('addBigImages - retina detected.');
+
+//			alert(images.length);
+		}
+
+		if(window.devicePixelRatio && window.devicePixelRatio > 1.4){
+				addBigImages();
+		}
+
+	}());
+</script>
+
+<div class="slide-button slide-up"></div>
+<div class="slide-button slide-down"></div>
+<div class="slide-button slide-left"></div>
+<div class="slide-button slide-right"></div>
+
+</body>
+</html>

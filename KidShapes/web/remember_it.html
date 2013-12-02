@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>KG - Shapes</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+	<link rel="stylesheet" href="css/general.css">
+	<link rel="stylesheet" href="css/remember_it.css">
+	<script src="js/db.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/message.js"></script>
+	<script type="text/javascript" src="js/general.js"></script>
+	<script type="text/javascript" src="js/state.js"></script>
+	<script type="text/javascript" src="js/volume.js"></script>
+	<script type="text/javascript" src="js/remember_it.js"></script>
+	<script src="js/c_swipe.js" type="text/javascript"></script>
+</head>
+
+<body id="remember-it">
+<!-- status bar -->
+<!-- To Do: need create some solution for not repeat this on every page -->
+<div id="status-bar">
+	<div id="wrapper-button">
+		<a href="index.html" id="back" title="home">Menu</a>
+
+		<div id="save" title="save">save</div>
+		<div id="clear" title="clear">clear</div>
+	</div>
+	<div id="about"></div>
+	<div id="volume"></div>
+	<div id="volume-control">
+		<div id="volume-line">
+			<div id="volume-point"></div>
+		</div>
+	</div>
+	<div id="score">
+		<span title="Level:">Level:</span>
+		<span id="score-count"></span>
+		<span id="difficult"></span>
+	</div>
+</div>
+<div id="mistake" title="Limit - mistakes">Limit: <span></span> mistakes</div>
+<!-- message wrapper -->
+<div id="message" class="hidden">
+	<div class="message-text"></div>
+	<div class="OK">OK</div>
+</div>
+<div id="volume-bg"></div>
+<div id="message-bg"></div>
+<!-- // message wrapper -->
+<!-- info -->
+<div id="info" class="hidden">
+	<div class="about">
+		We are two programmer which like children.
+	</div>
+</div>
+<!-- // info -->
+<!-- // status bar -->
+
+<div class="work-space">
+
+</div>
+
+<div class="splash-screen">
+	<div class="how-to-game" title="how to game">
+		<h3>How to play:</h3>
+
+		<p>Remember figures and select them after timer stops.</p>
+
+		<div class="start" title="start">Start</div>
+	</div>
+</div>
+
+<div class="timer-wrapper">
+	<div class="timer-border">
+		<div id="timer"></div>
+	</div>
+</div>
+
+<!--<span class="check">check</span>-->
+
+<div class="figures-for-select">
+	<div class="figure-container">
+		<div class="rectangle"><label><input figure="rectangle" type="checkbox"><span></span></label></div>
+		<div class="triangle"><label><input figure="triangle" type="checkbox"><span></span></label></div>
+		<div class="square"><label><input figure="square" type="checkbox"><span></span></label></div>
+		<div class="star"><label><input figure="star" type="checkbox"><span></span></label></div>
+		<div class="rhomb"><label><input figure="rhomb" type="checkbox"><span></span></label></div>
+		<div class="oval"><label><input figure="oval" type="checkbox"><span></span></label></div>
+		<div class="circle"><label><input figure="circle" type="checkbox"><span></span></label></div>
+	</div>
+</div>
+
+<div id="bad-answer">
+	<div class="bad-figure"></div>
+	<div class="error"></div>
+</div>
+
+<div id="good-answer"></div>
+
+<!-- win-screen -->
+<div class="win-screen-wrapper">
+	<div class="win-screen">
+		<a class="menu" href="index.html" title="menu">Menu</a>
+		<div class="message">
+			<p title="Congratulations!!">Congratulations!!</p>
+			<p title="Level is passed">Level is passed</p>
+		</div>
+		<a class="button-wrapper" href="remember_it.html">
+			<div class="next-level" title="Next level">Next level</div>
+			<div class="play-again-win" title="Play again">Play again</div>
+		</a>
+	</div>
+</div>
+<!-- // win-screen -->
+
+<!-- failed-screen -->
+<div class="failed-screen-wrapper">
+	<div class="failed-screen">
+		<p class="error-message" title="Error limit exceed!">Error limit exceed!</p>
+		<div class="link-wrapper">
+			<a class="menu" href="index.html" title="menu">Menu</a>
+			<a class="button-wrapper" href="remember_it.html">
+				<div class="next-level" title="Next level">Next level</div>
+				<div class="prev-level" title="Prev level">Prev level</div>
+				<div class="play-again" title="Play again">Play again</div>
+			</a>
+		</div>
+	</div>
+</div>
+<!-- // failed-screen -->
+
+</body>
+</html>

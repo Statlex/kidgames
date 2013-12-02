@@ -1,0 +1,67 @@
+.work-space {
+	overflow: hidden;
+	/*overflow-x: hidden;*/
+}
+
+.work-space div {
+	background-size: 100% auto;
+}
+
+.work-space > div {
+	position: relative;
+}
+
+#good-answer {
+	transition: opacity 0.1s linear;
+	-o-transition: opacity 0.1s linear;
+	-ms-transition: opacity 0.1s linear;
+	-moz-transition: opacity 0.1s linear;
+	-webkit-transition: opacity 0.1s linear;
+}
+
+#mistake-answer {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -5;
+	background-color: rgba(220, 0, 0, 0.4);
+	top: 0;
+}
+
+#pin-it #status-bar {
+	top: 0;
+}
+
+.figures-for-select .figure-container > div {
+	background-size: 100% auto;
+	background-position: 0 100%;
+}
+
+.hint-alert-wrapper {
+	position: absolute;
+	top: 100px;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.2s ease-out;
+
+	-o-transition: opacity 0.2s ease-out;
+	-ms-transition: opacity 0.2s ease-out;
+	-moz-transition: opacity 0.2s ease-out;
+	-webkit-transition: opacity 0.2s ease-out;
+}
+
+.hint-alert {
+	font-size: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+#work-space {
+	background-image: none;
+}
+
+body {
+	background-image: url(../i/bg-home.jpg);
+	background-size: cover;
+}

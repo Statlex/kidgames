@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+	<meta name="keywords" content="kids game shape">
+	<meta name="description" content="kids game shape">
+	<link rel="icon" href="i/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="i/favicon.ico" type="image/x-icon">
+	<title>KG - Shapes</title>
+	<link href="css/general.css" type="text/css" rel="stylesheet">
+	<link href="css/find_it.css" type="text/css" rel="stylesheet">
+	<script src="js/db.js" type="text/javascript"></script>
+	<script src="js/general.js" type="text/javascript"></script>
+	<script src="js/state.js" type="text/javascript"></script>
+	<script src="js/message.js" type="text/javascript"></script>
+	<script src="js/volume.js" type="text/javascript"></script>
+	<script src="js/c_swipe.js" type="text/javascript"></script>
+	<script src="js/test_audio.js" type="text/javascript"></script>
+	<script src="js/find_it.js" type="text/javascript"></script>
+	<script src="js/find_it_list.js" type="text/javascript"></script>
+	<script src="js/find_it_list_kinder_garden.js" type="text/javascript"></script>
+	<script src="js/find_it_list_school.js" type="text/javascript"></script>
+	<script src="js/find_it_list_university.js" type="text/javascript"></script>
+	<!--add scripts for learning basics-->
+</head>
+<body id="find-it-page">
+
+<div class="splash-screen-find-it">
+	<div class="how-to-game" title="how to game">
+		<h3>How to play:</h3>
+		<p>Please, find correct figure from the panel on the right. Drag it and drop on the equal figire on the game area.</p>
+		<div class="start" title="start">Start</div>
+	</div>
+</div>
+
+<!-- status bar -->
+<!-- To Do: need create some solution for not repeat this on every page -->
+<div id="status-bar">
+	<div id="wrapper-button">
+		<a href="index.html" id="back" title="home">Menu</a>
+
+		<div id="save" title="save">save</div>
+		<div id="clear" title="clear">clear</div>
+	</div>
+	<div id="about"></div>
+	<div id="volume"></div>
+	<div id="volume-control">
+		<div id="volume-line">
+			<div id="volume-point"></div>
+		</div>
+	</div>
+	<div id="score">
+		<span title="Progress:">Progress: </span>
+		<span id="score-count"></span>
+		<span id="difficult"></span>
+	</div>
+</div>
+<!-- message wrapper -->
+<div id="message" class="hidden">
+	<div class="message-text"></div>
+	<div class="OK">OK</div>
+</div>
+<div id="volume-bg"></div>
+<div id="message-bg"></div>
+<!-- // message wrapper -->
+<!-- info -->
+<div id="info" class="hidden">
+	<div class="about">
+		We are two programmer which like children.
+	</div>
+</div>
+<!-- // info -->
+<!-- // status bar -->
+<div>
+	<!-- right-side -->
+	<div id="right-side">
+		<div id="shape-slider-container">
+			<div title="star" style="background-image: url(images/figures/star.png);"></div>
+			<div title="triangle" style="background-image: url(images/figures/triangle.png);"></div>
+			<div title="square" style="background-image: url(images/figures/square.png);"></div>
+			<div title="rhomb" style="background-image: url(images/figures/rhomb.png);"></div>
+			<div title="oval" style="background-image: url(images/figures/oval.png);"></div>
+			<div title="circle" style="background-image: url(images/figures/circle.png);"></div>
+			<div title="rectangle" style="background-image: url(images/figures/rectangle.png);"></div>
+		</div>
+	</div>
+	<!-- // right-side -->
+	<!-- work-space-wrapper -->
+	<div id="work-space-wrapper">
+		<div id="work-space">
+			<div id="container">
+				<div class="page"></div>
+				<div class="page"></div>
+				<div class="page"></div>
+				<div class="page"></div>
+				<div class="page"></div>
+				<div class="page"></div>
+			</div>
+		</div>
+	</div>
+	<!-- // work-space-wrapper -->
+</div>
+
+<!-- splash-screen-wrapper -->
+<div class="splash-screen-wrapper">
+	<div class="splash-screen"></div>
+</div>
+<!-- // splash-screen-wrapper -->
+
+<!-- win-screen -->
+<div class="win-screen-wrapper">
+	<div class="win-screen">
+		<a class="menu" href="index.html" title="menu">Menu</a>
+		<div class="message">
+			<p title="Congratulations!!">Congratulations!!</p>
+			<p title="Level is passed">Level is passed</p>
+		</div>
+		<a class="button-wrapper" href="find_it.html">
+			<div class="next-level" title="Next level">Next level</div>
+			<div class="play-again-win" title="Play again">Play again</div>
+		</a>
+	</div>
+</div>
+<!-- // win-screen -->
+
+</body>
+</html>
