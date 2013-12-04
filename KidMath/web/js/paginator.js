@@ -114,6 +114,21 @@
 			this.coords.containerX = 0;
 		}
 
+		// //
+
+		if (info.currentLevelName === 'learning-basics' && this.coords.containerX >= this.maxXPos) {
+			var audio = 'number-' + info.currentLevel;
+			var path = lang[info.lang][audio] || soundList[audio];
+			player.play(path);
+		}
+
+		if (info.currentLevelName === 'learn-+' || info.currentLevelName === 'learn--') {
+			var path = lang[info.lang].swipe || soundList.swipe;
+			player.play(path);
+		}
+
+		// \\
+
 		if (this.coords.containerX < this.maxXPos) {
 			this.coords.containerX = this.maxXPos;
 			// // this is extra code - only for KG.Math

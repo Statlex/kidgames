@@ -21,6 +21,7 @@
 			this.setAction();
 			this.setAfterAction(template);
 			this.setBackButton(template);
+			this.setAudio();
 			statusBar.setSetupButton(selector === '.title-page');
 			ui.fade.hide();
 			this.resizeIU();
@@ -35,6 +36,18 @@
 						window.setTimeout(app.insetHTML.bind(app, '.' + this.getAttribute('show-page')), ui.fade.time);
 					}
 
+				}, false);
+			});
+		},
+		setAudio:function() {
+			$$('[audio]', this.wrapper).forEach(function(node){
+				node.addEventListener('click', function(){
+					var audio = this.getAttribute('audio');
+					var path = lang[info.lang][audio] || soundList[audio];
+					if (!path) {
+						return;
+					}
+					player.play(path);
 				}, false);
 			});
 		},
@@ -162,11 +175,13 @@
 				var openCategories = dataStorage.getItem('openedSections') || [];
 				if (openCategories.indexOf(node.getAttribute('section-name')) === -1) {
 					node.className += ' disable';
+					node.setAttribute('audio', 'badAnswer');
 				} else {
 					node.className += ' enable';
+					node.setAttribute('audio', 'click');
 				}
 			});
-
+			info.currentLevelName = 'title';
 		},
 		setSettingsPage: function() {
 			// set custom select

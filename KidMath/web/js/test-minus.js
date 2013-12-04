@@ -7,6 +7,7 @@
 
 		startTest: function() {
 
+			info.currentLevelName = 'test-minus';
 			this.questionsArray = this.createQuestions();
 			this.showLevel();
 			this.setAnswerSize();
@@ -36,8 +37,14 @@
 		},
 		showLevel: function() {
 
+			if (info.currentLevelName !== 'test-minus') {
+				return;
+			}
+
 			var object = {};
 			if (this.questionsArray.length === 0) {
+				var path = lang[info.lang].endSection || soundList.endSection;
+				player.play(path);
 				statusBar.updateScore(info.bonus.normal);
 				ui.message.show(lang[info.lang].youHaveDoneThisSection, 'app insetHTML .title-page');
 				statusBar.updateScore();
@@ -64,7 +71,11 @@
 					if ($.hasClass(this, 'right-answer')) {
 						ui.answerSplashScreen.show(1, 'testMinus showLevel {}');
 						win.statusBar.updateScore(info.bonus.small);
+						var path = lang[info.lang].goodAnswer || soundList.goodAnswer;
+						player.play(path);
 					} else {
+						var path = lang[info.lang].badAnswer || soundList.badAnswer;
+						player.play(path);
 						// do not click twice to bad answer
 						if (this.style.opacity) {
 							return;

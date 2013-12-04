@@ -35,6 +35,11 @@
 			}, false);
 			this.score = $('.score-field', this.wrapper);
 			this.updateScore();
+
+			$$('.back, .setup', this.wrapper).forEach(function(node) {
+				node.addEventListener('click', player.play.bind(player, soundList.click), false);
+			});
+
 		},
 		setLang: function() {
 			$$('[text]', this.wrapper).forEach(function(node){

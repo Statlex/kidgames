@@ -34,6 +34,9 @@
 		},
 		openNextLevel: function() {
 
+			var path = lang[info.lang].endSection || soundList.endSection;
+			player.play(path);
+
 			if (info.currentLevelName === 'learning-basics') {
 				var openedLevels = this.getItem('openedLevel');
 				if (openedLevels.indexOf(info.currentLevel + 1) === -1 && info.currentLevel !== 9) {

@@ -77,14 +77,14 @@
 
 		<div class="title-buttons-wrapper clear-fix">
 			<h1 class="title-page-header">{{= lang[info.lang].digits }}</h1>
-			<div section-name="learn-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="select-level"><span>1, 2, 3, 4</span></div>
-			<div section-name="test-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-basics"><span>1, 2, 3, ?</span></div>
+			<div audio="click" section-name="learn-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="select-level"><span>1, 2, 3, 4</span></div>
+			<div audio="click" section-name="test-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-basics"><span>1, 2, 3, ?</span></div>
 			<h1 class="title-page-header">{{= lang[info.lang].addition }}</h1>
-			<div section-name="learn-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button"  show-page="learn-plus"><span>1 + 2 = 3</span></div>
-			<div section-name="test-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-plus"><span>1 + 2 = ?</span></div>
+			<div audio="click" section-name="learn-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button"  show-page="learn-plus"><span>1 + 2 = 3</span></div>
+			<div audio="click" section-name="test-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-plus"><span>1 + 2 = ?</span></div>
 			<h1 class="title-page-header">{{= lang[info.lang].subtraction }}</h1>
-			<div section-name="learn--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="learn-minus"><span>3 - 1 = 2</span></div>
-			<div section-name="test--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-minus"><span>3 - 1 = ?</span></div>
+			<div audio="click" section-name="learn--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="learn-minus"><span>3 - 1 = 2</span></div>
+			<div audio="click" section-name="test--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-minus"><span>3 - 1 = ?</span></div>
 		</div>
 
 	</div>
@@ -95,16 +95,16 @@
 
 	<div class="page-wrapper clear-fix">
 
-		<div class="level-wrapper" action='app showLevel {"level":"1"}' action-after='info setCurrentLevel {"level":"1"}' level="1"><span>1</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"2"}' action-after='info setCurrentLevel {"level":"2"}' level="2"><span>2</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"3"}' action-after='info setCurrentLevel {"level":"3"}' level="3"><span>3</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"4"}' action-after='info setCurrentLevel {"level":"4"}' level="4"><span>4</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"5"}' action-after='info setCurrentLevel {"level":"5"}' level="5"><span>5</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"6"}' action-after='info setCurrentLevel {"level":"6"}' level="6"><span>6</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"7"}' action-after='info setCurrentLevel {"level":"7"}' level="7"><span>7</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"8"}' action-after='info setCurrentLevel {"level":"8"}' level="8"><span>8</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"9"}' action-after='info setCurrentLevel {"level":"9"}' level="9"><span>9</span></div>
-		<div class="level-wrapper" action='app showLevel {"level":"0"}' action-after='info setCurrentLevel {"level":"0"}' level="0"><span>0</span></div>
+		<div audio="number-1" class="level-wrapper" action='app showLevel {"level":"1"}' action-after='info setCurrentLevel {"level":"1"}' level="1"><span>1</span></div>
+		<div audio="number-2" class="level-wrapper" action='app showLevel {"level":"2"}' action-after='info setCurrentLevel {"level":"2"}' level="2"><span>2</span></div>
+		<div audio="number-3" class="level-wrapper" action='app showLevel {"level":"3"}' action-after='info setCurrentLevel {"level":"3"}' level="3"><span>3</span></div>
+		<div audio="number-4" class="level-wrapper" action='app showLevel {"level":"4"}' action-after='info setCurrentLevel {"level":"4"}' level="4"><span>4</span></div>
+		<div audio="number-5" class="level-wrapper" action='app showLevel {"level":"5"}' action-after='info setCurrentLevel {"level":"5"}' level="5"><span>5</span></div>
+		<div audio="number-6" class="level-wrapper" action='app showLevel {"level":"6"}' action-after='info setCurrentLevel {"level":"6"}' level="6"><span>6</span></div>
+		<div audio="number-7" class="level-wrapper" action='app showLevel {"level":"7"}' action-after='info setCurrentLevel {"level":"7"}' level="7"><span>7</span></div>
+		<div audio="number-8" class="level-wrapper" action='app showLevel {"level":"8"}' action-after='info setCurrentLevel {"level":"8"}' level="8"><span>8</span></div>
+		<div audio="number-9" class="level-wrapper" action='app showLevel {"level":"9"}' action-after='info setCurrentLevel {"level":"9"}' level="9"><span>9</span></div>
+		<div audio="number-0" class="level-wrapper" action='app showLevel {"level":"0"}' action-after='info setCurrentLevel {"level":"0"}' level="0"><span>0</span></div>
 
 	</div>
 
@@ -114,8 +114,8 @@
 
 	<div class="page-wrapper clear-fix">
 
-		<div class="level-wrapper plus-level-wrapper" action='learningPlus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
-		<div class="level-wrapper plus-level-wrapper" action='learningPlus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningPlus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningPlus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
 
 	</div>
 
@@ -125,8 +125,8 @@
 
 	<div class="page-wrapper clear-fix">
 
-		<div class="level-wrapper plus-level-wrapper" action='learningMinus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
-		<div class="level-wrapper plus-level-wrapper" action='learningMinus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningMinus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningMinus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
 
 	</div>
 

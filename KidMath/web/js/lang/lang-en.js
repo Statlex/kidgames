@@ -36,4 +36,8 @@
 		youDontHaveEnoughPoints: 'You don\'t have enough points to open next section. Please, try to learn more :)'
 	};
 
+	for (var i = 0; i <= 9; i++) {
+		lang.en['number-' + i] = '/android_asset/www/sound/numbers/en/' + i + '.mp3';
+	}
+
 }());

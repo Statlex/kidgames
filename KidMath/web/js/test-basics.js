@@ -7,6 +7,7 @@
 
 		startTest: function() {
 
+			info.currentLevelName = 'test-basics';
 			this.numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 			this.questionsArray = $.shuffle(this.numbers);
 			this.availableImages = Object.create(info.availableImages);
@@ -18,11 +19,17 @@
 
 		showLevel: function() {
 
+			if (info.currentLevelName !== 'test-basics') {
+				return;
+			}
+
 			var object = {}, i;
 			this.availableImages = $.shuffle(this.availableImages);
 			object.image = this.availableImages[4];
 			if (this.questionsArray.length === 0) {
 				statusBar.updateScore(info.bonus.normal);
+				var path = lang[info.lang].endSection || soundList.endSection;
+				player.play(path);
 				if (dataStorage.getItem('score') >= 150) {
 					ui.message.show(lang[info.lang].youHaveDoneThisSection, 'app insetHTML .title-page');
 					win.dataStorage.addToOpenSections('learn-+');
@@ -57,8 +64,12 @@
 					if ($.hasClass(this, 'right-answer')) {
 						ui.answerSplashScreen.show(1, 'testBasics showLevel {}');
 						win.statusBar.updateScore(info.bonus.small);
+						var path = lang[info.lang].goodAnswer || soundList.goodAnswer;
+						player.play(path);
 					} else {
 						// do not click twice to bad answer
+						var path = lang[info.lang].badAnswer || soundList.badAnswer;
+						player.play(path);
 						if (this.style.opacity) {
 							return;
 						}

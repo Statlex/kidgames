@@ -36,4 +36,8 @@
 		youDontHaveEnoughPoints: 'У Вас недостаточно очков чтобы открыть следующую секцию. Пожалуйста, потренируйтесь ещё :)'
 	};
 
+	for (var i = 0; i <= 9; i++) {
+		lang.ru['number-' + i] = '/android_asset/www/sound/numbers/ru/' + i + '.mp3';
+	}
+
 }());
