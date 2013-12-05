@@ -33,7 +33,7 @@
 		squirrel_many: 'squirrels',
 		testBasicsQuestion: 'How many %thing% in a place?',
 		youHaveDoneThisSection: 'Congratulation, you have done this section. Try to learn other sections ;)',
-		youDontHaveEnoughPoints: 'You don\'t have enough points to open next section. Please, try to learn more :)'
+		youDontHaveEnoughPoints: 'DON\'T ENOUGH POINTS to open next section. Please, try to learn more :)'
 	};
 
 	for (var i = 0; i <= 9; i++) {
