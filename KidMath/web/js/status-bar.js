@@ -37,7 +37,9 @@
 			this.updateScore();
 
 			$$('.back, .setup', this.wrapper).forEach(function(node) {
-				node.addEventListener('click', player.play.bind(player, soundList.click), false);
+				node.addEventListener('click', function() {
+					player.play(soundList.click);
+				}, false);
 			});
 
 		},

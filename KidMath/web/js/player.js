@@ -4,7 +4,7 @@
 	/*global window, document, console, alert, dataStorage */
 
 	win.player = {
-		musicOn: dataStorage.getItem('music-on') || 'yes',
+//		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
@@ -13,9 +13,9 @@
 //			console.log(src);
 //			return;
 
-			if (this.musicOn === 'no') {
-				return;
-			}
+//			if (this.musicOn === 'no') {
+//				return;
+//			}
 
 			if (this.currentMediaStatus <= 2 ) {
 				return;
@@ -26,26 +26,23 @@
 				this.currentSrc = src;
 			}
 
-			this.currentMedia.play();
+			try {
+				this.currentMedia.play();
+			} catch (e) {}
 
 		},
-		stop: function(){
-			if (this.currentMedia && this.currentMedia.stop) {
-				this.currentMedia.stop();
-			}
-		},
+//		setMusic: function(on) {
+//			var value = on ? 'yes' : 'no';
+//			dataStorage.setItem('music-on', value);
+//		},
 		onSuccess: function () {
 //			alert('good');
 		},
 		onError: function (error) {
-			//alert(error.code + ' - ' + error.message);
+//			alert(error.code + ' - ' + error.message);
 		},
 		onStatus: function(status) {
 			player.currentMediaStatus = status;
-		},
-		setMusic: function(on) {
-			var value = on ? 'yes' : 'no';
-			dataStorage.setItem('music-on', value);
 		}
 	}
 
