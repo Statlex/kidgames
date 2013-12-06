@@ -1,0 +1,52 @@
+(function (win, doc) {
+
+	/*global window, document, console, alert */
+
+	win.$ = function (selector, context) {
+		return (context || doc).querySelector(selector);
+	};
+
+	win.$$ = function (selector, context) {
+		return Array.prototype.slice.call((context || doc).querySelectorAll(selector));
+	};
+
+	win.$.hasClass = function (node, className) {
+		var re = new RegExp('^' + className + ' | ' + className + ' | ' + className + '$|^' + className + '$', 'g');
+		return re.test(node.className);
+	};
+
+	win.$.removeClass = function (node, className) {
+		var re = new RegExp('^' + className + ' | ' + className + ' | ' + className + '$|^' + className + '$', 'g');
+		var nodeClass = node.className;
+		if (re.test(nodeClass)) {
+			node.className = nodeClass.replace(re, ' ').trim();
+		}
+	};
+
+	win.$.addClass = function (node, className) {
+		if (!win.$.hasClass(node, className)) {
+			node.className += node.className ? ' ' + className : className;
+		}
+	};
+
+	win.$.shuffle = function (arr) {
+		arr.forEach(function (value, index, array) {
+			array.sort(function () {
+				return Math.random() - 0.5;
+			});
+		});
+
+		return arr;
+
+	};
+
+	win.$.createSimpleArray = function(begin, end) {
+		var arr = [], i;
+		for (i = begin; i <= end; i++) {
+			arr.push(i);
+		}
+		return arr;
+	};
+
+
+}(window, document));

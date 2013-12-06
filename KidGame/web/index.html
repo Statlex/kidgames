@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>kid game</title>
+
+	<link rel="stylesheet" href="css/reset.min.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- main objects -->
+	<script src="js/finder.js" type="text/javascript"></script>
+	<script src="js/viewer.js" type="text/javascript"></script>
+
+	<script src="js/data-storage.js" type="text/javascript"></script>
+	<script src="js/info.js" type="text/javascript"></script>
+	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+
+	<script src="js/find-number.js" type="text/javascript"></script>
+
+	<script src="js/ui.js" type="text/javascript"></script>
+
+	<script src="js/status-bar.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="js-status-bar status-bar">
+	<div class="js-back" onclick="viewer.back();"><span>&lt;&ndash;</span></div>
+	<div class="js-setup" onclick="viewer.show('.setting')"><span>&#x00A4;</span></div>
+	<div class="js-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">100</span></div>
+</div>
+
+
+<div id="wrapper">
+
+
+
+</div>
+
+<div class="js-template title-page" onshow="main.test()">
+
+	<div class="page">
+
+		<div class="button" onclick='info.set("section", "find-number"); viewer.show(".select-difficult");'>123</div>
+		<div class="button" onclick='viewer.show(".title-page");'>abc</div>
+		<div class="button" onclick='viewer.show(".title-page");'>colors</div>
+
+	</div>
+
+</div>
+
+<div class="js-template select-difficult" onshow="main.setActiveObject()">
+
+	<div class="page">
+
+		<div class="button" onclick='info.set("difficult", 1);'>{{= lang[info.lang].easy }}</div>
+		<div class="button" onclick='info.set("difficult", 2);'>{{= lang[info.lang].normal }}</div>
+		<div class="button" onclick='info.set("difficult", 3);'>{{= lang[info.lang].hard }}</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="js-template find-number" onshow="findNumber.showLevel()">
+	<div class="page">
+
+		{{ findNumber.availableNumbers.forEach(function(number){ }}
+
+			<div number="{{= number }}" class="js-number-for-find">{{= number }}</div>
+
+		{{ }); }}
+
+	</div>
+</div>
+
+
+
+
+<div class="js-template setting">
+	<div class="page">
+		<h1>setting</h1>
+	</div>
+</div>
+
+<div class="js-message-fade">
+
+	<div class="js-message-text">
+
+
+	</div>
+
+	<div class="js-ok-button">OK</div>
+
+</div>
+
+
+
+</body>
+</html>
