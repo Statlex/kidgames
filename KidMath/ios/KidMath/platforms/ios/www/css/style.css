@@ -622,8 +622,3 @@ body {
 	text-shadow: 1px 1px 0 #666;
 	font-weight: bold;
 }
-
-.level-wrapper, .level-wrapper span {
- text-decoration: none !important;
- color: #fff !important;
-}

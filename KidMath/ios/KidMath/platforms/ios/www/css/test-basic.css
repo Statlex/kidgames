@@ -14,14 +14,14 @@
 .test-basics-image-wrapper-1 {
 	height: 100%;
 	width: 100%;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
 }
 
 .test-basics-image-wrapper-2 {
 	height: 100%;
 	width: 50%;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
 	float: left;
 }
@@ -34,7 +34,7 @@
 .test-basics-image-wrapper-3 {
 	height: 50%;
 	width: 50%;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
 	float: left;
 }
@@ -42,7 +42,7 @@
 .test-basics-image-wrapper-4 {
 	height: 50%;
 	width: 50%;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
 	float: left;
 }
@@ -116,89 +116,4 @@
 .level-image-wrapper .test-basics-image-wrapper-9 {
 	padding: 2px;
 }
-
-@media screen and (orientation: portrait) {
-
-	.learning-basics-card .level-image-wrapper .test-basics-image-wrapper-2 {
-		height: 50%;
-		clear: both;
-		width: 100%;
-	}
-
-	.learning-basics-card .level-image-wrapper .test-basics-image-wrapper-3 {
-		height: 33.3%;
-		clear: both;
-		width: 100%;
-		margin-left: 0;
-	}
-
-	.learning-basics-card .level-image-wrapper .test-basics-image-wrapper-5 {
-		height: 33.3%;
-		float: left;
-		width: 50%;
-	}
-
-	.learning-basics-card .level-image-wrapper .test-basics-image-wrapper-5:first-child {
-		margin-left: 25%;
-	}
-
-	.learning-basics-card .level-image-wrapper .test-basics-image-wrapper-6 {
-		height: 33.3%;
-		float: left;
-		width: 50%;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-6.question-wrapper {
-		height: 33.33%;
-		width: 50%;
-	}
-
-}
-
-@media screen and (orientation: landscape) {
-
-
-	.test-basics-question .test-basics-image-wrapper-3.question-wrapper {
-		height: 100%;
-		width: 33.33%;
-		margin-left: 0;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-4.question-wrapper {
-		height: 100%;
-		width: 25%;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-7.question-wrapper {
-		width: 25%;
-		float: left;
-		height: 50%;
-		margin-left: 0;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-7.question-wrapper:first-child {
-		margin-left: 12%;
-	}
-
-
-	.test-basics-question .test-basics-image-wrapper-8.question-wrapper {
-		width: 25%;
-		float: left;
-		height: 50%;
-		margin-left: 0;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-9.question-wrapper {
-		width: 20%;
-		float: left;
-		height: 50%;
-		margin-left: 0;
-	}
-
-	.test-basics-question .test-basics-image-wrapper-9.question-wrapper:first-child {
-		margin-left: 10%;
-	}
-
-}
-
 

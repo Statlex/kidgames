@@ -9,7 +9,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <feature name="Media">
-        <param name="ios-package" value="CDVSound" />
-    </feature>
 </widget>
