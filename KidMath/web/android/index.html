@@ -261,7 +261,7 @@
 
 					<div class="level-image-block clear-fix">
 
-						<div class="level-image-card level-image-card-{{= level.levelNumber }}">
+						<div class="level-image-card learning-basics-card level-image-card-{{= level.levelNumber }}">
 							<h1>{{= level.levelNumber }}</h1>
 							<div class="level-image-wrapper">
 								{{ level.numbers.forEach(function(){ }}
@@ -350,7 +350,7 @@
 
 	<div class="test-basics-question-images">
 		{{  imagesArray.forEach(function(){  }}
-			<div class="test-basics-image-wrapper-{{= answer }}">
+			<div class="test-basics-image-wrapper-{{= answer }} question-wrapper">
 				<div style="background-image: url('img/test-basics/{{= image }}.svg');" class="test-basics-image-container"></div>
 			</div>
 		{{  });  }}
