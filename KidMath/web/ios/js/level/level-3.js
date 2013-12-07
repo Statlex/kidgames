@@ -11,25 +11,37 @@
 			img: 'mouse',
 			caption: {
 				en: 'THREE mouses',
-				ru: 'ТРИ мыши'
+				ru: 'ТРИ мыши',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'THREE squirrels',
-				ru: 'ТРИ белки'
+				ru: 'ТРИ белки',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'THREE rabbits',
-				ru: 'ТРИ кролика'
+				ru: 'ТРИ кролика',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'THREE dogs',
-				ru: 'ТРИ собаки'
+				ru: 'ТРИ собаки',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		}]
 
