@@ -11,7 +11,8 @@
 		score: 'score',
 		easy: 'easy',
 		normal: 'normal',
-		hard: 'hard'
+		hard: 'hard',
+		find: 'find'
 
 	}
 

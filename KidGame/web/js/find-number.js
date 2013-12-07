@@ -23,14 +23,20 @@
 			console.log(this.answer);
 
 			if (info.difficult === 1) {
-				//ui.message.show(lang[info.lang].find + ': ' + answer);
+				ui.message.show(lang[info.lang].find + ': ' + this.answer);
 			}
 
 			if (info.difficult === 2) {
+				// remove {
+				ui.message.show(lang[info.lang].find + ': ' + this.answer);
+				// } remove
 				this.questions = $.shuffle(this.questions);
 			}
 
 			if (info.difficult === 3) {
+				// remove {
+				ui.message.show(lang[info.lang].find + ': ' + this.answer);
+				// } remove
 				this.questions = $.shuffle(this.questions);
 			}
 
@@ -42,9 +48,11 @@
 				node.onclick = function() {
 					if (parseInt(node.getAttribute('number')) === that.answer) {
 						that.showLevel();
+						win.ui.splashScreen.show(true);
 					} else {
 						$.addClass(this, 'disable');
 						this.onclick = function(){};
+						win.ui.splashScreen.show(false);
 					}
 				}
 			});
@@ -53,6 +61,7 @@
 
 		},
 		setBlocksSize: function() {
+
 			var blocks = $$('#wrapper .js-number-for-find span');
 			blocks.forEach(function(node){
 				node.style.fontSize = 0;
@@ -66,8 +75,6 @@
 			});
 
 		}
-
-
 
 	};
 
