@@ -11,25 +11,37 @@
 			img: 'mouse',
 			caption: {
 				en: 'SIX mouses',
-				ru: 'ШЕСТЬ мышей'
+				ru: 'ШЕСТЬ мышей',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'SIX squirrels',
-				ru: 'ШЕСТЬ белок'
+				ru: 'ШЕСТЬ белок',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'SIX rabbits',
-				ru: 'ШЕСТЬ кроликов'
+				ru: 'ШЕСТЬ кроликов',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'SIX dogs',
-				ru: 'ШЕСТЬ собак'
+				ru: 'ШЕСТЬ собак',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		}]
 
