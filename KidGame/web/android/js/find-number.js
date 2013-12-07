@@ -9,16 +9,16 @@
 			this.template = $('.js-template.find-number').innerHTML;
 			this.template = viewer.template(this.template);
 		},
-		availableNumbers: $.createSimpleArray(0, 19), // [0..19]
+		availableNumbers: $.createSimpleArray(0, 9), // [0..19]
 		questions: [],
 		showLevel: function() {
-
+			statusBar.show(['playAgain']);
 			// if difficult == 1 -> show message + voice
 			// if difficult == 2 -> voice only
 			// if difficult == 3 -> voice only + change number positions
 
 			this.questions = Object.create(this.availableNumbers);
-			this.answer = $.shuffle(Object.create(this.availableNumbers))[10];
+			this.answer = $.shuffle(Object.create(this.availableNumbers))[5];
 
 			console.log(this.answer);
 
@@ -58,6 +58,7 @@
 			});
 
 			this.setBlocksSize();
+			setTimeout(player.play.bind(player, 'numbers/' + info.lang + '/' + this.answer + '.mp3'), 1000);
 
 		},
 		setBlocksSize: function() {

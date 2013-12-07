@@ -6,7 +6,7 @@
 	win.ui = win.ui || {};
 
 	win.ui.message = {
-		showTime: 2000, // two second to show message
+		showTime: 3000, // two second to show message
 		setTimeoutId: 0,
 		handleEvent: function() {
 			this.wrapper = $('.js-message-wrapper');
@@ -21,9 +21,7 @@
 		hide: function() {
 			$.removeClass(this.wrapper, 'active');
 		}
-		
-		
-		
+
 	};
 
 	win.addEventListener('load', win.ui.message, false);
@@ -55,6 +53,7 @@
 			this.badAnswer.style.display = isRight ? 'none' : 'block';
 			$.addClass(this.wrapper, 'active');
 			this.setTimeoutId = setTimeout(this.hide.bind(this), this.showTime);
+			player.play(isRight ? soundList.goodAnswer : soundList.badAnswer);
 		},
 		hide: function() {
 			$.removeClass(this.wrapper, 'active');

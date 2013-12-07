@@ -10,13 +10,14 @@
 			viewer.wrapper = this.wrapper;
 			viewer.show('.title-page');
 		},
-		test: function() {
-			console.log(this);
+		setTitlePage: function() {
+			info.section = 'titlePage';
+			statusBar.show(['setup']);
 		},
 		setActiveObject: function() {
 
 			switch (info.section) {
-				case 'find-number':
+				case 'findNumber':
 					$$('#wrapper .main-button').forEach(function(button){
 						var attribute = button.getAttribute('onclick');
 						attribute += 'viewer.show(".find-number");';

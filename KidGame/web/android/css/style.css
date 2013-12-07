@@ -25,7 +25,11 @@ body {
 }
 
 .disable {
-	opacity: 0.5;
+	opacity: 0.15;
+}
+
+.hidden {
+	display: none;
 }
 
 #wrapper, #wrapper-for-transition {
@@ -75,7 +79,9 @@ body {
 	text-shadow: 1px 1px 1px #000;
 }
 
-.status-bar-back, .status-bar-setup {
+.status-bar-back,
+.status-bar-setup,
+.status-bar-play-again {
 	box-sizing: border-box;
 	height: 100%;
 	width: 64px;
@@ -90,7 +96,13 @@ body {
 	float: right;
 }
 
-.status-bar-back span, .status-bar-setup span {
+.status-bar-play-again {
+	float: right;
+}
+
+.status-bar-back span,
+.status-bar-setup span,
+.status-bar-play-again span {
 	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -106,6 +118,10 @@ body {
 
 .status-bar-setup span {
 	background-image: url('../img/i/setting.svg');
+}
+
+.status-bar-play-again span {
+	background-image: url('../img/i/play.svg');
 }
 
 .status-bar-score {
@@ -192,7 +208,7 @@ body {
 }
 
 .splash-screen.active {
-	z-index: 20;
+	z-index: 10000;
 	opacity: 1;
 }
 
