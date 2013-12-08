@@ -39,7 +39,14 @@
 		playQuestionAgain: function() {
 //			var currentSectionName = info.section;
 			// work for find number
-			this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			if (info.section === 'findNumber') {
+				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			}
+
+			if (info.section === 'findLetter') {
+				console.log('/ findLetter /');
+			}
+
 		},
 		onSuccess: function () {
 //			alert('good');
@@ -65,20 +72,48 @@
 		return;
 	}
 
-	win.player.play = function(src) {
+	win.player.play = function(src, start, duration) {
 
 		console.log(this.toSoundPrefix + src);
 
 		this.currentSrc = src;
 		this.currentMedia = new Audio(this.toSoundPrefix + src);
+		this.currentMedia.play();
+
+		setTimeout(function(){
+			this.currentMedia.pause();
+//			console.log(this.currentMedia.seekable);
+//			this.currentMedia.seekable.start(10);
+			this.currentMedia.currentTime = 0;
+//			this.currentMedia.play();
+
+		}.bind(this), 2000);
+
+		setTimeout(function(){
+//			this.currentMedia.pause();
+//			this.currentMedia.currentTime = 100;
+			this.currentMedia.play();
+
+		}.bind(this), 4000);
+
+
 
 		try {
-			this.currentMedia.play();
+
+
+			if (duration) {
+//				setTimeout(this.currentMedia.stop.bind(this), duration);
+			}
+
 		} catch (e) {
 			console.log(e);
 			console.log('Error for Audio.');
 		}
-	}
+	};
+
+
+
+
 
 }(window));
 
