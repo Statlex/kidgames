@@ -178,6 +178,7 @@ body {
 	padding: 20px;
 	color: #fff;
 	font-size: 50px;
+	box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .number-for-find {
