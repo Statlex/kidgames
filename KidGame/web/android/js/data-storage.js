@@ -12,7 +12,7 @@
 			return JSON.parse(data);
 		},
 		getItem: function(itemName) {
-			return this.getData()[itemName];
+			return this.getData()[itemName] || 0;
 		},
 		setItem: function(itemName, value) {
 			info[itemName] = value;

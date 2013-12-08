@@ -42,11 +42,15 @@
 					if (parseInt(node.getAttribute('number')) === that.answer) {
 						that.showLevel();
 						win.ui.splashScreen.show(true);
+						dataStorage.changeItem('score', 3 + info.difficult);
 					} else {
+						dataStorage.changeItem('score', -3);
 						$.addClass(this, 'disable');
 						this.onclick = function(){};
 						win.ui.splashScreen.show(false);
 					}
+					info.score = dataStorage.getItem('score');
+					statusBar.update();
 				}
 			});
 
