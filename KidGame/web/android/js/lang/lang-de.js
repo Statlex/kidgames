@@ -6,6 +6,9 @@
 	win.lang = win.lang || {};
 
 	win.lang.de  = {
+		language: 'de language',
+		languageName: 'Deutsch',
+		settings: 'de Settings',
 		score: 'de score',
 		easy: 'de easy',
 		normal: 'de normal',

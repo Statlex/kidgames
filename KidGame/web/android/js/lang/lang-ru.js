@@ -6,11 +6,14 @@
 	win.lang = win.lang || {};
 
 	win.lang.ru = {
-		score: 'ru score',
-		easy: 'ru easy',
-		normal: 'ru normal',
-		hard: 'ru hard',
-		find: 'ru find'
+		language: 'Язык',
+		languageName: 'Русский',
+		settings: 'Настройки',
+		score: 'очки',
+		easy: 'легко',
+		normal: 'средне',
+		hard: 'трудно',
+		find: 'найди'
 	}
 
 }(window));

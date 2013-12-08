@@ -27,7 +27,20 @@
 
 			}
 
+		},
+		settingsPage: function() {
+
+			var langSelectNode = $('.js-language-select', this.wrapper);
+
+			langSelectNode.addEventListener('change', function(){
+				var lang = this.value;
+				info.lang = lang;
+				dataStorage.setItem('lang', lang);
+				viewer.refresh();
+			}, false);
+
 		}
+
 	};
 
 	win.addEventListener('load', win.main, false);

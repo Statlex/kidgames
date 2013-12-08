@@ -103,8 +103,8 @@
 </div>
 
 
-<div class="js-template setting">
-	<div class="page">
+<div class="js-template setting" onshow='statusBar.show([]);main.settingsPage();'>
+	<div class="page settings">
 		<h1>{{= lang[info.lang].settings }}</h1>
 
 		<div class="table">
@@ -112,14 +112,14 @@
 				<div class="table-cell">{{= lang[info.lang].language }}:</div>
 				<div class="table-cell">
 					<div class="select-wrapper clear-fix">
-						<div>{{= lang[info.lang].languageName }} + </div>
-						<select>
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
 							{{ for (var key in lang) { }}
-							{{ if (key === info.lang) { }}
-							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
-							{{ } else { }}
-							<option value="{{= key }}">{{= lang[key].languageName }}</option>
-							{{ }; }}
+								{{ if (key === info.lang) { }}
+									<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+								{{ } else { }}
+									<option value="{{= key }}">{{= lang[key].languageName }}</option>
+								{{ }; }}
 							{{ }; }}
 						</select>
 					</div>

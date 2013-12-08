@@ -44,6 +44,7 @@
 		},
 		refresh: function(){
 			this.show(this.history.pop());
+			statusBar.setLang();
 		},
 		transition1stPart: function() {
 			var wrapper = $('#wrapper');
