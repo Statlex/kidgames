@@ -72,47 +72,20 @@
 		return;
 	}
 
-	win.player.play = function(src, start, duration) {
+	win.player.play = function(src) {
 
 		console.log(this.toSoundPrefix + src);
 
 		this.currentSrc = src;
 		this.currentMedia = new Audio(this.toSoundPrefix + src);
-		this.currentMedia.play();
-
-		setTimeout(function(){
-			this.currentMedia.pause();
-//			console.log(this.currentMedia.seekable);
-//			this.currentMedia.seekable.start(10);
-			this.currentMedia.currentTime = 0;
-//			this.currentMedia.play();
-
-		}.bind(this), 2000);
-
-		setTimeout(function(){
-//			this.currentMedia.pause();
-//			this.currentMedia.currentTime = 100;
-			this.currentMedia.play();
-
-		}.bind(this), 4000);
-
-
 
 		try {
-
-
-			if (duration) {
-//				setTimeout(this.currentMedia.stop.bind(this), duration);
-			}
-
+			this.currentMedia.play();
 		} catch (e) {
 			console.log(e);
 			console.log('Error for Audio.');
 		}
 	};
-
-
-
 
 
 }(window));
