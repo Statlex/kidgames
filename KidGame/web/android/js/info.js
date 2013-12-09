@@ -31,7 +31,6 @@
 		}
 	};
 
-	//>>>>>>>>>>>>>>>>>>>>>>>>
-	// win.info.init(); uncomment when all lang will be able
+	 win.info.init();
 
 }(window, document));
