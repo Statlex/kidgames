@@ -143,6 +143,18 @@ body {
 	vertical-align: middle;
 }
 
+.clear-fix {
+	display: block;
+}
+
+.clear-fix:after {
+	content: '';
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
 .main-button {
 	width: 50%;
 	margin: 20px auto;

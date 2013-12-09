@@ -9,34 +9,27 @@
 			this.template = $('.js-template.find-number').innerHTML;
 			this.template = viewer.template(this.template);
 		},
-		availableNumbers: $.createSimpleArray(0, 9), // [0..19]
+		availableNumbers: $.createSimpleArray(0, 19), // [0..19]
 		questions: [],
 		showLevel: function() {
 			statusBar.show(['playAgain']);
-			// if difficult == 1 -> show message + voice
-			// if difficult == 2 -> voice only
-			// if difficult == 3 -> voice only + change number positions
 
 			this.questions = Object.create(this.availableNumbers);
 			this.answer = $.shuffle(Object.create(this.availableNumbers))[5];
 
-			console.log(this.answer);
+			setTimeout(player.play.bind(player, 'numbers/' + info.lang + '/' + this.answer + '.mp3'), 1000);
 
+			// if difficult == 1 -> show message
 			if (info.difficult === 1) {
 				ui.message.show(lang[info.lang].find + ': ' + this.answer);
 			}
 
+			// if difficult == 2 -> normal mode
 			if (info.difficult === 2) {
-				// remove {
-				ui.message.show(lang[info.lang].find + ': ' + this.answer);
-				// } remove
-				this.questions = $.shuffle(this.questions);
 			}
 
+			// if difficult == 3 -> change number positions
 			if (info.difficult === 3) {
-				// remove {
-				ui.message.show(lang[info.lang].find + ': ' + this.answer);
-				// } remove
 				this.questions = $.shuffle(this.questions);
 			}
 
@@ -58,7 +51,6 @@
 			});
 
 			this.setBlocksSize();
-			setTimeout(player.play.bind(player, 'numbers/' + info.lang + '/' + this.answer + '.mp3'), 1000);
 
 		},
 		setBlocksSize: function() {

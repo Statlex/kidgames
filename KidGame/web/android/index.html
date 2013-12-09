@@ -22,6 +22,10 @@
 
 	<!-- languages -->
 	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
+	<script src="js/lang/lang-de.js" type="text/javascript"></script>
+	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
 
 	<script src="js/ui.js" type="text/javascript"></script>
 	<script src="js/find-number.js" type="text/javascript"></script>
@@ -101,7 +105,28 @@
 
 <div class="js-template setting">
 	<div class="page">
-		<h1>setting</h1>
+		<h1>{{= lang[info.lang].settings }}</h1>
+
+		<div class="table">
+			<div class="table-row">
+				<div class="table-cell">{{= lang[info.lang].language }}:</div>
+				<div class="table-cell">
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }} + </div>
+						<select>
+							{{ for (var key in lang) { }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
 
