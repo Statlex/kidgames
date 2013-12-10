@@ -12,7 +12,7 @@
 			caption: {
 				en: 'FOUR mouses',
 				ru: 'ЧЕРЫТЕ мыши',
-				de: '',
+				de: 'VIER Mäuse',
 				zh: '',
 				es: 'CUATRO ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'FOUR squirrels',
 				ru: 'ЧЕРЫТЕ белки',
-				de: '',
+				de: 'VIER Eichhörnchen',
 				zh: '',
 				es: 'CUATRO ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'FOUR rabbits',
 				ru: 'ЧЕРЫТЕ кролика',
-				de: '',
+				de: 'VIER Kaninchen',
 				zh: '',
 				es: 'CUATRO conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'FOUR dogs',
 				ru: 'ЧЕРЫТЕ собаки',
-				de: '',
+				de: 'VIER Hunde',
 				zh: '',
 				es: 'CUATRO perros'
 			}

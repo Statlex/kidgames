@@ -12,7 +12,7 @@
 			caption: {
 				en: 'NINE mouses',
 				ru: 'ДЕВЯТЬ мышей',
-				de: '',
+				de: 'NEUN Mäuse',
 				zh: '',
 				es: 'NUEVE ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'NINE squirrels',
 				ru: 'ДЕВЯТЬ белок',
-				de: '',
+				de: 'NEUN Eichhörnchen',
 				zh: '',
 				es: 'NUEVE ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'NINE rabbits',
 				ru: 'ДЕВЯТЬ кроликов',
-				de: '',
+				de: 'NEUN Kaninchen',
 				zh: '',
 				es: 'NUEVE conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'NINE dogs',
 				ru: 'ДЕВЯТЬ собак',
-				de: '',
+				de: 'NEUN Hunde',
 				zh: '',
 				es: 'NUEVE perros'
 			}

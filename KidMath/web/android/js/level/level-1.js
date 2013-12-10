@@ -12,7 +12,7 @@
 			caption: {
 				en: 'ONE mouse',
 				ru: 'ОДНА мышь',
-				de: '',
+				de: 'EINE Maus',
 				zh: '',
 				es: 'UN ratón'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'ONE squirrel',
 				ru: 'ОДНА белка',
-				de: '',
+				de: 'EIN Eichhörnchen',
 				zh: '',
 				es: 'UNA ardilla'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'ONE rabbit',
 				ru: 'ОДИН кролик',
-				de: '',
+				de: 'EIN Kaninchen',
 				zh: '',
 				es: 'UN conejo'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'ONE dog',
 				ru: 'ОДНА собака',
-				de: '',
+				de: 'EIN Hund',
 				zh: '',
 				es: 'UN perro'
 			}

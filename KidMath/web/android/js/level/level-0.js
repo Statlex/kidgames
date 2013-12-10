@@ -12,7 +12,7 @@
 			caption: {
 				en: 'ZERO mouse',
 				ru: 'НОЛЬ мышей',
-				de: '',
+				de: 'NULL Mäuse',
 				zh: '',
 				es: 'CERO ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'ZERO squirrel',
 				ru: 'НОЛЬ белок',
-				de: '',
+				de: 'NULL Eichhörnchen',
 				zh: '',
 				es: 'CERO ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'ZERO rabbit',
 				ru: 'НОЛЬ кроликов',
-				de: '',
+				de: 'NULL Kaninchen',
 				zh: '',
 				es: 'CERO conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'ZERO dog',
 				ru: 'НОЛЬ собак',
-				de: '',
+				de: 'NULL Hunde',
 				zh: '',
 				es: 'CERO perros'
 			}

@@ -12,7 +12,7 @@
 			caption: {
 				en: 'THREE mouses',
 				ru: 'ТРИ мыши',
-				de: '',
+				de: 'DREI Mäuse',
 				zh: '',
 				es: 'TRES ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'THREE squirrels',
 				ru: 'ТРИ белки',
-				de: '',
+				de: 'DREI Eichhörnchen',
 				zh: '',
 				es: 'TRES ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'THREE rabbits',
 				ru: 'ТРИ кролика',
-				de: '',
+				de: 'DREI Kaninchen',
 				zh: '',
 				es: 'TRES conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'THREE dogs',
 				ru: 'ТРИ собаки',
-				de: '',
+				de: 'DREI Hunde',
 				zh: '',
 				es: 'TRES perros'
 			}

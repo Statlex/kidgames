@@ -12,7 +12,7 @@
 			caption: {
 				en: 'TWO mouses',
 				ru: 'ДВЕ мыши',
-				de: '',
+				de: 'ZWEI Mäuse',
 				zh: '',
 				es: 'DOS ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'TWO squirrels',
 				ru: 'ДВЕ белки',
-				de: '',
+				de: 'ZWEI Eichhörnchen',
 				zh: '',
 				es: 'DOS ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'TWO rabbits',
 				ru: 'ДВА кролика',
-				de: '',
+				de: 'ZWEI Kaninchen',
 				zh: '',
 				es: 'DOS conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'TWO dogs',
 				ru: 'ДВЕ собаки',
-				de: '',
+				de: 'ZWEI Hunde',
 				zh: '',
 				es: 'DOS perros'
 			}

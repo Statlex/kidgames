@@ -12,7 +12,7 @@
 			caption: {
 				en: 'SIX mouses',
 				ru: 'ШЕСТЬ мышей',
-				de: '',
+				de: 'SECHS Mäuse',
 				zh: '',
 				es: 'SEIS ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'SIX squirrels',
 				ru: 'ШЕСТЬ белок',
-				de: '',
+				de: 'SECHS Eichhörnchen',
 				zh: '',
 				es: 'SEIS ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'SIX rabbits',
 				ru: 'ШЕСТЬ кроликов',
-				de: '',
+				de: 'SECHS Kaninchen',
 				zh: '',
 				es: 'SEIS conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'SIX dogs',
 				ru: 'ШЕСТЬ собак',
-				de: '',
+				de: 'SECHS Hunde',
 				zh: '',
 				es: 'SEIS perros'
 			}

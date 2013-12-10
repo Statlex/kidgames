@@ -12,7 +12,7 @@
 			caption: {
 				en: 'FIVE mouses',
 				ru: 'ПЯТЬ мышей',
-				de: '',
+				de: 'FÜNF Mäuse',
 				zh: '',
 				es: 'CINCO ratones'
 			}
@@ -21,7 +21,7 @@
 			caption: {
 				en: 'FIVE squirrels',
 				ru: 'ПЯТЬ белок',
-				de: '',
+				de: 'FÜNF Eichhörnchen',
 				zh: '',
 				es: 'CINCO ardillas'
 			}
@@ -30,7 +30,7 @@
 			caption: {
 				en: 'FIVE rabbits',
 				ru: 'ПЯТЬ кроликов',
-				de: '',
+				de: 'FÜNF Kaninchen',
 				zh: '',
 				es: 'CINCO conejos'
 			}
@@ -39,7 +39,7 @@
 			caption: {
 				en: 'FIVE dogs',
 				ru: 'ПЯТЬ собак',
-				de: '',
+				de: 'FÜNF Hunde',
 				zh: '',
 				es: 'CINCO perros'
 			}
