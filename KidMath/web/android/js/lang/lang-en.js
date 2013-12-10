@@ -33,7 +33,10 @@
 		squirrel_many: 'squirrels',
 		testBasicsQuestion: 'How many %thing% in a place?',
 		youHaveDoneThisSection: 'Congratulation, you have done this section. Try to learn other sections ;)',
-		youDontHaveEnoughPoints: 'DON\'T ENOUGH POINTS to open next section. Please, try to learn more :)'
+		youDontHaveEnoughPoints: 'DON\'T ENOUGH POINTS to open next section. Please, try to learn more :)',
+		thanks: 'Thanks',
+		thanksForDe: 'Svetlana Dubinetskaya',
+		thanksForEs: 'Viktoriya Kostyuk'
 	};
 
 	for (var i = 0; i <= 9; i++) {

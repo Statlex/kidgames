@@ -33,7 +33,10 @@
 		squirrel_many: 'ardillas',
 		testBasicsQuestion: '¿Cuantos %thing% hay en la pantalla?',
 		youHaveDoneThisSection: '¡Felicitaciones! Sección completada. Por favor, ve a la sección siguiente ;)',
-		youDontHaveEnoughPoints: 'NO TIENE SUFICIENTES PUNTOS para abrir esta sección. Por favor, cumple las secciónes anteriores :)'
+		youDontHaveEnoughPoints: 'NO TIENE SUFICIENTES PUNTOS para abrir esta sección. Por favor, cumple las secciónes anteriores :)',
+		thanks: 'Agradecimientos',
+		thanksForDe: 'Svetlana Dubinetskaya',
+		thanksForEs: 'Viktoriya Kostyuk'
 	};
 
 	for (var i = 0; i <= 9; i++) {

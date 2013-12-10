@@ -308,6 +308,14 @@
 				node.style.fontSize = height * 0.5 * q + 'px';
 			});
 
+		},
+		showThanks: function() {
+			var page = $('#wrapper .thanks-text');
+			page.style.display = 'block';
+		},
+		closeThanks: function() {
+			var page = $('#wrapper .thanks-text');
+			page.style.display = '';
 		}
 
 	};

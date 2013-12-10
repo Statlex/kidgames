@@ -33,7 +33,10 @@
 		squirrel_many: 'Eichhörnchen',
 		testBasicsQuestion: 'Wie viele %thing% sind aufm Bildschirm?',
 		youHaveDoneThisSection: 'Gratulation! Die Abteilung ist durchgegangen. Gehen Sie bitte zum nächsten Teil ;)',
-		youDontHaveEnoughPoints: 'SIE HABEN UNGENÜGENDE PUNKTANZAHL, um diese Abteilung öffnen können. Gehen Sie bitte die Vorhergehende Teile :)'
+		youDontHaveEnoughPoints: 'SIE HABEN UNGENÜGENDE PUNKTANZAHL, um diese Abteilung öffnen können. Gehen Sie bitte die Vorhergehende Teile :)',
+		thanks: 'Danksagung',
+		thanksForDe: 'Svetlana Dubinetskaya',
+		thanksForEs: 'Viktoriya Kostyuk'
 	};
 
 	for (var i = 0; i <= 9; i++) {

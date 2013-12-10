@@ -294,7 +294,7 @@
 
 		<h1>{{= lang[info.lang].settings }}</h1>
 
-		<div class="table">
+		<div class="table table-thanks">
 			<div class="table-row">
 				<div class="table-cell">{{= lang[info.lang].language }}:</div>
 				<div class="table-cell">
@@ -313,7 +313,23 @@
 				</div>
 			</div>
 		</div>
+		<div class="thanks" action='app showThanks {}'>
+			{{= lang[info.lang].thanks }}...
+		</div>
+		<div class="thanks-text">
+			<h3>{{= lang[info.lang].thanks }}</h3>
 
+			<div class="table">
+				<div class="table-row">
+					<div class="table-cell">
+						<p>{{= lang[info.lang].thanksForDe }}<br>Deutsch</p>
+						<p>{{= lang[info.lang].thanksForEs }}<br>Español</p>
+					</div>
+				</div>
+			</div>
+
+			<span onclick="app.closeThanks();">&#215;</span>
+		</div>
 	</div>
 
 </div>
