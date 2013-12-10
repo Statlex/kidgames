@@ -334,7 +334,6 @@ body {
 	left: 0;
 	padding: 0 10px;
 	box-sizing: border-box;
-	text-transform: lowercase;
 }
 
 .title-buttons-wrapper {
@@ -628,3 +627,15 @@ body {
 	text-shadow: 1px 1px 0 #666;
 	font-weight: bold;
 }
+
+.settings-page.add-small-font-de .table-cell {
+	font-size: 19px;
+}
+
+.test-basics-question.add-small-font-de .test-basics-question-text {
+	font-size: 23px;
+	line-height: 33px;
+}
+
+.add-small-font-es {}
+

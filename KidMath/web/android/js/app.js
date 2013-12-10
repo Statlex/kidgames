@@ -26,12 +26,20 @@
 			ui.fade.hide();
 			this.resizeIU();
 			this.addShadow();
+			this.setFontSize();
 		},
 		addShadow: function() {
 			$$('.title-button span, .level-wrapper span, .test-basic-answer-number span').forEach(function(node){
 				var randomColor = $.shuffle(info.shadowColors)[6];
 				node.style.boxShadow = '5px 5px 5px 0 rgba(' + $.hexToRgb(randomColor) + ', 0.6)';
 			});
+		},
+		setFontSize: function() {
+			var page;
+			if (info.lang === 'de' || info.lang === 'es') {
+				page = $('#wrapper .page-wrapper');
+				page.className += ' add-small-font-' + info.lang;
+			}
 		},
 		setShowPage: function() {
 			$$('[show-page]', this.wrapper).forEach(function(node) {
@@ -164,8 +172,12 @@
 				}
 
 				var p = $('p', card);
+				var q = 1;
+				if (info.lang === 'de') {
+					q = 0.9;
+				}
 				if (p) {
-					height = p.parentNode.clientHeight * 0.15 * 0.6 + 'px';
+					height = p.parentNode.clientHeight * 0.15 * 0.6 * q + 'px';
 					p.style.lineHeight = height;
 					p.style.fontSize = height;
 				}
@@ -222,7 +234,12 @@
 			// resize title page elements
 			var innerWrapper, height, nodes, firstNode;
 			var wrapper = $('#wrapper');
+			var q;
 
+			q = 1;
+			if (info.lang === 'es' || info.lang === 'de') {
+				q = 0.55;
+			}
 			innerWrapper = $('.learn-test-wrapper', wrapper);
 			nodes = $$('.learn-test-wrapper p', wrapper);
 			nodes.forEach(function(node){
@@ -232,9 +249,10 @@
 			height = (innerWrapper || wrapper).clientHeight;
 			nodes.forEach(function(node){
 				node.style.lineHeight = height + 'px';
-				node.style.fontSize = height * 0.7 + 'px';
+				node.style.fontSize = height * 0.7 * q + 'px';
 			});
 
+			q = 1;
 			nodes = $$('.title-page-header', wrapper);
 			nodes.forEach(function(node){
 				node.style.lineHeight = '';
@@ -248,6 +266,7 @@
 				node.style.fontSize = height * 0.5 + 'px';
 			});
 
+			q = 1;
 			nodes = $$('.title-button span', wrapper);
 			nodes.forEach(function(node){
 				node.style.lineHeight = '';
@@ -260,6 +279,7 @@
 				node.style.fontSize = height * 0.45 + 'px';
 			});
 
+			q = 1;
 			nodes = $$('.level-wrapper span', wrapper);
 			nodes.forEach(function(node){
 				node.style.lineHeight = '';
@@ -272,6 +292,10 @@
 				node.style.fontSize = height * 0.8 + 'px';
 			});
 
+			q = 1;
+			if (info.lang === 'es') {
+				q = 0.8;
+			}
 			nodes = $$('.plus-level-wrapper span', wrapper);
 			nodes.forEach(function(node){
 				node.style.lineHeight = '';
@@ -281,7 +305,7 @@
 			height = (firstNode || wrapper).clientHeight;
 			nodes.forEach(function(node){
 				node.style.lineHeight = height + 'px';
-				node.style.fontSize = height * 0.5 + 'px';
+				node.style.fontSize = height * 0.5 * q + 'px';
 			});
 
 		}
