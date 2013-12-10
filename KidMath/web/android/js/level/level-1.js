@@ -14,7 +14,7 @@
 				ru: 'ОДНА мышь',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Un ratón'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ОДНА белка',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Una ardilla'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ОДИН кролик',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Un conejo'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ОДНА собака',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Un perro'
 			}
 		}]
 

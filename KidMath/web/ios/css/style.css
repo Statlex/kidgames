@@ -334,6 +334,7 @@ body {
 	left: 0;
 	padding: 0 10px;
 	box-sizing: border-box;
+	text-transform: lowercase;
 }
 
 .title-buttons-wrapper {

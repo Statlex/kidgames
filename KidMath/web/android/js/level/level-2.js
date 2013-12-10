@@ -14,7 +14,7 @@
 				ru: 'ДВЕ мыши',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Dos ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ДВЕ белки',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Dos ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ДВА кролика',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Dos conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ДВЕ собаки',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Dos perros'
 			}
 		}]
 

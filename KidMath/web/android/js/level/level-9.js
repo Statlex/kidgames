@@ -14,7 +14,7 @@
 				ru: 'ДЕВЯТЬ мышей',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Nueve ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ДЕВЯТЬ белок',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Nueve ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ДЕВЯТЬ кроликов',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Nueve conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ДЕВЯТЬ собак',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Nueve perros'
 			}
 		}]
 

@@ -14,7 +14,7 @@
 				ru: 'СЕМЬ мышей',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Siete ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'СЕМЬ белок',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Siete ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'СЕМЬ кроликов',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Siete conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'СЕМЬ собак',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Siete perros'
 			}
 		}]
 

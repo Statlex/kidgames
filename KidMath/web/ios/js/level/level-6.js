@@ -14,7 +14,7 @@
 				ru: 'ШЕСТЬ мышей',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Seis ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ШЕСТЬ белок',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Seis ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ШЕСТЬ кроликов',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Seis conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ШЕСТЬ собак',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Seis perros'
 			}
 		}]
 

@@ -14,7 +14,7 @@
 				ru: 'НОЛЬ мышей',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Cero ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'НОЛЬ белок',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Cero ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'НОЛЬ кроликов',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Cero conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'НОЛЬ собак',
 				de: '',
 				zh: '',
-				es: ''
+				es: 'Cero perros'
 			}
 		}]
 
