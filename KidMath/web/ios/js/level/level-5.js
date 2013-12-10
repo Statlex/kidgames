@@ -14,7 +14,7 @@
 				ru: 'ПЯТЬ мышей',
 				de: '',
 				zh: '',
-				es: 'Cinco ratones'
+				es: 'CINCO ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ПЯТЬ белок',
 				de: '',
 				zh: '',
-				es: 'Cinco ardillas'
+				es: 'CINCO ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ПЯТЬ кроликов',
 				de: '',
 				zh: '',
-				es: 'Cinco conejos'
+				es: 'CINCO conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ПЯТЬ собак',
 				de: '',
 				zh: '',
-				es: 'Cinco perros'
+				es: 'CINCO perros'
 			}
 		}]
 

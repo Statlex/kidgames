@@ -14,7 +14,7 @@
 				ru: 'ВОСЕМЬ мышей',
 				de: '',
 				zh: '',
-				es: 'Ocho ratones'
+				es: 'OCHO ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ВОСЕМЬ белок',
 				de: '',
 				zh: '',
-				es: 'Ocho ardillas'
+				es: 'OCHO ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ВОСЕМЬ кроликов',
 				de: '',
 				zh: '',
-				es: 'Ocho conejos'
+				es: 'OCHO conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ВОСЕМЬ собак',
 				de: '',
 				zh: '',
-				es: 'Ocho perros'
+				es: 'OCHO perros'
 			}
 		}]
 

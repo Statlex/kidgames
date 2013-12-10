@@ -14,7 +14,7 @@
 				ru: 'ЧЕРЫТЕ мыши',
 				de: '',
 				zh: '',
-				es: 'Cuatro ratones'
+				es: 'CUATRO ratones'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +23,7 @@
 				ru: 'ЧЕРЫТЕ белки',
 				de: '',
 				zh: '',
-				es: 'Cuatro ardillas'
+				es: 'CUATRO ardillas'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +32,7 @@
 				ru: 'ЧЕРЫТЕ кролика',
 				de: '',
 				zh: '',
-				es: 'Cuatro conejos'
+				es: 'CUATRO conejos'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +41,7 @@
 				ru: 'ЧЕРЫТЕ собаки',
 				de: '',
 				zh: '',
-				es: 'Cuatro perros'
+				es: 'CUATRO perros'
 			}
 		}]
 
