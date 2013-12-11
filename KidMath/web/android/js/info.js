@@ -27,6 +27,7 @@
 			biggest: 20,
 			huge: 25
 		},
+		shadowColors: ['#a4b274','#cc4d44', '#a0cfd7', '#d5c58a', '#f3e79f', '#faf4d2', '#fce3c5', '#e9a693', '#edefef', '#99b64c', '#ce6933', '#1d8bac', '#ada5ca','#d2cde3', '#a55a7b', '#fec9cf', '#caeaa1', '#f8e5df'],
 		init: function() {
 			var lang = dataStorage.getItem('curLang') || (navigator.language || navigator.userLanguage);
 			lang = lang.split('-')[0];
