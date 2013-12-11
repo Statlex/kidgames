@@ -137,6 +137,11 @@ input, select {
 	height: 0;
 }
 
+.hide-first-letter:first-letter {
+	font-size: 0;
+	line-height: 0;
+}
+
 /* services classes end */
 
 /* normal css */
