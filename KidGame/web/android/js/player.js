@@ -39,7 +39,14 @@
 		playQuestionAgain: function() {
 //			var currentSectionName = info.section;
 			// work for find number
-			this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			if (info.section === 'findNumber') {
+				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			}
+
+			if (info.section === 'findLetter') {
+				console.log('/ findLetter /');
+			}
+
 		},
 		onSuccess: function () {
 //			alert('good');
@@ -78,7 +85,8 @@
 			console.log(e);
 			console.log('Error for Audio.');
 		}
-	}
+	};
+
 
 }(window));
 

@@ -24,10 +24,30 @@
 						button.setAttribute('onclick', attribute);
 					});
 					break;
+				case 'findLetter':
+					$$('#wrapper .main-button').forEach(function(button){
+						var attribute = button.getAttribute('onclick');
+						attribute += 'viewer.show(".find-letter");';
+						button.setAttribute('onclick', attribute);
+					});
+					break;
 
 			}
 
+		},
+		settingsPage: function() {
+
+			var langSelectNode = $('.js-language-select', this.wrapper);
+
+			langSelectNode.addEventListener('change', function(){
+				var lang = this.value;
+				info.lang = lang;
+				dataStorage.setItem('lang', lang);
+				viewer.refresh();
+			}, false);
+
 		}
+
 	};
 
 	win.addEventListener('load', win.main, false);

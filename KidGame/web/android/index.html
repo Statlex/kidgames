@@ -22,9 +22,14 @@
 
 	<!-- languages -->
 	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
+	<script src="js/lang/lang-de.js" type="text/javascript"></script>
+	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
 
 	<script src="js/ui.js" type="text/javascript"></script>
 	<script src="js/find-number.js" type="text/javascript"></script>
+	<script src="js/find-letter.js" type="text/javascript"></script>
 
 	<script src="js/status-bar.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
@@ -56,7 +61,7 @@
 		<div class="table-row">
 			<div class="table-cell">
 				<div class="main-button" onclick='info.set("section", "findNumber");viewer.show(".select-difficult");player.play(soundList.click);'>123</div>
-				<div class="main-button" onclick='viewer.show(".title-page");player.play(soundList.click);'>abc</div>
+				<div class="main-button" onclick='info.set("section", "findLetter");viewer.show(".select-difficult");player.play(soundList.click);'>{{= lang[info.lang].alphabetButton }}</div>
 				<div class="main-button" onclick='viewer.show(".title-page");player.play(soundList.click);'>colors</div>
 			</div>
 		</div>
@@ -98,10 +103,46 @@
 	</div>
 </div>
 
-
-<div class="js-template setting">
+<div class="js-template find-letter" onshow="findLetter.showLevel()">
 	<div class="page">
-		<h1>setting</h1>
+
+		{{ findLetter.questions.forEach(function(letter){ }}
+
+		<div letter="{{= letter }}" class="js-letter-for-find letter-for-find">
+				<span>
+					{{= letter }}
+				</span>
+		</div>
+
+		{{ }); }}
+
+	</div>
+</div>
+
+<div class="js-template setting" onshow='statusBar.show([]);main.settingsPage();'>
+	<div class="page settings">
+		<h1>{{= lang[info.lang].settings }}</h1>
+
+		<div class="table">
+			<div class="table-row">
+				<div class="table-cell">{{= lang[info.lang].language }}:</div>
+				<div class="table-cell">
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
+							{{ for (var key in lang) { }}
+								{{ if (key === info.lang) { }}
+									<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+								{{ } else { }}
+									<option value="{{= key }}">{{= lang[key].languageName }}</option>
+								{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
 

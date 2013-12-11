@@ -20,6 +20,10 @@
 			});
 		},
 		update: function() {
+			if (info.score < 0) {
+				info.score = 0;
+				dataStorage.setItem('score', 0);
+			}
 			this.score.innerHTML = info.score;
 		},
 		show: function(arr) {
