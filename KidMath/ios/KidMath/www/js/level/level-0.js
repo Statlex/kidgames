@@ -11,25 +11,37 @@
 			img: 'mouse',
 			caption: {
 				en: 'ZERO mouse',
-				ru: 'НОЛЬ мышей'
+				ru: 'НОЛЬ мышей',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'ZERO squirrel',
-				ru: 'НОЛЬ белок'
+				ru: 'НОЛЬ белок',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'ZERO rabbit',
-				ru: 'НОЛЬ кроликов'
+				ru: 'НОЛЬ кроликов',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'ZERO dog',
-				ru: 'НОЛЬ собак'
+				ru: 'НОЛЬ собак',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		}]
 

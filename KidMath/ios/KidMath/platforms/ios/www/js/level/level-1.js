@@ -11,25 +11,37 @@
 			img: 'mouse',
 			caption: {
 				en: 'ONE mouse',
-				ru: 'ОДНА мышь'
+				ru: 'ОДНА мышь',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'ONE squirrel',
-				ru: 'ОДНА белка'
+				ru: 'ОДНА белка',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'ONE rabbit',
-				ru: 'ОДИН кролик'
+				ru: 'ОДИН кролик',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'ONE dog',
-				ru: 'ОДНА собака'
+				ru: 'ОДНА собака',
+				de: '',
+				zh: '',
+				es: ''
 			}
 		}]
 

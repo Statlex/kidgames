@@ -46,7 +46,7 @@
 				var path = lang[info.lang].endSection || soundList.endSection;
 				player.play(path);
 				statusBar.updateScore(info.bonus.normal);
-				if (dataStorage.getItem('score') >= 200) {
+				if (dataStorage.getItem('score') >= 100) {
 					ui.message.show(lang[info.lang].youHaveDoneThisSection, 'app insetHTML .title-page');
 					win.dataStorage.addToOpenSections('learn--');
 				} else {
