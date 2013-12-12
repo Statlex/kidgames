@@ -9,6 +9,7 @@
 		section: 'no-section', // current active section
 		difficult: 1,
 		score: dataStorage.getItem('score') || 0,
+		isPhone: false,
 		screen: {
 			width: function() {
 				return doc.documentElement.clientWidth;
@@ -28,9 +29,19 @@
 			var lang = dataStorage.getItem('lang') || (navigator.language || navigator.userLanguage);
 			lang = lang.split('-')[0];
 			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.lang : lang;
+		},
+		getIsPhone: function() {
+			var docElem = doc.documentElement;
+			var maxSize = docElem.clientHeight > docElem.clientWidth ? docElem.clientHeight : docElem.clientWidth;
+			this.isPhone = maxSize < 700;
+			return this.isPhone;
 		}
 	};
 
-	 win.info.init();
+	win.addEventListener('load', info.getIsPhone.bind(info), false);
+
+	win.addEventListener('resize', info.getIsPhone.bind(info), false);
+
+	win.info.init();
 
 }(window, document));
