@@ -36,10 +36,8 @@
 
 			var that = this;
 			var blocks = $$('#wrapper .js-letter-for-find');
-			blocks.forEach(function(node){
+			blocks.forEach(function(node) {
 				node.onclick = function() {
-					console.log('-' + node.getAttribute('letter') + '-');
-					console.log('-' + that.answer + '-');
 					if (parseInt(node.getAttribute('letter')) === that.answer) {
 						that.showLevel();
 						win.ui.splashScreen.show(true);

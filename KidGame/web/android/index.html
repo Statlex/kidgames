@@ -109,10 +109,10 @@
 	<div class="page">
 
 		{{ findLetter.questions.forEach(function(letterNumber){ }}
-			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find">
-					<span>
-						{{= lang[info.lang].alphabet[letterNumber] }}
-					</span>
+			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find{{= info.isPhone ? '-phone' : '' }} letter-numerous-{{= lang[info.lang].alphabetLength }}">
+				<span>
+					{{= lang[info.lang].alphabet[letterNumber] }}
+				</span>
 			</div>
 		{{ }); }}
 
