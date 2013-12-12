@@ -30,14 +30,13 @@
 	};
 
 	win.$.shuffle = function (arr) {
+		function assort() {
+			return Math.random() - 0.5;
+		}
 		arr.forEach(function (value, index, array) {
-			array.sort(function () {
-				return Math.random() - 0.5;
-			});
+			array.sort(assort);
 		});
-
 		return arr;
-
 	};
 
 	win.$.createSimpleArray = function(begin, end) {
@@ -49,6 +48,12 @@
 	};
 
 	win.$.hexToRgb = function(hex) {
+
+		//#FCA -> #FFCCAA
+		if (hex.length <= 4) {
+			hex = hex.replace(/(\w)(\w)(\w)/gi, '$1$1$2$2$3$3');
+		}
+
 		var rgb = hex.match(/\w{2}/gi);
 		return parseInt(rgb[0], 16) + ', ' + parseInt(rgb[1], 16) + ', ' + parseInt(rgb[2], 16);
 	}
