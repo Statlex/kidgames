@@ -25,6 +25,13 @@
 			statusBar.setSetupButton(selector === '.title-page');
 			ui.fade.hide();
 			this.resizeIU();
+			this.addShadow();
+		},
+		addShadow: function() {
+			$$('.title-button span, .level-wrapper span, .test-basic-answer-number span').forEach(function(node){
+				var randomColor = $.shuffle(info.shadowColors)[6];
+				node.style.boxShadow = '5px 5px 5px 0 rgba(' + $.hexToRgb(randomColor) + ', 0.6)';
+			});
 		},
 		setShowPage: function() {
 			$$('[show-page]', this.wrapper).forEach(function(node) {

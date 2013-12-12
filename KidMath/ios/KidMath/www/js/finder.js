@@ -34,5 +34,9 @@
 		return arr;
 	};
 
+	win.$.hexToRgb = function(hex) {
+		var rgb = hex.match(/\w{2}/gi);
+		return parseInt(rgb[0], 16) + ', ' + parseInt(rgb[1], 16) + ', ' + parseInt(rgb[2], 16);
+	}
 
 }(window, document));
