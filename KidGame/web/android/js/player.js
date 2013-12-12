@@ -44,7 +44,7 @@
 			}
 
 			if (info.section === 'findLetter') {
-				console.log('/ findLetter /');
+				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
 			}
 
 		},
