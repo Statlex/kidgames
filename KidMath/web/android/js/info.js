@@ -6,7 +6,8 @@
 	win.info = {
 		pathToNumber:'img/number/',
 		lang: 'en',
-		availableLangs: ['en', 'ru', 'de', 'zh', 'es'],
+//		availableLangs: ['en', 'ru', 'de', 'zh', 'es'],
+		availableLangs: ['en', 'ru', 'de', 'es'],
 		imgPathLevelPre: 'img/level/',
 		isTouch: document.documentElement.hasOwnProperty('ontouchstart'),
 		screenWidth: function() {
