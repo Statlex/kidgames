@@ -27,6 +27,10 @@ div, span, select {
 	text-size-adjust: none;
 }
 
+#wrapper .no-padding {
+	padding: 0;
+}
+
 html {
 	width: 100%;
 	height: 100%;
@@ -334,12 +338,34 @@ body {
 	height: 16.66%;
 }
 
+.letter-numerous-30 {
+	width: 16.66%;
+	height: 20%;
+}
+
+.letter-numerous-33 {
+	width: 16.66%;
+	height: 16.66%;
+}
+
 @media screen and (orientation: portrait) {
+
 	.letter-numerous-26,
 	.letter-numerous-27 {
 		width: 25%;
 		height: 14.28%;
 	}
+
+	.letter-numerous-30 {
+		width: 25%;
+		height: 12.5%;
+	}
+
+	.letter-numerous-33 {
+		width: 25%;
+		height: 11.11%;
+	}
+
 }
 
 
