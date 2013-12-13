@@ -13,14 +13,14 @@
 		showLevel: function() {
 			statusBar.show(['playAgain']);
 
-			this.questions = Object.create(lang[info.lang].alphabet);
+			this.questions = $.createSimpleArray(1, lang[info.lang].alphabetLength);
 			this.answer = $.shuffle(Object.create(this.questions))[5];
 
 			setTimeout(player.play.bind(player, 'alphabets/' + info.lang + '/' + this.answer + '.mp3'), 1000);
 
 			// if difficult == 1 -> show message
 			if (info.difficult === 1) {
-				ui.message.show(lang[info.lang].find + ': ' + this.answer);
+				ui.message.show(lang[info.lang].find + ': ' + lang[info.lang].alphabet[this.answer]);
 			}
 
 			// if difficult == 2 -> normal mode
@@ -40,7 +40,7 @@
 				node.onclick = function() {
 					console.log('-' + node.getAttribute('letter') + '-');
 					console.log('-' + that.answer + '-');
-					if (node.getAttribute('letter') === that.answer) {
+					if (parseInt(node.getAttribute('letter')) === that.answer) {
 						that.showLevel();
 						win.ui.splashScreen.show(true);
 						dataStorage.changeItem('score', 3 + info.difficult);

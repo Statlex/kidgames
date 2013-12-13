@@ -106,14 +106,12 @@
 <div class="js-template find-letter" onshow="findLetter.showLevel()">
 	<div class="page">
 
-		{{ findLetter.questions.forEach(function(letter){ }}
-
-		<div letter="{{= letter }}" class="js-letter-for-find letter-for-find">
-				<span>
-					{{= letter }}
-				</span>
-		</div>
-
+		{{ findLetter.questions.forEach(function(letterNumber){ }}
+			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find">
+					<span>
+						{{= lang[info.lang].alphabet[letterNumber] }}
+					</span>
+			</div>
 		{{ }); }}
 
 	</div>
