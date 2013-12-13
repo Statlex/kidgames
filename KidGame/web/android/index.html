@@ -109,9 +109,9 @@
 	<div class="page">
 
 		{{ findLetter.questions.forEach(function(letterNumber){ }}
-			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find{{= info.isPhone ? '-phone' : '' }} letter-numerous-{{= lang[info.lang].alphabetLength }}">
-				<span>
-					{{= lang[info.lang].alphabet[letterNumber] }}
+			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find letter-numerous-{{= lang[info.lang].alphabetLength }}">
+				<span style="background-image: url('img/alphabet/{{= info.lang }}/{{= letterNumber}}.png');">
+					<!--{{= lang[info.lang].alphabet[letterNumber] }}-->
 				</span>
 			</div>
 		{{ }); }}
