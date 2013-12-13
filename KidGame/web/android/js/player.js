@@ -68,7 +68,7 @@
 	"use strict";
 	/*global window, document */
 
-	if (win.Media) {
+	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}
 
