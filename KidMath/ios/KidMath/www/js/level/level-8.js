@@ -12,36 +12,36 @@
 			caption: {
 				en: 'EIGHT mouses',
 				ru: 'ВОСЕМЬ мышей',
-				de: '',
+				de: 'ACHT Mäuse',
 				zh: '',
-				es: ''
+				es: 'OCHO ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'EIGHT squirrels',
 				ru: 'ВОСЕМЬ белок',
-				de: '',
+				de: 'ACHT Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'OCHO ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'EIGHT rabbits',
 				ru: 'ВОСЕМЬ кроликов',
-				de: '',
+				de: 'ACHT Kaninchen',
 				zh: '',
-				es: ''
+				es: 'OCHO conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'EIGHT dogs',
 				ru: 'ВОСЕМЬ собак',
-				de: '',
+				de: 'ACHT Hunde',
 				zh: '',
-				es: ''
+				es: 'OCHO perros'
 			}
 		}]
 

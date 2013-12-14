@@ -12,36 +12,36 @@
 			caption: {
 				en: 'THREE mouses',
 				ru: 'ТРИ мыши',
-				de: '',
+				de: 'DREI Mäuse',
 				zh: '',
-				es: ''
+				es: 'TRES ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'THREE squirrels',
 				ru: 'ТРИ белки',
-				de: '',
+				de: 'DREI Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'TRES ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'THREE rabbits',
 				ru: 'ТРИ кролика',
-				de: '',
+				de: 'DREI Kaninchen',
 				zh: '',
-				es: ''
+				es: 'TRES conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'THREE dogs',
 				ru: 'ТРИ собаки',
-				de: '',
+				de: 'DREI Hunde',
 				zh: '',
-				es: ''
+				es: 'TRES perros'
 			}
 		}]
 

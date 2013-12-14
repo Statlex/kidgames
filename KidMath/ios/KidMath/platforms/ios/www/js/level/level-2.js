@@ -12,36 +12,36 @@
 			caption: {
 				en: 'TWO mouses',
 				ru: 'ДВЕ мыши',
-				de: '',
+				de: 'ZWEI Mäuse',
 				zh: '',
-				es: ''
+				es: 'DOS ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'TWO squirrels',
 				ru: 'ДВЕ белки',
-				de: '',
+				de: 'ZWEI Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'DOS ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'TWO rabbits',
 				ru: 'ДВА кролика',
-				de: '',
+				de: 'ZWEI Kaninchen',
 				zh: '',
-				es: ''
+				es: 'DOS conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'TWO dogs',
 				ru: 'ДВЕ собаки',
-				de: '',
+				de: 'ZWEI Hunde',
 				zh: '',
-				es: ''
+				es: 'DOS perros'
 			}
 		}]
 

@@ -1,0 +1,62 @@
+{
+  "images" : [
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "iPad58SettingsIcon@2x-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "i2Pad80SpotlightIcon@2x-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "iPhone120HomeIcon@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "iPhone29SettingsIcon.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "iPad58SettingsIcon@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "iPad40SpotlightIcon.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "i2Pad80SpotlightIcon@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "iPad76HomeIcon.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "iPad152HomeIcon@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

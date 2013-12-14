@@ -12,36 +12,36 @@
 			caption: {
 				en: 'ZERO mouse',
 				ru: 'НОЛЬ мышей',
-				de: '',
+				de: 'NULL Mäuse',
 				zh: '',
-				es: ''
+				es: 'CERO ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'ZERO squirrel',
 				ru: 'НОЛЬ белок',
-				de: '',
+				de: 'NULL Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'CERO ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'ZERO rabbit',
 				ru: 'НОЛЬ кроликов',
-				de: '',
+				de: 'NULL Kaninchen',
 				zh: '',
-				es: ''
+				es: 'CERO conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'ZERO dog',
 				ru: 'НОЛЬ собак',
-				de: '',
+				de: 'NULL Hunde',
 				zh: '',
-				es: ''
+				es: 'CERO perros'
 			}
 		}]
 

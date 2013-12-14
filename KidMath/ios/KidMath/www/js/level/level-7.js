@@ -12,36 +12,36 @@
 			caption: {
 				en: 'SEVEN mouses',
 				ru: 'СЕМЬ мышей',
-				de: '',
+				de: 'SIEBEN Mäuse',
 				zh: '',
-				es: ''
+				es: 'SIETE ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'SEVEN squirrels',
 				ru: 'СЕМЬ белок',
-				de: '',
+				de: 'SIEBEN Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'SIETE ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'SEVEN rabbits',
 				ru: 'СЕМЬ кроликов',
-				de: '',
+				de: 'SIEBEN Kaninchen',
 				zh: '',
-				es: ''
+				es: 'SIETE conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'SEVEN dogs',
 				ru: 'СЕМЬ собак',
-				de: '',
+				de: 'SIEBEN Hunde',
 				zh: '',
-				es: ''
+				es: 'SIETE perros'
 			}
 		}]
 

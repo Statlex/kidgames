@@ -12,36 +12,36 @@
 			caption: {
 				en: 'NINE mouses',
 				ru: 'ДЕВЯТЬ мышей',
-				de: '',
+				de: 'NEUN Mäuse',
 				zh: '',
-				es: ''
+				es: 'NUEVE ratones'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'NINE squirrels',
 				ru: 'ДЕВЯТЬ белок',
-				de: '',
+				de: 'NEUN Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'NUEVE ardillas'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'NINE rabbits',
 				ru: 'ДЕВЯТЬ кроликов',
-				de: '',
+				de: 'NEUN Kaninchen',
 				zh: '',
-				es: ''
+				es: 'NUEVE conejos'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'NINE dogs',
 				ru: 'ДЕВЯТЬ собак',
-				de: '',
+				de: 'NEUN Hunde',
 				zh: '',
-				es: ''
+				es: 'NUEVE perros'
 			}
 		}]
 

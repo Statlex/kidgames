@@ -12,36 +12,36 @@
 			caption: {
 				en: 'ONE mouse',
 				ru: 'ОДНА мышь',
-				de: '',
+				de: 'EINE Maus',
 				zh: '',
-				es: ''
+				es: 'UN ratón'
 			}
 		},{
 			img: 'squirrel',
 			caption: {
 				en: 'ONE squirrel',
 				ru: 'ОДНА белка',
-				de: '',
+				de: 'EIN Eichhörnchen',
 				zh: '',
-				es: ''
+				es: 'UNA ardilla'
 			}
 		},{
 			img: 'rabbit',
 			caption: {
 				en: 'ONE rabbit',
 				ru: 'ОДИН кролик',
-				de: '',
+				de: 'EIN Kaninchen',
 				zh: '',
-				es: ''
+				es: 'UN conejo'
 			}
 		},{
 			img: 'dog',
 			caption: {
 				en: 'ONE dog',
 				ru: 'ОДНА собака',
-				de: '',
+				de: 'EIN Hund',
 				zh: '',
-				es: ''
+				es: 'UN perro'
 			}
 		}]
 
