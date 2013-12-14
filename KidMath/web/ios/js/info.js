@@ -7,7 +7,7 @@
 		pathToNumber:'img/number/',
 		lang: 'en',
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es'],
-		availableLangs: ['en', 'ru', 'de', 'es'],
+		availableLangs: ['en', 'ru', 'de', 'es', 'ar'],
 		imgPathLevelPre: 'img/level/',
 		isTouch: document.documentElement.hasOwnProperty('ontouchstart'),
 		screenWidth: function() {
