@@ -7,13 +7,16 @@
 		wrapper: null, // field for page wrapper, type Node
 		templatePrefix: '.js-template',
 		history: [],
+		historyCurrentState: '',
 		isBack: false,
-		show: function(cssSelector, model, needTrack) {
+		show: function(cssSelector, model, notTrack) {
 
-			// get last selector and equals with current selector
-			if ((needTrack === undefined || needTrack) === true && this.history[this.history.length - 1] !== cssSelector) {
+			// do not push doubled state (selector)
+			if (cssSelector !== this.historyCurrentState && !notTrack) {
 				this.history.push(cssSelector);
 			}
+
+			this.historyCurrentState = cssSelector;
 
 			this.transition1stPart(); // only for decoration
 
@@ -43,7 +46,7 @@
 			this.show(prePage);
 		},
 		refresh: function(){
-			this.show(this.history.pop());
+			this.show(this.currentState, true);
 			statusBar.setLang();
 		},
 		transition1stPart: function() {
@@ -59,7 +62,7 @@
 				var transitionWrapper = $('#wrapper-for-transition');
 				transitionWrapper.style.webkitTransition = '0.5s all ease-out';
 				$.addClass(transitionWrapper, back ? 'to-left' : 'to-right');
-			}.bind(this ,this.isBack), 10);
+			}.bind(this, this.isBack), 10);
 		},
 		template: function(str) {
 			return new Function("obj",
