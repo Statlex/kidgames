@@ -6,10 +6,10 @@
 	win.lang = win.lang || {};
 
 	win.lang.es = {
-		language: 'es language',
+		language: 'lengua',
 		languageName: 'Español',
-		settings: 'es Settings',
-		score: 'es score',
+		score: 'nivel',
+		settings: 'Ajustes',
 		easy: 'es easy',
 		normal: 'es normal',
 		hard: 'es hard',

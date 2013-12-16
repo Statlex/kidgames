@@ -6,10 +6,10 @@
 	win.lang = win.lang || {};
 
 	win.lang.ar  = {
-		language: 'ar language',
-		languageName: 'ar arabian',
-		settings: 'ar Settings',
-		score: 'ar score',
+		language: 'اللغه',
+		languageName: 'العربية',
+		score: 'مستوى',
+		settings: 'اعدادات',
 		easy: 'ar easy',
 		normal: 'ar normal',
 		hard: 'ar hard',
