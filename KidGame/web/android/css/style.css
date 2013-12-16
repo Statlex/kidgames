@@ -320,6 +320,10 @@ body {
 	float: left;
 }
 
+.letter-for-find-lang-ar {
+	float: right;
+}
+
 .letter-for-find span {
 	display: block;
 	width: 100%;
@@ -333,7 +337,8 @@ body {
 }
 
 .letter-numerous-26,
-.letter-numerous-27 {
+.letter-numerous-27,
+.letter-numerous-28 {
 	width: 20%;
 	height: 16.66%;
 }
@@ -351,7 +356,8 @@ body {
 @media screen and (orientation: portrait) {
 
 	.letter-numerous-26,
-	.letter-numerous-27 {
+	.letter-numerous-27,
+	.letter-numerous-28 {
 		width: 25%;
 		height: 14.28%;
 	}

@@ -46,7 +46,7 @@
 			this.show(prePage);
 		},
 		refresh: function(){
-			this.show(this.currentState, true);
+			this.show(this.historyCurrentState, true);
 			statusBar.setLang();
 		},
 		transition1stPart: function() {
