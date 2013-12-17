@@ -36,7 +36,8 @@
 		youDontHaveEnoughPoints: 'zh DON\'T ENOUGH POINTS to open next section. Please, try to learn more :)',
 		thanks: 'Thanks',
 		thanksForDe: 'Svetlana Dubinetskaya',
-		thanksForEs: 'Viktoriya Kostyuk'
+		thanksForEs: 'Viktoriya Kostyuk',
+		shareUs: 'zh Share'
 	};
 
 	for (var i = 0; i <= 9; i++) {

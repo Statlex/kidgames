@@ -36,7 +36,8 @@
 		youDontHaveEnoughPoints: 'SIE HABEN UNGENÜGENDE PUNKTANZAHL, um diese Abteilung öffnen können. Gehen Sie bitte die Vorhergehende Teile :)',
 		thanks: 'Danksagung',
 		thanksForDe: 'Svetlana Dubinetskaya',
-		thanksForEs: 'Viktoriya Kostyuk'
+		thanksForEs: 'Viktoriya Kostyuk',
+		shareUs: 'Aktie'
 	};
 
 	for (var i = 0; i <= 9; i++) {
