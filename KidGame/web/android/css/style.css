@@ -142,10 +142,6 @@ body {
 	margin-top: -2px;
 }
 
-.status-bar-setup span {
-	background-image: url('../img/i/setting.svg');
-}
-
 .status-bar-play-again span {
 	background-image: url('../img/i/play.svg');
 }

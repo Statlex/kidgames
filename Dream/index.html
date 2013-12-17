@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>your dream</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="icon" href="img/icon/live-tree.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/icon/live-tree.png"/>
+
+	<link rel="stylesheet" href="css/style.css"/>
+
+	<script src="js/util.js" type="text/javascript"></script>
+	<script src="js/templater.js" type="text/javascript"></script>
+	<script src="js/storage.js" type="text/javascript"></script>
+	<script src="js/share.js" type="text/javascript"></script>
+
+	<script src="js/setting.js" type="text/javascript"></script>
+
+	<script src="js/lang-en.js" type="text/javascript"></script>
+	<script src="js/lang-ru.js" type="text/javascript"></script>
+
+	<script src="js/app.js" type="text/javascript"></script>
+
+	<script src="js/translater.js" type="text/javascript"></script>
+	<script src="js/sender.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+</div>
+
+<div id="fade"></div>
+
+<div class="js-template title-page hidden">
+
+	<div class="title-page-table table">
+
+		<div class="title-page-row row">
+			<div class="title-page-cell cell">
+
+				<div class="title-page-button" action-name="showPage" selector="enter-your-dream">
+					{{= i.enterDream }}
+				</div>
+
+				<div class="title-page-button" action-name="showPage" selector="how-it-works">
+					{{= i.howItWorks }}
+				</div>
+
+				<div class="title-page-button" action-name="showPage" selector="user-manual">
+					{{= i.userManual }}
+				</div>
+
+				<div class="title-page-button" action-name="showPage" selector="sharing">
+					{{= i.share }}
+				</div>
+
+				<div class="title-page-button" action-name="showPage" selector="settings">
+					{{= i.settings }}
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="js-template enter-your-dream hidden">
+	<div class="enter-your-dream-form simple-page">
+		<h1>{{= i.enterDream }}</h1>
+		<article>
+			<input type="text" saved-value="name" placeholder="{{= pl.yourName }}..." action-name="saveValue"
+			       action-type="input"/>
+			<textarea saved-value="dream" rows="10" placeholder="{{= pl.yourDream }}..." action-name="saveValue"
+			          action-type="input"></textarea>
+		</article>
+
+
+		<div class="left-button-wrapper">
+			<div class="back-button" action-name="showPage" selector="title-page">{{= i.back}}</div>
+		</div>
+
+		<div class="right-button-wrapper">
+			<div controller-action="app goToTranslatePage" class="submit-button">{{= i.submit }}</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="js-template dream-translating hidden" run-after="translater run">
+
+
+	<div class="dream-translating-wrapper simple-page">
+		<h1>{{= i.s4 }}</h1>
+		<article>
+
+			<h2>{{= sentence.s1 }}</h2>
+
+			<div class="progress-wrapper">
+				<div class="progress">0%</div>
+			</div>
+
+			<h2><span class="js-lang-count">0</span> / <span class="js-all-count">4</span> {{= title.languages }}</h2>
+
+			<div class="progress-wrapper">
+				<div class="progress js-binary-code"></div>
+			</div>
+
+			<h2>{{= title.toBinaryCode }}</h2>
+
+		</article>
+		<div class="left-button-wrapper">
+			<div class="back-button" action-name="showPage" selector="enter-your-dream">{{= i.cancel}}</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="js-template send-dream-to-universe hidden" run-after="sender run">
+	<div class="send-dream-to-universe">
+		<h1>{{= sentence.s2 }}</h1>
+
+		<div class="sender css-anim-color"></div>
+		<div class="progress"></div>
+
+		<div class="sending-end-wrapper hidden">
+			<div class="table">
+				<div class="row">
+					<div class="cell">
+						<p class="title-page-button" action-name="showPage" selector="title-page">{{= sentence.s3 }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="js-template how-it-works hidden">
+
+	<div class="how-it-works-wrapper simple-page">
+		<h1>{{= i.howItWorks }}</h1>
+		<article>
+
+			{{ if ( setting.lang === 'en') { }}
+
+			<h4>How to Make Your Wishes Come True with the Power of Thought?</h4>
+
+			<p>There are many techniques for wish fulfillment, this app will focus on one of the most powerful ones –
+				the visualization and translation.</p>
+
+			<p><strong>The first</strong> thing you should do is to articulate your wish. It should cause you pleasant
+				feelings such as joy, happiness and pleasure. Positive emotions make your wishes stronger and bring
+				closer the moment when you reach your dream.</p>
+
+			<p><strong>Second</strong> you need to enter into a state of relaxation. Choose the time when you will not
+				be disturbed, take a comfortable position, close your eyes and relax. Let your body become light and
+				weightless as a feather, trying to keep your mind calm.</p>
+
+			<p>Once you reach a state of relaxation, think of the happiest episode in your life. “Tune in” to the wave
+				of joy and positivity. This will fill your thoughts with the necessary energy.</p>
+
+			<p><strong>Third</strong> imagine your dream as if it has already come true. You’ve got what you want. Feel the joy and
+				gratitude, and the whole range of positive emotions. Stay in this beautiful state for some time, enjoy
+				it, and then open your eyes.</p>
+
+			<p><strong>Fourth</strong> write your wish in this app and send it to the universe. Wait until it is translated and all your
+				strengths, energy and positive fluids will go to the universe. Think about your wish at this time.</p>
+
+			<p><strong>Congratulations!</strong> Your dream is already on the way to implementation. Now let it go
+				easily and freely. Your “order” has already been received by the universe, so let it find the way to
+				implement it.</p>
+
+			<p>A few important points:</p>
+
+			<p>&nbsp;- Your wish must not harm people or the world. If the power of thought will be used for destructive
+				plans, nothing good will come of this.</p>
+
+			<p>&nbsp;- After using this technique, you shouldn’t just sit and wait. Help the higher powers, act and get
+				active in the real world.</p>
+
+			<p>&nbsp;- If you have a big dream to make come true, you should do this exercise more than once. The more
+				creative energy you will manage to give to your wish, the faster it will turn into reality.</p>
+
+			{{ }; }}
+
+			{{ if ( setting.lang === 'ru') { }}
+
+			/* текст ожидает перевода */
+			<h4>How to Make Your Wishes Come True with the Power of Thought?</h4>
+
+			<p>There are many techniques for wish fulfillment, this app will focus on one of the most powerful ones –
+				the visualization and translation.</p>
+
+			<p><strong>The first</strong> thing you should do is to articulate your wish. It should cause you pleasant
+				feelings such as joy, happiness and pleasure. Positive emotions make your wishes stronger and bring
+				closer the moment when you reach your dream.</p>
+
+			<p><strong>Second</strong> you need to enter into a state of relaxation. Choose the time when you will not
+				be disturbed, take a comfortable position, close your eyes and relax. Let your body become light and
+				weightless as a feather, trying to keep your mind calm.</p>
+
+			<p>Once you reach a state of relaxation, think of the happiest episode in your life. “Tune in” to the wave
+				of joy and positivity. This will fill your thoughts with the necessary energy.</p>
+
+			<p><strong>Third</strong> imagine your dream as if it has already come true. You’ve got what you want. Feel the joy and
+				gratitude, and the whole range of positive emotions. Stay in this beautiful state for some time, enjoy
+				it, and then open your eyes.</p>
+
+			<p><strong>Fourth</strong> write your wish in this app and send it to the universe. Wait until it is translated and all your
+				strengths, energy and positive fluids will go to the universe. Think about your wish at this time.</p>
+
+			<p><strong>Congratulations!</strong> Your dream is already on the way to implementation. Now let it go
+				easily and freely. Your “order” has already been received by the universe, so let it find the way to
+				implement it.</p>
+
+			<p>A few important points:</p>
+
+			<p>&nbsp;- Your wish must not harm people or the world. If the power of thought will be used for destructive
+				plans, nothing good will come of this.</p>
+
+			<p>&nbsp;- After using this technique, you shouldn’t just sit and wait. Help the higher powers, act and get
+				active in the real world.</p>
+
+			<p>&nbsp;- If you have a big dream to make come true, you should do this exercise more than once. The more
+				creative energy you will manage to give to your wish, the faster it will turn into reality.</p>
+
+			{{ }; }}
+
+		</article>
+		<div class="left-button-wrapper">
+			<div class="back-button" action-name="showPage" selector="title-page">{{= i.back}}</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="js-template user-manual hidden">
+
+	<div class="user-manual-wrapper simple-page">
+		<h1>{{= i.userManual }}</h1>
+		<article>
+
+			{{ if ( setting.lang === 'en') { }}
+			<h2>EN</h2>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta, dolor ea eligendi, hic labore
+				laudantium natus numquam officiis pariatur quia quis reprehenderit similique! At, exercitationem
+				perferendis?
+				Architecto, labore quasi.</p>
+			{{ }; }}
+
+
+			{{ if ( setting.lang === 'ru') { }}
+			<h2>RU</h2>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta, dolor ea eligendi, hic labore
+				laudantium natus numquam officiis pariatur quia quis reprehenderit similique! At, exercitationem
+				perferendis?
+				Architecto, labore quasi.</p>
+			{{ }; }}
+
+		</article>
+		<div class="left-button-wrapper">
+			<div class="back-button" action-name="showPage" selector="title-page">{{= i.back}}</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="js-template sharing hidden">
+
+	<div class="sharing-wrapper simple-page">
+		<h1>{{= i.share }}</h1>
+
+		<article>
+			<div class="share-link-container">
+				<a href="http://statlex.com" class="share-link facebook" share-for="facebook">Facebook</a>
+				<a href="http://statlex.com" class="share-link twitter" share-for="twitter">Twitter</a>
+				<a href="http://statlex.com" class="share-link linkedin" share-for="linkedin">LinkedIn</a>
+				<a href="http://statlex.com" class="share-link vk" share-for="vk">vk</a>
+				<a href="http://statlex.com" class="share-link google" share-for="google">google+</a>
+			</div>
+		</article>
+		<div class="left-button-wrapper">
+			<div class="back-button" action-name="showPage" selector="title-page">{{= i.back}}</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="js-template settings hidden" run-after="setting run">
+
+	<div class="settings-wrapper simple-page">
+		<h1>{{= i.settings }}</h1>
+		<article>
+			<div class="table">
+				<div class="row">
+					<div class="cell">
+						<span>{{= i.language }}:</span>
+					</div>
+					<div class="cell">
+						<select action-type="change" before-action="setLanguage" action-name="showPage"
+						        selector="settings">
+							<option value="en">English</option>
+							<option value="ru">Русский</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+	<div class="left-button-wrapper">
+		<div class="back-button" action-name="showPage" selector="title-page">{{= i.back }}</div>
+	</div>
+	<div class="right-button-wrapper">
+		<div class="reset-button" action-name="resetSetting" selector="title-page">{{= i.resetSetting }}</div>
+	</div>
+</div>
+
+</body>
+</html>
