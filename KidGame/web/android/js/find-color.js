@@ -3,23 +3,24 @@
 	"use strict";
 	/*global window, document */
 
-	win.findLetter = {
+	win.findColor = {
 		init: function() {
-			this.template = $('.js-template.find-letter').innerHTML;
+			this.template = $('.js-template.find-color').innerHTML;
 			this.template = viewer.template(this.template);
 		},
 		questions: [],
 		showLevel: function() {
 			statusBar.show(['playAgain']);
 
-			this.questions = $.createSimpleArray(1, lang[info.lang].alphabetLength);
+			this.questions = $.createSimpleArray(1, lang[info.lang].colors.length - 1);
 			this.answer = $.shuffle(Object.create(this.questions))[5];
 
-			setTimeout(player.play.bind(player, 'alphabets/' + info.lang + '/' + this.answer + '.mp3'), 1000);
+			setTimeout(player.play.bind(player, 'colors/' + info.lang + '/' + lang[info.lang].colors[this.answer] + '.mp3'), 1000);
 
 			// if difficult == 1 -> show message
 			if (info.difficult === 1) {
-				ui.message.show(lang[info.lang].find + ': ' + lang[info.lang].alphabet[this.answer]);
+				var coloredBlock = '<span class="color-block-in-message" style="background-color: #' + lang[info.lang].colors[this.answer] + '"><\/span>   '
+				ui.message.show(coloredBlock);
 			}
 
 			// if difficult == 2 -> normal mode
@@ -34,10 +35,10 @@
 			$('#wrapper').innerHTML = this.template({});
 
 			var that = this;
-			var blocks = $$('#wrapper .js-letter-for-find');
+			var blocks = $$('#wrapper .js-color-for-find');
 			blocks.forEach(function(node) {
 				node.onclick = function() {
-					if (parseInt(node.getAttribute('letter')) === that.answer) {
+					if (node.getAttribute('color') === lang[info.lang].colors[that.answer]) {
 						that.showLevel();
 						win.ui.splashScreen.show(true);
 						dataStorage.changeItem('score', 3 + info.difficult);
@@ -57,7 +58,7 @@
 	};
 
 
-	win.addEventListener('load', findLetter.init.bind(findLetter), false);
+	win.addEventListener('load', findColor.init.bind(findColor), false);
 
 
 

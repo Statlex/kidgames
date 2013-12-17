@@ -28,6 +28,11 @@
 		margin: 10px auto;
 		border-radius: 8px;
 	}
+
+	.color-button div {
+		height: 20px;
+		width: 20px;
+	}
 }
 
 

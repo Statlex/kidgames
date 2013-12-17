@@ -32,6 +32,14 @@
 						button.setAttribute('onclick', attribute);
 					});
 					break;
+				case 'findColor':
+					$$('#wrapper .main-button').forEach(function(button){
+						var attribute = button.getAttribute('onclick');
+						attribute += 'viewer.show(".find-color");';
+						button.setAttribute('onclick', attribute);
+					});
+					break;
+
 
 			}
 
