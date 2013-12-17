@@ -5,7 +5,7 @@
 	}
 }
 
-@media screen and (max-height:600px) {
+@media screen and (max-height: 600px) {
 
 	.status-bar, .message-wrapper {
 		height: 40px;
@@ -30,8 +30,10 @@
 	}
 
 	.color-button div {
-		height: 20px;
-		width: 20px;
+		height: 16px;
+		width: 16px;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 }
 
