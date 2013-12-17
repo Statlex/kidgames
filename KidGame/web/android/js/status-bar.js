@@ -11,6 +11,7 @@
 			this.score = $('.js-score-field', this.wrapper);
 			this.setup = $('.js-setup', this.wrapper);
 			this.playAgain = $('.js-play-again', this.wrapper);
+			this.backButton = $('.js-back', this.wrapper);
 			this.update();
 			this.setLang();
 		},
@@ -36,11 +37,11 @@
 					$.addClass(that[buttonName], 'hidden');
 				}
 			});
+			this.needShowBackButton(true);
+		},
+		needShowBackButton: function(needShow) {
+			this.backButton.style.display = needShow ? 'block' : 'none';
 		}
-
-
-
-
 
 	};
 

@@ -13,6 +13,7 @@
 		setTitlePage: function() {
 			info.section = 'titlePage';
 			statusBar.show(['setup']);
+			statusBar.needShowBackButton(false);
 		},
 		setActiveObject: function() {
 
