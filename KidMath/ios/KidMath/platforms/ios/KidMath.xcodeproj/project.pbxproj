@@ -44,6 +44,14 @@
 		AD2F51A9185C96C100326B47 /* splash-screen-1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A3185C96C100326B47 /* splash-screen-1536x2048.png */; };
 		AD2F51AA185C96C100326B47 /* splash-screen-2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A4185C96C100326B47 /* splash-screen-2048x1536.png */; };
 		AD2F51AC185CAF4F00326B47 /* iPhone114HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51AB185CAF4F00326B47 /* iPhone114HomeIcon@2x.png */; };
+		AD2F51B3185CB49600326B47 /* splash-screen-320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */; };
+		AD2F51B4185CB49600326B47 /* splash-screen-768x1004.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */; };
+		AD2F51B6185CB49600326B47 /* splash-screen-2048x1496.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */; };
+		AD2F51B8185CB51E00326B47 /* splash-screen-1536x2008.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */; };
+		AD2F51BA185CB5D000326B47 /* splash-screen-1024x748.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */; };
+		AD69F445185D0969003D3EF3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F444185D0969003D3EF3 /* Security.framework */; };
+		AD69F447185D0976003D3EF3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F446185D0976003D3EF3 /* AdSupport.framework */; };
+		AD69F453185D0F49003D3EF3 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F452185D0F49003D3EF3 /* libFlurry_4.3.0.a */; };
 		B21CB3F5B2D74B999D83EF45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C8882E0F245F4ADCE44DE /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E3818CB38C4E42B69F59F0E5 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B88D280E84AED95911FFB /* CDVReachability.m */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
@@ -115,6 +123,16 @@
 		AD2F51A3185C96C100326B47 /* splash-screen-1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2048.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1536x2048.png"; sourceTree = "<group>"; };
 		AD2F51A4185C96C100326B47 /* splash-screen-2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1536.png"; path = "../../../../../../../resources/splash-screen/splash-screen-2048x1536.png"; sourceTree = "<group>"; };
 		AD2F51AB185CAF4F00326B47 /* iPhone114HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone114HomeIcon@2x.png"; path = "../../../../../../../resources/appicons/ios/iPhone114HomeIcon@2x.png"; sourceTree = "<group>"; };
+		AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-320x480.png"; path = "../../../../../../../resources/splash-screen/splash-screen-320x480.png"; sourceTree = "<group>"; };
+		AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-768x1004.png"; path = "../../../../../../../resources/splash-screen/splash-screen-768x1004.png"; sourceTree = "<group>"; };
+		AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1496.png"; path = "../../../../../../../resources/splash-screen/splash-screen-2048x1496.png"; sourceTree = "<group>"; };
+		AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2008.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1536x2008.png"; sourceTree = "<group>"; };
+		AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1024x748.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1024x748.png"; sourceTree = "<group>"; };
+		AD69F444185D0969003D3EF3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AD69F446185D0976003D3EF3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		AD69F448185D0A44003D3EF3 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = KidMath/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
+		AD69F451185D0F49003D3EF3 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		AD69F452185D0F49003D3EF3 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		B05AE13986364D0EBE4EBC48 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = org.apache.cordova.device/CDVDevice.h; sourceTree = "<group>"; };
 		B7608BBBCDEB4FF2A1E18171 /* CDVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVConnection.h; path = "org.apache.cordova.network-information/CDVConnection.h"; sourceTree = "<group>"; };
 		C40C8882E0F245F4ADCE44DE /* SystemConfiguration.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -126,6 +144,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD69F447185D0976003D3EF3 /* AdSupport.framework in Frameworks */,
+				AD69F445185D0969003D3EF3 /* Security.framework in Frameworks */,
+				AD69F453185D0F49003D3EF3 /* libFlurry_4.3.0.a in Frameworks */,
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -178,6 +199,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				AD69F450185D0F49003D3EF3 /* Flurry */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
 				301BF56E109A69640062928A /* www */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
@@ -220,6 +242,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD69F448185D0A44003D3EF3 /* libFlurry_4.3.0.a */,
+				AD69F446185D0976003D3EF3 /* AdSupport.framework */,
+				AD69F444185D0969003D3EF3 /* Security.framework */,
 				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -279,6 +304,11 @@
 		308D05311370CCF300D202BF /* splash */ = {
 			isa = PBXGroup;
 			children = (
+				AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */,
+				AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */,
+				AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */,
+				AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */,
+				AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */,
 				AD2F519F185C96C100326B47 /* splash-screen-640x960.png */,
 				AD2F51A0185C96C100326B47 /* splash-screen-640x1136.png */,
 				AD2F51A2185C96C100326B47 /* splash-screen-1024x768.png */,
@@ -303,6 +333,16 @@
 				30A0434614DC770100060A13 /* Localizable.strings */,
 			);
 			path = se.lproj;
+			sourceTree = "<group>";
+		};
+		AD69F450185D0F49003D3EF3 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				AD69F451185D0F49003D3EF3 /* Flurry.h */,
+				AD69F452185D0F49003D3EF3 /* libFlurry_4.3.0.a */,
+			);
+			name = Flurry;
+			path = KidMath/Flurry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,6 +433,7 @@
 				AD23E47E185C8B5D00B3598A /* iPad72HomeIcon.png in Resources */,
 				AD23E480185C8B5D00B3598A /* iPad100SpotlightIcon@2x.png in Resources */,
 				AD23E47C185C8B5D00B3598A /* iPad50SpotlightIcon.png in Resources */,
+				AD2F51B8185CB51E00326B47 /* splash-screen-1536x2008.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
@@ -403,9 +444,13 @@
 				AD23E484185C8B5D00B3598A /* iPhone57HomeIcon.png in Resources */,
 				AD2F51A6185C96C100326B47 /* splash-screen-640x1136.png in Resources */,
 				AD23E485185C8B5D00B3598A /* iPhone58SettingsIcon@2x.png in Resources */,
+				AD2F51BA185CB5D000326B47 /* splash-screen-1024x748.png in Resources */,
+				AD2F51B4185CB49600326B47 /* splash-screen-768x1004.png in Resources */,
 				AD23E482185C8B5D00B3598A /* iPad152HomeIcon@2x.png in Resources */,
+				AD2F51B6185CB49600326B47 /* splash-screen-2048x1496.png in Resources */,
 				AD2F51AC185CAF4F00326B47 /* iPhone114HomeIcon@2x.png in Resources */,
 				AD2F51A5185C96C100326B47 /* splash-screen-640x960.png in Resources */,
+				AD2F51B3185CB49600326B47 /* splash-screen-320x480.png in Resources */,
 				AD23E486185C8B5D00B3598A /* iPhone60HomeIcon.png in Resources */,
 				AD2F51AA185C96C100326B47 /* splash-screen-2048x1536.png in Resources */,
 				AD23E483185C8B5D00B3598A /* iPhone29SettingsIcon.png in Resources */,
@@ -502,6 +547,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -511,6 +557,10 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "KidMath/KidMath-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sychypav/Dev/statlex/kidgames/KidMath/ios/KidMath/platforms/ios/KidMath/Flurry,
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -526,6 +576,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = KidMath;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -538,6 +589,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KidMath/KidMath-Prefix.pch";
@@ -545,6 +597,10 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "KidMath/KidMath-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sychypav/Dev/statlex/kidgames/KidMath/ios/KidMath/platforms/ios/KidMath/Flurry,
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -560,6 +616,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = KidMath;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -574,7 +631,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -604,6 +662,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "D6E36F81-4590-4E6D-979B-47665F1670F3";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -620,7 +679,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pavel Sychykau (6X48QBPET8)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -649,6 +709,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "D6E36F81-4590-4E6D-979B-47665F1670F3";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";

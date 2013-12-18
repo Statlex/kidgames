@@ -25,8 +25,10 @@
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
 #import "MainViewController.h"
+
 
 #import <Cordova/CDVPlugin.h>
 
@@ -63,6 +65,12 @@
  */
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    
+    [Flurry setCrashReportingEnabled:YES];
+    //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
+    [Flurry startSession:@"RQMBHCSJ2HZYPNVG2W82"];
+    //your code
+    
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
 
 #if __has_feature(objc_arc)

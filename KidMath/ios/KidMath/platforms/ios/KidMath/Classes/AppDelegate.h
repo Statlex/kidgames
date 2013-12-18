@@ -26,6 +26,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Flurry.h"
 
 #import <Cordova/CDVViewController.h>
 

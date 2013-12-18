@@ -53,6 +53,7 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
+      "filename" : "splash-screen-320x480.png",
       "scale" : "1x"
     },
     {
@@ -74,6 +75,7 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "splash-screen-768x1004.png",
       "scale" : "1x"
     },
     {
@@ -87,6 +89,7 @@
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "splash-screen-1024x748.png",
       "scale" : "1x"
     },
     {
@@ -100,6 +103,7 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "splash-screen-1536x2008.png",
       "scale" : "2x"
     },
     {
@@ -113,6 +117,7 @@
       "orientation" : "landscape",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
+      "filename" : "splash-screen-2048x1496.png",
       "scale" : "2x"
     },
     {
