@@ -13,7 +13,7 @@
 				en: 'FIVE mouses',
 				ru: 'ПЯТЬ мышей',
 				de: 'FÜNF Mäuse',
-				zh: '',
+				zh: '五只老鼠',
 				es: 'CINCO ratones',
 				ar: 'خمس فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'FIVE squirrels',
 				ru: 'ПЯТЬ белок',
 				de: 'FÜNF Eichhörnchen',
-				zh: '',
+				zh: '五只松鼠',
 				es: 'CINCO ardillas',
 				ar: 'خمس سنجابات'
 			}
@@ -33,7 +33,7 @@
 				en: 'FIVE rabbits',
 				ru: 'ПЯТЬ кроликов',
 				de: 'FÜNF Kaninchen',
-				zh: '',
+				zh: '五只兔子',
 				es: 'CINCO conejos',
 				ar: 'خمس ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'FIVE dogs',
 				ru: 'ПЯТЬ собак',
 				de: 'FÜNF Hunde',
-				zh: '',
+				zh: '五只狗',
 				es: 'CINCO perros',
 				ar: 'خمس كلاب'
 			}

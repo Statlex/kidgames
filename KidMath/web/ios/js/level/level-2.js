@@ -13,7 +13,7 @@
 				en: 'TWO mouses',
 				ru: 'ДВЕ мыши',
 				de: 'ZWEI Mäuse',
-				zh: '',
+				zh: '两只老鼠',
 				es: 'DOS ratones',
 				ar: 'فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'TWO squirrels',
 				ru: 'ДВЕ белки',
 				de: 'ZWEI Eichhörnchen',
-				zh: '',
+				zh: '两只松鼠',
 				es: 'DOS ardillas',
 				ar: 'سنجابان'
 			}
@@ -33,7 +33,7 @@
 				en: 'TWO rabbits',
 				ru: 'ДВА кролика',
 				de: 'ZWEI Kaninchen',
-				zh: '',
+				zh: '两只兔子',
 				es: 'DOS conejos',
 				ar: 'ارنبان'
 			}
@@ -43,7 +43,7 @@
 				en: 'TWO dogs',
 				ru: 'ДВЕ собаки',
 				de: 'ZWEI Hunde',
-				zh: '',
+				zh: '两只狗',
 				es: 'DOS perros',
 				ar: 'كلابان'
 			}

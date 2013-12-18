@@ -13,7 +13,7 @@
 				en: 'SIX mouses',
 				ru: 'ШЕСТЬ мышей',
 				de: 'SECHS Mäuse',
-				zh: '',
+				zh: '六只老鼠',
 				es: 'SEIS ratones',
 				ar: 'ست فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'SIX squirrels',
 				ru: 'ШЕСТЬ белок',
 				de: 'SECHS Eichhörnchen',
-				zh: '',
+				zh: '六只松鼠',
 				es: 'SEIS ardillas',
 				ar: 'ست سنجابات'
 			}
@@ -33,7 +33,7 @@
 				en: 'SIX rabbits',
 				ru: 'ШЕСТЬ кроликов',
 				de: 'SECHS Kaninchen',
-				zh: '',
+				zh: '六只兔子',
 				es: 'SEIS conejos',
 				ar: 'ست ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'SIX dogs',
 				ru: 'ШЕСТЬ собак',
 				de: 'SECHS Hunde',
-				zh: '',
+				zh: '六只狗',
 				es: 'SEIS perros',
 				ar: 'ست كلاب'
 			}

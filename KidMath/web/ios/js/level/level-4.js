@@ -13,7 +13,7 @@
 				en: 'FOUR mouses',
 				ru: 'ЧЕРЫТЕ мыши',
 				de: 'VIER Mäuse',
-				zh: '',
+				zh: '四只老鼠',
 				es: 'CUATRO ratones',
 				ar: 'اربع فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'FOUR squirrels',
 				ru: 'ЧЕРЫТЕ белки',
 				de: 'VIER Eichhörnchen',
-				zh: '',
+				zh: '四只松鼠',
 				es: 'CUATRO ardillas',
 				ar: 'اربع سنجابات'
 			}
@@ -33,7 +33,7 @@
 				en: 'FOUR rabbits',
 				ru: 'ЧЕРЫТЕ кролика',
 				de: 'VIER Kaninchen',
-				zh: '',
+				zh: '四只兔子',
 				es: 'CUATRO conejos',
 				ar: 'اربع ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'FOUR dogs',
 				ru: 'ЧЕРЫТЕ собаки',
 				de: 'VIER Hunde',
-				zh: '',
+				zh: '四只狗',
 				es: 'CUATRO perros',
 				ar: 'اربع كلاب'
 			}

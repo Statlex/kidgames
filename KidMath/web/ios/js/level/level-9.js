@@ -13,7 +13,7 @@
 				en: 'NINE mouses',
 				ru: 'ДЕВЯТЬ мышей',
 				de: 'NEUN Mäuse',
-				zh: '',
+				zh: '九只老鼠',
 				es: 'NUEVE ratones',
 				ar: 'تسع فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'NINE squirrels',
 				ru: 'ДЕВЯТЬ белок',
 				de: 'NEUN Eichhörnchen',
-				zh: '',
+				zh: '九只松鼠',
 				es: 'NUEVE ardillas',
 				ar: 'تسع سنجابات'
 			}
@@ -33,7 +33,7 @@
 				en: 'NINE rabbits',
 				ru: 'ДЕВЯТЬ кроликов',
 				de: 'NEUN Kaninchen',
-				zh: '',
+				zh: '九只兔子',
 				es: 'NUEVE conejos',
 				ar: 'تسع ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'NINE dogs',
 				ru: 'ДЕВЯТЬ собак',
 				de: 'NEUN Hunde',
-				zh: '',
+				zh: '九只狗',
 				es: 'NUEVE perros',
 				ar: 'تسع كلاب'
 			}

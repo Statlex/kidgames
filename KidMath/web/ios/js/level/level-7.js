@@ -13,7 +13,7 @@
 				en: 'SEVEN mouses',
 				ru: 'СЕМЬ мышей',
 				de: 'SIEBEN Mäuse',
-				zh: '',
+				zh: '七只老鼠',
 				es: 'SIETE ratones',
 				ar: 'سبع فأران'
 			}
@@ -23,7 +23,7 @@
 				en: 'SEVEN squirrels',
 				ru: 'СЕМЬ белок',
 				de: 'SIEBEN Eichhörnchen',
-				zh: '',
+				zh: '七只松鼠',
 				es: 'SIETE ardillas',
 				ar: 'سبع سنجابات'
 			}
@@ -33,7 +33,7 @@
 				en: 'SEVEN rabbits',
 				ru: 'СЕМЬ кроликов',
 				de: 'SIEBEN Kaninchen',
-				zh: '',
+				zh: '七只兔子',
 				es: 'SIETE conejos',
 				ar: 'سبع ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'SEVEN dogs',
 				ru: 'СЕМЬ собак',
 				de: 'SIEBEN Hunde',
-				zh: '',
+				zh: '七只狗',
 				es: 'SIETE perros',
 				ar: 'سبع كلاب'
 			}

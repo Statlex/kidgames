@@ -13,7 +13,7 @@
 				en: 'ZERO mouse',
 				ru: 'НОЛЬ мышей',
 				de: 'NULL Mäuse',
-				zh: '',
+				zh: '零只老鼠',
 				es: 'CERO ratones',
 				ar: 'لا يوجد فأر'
 			}
@@ -23,7 +23,7 @@
 				en: 'ZERO squirrel',
 				ru: 'НОЛЬ белок',
 				de: 'NULL Eichhörnchen',
-				zh: '',
+				zh: '零只松鼠',
 				es: 'CERO ardillas',
 				ar: 'لا يوجد سنجاب'
 			}
@@ -33,7 +33,7 @@
 				en: 'ZERO rabbit',
 				ru: 'НОЛЬ кроликов',
 				de: 'NULL Kaninchen',
-				zh: '',
+				zh: '零只兔子',
 				es: 'CERO conejos',
 				ar: 'لا يوجد ارانب'
 			}
@@ -43,7 +43,7 @@
 				en: 'ZERO dog',
 				ru: 'НОЛЬ собак',
 				de: 'NULL Hunde',
-				zh: '',
+				zh: '零只狗',
 				es: 'CERO perros',
 				ar: 'لا يوجد كلاب'
 			}
