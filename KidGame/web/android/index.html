@@ -86,9 +86,9 @@
 
 		<div class="table-row">
 			<div class="table-cell">
-				<div class="main-button difficult easy" onclick='info.set("difficult", 1);player.play(soundList.click);'>1</div>
-				<div class="main-button difficult normal" onclick='info.set("difficult", 2);player.play(soundList.click);'>2</div>
-				<div class="main-button difficult hard" onclick='info.set("difficult", 3);player.play(soundList.click);'>3</div>
+				<div class="main-button difficult easy" onclick='info.set("difficult", 1);player.play(soundList.click);'>&nbsp;</div>
+				<div class="main-button difficult normal" onclick='info.set("difficult", 2);player.play(soundList.click);'>&nbsp;</div>
+				<div class="main-button difficult hard" onclick='info.set("difficult", 3);player.play(soundList.click);'>&nbsp;</div>
 			</div>
 		</div>
 
@@ -141,12 +141,10 @@
 
 <div class="js-template setting" onshow='statusBar.show([]);main.settingsPage();'>
 	<div class="page settings">
-		<h1>{{= lang[info.lang].settings }}</h1>
-
-		<div class="table">
+		<div class="table more-wrapper">
 			<div class="table-row">
-				<div class="table-cell">{{= lang[info.lang].language }}:</div>
 				<div class="table-cell">
+					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
 					<div class="select-wrapper clear-fix">
 						<div>{{= lang[info.lang].languageName }}</div>
 						<select class="js-language-select">
@@ -161,6 +159,25 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<div class="share-link-container clear-fix">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" share-for="facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" share-for="twitter" target="_blank">Twitter</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" share-for="google" target="_blank">Google+</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" share-for="linkedin" target="_blank">LinkedIn</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" share-for="vk" target="_blank">vk</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<p class="main-site-link">&copy;&nbsp;<a href="http://statlex.com" target="_blank">statlex.com</a></p>
+				</div>
+			</div>
+
 		</div>
 
 	</div>

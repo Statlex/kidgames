@@ -284,10 +284,6 @@ body {
 	text-align: center;
 }
 
-.settings .table {
-	height: 80%;
-}
-
 .settings .table-cell {
 	text-align: center;
 	font-size: 40px;
@@ -302,7 +298,17 @@ body {
 }
 
 .select-wrapper div {
+	position: relative;
+}
 
+.select-wrapper div:after {
+	position: absolute;
+	content: '\25bc';
+	right: -19px;
+	top: 4px;
+	display: block;
+	font-size: 20px;
+	line-height: 20px;
 }
 
 .select-wrapper select {
@@ -312,6 +318,8 @@ body {
 	opacity: 0;
 	height: 100%;
 	width: 100%;
+	padding-right: 20px;
+	box-sizing: content-box;
 }
 
 .letter-page {
@@ -434,7 +442,6 @@ body {
 	background-image: url('../img/i/level.svg');
 	background-repeat: no-repeat;
 	background-size: auto 300%;
-	color: transparent;
 }
 
 .difficult.easy {
@@ -452,3 +459,64 @@ body {
 	background-color: #DA4F4F;
 }
 
+.settings .table-cell {
+	text-align: center;
+}
+
+.settings .table-cell .more-header,
+.settings .table-cell .select-wrapper {
+	display: inline-block;
+}
+
+.more-wrapper {
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 5px;
+}
+
+.more-wrapper * {
+	font-size: 25px;
+	line-height: 25px;
+}
+
+.share-link-container {
+	width: 150px;
+	margin: 0 auto;
+}
+
+.share-link {
+	display: block;
+	background-image: url('../img/i/share-icons-32x32.png');
+	background-repeat: no-repeat;
+	text-decoration: none;
+	margin-bottom: 13px;
+	height: 32px;
+	font-size: 20px;
+	line-height: 32px;
+	padding-left: 43px;
+	text-align: left;
+	color: #FFF;
+}
+
+.share-link.facebook {
+	background-position: 0 -84px;
+}
+
+.share-link.twitter {
+	background-position: 0 0;
+}
+
+.share-link.linkedin {
+	background-position: 0 -126px;
+}
+
+.share-link.vk {
+	background-position: 0 -42px;
+}
+
+.share-link.google {
+	background-position: 0 -168px;
+}
+
+.main-site-link a {
+	color: #FFF;
+}
