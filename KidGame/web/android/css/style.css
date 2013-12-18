@@ -143,7 +143,7 @@ body {
 }
 
 .status-bar-setup span {
-	background-image: url('../img/i/setting.svg');
+	background-image: url('../img/i/more.svg');
 }
 
 .status-bar-play-again span {
@@ -429,3 +429,26 @@ body {
 	border: 4px solid #666;
 	box-sizing: border-box;
 }
+
+.main-button.difficult {
+	background-image: url('../img/i/level.svg');
+	background-repeat: no-repeat;
+	background-size: auto 300%;
+	color: transparent;
+}
+
+.difficult.easy {
+	background-position: center 100%;
+	background-color: #60BE7E;
+}
+
+.difficult.normal {
+	background-position: center 50%;
+	background-color: #D4DA4F;
+}
+
+.difficult.hard {
+	background-position: center 0;
+	background-color: #DA4F4F;
+}
+
