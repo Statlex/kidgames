@@ -28,6 +28,7 @@
 	<script src="js/lang/lang-de.js" type="text/javascript"></script>
 	<!--<script src="js/lang/lang-zh.js" type="text/javascript"></script>-->
 	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
 
 	<script src="js/sound-list.js" type="text/javascript"></script>
 	<script src="js/player.js" type="text/javascript"></script>
@@ -292,12 +293,10 @@
 
 	<div class="page-wrapper settings-page">
 
-		<h1>{{= lang[info.lang].settings }}</h1>
-
 		<div class="table table-thanks">
 			<div class="table-row">
-				<div class="table-cell">{{= lang[info.lang].language }}:</div>
-				<div class="table-cell">
+				<div class="table-cell select-language-cell">
+					<div>{{= lang[info.lang].language }}:&nbsp;</div>
 					<div class="select-wrapper clear-fix">
 						<div>{{= lang[info.lang].languageName }}</div>
 						<select lang="true">
@@ -312,28 +311,39 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="thanks" action='app showThanks {}'>
-			{{= lang[info.lang].thanks }}...
-		</div>
-		<div class="thanks-text">
-			<h3>{{= lang[info.lang].thanks }}</h3>
 
-			<div class="table">
-				<div class="table-row">
-					<div class="table-cell">
-						<p>{{= lang[info.lang].thanksForDe }}<br>Deutsch</p>
-						<p>{{= lang[info.lang].thanksForEs }}<br>Español</p>
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<h3 class="share-link-header">{{= lang[info.lang].shareUs }}:</h3>
+					<div class="share-link-container">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" share-for="facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" share-for="twitter" target="_blank">Twitter</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" share-for="linkedin" target="_blank">LinkedIn</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" share-for="vk" target="_blank">vk</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" share-for="google" target="_blank">Google+</a>
 					</div>
 				</div>
 			</div>
 
-			<span onclick="app.closeThanks();">&#215;</span>
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-paragraph">{{= lang[info.lang].thanks }}:</p>
+					<p class="thanks-paragraph">{{= lang[info.lang].thanksForEs }} - Español</p>
+					<p class="thanks-paragraph">{{= lang[info.lang].thanksForDe }} - Deutsch</p>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-paragraph">&copy;&nbsp;<a class="to-main-site" href="http://statlex.com" target="_blank">statlex.com</a></p>
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 
 </div>
-
 
 <div back-button="app insetHTML .title-page" class="js-template hidden test-basics" run-after="testBasics startTest {}">
 

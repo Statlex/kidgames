@@ -14,7 +14,8 @@
 				ru: 'НОЛЬ мышей',
 				de: 'NULL Mäuse',
 				zh: '',
-				es: 'CERO ratones'
+				es: 'CERO ratones',
+				ar: 'لا يوجد فأر'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +24,8 @@
 				ru: 'НОЛЬ белок',
 				de: 'NULL Eichhörnchen',
 				zh: '',
-				es: 'CERO ardillas'
+				es: 'CERO ardillas',
+				ar: 'لا يوجد سنجاب'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +34,8 @@
 				ru: 'НОЛЬ кроликов',
 				de: 'NULL Kaninchen',
 				zh: '',
-				es: 'CERO conejos'
+				es: 'CERO conejos',
+				ar: 'لا يوجد ارانب'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +44,8 @@
 				ru: 'НОЛЬ собак',
 				de: 'NULL Hunde',
 				zh: '',
-				es: 'CERO perros'
+				es: 'CERO perros',
+				ar: 'لا يوجد كلاب'
 			}
 		}]
 

@@ -14,7 +14,8 @@
 				ru: 'ВОСЕМЬ мышей',
 				de: 'ACHT Mäuse',
 				zh: '',
-				es: 'OCHO ratones'
+				es: 'OCHO ratones',
+				ar: 'ثمن فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +24,8 @@
 				ru: 'ВОСЕМЬ белок',
 				de: 'ACHT Eichhörnchen',
 				zh: '',
-				es: 'OCHO ardillas'
+				es: 'OCHO ardillas',
+				ar: 'ثمان سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +34,8 @@
 				ru: 'ВОСЕМЬ кроликов',
 				de: 'ACHT Kaninchen',
 				zh: '',
-				es: 'OCHO conejos'
+				es: 'OCHO conejos',
+				ar: 'ثمن ارانب'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +44,8 @@
 				ru: 'ВОСЕМЬ собак',
 				de: 'ACHT Hunde',
 				zh: '',
-				es: 'OCHO perros'
+				es: 'OCHO perros',
+				ar: 'ثمن كلاب'
 			}
 		}]
 

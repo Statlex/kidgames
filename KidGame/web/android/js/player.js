@@ -47,6 +47,10 @@
 				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
 			}
 
+			if (info.section === 'findColor') {
+				this.play('colors/' + info.lang + '/' + lang[info.lang].colors[win[info.section].answer] + '.mp3');
+			}
+
 		},
 		onSuccess: function () {
 //			alert('good');

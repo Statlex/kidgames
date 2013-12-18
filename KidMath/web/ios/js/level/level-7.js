@@ -14,7 +14,8 @@
 				ru: 'СЕМЬ мышей',
 				de: 'SIEBEN Mäuse',
 				zh: '',
-				es: 'SIETE ratones'
+				es: 'SIETE ratones',
+				ar: 'سبع فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -23,7 +24,8 @@
 				ru: 'СЕМЬ белок',
 				de: 'SIEBEN Eichhörnchen',
 				zh: '',
-				es: 'SIETE ardillas'
+				es: 'SIETE ardillas',
+				ar: 'سبع سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -32,7 +34,8 @@
 				ru: 'СЕМЬ кроликов',
 				de: 'SIEBEN Kaninchen',
 				zh: '',
-				es: 'SIETE conejos'
+				es: 'SIETE conejos',
+				ar: 'سبع ارانب'
 			}
 		},{
 			img: 'dog',
@@ -41,7 +44,8 @@
 				ru: 'СЕМЬ собак',
 				de: 'SIEBEN Hunde',
 				zh: '',
-				es: 'SIETE perros'
+				es: 'SIETE perros',
+				ar: 'سبع كلاب'
 			}
 		}]
 

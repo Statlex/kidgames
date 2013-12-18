@@ -28,10 +28,12 @@
 	<script src="js/lang/lang-de.js" type="text/javascript"></script>
 	<script src="js/lang/lang-es.js" type="text/javascript"></script>
 	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
 
 	<script src="js/ui.js" type="text/javascript"></script>
 	<script src="js/find-number.js" type="text/javascript"></script>
 	<script src="js/find-letter.js" type="text/javascript"></script>
+	<script src="js/find-color.js" type="text/javascript"></script>
 
 	<script src="js/status-bar.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
@@ -43,7 +45,7 @@
 	<div class="js-back status-bar-back" onclick="viewer.back();player.play(soundList.click);"><span></span></div>
 	<div class="js-setup status-bar-setup" onclick="viewer.show('.setting');player.play(soundList.click);"><span></span></div>
 	<div class="js-play-again status-bar-play-again" onclick="player.playQuestionAgain();"><span></span></div>
-	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">100</span></div>
+	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">0</span></div>
 </div>
 
 <div id="wrapper">
@@ -64,7 +66,11 @@
 			<div class="table-cell">
 				<div class="main-button" onclick='info.set("section", "findNumber");viewer.show(".select-difficult");player.play(soundList.click);'>123</div>
 				<div class="main-button" onclick='info.set("section", "findLetter");viewer.show(".select-difficult");player.play(soundList.click);'>{{= lang[info.lang].alphabetButton }}</div>
-				<div class="main-button" onclick='viewer.show(".title-page");player.play(soundList.click);'>colors</div>
+				<div class="main-button color-button" onclick='info.set("section", "findColor");viewer.show(".select-difficult");player.play(soundList.click);'>
+					<div class="red"></div>
+					<div class="green"></div>
+					<div class="blue"></div>
+				</div>
 			</div>
 		</div>
 
@@ -72,7 +78,7 @@
 
 </div>
 
-<div class="js-template select-difficult" onshow="main.setActiveObject(); statusBar.show(['setup'])">
+<div class="js-template select-difficult" onshow="main.setActiveObject(); statusBar.show([])">
 
 	<div class="page table">
 
@@ -106,13 +112,25 @@
 </div>
 
 <div class="js-template find-letter" onshow="findLetter.showLevel()">
-	<div class="page">
+	<div class="page no-padding">
 
 		{{ findLetter.questions.forEach(function(letterNumber){ }}
-			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find{{= info.isPhone ? '-phone' : '' }} letter-numerous-{{= lang[info.lang].alphabetLength }}">
-				<span>
-					{{= lang[info.lang].alphabet[letterNumber] }}
+			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find letter-numerous-{{= lang[info.lang].alphabetLength }} letter-for-find-lang-{{= info.lang }}">
+				<span style="background-image: url('img/alphabet/{{= info.lang }}/{{= letterNumber}}.png');">
+					<!--{{= lang[info.lang].alphabet[letterNumber] }}-->
 				</span>
+			</div>
+		{{ }); }}
+
+	</div>
+</div>
+
+<div class="js-template find-color" onshow="findColor.showLevel()">
+	<div class="page no-padding">
+
+		{{ findColor.questions.forEach(function(color){ }}
+			<div color="{{= lang[info.lang].colors[color] }}" class="js-color-for-find color-for-find">
+				<span style="background-color: #{{= lang[info.lang].colors[color] }};"></span>
 			</div>
 		{{ }); }}
 

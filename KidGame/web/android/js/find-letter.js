@@ -5,7 +5,6 @@
 
 	win.findLetter = {
 		init: function() {
-			win.addEventListener('resize', this.setBlocksSize.bind(this), false);
 			this.template = $('.js-template.find-letter').innerHTML;
 			this.template = viewer.template(this.template);
 		},
@@ -53,25 +52,7 @@
 				}
 			});
 
-			this.setBlocksSize();
-
-		},
-		setBlocksSize: function() {
-
-			var blocks = $$('#wrapper .js-letter-for-find span');
-			blocks.forEach(function(node){
-//				node.style.fontSize = 0;
-//				node.style.lineHeight = 0;
-			});
-
-			var height = (blocks[0] && blocks[0].clientHeight) || 0;
-			blocks.forEach(function(node){
-//				node.style.lineHeight = height + 'px';
-//				node.style.fontSize = height * 0.8 + 'px';
-			});
-
 		}
-
 
 	};
 

@@ -1,0 +1,446 @@
+* {
+	-o-box-shadow: none;
+	-ms-box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+
+	-o-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+
+	font-family: Goth, serif;
+	font-size: 1em;
+	line-height: 1.15em;
+	font-weight: normal;
+
+	box-shadow: none;
+	tap-highlight-color: transparent;
+
+}
+
+.hidden {
+	display: none;
+}
+
+#wrapper {
+	position: relative;
+}
+
+.table {
+	display: table;
+}
+
+.row {
+	display: table-row;
+}
+
+.cell {
+	display: table-cell;
+}
+
+@font-face {
+	font-family: "Goth";
+	src: url('../font/CyrillicGoth.ttf') format("truetype"), url('../font/CyrillicGoth.otf');
+}
+
+body {
+	background-image: url('../img/bg/bg-0.jpg');
+	-webkit-background-size: cover;
+	background-size: cover;
+	letter-spacing: 1px;
+}
+
+.title-page-table {
+	width: 100%;
+	height: 100%;
+}
+
+.title-page-cell {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.title-page-button {
+	display: block;
+	background-color: #ccc;
+	padding: 0.4em 0.8em;
+	width: 50%;
+	margin: 0.5em auto;
+	font-size: 1.6em;
+}
+
+.back-button,
+.submit-button,
+.reset-button {
+	display: block;
+	font-size: 1.4em;
+	text-align: center;
+	padding: 0.3em;
+	background-color: #ccc;
+	cursor: pointer;
+}
+
+.left-button-wrapper,
+.right-button-wrapper {
+	position: absolute;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 0 5px 0 10px;
+	left: 0;
+	bottom: 10px;
+}
+
+
+.right-button-wrapper {
+	left: auto;
+	right: 0;
+	padding: 0 10px 0 5px;
+}
+
+.dream-translating-wrapper {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 10px 10px 3.1em;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	background-color: rgba(255, 255, 255, 0.75);
+	background-clip: content-box;
+}
+
+.dream-translating-wrapper .content-wrapper {
+	padding: 0.7em 0.5em 0.5em;
+}
+
+.dream-translating-wrapper h1,
+.dream-translating-wrapper h2 {
+	color: #000;
+	font-size: 1.2em;
+	text-shadow: 0 0 5px #FFF;
+}
+
+.dream-translating-wrapper h2 {
+	font-size: 1em;
+	text-align: center;
+}
+
+.dream-translating-wrapper .progress-wrapper {
+	display: block;
+	position: relative;
+	background-color: transparent;
+	border: 1px solid #212121;
+	height: 2em;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 1.4em 0 0.3em;
+}
+
+.dream-translating-wrapper .progress-wrapper .progress {
+	position: absolute;
+	width: 0;
+	height: 100%;
+	background-color: rgba(206, 149, 36, 0.6);
+	left: 0;
+	top: 0;
+	line-height: 1.6em;
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.send-dream-to-universe {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.send-dream-to-universe h1 {
+	z-index: 10;
+	text-align: center;
+	width: 100%;
+	padding: 1.3em;
+	box-sizing: border-box;
+	color: #000;
+	font-size: 1.2em;
+	text-shadow: 0 0 5px #FFF;
+	opacity: 0.5;
+	position: relative;
+}
+
+.send-dream-to-universe .back-button {
+	opacity: 0.3;
+	z-index: 10;
+}
+
+.send-dream-to-universe .sender {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top: 0;
+	left: 0;
+}
+
+.send-dream-to-universe .progress {
+	position: fixed;
+	top: 0;
+	min-width: 1%;
+	background-color: #c9000d;
+	height: 3px;
+	left: 0;
+	z-index: 10;
+}
+
+.css-anim-color {
+	-webkit-animation-iteration-count: infinite, infinite;
+	-webkit-animation-timing-function: linear, linear;
+	-webkit-animation-duration: 30s, 2.2s;
+	-webkit-animation-name: anim-color, anim-opacity;
+}
+
+@-webkit-keyframes anim-color {
+	0%, 100% {
+		background-color: #CC0000;
+	}
+	16.6% {
+		background-color: #CCCC00;
+	}
+	33.3% {
+		background-color: #00CC00;
+	}
+	50% {
+		background-color: #00CCCC;
+	}
+	66.6% {
+		background-color: #0000CC;
+	}
+	83.3% {
+		background-color: #CC00CC;
+	}
+}
+
+@-webkit-keyframes anim-opacity {
+	0%, 25%, 50%, 100% {
+		opacity: 0.7;
+	}
+	12.5%, 37.5% {
+		opacity: 0.9;
+	}
+}
+
+#fade {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	-webkit-transition: all ease-out 0.5s;
+	-moz-transition: all ease-out 0.5s;
+	-ms-transition: all ease-out 0.5s;
+	-o-transition: all ease-out 0.5s;
+	transition: all ease-out 0.5s;
+	top: 0;
+	left: 0;
+}
+
+.simple-page {
+	height: 100%;
+	width: 100%;
+	padding: 10px 10px 3.6em;
+	box-sizing: border-box;
+	background-color: #f0f0f0;
+	background-clip: content-box;
+	background-image: url('../img/bg/paper-texture.jpg');
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+.simple-page h1 {
+	font-size: 2em;
+	text-align: center;
+	margin: 12px 10px 0;
+	border-bottom: 1px solid #000;
+	padding-bottom: 10px;
+}
+
+.simple-page article {
+	height: 400px;
+	overflow: auto;
+	padding: 30px 10px;
+}
+
+.simple-page article p {
+	padding-bottom: 1em;
+	text-indent: 1em;
+	font-family: "Times New Roman", serif;
+	font-size: 1.2em;
+}
+
+.share-link {
+	display: block;
+	background-image: url('../img/sn-icon/share-icons.png');
+	background-repeat: no-repeat;
+	text-decoration: none;
+	color: #000;
+	margin-bottom: 13px;
+	height: 32px;
+	font-size: 25px;
+	line-height: 29px;
+	padding-left: 43px;
+}
+
+.share-link.facebook {
+	background-position: 0 -1680px;
+}
+
+.share-link.twitter {
+	background-position: 0 -288px;
+}
+
+.share-link.linkedin {
+	background-position: 0 -876px;
+}
+
+.share-link.vk {
+	background-position: 0 -364px;
+}
+
+.share-link.google {
+	background-position: 0 -1232px;
+}
+
+.sending-end-wrapper {
+	background-image: url('../img/bg/bg-0.jpg');
+	-webkit-background-size: cover;
+	background-size: cover;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 15;
+	opacity: 0;
+	-webkit-transition: all linear 1s;
+	transition: all linear 1s;
+}
+
+.sending-end-wrapper .table {
+	height: 100%;
+	width: 100%;
+}
+
+.sending-end-wrapper .cell {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.sending-end-wrapper p {
+	font-size: 2em;
+}
+
+.settings-wrapper {
+
+}
+
+.settings-wrapper .table {
+	width: 100%;
+}
+
+.settings-wrapper .row {
+	height: 3em;
+}
+
+.settings-wrapper .cell {
+	vertical-align: top;
+}
+
+.settings-wrapper input,
+.settings-wrapper select {
+	padding: 0 6px;
+	background-color: transparent;
+}
+
+.back-button,
+.submit-button,
+.dream-translating-wrapper .send-dream,
+.reset-button,
+.title-page-button {
+	display: block;
+	background-color: #ccc;
+	background-image: url('../img/bg/stone-texture.jpg');
+	-webkit-background-size: 512px 341px;
+	background-size: 512px 341px;
+	text-shadow: 1px 1px 0px #FFF, -1px -1px 0px #FFF, -1px 1px 0px #FFF, 1px -1px 0px #FFF;
+	box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 30, 0.4), 0px 0px 5px 3px rgba(0, 0, 0, 1);
+	border-radius: 0.4em;
+	cursor: pointer;
+}
+
+.enter-your-dream-form {
+	display: block;
+}
+
+.enter-your-dream-form input,
+.enter-your-dream-form textarea {
+	background-color: transparent;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5em;
+	border: 1px solid #333;
+	margin-bottom: 0.5em;
+	border-radius: 0;
+	-o-user-modify: read-write;
+	-ms-user-modify: read-write;
+	-moz-user-modify: read-write;
+	-webkit-user-modify: read-write;
+	user-modify: read-write;
+	-webkit-transition: 0.5s ease-out all;
+	-moz-transition: 0.5s ease-out all;
+	-ms-transition: 0.5s ease-out all;
+	-o-transition: 0.5s ease-out all;
+	transition: 0.5s ease-out all;
+}
+
+.error-area {
+	box-shadow: 0 0 2px 3px rgba(140, 0, 0, 1);
+}
+
+::-webkit-input-placeholder {
+	color: #555;
+}
+
+::input-placeholder {
+	color: #555;
+}
+
+h1, h2, h3, h4, h5, h6, a, p, span,
+.title-page-button,
+.left-button-wrapper *,
+.right-button-wrapper *,
+.progress {
+	-o-user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.left-button-wrapper *,
+.right-button-wrapper * {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.how-it-works-wrapper h4 {
+	text-align: center;
+	padding-bottom: 1em;
+	font-size: 1.4em;
+}

@@ -19,6 +19,16 @@ div, span, select {
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#wrapper .no-padding {
+	padding: 0;
 }
 
 html {
@@ -100,6 +110,8 @@ body {
 	height: 100%;
 	width: 64px;
 	padding: 16px;
+	position: relative;
+	z-index: 1;
 }
 
 .status-bar-back {
@@ -140,6 +152,9 @@ body {
 
 .status-bar-score {
 	text-align: center;
+	position: fixed;
+	width: 100%;
+	z-index: 0;
 }
 
 .table {
@@ -179,6 +194,10 @@ body {
 	color: #fff;
 	font-size: 50px;
 	box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.main-button:empty {
+	display: none;
 }
 
 .number-for-find {
@@ -293,4 +312,120 @@ body {
 	opacity: 0;
 	height: 100%;
 	width: 100%;
+}
+
+.letter-page {
+	padding: 0;
+}
+
+.letter-for-find {
+	padding: 2px;
+	box-sizing: border-box;
+	float: left;
+}
+
+.letter-for-find-lang-ar {
+	float: right;
+}
+
+.letter-for-find span,
+.color-for-find span {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(0, 0, 0, 0.2);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	background-color: #fff;
+}
+
+.letter-numerous-26,
+.letter-numerous-27,
+.letter-numerous-28 {
+	width: 20%;
+	height: 16.66%;
+}
+
+.letter-numerous-30 {
+	width: 16.66%;
+	height: 20%;
+}
+
+.letter-numerous-33 {
+	width: 16.66%;
+	height: 16.66%;
+}
+
+.color-for-find {
+	width: 20%;
+	height: 25%;
+	padding: 2px;
+	box-sizing: border-box;
+	float: left;
+}
+
+@media screen and (orientation: portrait) {
+
+	.color-for-find {
+		width: 25%;
+		height: 20%;
+	}
+
+	.letter-numerous-26,
+	.letter-numerous-27,
+	.letter-numerous-28 {
+		width: 25%;
+		height: 14.28%;
+	}
+
+	.letter-numerous-30 {
+		width: 25%;
+		height: 12.5%;
+	}
+
+	.letter-numerous-33 {
+		width: 25%;
+		height: 11.11%;
+	}
+
+}
+
+.color-button {
+	font-size: 0;
+	line-height: 0;
+}
+
+.color-button div {
+	width: 35px;
+	height: 35px;
+	display: inline-block;
+	margin: 6px 2px;
+	font-size: 0;
+	line-height: 0;
+	box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	border: 1px solid #F0F0F0;
+}
+
+.red {
+	background-color: #c00;
+}
+
+.green {
+	background-color: #0c0;
+}
+
+.blue {
+	background-color: #00c;
+}
+
+.color-block-in-message {
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	border: 4px solid #666;
+	box-sizing: border-box;
 }
