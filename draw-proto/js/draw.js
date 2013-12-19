@@ -116,6 +116,39 @@
 
 				// draw area
 
+				// prepare canvas to draw
+
+				var px, height, width;
+
+				width = mainObj.canvas.width;
+				height = mainObj.canvas.height + 3;
+
+				// delete black color -> add transparent
+				for (var i = 0, len = mainObj.imageData.data.length; i < len; i += 4) {
+
+					x = (i/4) % width;
+					y = Math.floor((i/4) / height);
+
+					px = {
+						r: mainObj.imageData.data[i],
+						g: mainObj.imageData.data[i + 1],
+						b: mainObj.imageData.data[i + 2],
+						a: mainObj.imageData.data[i + 3]
+					};
+
+					if ( (px.r + px.g + px.b) === 0 ) {
+
+						//clear rectangle
+						mainObj.context.fillStyle = 'rgba(0, 0, 0, 0)';
+						mainObj.context.fillRect(x, y, 1, 1);
+					}
+
+				}
+
+
+
+
+
 
 
 			},
