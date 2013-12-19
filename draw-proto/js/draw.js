@@ -8,7 +8,7 @@
 	var evt = {
 		down: isTouch ? 'touchstart' : 'mousedown',
 		move: isTouch ? 'touchmove' : 'mousemove',
-		up: isTouch ? 'touchup' : 'mouseup',
+		up: isTouch ? 'touchend' : 'mouseup',
 		out: isTouch ? 'touchcancel' : 'mouseout'
 	};
 
@@ -93,6 +93,37 @@
 
 		},
 
+		bucket: {
+			action: function(mainObj) {
+
+				var x, y, dx, dy;
+
+				switch (mainObj.eventType) {
+					case 'up':
+						dx = Math.abs(mainObj.toolStartX - mainObj.toolEndX);
+						dy = Math.abs(mainObj.toolStartY - mainObj.toolEndY);
+						if (dx < 10 && dy < 10) {
+							x = mainObj.toolEndX;
+							y = mainObj.toolEndY;
+						}
+						break;
+				}
+
+
+				if (!x || !y) {
+					return;
+				}
+
+				// draw area
+
+
+
+			},
+
+			color: '200, 0, 0'
+
+		},
+
 		addImage: function(pathToImage) {
 
 			this.img = new Image();
@@ -100,6 +131,7 @@
 			this.img.onload = function() {
 				this.setCanvasSize();
 				this.drawImage();
+				this.setImagePixelData();
 			}.bind(this);
 
 		},
@@ -165,7 +197,35 @@
 		},
 
 		reDrawImage: function() {
-			
+			// redraw black pixels
+			var px, x, y, height, width;
+
+			width = this.canvas.width;
+			height = this.canvas.height + 3;
+
+			// delete black color -> add transparent
+			for (var i = 0, len = this.imageData.data.length; i < len; i += 4) {
+
+				x = (i/4) % width;
+				y = Math.floor((i/4) / height);
+
+				px = {
+					r: this.imageData.data[i],
+					g: this.imageData.data[i + 1],
+					b: this.imageData.data[i + 2],
+					a: this.imageData.data[i + 3]
+				};
+
+				if ( (px.r + px.g + px.b) === 0 ) {
+					this.context.fillStyle = "#000";
+					this.context.fillRect(x, y, 1, 1);
+				}
+
+			}
+
+		},
+		setImagePixelData: function() {
+			this.imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
 		}
 
 

@@ -16,7 +16,9 @@
 			var canvas = $('#wrapper canvas');
 
 			drawer.init({canvas:canvas});
-			drawer.addImage('img/image.jpeg');
+			drawer.addImage('img/image.png');
+
+			drawer.activeTool = 'bucket';
 
 		}
 
