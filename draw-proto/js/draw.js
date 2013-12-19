@@ -106,6 +106,7 @@
 							x = mainObj.toolEndX;
 							y = mainObj.toolEndY;
 						}
+
 						break;
 				}
 
@@ -118,7 +119,7 @@
 
 				// prepare canvas to draw
 
-				var px, height, width;
+				var px, height, width, cx, cy;
 
 				width = mainObj.canvas.width;
 				height = mainObj.canvas.height + 3;
@@ -126,8 +127,8 @@
 				// delete black color -> add transparent
 				for (var i = 0, len = mainObj.imageData.data.length; i < len; i += 4) {
 
-					x = (i/4) % width;
-					y = Math.floor((i/4) / height);
+					cx = (i/4) % width;
+					cy = Math.floor((i/4) / height);
 
 					px = {
 						r: mainObj.imageData.data[i],
@@ -137,23 +138,17 @@
 					};
 
 					if ( (px.r + px.g + px.b) === 0 ) {
-
-						//clear rectangle
-						mainObj.context.fillStyle = 'rgba(0, 0, 0, 0)';
-						mainObj.context.fillRect(x, y, 1, 1);
+						mainObj.context.clearRect(cx, cy, 1, 1);
 					}
 
 				}
 
-
-
-
-
-
+				// fill area
+				fillPixel(x, y, this.color);
 
 			},
 
-			color: '200, 0, 0'
+			color: '200,0,0'
 
 		},
 
@@ -206,16 +201,16 @@
 
 			this.canvas.addEventListener(evt.up, function() {
 				that.eventType = 'up';
-				that.reDrawImage();
 				that.toolIsActive = false;
 				that[that.activeTool].action(that);
+				that.reDrawImage();
 			}, false);
 
 			this.canvas.addEventListener(evt.out, function() {
 				that.eventType = 'up';
-				that.reDrawImage();
 				that.toolIsActive = false;
 				that[that.activeTool].action(that);
+				that.reDrawImage();
 			}, false);
 
 		},
@@ -264,5 +259,36 @@
 
 
 	};
+
+	function fillPixel(x, y, color) {
+
+		// get color pixel under x, y
+		var context = drawer.context;
+
+		var currentColor = context.getImageData(x, y, 1, 1).data;
+		currentColor = currentColor[0] + ',' + currentColor[1] + ',' + currentColor[2];
+
+		if (currentColor === color) {
+			return;
+		}
+
+		if (currentColor === '0,0,0') {
+			return;
+		}
+
+		context.fillStyle = 'rgb(' + color + ')';
+		context.fillRect(x, y, 1, 1);
+
+		setTimeout(fillPixel.bind(null, x+1, y, color), 0);
+		setTimeout(fillPixel.bind(null, x-1, y, color), 0);
+		setTimeout(fillPixel.bind(null, x, y+1, color), 0);
+		setTimeout(fillPixel.bind(null, x, y-1, color), 0);
+
+	}
+
+
+
+
+
 
 }(window));

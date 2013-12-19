@@ -56,6 +56,10 @@
 
 		var rgb = hex.match(/\w{2}/gi);
 		return parseInt(rgb[0], 16) + ', ' + parseInt(rgb[1], 16) + ', ' + parseInt(rgb[2], 16);
+	};
+
+	win.$.toArray = function(list) {
+		return Array.prototype.slice.call(list);
 	}
 
 }(window, document));
