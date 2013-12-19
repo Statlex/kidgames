@@ -22,7 +22,7 @@
 		toolIsActive: false,
 		eventType: '',
 		brush: {
-			action: function(mainObj) {
+			action: function (mainObj) {
 
 				var x, y, dx, dy;
 
@@ -59,7 +59,7 @@
 
 			},
 
-			drawLine: function(mainObj) {
+			drawLine: function (mainObj) {
 
 				var x, y, x0, y0, x1, y1, dx, dy;
 
@@ -94,7 +94,7 @@
 		},
 
 		bucket: {
-			action: function(mainObj) {
+			action: function (mainObj) {
 
 				var x, y, dx, dy;
 
@@ -127,8 +127,8 @@
 				// delete black color -> add transparent
 				for (var i = 0, len = mainObj.imageData.data.length; i < len; i += 4) {
 
-					cx = (i/4) % width;
-					cy = Math.floor((i/4) / height);
+					cx = (i / 4) % width;
+					cy = Math.floor((i / 4) / height);
 
 					px = {
 						r: mainObj.imageData.data[i],
@@ -137,14 +137,41 @@
 						a: mainObj.imageData.data[i + 3]
 					};
 
-					if ( (px.r + px.g + px.b) === 0 ) {
+					if ((px.r + px.g + px.b) === 0) {
 						mainObj.context.clearRect(cx, cy, 1, 1);
 					}
 
 				}
 
 				// fill area
-				fillPixel(x, y, this.color);
+				this.fillPixel(x, y);
+
+			},
+
+			fillPixel: function (x, y) {
+
+				// get color pixel under x, y
+				var context = drawer.context;
+
+				var currentColor = context.getImageData(x, y, 1, 1).data;
+				currentColor = currentColor[0] + ',' + currentColor[1] + ',' + currentColor[2];
+
+				if (currentColor === this.color) {
+					return;
+				}
+
+				if (currentColor === '0,0,0') {
+					return;
+				}
+
+				context.fillStyle = 'rgb(' + this.color + ')';
+				context.fillRect(x, y, 1, 1);
+
+				this.fillPixel(x+1, y);
+				this.fillPixel(x-1, y);
+				this.fillPixel(x, y+1);
+				this.fillPixel(x, y-1);
+
 
 			},
 
@@ -152,11 +179,11 @@
 
 		},
 
-		addImage: function(pathToImage) {
+		addImage: function (pathToImage) {
 
 			this.img = new Image();
 			this.img.src = pathToImage;
-			this.img.onload = function() {
+			this.img.onload = function () {
 				this.setCanvasSize();
 				this.drawImage();
 				this.setImagePixelData();
@@ -164,14 +191,14 @@
 
 		},
 
-		init: function(params) {
+		init: function (params) {
 
 			this.canvas = params.canvas;
 			this.context = this.canvas.getContext("2d");
 
 			var that = this;
 
-			this.canvas.addEventListener(evt.down, function(e) {
+			this.canvas.addEventListener(evt.down, function (e) {
 				that.eventType = 'down';
 				that.toolIsActive = true;
 				that.toolStartX = e.pageX || e.touches[0].pageX;
@@ -185,7 +212,7 @@
 				that[that.activeTool].action(that);
 			}, false);
 
-			this.canvas.addEventListener(evt.move, function(e) {
+			this.canvas.addEventListener(evt.move, function (e) {
 				if (!that.toolIsActive) {
 					return;
 				}
@@ -199,14 +226,14 @@
 				that[that.activeTool].action(that);
 			}, false);
 
-			this.canvas.addEventListener(evt.up, function() {
+			this.canvas.addEventListener(evt.up, function () {
 				that.eventType = 'up';
 				that.toolIsActive = false;
 				that[that.activeTool].action(that);
 				that.reDrawImage();
 			}, false);
 
-			this.canvas.addEventListener(evt.out, function() {
+			this.canvas.addEventListener(evt.out, function () {
 				that.eventType = 'up';
 				that.toolIsActive = false;
 				that[that.activeTool].action(that);
@@ -215,16 +242,16 @@
 
 		},
 
-		setCanvasSize: function() {
+		setCanvasSize: function () {
 			this.canvas.width = this.img.width;
 			this.canvas.height = this.img.height;
 		},
 
-		drawImage: function() {
+		drawImage: function () {
 			this.context.drawImage(this.img, 0, 0);
 		},
 
-		reDrawImage: function() {
+		reDrawImage: function () {
 			// redraw black pixels
 			var px, x, y, height, width;
 
@@ -234,8 +261,8 @@
 			// delete black color -> add transparent
 			for (var i = 0, len = this.imageData.data.length; i < len; i += 4) {
 
-				x = (i/4) % width;
-				y = Math.floor((i/4) / height);
+				x = (i / 4) % width;
+				y = Math.floor((i / 4) / height);
 
 				px = {
 					r: this.imageData.data[i],
@@ -244,7 +271,7 @@
 					a: this.imageData.data[i + 3]
 				};
 
-				if ( (px.r + px.g + px.b) === 0 ) {
+				if ((px.r + px.g + px.b) === 0) {
 					this.context.fillStyle = "#000";
 					this.context.fillRect(x, y, 1, 1);
 				}
@@ -252,43 +279,13 @@
 			}
 
 		},
-		setImagePixelData: function() {
+		setImagePixelData: function () {
 			this.imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
 		}
 
 
 
 	};
-
-	function fillPixel(x, y, color) {
-
-		// get color pixel under x, y
-		var context = drawer.context;
-
-		var currentColor = context.getImageData(x, y, 1, 1).data;
-		currentColor = currentColor[0] + ',' + currentColor[1] + ',' + currentColor[2];
-
-		if (currentColor === color) {
-			return;
-		}
-
-		if (currentColor === '0,0,0') {
-			return;
-		}
-
-		context.fillStyle = 'rgb(' + color + ')';
-		context.fillRect(x, y, 1, 1);
-
-		setTimeout(fillPixel.bind(null, x+1, y, color), 0);
-		setTimeout(fillPixel.bind(null, x-1, y, color), 0);
-		setTimeout(fillPixel.bind(null, x, y+1, color), 0);
-		setTimeout(fillPixel.bind(null, x, y-1, color), 0);
-
-	}
-
-
-
-
 
 
 }(window));
