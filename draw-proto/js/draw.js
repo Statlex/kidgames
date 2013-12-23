@@ -167,11 +167,10 @@
 				context.fillStyle = 'rgb(' + this.color + ')';
 				context.fillRect(x, y, 1, 1);
 
-				this.fillPixel(x+1, y);
-				this.fillPixel(x-1, y);
-				this.fillPixel(x, y+1);
-				this.fillPixel(x, y-1);
-
+				setTimeout(this.fillPixel.bind(this, x + 1, y), 0);
+				setTimeout(this.fillPixel.bind(this, x - 1, y), 0);
+				setTimeout(this.fillPixel.bind(this, x, y + 1), 0);
+				setTimeout(this.fillPixel.bind(this, x, y - 1), 0);
 
 			},
 
