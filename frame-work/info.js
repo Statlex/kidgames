@@ -9,7 +9,7 @@
 	var info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
-		saveItem: 'save-item-kid-game-logic-re-think',
+		saveItem: 'save-item-kid-game-NAME',
 		isPhone: false,
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		screen: {
