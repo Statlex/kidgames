@@ -1,0 +1,38 @@
+body {
+	background-color: #ccc;
+}
+
+.title-page .table {
+	height: 100%;
+	width: 100%;
+}
+
+.section-button-wrapper {
+	float: left;
+	width: 50%;
+}
+
+.section-button {
+	margin: 0 auto;
+	display: block;
+	max-width: 200px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.section-button img {
+	width: 100%;
+	display: block;
+}
+
+.section-button span {
+	display: block;
+	text-align: center;
+	padding-top: 5px;
+	font-size: 20px;
+	line-height: 25px;
+	text-shadow: 1px 1px 1px #000;
+	font-weight: bold;
+}
+
+

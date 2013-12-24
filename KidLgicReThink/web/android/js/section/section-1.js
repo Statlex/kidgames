@@ -6,12 +6,12 @@
 	window.sectionList = window.sectionList || {};
 
 	window.sectionList.section_1 = {
-		name_ar: 'Select improper',
-		name_de: 'Select improper',
+		name_ar: 'ar Select improper',
+		name_de: 'de Select improper',
 		name_en: 'Select improper',
-		name_es: 'Select improper',
-		name_ru: 'Select improper',
-		name_zh: 'Select improper',
+		name_es: 'es Select improper',
+		name_ru: 'Выбери лишний',
+		name_zh: 'zh Select improper',
 		items_number: 28,
 		imgPath: 'img/section/section-1/',
 		img: 'find-an-extra-item-1.svg',

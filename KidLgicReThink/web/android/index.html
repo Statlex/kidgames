@@ -56,7 +56,32 @@
 
 <div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
 
-	<div class="page">title page</div>
+	<div class="page title-page">
+
+		<div class="table">
+
+			<div class="table-row">
+
+				<div class="table-cell clear-fix">
+					{{ for (var key in sectionList) { }}
+						{{ if (sectionList.hasOwnProperty(key)) { }}
+
+							<div class="section-button-wrapper">
+								<div class="section-button">
+									<img src="{{= sectionList[key].imgPath }}{{= sectionList[key].img }}" alt=""/>
+									<span>{{= sectionList[key]['name_' + info.lang] }}</span>
+								</div>
+							</div>
+
+						{{ }; }}
+				{{ }; }}
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
 
 </div>
 

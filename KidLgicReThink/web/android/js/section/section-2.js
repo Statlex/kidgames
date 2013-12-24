@@ -6,11 +6,11 @@
 	window.sectionList = window.sectionList || {};
 
 	window.sectionList.section_2 = {
-		name_ar: 'Select right answer',
-		name_de: 'Select right answer',
+		name_ar: 'ar Select right answer',
+		name_de: 'de Select right answer',
 		name_en: 'Select right answer',
-		name_es: 'Select right answer',
-		name_ru: 'Select right answer',
+		name_es: 'es Select right answer',
+		name_ru: 'Выбери правильный ответ',
 		name_zh: 'Select right answer',
 		imgPath: 'img/section/section-2/',
 		items_number: 28,
