@@ -1,5 +1,10 @@
-/* reset5 © 2011 opensource.736cs.com MIT */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer,
+header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video,
+.clear {
 	border: 0;
 	outline: 0;
 	font-size: 100%;
@@ -20,7 +25,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-
 }
 
 body {
@@ -78,11 +82,60 @@ hr {
 	padding: 0;
 }
 
-input[type=submit], input[type=button], button {
-	margin: 0 !important;
-	padding: 0 !important;
+input, button {
+	margin: 0;
+	padding: 0;
 }
 
 input, select, a img {
 	vertical-align: middle;
 }
+
+/* custom classes */
+@font-face {
+	font-family: 'Comic Sans';
+	src: url('Comic%20Sans.ttf');
+}
+
+body {
+	font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.clear {
+	display: block;
+	clear: both;
+	float: none;
+}
+
+.clear-fix {
+	display: block;
+}
+
+.clear-fix:after {
+	content: '';
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.table {
+	display: table;
+}
+
+.table-row {
+	display: table-row;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+/* custom classes */
+
+
+
