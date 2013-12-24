@@ -1,6 +1,6 @@
 (function (win, doc) {
 
-	/*global window, document, console, alert */
+	/*global window, document, Array, RegExp */
 
 	win.$ = function (selector, context) {
 		return (context || doc).querySelector(selector);
@@ -66,7 +66,7 @@
 	win.$.html = function(node, html) {
 		if (html !== undefined) {
 			node.innerHTML = html;
-			return;
+			return true;
 		}
 		return node.innerHTML;
 	}
