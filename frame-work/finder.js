@@ -7,7 +7,7 @@
 	};
 
 	win.$$ = function (selector, context) {
-		return Array.prototype.slice.call((context || doc).querySelectorAll(selector));
+		return win.$.toArray((context || doc).querySelectorAll(selector));
 	};
 
 	win.$.hasClass = function (node, className) {
@@ -29,12 +29,13 @@
 		}
 	};
 
+	win.$.assortFunction = function() {
+		return Math.random() - 0.5;
+	};
+
 	win.$.shuffle = function (arr) {
-		function assort() {
-			return Math.random() - 0.5;
-		}
 		arr.forEach(function (value, index, array) {
-			array.sort(assort);
+			array.sort(win.$.assortFunction);
 		});
 		return arr;
 	};
@@ -55,7 +56,7 @@
 		}
 
 		var rgb = hex.match(/\w{2}/gi);
-		return parseInt(rgb[0], 16) + ', ' + parseInt(rgb[1], 16) + ', ' + parseInt(rgb[2], 16);
+		return parseInt(rgb[0], 16) + ',' + parseInt(rgb[1], 16) + ',' + parseInt(rgb[2], 16);
 	};
 
 	win.$.toArray = function(list) {
