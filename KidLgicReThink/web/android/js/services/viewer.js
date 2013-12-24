@@ -3,24 +3,24 @@
 	"use strict";
 	/*global window, document, $ */
 
-	win.viewer = {
+	var viewer = {
 		wrapper: null, // field for page wrapper, type Node
-		templatePrefix: '.js-template',
+		templateClass: '.js-template',
 		history: [],
 		historyCurrentState: '',
 		isBack: false,
-		show: function(cssSelector, model, notTrack) {
+		show: function(templateId, model, notTrack) {
 
 			// do not push doubled state (selector)
-			if (cssSelector !== this.historyCurrentState && !notTrack) {
-				this.history.push(cssSelector);
+			if (templateId !== this.historyCurrentState && !notTrack) {
+				this.history.push(templateId);
 			}
 
-			this.historyCurrentState = cssSelector;
+			this.historyCurrentState = templateId;
 
 			this.transition1stPart(); // only for decoration
 
-			var template = $(this.templatePrefix + cssSelector);
+			var template = $(this.templateClass + cssSelector);
 			this.wrapper.innerHTML = this.template(template.innerHTML)(model || {});
 
 			// run action
@@ -77,10 +77,26 @@
 					.split("}}").join("p.push('")
 					.split("\r").join("\\'") + "');} return p.join('');");
 
+		},
+		init: function() {
+
+			var that = this;
+			this.templates = {};
+			$$(this.templateClass).forEach(function(node){
+				that.templates[node.getAttribute('template-id')] = {
+					onShow: node.getAttribute('onshow'),
+					html: $.html(node)
+				};
+				$.remove(node);
+			});
+
 		}
 
 	};
 
+	win.viewer = viewer;
+
+	win.addEventListener('load', viewer.init.bind(viewer), false);
 
 
 }(window));

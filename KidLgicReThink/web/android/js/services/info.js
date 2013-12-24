@@ -11,6 +11,7 @@
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
 		saveItem: 'save-item-kid-game-logic-re-think',
 		isPhone: false,
+		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		screen: {
 			getWidth: function() {
 				return docElem.clientWidth;
