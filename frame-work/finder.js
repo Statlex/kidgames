@@ -61,6 +61,14 @@
 
 	win.$.toArray = function(list) {
 		return Array.prototype.slice.call(list);
+	};
+
+	win.$.html = function(node, html) {
+		if (html !== undefined) {
+			node.innerHTML = html;
+			return;
+		}
+		return node.innerHTML;
 	}
 
 }(window, document));
