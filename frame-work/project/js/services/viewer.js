@@ -20,14 +20,11 @@
 
 			this.transition1stPart(); // only for decoration
 
-			var template = $(this.templateClass + cssSelector);
-			this.wrapper.innerHTML = this.template(template.innerHTML)(model || {});
+			var template = this.templates[templateId];
+			this.wrapper.innerHTML = this.template(template.html)(model || {});
 
 			// run action
-			var action = template.getAttribute('onshow');
-			if (action) {
-				win.eval(action);
-			}
+			win.eval(template.onShow || '');
 
 			this.transition2ndPart(); // only for decoration
 			this.isBack = false; // only for decoration
@@ -89,6 +86,8 @@
 				};
 				$.remove(node);
 			});
+
+			this.wrapper = $('#wrapper');
 
 		}
 
