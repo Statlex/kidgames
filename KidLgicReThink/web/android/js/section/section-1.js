@@ -6,13 +6,18 @@
 	window.sectionList = window.sectionList || {};
 
 	window.sectionList.section_1 = {
-		name: 'Select improper',
+		name_ar: 'Select improper',
+		name_de: 'Select improper',
+		name_en: 'Select improper',
+		name_es: 'Select improper',
+		name_ru: 'Select improper',
+		name_zh: 'Select improper',
 		items_number: 28,
 		imgPath: 'img/section/section-1/',
 		img: 'find-an-extra-item-1.svg',
 
 		items: {
-			'item-1' : {
+			'item-1': {
 				'1': '1/cup.svg',
 				'2': '1/cup2.svg',
 				'3': '1/plate.svg',
@@ -22,7 +27,7 @@
 				answer: 4,
 				item: 4
 			},
-			'item-2' : {
+			'item-2': {
 				'1': '2/ball.svg',
 				'2': '2/book.svg',
 				'3': '2/cubes.svg',
@@ -32,7 +37,7 @@
 				answer: 2,
 				item: 4
 			},
-			'item-3' : {
+			'item-3': {
 				'1': '3/banana.svg',
 				'2': '3/carrot.svg',
 				'3': '3/kapusta.svg',
@@ -42,7 +47,7 @@
 				answer: 1,
 				item: 4
 			},
-			'item-4' : {
+			'item-4': {
 				'1': '4/boots.svg',
 				'2': '4/skirt.svg',
 				'3': '4/sweeter.svg',
@@ -52,7 +57,7 @@
 				answer: 2,
 				item: 4
 			},
-			'item-5' : {
+			'item-5': {
 				'1': '5/snowman1.svg',
 				'2': '5/snowman1.svg',
 				'3': '5/snowman1.svg',
@@ -64,7 +69,7 @@
 				answer: 5,
 				item: 6
 			},
-			'item-6' : {
+			'item-6': {
 				'1': '6/house_1.svg',
 				'2': '6/house_1.svg',
 				'3': '6/house_1.svg',
@@ -76,7 +81,7 @@
 				answer: 5,
 				item: 6
 			},
-			'item-7' : {
+			'item-7': {
 				'1': '7/kite_1.svg',
 				'2': '7/kite_1.svg',
 				'3': '7/kite_1.svg',
@@ -88,7 +93,7 @@
 				answer: 5,
 				item: 6
 			},
-			'item-8' : {
+			'item-8': {
 				'1': '8/butt_1.svg',
 				'2': '8/butt_1.svg',
 				'3': '8/butt_1.svg',
@@ -100,7 +105,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-9' : {
+			'item-9': {
 				'1': '9/1.svg',
 				'2': '9/2.svg',
 				'3': '9/3.svg',
@@ -111,7 +116,7 @@
 				answer: 5,
 				item: 5
 			},
-			'item-10' : {
+			'item-10': {
 				'1': '10/1.svg',
 				'2': '10/1.svg',
 				'3': '10/1.svg',
@@ -123,7 +128,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-11' : {
+			'item-11': {
 				'1': '11/1.svg',
 				'2': '11/1.svg',
 				'3': '11/1.svg',
@@ -135,7 +140,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-12' : {
+			'item-12': {
 				'1': '12/1.svg',
 				'2': '12/1.svg',
 				'3': '12/1.svg',
@@ -147,7 +152,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-13' : {
+			'item-13': {
 				'1': '13/1.svg',
 				'2': '13/2.svg',
 				'3': '13/3.svg',
@@ -158,7 +163,7 @@
 				answer: 5,
 				item: 5
 			},
-			'item-14' : {
+			'item-14': {
 				'1': '14/1.svg',
 				'2': '14/1.svg',
 				'3': '14/1.svg',
@@ -170,7 +175,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-15' : {
+			'item-15': {
 				'1': '15/1.svg',
 				'2': '15/1.svg',
 				'3': '15/1.svg',
@@ -182,7 +187,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-16' : {
+			'item-16': {
 				'1': '16/1.svg',
 				'2': '16/1.svg',
 				'3': '16/1.svg',
@@ -194,7 +199,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-17' : {
+			'item-17': {
 				'1': '17/1.svg',
 				'2': '17/1.svg',
 				'3': '17/1.svg',
@@ -206,7 +211,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-18' : {
+			'item-18': {
 				'1': '18/1.svg',
 				'2': '18/1.svg',
 				'3': '18/1.svg',
@@ -218,7 +223,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-19' : {
+			'item-19': {
 				'1': '19/1.svg',
 				'2': '19/2.svg',
 				'3': '19/3.svg',
@@ -229,7 +234,7 @@
 				answer: 1,
 				item: 5
 			},
-			'item-20' : {
+			'item-20': {
 				'1': '20/1.svg',
 				'2': '20/2.svg',
 				'3': '20/3.svg',
@@ -240,7 +245,7 @@
 				answer: 5,
 				item: 5
 			},
-			'item-21' : {
+			'item-21': {
 				'1': '21/1.svg',
 				'2': '21/1.svg',
 				'3': '21/1.svg',
@@ -252,7 +257,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-22' : {
+			'item-22': {
 				'1': '22/1.svg',
 				'2': '22/1.svg',
 				'3': '22/1.svg',
@@ -264,7 +269,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-23' : {
+			'item-23': {
 				'1': '23/1.svg',
 				'2': '23/2.svg',
 				'3': '23/3.svg',
@@ -276,7 +281,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-24' : {
+			'item-24': {
 				'1': '24/1.svg',
 				'2': '24/2.svg',
 				'3': '24/3.svg',
@@ -287,7 +292,7 @@
 				answer: 5,
 				item: 5
 			},
-			'item-25' : {
+			'item-25': {
 				'1': '25/1.svg',
 				'2': '25/2.svg',
 				'3': '25/3.svg',
@@ -298,7 +303,7 @@
 				answer: 5,
 				item: 5
 			},
-			'item-26' : {
+			'item-26': {
 				'1': '26/1.svg',
 				'2': '26/1.svg',
 				'3': '26/1.svg',
@@ -310,7 +315,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-27' : {
+			'item-27': {
 				'1': '27/1.svg',
 				'2': '27/1.svg',
 				'3': '27/1.svg',
@@ -322,7 +327,7 @@
 				answer: 6,
 				item: 6
 			},
-			'item-28' : {
+			'item-28': {
 				'1': '28/1.svg',
 				'2': '28/2.svg',
 				'3': '28/3.svg',
