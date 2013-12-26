@@ -34,3 +34,32 @@
 	win.addEventListener('load', win.ui.splashScreen, false);
 
 }(window));
+
+(function (win) {
+
+	"use strict";
+	/*global window, document */
+
+	win.ui = win.ui || {};
+
+	win.ui.alert = {
+		handleEvent: function() {
+			this.wrapper = $('.js-alert');
+			this.okBtn = $('.js-alert-button', this.wrapper);
+			this.message = $('.js-alert-message', this.wrapper);
+			this.okBtn.addEventListener('click', this.hide.bind(this), false);
+		},
+		show: function(msg, action) {
+			$.html(this.message, msg);
+			this.wrapper.style.display = 'table';
+			this.okBtn.onclick = action;
+		},
+		hide: function() {
+			this.wrapper.style.display = '';
+			player.play(soundList.click);
+		}
+	};
+
+	win.addEventListener('load', win.ui.alert, false);
+
+}(window));

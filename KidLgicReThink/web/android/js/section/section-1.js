@@ -15,7 +15,12 @@
 		itemsNumber: 28,
 		imgPath: 'img/section/section-1/',
 		img: 'find-an-extra-item-1.svg',
-
+		mainQuestion_ar: 'ar Select one that doesn\'t match others',
+		mainQuestion_de: 'de Select one that doesn\'t match others',
+		mainQuestion_en: 'Select one that doesn\'t match others',
+		mainQuestion_es: 'es Select one that doesn\'t match others',
+		mainQuestion_ru: 'Выбери лишнее',
+		mainQuestion_zh: 'zh Select one that doesn\'t match others',
 		items: {
 			'item-1': {
 				'1': '1/cup.svg',
@@ -23,7 +28,7 @@
 				'3': '1/plate.svg',
 				'4': '1/scissors.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
+				// question: 'here is custom question', // only for example
 				answer: 4,
 				item: 4
 			},
@@ -33,7 +38,6 @@
 				'3': '2/cubes.svg',
 				'4': '2/gorka.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 2,
 				item: 4
 			},
@@ -43,7 +47,6 @@
 				'3': '3/kapusta.svg',
 				'4': '3/ogurec.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 1,
 				item: 4
 			},
@@ -53,7 +56,6 @@
 				'3': '4/sweeter.svg',
 				'4': '4/trousers.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 2,
 				item: 4
 			},
@@ -65,7 +67,6 @@
 				'5': '5/snowman2.svg',
 				'6': '5/snowman1.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 6
 			},
@@ -77,7 +78,6 @@
 				'5': '6/house_answer.svg',
 				'6': '6/house_1.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 6
 			},
@@ -89,7 +89,6 @@
 				'5': '7/kite_answer.svg',
 				'6': '7/kite_1.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 6
 			},
@@ -101,7 +100,6 @@
 				'5': '8/butt_1.svg',
 				'6': '8/butt_answer.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -112,7 +110,6 @@
 				'4': '9/4.svg',
 				'5': '9/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			},
@@ -124,7 +121,6 @@
 				'5': '10/1.svg',
 				'6': '10/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -136,7 +132,6 @@
 				'5': '11/1.svg',
 				'6': '11/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -148,7 +143,6 @@
 				'5': '12/1.svg',
 				'6': '12/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -159,7 +153,6 @@
 				'4': '13/4.svg',
 				'5': '13/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			},
@@ -171,7 +164,6 @@
 				'5': '14/1.svg',
 				'6': '14/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -183,7 +175,6 @@
 				'5': '15/2.svg',
 				'6': '15/3.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -195,7 +186,6 @@
 				'5': '16/1.svg',
 				'6': '16/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -207,7 +197,6 @@
 				'5': '17/2.svg',
 				'6': '17/3.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -219,7 +208,6 @@
 				'5': '18/1.svg',
 				'6': '18/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -230,7 +218,6 @@
 				'4': '19/4.svg',
 				'5': '19/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 1,
 				item: 5
 			},
@@ -241,7 +228,6 @@
 				'4': '20/4.svg',
 				'5': '20/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			},
@@ -253,7 +239,6 @@
 				'5': '21/1.svg',
 				'6': '21/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -265,7 +250,6 @@
 				'5': '22/1.svg',
 				'6': '22/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -277,7 +261,6 @@
 				'5': '23/5.svg',
 				'6': '23/6.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -288,7 +271,6 @@
 				'4': '24/4.svg',
 				'5': '24/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			},
@@ -299,7 +281,6 @@
 				'4': '25/4.svg',
 				'5': '25/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			},
@@ -311,7 +292,6 @@
 				'5': '26/1.svg',
 				'6': '26/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -323,7 +303,6 @@
 				'5': '27/1.svg',
 				'6': '27/2.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 6,
 				item: 6
 			},
@@ -334,7 +313,6 @@
 				'4': '28/4.svg',
 				'5': '28/5.svg',
 				type: 1, // 4to lishnee
-				question: 'Select one that doesn\'t match others',
 				answer: 5,
 				item: 5
 			}

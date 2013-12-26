@@ -57,16 +57,6 @@
 
 </div>
 
-<div class="js-template hidden" template-id="ask-section" onshow="statusBar.show([]);">
-
-	<div class="page">
-
-		section is here
-
-	</div>
-
-</div>
-
 <div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
 	<div class="page title-page">
 		<div class="table">
@@ -75,7 +65,7 @@
 					{{ for (var key in sectionList) { }}
 						{{ if (sectionList.hasOwnProperty(key)) { }}
 							<div class="section-button-wrapper">
-								<div class="section-button" onclick="asker.beginSection('{{= key }}')">
+								<div class="section-button" onclick="asker.beginSection('{{= key }}');player.play(soundList.click);">
 									<img src="{{= sectionList[key].imgPath }}{{= sectionList[key].img }}" alt=""/>
 									<span>{{= sectionList[key]['name_' + info.lang] }}</span>
 								</div>
@@ -85,6 +75,21 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="js-template hidden" template-id="question-type-1" onshow="statusBar.show([]);">
+	<div class="page no-padding">
+
+
+		{{ questions.forEach(function(q){ }}
+			<div class="answer-image-type-1" style="background-image: url('{{= imgPathPrefix }}{{= q.img }}');" onclick="{{= q.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
+		{{ }); }}
+
+		<div class="question-text-type-1">
+			<div>{{= text }}</div>
+		</div>
+
 	</div>
 </div>
 
@@ -138,6 +143,18 @@
 	<div class="js-good-answer good-answer"></div>
 	<div class="js-bad-answer bad-answer"></div>
 </div>
+
+<div class="js-alert alert-wrapper table hidden">
+	<div class="table-row">
+		<div class="table-cell">
+			<div class="alert-form">
+				<div class="js-alert-message alert-message"></div>
+				<div class="js-alert-button alert-ok-button">ok</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 </body>
 </html>

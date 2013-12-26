@@ -9,7 +9,7 @@
 	var info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
-		saveItem: 'save-item-kid-game-NAME',
+		saveItem: 'save-item-kid-game-logic-re-think',
 		isPhone: false,
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		screen: {
@@ -42,7 +42,7 @@
 			ls.setItem(this.saveItem, data);
 		},
 		change: function(key, delta, toLS) {
-			this.set(key, this.get(key) + delta, toLS);
+			this.set(key, (this.get(key) || 0) + delta, toLS);
 		},
 
 		init: function() {

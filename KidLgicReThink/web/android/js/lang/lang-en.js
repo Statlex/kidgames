@@ -10,6 +10,7 @@
 		languageName: 'English',
 		settings: 'Settings',
 		score: 'score',
+		sectionIsDone: 'Congratulation! This section is done. Please, go to next section :)',
 		alphabetButton: 'abc',
 		alphabetLength: 26,
 		alphabet: ["alphabet", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],

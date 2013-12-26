@@ -10,6 +10,7 @@
 		languageName: 'Deutsch',
 		settings: 'Einstellungen',
 		score: 'Punkte',
+		sectionIsDone: 'Gratulation! Die Abteilung ist durchgegangen. Gehen Sie bitte zum nächsten Teil :)',
 		alphabetButton: 'abc',
 		alphabetLength: 30,
 		alphabet: ["alphabet" ,"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ä", "ö", "ü", "ß"], // + "ss" -> ß

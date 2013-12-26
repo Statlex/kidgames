@@ -42,7 +42,7 @@
 			ls.setItem(this.saveItem, data);
 		},
 		change: function(key, delta, toLS) {
-			this.set(key, this.get(key) + delta, toLS);
+			this.set(key, (this.get(key) || 0) + delta, toLS);
 		},
 
 		init: function() {
