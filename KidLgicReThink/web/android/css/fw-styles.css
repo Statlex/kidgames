@@ -150,6 +150,7 @@ body {
 	border-radius: 5px;
 	width: 100%;
 	height: 100%;
+	font-weight: bold;
 }
 
 .more-wrapper * {
@@ -210,6 +211,13 @@ body {
 .main-site-link a {
 	color: #FFF;
 	text-decoration: underline;
+}
+
+.sharing-cell {
+	background-image: url('../img/i/share.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
 }
 /* more page */
 

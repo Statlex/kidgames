@@ -531,3 +531,10 @@ body {
 .main-site-link a {
 	color: #FFF;
 }
+
+.sharing-cell {
+	background-image: url('../img/i/share.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
