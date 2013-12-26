@@ -75,8 +75,7 @@
 			this.questions = $.shuffle(this.questions).slice(5, 16);
 		},
 		goodAnswer: function() {
-			ui.splashScreen.show(true);
-			win.asker.showQuestion();
+			ui.splashScreen.show(true, 'asker.showQuestion()');
 			info.change('score', 5, true);
 			statusBar.update();
 		},

@@ -18,16 +18,19 @@
 				that.hide();
 			}, false);
 		},
-		show: function(isRight) {
+		show: function(isRight, action) {
 			clearTimeout(this.setTimeoutId);
 			this.goodAnswer.style.display = isRight ? 'block' : 'none';
 			this.badAnswer.style.display = isRight ? 'none' : 'block';
 			$.addClass(this.wrapper, 'active');
 			this.setTimeoutId = setTimeout(this.hide.bind(this), this.showTime);
 			player.play(isRight ? soundList.goodAnswer : soundList.badAnswer);
+			this.wrapper.setAttribute('onclick', action);
 		},
 		hide: function() {
 			$.removeClass(this.wrapper, 'active');
+			this.wrapper.onclick();
+			this.wrapper.onclick = function() {};
 		}
 	};
 
@@ -52,10 +55,18 @@
 		show: function(msg, action) {
 			$.html(this.message, msg);
 			this.wrapper.style.display = 'table';
+			var that = this;
+			setTimeout(function(){
+				that.wrapper.style.opacity = 1;
+			}, 20);
 			this.okBtn.onclick = action;
 		},
 		hide: function() {
-			this.wrapper.style.display = '';
+			var that = this;
+			this.wrapper.style.opacity = '';
+			setTimeout(function(){
+				that.wrapper.style.display = '';
+			}, 520);
 			player.play(soundList.click);
 		}
 	};
