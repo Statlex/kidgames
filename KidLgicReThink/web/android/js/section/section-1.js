@@ -12,7 +12,7 @@
 		name_es: 'es Select improper',
 		name_ru: 'Выбери лишний',
 		name_zh: 'zh Select improper',
-		items_number: 28,
+		itemsNumber: 28,
 		imgPath: 'img/section/section-1/',
 		img: 'find-an-extra-item-1.svg',
 

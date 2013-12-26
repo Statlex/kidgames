@@ -12,8 +12,8 @@
 		name_es: 'es Select right answer',
 		name_ru: 'Выбери правильный ответ',
 		name_zh: 'Select right answer',
+		itemsNumber: 28,
 		imgPath: 'img/section/section-2/',
-		items_number: 28,
 		img: 'find-most-unsuitable-picture-1.svg',
 
 		items: {
