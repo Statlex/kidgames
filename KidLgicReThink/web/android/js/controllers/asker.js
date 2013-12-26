@@ -31,7 +31,13 @@
 							img: mainQuestion[number],
 							right: number === mainQuestion.answer
 						});
+					} else {
+						answers.push({
+							img: false,
+							right: false
+						});
 					}
+
 				});
 				question.answers = $.shuffle(answers);
 				question.text = question['question_' + info.lang] || this.section['mainQuestion_' + info.lang];
@@ -67,7 +73,6 @@
 			}
 			// get only 10 questions
 			this.questions = $.shuffle(this.questions).slice(5, 16);
-			console.log(this.questions);
 		},
 		goodAnswer: function() {
 			ui.splashScreen.show(true);

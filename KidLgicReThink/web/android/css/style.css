@@ -1,5 +1,12 @@
 body {
-	background-color: #ccc;
+
+}
+
+#wrapper {
+	background-image: url('../img/i/main-bg.jpg');
+	background-repeat: repeat;
+	background-position: center center;
+	background-size: cover;
 }
 
 .title-page .table {
@@ -7,17 +14,29 @@ body {
 	width: 100%;
 }
 
-.section-button-wrapper {
-	float: left;
+.title-page .table-cell {
+	padding: 0 5px;
+	text-align: center;
+	box-sizing: border-box;
 	width: 50%;
+}
+
+.section-button-wrapper {
+	display: inline-block;
+	width: 100%;
 }
 
 .section-button {
 	margin: 0 auto;
 	display: block;
-	max-width: 200px;
-	padding: 10px;
+	max-width: 240px;
+	padding: 10px ;
 	box-sizing: border-box;
+	border-radius: 36px;
+	text-shadow: 1px 1px 0 #666;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
+	background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
 }
 
 .section-button img {
@@ -33,6 +52,7 @@ body {
 	line-height: 25px;
 	text-shadow: 1px 1px 1px #000;
 	font-weight: bold;
+	min-height: 75px;
 }
 
 @-webkit-keyframes animation-show {
@@ -95,6 +115,7 @@ body {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	border: 15px solid transparent;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .question-text-type-1 {
@@ -102,10 +123,10 @@ body {
 	clear: both;
 	width: 100%;
 	height: 20%;
-	position: fixed;
-	bottom: 0;
 	box-sizing: border-box;
 	border-top: 2px solid #FFF;
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
+	background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
 }
 
 .question-text-type-1 div {
@@ -123,7 +144,7 @@ body {
 @media screen and (orientation: portrait) {
 	.answer-image-type-1{
 		width: 50%;
-		height: 26.5%;
+		height: 26.66%;
 	}
 }
 
@@ -147,6 +168,7 @@ body {
 	border-bottom-width: 3em;
 	box-sizing: border-box;
 	position: relative;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .question-type-2-text {
@@ -166,6 +188,8 @@ body {
 	text-align: center;
 	box-sizing: border-box;
 	border-top: 2px solid #FFF;
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
+	background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
 }
 
 .answer-div-type-2 {
@@ -187,4 +211,22 @@ body {
 	}
 }
 
+@media screen and (max-height: 479px) {
 
+	.section-button {
+		max-width: 100%;
+	}
+
+	.section-button img {
+		max-width: 35%;
+		max-height: 200%;
+		float: left;
+	}
+
+	.section-button span {
+		float: left;
+		/*line-height: 200px;*/
+		width: 65%;
+	}
+
+}

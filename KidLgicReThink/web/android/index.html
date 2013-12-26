@@ -61,28 +61,32 @@
 	<div class="page title-page">
 		<div class="table">
 			<div class="table-row">
-				<div class="table-cell clear-fix">
-					{{ for (var key in sectionList) { }}
-						{{ if (sectionList.hasOwnProperty(key)) { }}
+				{{ for (var key in sectionList) { }}
+					{{ if (sectionList.hasOwnProperty(key)) { }}
+						<div class="table-cell clear-fix">
 							<div class="section-button-wrapper">
-								<div class="section-button" onclick="asker.beginSection('{{= key }}');player.play(soundList.click);">
+								<div class="section-button clear-fix" onclick="asker.beginSection('{{= key }}');player.play(soundList.click);">
 									<img src="{{= sectionList[key].imgPath }}{{= sectionList[key].img }}" alt=""/>
 									<span>{{= sectionList[key]['name_' + info.lang] }}</span>
 								</div>
 							</div>
-						{{ }; }}
+						</div>
 					{{ }; }}
-				</div>
+				{{ }; }}
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="js-template hidden" template-id="question-type-1" onshow="statusBar.show([]);">
-	<div class="page no-padding">
+	<div class="page">
 
 		{{ answers.forEach(function(answer){ }}
-			<div class="answer-image-type-1" style="background-image: url('{{= imgPathPrefix }}{{= answer.img }}');" onclick="{{= answer.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
+			{{ if (answer.img) { }}
+				<div class="answer-image-type-1" style="background-image: url('{{= imgPathPrefix }}{{= answer.img }}');" onclick="{{= answer.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
+			{{ } else { }}
+				<div class="answer-image-type-1"></div>
+			{{ }; }}
 		{{ }); }}
 
 		<div class="question-text-type-1">
@@ -93,7 +97,7 @@
 </div>
 
 <div class="js-template hidden" template-id="question-type-2" onshow="statusBar.show([]);">
-	<div class="page no-padding">
+	<div class="page">
 
 		<div class="question-type-2" style="background-image: url('{{= imgPathPrefix }}{{= questionImage }}');">
 			<p class="question-type-2-text">{{= text }}</p>
