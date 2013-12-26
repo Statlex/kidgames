@@ -24,7 +24,7 @@
 				'3': 'a1/3.svg',
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q1/1.svg',
+				questionImage: 'q1/1.svg',
 				text: 'For playing hockey you need a ...',
 				text_ar: '',
 				text_de: '',
@@ -41,7 +41,7 @@
 				'3': 'a1/3.svg',
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q1/2.svg',
+				questionImage: 'q1/2.svg',
 				text: 'What does hedgehog need for painting?',
 				text_ar: '',
 				text_de: '',
@@ -58,7 +58,7 @@
 				'3': 'a1/3.svg',
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q1/3.svg',
+				questionImage: 'q1/3.svg',
 				text: 'What was baked for Rabbit\'s birthday?',
 				text_ar: '',
 				text_de: '',
@@ -75,7 +75,7 @@
 				'3': 'a1/3.svg',
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q1/4.svg',
+				questionImage: 'q1/4.svg',
 				text: 'What should Fox use to measure temperature?',
 				text_ar: '',
 				text_de: '',
@@ -93,7 +93,7 @@
 				'3': 'a2/3.svg',
 				'4': 'a2/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q2/1.svg',
+				questionImage: 'q2/1.svg',
 				text: 'What does Rabbit love more?',
 				text_ar: '',
 				text_de: '',
@@ -110,7 +110,7 @@
 				'3': 'a2/3.svg',
 				'4': 'a2/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q2/2.svg',
+				questionImage: 'q2/2.svg',
 				text: 'What does Mouse love more?',
 				text_ar: '',
 				text_de: '',
@@ -127,7 +127,7 @@
 				'3': 'a2/3.svg',
 				'4': 'a2/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q2/3.svg',
+				questionImage: 'q2/3.svg',
 				text: 'What does Dog love more?',
 				text_ar: '',
 				text_de: '',
@@ -144,7 +144,7 @@
 				'3': 'a2/3.svg',
 				'4': 'a2/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q2/4.svg',
+				questionImage: 'q2/4.svg',
 				text: 'What does Bear love more?',
 				text_ar: '',
 				text_de: '',
@@ -162,7 +162,7 @@
 				'3': 'a3/3.svg',
 				'4': 'a3/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q3/1.svg',
+				questionImage: 'q3/1.svg',
 				text: 'Find suitable pattern.',
 				text_ar: '',
 				text_de: '',
@@ -179,7 +179,7 @@
 				'3': 'a3/3.svg',
 				'4': 'a3/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q3/2.svg',
+				questionImage: 'q3/2.svg',
 				text: 'Find suitable pattern.',
 				text_ar: '',
 				text_de: '',
@@ -196,7 +196,7 @@
 				'3': 'a3/3.svg',
 				'4': 'a3/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q3/3.svg',
+				questionImage: 'q3/3.svg',
 				text: 'Find suitable pattern.',
 				text_ar: '',
 				text_de: '',
@@ -213,7 +213,7 @@
 				'3': 'a3/3.svg',
 				'4': 'a3/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q3/4.svg',
+				questionImage: 'q3/4.svg',
 				text: 'Find suitable pattern.',
 				text_ar: '',
 				text_de: '',
@@ -231,7 +231,7 @@
 				'3': 'a4/3.svg',
 				'4': 'a4/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q4/1.svg',
+				questionImage: 'q4/1.svg',
 				text: 'Find pair.',
 				text_ar: '',
 				text_de: '',
@@ -248,7 +248,7 @@
 				'3': 'a4/3.svg',
 				'4': 'a4/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q4/2.svg',
+				questionImage: 'q4/2.svg',
 				text: 'Find pair.',
 				text_ar: '',
 				text_de: '',
@@ -265,7 +265,7 @@
 				'3': 'a4/3.svg',
 				'4': 'a4/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q4/3.svg',
+				questionImage: 'q4/3.svg',
 				text: 'Find pair.',
 				text_ar: '',
 				text_de: '',
@@ -282,7 +282,7 @@
 				'3': 'a4/3.svg',
 				'4': 'a4/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q4/4.svg',
+				questionImage: 'q4/4.svg',
 				text: 'Find pair.',
 				text_ar: '',
 				text_de: '',
@@ -300,7 +300,7 @@
 				'3': 'a5/3.svg',
 				'4': 'a5/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q5/1.svg',
+				questionImage: 'q5/1.svg',
 				text: 'Find equal building.',
 				text_ar: '',
 				text_de: '',
@@ -317,7 +317,7 @@
 				'3': 'a5/3.svg',
 				'4': 'a5/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q5/2.svg',
+				questionImage: 'q5/2.svg',
 				text: 'Find equal building.',
 				text_ar: '',
 				text_de: '',
@@ -334,7 +334,7 @@
 				'3': 'a5/3.svg',
 				'4': 'a5/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q5/3.svg',
+				questionImage: 'q5/3.svg',
 				text: 'Find equal building.',
 				text_ar: '',
 				text_de: '',
@@ -351,7 +351,7 @@
 				'3': 'a5/3.svg',
 				'4': 'a5/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q5/4.svg',
+				questionImage: 'q5/4.svg',
 				text: 'Find equal building.',
 				text_ar: '',
 				text_de: '',
@@ -369,7 +369,7 @@
 				'3': 'a6/3.svg',
 				'4': 'a6/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q6/1.svg',
+				questionImage: 'q6/1.svg',
 				text: 'Find a similar one.',
 				text_ar: '',
 				text_de: '',
@@ -386,7 +386,7 @@
 				'3': 'a6/3.svg',
 				'4': 'a6/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q6/2.svg',
+				questionImage: 'q6/2.svg',
 				text: 'Find a similar one.',
 				text_ar: '',
 				text_de: '',
@@ -403,7 +403,7 @@
 				'3': 'a6/3.svg',
 				'4': 'a6/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q6/3.svg',
+				questionImage: 'q6/3.svg',
 				text: 'Find a similar one.',
 				text_ar: '',
 				text_de: '',
@@ -420,7 +420,7 @@
 				'3': 'a6/3.svg',
 				'4': 'a6/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q6/4.svg',
+				questionImage: 'q6/4.svg',
 				text: 'Find a similar one.',
 				text_ar: '',
 				text_de: '',
@@ -438,7 +438,7 @@
 				'3': 'a7/3.svg',
 				'4': 'a7/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q7/1.svg',
+				questionImage: 'q7/1.svg',
 				text: 'What does Mouse love more?',
 				text_ar: '',
 				text_de: '',
@@ -455,7 +455,7 @@
 				'3': 'a7/3.svg',
 				'4': 'a7/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q7/2.svg',
+				questionImage: 'q7/2.svg',
 				text: 'What does Squirrel love more?',
 				text_ar: '',
 				text_de: '',
@@ -472,7 +472,7 @@
 				'3': 'a7/3.svg',
 				'4': 'a7/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q7/3.svg',
+				questionImage: 'q7/3.svg',
 				text: 'What does Rabbit love more?',
 				text_ar: '',
 				text_de: '',
@@ -489,7 +489,7 @@
 				'3': 'a7/3.svg',
 				'4': 'a7/4.svg',
 				type: 2, // vibery variant otveta
-				question: 'q7/4.svg',
+				questionImage: 'q7/4.svg',
 				text: 'What does Dog love more?',
 				text_ar: '',
 				text_de: '',

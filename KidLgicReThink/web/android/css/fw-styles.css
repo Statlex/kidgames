@@ -93,13 +93,13 @@ body {
 }
 
 #wrapper-for-transition.to-right {
-	-webkit-transform: translate(100%, 0);
-	transform: translate(100%, 0);
+	-webkit-transform: translate(150%, 0);
+	transform: translate(150%, 0);
 }
 
 #wrapper-for-transition.to-left {
-	-webkit-transform: translate(-100%, 0);
-	transform: translate(-100%, 0);
+	-webkit-transform: translate(-150%, 0);
+	transform: translate(-150%, 0);
 }
 
 .page {

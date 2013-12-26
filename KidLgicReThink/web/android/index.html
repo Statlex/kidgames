@@ -81,13 +81,28 @@
 <div class="js-template hidden" template-id="question-type-1" onshow="statusBar.show([]);">
 	<div class="page no-padding">
 
-
-		{{ questions.forEach(function(q){ }}
-			<div class="answer-image-type-1" style="background-image: url('{{= imgPathPrefix }}{{= q.img }}');" onclick="{{= q.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
+		{{ answers.forEach(function(answer){ }}
+			<div class="answer-image-type-1" style="background-image: url('{{= imgPathPrefix }}{{= answer.img }}');" onclick="{{= answer.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
 		{{ }); }}
 
 		<div class="question-text-type-1">
 			<div>{{= text }}</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="js-template hidden" template-id="question-type-2" onshow="statusBar.show([]);">
+	<div class="page no-padding">
+
+		<div class="question-type-2" style="background-image: url('{{= imgPathPrefix }}{{= questionImage }}');">
+			<p class="question-type-2-text">{{= text }}</p>
+		</div>
+
+		<div class="answer-wrapper-type-2">
+			{{ answers.forEach(function(answer){ }}
+				<div class="answer-div-type-2" style="background-image: url('{{= imgPathPrefix }}{{= answer.img }}');" onclick="{{= answer.right ? 'asker.goodAnswer(this)' : 'asker.badAnswer(this)' }}"></div>
+			{{ }); }}
 		</div>
 
 	</div>

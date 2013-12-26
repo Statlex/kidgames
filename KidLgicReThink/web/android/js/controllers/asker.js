@@ -12,8 +12,9 @@
 		},
 		showQuestion: function() {
 
+			var question = {};
+			var answers = [];
 			var mainQuestion = $.shuffle(this.questions).pop();
-
 			if (!mainQuestion) {
 				ui.alert.show(lang[info.lang].sectionIsDone,
 					function() {
@@ -24,27 +25,34 @@
 			}
 
 			if (mainQuestion.type === 1) {
-				var question = {};
-				var questions = [];
-				$.createSimpleArray(1,6).forEach(function(number){
+				$.createSimpleArray(1, 6).forEach(function(number){
 					if (mainQuestion.hasOwnProperty(number)) {
-						questions.push({
+						answers.push({
 							img: mainQuestion[number],
 							right: number === mainQuestion.answer
 						});
 					}
 				});
-				question.questions = $.shuffle(questions);
+				question.answers = $.shuffle(answers);
 				question.text = question['question_' + info.lang] || this.section['mainQuestion_' + info.lang];
-				question.imgPathPrefix = this.section.imgPath;
 			}
 
 			if (mainQuestion.type === 2) {
-
-
-
+				$.createSimpleArray(1, 6).forEach(function(number){
+					if (mainQuestion.hasOwnProperty(number)) {
+						answers.push({
+							img: mainQuestion[number],
+							right: number === mainQuestion.answer
+						});
+					}
+				});
+				question.answers = $.shuffle(answers);
+				question.text = mainQuestion['text_' + info.lang] || mainQuestion['text'];
+//				question.text = mainQuestion['text'];
+				question.questionImage = mainQuestion.questionImage;
 			}
 
+			question.imgPathPrefix = this.section.imgPath;
 			viewer.show('question-type-' + mainQuestion.type, question, true);
 
 
