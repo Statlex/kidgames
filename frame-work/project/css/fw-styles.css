@@ -211,6 +211,13 @@ body {
 	color: #FFF;
 	text-decoration: underline;
 }
+
+.sharing-cell {
+	background-image: url('../img/i/share.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
 /* more page */
 
 /* custom select */
