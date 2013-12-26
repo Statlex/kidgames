@@ -25,12 +25,13 @@
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
 				question: 'q1/1.svg',
-				text_ar: 'For playing hockey you need a ...',
-				text_de: 'For playing hockey you need a ...',
-				text_en: 'For playing hockey you need a ...',
-				text_es: 'For playing hockey you need a ...',
-				text_ru: 'For playing hockey you need a ...',
-				text_zh: 'For playing hockey you need a ...',
+				text: 'For playing hockey you need a ...',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -41,12 +42,13 @@
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
 				question: 'q1/2.svg',
-				text_ar: 'What does hedgehog need for painting?',
-				text_de: 'What does hedgehog need for painting?',
-				text_en: 'What does hedgehog need for painting?',
-				text_es: 'What does hedgehog need for painting?',
-				text_ru: 'What does hedgehog need for painting?',
-				text_zh: 'What does hedgehog need for painting?',
+				text: 'What does hedgehog need for painting?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -58,6 +60,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q1/3.svg',
 				text: 'What was baked for Rabbit\'s birthday?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -69,6 +77,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q1/4.svg',
 				text: 'What should Fox use to measure temperature?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -81,6 +95,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q2/1.svg',
 				text: 'What does Rabbit love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -92,6 +112,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q2/2.svg',
 				text: 'What does Mouse love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -103,6 +129,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q2/3.svg',
 				text: 'What does Dog love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -114,6 +146,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q2/4.svg',
 				text: 'What does Bear love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -126,6 +164,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q3/1.svg',
 				text: 'Find suitable pattern.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -137,6 +181,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q3/2.svg',
 				text: 'Find suitable pattern.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -148,6 +198,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q3/3.svg',
 				text: 'Find suitable pattern.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -159,6 +215,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q3/4.svg',
 				text: 'Find suitable pattern.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -171,6 +233,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q4/1.svg',
 				text: 'Find pair.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -182,6 +250,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q4/2.svg',
 				text: 'Find pair.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -193,6 +267,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q4/3.svg',
 				text: 'Find pair.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -204,6 +284,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q4/4.svg',
 				text: 'Find pair.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -216,6 +302,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q5/1.svg',
 				text: 'Find equal building.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -227,6 +319,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q5/2.svg',
 				text: 'Find equal building.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -238,6 +336,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q5/3.svg',
 				text: 'Find equal building.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -249,6 +353,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q5/4.svg',
 				text: 'Find equal building.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -261,6 +371,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q6/1.svg',
 				text: 'Find a similar one.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -272,6 +388,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q6/2.svg',
 				text: 'Find a similar one.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -283,6 +405,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q6/3.svg',
 				text: 'Find a similar one.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -294,6 +422,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q6/4.svg',
 				text: 'Find a similar one.',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			},
@@ -306,6 +440,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q7/1.svg',
 				text: 'What does Mouse love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 1,
 				item: 4
 			},
@@ -317,6 +457,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q7/2.svg',
 				text: 'What does Squirrel love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 2,
 				item: 4
 			},
@@ -328,6 +474,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q7/3.svg',
 				text: 'What does Rabbit love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 3,
 				item: 4
 			},
@@ -339,6 +491,12 @@
 				type: 2, // vibery variant otveta
 				question: 'q7/4.svg',
 				text: 'What does Dog love more?',
+				text_ar: '',
+				text_de: '',
+				text_en: '',
+				text_es: '',
+				text_ru: '',
+				text_zh: '',
 				answer: 4,
 				item: 4
 			}
