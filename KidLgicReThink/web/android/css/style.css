@@ -57,25 +57,19 @@ body {
 
 @-webkit-keyframes animation-show {
 	0% {
-		-webkit-transform: scale(0);
-	}
-	80% {
-		-webkit-transform: scale(1.2);
+		opacity: 0;
 	}
 	100% {
-		-webkit-transform: scale(1);
+		opacity: 1;
 	}
 }
 
 @keyframes animation-show {
 	0% {
-		transform: scale(0);
-	}
-	80% {
-		transform: scale(1.2);
+		opacity: 0;
 	}
 	100% {
-		transform: scale(1);
+		opacity: 1;
 	}
 }
 
@@ -84,17 +78,13 @@ body {
 .question-type-2,
 .answer-wrapper-type-2 {
 	-webkit-animation-iteration-count: 1;
-	-webkit-animation-timing-function: ease-in-out;
-	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: ease-out;
+	-webkit-animation-duration: 0.4s;
 	-webkit-animation-name: animation-show;
 	animation-iteration-count: 1;
-	animation-timing-function: ease-in-out;
-	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-duration: 0.4s;
 	animation-name: animation-show;
-}
-
-#wrapper-for-transition div {
-	border: none;
 }
 
 #wrapper-for-transition .section-button,
