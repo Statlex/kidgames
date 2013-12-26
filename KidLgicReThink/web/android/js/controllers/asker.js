@@ -23,24 +23,30 @@
 				return;
 			}
 
+			if (mainQuestion.type === 1) {
+				var question = {};
+				var questions = [];
+				$.createSimpleArray(1,6).forEach(function(number){
+					if (mainQuestion.hasOwnProperty(number)) {
+						questions.push({
+							img: mainQuestion[number],
+							right: number === mainQuestion.answer
+						});
+					}
+				});
+				question.questions = $.shuffle(questions);
+				question.text = question['question_' + info.lang] || this.section['mainQuestion_' + info.lang];
+				question.imgPathPrefix = this.section.imgPath;
+			}
 
-			var question = {};
-			var questions = [];
-			$.createSimpleArray(1,6).forEach(function(number){
-				if (mainQuestion.hasOwnProperty(number)) {
-					questions.push({
-						img: mainQuestion[number],
-						right: number === mainQuestion.answer
-					});
-				}
-			});
+			if (mainQuestion.type === 2) {
 
-			question.questions = $.shuffle(questions);
-			question.text = question['question_' + info.lang] || this.section['mainQuestion_' + info.lang];
-			question.imgPathPrefix = this.section.imgPath;
 
+
+			}
 
 			viewer.show('question-type-' + mainQuestion.type, question, true);
+
 
 		},
 		createQuestionsList: function() {

@@ -25,7 +25,12 @@
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
 				question: 'q1/1.svg',
-				text: 'For playing hockey you need a ...',
+				text_ar: 'For playing hockey you need a ...',
+				text_de: 'For playing hockey you need a ...',
+				text_en: 'For playing hockey you need a ...',
+				text_es: 'For playing hockey you need a ...',
+				text_ru: 'For playing hockey you need a ...',
+				text_zh: 'For playing hockey you need a ...',
 				answer: 1,
 				item: 4
 			},
@@ -36,7 +41,12 @@
 				'4': 'a1/4.svg',
 				type: 2, // vibery variant otveta
 				question: 'q1/2.svg',
-				text: 'What does hedgehog need for painting?',
+				text_ar: 'What does hedgehog need for painting?',
+				text_de: 'What does hedgehog need for painting?',
+				text_en: 'What does hedgehog need for painting?',
+				text_es: 'What does hedgehog need for painting?',
+				text_ru: 'What does hedgehog need for painting?',
+				text_zh: 'What does hedgehog need for painting?',
 				answer: 2,
 				item: 4
 			},
