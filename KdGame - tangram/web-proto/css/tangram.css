@@ -1,0 +1,17 @@
+.tangram-page {
+	position: relative;
+	padding: 0;
+}
+
+.tangram-field {
+	width: 100%;
+	height: 100%;
+}
+
+.tangram-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

@@ -8,7 +8,7 @@
 		handleEvent: function() {
 
 			this.wrapper = $('#wrapper');
-			viewer.show('title-page');
+			viewer.show('tangram-page');
 
 		},
 		setMorePage: function(){
@@ -19,6 +19,9 @@
 				viewer.refresh();
 			}, false);
 
+		},
+		runTangram: function() {
+			tangram.init();
 		}
 
 	};
