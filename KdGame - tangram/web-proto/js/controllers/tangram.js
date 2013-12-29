@@ -165,6 +165,7 @@
 				var polygon = viewer.template(figuresCode.template);
 				// set figures color here
 				figuresModel.points = figuresCode[figureName];
+				figuresModel.figureName = figureName;
 				polygon = polygon(figuresModel);
 				polygon = that.resizePolygon(polygon);
 				figuresStr += polygon;
@@ -212,7 +213,7 @@
 		SQR: '0,0 35.355,0 35.355,35.355 0,35.355',
 		TRP: '0,50 0,0 25,25 25,75',
 		TRPR: '0,25 0,75 25,50 25,0',
-		template: '<polygon fill="#{{= fillColor }}" stroke="#{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
+		template: '<polygon figure-name="{{= figureName }}" fill="#{{= fillColor }}" stroke="#{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
 	};
 
 

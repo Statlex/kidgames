@@ -13,3 +13,7 @@
 	left: 0;
 }
 
+polygon.active {
+	opacity: 0.7;
+}
+
