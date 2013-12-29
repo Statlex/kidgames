@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, $ */
 
 	var preJS = 'webkit';
 	var preCSS = 'webkit';
@@ -18,51 +18,71 @@
 
 	var mover = {
 		addObject: function(polygon) {
-			this.isActive = true;
-			this.activeObject = {
-				node: polygon,
-				startX: 0,
-				startY: 0,
-				angle: 0
-			};
+			this.moverIsActive = true;
+			this.showRotater(false);
 
 			this.startX = event.pageX || event.touches[0].pageX;
 			this.startY = event.pageY || event.touches[0].pageY;
 
-			// get start position
-			this.setStartActiveObjectPosition();
-
 			// go on top
 			polygon.parentNode.appendChild(polygon.parentNode.removeChild(polygon));
 
+			// get start position
+			var style = polygon.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
+			style = style.match(/\d+|\d+\.\d+/gi);
+			this.activeObject = {
+				node: polygon,
+				startX: parseInt(style[0], 10),
+				startY: parseInt(style[1], 10),
+				angle: parseInt(style[2], 10)
+			};
+
+			//this.showRotater(true);
+
 		},
 		move: function(){
-			if (!this.isActive) {
-				return;
-			}
-			this.currentX = event.pageX || event.touches[0].pageX;
-			this.currentY = event.pageY || event.touches[0].pageY;
-
 			var obj = this.activeObject;
-			var style = info.preCSS + 'transform: translate(' + (obj.startX + this.currentX - this.startX) + 'px, ' + (obj.startY + this.currentY - this.startY) + 'px) rotate(' + obj.angle + 'deg)';
-			obj.node.setAttribute('style', style);
+			if (this.moverIsActive) {
+				this.currentX = event.pageX || event.touches[0].pageX;
+				this.currentY = event.pageY || event.touches[0].pageY;
+				obj.x = obj.startX + this.currentX - this.startX;
+				obj.y = obj.startY + this.currentY - this.startY;
+				var style = info.preCSS + 'transform: translate(' + obj.x + 'px, ' + obj.y + 'px) rotate(' + obj.angle + 'deg)';
+				obj.node.setAttribute('style', style);
+			}
+
+			if (this.rotaterIsActive && tangram.mainFieldIsActive) {
+				console.log(this.activeObject.x);
+			}
+
 
 		},
-		setStartActiveObjectPosition: function() {
+		initRotater: function(q) {
 
-			var obj = this.activeObject;
-			var style = obj.node.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
-			console.log(style);
-			style = style.match(/\d+|\d+\.\d+/gi);
-			obj.startX = parseInt(style[0], 10);
-			obj.startY = parseInt(style[1], 10);
-			obj.angle = parseInt(style[2], 10);
+			var node = $('.js-rotater', main.wrapper);
+			this.rotater = {
+				node: node,
+				originalSize: 100,
+				x:0,
+				y:0
+			};
 
+			node.style.width = this.rotater.originalSize * q + 'px';
+			node.style.height = this.rotater.originalSize * q + 'px';
+
+		},
+		showRotater: function(show) {
+
+			mover.rotaterIsActive = show;
+			if (!show) {
+				this.rotater.node.style.display = 'none';
+				return;
+			}
+
+			this.rotater.node.style.display = 'block';
+			this.rotater.node.style[info.preJS + 'Transform'] = 'translate(' + this.activeObject.x + 'px, ' + this.activeObject.y + 'px)';
 
 		}
-
-
-
 
 	};
 
@@ -72,8 +92,7 @@
 
 		},
 		init: function() {
-
-			this.wrapper = $('#wrapper .tangram-page');
+			this.wrapper = $('.tangram-page', main.wrapper);
 			var svg = $('svg', this.wrapper);
 			svg.setAttribute('class', 'main-image js-main-image');
 
@@ -95,7 +114,7 @@
 			this.positionMainImage();
 			this.createActiveFigures();
 			this.addMoveListeners();
-
+			mover.initRotater(this.mainImage.q);
 
 		},
 		positionMainImage: function() {
@@ -176,16 +195,7 @@
 		},
 		setActiveObject: function(polygon) {
 
-			if (!polygon) {
-				if (this.activePolygin) {
-					this.activePolygin.removeAttribute('class');
-				}
-				mover.isActive = false;
-				return;
-			}
-
-			this.activePolygin = polygon;
-			this.activePolygin.setAttribute('class', 'active');
+			polygon.setAttribute('class', 'active');
 
 			mover.addObject(polygon);
 
@@ -194,12 +204,28 @@
 			var that = this;
 			this.polygons = $$('.js-figure-container polygon', this.wrapper);
 			this.polygons.forEach(function(polygon){
-				polygon.addEventListener(evt.down, that.setActiveObject.bind(that, polygon),false);
+				polygon.addEventListener(evt.down, that.setActiveObject.bind(that, polygon), false);
+				polygon.addEventListener(evt.up, function(){
+					mover.moverIsActive = false;
+					mover.showRotater(true);
+					that.mainFieldIsActive = false;
+					event.stopPropagation();
+				}, false);
+
 			});
 
 			this.wrapper.addEventListener(evt.move, mover.move.bind(mover), false);
-			this.wrapper.addEventListener(evt.up, this.setActiveObject.bind(this, false), false);
-			this.wrapper.addEventListener('touchcancel', this.setActiveObject.bind(this, false), false);
+			this.wrapper.addEventListener(evt.up, function(){
+
+				// if rotate action was on field, do not any action
+				// add if ()
+				that.mainFieldIsActive = false;
+				mover.moverIsActive = false;
+				mover.showRotater(false);
+			}, false);
+			this.wrapper.addEventListener(evt.down, function(){
+				that.mainFieldIsActive = true;
+			}, false);
 
 		}
 
