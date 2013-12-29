@@ -1,17 +1,17 @@
 .tangram-page {
-	position: relative;
 	padding: 0;
+	position: relative;
 }
 
-.tangram-field {
-	width: 100%;
-	height: 100%;
+.tangram-page .main-image {
+	position: relative;
 }
 
-.tangram-overlay {
+.tangram-page .figure-container {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
 }
+
+
+

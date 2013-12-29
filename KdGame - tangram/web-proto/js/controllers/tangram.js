@@ -3,6 +3,18 @@
 	"use strict";
 	/*global window, document */
 
+	var preJS = 'webkit';
+	var preCSS = 'webkit';
+
+	var isTouch = document.documentElement.hasOwnProperty('ontouchstart');
+
+	var evt = {
+		down: isTouch ? 'touchstart' : 'mousedown',
+		move: isTouch ? 'touchmove' : 'mousemove',
+		up: isTouch ? 'touchend' : 'mouseup',
+		out: isTouch ? 'touchcancel' : 'mouseout'
+	};
+
 	var tangram;
 	tangram = {
 		figureList: ['B3A', 'B3A', 'M3A', 'S3A', 'S3A', 'SQR', 'TRP'],
@@ -11,29 +23,55 @@
 		},
 		init: function() {
 
-			this.wrapper = $('#wrapper .page');
-			this.mainImage = $('svg', this.wrapper);
-			this.mainImage.setAttribute('class', 'main-image js-main-image');
-			this.mainImageWidth = this.mainImage.getAttribute('width');
-			this.mainImageHeight = this.mainImage.getAttribute('height');
-			this.resizeMainImage(this.mainImage, 1);
-			this.createActiveFigures(1);
+			this.wrapper = $('#wrapper .tangram-page');
+			var svg = $('svg', this.wrapper);
+			svg.setAttribute('class', 'main-image js-main-image');
+
+			this.mainImage = {
+				svg: svg,
+				original: {
+					width: parseInt(svg.getAttribute('width'), 10),
+					height: parseInt(svg.getAttribute('height'), 10)
+				},
+				current: {
+					width: parseInt(svg.getAttribute('width'), 10),
+					height: parseInt(svg.getAttribute('height'), 10)
+				},
+				offsetX: 0,
+				offsetY: 0,
+				q: 1
+			};
+
+			this.positionMainImage();
+			this.createActiveFigures();
+			this.addMoveListeners();
 
 		},
-		resizeMainImage: function(svg, q) {
+		positionMainImage: function() {
 
-			var re = /\d+|\d+\.\d+/gi;
-			var svgAttributes = ['x', 'y', 'width', 'height'];
-			svgAttributes.forEach(function(attr){
-				var svgAttr = svg.getAttribute(attr);
-				svgAttr = svgAttr.match(re)[0];
-				svgAttr = svgAttr * q + 'px';
-				svg.setAttribute(attr, svgAttr);
-			});
+			// resize image
+			var img = this.mainImage;
+			var svgAspectRatio = img.original.width / img.original.height;
+			if (svgAspectRatio > info.screen.getAspectRatio()) {
+				img.q = this.wrapper.clientWidth / img.original.width;
+			} else {
+				img.q = this.wrapper.clientHeight / img.original.height;
+			}
+
+			img.current.width = img.original.width * img.q;
+			img.current.height = img.original.height * img.q;
+
+			img.svg.setAttribute('width', img.current.width + 'px');
+			img.svg.setAttribute('height', img.current.height + 'px');
+
+			// position image
+			img.offsetX = (this.wrapper.clientWidth - img.current.width) / 2;
+			img.offsetY = (this.wrapper.clientHeight - img.current.height) / 2;
+			img.svg.style.top = img.offsetY + 'px';
+			img.svg.style.left = img.offsetX + 'px';
 
 		},
-		createActiveFigures: function(q) {
-
+		createPolygonsContainer: function() {
 			var mainModel = {
 				x: 0,
 				y: 0,
@@ -41,11 +79,30 @@
 				height: this.wrapper.clientHeight,
 				figures: '{{figures}}'
 			};
+			var html = '<svg class="figure-container js-figure-container" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="{{= x }}px" y="{{= y }}px" width="{{= width }}px" height="{{= height }}px" viewBox="{{= x }} {{= y }} {{= width }} {{= height }}" xml:space="preserve"><g>{{= figures }}</g></svg>';
+			return viewer.template(html)(mainModel);
+		},
+		resizePolygon: function(polygonStr) {
 
-			// get svg
-			var html = viewer.templates['tangram-figures-wrapper'].html;
-			// add svg for figures to field
-			var mainSVG = viewer.template(html)(mainModel);
+			var that = this;
+			var div = document.createElement('div');
+			div.innerHTML = polygonStr;
+			var polygon = $('polygon', div);
+			var points = polygon.getAttribute('points');
+			var arr = points.split(' ');
+			arr.forEach(function(coupleNumber, index, array){
+				var numbers = coupleNumber.split(',');
+				numbers[0] = numbers[0] * that.mainImage.q;
+				numbers[1] = numbers[1] * that.mainImage.q;
+				array[index] = numbers.join(',');
+			});
+			polygon.setAttribute('points', arr.join(' '));
+			return div.innerHTML;
+
+		},
+		createActiveFigures: function() {
+
+			var that = this;
 
 			var figuresModel = {
 				fillColor: '0C0',
@@ -53,23 +110,29 @@
 			};
 
 			var figuresStr = '';
-
 			this.figureList.forEach(function(figureName){
 				var polygon = viewer.template(figuresCode.template);
 				// set figures color here
-
 				figuresModel.points = figuresCode[figureName];
 				polygon = polygon(figuresModel);
-				// resize figures here
-
+				polygon = that.resizePolygon(polygon);
 				figuresStr += polygon;
 			});
 
-			mainSVG = mainSVG.replace('{{figures}}', figuresStr);
-			this.wrapper.innerHTML += mainSVG;
+			this.wrapper.innerHTML += this.createPolygonsContainer().replace('{{figures}}', figuresStr);
 
+		},
+		setActiveObject: function(polygon) {
+			this.activePolygin = polygon;
+			console.log(this.activePolygin);
+		},
+		addMoveListeners: function() {
+			var that = this;
+			var polygons = $$('.js-figure-container polygon', this.wrapper);
+			polygons.forEach(function(polygon){
+				polygon.addEventListener(evt.down, that.setActiveObject.bind(that, polygon),false);
+			});
 		}
-
 
 	};
 

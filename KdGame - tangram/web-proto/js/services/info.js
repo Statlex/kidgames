@@ -12,12 +12,17 @@
 		saveItem: 'save-item-kid-game-tangram',
 		isPhone: false,
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
+		preCSS: '-webkit-',
+		preJS: 'webkit',
 		screen: {
 			getWidth: function() {
 				return docElem.clientWidth;
 			},
 			getHeight: function() {
 				return docElem.clientHeight;
+			},
+			getAspectRatio: function() {
+				return docElem.clientWidth / docElem.clientHeight;
 			}
 		},
 
