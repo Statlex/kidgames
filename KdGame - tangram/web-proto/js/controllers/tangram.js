@@ -15,8 +15,58 @@
 		out: isTouch ? 'touchcancel' : 'mouseout'
 	};
 
-	var tangram;
-	tangram = {
+
+	var mover = {
+		addObject: function(polygon) {
+			this.isActive = true;
+			this.activeObject = {
+				node: polygon,
+				startX: 0,
+				startY: 0,
+				angle: 0
+			};
+
+			this.startX = event.pageX || event.touches[0].pageX;
+			this.startY = event.pageY || event.touches[0].pageY;
+
+			// get start position
+			this.setStartActiveObjectPosition();
+
+			// go on top
+			polygon.parentNode.appendChild(polygon.parentNode.removeChild(polygon));
+
+		},
+		move: function(){
+			if (!this.isActive) {
+				return;
+			}
+			this.currentX = event.pageX || event.touches[0].pageX;
+			this.currentY = event.pageY || event.touches[0].pageY;
+
+			var obj = this.activeObject;
+			var style = info.preCSS + 'transform: translate(' + (obj.startX + this.currentX - this.startX) + 'px, ' + (obj.startY + this.currentY - this.startY) + 'px) rotate(' + obj.angle + 'deg)';
+			obj.node.setAttribute('style', style);
+
+		},
+		setStartActiveObjectPosition: function() {
+
+			var obj = this.activeObject;
+			var style = obj.node.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
+			console.log(style);
+			style = style.match(/\d+|\d+\.\d+/gi);
+			obj.startX = parseInt(style[0], 10);
+			obj.startY = parseInt(style[1], 10);
+			obj.angle = parseInt(style[2], 10);
+
+
+		}
+
+
+
+
+	};
+
+	var tangram = {
 		figureList: ['B3A', 'B3A', 'M3A', 'S3A', 'S3A', 'SQR', 'TRP'],
 		handleEvent: function() {
 
@@ -45,6 +95,7 @@
 			this.positionMainImage();
 			this.createActiveFigures();
 			this.addMoveListeners();
+
 
 		},
 		positionMainImage: function() {
@@ -123,18 +174,36 @@
 
 		},
 		setActiveObject: function(polygon) {
+
+			if (!polygon) {
+				if (this.activePolygin) {
+					this.activePolygin.removeAttribute('class');
+				}
+				mover.isActive = false;
+				return;
+			}
+
 			this.activePolygin = polygon;
-			console.log(this.activePolygin);
+			this.activePolygin.setAttribute('class', 'active');
+
+			mover.addObject(polygon);
+
 		},
 		addMoveListeners: function() {
 			var that = this;
-			var polygons = $$('.js-figure-container polygon', this.wrapper);
-			polygons.forEach(function(polygon){
+			this.polygons = $$('.js-figure-container polygon', this.wrapper);
+			this.polygons.forEach(function(polygon){
 				polygon.addEventListener(evt.down, that.setActiveObject.bind(that, polygon),false);
 			});
+
+			this.wrapper.addEventListener(evt.move, mover.move.bind(mover), false);
+			this.wrapper.addEventListener(evt.up, this.setActiveObject.bind(this, false), false);
+			this.wrapper.addEventListener('touchcancel', this.setActiveObject.bind(this, false), false);
+
 		}
 
 	};
+
 
 	var figuresCode = {
 		B3A: '50,100 0,50 50,0',
