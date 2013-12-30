@@ -18,6 +18,11 @@
 
 	var mover = {
 		addObject: function(polygon) {
+
+			if (this.activeObject && this.activeObject.node) {
+				this.activeObject.node.removeAttribute('class');
+			}
+
 			this.moverIsActive = true;
 			this.showRotater(false);
 
@@ -37,23 +42,33 @@
 				angle: parseInt(style[2], 10)
 			};
 
-			//this.showRotater(true);
+			this.activeObject.x = this.activeObject.startX;
+			this.activeObject.y = this.activeObject.startY;
+
+			// fix rotater when click to polygon
+			var objectName = this.activeObject.node.getAttribute('figure-name');
+			this.rotater.x = this.activeObject.x + figuresCode[objectName + 'Width'] / 2 * tangram.mainImage.q;
+			this.rotater.y = this.activeObject.y + figuresCode[objectName + 'Height'] / 2 * tangram.mainImage.q;
+			this.rotater.node.style[info.preJS + 'Transform'] = 'translate(' + this.rotater.x + 'px, ' + this.rotater.y + 'px)';
 
 		},
-		move: function(){
+		move: function() {
 			var obj = this.activeObject;
+			this.currentX = (event.pageX !== undefined) ? event.pageX : event.touches[0].pageX;
+			this.currentY = (event.pageY !== undefined) ? event.pageY : event.touches[0].pageY;
 			if (this.moverIsActive) {
-				this.currentX = event.pageX || event.touches[0].pageX;
-				this.currentY = event.pageY || event.touches[0].pageY;
 				obj.x = obj.startX + this.currentX - this.startX;
 				obj.y = obj.startY + this.currentY - this.startY;
 				var style = info.preCSS + 'transform: translate(' + obj.x + 'px, ' + obj.y + 'px) rotate(' + obj.angle + 'deg)';
 				obj.node.setAttribute('style', style);
 			}
 
-			if (this.rotaterIsActive && tangram.mainFieldIsActive) {
-				console.log(this.activeObject.x);
+			if (this.rotaterIsActive) {
+
+				// rotate figure here
+
 			}
+
 
 
 		},
@@ -62,25 +77,32 @@
 			var node = $('.js-rotater', main.wrapper);
 			this.rotater = {
 				node: node,
-				originalSize: 100,
+				originalSize: 120,
 				x:0,
 				y:0
 			};
 
 			node.style.width = this.rotater.originalSize * q + 'px';
 			node.style.height = this.rotater.originalSize * q + 'px';
+			node.style.marginTop = -this.rotater.originalSize * q / 2 + 'px';
+			node.style.marginLeft = -this.rotater.originalSize * q / 2 + 'px';
 
 		},
 		showRotater: function(show) {
 
 			mover.rotaterIsActive = show;
 			if (!show) {
-				this.rotater.node.style.display = 'none';
+				this.rotater.node.style.display = '';
 				return;
 			}
 
+			var objectName = this.activeObject.node.getAttribute('figure-name');
+
+			this.rotater.x = this.activeObject.x + figuresCode[objectName + 'Width'] / 2 * tangram.mainImage.q;
+			this.rotater.y = this.activeObject.y + figuresCode[objectName + 'Height'] / 2 * tangram.mainImage.q;
+
 			this.rotater.node.style.display = 'block';
-			this.rotater.node.style[info.preJS + 'Transform'] = 'translate(' + this.activeObject.x + 'px, ' + this.activeObject.y + 'px)';
+			this.rotater.node.style[info.preJS + 'Transform'] = 'translate(' + this.rotater.x + 'px, ' + this.rotater.y + 'px)';
 
 		}
 
@@ -203,29 +225,43 @@
 		addMoveListeners: function() {
 			var that = this;
 			this.polygons = $$('.js-figure-container polygon', this.wrapper);
+
+			// polygons
 			this.polygons.forEach(function(polygon){
-				polygon.addEventListener(evt.down, that.setActiveObject.bind(that, polygon), false);
-				polygon.addEventListener(evt.up, function(){
+				polygon.addEventListener(evt.down, function(e) {
+					mover.moverIsActive = true;
+					that.setActiveObject(polygon);
+					e.stopPropagation();
+				}, false);
+				polygon.addEventListener(evt.up, function(e) {
 					mover.moverIsActive = false;
 					mover.showRotater(true);
-					that.mainFieldIsActive = false;
-					event.stopPropagation();
+					e.stopPropagation();
 				}, false);
-
 			});
 
+			// main svg
 			this.wrapper.addEventListener(evt.move, mover.move.bind(mover), false);
-			this.wrapper.addEventListener(evt.up, function(){
-
-				// if rotate action was on field, do not any action
-				// add if ()
-				that.mainFieldIsActive = false;
+			this.wrapper.addEventListener(evt.down, function(){
 				mover.moverIsActive = false;
 				mover.showRotater(false);
 			}, false);
-			this.wrapper.addEventListener(evt.down, function(){
-				that.mainFieldIsActive = true;
+
+			// rotater
+			var rotater = $('.js-rotater', main.wrapper);
+
+			rotater.addEventListener(evt.down, function(e){
+				e.stopPropagation();
 			}, false);
+
+			rotater.addEventListener(evt.move, function(e){
+
+			}, false);
+
+			rotater.addEventListener(evt.up, function(e){
+
+			}, false);
+
 
 		}
 
@@ -234,10 +270,25 @@
 
 	var figuresCode = {
 		B3A: '50,100 0,50 50,0',
+		B3AWidth: 50,
+		B3AHeight: 100,
+
 		M3A: '35.355,70.711 35.355,0 0,35.355',
+		M3AWidth: 35.5,
+		M3AHeight: 71.7,
+
 		S3A: '0,25 25,50 25,0',
+		S3AWidth: 25,
+		S3AHeight: 50,
+
 		SQR: '0,0 35.355,0 35.355,35.355 0,35.355',
+		SQRWidth: 35.5,
+		SQRHeight: 35.5,
+
 		TRP: '0,50 0,0 25,25 25,75',
+		TRPWidth: 25,
+		TRPHeight: 75,
+
 		TRPR: '0,25 0,75 25,50 25,0',
 		template: '<polygon figure-name="{{= figureName }}" fill="#{{= fillColor }}" stroke="#{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
 	};
