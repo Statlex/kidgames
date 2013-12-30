@@ -5,7 +5,7 @@
 
 	win.info = {
 		lang: dataStorage.getItem('lang') || 'en', // current language
-		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
+		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		section: 'no-section', // current active section
 		difficult: 1,
 		score: dataStorage.getItem('score') || 0,
