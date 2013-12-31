@@ -15,13 +15,27 @@
 		out: isTouch ? 'touchcancel' : 'mouseout'
 	};
 
-
 	var mover = {
+		getAngle: function(centerX, centerY, pointX, pointY) {
+			var x = centerX - pointX;
+			var y = centerY - pointY;
+			var addGrad = 0;
+			if (x > 0) {
+				addGrad = 180;
+			}
+			return Math.atan(y/x) * 180 / 3.1415926 + addGrad;
+		},
+		init: function() {
+
+			// set def object
+			this.activeObject = {
+				node: document.createElement('div')
+			};
+
+		},
 		addObject: function(polygon) {
 
-			if (this.activeObject && this.activeObject.node) {
-				this.activeObject.node.removeAttribute('class');
-			}
+			this.activeObject.node.removeAttribute('class');
 
 			this.moverIsActive = true;
 			this.showRotater(false);
@@ -59,17 +73,21 @@
 			if (this.moverIsActive) {
 				obj.x = obj.startX + this.currentX - this.startX;
 				obj.y = obj.startY + this.currentY - this.startY;
-				var style = info.preCSS + 'transform: translate(' + obj.x + 'px, ' + obj.y + 'px) rotate(' + obj.angle + 'deg)';
-				obj.node.setAttribute('style', style);
 			}
 
 			if (this.rotaterIsActive) {
-
-				// rotate figure here
-
+				// get start angle
+				var startAngle = this.getAngle(mover.rotater.x, mover.rotater.y + tangram.offsetTop, this.rotater.startPosiitionRotatePointX, this.rotater.startPosiitionRotatePointY);
+				// get cur angle
+				var currentAngle = this.getAngle(mover.rotater.x, mover.rotater.y + tangram.offsetTop, this.currentX, this.currentY);
+				// get different of angles
+				var dAngle = currentAngle - startAngle;
+				// add different angle to object
+				obj.angle = (this.rotater.startAngle + dAngle) || obj.angle;
 			}
 
-
+			var style = info.preCSS + 'transform: translate(' + obj.x + 'px, ' + obj.y + 'px) rotate(' + obj.angle + 'deg)';
+			obj.node.setAttribute('style', style);
 
 		},
 		initRotater: function(q) {
@@ -133,9 +151,12 @@
 				q: 1
 			};
 
+			this.offsetTop = $('.status-bar').clientHeight;
+
 			this.positionMainImage();
 			this.createActiveFigures();
 			this.addMoveListeners();
+			mover.init();
 			mover.initRotater(this.mainImage.q);
 
 		},
@@ -231,11 +252,13 @@
 				polygon.addEventListener(evt.down, function(e) {
 					mover.moverIsActive = true;
 					that.setActiveObject(polygon);
+					mover.rotaterIsActive = false;
 					e.stopPropagation();
 				}, false);
 				polygon.addEventListener(evt.up, function(e) {
 					mover.moverIsActive = false;
 					mover.showRotater(true);
+					mover.rotaterIsActive = false;
 					e.stopPropagation();
 				}, false);
 			});
@@ -245,21 +268,26 @@
 			this.wrapper.addEventListener(evt.down, function(){
 				mover.moverIsActive = false;
 				mover.showRotater(false);
+				mover.activeObject.node.removeAttribute('class');
 			}, false);
 
 			// rotater
 			var rotater = $('.js-rotater', main.wrapper);
 
 			rotater.addEventListener(evt.down, function(e){
+				mover.rotater.startPosiitionRotatePointX = (e.pageX !== undefined) ? e.pageX : e.touches[0].pageX;
+				mover.rotater.startPosiitionRotatePointY = (e.pageY !== undefined) ? e.pageY : e.touches[0].pageY;
+				mover.rotater.startAngle = mover.activeObject.angle;
+				mover.rotaterIsActive = true;
 				e.stopPropagation();
 			}, false);
 
-			rotater.addEventListener(evt.move, function(e){
-
-			}, false);
+			rotater.addEventListener(evt.move, mover.move.bind(mover), false);
 
 			rotater.addEventListener(evt.up, function(e){
-
+				mover.moverIsActive = false;
+				mover.rotaterIsActive = false;
+				e.stopPropagation();
 			}, false);
 
 
