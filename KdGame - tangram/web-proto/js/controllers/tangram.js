@@ -65,6 +65,8 @@
 			this.rotater.y = this.activeObject.y + figuresCode[objectName + 'Height'] / 2 * tangram.mainImage.q;
 			this.rotater.node.style[info.preJS + 'Transform'] = 'translate(' + this.rotater.x + 'px, ' + this.rotater.y + 'px)';
 
+			this.activeObject.node.setAttribute('class', 'active');
+
 		},
 		move: function() {
 			var obj = this.activeObject;
@@ -104,6 +106,19 @@
 			node.style.height = this.rotater.originalSize * q + 'px';
 			node.style.marginTop = -this.rotater.originalSize * q / 2 + 'px';
 			node.style.marginLeft = -this.rotater.originalSize * q / 2 + 'px';
+
+			var rotaterOutBlock = {
+				node: $('.js-rotater-out-block', node)
+			};
+
+			rotaterOutBlock.node.addEventListener(evt.down, function(e){
+
+				mover.moverIsActive = true;
+				tangram.setActiveObject(mover.activeObject.node);
+				mover.showRotater(false);
+				e.stopPropagation();
+			}, false)
+
 
 		},
 		showRotater: function(show) {

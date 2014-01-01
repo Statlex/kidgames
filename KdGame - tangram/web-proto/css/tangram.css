@@ -37,4 +37,14 @@
 	background-position: center center;
 }
 
+.rotater-out-block {
+	position: relative;
+	width: 50%;
+	height: 50%;
+	background-color: #090;
+	top: 25%;
+	left: 25%;
+	float: left;
+}
+
 
