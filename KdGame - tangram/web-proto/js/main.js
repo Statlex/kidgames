@@ -21,7 +21,8 @@
 
 		},
 		runTangram: function() {
-			tangram.init();
+
+			tangram.init(win.rabbit);
 		}
 
 	};

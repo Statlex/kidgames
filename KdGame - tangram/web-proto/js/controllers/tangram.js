@@ -48,7 +48,7 @@
 
 			// get start position
 			var style = polygon.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
-			style = style.match(/\d+|\d+\.\d+/gi);
+			style = style.match(/-?\d+|-?\d+\.\d+/gi);
 			this.activeObject = {
 				node: polygon,
 				startX: parseInt(style[0], 10),
@@ -117,7 +117,11 @@
 				tangram.setActiveObject(mover.activeObject.node);
 				mover.showRotater(false);
 				e.stopPropagation();
-			}, false)
+			}, false);
+
+			rotaterOutBlock.node.addEventListener(evt.up, function(){
+				tangram.testAnswer();
+			}, false);
 
 
 		},
@@ -146,8 +150,94 @@
 		handleEvent: function() {
 
 		},
-		init: function() {
+		testAnswer: function() {
+			var polygons = $$('.js-figure-container polygon');
+			var answers = JSON.parse(JSON.stringify(this.figure.figureCoords));
+			var figuresList = JSON.parse(JSON.stringify(this.figure.figureList || this.figureList));
+			var that = this;
+			var delta = 10;
+
+			var goodAnswers = 0;
+
+			polygons.forEach(function(polygon){
+
+				var style = polygon.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
+				style = style.match(/-?\d+|-?\d+\.\d+/gi);
+				var coords = {
+					x: parseInt(style[0], 10),
+					y: parseInt(style[1], 10),
+					angle: parseInt(style[2], 10),
+					type: polygon.getAttribute('figure-name')
+				};
+
+				answers.forEach(function(item, index, arr){
+
+					if (arr[index][4]) {
+						return;
+					}
+
+					if (coords.type !== figuresList[index]) {
+						return;
+					}
+
+					var isX, isY, isA;
+
+					isX = Math.abs(coords.x + figuresCode[coords.type + 'Width'] / 2 * that.mainImage.q - (item[0] * that.mainImage.q + that.mainImage.offsetX)) < delta;
+					isY = Math.abs(coords.y + figuresCode[coords.type + 'Height'] / 2 * that.mainImage.q - (item[1] * that.mainImage.q + that.mainImage.offsetY)) < delta;
+
+					// get angle
+					while (coords.angle < 0) {
+						coords.angle += 360;
+					}
+
+					while (item[2] < 0) {
+						item[2] += 360;
+					}
+
+					coords.angle = Math.round((coords.angle % figuresCode[coords.type + 'AngleStep']) / 45) * 45;
+//					coords.angle = coords.angle % figuresCode[coords.type + 'AngleStep'];
+					item[2] = item[2] % figuresCode[coords.type + 'AngleStep'];
+
+
+					isA = Math.abs(coords.angle - item[2]) < delta;
+
+					console.log('--------');
+//					console.log(item[1] * that.mainImage.q + that.mainImage.offsetY);
+
+
+					console.log(coords.x + figuresCode[coords.type + 'Width'] / 2 * that.mainImage.q);
+					console.log((item[0] * that.mainImage.q + that.mainImage.offsetX));
+					console.log(coords.y + figuresCode[coords.type + 'Height'] / 2 * that.mainImage.q);
+					console.log(item[1] * that.mainImage.q + that.mainImage.offsetY);
+
+
+
+
+					console.log('----------');
+
+					var isRightAnswer = isX && isY && isA;
+
+					if (isRightAnswer) {
+						if (!arr[index][4]) {
+							arr[index][4] = true;
+							goodAnswers += 1;
+						}
+					} else {
+						arr[index][4] = false;
+					}
+
+				});
+
+			});
+
+			console.log(goodAnswers);
+
+		},
+		init: function(figure) {
+			this.figure = figure;
 			this.wrapper = $('.tangram-page', main.wrapper);
+			this.wrapper.innerHTML = this.wrapper.innerHTML.replace('%figure%', this.figure.svg);
+
 			var svg = $('svg', this.wrapper);
 			svg.setAttribute('class', 'main-image js-main-image');
 
@@ -275,6 +365,7 @@
 					mover.showRotater(true);
 					mover.rotaterIsActive = false;
 					e.stopPropagation();
+					that.testAnswer();
 				}, false);
 			});
 
@@ -285,6 +376,8 @@
 				mover.showRotater(false);
 				mover.activeObject.node.removeAttribute('class');
 			}, false);
+			this.wrapper.addEventListener(evt.up, this.testAnswer.bind(this), false);
+
 
 			// rotater
 			var rotater = $('.js-rotater', main.wrapper);
@@ -302,6 +395,7 @@
 			rotater.addEventListener(evt.up, function(e){
 				mover.moverIsActive = false;
 				mover.rotaterIsActive = false;
+				that.testAnswer();
 				e.stopPropagation();
 			}, false);
 
@@ -315,24 +409,30 @@
 		B3A: '50,100 0,50 50,0',
 		B3AWidth: 50,
 		B3AHeight: 100,
+		B3AAngleStep: 360,
 
 		M3A: '35.355,70.711 35.355,0 0,35.355',
 		M3AWidth: 35.5,
 		M3AHeight: 71.7,
+		M3AAngleStep: 360,
 
 		S3A: '0,25 25,50 25,0',
 		S3AWidth: 25,
 		S3AHeight: 50,
+		S3AAngleStep: 360,
 
 		SQR: '0,0 35.355,0 35.355,35.355 0,35.355',
 		SQRWidth: 35.5,
 		SQRHeight: 35.5,
+		SQRAngleStep: 90,
 
 		TRP: '0,50 0,0 25,25 25,75',
 		TRPWidth: 25,
 		TRPHeight: 75,
+		TRPAngleStep: 180,
 
 		TRPR: '0,25 0,75 25,50 25,0',
+
 		template: '<polygon figure-name="{{= figureName }}" fill="#{{= fillColor }}" stroke="#{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
 	};
 
