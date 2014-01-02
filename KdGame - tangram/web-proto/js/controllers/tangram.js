@@ -372,7 +372,11 @@
 				mover.showRotater(false);
 				mover.activeObject.node.removeAttribute('class');
 			}, false);
-			this.wrapper.addEventListener(evt.up, this.testAnswer.bind(this), false);
+//			this.wrapper.addEventListener(evt.up, this.testAnswer.bind(this), false);
+			this.wrapper.addEventListener(evt.up, function(){
+				that.testAnswer();
+				mover.rotaterIsActive = false;
+			}, false);
 
 
 			// rotater
