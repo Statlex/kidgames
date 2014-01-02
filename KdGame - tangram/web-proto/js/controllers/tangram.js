@@ -153,7 +153,6 @@
 		testAnswer: function() {
 			var polygons = $$('.js-figure-container polygon');
 			var answers = JSON.parse(JSON.stringify(this.figure.figureCoords));
-			var figuresList = JSON.parse(JSON.stringify(this.figure.figureList || this.figureList));
 			var that = this;
 			var delta = 10;
 
@@ -166,71 +165,50 @@
 				var coords = {
 					x: parseInt(style[0], 10),
 					y: parseInt(style[1], 10),
-					angle: parseInt(style[2], 10),
+					angle: -parseInt(style[2], 10),
 					type: polygon.getAttribute('figure-name')
 				};
 
-				answers.forEach(function(item, index, arr){
+				$.createSimpleArray(0, answers.length - 1).forEach(function(i){
 
-					if (arr[index][4]) {
+					if (coords.type !== answers[i][0]) {
 						return;
 					}
 
-					if (coords.type !== figuresList[index]) {
+					// this answer was used?
+					if (answers[i][4]) {
 						return;
 					}
 
 					var isX, isY, isA;
-
-					isX = Math.abs(coords.x + figuresCode[coords.type + 'Width'] / 2 * that.mainImage.q - (item[0] * that.mainImage.q + that.mainImage.offsetX)) < delta;
-					isY = Math.abs(coords.y + figuresCode[coords.type + 'Height'] / 2 * that.mainImage.q - (item[1] * that.mainImage.q + that.mainImage.offsetY)) < delta;
+					isX = Math.abs(coords.x + figuresCode[coords.type + 'Width'] / 2 * that.mainImage.q - (answers[i][1] * that.mainImage.q + that.mainImage.offsetX)) < delta;
+					isY = Math.abs(coords.y + figuresCode[coords.type + 'Height'] / 2 * that.mainImage.q - (answers[i][2] * that.mainImage.q + that.mainImage.offsetY)) < delta;
 
 					// get angle
 					while (coords.angle < 0) {
 						coords.angle += 360;
 					}
 
-					while (item[2] < 0) {
-						item[2] += 360;
+					while (answers[i][3] < 0) {
+						answers[i][3] += 360;
 					}
 
 					coords.angle = Math.round((coords.angle % figuresCode[coords.type + 'AngleStep']) / 45) * 45;
-//					coords.angle = coords.angle % figuresCode[coords.type + 'AngleStep'];
-					item[2] = item[2] % figuresCode[coords.type + 'AngleStep'];
+					answers[i][3] = answers[i][3] % figuresCode[coords.type + 'AngleStep'];
+					isA = Math.abs(coords.angle - answers[i][3]) < delta;
 
-
-					isA = Math.abs(coords.angle - item[2]) < delta;
-
-					console.log('--------');
-//					console.log(item[1] * that.mainImage.q + that.mainImage.offsetY);
-
-
-					console.log(coords.x + figuresCode[coords.type + 'Width'] / 2 * that.mainImage.q);
-					console.log((item[0] * that.mainImage.q + that.mainImage.offsetX));
-					console.log(coords.y + figuresCode[coords.type + 'Height'] / 2 * that.mainImage.q);
-					console.log(item[1] * that.mainImage.q + that.mainImage.offsetY);
-
-
-
-
-					console.log('----------');
-
-					var isRightAnswer = isX && isY && isA;
-
-					if (isRightAnswer) {
-						if (!arr[index][4]) {
-							arr[index][4] = true;
-							goodAnswers += 1;
-						}
-					} else {
-						arr[index][4] = false;
+					// is it good answer?
+					if (isX && isY && isA && !answers[i][4]) {
+						goodAnswers += 1;
+						answers[i][4] = true;
 					}
 
 				});
 
+
 			});
 
-			console.log(goodAnswers);
+			console.log(goodAnswers + '/' + answers.length);
 
 		},
 		init: function(figure) {
