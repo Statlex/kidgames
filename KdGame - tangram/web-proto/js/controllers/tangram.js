@@ -3,9 +3,6 @@
 	"use strict";
 	/*global window, document, $ */
 
-	var preJS = 'webkit';
-	var preCSS = 'webkit';
-
 	var isTouch = document.documentElement.hasOwnProperty('ontouchstart');
 
 	var evt = {
@@ -16,6 +13,15 @@
 	};
 
 	var mover = {
+		alignAngle: function() {
+			var node = mover.activeObject.node;
+			var style = node.getAttribute('style');
+			var angle = (style.match(/-?\d+|-?\d+\.\d+/gi))[2];
+			angle = Math.round(angle/45)*45;
+			style = style.replace(/-?\d+deg|-?\d+\.\d+deg/gi, angle + 'deg');
+			mover.activeObject.angle = angle;
+			node.setAttribute('style', style);
+		},
 		getAngle: function(centerX, centerY, pointX, pointY) {
 			var x = centerX - pointX;
 			var y = centerY - pointY;
@@ -28,8 +34,10 @@
 		init: function() {
 
 			// set def object
+			var div = document.createElement('div');
+			div.setAttribute('style', 'transform: translate(0px, 0px) rotate(0deg)');
 			this.activeObject = {
-				node: document.createElement('div')
+				node: div
 			};
 
 		},
@@ -87,6 +95,10 @@
 				// add different angle to object
 				obj.angle = (this.rotater.startAngle + dAngle) || obj.angle;
 			}
+
+			obj.x = obj.x || 0;
+			obj.y = obj.y || 0;
+			obj.angle = obj.angle || 0;
 
 			var style = info.preCSS + 'transform: translate(' + obj.x + 'px, ' + obj.y + 'px) rotate(' + obj.angle + 'deg)';
 			obj.node.setAttribute('style', style);
@@ -158,6 +170,7 @@
 
 			var goodAnswers = 0;
 
+			mover.alignAngle();
 			polygons.forEach(function(polygon){
 
 				var style = polygon.getAttribute('style') || 'transform(0px, 0px) rotate(0deg)';
@@ -317,6 +330,11 @@
 			});
 
 			this.wrapper.innerHTML += this.createPolygonsContainer().replace('{{figures}}', figuresStr);
+
+			var polygons = $$('.js-figure-container polygon', this.wrapper);
+			polygons.forEach(function(polygon){
+				polygon.setAttribute('style', info.preCSS + 'transform: translate(0px, 0px) rotate(0deg)');
+			});
 
 		},
 		setActiveObject: function(polygon) {
