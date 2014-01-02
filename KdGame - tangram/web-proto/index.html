@@ -64,10 +64,10 @@
 		<div class="table full-area">
 			<div class="table-row">
 				<div class="table-cell">
-					<div>play - king</div>
-					<div>play - tower</div>
-					<div>play - soldier</div>
-					<div>select skin</div>
+					<div onclick='player.play(soundList.click);' class="title-button king">play</div>
+					<div onclick='player.play(soundList.click);' class="title-button tower">play</div>
+					<div onclick='player.play(soundList.click);' class="title-button soldier">play</div>
+					<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings}}</div>
 				</div>
 			</div>
 		</div>
@@ -84,6 +84,18 @@
 		<div class="rotater js-rotater">
 			<div class="rotater-out-block js-rotater-out-block"></div>
 		</div>
+	</div>
+
+</div>
+
+<div class="js-template hidden" template-id="setting-page" onshow="statusBar.show([]);">
+
+	<div class="page setting-page">
+
+		<h1>this is setting page</h1>
+		<h1>select language</h1>
+		<h1>select tangram figures style</h1>
+
 	</div>
 
 </div>
