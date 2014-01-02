@@ -8,7 +8,8 @@
 		handleEvent: function() {
 
 			this.wrapper = $('#wrapper');
-			viewer.show('tangram-page');
+			viewer.show('title-page');
+			//viewer.show('tangram-page');
 
 		},
 		setMorePage: function(){
