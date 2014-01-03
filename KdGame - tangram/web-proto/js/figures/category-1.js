@@ -15,11 +15,49 @@
 			['SQR', 73, 84, 0],
 			['TRP', 128, 53, -90]
 		]
+	};
 
+
+	win.catgories = win.catgories || {};
+
+	win.catgories.animal_1 = {
+		img: '<?xml version="1.0" encoding="utf-8"?>......', // here is svg code for category
+		name_ar: 'animal#1',
+		name_de: 'animal#1',
+		name_en: 'animal#1',
+		name_es: 'animal#1',
+		name_ru: 'animal#1',
+		name_zh: 'animal#1',
+		figures: [
+			{
+				svg: '<?xml version="1.0" encoding="utf-8"?>......', // here is svg code for figure
+				time: 0, // time to done
+				id: 1
+			},
+			{
+				svg: '<?xml version="1.0" encoding="utf-8"?>......', // here is svg code for figure
+				time: 0, // time to done
+				id: 2
+			}
+
+		]
 
 
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }(window));
