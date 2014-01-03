@@ -51,6 +51,31 @@
 		runTangram: function() {
 
 			tangram.init(win.rabbit);
+		},
+		setImageColor: function() {
+			var imgs = $$('.js-image-src-svg', main.wrapper);
+
+			var tempNode = document.createElement('div');
+			var pre = 'data:image/svg+xml;utf8,';
+
+			imgs.forEach(function(img){
+				tempNode.innerHTML = img.src.replace(pre,'');
+				var polygons = $$('polygon', tempNode);
+
+				polygons.forEach(function(polygon){
+					polygon.setAttribute('fill', info.imageColor);
+					polygon.setAttribute('stroke', info.imageColor);
+					polygon.setAttribute('stroke-width', '2');
+					polygon.setAttribute('stroke-linecap', 'round');
+					polygon.setAttribute('stroke-linejoin', 'round');
+					polygon.setAttribute('stroke-miterlimit', '1');
+
+				});
+
+				img.src = pre + tempNode.innerHTML;
+
+			})
+
 		}
 
 	};

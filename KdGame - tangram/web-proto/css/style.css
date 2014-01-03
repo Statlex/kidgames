@@ -183,3 +183,23 @@
 .tangram-preview.active .tangram-preview-inner-block {
 	opacity: 1;
 }
+
+.category-wrapper {
+	width: 50%;
+	padding: 4px;
+}
+
+.category-wrapper img {
+	display: block;
+	float: left;
+	width: 100%;
+	height: auto;
+	background-image: -webkit-linear-gradient(#C5A17A, #C08D5E);
+	background-image: linear-gradient(#C5A17A, #C08D5E);
+	border: 1px solid #FFF;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+	border-radius: 6px;
+}
+
+
+

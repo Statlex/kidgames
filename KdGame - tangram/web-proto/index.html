@@ -64,12 +64,29 @@
 		<div class="table full-area">
 			<div class="table-row">
 				<div class="table-cell">
-					<div onclick='player.play(soundList.click);' class="title-button king">play</div>
-					<div onclick='player.play(soundList.click);' class="title-button tower">play</div>
-					<div onclick='player.play(soundList.click);' class="title-button soldier">play</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button king">play</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button tower">play</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button soldier">play</div>
 					<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings}}</div>
 				</div>
 			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="js-template hidden" template-id="categories-page" onshow="statusBar.show(['more']); main.setImageColor()">
+
+	<div class="page categories-page">
+
+		<div class="categories-wrapper">
+			{{ for (var key in categories) { }}
+				<div class="category-wrapper clear-fix" >
+					<img src='data:image/svg+xml;utf8,{{= categories[key].svg }}' class="js-image-src-svg"/>
+				</div>
+			{{ }; }}
 		</div>
 
 	</div>
