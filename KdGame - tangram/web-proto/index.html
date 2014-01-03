@@ -81,17 +81,37 @@
 
 	<div class="page categories-page">
 
-		<div class="categories-wrapper">
+		<div class="categories-wrapper clear-fix">
 			{{ for (var key in categories) { }}
-				<div class="category-wrapper clear-fix" >
-					<img src='data:image/svg+xml;utf8,{{= categories[key].svg }}' class="js-image-src-svg"/>
+			<div class="category-wrapper">
+				<div class="category-button-wrapper" onclick='main.setCategoryName("{{= key }}");viewer.show("images-of-categories-page")'>
+					<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
+						<img src="img/i/spacer.png" alt=""/>
+					</div>
 				</div>
+			</div>
 			{{ }; }}
 		</div>
 
 	</div>
 
 </div>
+
+
+
+<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);">
+
+	<div class="page images-of-categories">
+
+		<h1>list of images</h1>
+
+	</div>
+
+</div>
+
+
+
+
 
 <div class="js-template hidden" template-id="tangram-page" onshow="statusBar.show(['more']);main.runTangram();">
 
