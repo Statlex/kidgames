@@ -73,8 +73,14 @@
 			this.isPhone = maxSize < 700;
 			return this.isPhone;
 		},
+
+
 		timerIsActive: true,
-		soundIsActive: true
+		soundIsActive: true,
+		tangramPattern: 'wood',
+		tangramPatternImgPath: 'img/preview/',
+		tangramPatterns: ['granite', 'metal', 'metal-2', 'wood']
+
 	};
 
 	win.addEventListener('load', info.getIsPhone.bind(info), false);

@@ -122,15 +122,64 @@
 }
 
 .custom-check-box:after {
-	content: 'O';
+	content: '';
 	position: absolute;
-	top: -9px;
+	top: -10px;
 	font-weight: bold;
 	text-shadow: 1px 1px 1px #FFF;
+	width: 18px;
+	height: 18px;
+	background-image: url('../img/i/off.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .custom-check-box:checked:after {
-	content: 'V';
+	background-image: url('../img/i/on.svg');
 }
 
+.tangram-preview-wrapper {
+	text-align: center;
+}
 
+.tangram-preview {
+	display: block;
+	width: 25%;
+	box-sizing: border-box;
+	float: left;
+	padding: 4px;
+}
+
+.tangram-preview-inner-block {
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: 2px solid #FFF;
+	background-position: center center;
+	opacity: 0.5;
+}
+
+.tangram-preview img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.tangram-preview.metal .tangram-preview-inner-block {
+	background-image: url('../img/preview/metal.jpg');
+}
+
+.tangram-preview.metal-2 .tangram-preview-inner-block {
+	background-image: url('../img/preview/metal-2.jpg');
+}
+
+.tangram-preview.granite .tangram-preview-inner-block {
+	background-image: url('../img/preview/granite.jpg');
+}
+
+.tangram-preview.wood .tangram-preview-inner-block {
+	background-image: url('../img/preview/wood.jpg');
+}
+
+.tangram-preview.active .tangram-preview-inner-block {
+	opacity: 1;
+}

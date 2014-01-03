@@ -104,6 +104,7 @@
 				<div class="table-cell">
 
 					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
+
 					<div class="select-wrapper clear-fix">
 						<div>{{= lang[info.lang].languageName }}</div>
 						<select class="js-language-select">
@@ -121,7 +122,7 @@
 			</div>
 
 			<div class="table-row">
-				<div class="table-cell header-cell">
+				<div class="table-cell">
 					<label>
 						<h2 class="more-header">{{= lang[info.lang].timer }}:</h2>
 						{{ if (info.timerIsActive) { }}
@@ -134,7 +135,7 @@
 			</div>
 
 			<div class="table-row">
-				<div class="table-cell header-cell">
+				<div class="table-cell">
 					<label>
 						<h2 class="more-header">{{= lang[info.lang].sound }}:</h2>
 						{{ if (info.soundIsActive) { }}
@@ -147,8 +148,24 @@
 			</div>
 
 			<div class="table-row">
-				<div class="table-cell">
-					<h1>select tangram figures style</h1>
+				<div class="table-cell tangram-preview-wrapper">
+
+					{{ info.tangramPatterns.forEach(function(item){ }}
+					{{ if (item === info.tangramPattern) { }}
+					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview active">
+						<div class="tangram-preview-inner-block">
+							<img src="img/preview/tangram-frame.svg" alt=""/>
+						</div>
+					</div>
+					{{ } else { }}
+					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview">
+						<div class="tangram-preview-inner-block">
+							<img src="img/preview/tangram-frame.svg" alt=""/>
+						</div>
+					</div>
+					{{ }; }}
+					{{ }); }}
+
 				</div>
 			</div>
 
