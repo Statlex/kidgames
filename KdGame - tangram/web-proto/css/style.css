@@ -7,7 +7,7 @@
 }
 
 .title-button {
-	box-shadow: inset 0 1px 0 0 #ffffff;
+	box-shadow: inset 0 1px 0 0 #ffffff, 1px 1px 2px rgba(0, 0, 0, 0.3);
 	background-image: -webkit-linear-gradient(top, #F5E1AE, #D8CB89);
 	background-image: linear-gradient(top, #F5E1AE, #D8CB89);
 	background-color: #F5E1AE;
@@ -15,15 +15,15 @@
 	text-indent: 0;
 	border: 1px solid #dcdcdc;
 	display: block;
-	color: #333;
+	color: #000;
 	font-size: 21px;
-	font-weight: bold;
+	font-weight: normal;
 	font-style: normal;
 	height: 50px;
 	line-height: 50px;
 	text-decoration: none;
 	text-align: center;
-	text-shadow: 1px 1px 0 #ffffff;
+	text-shadow: 1px 1px 1px #FFF;
 	cursor: pointer;
 	width: 30%;
 	min-width: 200px;
@@ -67,18 +67,70 @@
 	background-repeat: no-repeat;
 }
 
+.setting-page {
+	color: #000;
+	font-weight: normal;
+	text-align: center;
 
+}
 
+.setting-page div,
+.setting-page h1,
+.setting-page h2 {
+	font-weight: normal;
+	text-shadow: 1px 1px 1px #FFF;
 
+}
 
+.header-cell h1 {
+	font-size: 20px;
+	line-height: 20px;
+	text-align: center;
+}
 
+.header-cell {
+	height: 40px;
+}
 
+.setting-page .more-header,
+.setting-page .select-wrapper {
+	display: inline-block;
+}
 
+.setting-page .more-header,
+.setting-page .select-wrapper div {
+	font-size: 18px;
+	line-height: 18px;
+}
 
+.setting-page .select-wrapper div:after {
+	top: 0;
+	right: -16px;
+	font-size: 18px;
+	line-height: 18px;
+}
 
+.setting-page label {
+	padding-right: 20px;
+}
 
+.custom-check-box {
+	display: inline-block;
+	height: 0;
+	width: 0;
+	position: relative;
+}
 
+.custom-check-box:after {
+	content: 'O';
+	position: absolute;
+	top: -9px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #FFF;
+}
 
-
+.custom-check-box:checked:after {
+	content: 'V';
+}
 
 

@@ -72,7 +72,9 @@
 			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
 			this.isPhone = maxSize < 700;
 			return this.isPhone;
-		}
+		},
+		timerIsActive: true,
+		soundIsActive: true
 	};
 
 	win.addEventListener('load', info.getIsPhone.bind(info), false);

@@ -21,6 +21,31 @@
 			}, false);
 
 		},
+		setSettingPage: function(){
+			var langSelectNode = $('.js-language-select', this.wrapper);
+
+			langSelectNode.addEventListener('change', function(){
+				info.set('lang', this.value, true);
+				viewer.refresh();
+			}, false);
+
+			var savedItems = $$('input[save]', main.wrapper);
+			savedItems.forEach(function(item){
+
+				item.addEventListener('change', function(){
+
+					var itemName = this.getAttribute('save');
+
+					info.set(itemName, this.checked, true);
+
+				}, false);
+
+
+			});
+
+
+
+		},
 		runTangram: function() {
 
 			tangram.init(win.rabbit);

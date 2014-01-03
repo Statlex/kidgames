@@ -12,6 +12,10 @@
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
+			if (!info.soundIsActive) {
+				return;
+			}
+
 //			console.log(src);
 //			return;
 
@@ -68,6 +72,10 @@
 	}
 
 	playerObj.play = function(src) {
+
+		if (!info.soundIsActive) {
+			return;
+		}
 
 		console.log(this.toSoundPrefix + src);
 

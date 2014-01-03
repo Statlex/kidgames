@@ -88,13 +88,72 @@
 
 </div>
 
-<div class="js-template hidden" template-id="setting-page" onshow="statusBar.show([]);">
+<div class="js-template hidden" template-id="setting-page" onshow="statusBar.show([]);main.setSettingPage();">
 
 	<div class="page setting-page">
 
-		<h1>this is setting page</h1>
-		<h1>select language</h1>
-		<h1>select tangram figures style</h1>
+		<div class="table full-area">
+			<div class="table-row">
+				<div class="table-cell header-cell">
+					<h1>{{= lang[info.lang].settings}}</h1>
+				</div>
+			</div>
+
+			<div class="table-row">
+
+				<div class="table-cell">
+
+					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
+							{{ for (var key in lang) { }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell header-cell">
+					<label>
+						<h2 class="more-header">{{= lang[info.lang].timer }}:</h2>
+						{{ if (info.timerIsActive) { }}
+						<input type="checkbox" class="custom-check-box" checked="checked" save="timerIsActive"/>
+						{{ } else { }}
+						<input type="checkbox" class="custom-check-box" save="timerIsActive"/>
+						{{ }; }}
+					</label>
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell header-cell">
+					<label>
+						<h2 class="more-header">{{= lang[info.lang].sound }}:</h2>
+						{{ if (info.soundIsActive) { }}
+						<input type="checkbox" class="custom-check-box" checked="checked" save="soundIsActive"/>
+						{{ } else { }}
+						<input type="checkbox" class="custom-check-box" save="soundIsActive"/>
+						{{ }; }}
+					</label>
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<h1>select tangram figures style</h1>
+				</div>
+			</div>
+
+		</div>
+
 
 	</div>
 
@@ -104,7 +163,7 @@
 
 	<div class="page more-page">
 		<div class="table more-wrapper">
-			<div class="table-row">
+			<div class="table-row" style="display: none;">
 				<div class="table-cell">
 					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
 
