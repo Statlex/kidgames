@@ -81,10 +81,13 @@
 
 	<div class="page categories-page">
 
+		<h1>{{= lang[info.lang].categories }}</h1>
+
+
 		<div class="categories-wrapper clear-fix">
 			{{ for (var key in categories) { }}
 			<div class="category-wrapper">
-				<div class="category-button-wrapper" onclick='main.setCategoryName("{{= key }}");viewer.show("images-of-categories-page")'>
+				<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page")'>
 					<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 						<img src="img/i/spacer.png" alt=""/>
 					</div>
@@ -103,9 +106,11 @@
 
 	<div class="page images-of-categories">
 
-		{{ categories[info.currentCategoryName].figures.forEach(function(figure){ }}
+		<h1>{{= categories[info.currentCategoryName]['name_' + info.lang] }}</h1>
+
+		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper">
-			<div class="category-button-wrapper">
+			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page")'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>

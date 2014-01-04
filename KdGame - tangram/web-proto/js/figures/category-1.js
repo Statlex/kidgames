@@ -3,50 +3,29 @@
 	'use strict';
 	/*global window, document */
 
-	// 
-
-	win.rabbit = {
-		svg: "<?xml version='1.0' encoding='utf-8'?><svg version='1.2' baseProfile='tiny' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' xml:space='preserve'> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,172.388 161.505,172.388 161.505,243.099 126.15,207.744 143.828,190.066 126.15,207.744 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 161.505,172.388 90.794,172.388 90.794,101.677 126.15,137.032 108.472,154.71 126.15,137.032 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,243.098 126.15,243.098 126.15,225.42 126.15,243.098 161.505,243.098 126.15,207.743 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 65.794,172.388 90.794,197.388 90.794,172.386 78.294,172.386 90.794,172.386 90.794,147.388 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,207.743 90.794,243.098 108.473,225.419 99.634,216.581 108.473,225.419 126.15,207.743 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,66.321 90.794,101.676 73.117,101.676 73.117,83.999 73.117,101.676 55.439,101.676 55.439,66.321 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 115.794,41.321 165.794,41.321 140.794,66.321 128.294,66.321 128.294,53.821 128.294,66.321 90.794,66.321 '/> </svg>",
-		name: 'rabbit-name',
-		figureCoords: [
-			['B3A', 108, 154, 45],
-			['B3A', 144, 190, -135],
-			['M3A', 126, 225, -90],
-			['S3A', 100, 216, -45],
-			['S3A', 78, 172, 0],
-			['SQR', 73, 84, 0],
-			['TRP', 128, 53, -90]
-		]
-	};
-
-
 	win.categories = win.categories || {};
 
 	win.categories.animal_1 = {
-		svg: "<svg version='1.1' baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='277.5px' height='280.5px' viewBox='0 0 277.5 280.5' xml:space='preserve'> <polygon fill='#E3CCBA' points='182.934,224.862 112.222,224.862 112.223,154.151 147.578,189.507 129.9,207.185 147.578,189.507 '/> <polygon fill='#E3CCBA' points='162.223,204.151 112.222,154.151 162.223,104.152 162.223,154.151 137.223,154.151 162.223,154.151 '/> <polygon fill='#E3CCBA' points='187.223,79.151 212.223,104.151 212.223,79.151 199.723,79.151 212.223,79.151 212.223,54.152 '/> <polygon fill='#E3CCBA' points='187.223,79.152 162.223,54.152 162.223,79.152 174.723,79.152 162.223,79.152 162.223,104.152 '/> <polygon fill='#E3CCBA' points='76.867,224.861 41.512,189.507 76.868,189.507 85.706,198.346 76.867,207.184 85.706,198.346 112.222,224.861 '/> <polygon fill='#E3CCBA' points='162.223,174.861 162.223,139.507 179.898,139.507 162.223,139.507 162.223,104.151 197.577,139.507 '/> <polygon fill='#E3CCBA' points='212.223,104.151 199.723,116.651 187.223,104.151 199.723,116.651 187.223,129.151 162.223,104.151 187.223,79.152 '/> </svg>",
-		name_ar: 'animals#1',
-		name_de: 'animals#1',
+		svg: "<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'		width='254.25px' height='250.75px' viewBox='0 0 254.25 250.75' enable-background='new 0 0 254.25 250.75' xml:space='preserve'>		<polygon fill='#00CC00' points='161.105,188.896 111.105,138.896 161.105,88.896 161.105,138.896 136.105,138.896 161.105,138.896 	'/>		<polygon fill='#00CC00' points='181.816,209.605 111.105,209.605 111.105,138.896 146.461,174.251 128.783,191.929 146.461,174.251 	'/>	<polygon fill='#333333' points='186.105,63.896 161.105,38.896 161.105,63.897 173.605,63.897 161.105,63.897 161.105,88.896 '/>		<polygon fill='#333333' points='186.105,63.895 211.105,88.895 211.105,63.894 198.605,63.894 211.105,63.894 211.105,38.895 '/>		<polygon fill='#CC33CC' points='75.75,209.604 40.395,174.249 75.75,174.249 84.589,183.088 75.75,191.927 84.589,183.088 	111.105,209.604 '/>	<polygon fill='#0000CC' points='161.105,159.606 161.105,124.251 178.783,124.251 161.105,124.251 161.105,88.896 196.461,124.251 	'/>	<polygon fill='#CCCCCC' points='211.105,88.896 198.605,101.396 186.105,88.896 198.605,101.396 186.105,113.896 161.105,88.896 	186.105,63.896 '/>	</svg>",
+		name_ar: 'ar animals#1',
+		name_de: 'de animals#1',
 		name_en: 'animals#1',
-		name_es: 'animals#1',
-		name_ru: 'animals#1',
-		name_zh: 'animals#1',
+		name_es: 'es animals#1',
+		name_ru: 'животные#1',
+		name_zh: 'zh animals#1',
 		figures: [
 			{
-				svg: "<svg version='1.1' baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='277.5px' height='280.5px' viewBox='0 0 277.5 280.5' xml:space='preserve'> <polygon fill='#E3CCBA' points='182.934,224.862 112.222,224.862 112.223,154.151 147.578,189.507 129.9,207.185 147.578,189.507 '/> <polygon fill='#E3CCBA' points='162.223,204.151 112.222,154.151 162.223,104.152 162.223,154.151 137.223,154.151 162.223,154.151 '/> <polygon fill='#E3CCBA' points='187.223,79.151 212.223,104.151 212.223,79.151 199.723,79.151 212.223,79.151 212.223,54.152 '/> <polygon fill='#E3CCBA' points='187.223,79.152 162.223,54.152 162.223,79.152 174.723,79.152 162.223,79.152 162.223,104.152 '/> <polygon fill='#E3CCBA' points='76.867,224.861 41.512,189.507 76.868,189.507 85.706,198.346 76.867,207.184 85.706,198.346 112.222,224.861 '/> <polygon fill='#E3CCBA' points='162.223,174.861 162.223,139.507 179.898,139.507 162.223,139.507 162.223,104.151 197.577,139.507 '/> <polygon fill='#E3CCBA' points='212.223,104.151 199.723,116.651 187.223,104.151 199.723,116.651 187.223,129.151 162.223,104.151 187.223,79.152 '/> </svg>",
-				time: 0, // time to done
-				id: 1
+				svg:"<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='254.25px' height='250.75px' viewBox='0 0 254.25 250.75' enable-background='new 0 0 254.25 250.75' xml:space='preserve'><polygon fill='#00CC00' points='161.105,188.896 111.105,138.896 161.105,88.896 161.105,138.896 136.105,138.896 161.105,138.896'/><polygon fill='#00CC00' points='181.816,209.605 111.105,209.605 111.105,138.896 146.461,174.251 128.783,191.929 146.461,174.251'/><polygon fill='#333333' points='186.105,63.896 161.105,38.896 161.105,63.897 173.605,63.897 161.105,63.897 161.105,88.896'/><polygon fill='#333333' points='186.105,63.895 211.105,88.895 211.105,63.894 198.605,63.894 211.105,63.894 211.105,38.895'/><polygon fill='#CC33CC' points='75.75,209.604 40.395,174.249 75.75,174.249 84.589,183.088 75.75,191.927 84.589,183.088 111.105,209.604'/><polygon fill='#0000CC' points='161.105,159.606 161.105,124.251 178.783,124.251 161.105,124.251 161.105,88.896 196.461,124.251'/><polygon fill='#CCCCCC' points='211.105,88.896 198.605,101.396 186.105,88.896 198.605,101.396 186.105,113.896 161.105,88.896 186.105,63.896'/></svg>",
+				time: 0
 			},
 			{
-				svg: "<svg version='1.1' baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' xml:space='preserve'> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,172.388 161.505,172.388 161.505,243.099 126.15,207.744 143.828,190.066 126.15,207.744 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 161.505,172.388 90.794,172.388 90.794,101.677 126.15,137.032 108.472,154.71 126.15,137.032 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,243.098 126.15,243.098 126.15,225.42 126.15,243.098 161.505,243.098 126.15,207.743 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 65.794,172.388 90.794,197.388 90.794,172.386 78.294,172.386 90.794,172.386 90.794,147.388 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,207.743 90.794,243.098 108.473,225.419 99.634,216.581 108.473,225.419 126.15,207.743 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 90.794,66.321 90.794,101.676 73.117,101.676 73.117,83.999 73.117,101.676 55.439,101.676 55.439,66.321 '/> <polygon fill='#BF7400' stroke='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' points=' 115.794,41.321 165.794,41.321 140.794,66.321 128.294,66.321 128.294,53.821 128.294,66.321 90.794,66.321 '/> </svg>",
-				time: 0, // time to done
-				id: 2
+				svg:"<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='254.25px' height='250.75px' viewBox='0 0 254.25 250.75' enable-background='new 0 0 254.25 250.75' xml:space='preserve'><polygon fill='#00CC00' points='175.869,150.377 105.158,150.377 105.158,79.666 140.514,115.021 122.836,132.699 140.514,115.021'/><polygon fill='#00CC00' points='105.158,150.377 175.869,150.377 175.869,221.086 140.514,185.731 158.191,168.053 140.514,185.731'/><polygon fill='#333333' points='80.159,150.377 105.159,175.377 105.159,150.375 92.659,150.375 105.159,150.375 105.159,125.376'/><polygon fill='#333333' points='105.159,185.731 105.159,221.087 122.838,203.409 113.999,194.57 122.838,203.409 140.515,185.731'/><polygon fill='#CC33CC' points='155.158,44.31 105.159,44.311 130.158,19.311 142.658,19.311 142.658,31.811 142.658,19.311 180.158,19.31'/><polygon fill='#0000CC' points='175.868,221.087 140.514,221.087 140.514,203.409 140.514,221.087 105.159,221.087 140.514,185.731'/><polygon fill='#CCCCCC' points='105.159,79.666 87.481,79.666 87.481,61.988 87.481,79.666 69.804,79.666 69.804,44.311 105.159,44.311'/></svg>",
+				time: 0
 			}
 
 		]
 
 	}
 
-
-
-
 }(window));
+

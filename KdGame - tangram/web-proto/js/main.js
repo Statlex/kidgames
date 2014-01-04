@@ -43,14 +43,10 @@
 			$.addClass(wrapper, 'active');
 
 			var patternName = wrapper.getAttribute('pattern-name');
-
 			info.set('tangramPattern', patternName, true);
-
-
 		},
 		runTangram: function() {
-
-			tangram.init(win.rabbit);
+			tangram.init(win.categories[info.currentCategoryName].figures[info.imageNumber]);
 		},
 		setImageColor: function() {
 			var imgs = $$('.js-category-button', main.wrapper);
@@ -71,9 +67,6 @@
 				img.setAttribute('style', pre + tempNode.innerHTML + post);
 			})
 
-		},
-		setCategoryName: function(categoryName) {
-			info.currentCategoryName = categoryName;
 		}
 
 	};

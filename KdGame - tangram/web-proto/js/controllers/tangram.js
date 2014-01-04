@@ -159,6 +159,14 @@
 
 	var tangram = {
 		figureList: ['B3A', 'B3A', 'M3A', 'S3A', 'S3A', 'SQR', 'TRP'],
+		colorShapeList: {
+			'#00CC00': 'B3A',
+			'#333333': 'S3A',
+			'#CC33CC': 'TRP',
+			'#0000CC': 'M3A',
+			'#CCCCCC': 'SQR',
+			'#CC0000': 'TRPR'
+		},
 		handleEvent: function() {
 
 		},
@@ -166,7 +174,7 @@
 			var polygons = $$('.js-figure-container polygon');
 			var answers = JSON.parse(JSON.stringify(this.figure.figureCoords));
 			var that = this;
-			var delta = 10;
+			var delta = 5 * this.mainImage.q;
 
 			var goodAnswers = 0;
 
@@ -208,7 +216,7 @@
 
 					coords.angle = Math.round((coords.angle % figuresCode[coords.type + 'AngleStep']) / 45) * 45;
 					answers[i][3] = answers[i][3] % figuresCode[coords.type + 'AngleStep'];
-					isA = Math.abs(coords.angle - answers[i][3]) < delta;
+					isA = Math.abs(coords.angle - answers[i][3]) < 5;
 
 					// is it good answer?
 					if (isX && isY && isA && !answers[i][4]) {
@@ -218,19 +226,20 @@
 
 				});
 
-
 			});
 
 			console.log(goodAnswers + '/' + answers.length);
 
 		},
 		init: function(figure) {
-			this.figure = figure;
+			this.figure = Object.create(figure);
+			this.initFigureCoords();
 			this.wrapper = $('.tangram-page', main.wrapper);
 			this.wrapper.innerHTML = this.wrapper.innerHTML.replace('%figure%', this.figure.svg);
 
 			var svg = $('svg', this.wrapper);
 			svg.setAttribute('class', 'main-image js-main-image');
+			this.colorFigure();
 
 			this.mainImage = {
 				svg: svg,
@@ -255,6 +264,55 @@
 			mover.init();
 			mover.initRotater(this.mainImage.q);
 
+		},
+		initFigureCoords: function(){
+
+			var that = this;
+
+			var tempNode = document.createElement('div');
+
+			this.figure.figureCoords = [];
+
+			tempNode.innerHTML = this.figure.svg;
+			var polygons = $$('polygon', tempNode);
+
+			polygons.forEach(function(polygon){
+
+				var type = that.colorShapeList[polygon.getAttribute('fill')];
+				// get center coordinates
+				var points = polygon.getAttribute('points');
+				points = points.replace(/\s+/gi,' ').trim();
+				points = points.split(' ');
+
+				for (var i = 1, len = points.length - 1; i < len; i+= 1) {
+					if (points[i - 1] === points[i + 1]) {
+						var x = points[i].split(',')[0];
+						var y = points[i].split(',')[1];
+						var x1 = points[i+1].split(',')[0];
+						var y1 = points[i+1].split(',')[1];
+
+					}
+				}
+
+				var angle = -Math.round(mover.getAngle(x, y, x1, y1) / 45) * 45;
+				if (Math.abs(angle) === 90) {
+					angle += 180;
+				}
+				that.figure.figureCoords.push([type, x, y, angle]);
+
+			});
+
+		},
+		colorFigure: function(){
+			var polygons = $$('.js-main-image polygon', main.wrapper);
+			polygons.forEach(function(polygon){
+				polygon.setAttribute('fill', info.imageColor);
+				polygon.setAttribute('stroke', info.imageColor);
+				polygon.setAttribute('stroke-width', '2');
+				polygon.setAttribute('stroke-linecap', 'round');
+				polygon.setAttribute('stroke-linejoin', 'round');
+				polygon.setAttribute('stroke-miterlimit', '12'); // I do not know what is this attribute
+			});
 		},
 		positionMainImage: function() {
 

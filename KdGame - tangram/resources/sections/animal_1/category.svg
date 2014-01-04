@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
-<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="277.5px" height="280.5px" viewBox="0 0 277.5 280.5" xml:space="preserve">
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	182.934,224.862 112.222,224.862 112.223,154.151 147.578,189.507 129.9,207.185 147.578,189.507 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	162.223,204.151 112.222,154.151 162.223,104.152 162.223,154.151 137.223,154.151 162.223,154.151 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	187.223,79.151 212.223,104.151 212.223,79.151 199.723,79.151 212.223,79.151 212.223,54.152 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	187.223,79.152 162.223,54.152 162.223,79.152 174.723,79.152 162.223,79.152 162.223,104.152 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	76.867,224.861 41.512,189.507 76.868,189.507 85.706,198.346 76.867,207.184 85.706,198.346 112.222,224.861 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	162.223,174.861 162.223,139.507 179.898,139.507 162.223,139.507 162.223,104.151 197.577,139.507 "/>
-<polygon fill="#E3CCBA" stroke="#EB8C40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" points="
-	212.223,104.151 199.723,116.651 187.223,104.151 199.723,116.651 187.223,129.151 162.223,104.151 187.223,79.152 "/>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="254.25px" height="250.75px" viewBox="0 0 254.25 250.75" enable-background="new 0 0 254.25 250.75" xml:space="preserve">
+<polygon fill="#00CC00" points="161.105,188.896 111.105,138.896 161.105,88.896 161.105,138.896 136.105,138.896 161.105,138.896 
+	"/>
+<polygon fill="#00CC00" points="181.816,209.605 111.105,209.605 111.105,138.896 146.461,174.251 128.783,191.929 146.461,174.251 
+	"/>
+<polygon fill="#333333" points="186.105,63.896 161.105,38.896 161.105,63.897 173.605,63.897 161.105,63.897 161.105,88.896 "/>
+<polygon fill="#333333" points="186.105,63.895 211.105,88.895 211.105,63.894 198.605,63.894 211.105,63.894 211.105,38.895 "/>
+<polygon fill="#CC33CC" points="75.75,209.604 40.395,174.249 75.75,174.249 84.589,183.088 75.75,191.927 84.589,183.088 
+	111.105,209.604 "/>
+<polygon fill="#0000CC" points="161.105,159.606 161.105,124.251 178.783,124.251 161.105,124.251 161.105,88.896 196.461,124.251 
+	"/>
+<polygon fill="#CCCCCC" points="211.105,88.896 198.605,101.396 186.105,88.896 198.605,101.396 186.105,113.896 161.105,88.896 
+	186.105,63.896 "/>
 </svg>

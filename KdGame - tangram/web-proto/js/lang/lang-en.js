@@ -17,8 +17,8 @@
 		find: 'find',
 
 		timer: 'timer',
-		sound: 'sound'
-
+		sound: 'sound',
+		categories: 'categories'
 
 	}
 
