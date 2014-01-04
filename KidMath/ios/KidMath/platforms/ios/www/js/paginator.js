@@ -89,7 +89,11 @@
 			this.coords.containerX = this.coords.xContainerStart + (this.coords.xCur - this.coords.xStart) / 2;
 		}
 
-		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px , 0px)';
+		if (this.coords.containerX === 0) {
+			this.coords.containerX = 0.1;
+		}
+
+		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px, 0.1px)';
 
 		event.stopPropagation();
 		event.preventDefault();
@@ -147,7 +151,10 @@
 		this.coords.containerX = -(fullPages + extraPage) * this.width;
 
 		this.container.style.WebkitTransition = 'all 0.3s ease-out';
-		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px , 0px)';
+		if (this.coords.containerX === 0) {
+			this.coords.containerX = 0.1;
+		}
+		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px, 0.1px)';
 
 		var previousPageNumber = this.curPageNumber; // only for math
 		this.curPageNumber = Math.round(this.coords.containerX / this.width);
@@ -161,7 +168,10 @@
 	Pagination.prototype.adjustEdge = function() {
 		this.coords.containerX = (this.curPageNumber || 0) * this.width;
 		this.container.style.WebkitTransition = 'none';
-		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px , 0px)';
+		if (this.coords.containerX === 0) {
+			this.coords.containerX = 0.1;
+		}
+		this.container.style.WebkitTransform = 'translate(' + this.coords.containerX + 'px, 0.1px)';
 	};
 
 	Pagination.prototype.changePage = function(n) {
