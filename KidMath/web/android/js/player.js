@@ -3,11 +3,13 @@
 	"use strict";
 	/*global window, document, console, alert, dataStorage */
 
-	win.player = {
+	var playerObj;
+	playerObj = {
 //		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
+		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? '' : '/android_asset/www/',
 		play: function (src) {
 
 //			console.log(src);
@@ -22,7 +24,7 @@
 			}
 
 			if (this.currentSrc !== src) {
-				this.currentMedia = new Media(src, this.onSuccess, this.onError, this.onStatus);
+				this.currentMedia = new Media(this.toSoundPrefix + src, this.onSuccess, this.onError, this.onStatus);
 				this.currentSrc = src;
 			}
 
@@ -35,6 +37,18 @@
 //			var value = on ? 'yes' : 'no';
 //			dataStorage.setItem('music-on', value);
 //		},
+		playQuestionAgain: function() {
+//			var currentSectionName = info.section;
+			// work for find number
+			if (info.section === 'findNumber') {
+				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			}
+
+			if (info.section === 'findLetter') {
+				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
+			}
+
+		},
 		onSuccess: function () {
 //			alert('good');
 		},
@@ -42,8 +56,31 @@
 //			alert(error.code + ' - ' + error.message);
 		},
 		onStatus: function(status) {
-			player.currentMediaStatus = status;
+			playerObj.currentMediaStatus = status;
 		}
+	};
+
+	win.player = playerObj;
+
+	// overwrite some methods
+	if (document.documentElement.hasOwnProperty('ontouchstart')) {
+		return;
 	}
+
+	playerObj.play = function(src) {
+
+		console.log(this.toSoundPrefix + src);
+
+		this.currentSrc = src;
+		this.currentMedia = new Audio(this.toSoundPrefix + src);
+
+		try {
+			this.currentMedia.play();
+		} catch (e) {
+			console.log(e);
+			console.log('Error for Audio.');
+		}
+
+	};
 
 }(window));
