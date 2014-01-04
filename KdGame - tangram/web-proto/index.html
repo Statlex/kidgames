@@ -77,7 +77,7 @@
 </div>
 
 
-<div class="js-template hidden" template-id="categories-page" onshow="statusBar.show(['more']); main.setImageColor()">
+<div class="js-template hidden" template-id="categories-page" onshow="statusBar.show(['more']); main.setImageColor();">
 
 	<div class="page categories-page">
 
@@ -99,11 +99,19 @@
 
 
 
-<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);">
+<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();">
 
 	<div class="page images-of-categories">
 
-		<h1>list of images</h1>
+		{{ categories[info.currentCategoryName].figures.forEach(function(figure){ }}
+		<div class="category-wrapper">
+			<div class="category-button-wrapper">
+				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
+					<img src="img/i/spacer.png" alt=""/>
+				</div>
+			</div>
+		</div>
+		{{ }); }}
 
 	</div>
 
