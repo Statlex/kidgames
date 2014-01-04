@@ -13,8 +13,9 @@
 				en: 'NINE mouses',
 				ru: 'ДЕВЯТЬ мышей',
 				de: 'NEUN Mäuse',
-				zh: '',
-				es: 'NUEVE ratones'
+				zh: '九只老鼠',
+				es: 'NUEVE ratones',
+				ar: 'تسع فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -22,8 +23,9 @@
 				en: 'NINE squirrels',
 				ru: 'ДЕВЯТЬ белок',
 				de: 'NEUN Eichhörnchen',
-				zh: '',
-				es: 'NUEVE ardillas'
+				zh: '九只松鼠',
+				es: 'NUEVE ardillas',
+				ar: 'تسع سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -31,8 +33,9 @@
 				en: 'NINE rabbits',
 				ru: 'ДЕВЯТЬ кроликов',
 				de: 'NEUN Kaninchen',
-				zh: '',
-				es: 'NUEVE conejos'
+				zh: '九只兔子',
+				es: 'NUEVE conejos',
+				ar: 'تسع ارانب'
 			}
 		},{
 			img: 'dog',
@@ -40,8 +43,9 @@
 				en: 'NINE dogs',
 				ru: 'ДЕВЯТЬ собак',
 				de: 'NEUN Hunde',
-				zh: '',
-				es: 'NUEVE perros'
+				zh: '九只狗',
+				es: 'NUEVE perros',
+				ar: 'تسع كلاب'
 			}
 		}]
 

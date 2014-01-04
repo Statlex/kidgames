@@ -37,21 +37,21 @@
 		AD23E485185C8B5D00B3598A /* iPhone58SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD23E476185C8B5D00B3598A /* iPhone58SettingsIcon@2x.png */; };
 		AD23E486185C8B5D00B3598A /* iPhone60HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD23E477185C8B5D00B3598A /* iPhone60HomeIcon.png */; };
 		AD23E487185C8B5D00B3598A /* iPhone120HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD23E478185C8B5D00B3598A /* iPhone120HomeIcon@2x.png */; };
-		AD2F51A5185C96C100326B47 /* splash-screen-640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F519F185C96C100326B47 /* splash-screen-640x960.png */; };
-		AD2F51A6185C96C100326B47 /* splash-screen-640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A0185C96C100326B47 /* splash-screen-640x1136.png */; };
-		AD2F51A7185C96C100326B47 /* splash-screen-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A1185C96C100326B47 /* splash-screen-768x1024.png */; };
-		AD2F51A8185C96C100326B47 /* splash-screen-1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A2185C96C100326B47 /* splash-screen-1024x768.png */; };
-		AD2F51A9185C96C100326B47 /* splash-screen-1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A3185C96C100326B47 /* splash-screen-1536x2048.png */; };
-		AD2F51AA185C96C100326B47 /* splash-screen-2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51A4185C96C100326B47 /* splash-screen-2048x1536.png */; };
 		AD2F51AC185CAF4F00326B47 /* iPhone114HomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51AB185CAF4F00326B47 /* iPhone114HomeIcon@2x.png */; };
-		AD2F51B3185CB49600326B47 /* splash-screen-320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */; };
-		AD2F51B4185CB49600326B47 /* splash-screen-768x1004.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */; };
-		AD2F51B6185CB49600326B47 /* splash-screen-2048x1496.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */; };
-		AD2F51B8185CB51E00326B47 /* splash-screen-1536x2008.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */; };
-		AD2F51BA185CB5D000326B47 /* splash-screen-1024x748.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */; };
 		AD69F445185D0969003D3EF3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F444185D0969003D3EF3 /* Security.framework */; };
 		AD69F447185D0976003D3EF3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F446185D0976003D3EF3 /* AdSupport.framework */; };
 		AD69F453185D0F49003D3EF3 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD69F452185D0F49003D3EF3 /* libFlurry_4.3.0.a */; };
+		AD69F4681876E490003D3EF3 /* splash-screen-320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F45D1876E490003D3EF3 /* splash-screen-320x480.png */; };
+		AD69F4691876E490003D3EF3 /* splash-screen-640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F45E1876E490003D3EF3 /* splash-screen-640x960.png */; };
+		AD69F46A1876E490003D3EF3 /* splash-screen-640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F45F1876E490003D3EF3 /* splash-screen-640x1136.png */; };
+		AD69F46B1876E490003D3EF3 /* splash-screen-768x1004.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4601876E490003D3EF3 /* splash-screen-768x1004.png */; };
+		AD69F46C1876E490003D3EF3 /* splash-screen-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4611876E490003D3EF3 /* splash-screen-768x1024.png */; };
+		AD69F46E1876E490003D3EF3 /* splash-screen-1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4631876E490003D3EF3 /* splash-screen-1024x768.png */; };
+		AD69F46F1876E490003D3EF3 /* splash-screen-1536x2008.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4641876E490003D3EF3 /* splash-screen-1536x2008.png */; };
+		AD69F4701876E490003D3EF3 /* splash-screen-1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4651876E490003D3EF3 /* splash-screen-1536x2048.png */; };
+		AD69F4711876E490003D3EF3 /* splash-screen-2048x1496.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4661876E490003D3EF3 /* splash-screen-2048x1496.png */; };
+		AD69F4721876E490003D3EF3 /* splash-screen-2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4671876E490003D3EF3 /* splash-screen-2048x1536.png */; };
+		AD69F4741876E65E003D3EF3 /* splash-screen-1024x748.png in Resources */ = {isa = PBXBuildFile; fileRef = AD69F4731876E65E003D3EF3 /* splash-screen-1024x748.png */; };
 		B21CB3F5B2D74B999D83EF45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C8882E0F245F4ADCE44DE /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E3818CB38C4E42B69F59F0E5 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B88D280E84AED95911FFB /* CDVReachability.m */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
@@ -116,23 +116,23 @@
 		AD23E476185C8B5D00B3598A /* iPhone58SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone58SettingsIcon@2x.png"; path = "../../../../../../../resources/appicons/ios/iPhone58SettingsIcon@2x.png"; sourceTree = "<group>"; };
 		AD23E477185C8B5D00B3598A /* iPhone60HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone60HomeIcon.png; path = ../../../../../../../resources/appicons/ios/iPhone60HomeIcon.png; sourceTree = "<group>"; };
 		AD23E478185C8B5D00B3598A /* iPhone120HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone120HomeIcon@2x.png"; path = "../../../../../../../resources/appicons/ios/iPhone120HomeIcon@2x.png"; sourceTree = "<group>"; };
-		AD2F519F185C96C100326B47 /* splash-screen-640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-640x960.png"; path = "../../../../../../../resources/splash-screen/splash-screen-640x960.png"; sourceTree = "<group>"; };
-		AD2F51A0185C96C100326B47 /* splash-screen-640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-640x1136.png"; path = "../../../../../../../resources/splash-screen/splash-screen-640x1136.png"; sourceTree = "<group>"; };
-		AD2F51A1185C96C100326B47 /* splash-screen-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-768x1024.png"; path = "../../../../../../../resources/splash-screen/splash-screen-768x1024.png"; sourceTree = "<group>"; };
-		AD2F51A2185C96C100326B47 /* splash-screen-1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1024x768.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1024x768.png"; sourceTree = "<group>"; };
-		AD2F51A3185C96C100326B47 /* splash-screen-1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2048.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1536x2048.png"; sourceTree = "<group>"; };
-		AD2F51A4185C96C100326B47 /* splash-screen-2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1536.png"; path = "../../../../../../../resources/splash-screen/splash-screen-2048x1536.png"; sourceTree = "<group>"; };
 		AD2F51AB185CAF4F00326B47 /* iPhone114HomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone114HomeIcon@2x.png"; path = "../../../../../../../resources/appicons/ios/iPhone114HomeIcon@2x.png"; sourceTree = "<group>"; };
-		AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-320x480.png"; path = "../../../../../../../resources/splash-screen/splash-screen-320x480.png"; sourceTree = "<group>"; };
-		AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-768x1004.png"; path = "../../../../../../../resources/splash-screen/splash-screen-768x1004.png"; sourceTree = "<group>"; };
-		AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1496.png"; path = "../../../../../../../resources/splash-screen/splash-screen-2048x1496.png"; sourceTree = "<group>"; };
-		AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2008.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1536x2008.png"; sourceTree = "<group>"; };
-		AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1024x748.png"; path = "../../../../../../../resources/splash-screen/splash-screen-1024x748.png"; sourceTree = "<group>"; };
 		AD69F444185D0969003D3EF3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AD69F446185D0976003D3EF3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AD69F448185D0A44003D3EF3 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = KidMath/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		AD69F451185D0F49003D3EF3 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		AD69F452185D0F49003D3EF3 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
+		AD69F45D1876E490003D3EF3 /* splash-screen-320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-320x480.png"; path = "../icons/splash-screen-320x480.png"; sourceTree = "<group>"; };
+		AD69F45E1876E490003D3EF3 /* splash-screen-640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-640x960.png"; path = "../icons/splash-screen-640x960.png"; sourceTree = "<group>"; };
+		AD69F45F1876E490003D3EF3 /* splash-screen-640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-640x1136.png"; path = "../icons/splash-screen-640x1136.png"; sourceTree = "<group>"; };
+		AD69F4601876E490003D3EF3 /* splash-screen-768x1004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-768x1004.png"; path = "../icons/splash-screen-768x1004.png"; sourceTree = "<group>"; };
+		AD69F4611876E490003D3EF3 /* splash-screen-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-768x1024.png"; path = "../icons/splash-screen-768x1024.png"; sourceTree = "<group>"; };
+		AD69F4631876E490003D3EF3 /* splash-screen-1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1024x768.png"; path = "../icons/splash-screen-1024x768.png"; sourceTree = "<group>"; };
+		AD69F4641876E490003D3EF3 /* splash-screen-1536x2008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2008.png"; path = "../icons/splash-screen-1536x2008.png"; sourceTree = "<group>"; };
+		AD69F4651876E490003D3EF3 /* splash-screen-1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-1536x2048.png"; path = "../icons/splash-screen-1536x2048.png"; sourceTree = "<group>"; };
+		AD69F4661876E490003D3EF3 /* splash-screen-2048x1496.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1496.png"; path = "../icons/splash-screen-2048x1496.png"; sourceTree = "<group>"; };
+		AD69F4671876E490003D3EF3 /* splash-screen-2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-screen-2048x1536.png"; path = "../icons/splash-screen-2048x1536.png"; sourceTree = "<group>"; };
+		AD69F4731876E65E003D3EF3 /* splash-screen-1024x748.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-screen-1024x748.png"; sourceTree = "<group>"; };
 		B05AE13986364D0EBE4EBC48 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = org.apache.cordova.device/CDVDevice.h; sourceTree = "<group>"; };
 		B7608BBBCDEB4FF2A1E18171 /* CDVConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVConnection.h; path = "org.apache.cordova.network-information/CDVConnection.h"; sourceTree = "<group>"; };
 		C40C8882E0F245F4ADCE44DE /* SystemConfiguration.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -304,17 +304,17 @@
 		308D05311370CCF300D202BF /* splash */ = {
 			isa = PBXGroup;
 			children = (
-				AD2F51B9185CB5D000326B47 /* splash-screen-1024x748.png */,
-				AD2F51B7185CB51E00326B47 /* splash-screen-1536x2008.png */,
-				AD2F51AF185CB49600326B47 /* splash-screen-320x480.png */,
-				AD2F51B0185CB49600326B47 /* splash-screen-768x1004.png */,
-				AD2F51B2185CB49600326B47 /* splash-screen-2048x1496.png */,
-				AD2F519F185C96C100326B47 /* splash-screen-640x960.png */,
-				AD2F51A0185C96C100326B47 /* splash-screen-640x1136.png */,
-				AD2F51A2185C96C100326B47 /* splash-screen-1024x768.png */,
-				AD2F51A1185C96C100326B47 /* splash-screen-768x1024.png */,
-				AD2F51A3185C96C100326B47 /* splash-screen-1536x2048.png */,
-				AD2F51A4185C96C100326B47 /* splash-screen-2048x1536.png */,
+				AD69F4731876E65E003D3EF3 /* splash-screen-1024x748.png */,
+				AD69F45D1876E490003D3EF3 /* splash-screen-320x480.png */,
+				AD69F45E1876E490003D3EF3 /* splash-screen-640x960.png */,
+				AD69F45F1876E490003D3EF3 /* splash-screen-640x1136.png */,
+				AD69F4601876E490003D3EF3 /* splash-screen-768x1004.png */,
+				AD69F4611876E490003D3EF3 /* splash-screen-768x1024.png */,
+				AD69F4631876E490003D3EF3 /* splash-screen-1024x768.png */,
+				AD69F4641876E490003D3EF3 /* splash-screen-1536x2008.png */,
+				AD69F4651876E490003D3EF3 /* splash-screen-1536x2048.png */,
+				AD69F4661876E490003D3EF3 /* splash-screen-2048x1496.png */,
+				AD69F4671876E490003D3EF3 /* splash-screen-2048x1536.png */,
 			);
 			path = splash;
 			sourceTree = "<group>";
@@ -424,37 +424,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD69F4681876E490003D3EF3 /* splash-screen-320x480.png in Resources */,
 				AD23E47F185C8B5D00B3598A /* iPad76HomeIcon.png in Resources */,
 				AD23E479185C8B5D00B3598A /* i2Pad80SpotlightIcon@2x.png in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				AD23E481185C8B5D00B3598A /* iPad144HomeIcon@2x.png in Resources */,
 				AD23E47A185C8B5D00B3598A /* iPad29SettingsIcon.png in Resources */,
+				AD69F46F1876E490003D3EF3 /* splash-screen-1536x2008.png in Resources */,
+				AD69F4741876E65E003D3EF3 /* splash-screen-1024x748.png in Resources */,
 				AD23E469185C8B0500B3598A /* Images.xcassets in Resources */,
+				AD69F4721876E490003D3EF3 /* splash-screen-2048x1536.png in Resources */,
+				AD69F4701876E490003D3EF3 /* splash-screen-1536x2048.png in Resources */,
+				AD69F46A1876E490003D3EF3 /* splash-screen-640x1136.png in Resources */,
 				AD23E47E185C8B5D00B3598A /* iPad72HomeIcon.png in Resources */,
 				AD23E480185C8B5D00B3598A /* iPad100SpotlightIcon@2x.png in Resources */,
 				AD23E47C185C8B5D00B3598A /* iPad50SpotlightIcon.png in Resources */,
-				AD2F51B8185CB51E00326B47 /* splash-screen-1536x2008.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
 				AD23E487185C8B5D00B3598A /* iPhone120HomeIcon@2x.png in Resources */,
-				AD2F51A9185C96C100326B47 /* splash-screen-1536x2048.png in Resources */,
 				AD23E47D185C8B5D00B3598A /* iPad58SettingsIcon@2x.png in Resources */,
-				AD2F51A7185C96C100326B47 /* splash-screen-768x1024.png in Resources */,
 				AD23E484185C8B5D00B3598A /* iPhone57HomeIcon.png in Resources */,
-				AD2F51A6185C96C100326B47 /* splash-screen-640x1136.png in Resources */,
 				AD23E485185C8B5D00B3598A /* iPhone58SettingsIcon@2x.png in Resources */,
-				AD2F51BA185CB5D000326B47 /* splash-screen-1024x748.png in Resources */,
-				AD2F51B4185CB49600326B47 /* splash-screen-768x1004.png in Resources */,
+				AD69F46E1876E490003D3EF3 /* splash-screen-1024x768.png in Resources */,
+				AD69F4711876E490003D3EF3 /* splash-screen-2048x1496.png in Resources */,
 				AD23E482185C8B5D00B3598A /* iPad152HomeIcon@2x.png in Resources */,
-				AD2F51B6185CB49600326B47 /* splash-screen-2048x1496.png in Resources */,
 				AD2F51AC185CAF4F00326B47 /* iPhone114HomeIcon@2x.png in Resources */,
-				AD2F51A5185C96C100326B47 /* splash-screen-640x960.png in Resources */,
-				AD2F51B3185CB49600326B47 /* splash-screen-320x480.png in Resources */,
 				AD23E486185C8B5D00B3598A /* iPhone60HomeIcon.png in Resources */,
-				AD2F51AA185C96C100326B47 /* splash-screen-2048x1536.png in Resources */,
 				AD23E483185C8B5D00B3598A /* iPhone29SettingsIcon.png in Resources */,
-				AD2F51A8185C96C100326B47 /* splash-screen-1024x768.png in Resources */,
+				AD69F46C1876E490003D3EF3 /* splash-screen-768x1024.png in Resources */,
+				AD69F4691876E490003D3EF3 /* splash-screen-640x960.png in Resources */,
+				AD69F46B1876E490003D3EF3 /* splash-screen-768x1004.png in Resources */,
 				AD23E47B185C8B5D00B3598A /* iPad40SpotlightIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

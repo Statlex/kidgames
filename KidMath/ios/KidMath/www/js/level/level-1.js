@@ -13,8 +13,9 @@
 				en: 'ONE mouse',
 				ru: 'ОДНА мышь',
 				de: 'EINE Maus',
-				zh: '',
-				es: 'UN ratón'
+				zh: '一只老鼠',
+				es: 'UN ratón',
+				ar: 'فأر واحد'
 			}
 		},{
 			img: 'squirrel',
@@ -22,8 +23,9 @@
 				en: 'ONE squirrel',
 				ru: 'ОДНА белка',
 				de: 'EIN Eichhörnchen',
-				zh: '',
-				es: 'UNA ardilla'
+				zh: '一只松鼠',
+				es: 'UNA ardilla',
+				ar: 'سنجاب واحد'
 			}
 		},{
 			img: 'rabbit',
@@ -31,8 +33,9 @@
 				en: 'ONE rabbit',
 				ru: 'ОДИН кролик',
 				de: 'EIN Kaninchen',
-				zh: '',
-				es: 'UN conejo'
+				zh: '一只兔子',
+				es: 'UN conejo',
+				ar: 'ارنب واحد'
 			}
 		},{
 			img: 'dog',
@@ -40,8 +43,9 @@
 				en: 'ONE dog',
 				ru: 'ОДНА собака',
 				de: 'EIN Hund',
-				zh: '',
-				es: 'UN perro'
+				zh: '一只狗',
+				es: 'UN perro',
+				ar: 'كلاب واحد'
 			}
 		}]
 

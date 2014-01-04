@@ -13,8 +13,9 @@
 				en: 'THREE mouses',
 				ru: 'ТРИ мыши',
 				de: 'DREI Mäuse',
-				zh: '',
-				es: 'TRES ratones'
+				zh: '三只老鼠',
+				es: 'TRES ratones',
+				ar: 'ثلاث فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -22,8 +23,9 @@
 				en: 'THREE squirrels',
 				ru: 'ТРИ белки',
 				de: 'DREI Eichhörnchen',
-				zh: '',
-				es: 'TRES ardillas'
+				zh: '三只松鼠',
+				es: 'TRES ardillas',
+				ar: 'ثلاث سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -31,8 +33,9 @@
 				en: 'THREE rabbits',
 				ru: 'ТРИ кролика',
 				de: 'DREI Kaninchen',
-				zh: '',
-				es: 'TRES conejos'
+				zh: '三只兔子',
+				es: 'TRES conejos',
+				ar: 'ثلاث ارانب'
 			}
 		},{
 			img: 'dog',
@@ -40,8 +43,9 @@
 				en: 'THREE dogs',
 				ru: 'ТРИ собаки',
 				de: 'DREI Hunde',
-				zh: '',
-				es: 'TRES perros'
+				zh: '三只狗',
+				es: 'TRES perros',
+				ar: 'ثلاث كلاب'
 			}
 		}]
 

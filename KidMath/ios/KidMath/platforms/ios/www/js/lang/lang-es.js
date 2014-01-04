@@ -36,7 +36,8 @@
 		youDontHaveEnoughPoints: 'NO TIENE SUFICIENTES PUNTOS para abrir esta sección. Por favor, cumple las secciónes anteriores :)',
 		thanks: 'Agradecimientos',
 		thanksForDe: 'Svetlana Dubinetskaya',
-		thanksForEs: 'Viktoriya Kostyuk'
+		thanksForEs: 'Viktoriya Kostyuk',
+		shareUs: 'Cuota'
 	};
 
 	for (var i = 0; i <= 9; i++) {

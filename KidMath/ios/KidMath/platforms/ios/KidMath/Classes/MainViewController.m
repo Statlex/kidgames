@@ -44,6 +44,7 @@
 - (id)init
 {
     self = [super init];
+    [self.webView.scrollView setMinimumZoomScale:0.1];
     if (self) {
         // Uncomment to override the CDVCommandDelegateImpl used
         // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
@@ -74,6 +75,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -109,6 +111,15 @@
     return [super webViewDidFinishLoad:theWebView];
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    // This practically disables web navigation from the webView.
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return FALSE;
+    }
+    return TRUE;
+}
 /* Comment out the block below to over-ride */
 
 /*

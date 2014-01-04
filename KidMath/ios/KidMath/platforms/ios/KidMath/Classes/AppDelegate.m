@@ -55,6 +55,7 @@
     [NSURLCache setSharedURLCache:sharedCache];
 
     self = [super init];
+    
     return self;
 }
 
@@ -69,6 +70,7 @@
     [Flurry setCrashReportingEnabled:YES];
     //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
     [Flurry startSession:@"RQMBHCSJ2HZYPNVG2W82"];
+    [self.viewController.webView.scrollView setMinimumZoomScale:0.1];
     //your code
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];

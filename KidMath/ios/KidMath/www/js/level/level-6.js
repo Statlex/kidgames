@@ -13,8 +13,9 @@
 				en: 'SIX mouses',
 				ru: 'ШЕСТЬ мышей',
 				de: 'SECHS Mäuse',
-				zh: '',
-				es: 'SEIS ratones'
+				zh: '六只老鼠',
+				es: 'SEIS ratones',
+				ar: 'ست فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -22,8 +23,9 @@
 				en: 'SIX squirrels',
 				ru: 'ШЕСТЬ белок',
 				de: 'SECHS Eichhörnchen',
-				zh: '',
-				es: 'SEIS ardillas'
+				zh: '六只松鼠',
+				es: 'SEIS ardillas',
+				ar: 'ست سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -31,8 +33,9 @@
 				en: 'SIX rabbits',
 				ru: 'ШЕСТЬ кроликов',
 				de: 'SECHS Kaninchen',
-				zh: '',
-				es: 'SEIS conejos'
+				zh: '六只兔子',
+				es: 'SEIS conejos',
+				ar: 'ست ارانب'
 			}
 		},{
 			img: 'dog',
@@ -40,8 +43,9 @@
 				en: 'SIX dogs',
 				ru: 'ШЕСТЬ собак',
 				de: 'SECHS Hunde',
-				zh: '',
-				es: 'SEIS perros'
+				zh: '六只狗',
+				es: 'SEIS perros',
+				ar: 'ست كلاب'
 			}
 		}]
 

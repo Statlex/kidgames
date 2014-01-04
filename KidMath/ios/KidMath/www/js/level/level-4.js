@@ -13,8 +13,9 @@
 				en: 'FOUR mouses',
 				ru: 'ЧЕРЫТЕ мыши',
 				de: 'VIER Mäuse',
-				zh: '',
-				es: 'CUATRO ratones'
+				zh: '四只老鼠',
+				es: 'CUATRO ratones',
+				ar: 'اربع فأران'
 			}
 		},{
 			img: 'squirrel',
@@ -22,8 +23,9 @@
 				en: 'FOUR squirrels',
 				ru: 'ЧЕРЫТЕ белки',
 				de: 'VIER Eichhörnchen',
-				zh: '',
-				es: 'CUATRO ardillas'
+				zh: '四只松鼠',
+				es: 'CUATRO ardillas',
+				ar: 'اربع سنجابات'
 			}
 		},{
 			img: 'rabbit',
@@ -31,8 +33,9 @@
 				en: 'FOUR rabbits',
 				ru: 'ЧЕРЫТЕ кролика',
 				de: 'VIER Kaninchen',
-				zh: '',
-				es: 'CUATRO conejos'
+				zh: '四只兔子',
+				es: 'CUATRO conejos',
+				ar: 'اربع ارانب'
 			}
 		},{
 			img: 'dog',
@@ -40,8 +43,9 @@
 				en: 'FOUR dogs',
 				ru: 'ЧЕРЫТЕ собаки',
 				de: 'VIER Hunde',
-				zh: '',
-				es: 'CUATRO perros'
+				zh: '四只狗',
+				es: 'CUATRO perros',
+				ar: 'اربع كلاب'
 			}
 		}]
 

@@ -434,7 +434,7 @@ body {
 
 .settings-page {
 	box-sizing: border-box;
-	padding: 20px 20px 10%;
+	padding: 10px;
 }
 
 .settings-page h1 {
@@ -453,7 +453,10 @@ body {
 }
 
 .settings-page .table-cell {
-	width: 50%;
+	width: auto;
+	border-bottom: 2px solid #FFF;
+	padding: 0 10px;
+	background-color: rgba(0, 0, 0, 0.7)
 }
 
 .select-wrapper {
@@ -464,6 +467,17 @@ body {
 	display: block;
 	float: left;
 	height: 100%;
+	position: relative;
+}
+
+.select-wrapper div:after {
+	position: absolute;
+	content: '\25bc';
+	right: -19px;
+	top: 4px;
+	display: block;
+	font-size: 20px;
+	line-height: 20px;
 }
 
 .select-wrapper select {
@@ -640,7 +654,6 @@ body {
 .add-small-font-es {}
 
 .table-thanks {
-	padding-bottom: 50px;
 	box-sizing: border-box;
 }
 
@@ -690,4 +703,78 @@ body {
 	line-height: 25px;
 	padding: 4px 12px;
 }
+
+.center-text {
+	text-align: center;
+}
+
+.select-language-cell {
+	text-align: center;
+}
+
+.select-language-cell>div {
+	display: inline-block;
+}
+
+.share-link {
+	display: block;
+	background-image: url('../img/i/share-icons.png');
+	background-repeat: no-repeat;
+	text-decoration: none;
+	margin-bottom: 3px;
+	height: 32px;
+	font-size: 20px;
+	line-height: 32px;
+	padding-left: 43px;
+	text-align: left;
+	color: #FFF;
+}
+
+.to-main-site {
+	color: #FFF;
+}
+
+.share-link.facebook {
+	background-position: 0 -1680px;
+}
+
+.share-link.twitter {
+	background-position: 0 -288px;
+}
+
+.share-link.linkedin {
+	background-position: 0 -876px;
+}
+
+.share-link.vk {
+	background-position: 0 -364px;
+}
+
+.share-link.google {
+	background-position: 0 -1232px;
+}
+
+.share-link-header {
+	font-size: 20px;
+	line-height: 20px;
+	padding-bottom: 3px;
+}
+
+.thanks-paragraph {
+	font-size: 16px;
+}
+
+.share-link-container {
+	width: 100%;
+}
+
+@media screen and (max-height: 479px) {
+	.share-link {
+		width: 50%;
+		float: left;
+		clear: none;
+		box-sizing: border-box;
+	}
+}
+
 
