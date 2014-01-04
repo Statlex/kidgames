@@ -8,7 +8,7 @@
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
-		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? '' : '/android_asset/www/',
+		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
 //			console.log(src);

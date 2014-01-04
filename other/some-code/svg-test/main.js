@@ -1,5 +1,7 @@
 (function (win) {
 
+	return;
+
 	"use strict";
 	/*global window, document */
 

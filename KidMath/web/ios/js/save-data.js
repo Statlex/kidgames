@@ -11,7 +11,7 @@
 	}
 
 	win.dataStorage = {
-		savedItem: 'saved-item',
+		savedItem: 'saved-item-kid-math',
 		getData: function() {
 			var data = ls.getItem(this.savedItem) || '{}';
 			data = JSON.parse(data);
