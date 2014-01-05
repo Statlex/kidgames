@@ -30,7 +30,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Для игры в хоккей необходим ...',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -47,7 +47,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что нужно ёжику для рисования?',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -64,7 +64,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что было испечено на день родения кролика?',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -81,7 +81,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что нужно лисе для измерения температуры?',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -99,7 +99,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что кролик любит больше всего?',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -116,7 +116,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что мышка любит больше всего?',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -133,7 +133,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что собачка любит больше всего?',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -150,7 +150,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что медведь любит больше всего?',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -168,7 +168,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди подходящий паттерн.',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -185,7 +185,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди подходящий паттерн.',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -202,7 +202,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди подходящий паттерн.',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -219,7 +219,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди подходящий паттерн.',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -237,7 +237,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди пару.',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -254,7 +254,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди пару.',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -271,7 +271,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди пару.',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -288,7 +288,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди пару.',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -306,7 +306,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди такое же здание.',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -323,7 +323,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди такое же здание.',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -340,7 +340,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди такое же здание.',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -357,7 +357,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди такое же здание.',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -375,7 +375,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди похожее.',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -392,7 +392,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди похожее.',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -409,7 +409,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди похожее.',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -426,7 +426,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Найди похожее.',
 				text_zh: '',
 				answer: 4,
 				item: 4
@@ -444,7 +444,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что мышка людит больше всего?',
 				text_zh: '',
 				answer: 1,
 				item: 4
@@ -461,7 +461,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что белочка любит больше всего?',
 				text_zh: '',
 				answer: 2,
 				item: 4
@@ -478,7 +478,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что кролик любит больше всего?',
 				text_zh: '',
 				answer: 3,
 				item: 4
@@ -495,7 +495,7 @@
 				text_de: '',
 				text_en: '',
 				text_es: '',
-				text_ru: '',
+				text_ru: 'Что собачка любит больше всего?',
 				text_zh: '',
 				answer: 4,
 				item: 4

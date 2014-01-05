@@ -8,7 +8,8 @@
 
 	var info = {
 		lang: 'en', // current language
-		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
+		availableLangs: ['en', 'ru'],
+//		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
 		saveItem: 'save-item-kid-game-logic-re-think',
 		isPhone: false,
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
