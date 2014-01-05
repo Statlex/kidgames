@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>FW</title>
+	<title>tangramcheg</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -87,7 +87,7 @@
 		<div class="categories-wrapper clear-fix">
 			{{ for (var key in categories) { }}
 			<div class="category-wrapper">
-				<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page")'>
+				<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
 					<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 						<img src="img/i/spacer.png" alt=""/>
 					</div>
@@ -110,7 +110,7 @@
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper">
-			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page")'>
+			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>

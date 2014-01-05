@@ -177,7 +177,7 @@ body {
 	color: #FFF;
 }
 
-@media screen and (max-height: 479px) {
+@media screen and (max-height: 450px) {
 	.share-link {
 		float: left;
 		width: 50%;
