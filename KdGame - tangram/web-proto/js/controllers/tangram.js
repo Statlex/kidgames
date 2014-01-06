@@ -256,6 +256,7 @@
 				q: 1
 			};
 
+
 			this.offsetTop = $('.status-bar').clientHeight;
 
 			this.positionMainImage();
@@ -372,14 +373,17 @@
 			var that = this;
 
 			var figuresModel = {
-				fillColor: '0C0',
-				strokeColor: '000'
+//				fillColor: '#0C0',
+				fillColor: 'url(#pattern)',
+				strokeColor: '#000'
 			};
 
 			var figuresStr = '';
 			this.figureList.forEach(function(figureName){
 				var polygon = viewer.template(figuresCode.template);
 				// set figures color here
+
+
 				figuresModel.points = figuresCode[figureName];
 				figuresModel.figureName = figureName;
 				polygon = polygon(figuresModel);
@@ -491,7 +495,7 @@
 
 		TRPR: '0,25 0,75 25,50 25,0',
 
-		template: '<polygon figure-name="{{= figureName }}" fill="#{{= fillColor }}" stroke="#{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
+		template: '<polygon figure-name="{{= figureName }}" fill="{{= fillColor }}" stroke="{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
 	};
 
 

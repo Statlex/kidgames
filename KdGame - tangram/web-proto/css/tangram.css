@@ -47,4 +47,11 @@
 	float: left;
 }
 
-
+.hidden-but-showed {
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: -100px;
+	left: -100px;
+	z-index: -10000;
+}

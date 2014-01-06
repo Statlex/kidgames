@@ -43,9 +43,11 @@
 <!-- status bar -->
 <div class="js-status-bar status-bar">
 	<div class="js-back status-bar-back" onclick="viewer.back();player.play(soundList.click);"><span></span></div>
-	<div class="js-more status-bar-more" onclick="viewer.show('more-page');player.play(soundList.click);"><span></span></div>
+	<div class="js-more status-bar-more" onclick="viewer.show('more-page');player.play(soundList.click);"><span></span>
+	</div>
 	<div class="js-play-again status-bar-play-again" onclick="player.playQuestionAgain();"><span></span></div>
-	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">0</span></div>
+	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span
+			class="js-score-field">0</span></div>
 </div>
 <!-- status bar -->
 
@@ -57,17 +59,26 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
+<div class="js-template hidden" template-id="title-page"
+     onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
 
 	<div class="page title-page">
 
 		<div class="table full-area">
 			<div class="table-row">
 				<div class="table-cell">
-					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button king">play</div>
-					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button tower">play</div>
-					<div onclick='viewer.show("categories-page");player.play(soundList.click);' class="title-button soldier">play</div>
-					<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings}}</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);'
+					     class="title-button king">play
+					</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);'
+					     class="title-button tower">play
+					</div>
+					<div onclick='viewer.show("categories-page");player.play(soundList.click);'
+					     class="title-button soldier">play
+					</div>
+					<div onclick='viewer.show("setting-page");player.play(soundList.click);'
+					     class="title-button settings">{{= lang[info.lang].settings}}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -87,8 +98,10 @@
 		<div class="categories-wrapper clear-fix">
 			{{ for (var key in categories) { }}
 			<div class="category-wrapper">
-				<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
-					<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
+				<div class="category-button-wrapper"
+				     onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
+					<div class="category-button clear-fix js-category-button"
+					     style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 						<img src="img/i/spacer.png" alt=""/>
 					</div>
 				</div>
@@ -101,8 +114,8 @@
 </div>
 
 
-
-<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();">
+<div class="js-template hidden" template-id="images-of-categories-page"
+     onshow="statusBar.show(['more']);main.setImageColor();">
 
 	<div class="page images-of-categories">
 
@@ -110,8 +123,10 @@
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper">
-			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
-				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
+			<div class="category-button-wrapper"
+			     onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
+				<div class="category-button clear-fix js-category-button"
+				     style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>
 			</div>
@@ -123,16 +138,23 @@
 </div>
 
 
-
-
-
 <div class="js-template hidden" template-id="tangram-page" onshow="statusBar.show(['more']);main.runTangram();">
 
 	<div class="page tangram-page">
+
 		%figure%
 		<div class="rotater js-rotater">
 			<div class="rotater-out-block js-rotater-out-block"></div>
 		</div>
+
+		<svg class="hidden-but-showed">
+			<defs>
+				<pattern id="pattern" patternUnits="userSpaceOnUse" width="1024" height="1024">
+					<image xlink:href="img/preview/{{= info.tangramPattern}}.jpg" x="0" y="0" width="512" height="512"/>
+				</pattern>
+			</defs>
+		</svg>
+
 	</div>
 
 </div>
@@ -201,13 +223,15 @@
 
 					{{ info.tangramPatterns.forEach(function(item){ }}
 					{{ if (item === info.tangramPattern) { }}
-					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview active">
+					<div onclick="main.setPreview(this)" pattern-name="{{= item }}"
+					     class="tangram-preview {{= item }} js-tangram-preview active">
 						<div class="tangram-preview-inner-block">
 							<img src="img/preview/tangram-frame.svg" alt=""/>
 						</div>
 					</div>
 					{{ } else { }}
-					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview">
+					<div onclick="main.setPreview(this)" pattern-name="{{= item }}"
+					     class="tangram-preview {{= item }} js-tangram-preview">
 						<div class="tangram-preview-inner-block">
 							<img src="img/preview/tangram-frame.svg" alt=""/>
 						</div>
@@ -251,18 +275,24 @@
 			<div class="table-row">
 				<div class="table-cell sharing-cell">
 					<div class="share-link-container clear-fix">
-						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" target="_blank">Facebook</a>
-						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" target="_blank">Twitter</a>
-						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" target="_blank">Google+</a>
-						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" target="_blank">LinkedIn</a>
-						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" target="_blank">vk</a>
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F"
+						   class="share-link facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter"
+						   target="_blank">Twitter</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F"
+						   class="share-link google" target="_blank">Google+</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F"
+						   class="share-link linkedin" target="_blank">LinkedIn</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk"
+						   target="_blank">vk</a>
 					</div>
 				</div>
 			</div>
 
 			<div class="table-row">
 				<div class="table-cell">
-					<p class="main-site-link">&copy;&nbsp;<a href="http://statlex.com" target="_blank">statlex.com</a></p>
+					<p class="main-site-link">&copy;&nbsp;<a href="http://statlex.com" target="_blank">statlex.com</a>
+					</p>
 				</div>
 			</div>
 
