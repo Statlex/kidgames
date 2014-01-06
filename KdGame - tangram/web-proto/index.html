@@ -149,11 +149,26 @@
 
 		<svg class="hidden-but-showed">
 			<defs>
-				<pattern id="pattern" patternUnits="userSpaceOnUse" width="1024" height="1024">
+				<pattern id="pattern" patternUnits="userSpaceOnUse" width="512" height="512">
 					<image xlink:href="img/preview/{{= info.tangramPattern}}.jpg" x="0" y="0" width="512" height="512"/>
 				</pattern>
 			</defs>
+			<filter id='inset-shadow'>
+				<!-- Сдвиг тени -->
+				<feOffset dx='1' dy='1'/>
+				<!-- Размытие тени -->
+				<feGaussianBlur stdDeviation='2' result='offset-blur'/>
+				<!-- Инвертируем drop shadow чтобы создать внутреннюю тень -->
+				<feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+				<!-- Цвет и Прозрачность -->
+				<feFlood flood-color='black' flood-opacity='.65' result='color'/>
+				<!-- Обрезаем цвет внутрь тени -->
+				<feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+				<!-- Раcполагаем тень поверх элемента -->
+				<feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+			</filter>
 		</svg>
+
 
 	</div>
 

@@ -55,3 +55,7 @@
 	left: -100px;
 	z-index: -10000;
 }
+
+.main-image g {
+	filter: url('#inset-shadow');
+}
