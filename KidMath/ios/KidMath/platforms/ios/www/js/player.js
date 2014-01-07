@@ -3,7 +3,8 @@
 	"use strict";
 	/*global window, document, console, alert, dataStorage */
 
-	win.player = {
+	var playerObj;
+	playerObj = {
 //		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
@@ -47,10 +48,6 @@
 				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
 			}
 
-			if (info.section === 'findColor') {
-				this.play('colors/' + info.lang + '/' + lang[info.lang].colors[win[info.section].answer] + '.mp3');
-			}
-
 		},
 		onSuccess: function () {
 //			alert('good');
@@ -59,24 +56,18 @@
 //			alert(error.code + ' - ' + error.message);
 		},
 		onStatus: function(status) {
-			player.currentMediaStatus = status;
+			playerObj.currentMediaStatus = status;
 		}
-	}
+	};
 
-}(window));
+	win.player = playerObj;
 
-// overwrite some methods
-
-(function (win) {
-
-	"use strict";
-	/*global window, document */
-
+	// overwrite some methods
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}
 
-	win.player.play = function(src) {
+	playerObj.play = function(src) {
 
 		console.log(this.toSoundPrefix + src);
 
@@ -89,10 +80,7 @@
 			console.log(e);
 			console.log('Error for Audio.');
 		}
+
 	};
 
-
 }(window));
-
-
-

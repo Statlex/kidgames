@@ -100,6 +100,8 @@
 	win.dataStorage.addToOpenSections('learn-basics');
 
 
-	
+	// >>>>>>>>>>>> !!!!!!!!!!!!!!1add only for test
+	console.log('to clear local storage add to url - #clear');
+
 
 }(window));
