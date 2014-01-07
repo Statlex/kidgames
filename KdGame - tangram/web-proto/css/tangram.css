@@ -13,13 +13,17 @@
 	left: 0;
 }
 
+polygon {
+	outline: 1px solid transparent;
+}
+
 .tangram-page polygon {
 	-webkit-transform-origin: center center;
 	transform-origin: center center;
 }
 
 .tangram-page polygon.active {
-	opacity: 0.7;
+	opacity: 0.6;
 }
 
 .rotater {
@@ -30,21 +34,22 @@
 	top: 0;
 	width: 300px;
 	height: 300px;
-	background-color: rgba(0, 0, 0, 0.5);
 	background-image: url('../img/i/rotate-icon.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
+	opacity: 0.65;
+	border-radius: 100%;
 }
 
 .rotater-out-block {
 	position: relative;
 	width: 50%;
 	height: 50%;
-	/*background-color: #090;*/
 	top: 25%;
 	left: 25%;
 	float: left;
+	border-radius: 100%;
 }
 
 .hidden-but-showed {
@@ -54,4 +59,8 @@
 	top: -100px;
 	left: -100px;
 	z-index: -10000;
+}
+
+.main-image g {
+	filter: url('#inset-shadow');
 }
