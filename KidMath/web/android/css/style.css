@@ -768,7 +768,7 @@ body {
 	width: 100%;
 }
 
-@media screen and (max-height: 479px) {
+@media screen and (max-height: 450px) {
 	.share-link {
 		width: 50%;
 		float: left;
@@ -777,4 +777,9 @@ body {
 	}
 }
 
+@media screen and (max-width: 450px) and (max-height: 450px) {
+	.sharing-table-row {
+		display: none;
+	}
+}
 
