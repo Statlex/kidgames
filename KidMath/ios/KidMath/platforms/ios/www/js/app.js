@@ -120,7 +120,7 @@
 			window.statusBar.setBackButton(template.getAttribute('back-button'));
 		},
 		closeNeededLevel: function() {
- console.log('close needed level ');
+
 			var levels = $$('.level-wrapper', this.wrapper);
 			levels.forEach(function(levelNode) {
 				if (dataStorage.getItem('openedLevel').indexOf(parseInt(levelNode.getAttribute('level'), 10)) === -1) {
@@ -129,9 +129,6 @@
 					levelNode.className += ' enable';
 				}
 			});
- console.log('close needed level 1 ');
-
- 
 
 		},
 		showLevel: function(params, node) {

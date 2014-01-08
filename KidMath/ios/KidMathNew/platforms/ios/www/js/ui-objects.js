@@ -6,7 +6,7 @@
 	win.ui = win.ui || {};
 
 	win.ui.fade = {
-		time: 300,
+		time: 600,
 		handleEvent: function () {
 			this.node = $('#fade');
 			this.node.addEventListener(info.vendorPrefix + 'TransitionEnd', function () {
