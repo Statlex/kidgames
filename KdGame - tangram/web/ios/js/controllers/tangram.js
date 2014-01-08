@@ -216,6 +216,7 @@
 					y1 += cy + coords[1];
 
 					pointsArr.push({x: x1, y: y1, xc: cx + coords[0], yc: cy + coords[1]});
+
 				});
 
 				allCoordinates.push(pointsArr);
