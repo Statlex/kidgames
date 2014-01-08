@@ -496,6 +496,7 @@
 		TRPR: '0,25 0,75 25,50 25,0',
 
 		template: '<polygon figure-name="{{= figureName }}" fill="{{= fillColor }}" stroke="{{= strokeColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{= points }}"/>'
+
 	};
 
 
