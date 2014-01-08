@@ -16,7 +16,10 @@
 	background-size: contain;
 }
 
-
+.tangram-page polygon {
+	-webkit-transform-origin: center center;
+	transform-origin: center center;
+}
 
 
 

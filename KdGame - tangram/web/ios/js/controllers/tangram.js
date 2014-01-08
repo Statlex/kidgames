@@ -62,12 +62,13 @@
 						var y = xy.split(',')[1];
 						arr[index] = [x * tg.q + ',' + y * tg.q];
 					});
-					points.join(' ');
+					points = points.join(' ');
 					// scale figure end
 
 					figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
 						.replace('{{fillColor}}', tg.fillColor)
 						.replace('{{strokeColor}}', tg.strokeColor)
+						.replace('{{className}}', 'polygon-' + figureName)
 						.replace('{{points}}', points);
 
 				});
@@ -76,7 +77,6 @@
 				wrapper.appendChild(svg);
 			}());
 			// 1 end
-
 
 			console.log('tangram init');
 
@@ -120,7 +120,7 @@
 
 		TRPR: '0,25 0,75 25,50 25,0',
 
-		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
+		template: '<polygon class="{{className}}" figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
 
 	};
 
