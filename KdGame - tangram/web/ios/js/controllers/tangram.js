@@ -11,17 +11,35 @@
 			coords.forEach(function(value, index, arr){
 				arr[index] = parseFloat(value);
 			});
-
 			return coords;
 		},
 		getAngle: function(centerX, centerY, pointX, pointY) {
 			var x = centerX - pointX;
 			var y = centerY - pointY;
 			var addGrad = (x >= 0) ? 180 : 0;
-			var a = Math.round(Math.atan(y/x) * 180 / 3.1415926 + addGrad);
+			var a = Math.atan(y/x) * 180 / Math.PI + addGrad;
 			a += (a < 0) ? 360 : 0;
 			return a;
+		},
+		toNormalAngle: function(angle) {
+			while (angle < 0) {
+				angle += 360;
+			}
+			while (angle >= 360) {
+				angle -= 360;
+			}
+			return angle;
+		},
+		getPathSize: function(x0, y0, x1, y1){
+			return Math.sqrt(Math.pow(x0-x1, 2) + Math.pow(y0-y1, 2));
+		},
+		sin: function(angle) {
+			return Math.sin(angle / 180 * Math.PI);
+		},
+		cos: function(angle) {
+			return Math.cos(angle / 180 * Math.PI);
 		}
+
 	};
 
 // test for util.getAngle
@@ -32,6 +50,12 @@
 //			console.log( x[i] + ' / ' + y[i] + ' / ' + util.getAngle(0,0,x[i], y[i]) );
 //		})
 //	}());
+//	(function (win) {
+//		console.log(util.getPathSize(0,0,3,4));
+//	}(window));
+
+
+
 
 	var evt = {
 		down: info.isTouch ? 'touchstart' : 'mousedown',
@@ -133,6 +157,9 @@
 			angle = angle % 360;
 			angle += angle < 0 ? 360 : 0;
 			rotater.activePolygon.node.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
+
+			mover.alignCoordinates();
+
 		}
 	};
 
@@ -150,6 +177,55 @@
 				rotater.curX = info.isTouch ? e.touches[0].pageX : e.pageX;
 				rotater.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
 			}
+		},
+		alignCoordinates: function(){
+
+			console.log(this.activePolygon.node);
+
+			var allCoordinates = [];
+
+			var polygons = $$('polygon', main.wrapper);
+			polygons.forEach(function(polygon){
+
+				// do not track active polygon
+				if (polygon.getAttribute('class') === 'active') {
+					return;
+				}
+
+				var points = polygon.getAttribute('points').split(' ');
+				var pointsArr = [];
+				points.forEach(function(xy){
+					var cx, cy, x0, y0, x1, y1, angle0, angle1, lineSize;
+
+					var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
+					cx = figuresCode[polygon.getAttribute('figure-name') + 'X'] * tg.q;
+					cy = figuresCode[polygon.getAttribute('figure-name') + 'Y'] * tg.q;
+					x0 = parseFloat(xy.split(',')[0]) - cx;
+					y0 = parseFloat(xy.split(',')[1]) - cy;
+					angle0 = util.getAngle(0, 0, x0, y0);
+
+					angle1 = util.toNormalAngle(angle0 + coords[2]);
+					lineSize = util.getPathSize(0, 0, x0, y0);
+
+					// coords relative center of figure
+					x1 = util.cos(angle1) * lineSize;
+					y1 = util.sin(angle1) * lineSize;
+
+					// real coordinates
+					x1 += cx + coords[0];
+					y1 += cy + coords[1];
+
+					pointsArr.push({x: x1, y: y1});
+				});
+
+				allCoordinates.push(pointsArr);
+
+			});
+
+			console.log(allCoordinates);
+
+
+
 
 		}
 
