@@ -21,8 +21,33 @@
 	transform-origin: center center;
 }
 
+.figures-container .active {
+	opacity: 0.6;
+}
 
+.rotater {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-image: url('../img/i/rotate-bg.svg');
+	background-position: center center;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 0.5);
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+	display: none;
+}
 
-
-
-
+.rotater .rotater-inner-point {
+	display: block;
+	background-color: #00c;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	top: 25%;
+	left: 25%;
+	border-radius: 100%;
+}
