@@ -35,7 +35,7 @@
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0.5);
+	/*background-color: rgba(0, 0, 0, 0.5);*/
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
 	display: none;
@@ -43,7 +43,7 @@
 
 .rotater .rotater-inner-point {
 	display: block;
-	background-color: #00c;
+	/*background-color: #00c;*/
 	position: absolute;
 	width: 50%;
 	height: 50%;

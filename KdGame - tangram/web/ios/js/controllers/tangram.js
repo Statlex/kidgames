@@ -42,7 +42,7 @@
 
 	rotater = {
 		isActive: false,
-		defaultSize: 150,
+		defaultSize: 120,
 		init: function(){
 			this.wrapper = $('.js-rotater', main.wrapper);
 			var size = this.defaultSize * tg.q;
@@ -82,6 +82,7 @@
 
 			this.wrapper.addEventListener(evt.up, function(e){
 				that.isActive = false;
+				that.alignAngle();
 			}, false);
 
 			var innerPoint = $('.js-rotater-inner-point', this.wrapper);
@@ -102,6 +103,10 @@
 				e.stopPropagation();
 			}, false);
 
+			innerPoint.addEventListener(evt.up, function(){
+				that.alignAngle();
+			}, false);
+
 		},
 		showRotater: function() {
 			var poly = this.activePolygon;
@@ -120,6 +125,14 @@
 			var angle = util.getAngle(this.rotateCenterX, this.rotateCenterY, this.curX, this.curY) - this.startAngle;
 			var poly = this.activePolygon;
 			poly.node.setAttribute('style', info.preCSS + 'transform: translate(' + poly.x + 'px, ' + poly.y + 'px) rotate(' + (poly.angle + angle) + 'deg);');
+		},
+		alignAngle: function(){
+			var coords = util.getCoordinatesFromStyle(rotater.activePolygon.node.getAttribute('style'));
+			var angle = coords[2];
+			angle = Math.round(angle / 45) * 45;
+			angle = angle % 360;
+			angle += angle < 0 ? 360 : 0;
+			rotater.activePolygon.node.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
 		}
 	};
 
@@ -264,7 +277,7 @@
 							type: this.getAttribute('figure-name')
 						};
 						rotater.showRotater();
-
+						rotater.alignAngle();
 						e.stopPropagation();
 					}, false);
 				});
@@ -282,6 +295,7 @@
 				field.addEventListener(evt.up, function(e) {
 					mover.isActive = false;
 					rotater.hideRotater();
+					rotater.alignAngle();
 				}, false);
 
 			}());
