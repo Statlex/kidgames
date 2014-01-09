@@ -77,6 +77,7 @@
 
 			var that = this;
 			this.wrapper.addEventListener(evt.down, function(e){
+				console.log('rotater wrapper down 0');
 				rotater.isActive = true;
 				that.startX = info.isTouch ? e.touches[0].pageX : e.pageX;
 				that.startY = info.isTouch ? e.touches[0].pageY : e.pageY;
@@ -93,6 +94,7 @@
 				};
 				that.showRotater();
 				that.startAngle = util.getAngle(that.rotateCenterX, that.rotateCenterY, that.startX, that.startY);
+				console.log('rotater wrapper down 1');
 
 			}, false);
 
@@ -101,16 +103,22 @@
 					that.curX = info.isTouch ? e.touches[0].pageX : e.pageX;
 					that.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
 					that.rotate(e);
+				} else {
+					mover.move(e);
 				}
 			}, false);
 
 			this.wrapper.addEventListener(evt.up, function(e){
+				console.log('rotater wrapper up 0');
 				that.isActive = false;
 				that.alignAngle();
+				that.showRotater();
+				console.log('rotater wrapper up 1');
 			}, false);
 
 			var innerPoint = $('.js-rotater-inner-point', this.wrapper);
 			innerPoint.addEventListener(evt.down, function(e){
+				console.log('rotater inner point down 0');
 				rotater.hideRotater();
 				mover.isActive = true;
 				mover.startX = info.isTouch ? e.touches[0].pageX : e.pageX;
@@ -120,19 +128,33 @@
 				var coords = util.getCoordinatesFromStyle(mover.activePolygon.node.getAttribute('style'));
 				mover.activePolygon = {
 					node: mover.activePolygon.node,
-					x: parseFloat(coords[0]) || 0,
-					y: parseFloat(coords[1]) || 0,
-					angle: parseFloat(coords[2]) || 0
+					x: coords[0] || 0,
+					y: coords[1] || 0,
+					angle: coords[2] || 0
 				};
 				e.stopPropagation();
+				console.log('rotater inner point down 1');
 			}, false);
 
 			innerPoint.addEventListener(evt.up, function(){
+				console.log('rotater inner point up 0');
 				that.alignAngle();
+				console.log('rotater inner point up 1');
 			}, false);
 
 		},
 		showRotater: function() {
+			//this.isActive = true;
+			this.wrapper.style.display = 'block';
+			var activePolygon = $('.js-figures-container polygon.active');
+			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
+			this.activePolygon = {
+				node: activePolygon,
+				x: coords[0] || 0,
+				y: coords[1] || 0,
+				angle: coords[2] || 0,
+				type: activePolygon.getAttribute('figure-name')
+			};
 			var poly = this.activePolygon;
 			var dX = figuresCode[poly.type + 'X'] * tg.q;
 			var dY = figuresCode[poly.type + 'Y'] * tg.q;
@@ -180,8 +202,6 @@
 		},
 		alignCoordinates: function(){
 
-			console.log(this.activePolygon.node);
-
 			var allCoordinates = [];
 
 			var polygons = $$('polygon', main.wrapper);
@@ -223,7 +243,7 @@
 
 			});
 
-			console.log(allCoordinates);
+			//console.log(allCoordinates);
 
 
 
@@ -317,6 +337,7 @@
 				var polygons = $$('.js-figures-container polygon');
 				polygons.forEach(function(polygon){
 					polygon.addEventListener(evt.down, function(e) {
+						console.log('polygon down 0');
 						mover.activePolygon.node.setAttribute('class', '');
 						rotater.hideRotater();
 
@@ -329,50 +350,63 @@
 						var coords = util.getCoordinatesFromStyle(this.getAttribute('style'));
 						mover.activePolygon = {
 							node: this,
-							x: parseFloat(coords[0]) || 0,
-							y: parseFloat(coords[1]) || 0,
-							angle: parseFloat(coords[2]) || 0
+							x: coords[0] || 0,
+							y: coords[1] || 0,
+							angle: coords[2] || 0
 						};
 
 						mover.activePolygon.node.setAttribute('class', 'active');
 
 						e.stopPropagation();
+						console.log('polygon down 1');
 					}, false);
 				});
 
 				polygons.forEach(function(polygon){
 					polygon.addEventListener(evt.up, function(e){
+						console.log('polygon up 0');
+
 						mover.isActive = false;
 
 						//rotater.isActive = true;
 						var coords = util.getCoordinatesFromStyle(this.getAttribute('style'));
 						rotater.activePolygon = {
 							node: this,
-							x: parseFloat(coords[0]) || 0,
-							y: parseFloat(coords[1]) || 0,
-							angle: parseFloat(coords[2]) || 0,
+							x: coords[0] || 0,
+							y: coords[1] || 0,
+							angle: coords[2] || 0,
 							type: this.getAttribute('figure-name')
 						};
 						rotater.showRotater();
 						rotater.alignAngle();
 						e.stopPropagation();
+						console.log('polygon up 1');
+
 					}, false);
 				});
 
 				// set event listener to main svg (work field)
 				var field = $('.js-figures-container');
 				field.addEventListener(evt.down, function(e) {
+					console.log('field down 0');
+
 					mover.isActive = false;
 					mover.activePolygon.node.setAttribute('class', '');
 					rotater.hideRotater();
+					console.log('field down 1');
+
 				}, false);
 				field.addEventListener(evt.move, function(e) {
 					mover.move(e);
 				}, false);
 				field.addEventListener(evt.up, function(e) {
+					console.log('field up 0');
+
 					mover.isActive = false;
 					rotater.hideRotater();
 					rotater.alignAngle();
+					console.log('field up 1');
+
 				}, false);
 
 			}());

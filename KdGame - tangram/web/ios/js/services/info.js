@@ -15,7 +15,7 @@
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		debugger:{
-			isActive: true,
+			isActive: false,
 			position: 'right' // while not use
 		},
 		screen: {
