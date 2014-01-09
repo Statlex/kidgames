@@ -28,3 +28,17 @@
 	win.addEventListener('load', main, false);
 
 }(window));
+
+(function () {
+	"use strict";
+	/*global window, document, console, alert */
+
+	window.addEventListener('load', noBodyScroll, false); // + no gesture
+	function noBodyScroll() {
+		var wrapper = $('body');
+		wrapper.addEventListener('touchmove', function(e){
+			e.preventDefault();
+		}, false);
+	}
+
+}());
