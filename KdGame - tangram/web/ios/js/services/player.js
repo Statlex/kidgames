@@ -16,7 +16,7 @@
 //			return;
 
 //			if (this.musicOn === 'no') {
-//				return;
+				return;
 //			}
 
 			if (this.currentMediaStatus <= 2 ) {
@@ -66,7 +66,7 @@
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}
-
+return;
 	playerObj.play = function(src) {
 
 		console.log(this.toSoundPrefix + src);

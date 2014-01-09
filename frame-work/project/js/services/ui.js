@@ -74,3 +74,31 @@
 	win.addEventListener('load', win.ui.alert, false);
 
 }(window));
+
+
+(function (win) {
+
+	"use strict";
+	/*global window, document, console, alert */
+	if (!info.debugger.isActive) {
+		return;
+	}
+
+	var logger = {
+		handleEvent: function(){
+			this.wrapper = $('.js-logger');
+			this.wrapper.style.display = 'block';
+			this.innerBlock = $('.js-logger-inner-block', this.wrapper);
+			// save current method
+			console._log = console.log;
+			var that = this;
+			console.log = function(text) {
+				that.innerBlock.innerHTML += text + '<br>';
+			}
+		}
+
+	};
+
+	win.addEventListener('load', logger, false);
+
+}(window));

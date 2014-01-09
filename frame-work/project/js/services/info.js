@@ -14,6 +14,10 @@
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		preCSS: '-webkit-',
 		preJS: 'webkit',
+		debugger:{
+			isActive: false,
+			position: 'right' // while not use
+		},
 		screen: {
 			getWidth: function() {
 				return docElem.clientWidth;
