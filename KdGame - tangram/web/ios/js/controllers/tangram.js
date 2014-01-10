@@ -38,6 +38,58 @@
 		},
 		cos: function(angle) {
 			return Math.cos(angle / 180 * Math.PI);
+		},
+		getFigureCoordinates: function(polygon) {
+			var points = polygon.getAttribute('points').split(' ');
+			var coordinates = {
+				points: [],
+				center: {
+					x: 0,
+					y: 0
+				},
+				angle: 0,
+				style: {
+					x: 0,
+					y: 0
+				}
+			};
+
+			points.forEach(function(xy){
+				var cx, cy, x0, y0, x1, y1, angle0, angle1, lineSize;
+
+				var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
+				cx = figuresCode[polygon.getAttribute('figure-name') + 'X'] * tg.q;
+				cy = figuresCode[polygon.getAttribute('figure-name') + 'Y'] * tg.q;
+				x0 = parseFloat(xy.split(',')[0]) - cx;
+				y0 = parseFloat(xy.split(',')[1]) - cy;
+				angle0 = util.getAngle(0, 0, x0, y0);
+
+				angle1 = util.toNormalAngle(angle0 + coords[2]);
+				lineSize = util.getPathSize(0, 0, x0, y0);
+
+				// coords relative center of figure
+				x1 = util.cos(angle1) * lineSize;
+				y1 = util.sin(angle1) * lineSize;
+
+				// real coordinates
+				x1 += cx + coords[0];
+				y1 += cy + coords[1];
+
+				coordinates.points.push({x: x1, y: y1});
+				coordinates.center = {x: cx + coords[0], y: cy + coords[1]};
+				coordinates.angle = coords[2];
+				coordinates.style = {
+					x: coords[0],
+					y: coords[1]
+				}
+			});
+
+			var angle = coordinates.angle;
+			angle = Math.round(util.toNormalAngle(angle) / 45) * 45;
+			coordinates.angle = angle;
+
+			return coordinates;
+
 		}
 
 	};
@@ -179,6 +231,8 @@
 			angle = angle % 360;
 			angle += angle < 0 ? 360 : 0;
 			rotater.activePolygon.node.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
+			// if part of figure oyt of screen -> return this one tu screen
+			mover.putFigureInBox(rotater.activePolygon.node);
 
 			mover.alignCoordinates();
 
@@ -206,47 +260,63 @@
 
 			var polygons = $$('polygon', main.wrapper);
 			polygons.forEach(function(polygon){
-
 				// do not track active polygon
 				if (polygon.getAttribute('class') === 'active') {
 					return;
 				}
 
-				var points = polygon.getAttribute('points').split(' ');
-				var pointsArr = [];
-				points.forEach(function(xy){
-					var cx, cy, x0, y0, x1, y1, angle0, angle1, lineSize;
-
-					var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
-					cx = figuresCode[polygon.getAttribute('figure-name') + 'X'] * tg.q;
-					cy = figuresCode[polygon.getAttribute('figure-name') + 'Y'] * tg.q;
-					x0 = parseFloat(xy.split(',')[0]) - cx;
-					y0 = parseFloat(xy.split(',')[1]) - cy;
-					angle0 = util.getAngle(0, 0, x0, y0);
-
-					angle1 = util.toNormalAngle(angle0 + coords[2]);
-					lineSize = util.getPathSize(0, 0, x0, y0);
-
-					// coords relative center of figure
-					x1 = util.cos(angle1) * lineSize;
-					y1 = util.sin(angle1) * lineSize;
-
-					// real coordinates
-					x1 += cx + coords[0];
-					y1 += cy + coords[1];
-
-					pointsArr.push({x: x1, y: y1, xc: cx + coords[0], yc: cy + coords[1]});
-
-				});
-
+				var pointsArr = util.getFigureCoordinates(polygon);
 				allCoordinates.push(pointsArr);
 
 			});
 
 			//console.log(allCoordinates);
 
+		},
+		putFigureInBox: function(activeFigure){
 
+			var maxX = info.screen.getWidth();
+			var maxY = info.screen.getHeight();
+			var maxDTop = 0;
+			var maxDRight = 0;
+			var maxDBottom = 0;
+			var maxDLeft = 0;
 
+			var coords = util.getFigureCoordinates(activeFigure);
+			var styleCoords = util.getCoordinatesFromStyle(activeFigure.getAttribute('style'));
+			coords.points.forEach(function(xyObj){
+				if (xyObj.x < 0) {
+					maxDLeft = (maxDLeft < xyObj.x) ? maxDLeft : xyObj.x;
+				}
+				if (xyObj.y < 0) {
+					maxDTop = (maxDTop < xyObj.y) ? maxDTop : xyObj.y;
+				}
+				if (xyObj.x > maxX) {
+					maxDRight = (maxDRight > (xyObj.x - maxX)) ? maxDRight : (xyObj.x - maxX);
+				}
+				if (xyObj.y > maxY) {
+					maxDBottom = (maxDBottom > (xyObj.y - maxY)) ? maxDBottom : (xyObj.y - maxY);
+				}
+			});
+
+			if (maxDLeft !== 0 || maxDRight !== 0) {
+				styleCoords[0] -= maxDLeft + maxDRight;
+			}
+			if (maxDTop !== 0 || maxDBottom !== 0) {
+				styleCoords[1] -= maxDTop + maxDBottom;
+			}
+
+			styleCoords[0] = Math.round(styleCoords[0]);
+			styleCoords[1] = Math.round(styleCoords[1]);
+
+			var style = info.preCSS + 'transform: translate(' + styleCoords[0] + 'px, ' + styleCoords[1] + 'px) rotate(' + styleCoords[2] + 'deg);';
+			activeFigure.setAttribute('style', style);
+
+			if (maxDTop !== 0 || maxDRight !== 0 || maxDLeft !== 0 || maxDBottom !== 0) {
+				if (activeFigure.getAttribute('class') === 'active') {
+					rotater.showRotater();
+				}
+			}
 
 		}
 
