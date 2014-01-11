@@ -7,11 +7,12 @@
 
 	util = {
 		getCoordinatesFromStyle: function(style){
-			var coords = (style || 'transform: translate(0px, 0px) rotate(0deg)').match(/-?\d+|-?\d+\.\d+/gi);
+			var coords = (style || 'transform: translate(0px, 0px) rotate(0deg)').match(/-?\d+[pd]|-?\d+\.\d+[pd]/gi);
 			coords.forEach(function(value, index, arr){
 				arr[index] = parseFloat(value);
 			});
 			return coords;
+
 		},
 		getAngle: function(centerX, centerY, pointX, pointY) {
 			var x = centerX - pointX;
@@ -40,7 +41,9 @@
 			return Math.cos(angle / 180 * Math.PI);
 		},
 		getFigureCoordinates: function(polygon) {
-			var points = polygon.getAttribute('points').split(' ');
+			var figureName = polygon.getAttribute('figure-name');
+			var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
+			var points = figuresCode[figureName + 'Info'].allPoints;
 			var coordinates = {
 				points: [],
 				center: {
@@ -55,13 +58,13 @@
 			};
 
 			points.forEach(function(xy){
+
 				var cx, cy, x0, y0, x1, y1, angle0, angle1, lineSize;
 
-				var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
-				cx = figuresCode[polygon.getAttribute('figure-name') + 'X'] * tg.q;
-				cy = figuresCode[polygon.getAttribute('figure-name') + 'Y'] * tg.q;
-				x0 = parseFloat(xy.split(',')[0]) - cx;
-				y0 = parseFloat(xy.split(',')[1]) - cy;
+				cx = figuresCode[figureName + 'X'] * tg.q;
+				cy = figuresCode[figureName + 'Y'] * tg.q;
+				x0 = xy.x - cx;
+				y0 = xy.y - cy;
 				angle0 = util.getAngle(0, 0, x0, y0);
 
 				angle1 = util.toNormalAngle(angle0 + coords[2]);
@@ -371,16 +374,27 @@
 			poly.node.setAttribute('style', info.preCSS + 'transform: translate(' + poly.x + 'px, ' + poly.y + 'px) rotate(' + (poly.angle + angle) + 'deg);');
 		},
 		alignAngle: function(){
-			var coords = util.getCoordinatesFromStyle(rotater.activePolygon.node.getAttribute('style'));
+
+			var activePolygon = $('.js-figures-container polygon.active');
+
+			if (!activePolygon) {
+				return;
+			}
+
+
+			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
 			var angle = coords[2];
+			angle = util.toNormalAngle(angle);
 			angle = Math.round(angle / 45) * 45;
 			angle = angle % 360;
 			angle += angle < 0 ? 360 : 0;
-			rotater.activePolygon.node.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
-			// if part of figure oyt of screen -> return this one tu screen
-			mover.putFigureInBox(rotater.activePolygon.node);
 
-			mover.alignCoordinates();
+
+			activePolygon.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
+			// if part of figure oyt of screen -> return this one tu screen
+			mover.putFigureInBox(activePolygon);
+
+			mover.alignCoordinates(activePolygon);
 
 		}
 	};
@@ -400,23 +414,55 @@
 				rotater.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
 			}
 		},
-		alignCoordinates: function(){
+		alignCoordinates: function(activePolygon){
 
-			var allCoordinates = [];
+			if (!activePolygon) {
+				return;
+			}
 
-			var polygons = $$('polygon', main.wrapper);
+			var polygons = $$('.js-figures-container polygon', main.wrapper);
+
+			// coordinates for active lement
+			var activeCoordinates = [];
+
+			// coordinates for others lement
+			var staticCoordinates = [];
+
 			polygons.forEach(function(polygon){
-				// do not track active polygon
+				var pointsArr = JSON.parse(JSON.stringify(util.getFigureCoordinates(polygon).points));
 				if (polygon.getAttribute('class') === 'active') {
-					return;
+					activeCoordinates = activeCoordinates.concat(pointsArr);
+				} else {
+					staticCoordinates = staticCoordinates.concat(pointsArr);
 				}
-
-				var pointsArr = util.getFigureCoordinates(polygon);
-				allCoordinates.push(pointsArr);
-
 			});
 
-			//console.log(allCoordinates);
+			var minDX = 10000000 * tg.q;
+			var minDY = 10000000 * tg.q;
+
+			var alignD = 15 * tg.q;
+
+			activeCoordinates.forEach(function(xyActive){
+				staticCoordinates.forEach(function(xyStatic){
+					var dx = xyStatic.x - xyActive.x;
+					var dy = xyStatic.y - xyActive.y;
+					if (util.getPathSize(0, 0, dx, dy) < Math.abs(alignD))  {
+						minDX = (Math.abs(minDX) > Math.abs(dx)) ? dx : minDX;
+						minDY = (Math.abs(minDY) > Math.abs(dy)) ? dy : minDY;
+					}
+
+				});
+			});
+
+			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
+			coords[2] = util.toNormalAngle(coords[2]);
+			coords[2] = Math.round(coords[2] / 45) * 45;
+
+			if (util.getPathSize(0,0, minDX, minDY) < Math.abs(alignD)) {
+				var style = info.preCSS + 'transform: translate(' + (coords[0] + minDX) + 'px, ' + (coords[1] + minDY) + 'px) rotate(' + coords[2] + 'deg)';
+				activePolygon.setAttribute('style', style);
+				rotater.showRotater();
+			}
 
 		},
 		putFigureInBox: function(activeFigure){
@@ -683,6 +729,7 @@
 		TRPRY: 37.5,
 
 		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
+//		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="none" stroke-miterlimit="10" points="{{points}}"/>'
 
 	};
 
