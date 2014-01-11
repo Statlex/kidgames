@@ -90,7 +90,153 @@
 
 			return coordinates;
 
+		},
+		createFigureInfo: function(q) {
+
+			var allFigures = ['B3A', 'M3A', 'S3A', 'SQR', 'TRP', 'TRPR'];
+			allFigures.forEach(function(figureName){
+				figuresCode[figureName + 'Info'] = {};
+				var points = figuresCode[figureName];
+				var pointsCoordinates = [];
+				points = points.split(' ');
+				points.forEach(function(xy){
+					var x = parseFloat(xy.split(',')[0] * q);
+					var y = parseFloat(xy.split(',')[1] * q);
+					pointsCoordinates.push({x: x, y:y});
+				});
+
+				figuresCode[figureName + 'Info'].points = pointsCoordinates;
+				figuresCode[figureName + 'Info'].width = figuresCode[figureName + 'Width'] * q;
+				figuresCode[figureName + 'Info'].height = figuresCode[figureName + 'Height'] * q;
+				figuresCode[figureName + 'Info'].centerX = figuresCode[figureName + 'X'] * q;
+				figuresCode[figureName + 'Info'].centerY = figuresCode[figureName + 'Y'] * q;
+				figuresCode[figureName + 'Info'].allPoints = [];
+
+				points = figuresCode[figureName + 'Info'].points;
+
+				var x0, x1, x2, x3, x4, x5, x6, x7, x8, y0, y1, y2, y3, y4, y5, y6, y7, y8, i, len;
+
+				// add extra points
+				switch (figureName) {
+					case 'B3A':
+
+						for (i = 0, len = points.length; i < len; i++ ) {
+							x0 = points[i].x;
+							y0 = points[i].y;
+							x4 = points[i+1] ? points[i+1].x : points[0].x;
+							y4 = points[i+1] ? points[i+1].y : points[0].y;
+
+							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+
+							if (x0 === x4) {
+								y8 = y4;
+								y4 = (y8 + y0) / 2;
+								y2 = (y4 + y0) / 2;
+								y1 = (y2 + y0) / 2;
+								y3 = (y2 + y4) / 2;
+								y6 = (y8 + y4) / 2;
+								y7 = (y8 + y6) / 2;
+								y5 = (y4 + y6) / 2;
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y4});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y5});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y6});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y7});
+							} else {
+								x2 = (x0 + x4)/2;
+								y2 = (y0 + y4)/2;
+								x1 = (x0 + x2)/2;
+								y1 = (y0 + y2)/2;
+								x3 = (x2 + x4)/2;
+								y3 = (y2 + y4)/2;
+								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
+							}
+
+						}
+
+						break;
+					case 'M3A':
+
+						for (i = 0, len = points.length; i < len; i++ ) {
+							x0 = points[i].x;
+							y0 = points[i].y;
+							x4 = points[i+1] ? points[i+1].x : points[0].x;
+							y4 = points[i+1] ? points[i+1].y : points[0].y;
+
+							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+
+							x2 = (x0 + x4)/2;
+							y2 = (y0 + y4)/2;
+							x1 = (x0 + x2)/2;
+							y1 = (y0 + y2)/2;
+							x3 = (x2 + x4)/2;
+							y3 = (y2 + y4)/2;
+							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+							figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
+							figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
+						}
+						break;
+					case 'SQR':
+
+						for (i = 0, len = points.length; i < len; i++ ) {
+							x0 = points[i].x;
+							y0 = points[i].y;
+							x2 = points[i+1] ? points[i+1].x : points[0].x;
+							y2 = points[i+1] ? points[i+1].y : points[0].y;
+							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+							x1 = (x0 + x2)/2;
+							y1 = (y0 + y2)/2;
+							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+						}
+						break;
+					case 'S3A':
+					case 'TRP':
+					case 'TRPR':
+
+						for (i = 0, len = points.length; i < len; i++ ) {
+							x0 = points[i].x;
+							y0 = points[i].y;
+							x2 = points[i+1] ? points[i+1].x : points[0].x;
+							y2 = points[i+1] ? points[i+1].y : points[0].y;
+
+							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+
+							if (x0 === x2) {
+								y4 = y2;
+
+								y2 = (y0 + y4)/2;
+								y1 = (y0 + y2)/2;
+								y3 = (y2 + y4)/2;
+
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
+
+							} else {
+								x1 = (x0 + x2)/2;
+								y1 = (y0 + y2)/2;
+								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+							}
+
+						}
+
+						break;
+				}
+
+
+
+			});
+
+
+
+
 		}
+
+
 
 	};
 
@@ -383,6 +529,9 @@
 					points = points.join(' ');
 					// scale figure end
 
+					// create all info
+					console.log(figuresCode);
+
 					figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
 						.replace('{{fillColor}}', tg.fillColor)
 						.replace('{{strokeColor}}', tg.strokeColor)
@@ -392,6 +541,7 @@
 				tempNode.innerHTML = tempNode.innerHTML.replace('{{figures}}', figuresStr);
 				var svg = $('svg', tempNode);
 				wrapper.appendChild(svg);
+				util.createFigureInfo(tg.q);
 			}());
 			// create svg with active polygons, append this one end
 
@@ -527,6 +677,10 @@
 		TRPY: 37.5,
 
 		TRPR: '0,25 0,75 25,50 25,0',
+		TRPRWidth: 25,
+		TRPRHeight: 75,
+		TRPRX: 12.5,
+		TRPRY: 37.5,
 
 		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
 
