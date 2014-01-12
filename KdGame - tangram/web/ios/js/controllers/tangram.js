@@ -140,13 +140,13 @@
 								y6 = (y8 + y4) / 2;
 								y7 = (y8 + y6) / 2;
 								y5 = (y4 + y6) / 2;
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
 								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
 								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y4});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y5});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y5});
 								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y6});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y7});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y7});
 							} else {
 								x2 = (x0 + x4)/2;
 								y2 = (y0 + y4)/2;
@@ -154,9 +154,9 @@
 								y1 = (y0 + y2)/2;
 								x3 = (x2 + x4)/2;
 								y3 = (y2 + y4)/2;
-								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
 								figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
 							}
 
 						}
@@ -178,9 +178,9 @@
 							y1 = (y0 + y2)/2;
 							x3 = (x2 + x4)/2;
 							y3 = (y2 + y4)/2;
-							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+//							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
 							figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
-							figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
+//							figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
 						}
 						break;
 					case 'SQR':
@@ -197,6 +197,34 @@
 						}
 						break;
 					case 'S3A':
+						for (i = 0, len = points.length; i < len; i++ ) {
+							x0 = points[i].x;
+							y0 = points[i].y;
+							x2 = points[i+1] ? points[i+1].x : points[0].x;
+							y2 = points[i+1] ? points[i+1].y : points[0].y;
+
+							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+
+							if (x0 === x2) {
+								y4 = y2;
+
+								y2 = (y0 + y4)/2;
+								y1 = (y0 + y2)/2;
+								y3 = (y2 + y4)/2;
+
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
+								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
+//								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
+
+							} else {
+								x1 = (x0 + x2)/2;
+								y1 = (y0 + y2)/2;
+								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+							}
+
+						}
+						break;
+
 					case 'TRP':
 					case 'TRPR':
 
@@ -237,8 +265,19 @@
 
 
 
-		}
+		},
+		//debug function - not use
+		drawCircleByCoordinates: function(arr) {
 
+			var w = info.screen.getWidth();
+			var h = info.screen.getHeight();
+
+			var tempNode = document.createElement('div');
+			tempNode.innerHTML = '<svg version="1.2" baseProfile="tiny" class="figures-draw-field js-figures-draw-field" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="' + w + 'px" height="' + h + 'px" viewBox="0 0 ' + w + ' ' + h + '" xml:space="preserve"><\/svg>';
+
+
+
+		}
 
 
 	};
@@ -446,9 +485,9 @@
 				staticCoordinates.forEach(function(xyStatic){
 					var dx = xyStatic.x - xyActive.x;
 					var dy = xyStatic.y - xyActive.y;
-					if (util.getPathSize(0, 0, dx, dy) < Math.abs(alignD))  {
-						minDX = (Math.abs(minDX) > Math.abs(dx)) ? dx : minDX;
-						minDY = (Math.abs(minDY) > Math.abs(dy)) ? dy : minDY;
+					if (util.getPathSize(0, 0, dx, dy) < util.getPathSize(0, 0, minDX, minDY))  {
+						minDX = dx;
+						minDY = dy;
 					}
 
 				});
@@ -458,7 +497,7 @@
 			coords[2] = util.toNormalAngle(coords[2]);
 			coords[2] = Math.round(coords[2] / 45) * 45;
 
-			if (util.getPathSize(0,0, minDX, minDY) < Math.abs(alignD)) {
+			if (util.getPathSize(0, 0, minDX, minDY) < Math.abs(alignD)) {
 				var style = info.preCSS + 'transform: translate(' + (coords[0] + minDX) + 'px, ' + (coords[1] + minDY) + 'px) rotate(' + coords[2] + 'deg)';
 				activePolygon.setAttribute('style', style);
 				rotater.showRotater();
