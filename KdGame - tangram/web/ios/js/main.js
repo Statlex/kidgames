@@ -19,6 +19,30 @@
 				viewer.refresh();
 			}, false);
 
+		},
+		setSettingPage: function(){
+			var langSelectNode = $('.js-language-select', this.wrapper);
+			langSelectNode.addEventListener('change', function(){
+				info.set('lang', this.value, true);
+				viewer.refresh();
+			}, false);
+
+			var savedItems = $$('input[save]', main.wrapper);
+			savedItems.forEach(function(item){
+				item.addEventListener('change', function(){
+					var itemName = this.getAttribute('save');
+					info.set(itemName, this.checked, true);
+				}, false);
+			});
+
+		},
+		setPreview: function(wrapper) {
+			var activePreviews = $('.js-tangram-preview.active', main.wrapper);
+			$.removeClass(activePreviews, 'active');
+			$.addClass(wrapper, 'active');
+
+			var patternName = wrapper.getAttribute('pattern-name');
+			info.set('tangramPattern', patternName, true);
 		}
 
 	};
