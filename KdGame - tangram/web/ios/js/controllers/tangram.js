@@ -479,7 +479,9 @@
 			var minDX = 10000000 * tg.q;
 			var minDY = 10000000 * tg.q;
 
-			var alignD = 15 * tg.q;
+			var alignD = 10 * tg.q;
+
+			staticCoordinates = staticCoordinates.concat(tg.extraAlignPoints);
 
 			activeCoordinates.forEach(function(xyActive){
 				staticCoordinates.forEach(function(xyStatic){
@@ -605,12 +607,17 @@
 			 *
 			 * */
 
-			var questionFigureSVG = win.categories[info.currentCategoryName].figures[info.imageNumber].svg;
+			var questionFigureSVG = win.categories[info.currentCategoryName].figures[info.imageNumber].svg.toString();
 
 			var wrapper = $('.page', main.wrapper);
 
 			var w = info.screen.getWidth();
 			var h = info.screen.getHeight();
+
+			// color main image begin
+			var colorizedPolygonsColor = (info.difficult === 'tower') ? info.mainFigureColor : 'transparent';
+			questionFigureSVG = questionFigureSVG.replace(/fill='.*?'/gi, "fill='" + colorizedPolygonsColor + "'");
+			// color main image end
 
 			// add question figure begin
 			wrapper.setAttribute('style', "background-image: url(\"data:image/svg+xml;utf8," + questionFigureSVG + "\");");
@@ -754,12 +761,42 @@
 			}());
 			// add event listeners to polygons end
 
+			// add extra align points begin
+			var extraAlignPoints = [];
+			if (info.difficult === 'tower') {
+
+				(function () {
+					var tempNode = document.createElement('div');
+					tempNode.innerHTML = questionFigureSVG;
+					var svg = $('svg', tempNode);
+					var originalWidth = parseInt(svg.getAttribute('width'), 10);
+					var originalHeight = parseInt(svg.getAttribute('height'), 10);
+					var currentWidth = originalWidth * tg.q;
+					var currentHeight = originalHeight * tg.q;
+
+					var offsetX = (info.screen.getWidth() - currentWidth) / 2;
+					var offsetY = (info.screen.getHeight() - currentHeight) / 2;
+
+					var polygons = $$('polygon', tempNode);
+
+					var points, x, y;
+					polygons.forEach(function(polygon){
+						points = (polygon.getAttribute('points')).trim();
+						points = points.split(' ');
+						points.forEach(function(xy){
+							x = parseFloat(xy.split(',')[0]) * tg.q + offsetX;
+							y = parseFloat(xy.split(',')[1]) * tg.q + offsetY;
+							extraAlignPoints.push({x:x, y:y});
+						})
+					});
+				}());
+			}
+			this.extraAlignPoints = extraAlignPoints;
+			// add extra align points end
+
 			rotater.init();
 
-
-
 			console.log('tangram init');
-
 
 		}
 
@@ -805,14 +842,8 @@
 		TRPRY: 37.5,
 
 		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
-//		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="none" stroke-miterlimit="10" points="{{points}}"/>'
 
 	};
-
-
-
-	win.figuresCode = figuresCode;
-
 
 	win.tangram = tg;
 

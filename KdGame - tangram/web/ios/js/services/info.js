@@ -9,7 +9,7 @@
 	var info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
-		saveItem: 'save-item-kid-game-logic-re-think',
+		saveItem: 'save-item-kid-game-tangram',
 		isPhone: false,
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		preCSS: '-webkit-',
@@ -82,7 +82,8 @@
 		tangramPattern: 'wood',
 		tangramPatternImgPath: 'img/preview/',
 		tangramPatterns: ['granite', 'metal', 'metal-2', 'wood'],
-		imageColor: '#FFF'
+		imageColor: '#FFF',
+		mainFigureColor: '#333'
 
 	};
 
