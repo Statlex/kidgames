@@ -51,3 +51,14 @@
 	left: 25%;
 	border-radius: 100%;
 }
+
+.reflect-button {
+	position: relative;
+	width: 20%;
+	min-width: 100px;
+	max-width: 200px;
+	height: 4%;
+	background-color: #c00;
+	z-index: 5;
+	margin: 0 auto;
+}

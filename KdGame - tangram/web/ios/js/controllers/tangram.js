@@ -549,8 +549,44 @@
 				}
 			}
 
-		}
+		},
+		reflectFigure: function() {
 
+			var activePolygon = $('.js-figures-container polygon.active');
+			if (!activePolygon) {
+				return false;
+			}
+
+			event.stopPropagation();
+
+			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
+			coords[2] += 180;
+			coords[2] = util.toNormalAngle(coords[2]);
+			var style = info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + coords[2] + 'deg)';
+			activePolygon.setAttribute('style', style);
+
+			var figureName = activePolygon.getAttribute('figure-name');
+
+			var pointsSrt = '';
+			switch (figureName) {
+				case 'TRP':
+					figuresCode.TRPRInfo.points.forEach(function(xy){
+						pointsSrt += xy.x + ',' + xy.y + ' ';
+					});
+					activePolygon.setAttribute('figure-name', 'TRPR');
+					activePolygon.setAttribute('points', pointsSrt);
+					break;
+				case 'TRPR':
+					figuresCode.TRPInfo.points.forEach(function(xy){
+						pointsSrt += xy.x + ',' + xy.y + ' ';
+					});
+					activePolygon.setAttribute('figure-name', 'TRP');
+					activePolygon.setAttribute('points', pointsSrt);
+					break;
+
+			}
+
+		}
 
 	};
 
@@ -558,6 +594,7 @@
 		figureList: ['B3A', 'B3A', 'M3A', 'S3A', 'S3A', 'SQR', 'TRP'],
 		fillColor: '#0C0',
 		strokeColor: '#000',
+		mover: mover,
 		start: function () {
 			/**
 			 * flow
@@ -771,6 +808,10 @@
 //		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="none" stroke-miterlimit="10" points="{{points}}"/>'
 
 	};
+
+
+
+	win.figuresCode = figuresCode;
 
 
 	win.tangram = tg;
