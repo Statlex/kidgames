@@ -43,7 +43,28 @@
 
 			var patternName = wrapper.getAttribute('pattern-name');
 			info.set('tangramPattern', patternName, true);
+		},
+		setImageColor: function() {
+			var imgs = $$('.js-category-button', main.wrapper);
+			var tempNode = document.createElement('div');
+			var pre = "background-image: url('data:image/svg+xml;utf8,";
+			var post = "');";
+			imgs.forEach(function(img){
+				tempNode.innerHTML = img.getAttribute('style').replace(pre, '').replace(post, '');
+				var polygons = $$('polygon', tempNode);
+				polygons.forEach(function(polygon){
+					polygon.setAttribute('fill', info.imageColor);
+					polygon.setAttribute('stroke', info.imageColor);
+					polygon.setAttribute('stroke-width', '2');
+					polygon.setAttribute('stroke-linecap', 'round');
+					polygon.setAttribute('stroke-linejoin', 'round');
+					polygon.setAttribute('stroke-miterlimit', '12');
+				});
+				img.setAttribute('style', pre + tempNode.innerHTML + post);
+			})
+
 		}
+
 
 	};
 

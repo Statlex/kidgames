@@ -605,7 +605,7 @@
 			 *
 			 * */
 
-			var questionFigureSVG = win.categories.animal_1.svg;
+			var questionFigureSVG = win.categories[info.currentCategoryName].figures[info.imageNumber].svg;
 
 			var wrapper = $('.page', main.wrapper);
 
