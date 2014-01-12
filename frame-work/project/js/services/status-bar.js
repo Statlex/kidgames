@@ -37,9 +37,16 @@
 				}
 			});
 			this.needShowBackButton(true);
+			this.showStatusBar();
 		},
 		needShowBackButton: function(needShow) {
 			this.backButton.style.display = needShow ? 'block' : 'none';
+		},
+		hideStatusBar: function() {
+			this.wrapper.style.display = 'none';
+		},
+		showStatusBar: function() {
+			this.wrapper.style.display = 'block';
 		}
 
 	};
