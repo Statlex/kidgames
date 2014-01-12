@@ -55,7 +55,7 @@
 				polygons.forEach(function(polygon){
 					polygon.setAttribute('fill', info.imageColor);
 					polygon.setAttribute('stroke', info.imageColor);
-					polygon.setAttribute('stroke-width', '2');
+					polygon.setAttribute('stroke-width', '1');
 					polygon.setAttribute('stroke-linecap', 'round');
 					polygon.setAttribute('stroke-linejoin', 'round');
 					polygon.setAttribute('stroke-miterlimit', '12');

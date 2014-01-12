@@ -19,7 +19,7 @@
 				time: 0
 			},
 			{
-				svg:"<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><g> <polygon fill='#BF7400' points='96.617,143.753 71.617,168.753 96.617,193.753 96.617,170.4 131.971,205.755 96.617,205.755 96.617,241.11 96.616,241.111 167.327,241.111 167.327,170.4 96.617,99.688'/> <rect x='61.261' y='64.333' fill='#BF7400' width='35.356' height='35.355'/> <polygon fill='#BF7400' points='171.617,39.333 121.617,39.333 96.617,64.333 146.617,64.333'/></g></svg>",
+				svg:"<svg version='1.2' baseProfile='tiny' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' xml:space='preserve'><g> <polygon fill='#7F7F7F' points='128.259,44.612 178.259,44.612 153.259,69.612 103.26,69.612'/> <polygon fill='#7F7F7F' points='173.97,175.678 173.971,175.677 173.97,175.677 173.97,175.622 173.942,175.649 103.26,104.967 103.26,150.677 78.26,175.677 103.26,200.677 103.26,175.677 138.588,211.005 138.56,211.032 103.259,211.032 103.259,246.388 103.314,246.333 173.971,246.332'/> <polygon fill='#7F7F7F' points='103.259,69.611 67.904,69.611 67.904,104.967 103.259,104.967'/></g></svg>",
 				time: 0
 			}
 
