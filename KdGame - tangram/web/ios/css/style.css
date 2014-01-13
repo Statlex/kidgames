@@ -297,7 +297,18 @@
 	height: auto;
 }
 
-
+.thumb-wrapper {
+	position: absolute;
+	width: 25%;
+	height: 100%;
+	background-position: left top;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-repeat: no-repeat;
+	top: 0;
+	right: 0;
+	z-index: -10;
+}
 
 
 

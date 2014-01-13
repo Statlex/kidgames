@@ -479,7 +479,7 @@
 			var minDX = 10000000 * tg.q;
 			var minDY = 10000000 * tg.q;
 
-			var alignD = 10 * tg.q;
+			var alignD = 7 * tg.q;
 
 			staticCoordinates = staticCoordinates.concat(tg.extraAlignPoints);
 
@@ -794,13 +794,22 @@
 			this.extraAlignPoints = extraAlignPoints;
 			// add extra align points end
 
+			// add thumb image to left top angle for king difficult begin
+			(function () {
+				if (info.difficult === 'king') {
+					var smallSVG = questionFigureSVG.toString(); // create new string
+					smallSVG = smallSVG.replace(/fill='.*?'/gi, "fill='" + info.mainFigureColor + "'");
+					var imgWrapper = $('.js-thumb-wrapper', main.wrapper);
+					imgWrapper.setAttribute('style', 'background-image: url("data:image/svg+xml;utf8,' + smallSVG + '")');
+				}
+			}());
+			// add thumb image to left top angle for king difficult end
+
 			rotater.init();
 
 			console.log('tangram init');
 
 		}
-
-
 
 	};
 
