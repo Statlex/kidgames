@@ -185,6 +185,11 @@ body {
 	padding: 0 10px 10px;
 }
 
+.thanks-paragraph a {
+	color: #FFF;
+	text-decoration: underline;
+}
+
 @media screen and (max-height: 450px) {
 	.share-link {
 		float: left;
