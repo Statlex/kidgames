@@ -136,6 +136,10 @@ body {
 }
 
 /* more page */
+.more-header.custom-select-header {
+	margin-left: -20px;
+}
+
 .more-page .table-cell {
 	text-align: center;
 }

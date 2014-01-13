@@ -558,3 +558,6 @@ body {
 	text-decoration: underline;
 }
 
+.more-header.custom-select-header {
+	margin-left: -20px;
+}
