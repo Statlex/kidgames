@@ -545,3 +545,10 @@ body {
 	}
 }
 
+.thanks-header {
+	padding-bottom: 10px;
+}
+
+.thanks-paragraph {
+	padding: 0 10px 10px;
+}
