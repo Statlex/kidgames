@@ -19,6 +19,10 @@
 				viewer.refresh();
 			}, false);
 
+			// set external link
+			var links = $$('a', main.wrapper);
+			ui.externalLinkHandler.setLinks(links);
+
 		},
 		setSettingPage: function(){
 			var langSelectNode = $('.js-language-select', this.wrapper);

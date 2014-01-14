@@ -101,3 +101,55 @@
 	win.addEventListener('load', logger, false);
 
 }(window));
+
+(function (win) {
+
+	"use strict";
+	/*global window, document, console, alert */
+
+	win.ui = win.ui || {};
+
+	win.ui.externalLinkHandler = {
+		setLinks: function(links) {
+			var that = this;
+			links.forEach(function(link){
+				link.setAttribute('can-use', 'no');
+				link.addEventListener('click', function(e){
+					if (this.getAttribute('can-use') === 'no') {
+						e.preventDefault();
+						e.stopPropagation();
+						that.showQuestion(this);
+						return false;
+					}
+				}, false);
+			})
+		},
+		showQuestion: function(link) {
+			var a, b, c, answer;
+			a = Math.round(Math.random() * 40);
+			b = Math.round(Math.random() * 40);
+			c = a + b;
+			answer = 0;
+			while (!answer) {
+				answer = prompt(a + ' + ' + b + ' = ?');
+				if (answer === null) {
+					answer = true;
+					return;
+				}
+				if (parseInt(answer) === c) {
+					answer = true;
+					link.setAttribute('can-use', 'yes');
+					link.click();
+				} else {
+					answer = false;
+					a = Math.round(Math.random() * 40);
+					b = Math.round(Math.random() * 40);
+					c = a + b;
+				}
+			}
+		}
+
+	}
+
+}(window));
+

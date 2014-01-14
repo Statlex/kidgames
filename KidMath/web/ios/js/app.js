@@ -226,6 +226,11 @@
 
 			});
 
+			// set external link
+			var links = $$('#wrapper a');
+			ui.externalLinkHandler.setLinks(links);
+
+
 		},
 		createSlider: function() {
 			var paginator = new Pagination({wrapper: $('#wrapper .swipe-wrapper'), container: $('#wrapper .swipe-level-container'), pages:$$('#wrapper .level-image-block')});
