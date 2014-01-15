@@ -434,6 +434,7 @@
 			mover.putFigureInBox(activePolygon);
 
 			mover.alignCoordinates(activePolygon);
+			tg.testAnswer();
 
 		}
 	};
@@ -476,8 +477,8 @@
 				}
 			});
 
-			var minDX = 10000000 * tg.q;
-			var minDY = 10000000 * tg.q;
+			var minDX = Infinity;
+			var minDY = Infinity;
 
 			var alignD = 7 * tg.q;
 
@@ -807,7 +808,71 @@
 
 			rotater.init();
 
+			// create answer points
+			var answerPoints = [];
+			var minX, minY;
+			(function () {
+				minX = Infinity;
+				minY = Infinity;
+
+				extraAlignPoints.forEach(function(xy){
+					minX = (xy.x < minX) ? xy.x : minX;
+					minY = (xy.y < minY) ? xy.y : minY;
+				});
+
+				extraAlignPoints.forEach(function(xy){
+					answerPoints.push({x: xy.x - minX, y: xy.y - minY});
+				});
+
+			}());
+
+			this.answer = {
+				points: answerPoints,
+				minX: minX,
+				minY: minY
+			};
+
 			console.log('tangram init');
+
+		},
+		testAnswer: function() {
+
+			// get point of active figure
+			var polygons = $$('.js-figures-container polygon', main.wrapper);
+			var polygonPoints = [];
+			polygons.forEach(function(polygon){
+				var coords = util.getFigureCoordinates(polygon);
+				polygonPoints = polygonPoints.concat(coords.points);
+			});
+
+			var delta = 3 * this.q;
+
+			var answer = JSON.parse(JSON.stringify(this.answer));
+			var minX = answer.minX;
+			var minY = answer.minY;
+
+			answer.points.forEach(function(xy, index, arr){
+				polygonPoints.forEach(function(activeXY){
+					if ( util.getPathSize(xy.x, xy.y, activeXY.x - minX, activeXY.y - minY) < delta ) {
+						console.log(index);
+						arr[index].accord = true;
+					}
+				});
+			});
+
+			var properlyAnswers = 0;
+
+			answer.points.forEach(function(xy){
+				if (xy.accord) {
+					properlyAnswers += 1;
+				}
+			});
+
+			if (properlyAnswers >= answer.points.length) {
+				console.log('!!!!!!!!!!!good!!!!!!!!');
+			} else {
+				console.log('-------bad-------');
+			}
 
 		}
 
