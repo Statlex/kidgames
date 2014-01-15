@@ -764,34 +764,31 @@
 
 			// add extra align points begin
 			var extraAlignPoints = [];
-			if (info.difficult === 'tower') {
+			(function () {
+				var tempNode = document.createElement('div');
+				tempNode.innerHTML = questionFigureSVG;
+				var svg = $('svg', tempNode);
+				var originalWidth = parseInt(svg.getAttribute('width'), 10);
+				var originalHeight = parseInt(svg.getAttribute('height'), 10);
+				var currentWidth = originalWidth * tg.q;
+				var currentHeight = originalHeight * tg.q;
 
-				(function () {
-					var tempNode = document.createElement('div');
-					tempNode.innerHTML = questionFigureSVG;
-					var svg = $('svg', tempNode);
-					var originalWidth = parseInt(svg.getAttribute('width'), 10);
-					var originalHeight = parseInt(svg.getAttribute('height'), 10);
-					var currentWidth = originalWidth * tg.q;
-					var currentHeight = originalHeight * tg.q;
+				var offsetX = (info.screen.getWidth() - currentWidth) / 2;
+				var offsetY = (info.screen.getHeight() - currentHeight) / 2;
 
-					var offsetX = (info.screen.getWidth() - currentWidth) / 2;
-					var offsetY = (info.screen.getHeight() - currentHeight) / 2;
+				var polygons = $$('polygon', tempNode);
 
-					var polygons = $$('polygon', tempNode);
-
-					var points, x, y;
-					polygons.forEach(function(polygon){
-						points = (polygon.getAttribute('points')).trim();
-						points = points.split(' ');
-						points.forEach(function(xy){
-							x = parseFloat(xy.split(',')[0]) * tg.q + offsetX;
-							y = parseFloat(xy.split(',')[1]) * tg.q + offsetY;
-							extraAlignPoints.push({x:x, y:y});
-						})
-					});
-				}());
-			}
+				var points, x, y;
+				polygons.forEach(function(polygon){
+					points = (polygon.getAttribute('points')).trim();
+					points = points.split(' ');
+					points.forEach(function(xy){
+						x = parseFloat(xy.split(',')[0]) * tg.q + offsetX;
+						y = parseFloat(xy.split(',')[1]) * tg.q + offsetY;
+						extraAlignPoints.push({x:x, y:y});
+					})
+				});
+			}());
 			this.extraAlignPoints = extraAlignPoints;
 			// add extra align points end
 
@@ -845,10 +842,20 @@
 				polygonPoints = polygonPoints.concat(coords.points);
 			});
 
+			var minX = Infinity;
+			var minY = Infinity;
+
+			polygonPoints.forEach(function(xy){
+				minX = (xy.x < minX) ? xy.x : minX;
+				minY = (xy.y < minY) ? xy.y : minY;
+			});
+
+			polygonPoints.forEach(function(xy, index, arr){
+				arr[index].x = xy.x - minX;
+				arr[index].y = xy.y - minY;
+			});
 
 			var answer = JSON.parse(JSON.stringify(this.answer));
-			var minX = answer.minX;
-			var minY = answer.minY;
 
 			var that = this;
 
@@ -859,7 +866,7 @@
 
 				answer.points.forEach(function(xy, index, arr){
 					polygonPoints.forEach(function(activeXY){
-						if ( util.getPathSize(xy.x, xy.y, activeXY.x - minX, activeXY.y - minY) < delta ) {
+						if ( util.getPathSize(xy.x, xy.y, activeXY.x, activeXY.y) < delta ) {
 							console.log(index);
 							arr[index].accordAngle = true;
 						}
