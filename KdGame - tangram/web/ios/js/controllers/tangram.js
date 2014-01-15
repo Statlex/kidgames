@@ -845,34 +845,46 @@
 				polygonPoints = polygonPoints.concat(coords.points);
 			});
 
-			var delta = 3 * this.q;
 
 			var answer = JSON.parse(JSON.stringify(this.answer));
 			var minX = answer.minX;
 			var minY = answer.minY;
 
-			answer.points.forEach(function(xy, index, arr){
-				polygonPoints.forEach(function(activeXY){
-					if ( util.getPathSize(xy.x, xy.y, activeXY.x - minX, activeXY.y - minY) < delta ) {
-						console.log(index);
-						arr[index].accord = true;
+			var that = this;
+
+			// test for angles
+			(function () {
+
+				var delta = 2 * that.q;
+
+				answer.points.forEach(function(xy, index, arr){
+					polygonPoints.forEach(function(activeXY){
+						if ( util.getPathSize(xy.x, xy.y, activeXY.x - minX, activeXY.y - minY) < delta ) {
+							console.log(index);
+							arr[index].accordAngle = true;
+						}
+					});
+				});
+
+				var properlyAnswers = 0;
+
+				answer.points.forEach(function(xy){
+					if (xy.accordAngle) {
+						properlyAnswers += 1;
 					}
 				});
-			});
 
-			var properlyAnswers = 0;
-
-			answer.points.forEach(function(xy){
-				if (xy.accord) {
-					properlyAnswers += 1;
+				if (properlyAnswers >= answer.points.length) {
+					console.log(' ----- ANGLE test is PASSED ----- ');
+				} else {
+					console.log(' ----- ANGLE test is ERROR ----- ');
 				}
-			});
 
-			if (properlyAnswers >= answer.points.length) {
-				console.log('!!!!!!!!!!!good!!!!!!!!');
-			} else {
-				console.log('-------bad-------');
-			}
+			}());
+
+
+
+
 
 		}
 
