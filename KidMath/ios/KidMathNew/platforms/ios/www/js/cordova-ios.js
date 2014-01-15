@@ -21,7 +21,7 @@
 ;(function() {
 var CORDOVA_JS_BUILD_LABEL = '2.8.0-0-g6208c95';
 // file: lib/scripts/require.js
-  alert("2.8!!!!!");
+
 var require,
     define;
 

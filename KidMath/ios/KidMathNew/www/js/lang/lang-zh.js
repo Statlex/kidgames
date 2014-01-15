@@ -41,7 +41,7 @@
 	};
 
 	for (var i = 0; i <= 9; i++) {
-		lang.zh['number-' + i] = 'sound/numbers/zh/' + i + '.mp3';
+		lang.zh['number-' + i] = 'numbers/zh/' + i + '.mp3';
 	}
 
 }());

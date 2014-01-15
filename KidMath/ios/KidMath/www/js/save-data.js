@@ -5,13 +5,8 @@
 
 	var ls = win.localStorage;
 
-	if (win.location.hash === '#clear') {
-		ls.clear();
-		alert('localStorage has bean cleared.');
-	}
-
 	win.dataStorage = {
-		savedItem: 'saved-item',
+		savedItem: 'saved-item-kid-math',
 		getData: function() {
 			var data = ls.getItem(this.savedItem) || '{}';
 			data = JSON.parse(data);
@@ -98,10 +93,5 @@
 	};
 
 	win.dataStorage.addToOpenSections('learn-basics');
-
-
-	// >>>>>>>>>>>> !!!!!!!!!!!!!!1add only for test
-	console.log('to clear local storage add to url - #clear');
-
 
 }(window));

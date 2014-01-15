@@ -41,7 +41,7 @@
 	};
 
 	for (var i = 0; i <= 9; i++) {
-		lang.es['number-' + i] = 'sound/numbers/es/' + i + '.mp3';
+		lang.es['number-' + i] = 'numbers/es/' + i + '.mp3';
 	}
 
 }());

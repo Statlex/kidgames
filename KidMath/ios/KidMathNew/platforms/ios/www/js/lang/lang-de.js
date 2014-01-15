@@ -41,7 +41,7 @@
 	};
 
 	for (var i = 0; i <= 9; i++) {
-		lang.de['number-' + i] = 'sound/numbers/de/' + i + '.mp3';
+		lang.de['number-' + i] = 'numbers/de/' + i + '.mp3';
 	}
 
 }());

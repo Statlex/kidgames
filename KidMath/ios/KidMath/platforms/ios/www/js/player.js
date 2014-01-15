@@ -3,13 +3,12 @@
 	"use strict";
 	/*global window, document, console, alert, dataStorage */
 
-	var playerObj;
-	playerObj = {
+	win.player = {
 //		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
-		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? '' : '/android_asset/www/',
+		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
 //			console.log(src);
@@ -48,6 +47,10 @@
 				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
 			}
 
+			if (info.section === 'findColor') {
+				this.play('colors/' + info.lang + '/' + lang[info.lang].colors[win[info.section].answer] + '.mp3');
+			}
+
 		},
 		onSuccess: function () {
 //			alert('good');
@@ -56,18 +59,24 @@
 //			alert(error.code + ' - ' + error.message);
 		},
 		onStatus: function(status) {
-			playerObj.currentMediaStatus = status;
+			player.currentMediaStatus = status;
 		}
-	};
+	}
 
-	win.player = playerObj;
+}(window));
 
-	// overwrite some methods
+// overwrite some methods
+
+(function (win) {
+
+	"use strict";
+	/*global window, document */
+
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}
 
-	playerObj.play = function(src) {
+	win.player.play = function(src) {
 
 		console.log(this.toSoundPrefix + src);
 
@@ -80,7 +89,10 @@
 			console.log(e);
 			console.log('Error for Audio.');
 		}
-
 	};
 
+
 }(window));
+
+
+
