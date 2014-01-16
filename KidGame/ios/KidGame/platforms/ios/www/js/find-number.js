@@ -68,7 +68,7 @@
 			var height = (blocks[0] && blocks[0].clientHeight) || 0;
 			blocks.forEach(function(node){
 				node.style.lineHeight = height + 'px';
-				node.style.fontSize = height * 0.8 + 'px';
+				node.style.fontSize = height * 0.65 + 'px';
 			});
 
 		}

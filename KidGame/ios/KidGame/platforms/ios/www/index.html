@@ -27,6 +27,7 @@
 	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
 	<script src="js/lang/lang-de.js" type="text/javascript"></script>
 	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-it.js" type="text/javascript"></script>
 	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
 	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
 
@@ -144,7 +145,7 @@
 		<div class="table more-wrapper">
 			<div class="table-row">
 				<div class="table-cell">
-					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
+					<h2 class="more-header custom-select-header">{{= lang[info.lang].language }}:</h2>
 					<div class="select-wrapper clear-fix">
 						<div>{{= lang[info.lang].languageName }}</div>
 						<select class="js-language-select">
@@ -161,7 +162,7 @@
 			</div>
 
 			<div class="table-row sharing-table-row">
-				<div class="table-cell">
+				<div class="table-cell sharing-cell">
 					<div class="share-link-container clear-fix">
 						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" share-for="facebook" target="_blank">Facebook</a>
 						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" share-for="twitter" target="_blank">Twitter</a>
@@ -169,6 +170,13 @@
 						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" share-for="linkedin" target="_blank">LinkedIn</a>
 						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" share-for="vk" target="_blank">vk</a>
 					</div>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-header">{{= lang[info.lang].thanks }}:</p>
+					<p class="thanks-paragraph"><a href="http://www.behance.net/RuAnn" target="_blank">{{= lang[info.lang].designerName }} - {{= lang[info.lang].designer }}</a></p>
 				</div>
 			</div>
 

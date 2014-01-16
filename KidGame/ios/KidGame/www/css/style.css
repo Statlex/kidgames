@@ -532,8 +532,32 @@ body {
 	color: #FFF;
 }
 
+.sharing-cell {
+	background-image: url('../img/i/share.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
 @media screen and (max-width: 450px) and (max-height: 450px) {
 	.sharing-table-row {
 		display: none;
 	}
+}
+
+.thanks-header {
+	padding-bottom: 10px;
+}
+
+.thanks-paragraph {
+	padding: 0 10px 10px;
+}
+
+.thanks-paragraph a {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+.more-header.custom-select-header {
+	margin-left: -20px;
 }
