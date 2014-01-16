@@ -506,6 +506,11 @@ body {
 	.share-link-container {
 		width: 386px;
 	}
+
+	.sharing-table-row {
+		display: none;
+	}
+
 }
 
 .share-link.facebook {
