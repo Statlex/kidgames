@@ -275,7 +275,166 @@
 			var tempNode = document.createElement('div');
 			tempNode.innerHTML = '<svg version="1.2" baseProfile="tiny" class="figures-draw-field js-figures-draw-field" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="' + w + 'px" height="' + h + 'px" viewBox="0 0 ' + w + ' ' + h + '" xml:space="preserve"><\/svg>';
 
+		},
+		pointsInFigure: function(point, answer){
 
+			var x0, y0;
+
+			x0 = point.x;
+			y0 = point.y;
+
+			var lines = [];
+			$.createSimpleArray(1, 1).forEach(function(value){
+				lines.push({
+					k: value * 0.5
+				});
+			});
+
+			var points = answer.points;
+
+			lines.forEach(function(line){
+
+				var i, len, x1, y1, x2, y2, k, acros, acrosMunbers;
+				k = line.k;
+
+				acrosMunbers = 0;
+
+				for (i = 0, len = points.length; i < len; i += 1) {
+
+					x1 = points[i].x;
+					y1 = points[i].y;
+
+					x2 = points[i + 1] ? points[i + 1].x : points[0].x;
+					y2 = points[i + 1] ? points[i + 1].y : points[0].y;
+
+					acros = util.getPointsPositionRelativeOfLine(x0, y0, k, x1, y1, x2, y2);
+
+					if (acros === 'across') {
+						acrosMunbers += 1;
+					}
+
+					if (acros === 'touch') {
+						line.state = 'touch';
+					}
+
+				}
+
+				line.pointIsInner = acrosMunbers % 2 === 1;
+
+			});
+
+			lines.forEach(function(line){
+
+				if (line.state !== 'touch') {
+					console.log(line.pointIsInner);
+				} else {
+					console.log(line.state);
+				}
+
+			});
+
+
+
+
+			return point;
+
+
+		},
+		getPointsPositionRelativeOfLine: function(x0, y0, k, x1, y1, x2, y2) {
+
+			var delta = 2 * tg.q;
+			var x, y, state, biggerX, smallerX, biggerY, smallerY;
+
+			if (util.getPathSize(x1, x2, y1, y2) <= delta) {
+				return 'no line';
+			}
+
+			if (Math.abs(x1 - x2) <= delta) { // if vertical line
+
+				state = 'no across';
+
+				// get y in point x1
+
+				y = k * (x1 - x0) + y0;
+
+				biggerY = (y1 > y2) ? y1 : y2;
+				smallerY = (y1 < y2) ? y1 : y2;
+
+				if ( y < biggerY && y > smallerY ) {
+					state = 'across';
+				}
+
+				if ( util.getPathSize(x1, y1, x1, y) <= delta ) {
+					state = 'touch';
+				}
+
+				if ( util.getPathSize(x2, y2, x2, y) <= delta ) {
+					state = 'touch';
+				}
+
+				return state;
+
+			}
+
+			if (Math.abs(y1 - y2) <= delta) {   // if horizontal line
+
+				state = 'no across';
+
+				// get x in point y1
+
+				x = (y1 - y0) / k + x0;
+
+				biggerX = (x1 > x2) ? x1 : x2;
+				smallerX = (x1 < x2) ? x1 : x2;
+
+				if ( x < biggerX && x > smallerX ) {
+					state = 'across';
+				}
+
+				if ( util.getPathSize(x1, y1, x, y1) <= delta ) {
+					state = 'touch';
+				}
+
+				if ( util.getPathSize(x2, y2, x, y2) <= delta ) {
+					state = 'touch';
+				}
+
+				return state;
+
+			}
+
+			// other cases
+			var e1 = {
+				a: k,
+				b: -1,
+				c: y0 - k * x0
+			};
+
+			var e2 = {
+				a: 1 / (x2 - x1),
+				b: 1 / (y2 - y1),
+				c: ( y1 / (y2 - y1) - x1 / (x2 - x1) )
+			};
+
+			y = (e2.a * e1.c - e1.a * e2.c) / (e1.a * e2.b - e2.a * e1.b);
+			x = -(e1.b * y + e1.c) / e1.a;
+
+			biggerX = (x1 > x2) ? x1 : x2;
+			smallerX = (x1 < x2) ? x1 : x2;
+			biggerY = (y1 > y2) ? y1 : y2;
+			smallerY = (y1 < y2) ? y1 : y2;
+
+			if ( x < biggerX && x > smallerX && y < biggerY && y > smallerY ) {
+				state = 'across'
+			} else {
+				state = 'no across';
+			}
+
+			if ( util.getPathSize(x1, y1, x, y) <= delta || util.getPathSize(x2, y2, x, y) <= delta ) {
+				state = 'touch';
+			}
+
+			return state;
 
 		}
 
@@ -837,9 +996,11 @@
 			// get point of active figure
 			var polygons = $$('.js-figures-container polygon', main.wrapper);
 			var polygonPoints = [];
+			var centerPoints = [];
 			polygons.forEach(function(polygon){
 				var coords = util.getFigureCoordinates(polygon);
 				polygonPoints = polygonPoints.concat(coords.points);
+				centerPoints.push(coords.center);
 			});
 
 			var minX = Infinity;
@@ -850,7 +1011,14 @@
 				minY = (xy.y < minY) ? xy.y : minY;
 			});
 
+			// adjust polygon points
 			polygonPoints.forEach(function(xy, index, arr){
+				arr[index].x = xy.x - minX;
+				arr[index].y = xy.y - minY;
+			});
+
+			// adjust center of polygon points
+			centerPoints.forEach(function(xy, index, arr){
 				arr[index].x = xy.x - minX;
 				arr[index].y = xy.y - minY;
 			});
@@ -889,7 +1057,18 @@
 
 			}());
 
+			// test for all centers in figure
+			answer = JSON.parse(JSON.stringify(this.answer));
+			(function () {
 
+				centerPoints.forEach(function(xy){
+
+					var inside = util.pointsInFigure(xy, answer);
+					//console.log(inside);
+
+				});
+
+			}());
 
 
 
