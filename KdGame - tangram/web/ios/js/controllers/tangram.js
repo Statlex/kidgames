@@ -286,7 +286,7 @@
 			var lines = [];
 			$.createSimpleArray(1, 1).forEach(function(value){
 				lines.push({
-					k: value * 0.5
+					k: value * 3
 				});
 			});
 
@@ -355,6 +355,7 @@
 
 				// get y in point x1
 
+				x = x1;
 				y = k * (x1 - x0) + y0;
 
 				biggerY = (y1 > y2) ? y1 : y2;
@@ -370,6 +371,18 @@
 
 				if ( util.getPathSize(x2, y2, x2, y) <= delta ) {
 					state = 'touch';
+				}
+
+				if (state !== 'no across') {
+
+					if (Math.abs(x0 - x1) <= delta) {
+						return 'touch';
+					}
+
+					if (x0 - delta > x1) {
+						return 'no across';
+					}
+
 				}
 
 				return state;
@@ -399,9 +412,23 @@
 					state = 'touch';
 				}
 
+				if (state !== 'no across') {
+
+					if (Math.abs(y0 - y1) <= delta) {
+						return 'touch';
+					}
+
+					if (y0 - delta > y1) {
+						return 'no across';
+					}
+
+				}
+
 				return state;
 
 			}
+
+			state = 'no across';
 
 			// other cases
 			var e1 = {
@@ -432,6 +459,17 @@
 
 			if ( util.getPathSize(x1, y1, x, y) <= delta || util.getPathSize(x2, y2, x, y) <= delta ) {
 				state = 'touch';
+			}
+
+			if (state !== 'no across') {
+				if (util.getPathSize(x0, y0, x, y) <= delta) {
+					return 'touch';
+				}
+
+				if ( (x + delta < x0) || (y + delta < y0) ) {
+					return 'no across';
+				}
+
 			}
 
 			return state;
