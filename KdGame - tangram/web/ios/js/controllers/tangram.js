@@ -801,6 +801,7 @@
 				minY: minY
 			};
 
+			win.timer.init();
 			console.log('tangram init');
 
 		},
