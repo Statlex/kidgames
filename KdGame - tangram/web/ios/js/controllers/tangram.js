@@ -404,8 +404,8 @@
 			activePolygon.setAttribute('style', info.preCSS + 'transform: translate(' + coords[0] + 'px, ' + coords[1] + 'px) rotate(' + angle + 'deg);');
 			// if part of figure oyt of screen -> return this one tu screen
 			mover.putFigureInBox(activePolygon);
-
 			mover.alignCoordinates(activePolygon);
+			mover.putFigureInBox(activePolygon);
 			tg.testAnswer();
 
 		}
