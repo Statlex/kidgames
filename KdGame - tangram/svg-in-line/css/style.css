@@ -1,0 +1,28 @@
+body,
+.text-area,
+.button,
+.wrapper {
+	margin: 0;
+	padding: 0;
+	display: block;
+	border: none;
+}
+
+.wrapper {
+	padding: 10px;
+}
+
+.text-area {
+	box-sizing: border-box;
+	border: 1px solid #333;
+	width: 100%;
+	padding: 10px;
+}
+
+.button {
+	box-sizing: border-box;
+	padding: 10px;
+	border: 1px solid #333;
+	display: block;
+	margin: 10px auto;
+}
