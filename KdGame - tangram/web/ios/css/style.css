@@ -294,8 +294,8 @@
 	background-image: url('../img/preview/metal.jpg');
 }
 
-.tangram-preview.metal-second .tangram-preview-inner-block {
-	background-image: url('../img/preview/metal-second.jpg');
+.tangram-preview.colored .tangram-preview-inner-block {
+	background-image: url('../img/preview/colored.jpg');
 }
 
 .tangram-preview.granite .tangram-preview-inner-block {
