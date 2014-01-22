@@ -354,8 +354,12 @@
 		},
 		showRotater: function () {
 			//this.isActive = true;
-			this.wrapper.style.display = 'block';
 			var activePolygon = $('.js-figures-container polygon.active');
+			if (!activePolygon) {
+				return;
+			}
+
+			this.wrapper.style.display = 'block';
 			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
 			this.activePolygon = {
 				node: activePolygon,
@@ -615,7 +619,7 @@
 				tempNode.innerHTML = '<svg version="1.2" baseProfile="tiny" class="figures-container js-figures-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="' + w + 'px" height="' + h + 'px" viewBox="0 0 ' + w + ' ' + h + '" xml:space="preserve">{{figures}}<\/svg>';
 				// create figures
 				var figuresStr = '';
-				tg.figureList.forEach(function (figureName) {
+				tg.figureList.forEach(function (figureName, index) {
 					var points = figuresCode[figureName];
 
 					// scale figure begin
@@ -632,7 +636,7 @@
 					console.log(figuresCode);
 
 					figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
-						.replace('{{fillColor}}', tg.fillColor)
+						.replace('{{fillColor}}', 'url(#pattern-' + (index + 1) + ')')
 						.replace('{{strokeColor}}', tg.strokeColor)
 						.replace('{{points}}', points);
 

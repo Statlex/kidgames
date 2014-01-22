@@ -286,8 +286,8 @@
 	background-image: url('../img/preview/metal.jpg');
 }
 
-.tangram-preview.metal-2 .tangram-preview-inner-block {
-	background-image: url('../img/preview/metal-2.jpg');
+.tangram-preview.metal-second .tangram-preview-inner-block {
+	background-image: url('../img/preview/metal-second.jpg');
 }
 
 .tangram-preview.granite .tangram-preview-inner-block {
@@ -426,4 +426,13 @@
 	font-size: 16px;
 	line-height: 16px;
 	font-family: "Courier New", Courier, monospace;
+}
+
+.hidden-but-showed {
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: -100px;
+	left: -100px;
+	z-index: -10000;
 }
