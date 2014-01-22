@@ -81,7 +81,7 @@
 		soundIsActive: true,
 		tangramPattern: 'wood',
 		tangramPatternImgPath: 'img/preview/',
-		tangramPatterns: ['granite', 'metal', 'colored', 'wood'],
+		tangramPatterns: ['wood', 'colored', 'metal', 'chinese-symbol'],
 		imageColor: '#FFF',
 		mainFigureColor: '#333'
 
