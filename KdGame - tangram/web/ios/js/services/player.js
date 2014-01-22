@@ -5,19 +5,15 @@
 
 	var playerObj;
 	playerObj = {
-//		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
-//			console.log(src);
-//			return;
-
-//			if (this.musicOn === 'no') {
+			if (!info.soundIsActive) {
 				return;
-//			}
+			}
 
 			if (this.currentMediaStatus <= 2 ) {
 				return;
@@ -33,20 +29,7 @@
 			} catch (e) {}
 
 		},
-//		setMusic: function(on) {
-//			var value = on ? 'yes' : 'no';
-//			dataStorage.setItem('music-on', value);
-//		},
 		playQuestionAgain: function() {
-//			var currentSectionName = info.section;
-			// work for find number
-			if (info.section === 'findNumber') {
-				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
-			}
-
-			if (info.section === 'findLetter') {
-				this.play('alphabets/' + info.lang + '/' + win[info.section].answer + '.mp3');
-			}
 
 		},
 		onSuccess: function () {
@@ -66,8 +49,12 @@
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}
-return;
+
 	playerObj.play = function(src) {
+
+		if (!info.soundIsActive) {
+			return;
+		}
 
 		console.log(this.toSoundPrefix + src);
 
