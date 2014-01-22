@@ -6,23 +6,23 @@
 	var tg, mover, rotater, util;
 
 	util = {
-		getCoordinatesFromStyle: function(style){
+		getCoordinatesFromStyle: function (style) {
 			var coords = (style || 'transform: translate(0px, 0px) rotate(0deg)').match(/-?\d+[pd]|-?\d+\.\d+[pd]/gi);
-			coords.forEach(function(value, index, arr){
+			coords.forEach(function (value, index, arr) {
 				arr[index] = parseFloat(value);
 			});
 			return coords;
 
 		},
-		getAngle: function(centerX, centerY, pointX, pointY) {
+		getAngle: function (centerX, centerY, pointX, pointY) {
 			var x = centerX - pointX;
 			var y = centerY - pointY;
 			var addGrad = (x >= 0) ? 180 : 0;
-			var a = Math.atan(y/x) * 180 / Math.PI + addGrad;
+			var a = Math.atan(y / x) * 180 / Math.PI + addGrad;
 			a += (a < 0) ? 360 : 0;
 			return a;
 		},
-		toNormalAngle: function(angle) {
+		toNormalAngle: function (angle) {
 			while (angle < 0) {
 				angle += 360;
 			}
@@ -31,16 +31,16 @@
 			}
 			return angle;
 		},
-		getPathSize: function(x0, y0, x1, y1){
-			return Math.sqrt(Math.pow(x0-x1, 2) + Math.pow(y0-y1, 2));
+		getPathSize: function (x0, y0, x1, y1) {
+			return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
 		},
-		sin: function(angle) {
+		sin: function (angle) {
 			return Math.sin(angle / 180 * Math.PI);
 		},
-		cos: function(angle) {
+		cos: function (angle) {
 			return Math.cos(angle / 180 * Math.PI);
 		},
-		getFigureCoordinates: function(polygon) {
+		getFigureCoordinates: function (polygon) {
 			var figureName = polygon.getAttribute('figure-name');
 			var coords = util.getCoordinatesFromStyle(polygon.getAttribute('style'));
 			var points = figuresCode[figureName + 'Info'].allPoints;
@@ -57,7 +57,7 @@
 				}
 			};
 
-			points.forEach(function(xy){
+			points.forEach(function (xy) {
 
 				var cx, cy, x0, y0, x1, y1, angle0, angle1, lineSize;
 
@@ -94,18 +94,18 @@
 			return coordinates;
 
 		},
-		createFigureInfo: function(q) {
+		createFigureInfo: function (q) {
 
 			var allFigures = ['B3A', 'M3A', 'S3A', 'SQR', 'TRP', 'TRPR'];
-			allFigures.forEach(function(figureName){
+			allFigures.forEach(function (figureName) {
 				figuresCode[figureName + 'Info'] = {};
 				var points = figuresCode[figureName];
 				var pointsCoordinates = [];
 				points = points.split(' ');
-				points.forEach(function(xy){
+				points.forEach(function (xy) {
 					var x = parseFloat(xy.split(',')[0] * q);
 					var y = parseFloat(xy.split(',')[1] * q);
-					pointsCoordinates.push({x: x, y:y});
+					pointsCoordinates.push({x: x, y: y});
 				});
 
 				figuresCode[figureName + 'Info'].points = pointsCoordinates;
@@ -123,13 +123,13 @@
 				switch (figureName) {
 					case 'B3A':
 
-						for (i = 0, len = points.length; i < len; i++ ) {
+						for (i = 0, len = points.length; i < len; i++) {
 							x0 = points[i].x;
 							y0 = points[i].y;
-							x4 = points[i+1] ? points[i+1].x : points[0].x;
-							y4 = points[i+1] ? points[i+1].y : points[0].y;
+							x4 = points[i + 1] ? points[i + 1].x : points[0].x;
+							y4 = points[i + 1] ? points[i + 1].y : points[0].y;
 
-							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+							figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y0});
 
 							if (x0 === x4) {
 								y8 = y4;
@@ -141,21 +141,21 @@
 								y7 = (y8 + y6) / 2;
 								y5 = (y4 + y6) / 2;
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y2});
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y4});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y4});
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y5});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y6});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y6});
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y7});
 							} else {
-								x2 = (x0 + x4)/2;
-								y2 = (y0 + y4)/2;
-								x1 = (x0 + x2)/2;
-								y1 = (y0 + y2)/2;
-								x3 = (x2 + x4)/2;
-								y3 = (y2 + y4)/2;
+								x2 = (x0 + x4) / 2;
+								y2 = (y0 + y4) / 2;
+								x1 = (x0 + x2) / 2;
+								y1 = (y0 + y2) / 2;
+								x3 = (x2 + x4) / 2;
+								y3 = (y2 + y4) / 2;
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x2, y: y2});
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
 							}
 
@@ -164,62 +164,62 @@
 						break;
 					case 'M3A':
 
-						for (i = 0, len = points.length; i < len; i++ ) {
+						for (i = 0, len = points.length; i < len; i++) {
 							x0 = points[i].x;
 							y0 = points[i].y;
-							x4 = points[i+1] ? points[i+1].x : points[0].x;
-							y4 = points[i+1] ? points[i+1].y : points[0].y;
+							x4 = points[i + 1] ? points[i + 1].x : points[0].x;
+							y4 = points[i + 1] ? points[i + 1].y : points[0].y;
 
-							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+							figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y0});
 
-							x2 = (x0 + x4)/2;
-							y2 = (y0 + y4)/2;
-							x1 = (x0 + x2)/2;
-							y1 = (y0 + y2)/2;
-							x3 = (x2 + x4)/2;
-							y3 = (y2 + y4)/2;
+							x2 = (x0 + x4) / 2;
+							y2 = (y0 + y4) / 2;
+							x1 = (x0 + x2) / 2;
+							y1 = (y0 + y2) / 2;
+							x3 = (x2 + x4) / 2;
+							y3 = (y2 + y4) / 2;
 //							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
-							figuresCode[figureName + 'Info'].allPoints.push({x:x2, y:y2});
+							figuresCode[figureName + 'Info'].allPoints.push({x: x2, y: y2});
 //							figuresCode[figureName + 'Info'].allPoints.push({x:x3, y:y3});
 						}
 						break;
 					case 'SQR':
 
-						for (i = 0, len = points.length; i < len; i++ ) {
+						for (i = 0, len = points.length; i < len; i++) {
 							x0 = points[i].x;
 							y0 = points[i].y;
-							x2 = points[i+1] ? points[i+1].x : points[0].x;
-							y2 = points[i+1] ? points[i+1].y : points[0].y;
-							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
-							x1 = (x0 + x2)/2;
-							y1 = (y0 + y2)/2;
-							figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+							x2 = points[i + 1] ? points[i + 1].x : points[0].x;
+							y2 = points[i + 1] ? points[i + 1].y : points[0].y;
+							figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y0});
+							x1 = (x0 + x2) / 2;
+							y1 = (y0 + y2) / 2;
+							figuresCode[figureName + 'Info'].allPoints.push({x: x1, y: y1});
 						}
 						break;
 					case 'S3A':
-						for (i = 0, len = points.length; i < len; i++ ) {
+						for (i = 0, len = points.length; i < len; i++) {
 							x0 = points[i].x;
 							y0 = points[i].y;
-							x2 = points[i+1] ? points[i+1].x : points[0].x;
-							y2 = points[i+1] ? points[i+1].y : points[0].y;
+							x2 = points[i + 1] ? points[i + 1].x : points[0].x;
+							y2 = points[i + 1] ? points[i + 1].y : points[0].y;
 
-							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+							figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y0});
 
 							if (x0 === x2) {
 								y4 = y2;
 
-								y2 = (y0 + y4)/2;
-								y1 = (y0 + y2)/2;
-								y3 = (y2 + y4)/2;
+								y2 = (y0 + y4) / 2;
+								y1 = (y0 + y2) / 2;
+								y3 = (y2 + y4) / 2;
 
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y2});
 //								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
 
 							} else {
-								x1 = (x0 + x2)/2;
-								y1 = (y0 + y2)/2;
-								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+								x1 = (x0 + x2) / 2;
+								y1 = (y0 + y2) / 2;
+								figuresCode[figureName + 'Info'].allPoints.push({x: x1, y: y1});
 							}
 
 						}
@@ -228,29 +228,29 @@
 					case 'TRP':
 					case 'TRPR':
 
-						for (i = 0, len = points.length; i < len; i++ ) {
+						for (i = 0, len = points.length; i < len; i++) {
 							x0 = points[i].x;
 							y0 = points[i].y;
-							x2 = points[i+1] ? points[i+1].x : points[0].x;
-							y2 = points[i+1] ? points[i+1].y : points[0].y;
+							x2 = points[i + 1] ? points[i + 1].x : points[0].x;
+							y2 = points[i + 1] ? points[i + 1].y : points[0].y;
 
-							figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y0});
+							figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y0});
 
 							if (x0 === x2) {
 								y4 = y2;
 
-								y2 = (y0 + y4)/2;
-								y1 = (y0 + y2)/2;
-								y3 = (y2 + y4)/2;
+								y2 = (y0 + y4) / 2;
+								y1 = (y0 + y2) / 2;
+								y3 = (y2 + y4) / 2;
 
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y1});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y2});
-								figuresCode[figureName + 'Info'].allPoints.push({x:x0, y:y3});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y1});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y2});
+								figuresCode[figureName + 'Info'].allPoints.push({x: x0, y: y3});
 
 							} else {
-								x1 = (x0 + x2)/2;
-								y1 = (y0 + y2)/2;
-								figuresCode[figureName + 'Info'].allPoints.push({x:x1, y:y1});
+								x1 = (x0 + x2) / 2;
+								y1 = (y0 + y2) / 2;
+								figuresCode[figureName + 'Info'].allPoints.push({x: x1, y: y1});
 							}
 
 						}
@@ -259,10 +259,7 @@
 				}
 
 
-
 			});
-
-
 
 
 		}
@@ -279,7 +276,7 @@
 	rotater = {
 		isActive: false,
 		defaultSize: 120,
-		init: function(){
+		init: function () {
 			this.wrapper = $('.js-rotater', main.wrapper);
 			var size = this.defaultSize * tg.q;
 			this.wrapper.style.width = size + 'px';
@@ -288,7 +285,7 @@
 			this.wrapper.style.marginLeft = -size / 2 + 'px';
 
 			var that = this;
-			this.wrapper.addEventListener(evt.down, function(e){
+			this.wrapper.addEventListener(evt.down, function (e) {
 				console.log('rotater wrapper down 0');
 				rotater.isActive = true;
 				that.startX = info.isTouch ? e.touches[0].pageX : e.pageX;
@@ -310,7 +307,7 @@
 
 			}, false);
 
-			this.wrapper.addEventListener(evt.move, function(e){
+			this.wrapper.addEventListener(evt.move, function (e) {
 				if (that.isActive) {
 					that.curX = info.isTouch ? e.touches[0].pageX : e.pageX;
 					that.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
@@ -320,7 +317,7 @@
 				}
 			}, false);
 
-			this.wrapper.addEventListener(evt.up, function(e){
+			this.wrapper.addEventListener(evt.up, function (e) {
 				console.log('rotater wrapper up 0');
 				that.isActive = false;
 				that.alignAngle();
@@ -329,7 +326,7 @@
 			}, false);
 
 			var innerPoint = $('.js-rotater-inner-point', this.wrapper);
-			innerPoint.addEventListener(evt.down, function(e){
+			innerPoint.addEventListener(evt.down, function (e) {
 				console.log('rotater inner point down 0');
 				rotater.hideRotater();
 				mover.isActive = true;
@@ -348,14 +345,14 @@
 				console.log('rotater inner point down 1');
 			}, false);
 
-			innerPoint.addEventListener(evt.up, function(){
+			innerPoint.addEventListener(evt.up, function () {
 				console.log('rotater inner point up 0');
 				that.alignAngle();
 				console.log('rotater inner point up 1');
 			}, false);
 
 		},
-		showRotater: function() {
+		showRotater: function () {
 			//this.isActive = true;
 			this.wrapper.style.display = 'block';
 			var activePolygon = $('.js-figures-container polygon.active');
@@ -375,16 +372,16 @@
 			this.wrapper.style[info.preJS + 'Transform'] = 'translate(' + this.rotateCenterX + 'px, ' + this.rotateCenterY + 'px)';
 			this.wrapper.style.display = 'block';
 		},
-		hideRotater: function(){
+		hideRotater: function () {
 			this.isActive = false;
 			this.wrapper.style.display = 'none';
 		},
-		rotate: function(e) {
+		rotate: function (e) {
 			var angle = util.getAngle(this.rotateCenterX, this.rotateCenterY, this.curX, this.curY) - this.startAngle;
 			var poly = this.activePolygon;
 			poly.node.setAttribute('style', info.preCSS + 'transform: translate(' + poly.x + 'px, ' + poly.y + 'px) rotate(' + (poly.angle + angle) + 'deg);');
 		},
-		alignAngle: function(){
+		alignAngle: function () {
 
 			var activePolygon = $('.js-figures-container polygon.active');
 
@@ -413,7 +410,7 @@
 
 	mover = {
 		isActive: false,
-		move: function(e) {
+		move: function (e) {
 			if (this.isActive) {
 				this.curX = info.isTouch ? e.touches[0].pageX : e.pageX;
 				this.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
@@ -426,7 +423,7 @@
 				rotater.curY = info.isTouch ? e.touches[0].pageY : e.pageY;
 			}
 		},
-		alignCoordinates: function(activePolygon){
+		alignCoordinates: function (activePolygon) {
 
 			if (!activePolygon) {
 				return;
@@ -440,7 +437,7 @@
 			// coordinates for others lement
 			var staticCoordinates = [];
 
-			polygons.forEach(function(polygon){
+			polygons.forEach(function (polygon) {
 				var pointsArr = JSON.parse(JSON.stringify(util.getFigureCoordinates(polygon).points));
 				if (polygon.getAttribute('class') === 'active') {
 					activeCoordinates = activeCoordinates.concat(pointsArr);
@@ -456,11 +453,11 @@
 
 			staticCoordinates = staticCoordinates.concat(tg.extraAlignPoints);
 
-			activeCoordinates.forEach(function(xyActive){
-				staticCoordinates.forEach(function(xyStatic){
+			activeCoordinates.forEach(function (xyActive) {
+				staticCoordinates.forEach(function (xyStatic) {
 					var dx = xyStatic.x - xyActive.x;
 					var dy = xyStatic.y - xyActive.y;
-					if (util.getPathSize(0, 0, dx, dy) < util.getPathSize(0, 0, minDX, minDY))  {
+					if (util.getPathSize(0, 0, dx, dy) < util.getPathSize(0, 0, minDX, minDY)) {
 						minDX = dx;
 						minDY = dy;
 					}
@@ -479,7 +476,7 @@
 			}
 
 		},
-		putFigureInBox: function(activeFigure){
+		putFigureInBox: function (activeFigure) {
 
 			var maxX = info.screen.getWidth();
 			var maxY = info.screen.getHeight();
@@ -490,7 +487,7 @@
 
 			var coords = util.getFigureCoordinates(activeFigure);
 			var styleCoords = util.getCoordinatesFromStyle(activeFigure.getAttribute('style'));
-			coords.points.forEach(function(xyObj){
+			coords.points.forEach(function (xyObj) {
 				if (xyObj.x < 0) {
 					maxDLeft = (maxDLeft < xyObj.x) ? maxDLeft : xyObj.x;
 				}
@@ -525,7 +522,7 @@
 			}
 
 		},
-		reflectFigure: function() {
+		reflectFigure: function () {
 
 			var activePolygon = $('.js-figures-container polygon.active');
 			if (!activePolygon) {
@@ -545,14 +542,14 @@
 			var pointsSrt = '';
 			switch (figureName) {
 				case 'TRP':
-					figuresCode.TRPRInfo.points.forEach(function(xy){
+					figuresCode.TRPRInfo.points.forEach(function (xy) {
 						pointsSrt += xy.x + ',' + xy.y + ' ';
 					});
 					activePolygon.setAttribute('figure-name', 'TRPR');
 					activePolygon.setAttribute('points', pointsSrt);
 					break;
 				case 'TRPR':
-					figuresCode.TRPInfo.points.forEach(function(xy){
+					figuresCode.TRPInfo.points.forEach(function (xy) {
 						pointsSrt += xy.x + ',' + xy.y + ' ';
 					});
 					activePolygon.setAttribute('figure-name', 'TRP');
@@ -618,12 +615,12 @@
 				tempNode.innerHTML = '<svg version="1.2" baseProfile="tiny" class="figures-container js-figures-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="' + w + 'px" height="' + h + 'px" viewBox="0 0 ' + w + ' ' + h + '" xml:space="preserve">{{figures}}<\/svg>';
 				// create figures
 				var figuresStr = '';
-				tg.figureList.forEach(function(figureName){
+				tg.figureList.forEach(function (figureName) {
 					var points = figuresCode[figureName];
 
 					// scale figure begin
 					points = points.split(' ');
-					points.forEach(function(xy, index, arr) {
+					points.forEach(function (xy, index, arr) {
 						var x = xy.split(',')[0];
 						var y = xy.split(',')[1];
 						arr[index] = [x * tg.q + ',' + y * tg.q];
@@ -657,8 +654,8 @@
 				mover.activePolygon.node.style[info.preJS + 'Transform'] = 'translate(0px, 0px) rotate(0deg)';
 
 				var polygons = $$('.js-figures-container polygon');
-				polygons.forEach(function(polygon){
-					polygon.addEventListener(evt.down, function(e) {
+				polygons.forEach(function (polygon) {
+					polygon.addEventListener(evt.down, function (e) {
 						console.log('polygon down 0');
 						mover.activePolygon.node.setAttribute('class', '');
 						rotater.hideRotater();
@@ -684,8 +681,8 @@
 					}, false);
 				});
 
-				polygons.forEach(function(polygon){
-					polygon.addEventListener(evt.up, function(e){
+				polygons.forEach(function (polygon) {
+					polygon.addEventListener(evt.up, function (e) {
 						console.log('polygon up 0');
 
 						mover.isActive = false;
@@ -709,7 +706,7 @@
 
 				// set event listener to main svg (work field)
 				var field = $('.js-figures-container');
-				field.addEventListener(evt.down, function(e) {
+				field.addEventListener(evt.down, function (e) {
 					console.log('field down 0');
 
 					mover.isActive = false;
@@ -718,10 +715,10 @@
 					console.log('field down 1');
 
 				}, false);
-				field.addEventListener(evt.move, function(e) {
+				field.addEventListener(evt.move, function (e) {
 					mover.move(e);
 				}, false);
-				field.addEventListener(evt.up, function(e) {
+				field.addEventListener(evt.up, function (e) {
 					console.log('field up 0');
 
 					mover.isActive = false;
@@ -751,13 +748,13 @@
 				var polygons = $$('polygon', tempNode);
 
 				var points, x, y;
-				polygons.forEach(function(polygon){
+				polygons.forEach(function (polygon) {
 					points = (polygon.getAttribute('points')).trim();
 					points = points.split(' ');
-					points.forEach(function(xy){
+					points.forEach(function (xy) {
 						x = parseFloat(xy.split(',')[0]) * tg.q + offsetX;
 						y = parseFloat(xy.split(',')[1]) * tg.q + offsetY;
-						extraAlignPoints.push({x:x, y:y});
+						extraAlignPoints.push({x: x, y: y});
 					})
 				});
 			}());
@@ -784,12 +781,12 @@
 				minX = Infinity;
 				minY = Infinity;
 
-				extraAlignPoints.forEach(function(xy){
+				extraAlignPoints.forEach(function (xy) {
 					minX = (xy.x < minX) ? xy.x : minX;
 					minY = (xy.y < minY) ? xy.y : minY;
 				});
 
-				extraAlignPoints.forEach(function(xy){
+				extraAlignPoints.forEach(function (xy) {
 					answerPoints.push({x: xy.x - minX, y: xy.y - minY});
 				});
 
@@ -802,16 +799,88 @@
 			};
 
 			win.timer.init();
+			this.setStartFigurePosition();
 			console.log('tangram init');
 
 		},
-		testAnswer: function() {
+		setStartFigurePosition: function () {
+			console.log('setStartFigurePosition');
+
+			var width, height, positions, polygons;
+
+			polygons = $$('.figures-container polygon', main.wrapper);
+
+			width = info.screen.getWidth();
+			height = info.screen.getHeight();
+
+			positions = [
+				{
+					name: 'B3A',
+					x: 'right', // percent of width
+					y: 0.35, // percent of height
+					angle: 225
+				},
+				{
+					name: 'B3A',
+					x: 'right', // percent of width
+					y: 0.6, // percent of height
+					angle: 225
+				},
+				{
+					name: 'M3A',
+					x: 'right', // percent of width
+					y: 0.15, // percent of height
+					angle: 225
+				},
+				{
+					name: 'S3A',
+					x: 'left', // percent of width
+					y: 0.15, // percent of height
+					angle: 315
+				},
+				{
+					name: 'S3A',
+					x: 'left', // percent of width
+					y: 0.30, // percent of height
+					angle: 315
+				},
+				{
+					name: 'SQR',
+					x: 'left', // percent of width
+					y: 0.7, // percent of height
+					angle: 0
+				},
+				{
+					name: 'TRP',
+					x: 'left', // percent of width
+					y: 0.45, // percent of height
+					angle: 0
+				}
+			];
+
+			polygons.forEach(function(polygon, index){
+
+				// position of polygon
+				var x, y, style;
+				x = (positions[index].x === 'left') ? ( -200 * tg.q) : (width + 200 * tg.q);
+				y = Math.round(positions[index].y * height);
+				style = info.preCSS + 'transform: translate(' + x + 'px, ' + y + 'px) rotate(' + positions[index].angle + 'deg)';
+
+				polygon.setAttribute('style', style);
+				mover.putFigureInBox(polygon);
+
+			});
+
+
+
+		},
+		testAnswer: function () {
 
 			// get point of active figure
 			var polygons = $$('.js-figures-container polygon', main.wrapper);
 			var polygonPoints = [];
 			var centerPoints = [];
-			polygons.forEach(function(polygon){
+			polygons.forEach(function (polygon) {
 				var coords = util.getFigureCoordinates(polygon);
 				polygonPoints = polygonPoints.concat(coords.points);
 				centerPoints.push(coords.center);
@@ -820,19 +889,19 @@
 			var minX = Infinity;
 			var minY = Infinity;
 
-			polygonPoints.forEach(function(xy){
+			polygonPoints.forEach(function (xy) {
 				minX = (xy.x < minX) ? xy.x : minX;
 				minY = (xy.y < minY) ? xy.y : minY;
 			});
 
 			// adjust polygon points
-			polygonPoints.forEach(function(xy, index, arr){
+			polygonPoints.forEach(function (xy, index, arr) {
 				arr[index].x = xy.x - minX;
 				arr[index].y = xy.y - minY;
 			});
 
 			// adjust center of polygon points
-			centerPoints.forEach(function(xy, index, arr){
+			centerPoints.forEach(function (xy, index, arr) {
 				arr[index].x = xy.x - minX;
 				arr[index].y = xy.y - minY;
 			});
@@ -846,9 +915,9 @@
 
 				var delta = 2 * that.q;
 
-				answer.points.forEach(function(xy, index, arr){
-					polygonPoints.forEach(function(activeXY){
-						if ( util.getPathSize(xy.x, xy.y, activeXY.x, activeXY.y) < delta ) {
+				answer.points.forEach(function (xy, index, arr) {
+					polygonPoints.forEach(function (activeXY) {
+						if (util.getPathSize(xy.x, xy.y, activeXY.x, activeXY.y) < delta) {
 							console.log(index);
 							arr[index].accordAngle = true;
 						}
@@ -857,7 +926,7 @@
 
 				var properlyAnswers = 0;
 
-				answer.points.forEach(function(xy){
+				answer.points.forEach(function (xy) {
 					if (xy.accordAngle) {
 						properlyAnswers += 1;
 					}
