@@ -591,6 +591,7 @@
 			// color main image begin
 			var colorizedPolygonsColor = (info.difficult === 'tower') ? info.mainFigureColor : 'transparent';
 			questionFigureSVG = questionFigureSVG.replace(/fill='.*?'/gi, "fill='" + colorizedPolygonsColor + "'");
+			this.questionFigureSVG = questionFigureSVG;
 			// color main image end
 
 			// add question figure begin
@@ -804,7 +805,37 @@
 
 			win.timer.init();
 			this.setStartFigurePosition();
+			this.setHint();
 			console.log('tangram init');
+
+		},
+		setHint: function(){
+
+
+
+			if (info.difficult === 'king') {
+				var hintBtn = $('.js-hint-button', main.wrapper);
+				var that = this;
+				hintBtn.style.display = 'block';
+				hintBtn.addEventListener('click', function(){
+					$.addClass(hintBtn, 'active');
+					that.showMainFigure();
+				}, false);
+			}
+
+		},
+		showMainFigure: function(){
+
+			var splashNode = document.createElement('div');
+			splashNode.className = 'splash-question';
+			var questionFigureSVG = this.questionFigureSVG.replace(/fill='.*?'/gi, "fill='" + info.mainFigureColor + "'")
+			splashNode.setAttribute('style', "background-image: url(\"data:image/svg+xml;utf8," + questionFigureSVG + "\");");
+			splashNode.addEventListener('click', function(){
+				splashNode.parentNode.removeChild(splashNode);
+				var hintBtn = $('.js-hint-button', main.wrapper);
+				$.removeClass(hintBtn, 'active');
+			}, false);
+			main.wrapper.appendChild(splashNode);
 
 		},
 		setStartFigurePosition: function () {

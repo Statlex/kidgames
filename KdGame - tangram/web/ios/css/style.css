@@ -444,3 +444,43 @@
 	left: -100px;
 	z-index: -10000;
 }
+
+.hint-button {
+	position: fixed;
+	bottom: 27px;
+	width: 46px;
+	height: 46px;
+	left: 50%;
+	margin-left: -23px;
+	opacity: 0.7;
+	display: none;
+	z-index: 5;
+}
+
+.hint-button span {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/i/bulb-off.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+}
+
+.hint-button.active span {
+	background-image: url('../img/i/bulb-on.svg');
+}
+
+.splash-question {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	opacity: 0.75;
+}
