@@ -57,7 +57,7 @@
 		transition2ndPart: function() {
 			setTimeout(function(back){
 				var transitionWrapper = $('#wrapper-for-transition');
-				transitionWrapper.style.webkitTransition = '0.5s all ease-out';
+				transitionWrapper.style.webkitTransition = '0.4s all ease-out';
 				$.addClass(transitionWrapper, back ? 'to-left' : 'to-right');
 			}.bind(this, this.isBack), 10);
 		},
