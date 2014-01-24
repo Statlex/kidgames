@@ -329,6 +329,7 @@
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 	border: 1px solid #f5f5f5;
+	position: relative;
 }
 
 .category-button {
@@ -483,4 +484,51 @@
 	background-size: contain;
 	background-position: center center;
 	opacity: 0.75;
+}
+
+.category-wrapper .save-icon {
+	background-image: url('../img/i/save.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	bottom: 6px;
+	left: 8px;
+	opacity: 0.3;
+}
+
+.category-wrapper .save-icon.saved {
+	opacity: 1;
+}
+
+.category-wrapper .timestamp {
+	position: absolute;
+	bottom: 7px;
+	right: 9px;
+	font-size: 12px;
+	line-height: 12px;
+	display: none;
+}
+
+/* detect iPad */
+
+@media screen and (min-width: 700px) {
+
+	.category-wrapper .save-icon {
+		width: 35px;
+		height: 35px;
+		bottom: 9px;
+		left: 10px;
+	}
+
+	.category-wrapper .timestamp {
+		bottom: 10px;
+		right: 12px;
+		font-size: 25px;
+		line-height: 25px;
+	}
+
 }

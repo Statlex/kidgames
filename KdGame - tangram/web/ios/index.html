@@ -139,20 +139,21 @@
 	</div>
 </div>
 
-<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();">
+<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();main.setPreviewState();">
 
 	<div class="page images-of-categories">
 
 		<h1>{{= categories[info.currentCategoryName]['name_' + info.lang] }}</h1>
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
-		<div class="category-wrapper">
-			<div class="category-button-wrapper"
-			     onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
+		<div class="category-wrapper" figure-id="{{= figure.id }}">
+			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>
 			</div>
+			<div class="save-icon js-save-icon"></div>
+			<div class="timestamp js-timestamp">0:00</div>
 		</div>
 		{{ }); }}
 

@@ -4,6 +4,7 @@
 	timer = {
 		init: function(){
 			this.node = $('.js-timer-wrapper', main.wrapper);
+			this.countValue = 0;
 
 			if (!info.timerIsActive && this.node) {
 				this.node.style.display = 'none';
@@ -12,7 +13,6 @@
 
 			this.isActive = true;
 			this.isPause = false;
-			this.countValue = 0;
 			setTimeout(this.count.bind(this), 1000);
 			console.log('timer is run');
 

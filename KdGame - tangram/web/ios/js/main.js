@@ -101,6 +101,37 @@
 				console.warn('---- Unique ID test is ERROR ----');
 			}
 
+		},
+		setPreviewState: function() {
+
+			var nodes = $$('.category-wrapper', main.wrapper);
+
+			var idsData = info.get('idsData');
+
+			nodes.forEach(function(node){
+				var imageId = parseInt(node.getAttribute('figure-id'));
+				if (!idsData[imageId]) {
+					return;
+				}
+				var timeNode = $('.js-timestamp', node);
+				var saveIcon = $('.js-save-icon', node);
+				$.addClass(saveIcon, 'saved');
+
+				if (!info.timerIsActive) {
+					return;
+				}
+				var spendTime = idsData[imageId].spendTime;
+				if (spendTime > 0) {
+					var min = Math.floor(spendTime / 60);
+					var sec = spendTime % 60;
+					timeNode.innerHTML = min + ':' + sec;
+					timeNode.style.display = 'block';
+				}
+
+			});
+
+
+
 		}
 
 	};
