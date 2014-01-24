@@ -821,10 +821,33 @@
 						return;
 					}
 
+					timer.pause(true);
+
+					var svgForSave = $('.js-figures-container', main.wrapper);
+
+					var data = {
+						figureId: tg.currentObject.id,
+						categoryName: info.currentCategoryName,
+						figureNumber: info.imageNumber,
+						figureSVG: svgForSave.outerHTML,
+						spendTime: timer.countValue,
+						timestamp: Date.now()
+					};
+
+					// save data to LS
+					var idsData = info.get('idsData') || {};
+
+					idsData[data.figureId] = {
+						id: data.figureId,
+						spendTime: data.spendTime,
+						timestamp: data.timestamp
+					};
+
+					info.set('idsData', idsData, true);
+
 					ui.alert.show(lang[info.lang].stateSavedToYouCollection);
 
-					console.log(tg.currentObject);
-
+					dataBase.saveProgress(data);
 
 
 				}, false);

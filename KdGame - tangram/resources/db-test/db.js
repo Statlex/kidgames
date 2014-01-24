@@ -20,7 +20,7 @@
 				console.log(result);
 			},
 			function (tx, error) {
-				tx.executeSql("CREATE TABLE SimpleTable (id REAL UNIQUE, label TEXT, timestamp REAL)", [], null, null);
+				tx.executeSql("CREATE TABLE SimpleTable (id REAL UNIQUE AUTO_INCREMENT, label TEXT, timestamp REAL)", [], null, null);
 			}
 		)
 	});
