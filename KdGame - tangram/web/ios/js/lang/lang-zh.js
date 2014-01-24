@@ -16,7 +16,8 @@
 		timer: 'zh timer',
 		sound: 'zh sound',
 		categories: 'zh categories',
-		stateSavedToYouCollection: 'zh state saved to you collection.'
+		stateSavedToYouCollection: 'zh state saved to you collection.',
+		doYouWantSaveYouProgress: 'zh you want save you progress?'
 
 
 	}

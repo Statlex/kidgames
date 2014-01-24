@@ -19,7 +19,8 @@
 		timer: 'таймер',
 		sound: 'звуки',
 		categories: 'категории',
-		stateSavedToYouCollection: 'Фигура сохранена в коллекцию.'
+		stateSavedToYouCollection: 'Фигура сохранена в коллекцию.',
+		doYouWantSaveYouProgress: 'Хотите сохранить прогресс в коллекцию?'
 
 
 	}

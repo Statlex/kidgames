@@ -19,7 +19,8 @@
 		timer: 'timer',
 		sound: 'sound',
 		categories: 'categories',
-		stateSavedToYouCollection: 'state saved to you collection.'
+		stateSavedToYouCollection: 'state saved to you collection.',
+		doYouWantSaveYouProgress: 'do you want save you progress?'
 
 
 	}

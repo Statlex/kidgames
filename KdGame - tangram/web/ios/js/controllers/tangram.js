@@ -664,6 +664,7 @@
 				polygons.forEach(function (polygon) {
 					polygon.addEventListener(evt.down, function (e) {
 						console.log('polygon down 0');
+						timer.pause(false);
 						mover.activePolygon.node.setAttribute('class', '');
 						rotater.hideRotater();
 
@@ -691,7 +692,7 @@
 				polygons.forEach(function (polygon) {
 					polygon.addEventListener(evt.up, function (e) {
 						console.log('polygon up 0');
-
+						timer.pause(false);
 						mover.isActive = false;
 
 						//rotater.isActive = true;
@@ -715,6 +716,7 @@
 				var field = $('.js-figures-container');
 				field.addEventListener(evt.down, function (e) {
 					console.log('field down 0');
+					timer.pause(false);
 
 					mover.isActive = false;
 					mover.activePolygon.node.setAttribute('class', '');
@@ -812,47 +814,80 @@
 			console.log('tangram init');
 
 		},
+		back: function(e){
+
+			player.play(soundList.click);
+
+			var button = $('.js-save-button-wrapper', main.wrapper);
+			if (!$.hasClass(button, 'active')) {
+				viewer.back();
+				return;
+			}
+
+			// test for changes
+			var svgForSave = $('.js-figures-container', main.wrapper);
+			if (svgForSave.outerHTML === tg.currentSavedSVG) {
+				viewer.back();
+				return;
+			}
+
+			ui.confirm.show(lang[info.lang].doYouWantSaveYouProgress,
+				function() {
+					tg.saveProgressToDB();
+					viewer.back();
+				},
+				function(){
+					viewer.back();
+				}
+			);
+
+		},
+		saveProgressToDB: function(){
+
+			timer.pause(true);
+
+			var svgForSave = $('.js-figures-container', main.wrapper);
+
+			var data = {
+				figureId: tg.currentObject.id,
+				categoryName: info.currentCategoryName,
+				figureNumber: info.imageNumber,
+				figureSVG: svgForSave.outerHTML,
+				spendTime: timer.countValue,
+				timestamp: Date.now()
+			};
+
+			tg.currentSavedSVG = svgForSave.outerHTML;
+
+			// save data to LS
+			var idsData = info.get('idsData') || {};
+
+			idsData[data.figureId] = {
+				id: data.figureId,
+				spendTime: data.spendTime,
+				timestamp: data.timestamp
+			};
+
+			info.set('idsData', idsData, true);
+
+			ui.alert.show(lang[info.lang].stateSavedToYouCollection);
+
+			dataBase.saveProgress(data);
+
+		},
 		saveButton: {
 			init: function() {
 
-				var button = $('.js-save-button-wrapper', main.wrapper)
+				var button = $('.js-save-button-wrapper', main.wrapper);
 				button.addEventListener('click', function(){
 					if (!$.hasClass(this, 'active')) {
 						return;
 					}
 
-					timer.pause(true);
-
-					var svgForSave = $('.js-figures-container', main.wrapper);
-
-					var data = {
-						figureId: tg.currentObject.id,
-						categoryName: info.currentCategoryName,
-						figureNumber: info.imageNumber,
-						figureSVG: svgForSave.outerHTML,
-						spendTime: timer.countValue,
-						timestamp: Date.now()
-					};
-
-					// save data to LS
-					var idsData = info.get('idsData') || {};
-
-					idsData[data.figureId] = {
-						id: data.figureId,
-						spendTime: data.spendTime,
-						timestamp: data.timestamp
-					};
-
-					info.set('idsData', idsData, true);
-
-					ui.alert.show(lang[info.lang].stateSavedToYouCollection);
-
-					dataBase.saveProgress(data);
-
+					tg.saveProgressToDB();
 
 				}, false);
 				this.button = button;
-
 
 			},
 			setState: function(isActive) {

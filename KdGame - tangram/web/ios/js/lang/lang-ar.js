@@ -19,7 +19,8 @@
 		timer: 'ar timer',
 		sound: 'ar sound',
 		categories: 'ar categories',
-		stateSavedToYouCollection: 'ar state saved to you collection.'
+		stateSavedToYouCollection: 'ar state saved to you collection.',
+		doYouWantSaveYouProgress: 'ar do you want save you progress?'
 
 	}
 
