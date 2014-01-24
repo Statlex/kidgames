@@ -10,6 +10,8 @@
 			this.wrapper = $('#wrapper');
 			viewer.show('title-page');
 
+			this.uniqueTest();
+
 		},
 		setMorePage: function(){
 			var langSelectNode = $('.js-language-select', this.wrapper);
@@ -67,8 +69,39 @@
 				img.setAttribute('style', pre + tempNode.innerHTML + post);
 			})
 
-		}
+		},
+		uniqueTest: function() {
+			// test for unique id in categories
+			var categories = win.categories;
 
+			var ids = [];
+
+			var testIsPassed = true;
+
+			for (var key in categories) {
+				if (categories.hasOwnProperty(key)) {
+					categories[key].figures.forEach(function(data){
+						ids.push(data.id);
+					});
+				}
+			}
+
+			console.log('---- Unique ID test is STARTED ----');
+
+			ids.forEach(function(id, index, arr){
+				if (arr.indexOf(id) !== arr.lastIndexOf(id)) {
+					console.log('double id is - ' + id);
+					testIsPassed = false;
+				}
+			});
+
+			if (testIsPassed) {
+				console.log('---- Unique ID test is PASSED ---');
+			} else {
+				console.warn('---- Unique ID test is ERROR ----');
+			}
+
+		}
 
 	};
 
