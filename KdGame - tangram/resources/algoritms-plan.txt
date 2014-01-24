@@ -5,7 +5,7 @@
 
 таск лист:
 1. сохранить фигуру в коллекцию по нажатию кнопки save.
-формат сохранения - figureId, figureSVG, time, date.
+формат сохранения - figureId, categoryName, figureNumber, figureSVG, time, date.
 
 
 // + 1. когда фигура по углам собрана, подсвечивать кнопку save
