@@ -581,6 +581,8 @@
 			 *
 			 * */
 
+			this.currentObject = JSON.parse(JSON.stringify(win.categories[info.currentCategoryName].figures[info.imageNumber]));
+
 			var questionFigureSVG = win.categories[info.currentCategoryName].figures[info.imageNumber].svg.toString();
 
 			var wrapper = $('.page', main.wrapper);
@@ -806,12 +808,39 @@
 			win.timer.init();
 			this.setStartFigurePosition();
 			this.setHint();
+			this.saveButton.init();
 			console.log('tangram init');
 
 		},
+		saveButton: {
+			init: function() {
+
+				var button = $('.js-save-button-wrapper', main.wrapper)
+				button.addEventListener('click', function(){
+					if (!$.hasClass(this, 'active')) {
+						return;
+					}
+
+					ui.alert.show(lang[info.lang].stateSavedToYouCollection);
+
+					console.log(tg.currentObject);
+
+
+
+				}, false);
+				this.button = button;
+
+
+			},
+			setState: function(isActive) {
+				if (isActive) {
+					$.addClass(this.button, 'active');
+				} else {
+					$.removeClass(this.button, 'active');
+				}
+			}
+		},
 		setHint: function(){
-
-
 
 			if (info.difficult === 'king') {
 				var hintBtn = $('.js-hint-button', main.wrapper);
@@ -969,8 +998,10 @@
 
 				if (properlyAnswers >= answer.points.length) {
 					console.log(' ----- ANGLE test is PASSED ----- ');
+					that.saveButton.setState(true);
 				} else {
 					console.log(' ----- ANGLE test is ERROR ----- ');
+					that.saveButton.setState(false);
 				}
 
 			}());

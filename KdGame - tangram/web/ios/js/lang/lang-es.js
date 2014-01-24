@@ -18,7 +18,9 @@
 
 		timer: 'es timer',
 		sound: 'es sound',
-		categories: 'es categories'
+		categories: 'es categories',
+		stateSavedToYouCollection: 'es state saved to you collection.'
+
 
 	}
 

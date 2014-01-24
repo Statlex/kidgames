@@ -18,7 +18,9 @@
 
 		timer: 'timer',
 		sound: 'sound',
-		categories: 'categories'
+		categories: 'categories',
+		stateSavedToYouCollection: 'state saved to you collection.'
+
 
 	}
 

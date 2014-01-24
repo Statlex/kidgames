@@ -18,7 +18,9 @@
 
 		timer: 'de timer',
 		sound: 'de sound',
-		categories: 'de categories'
+		categories: 'de categories',
+		stateSavedToYouCollection: 'de state saved to you collection.'
+
 
 	}
 

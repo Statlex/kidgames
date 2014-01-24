@@ -18,7 +18,8 @@
 
 		timer: 'ar timer',
 		sound: 'ar sound',
-		categories: 'ar categories'
+		categories: 'ar categories',
+		stateSavedToYouCollection: 'ar state saved to you collection.'
 
 	}
 

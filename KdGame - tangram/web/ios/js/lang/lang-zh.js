@@ -15,7 +15,9 @@
 
 		timer: 'zh timer',
 		sound: 'zh sound',
-		categories: 'zh categories'
+		categories: 'zh categories',
+		stateSavedToYouCollection: 'zh state saved to you collection.'
+
 
 	}
 

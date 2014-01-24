@@ -48,9 +48,6 @@
 
 	};
 
-
 	win.timer = timer;
-
-
 
 }(window));
