@@ -329,16 +329,26 @@ body {
 .alert-ok-button {
 	display: block;
 	color: #000;
-	width: 20%;
+	width: 35%;
 	background-color: #f0f0f0;
-	padding: 10px;
+	padding: 0;
 	border-radius: 5px;
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
 	margin: 0 auto;
 	text-align: center;
 	cursor: pointer;
 	text-transform: uppercase;
+	height: 50px;
+	background-image: url('../img/i/ok.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto 90%;
 }
+
+.alert-cancel-button {
+	background-image: url('../img/i/cancel.svg');
+}
+
 /* alert */
 
 .full-area {
@@ -373,4 +383,18 @@ body {
 }
 
 /* logger end */
+
+/* custom confirm */
+
+.custom-confirm .alert-form {
+	text-align: center;
+}
+
+.custom-confirm .alert-ok-button {
+	display: inline-block;
+	margin: 0 5%;
+}
+
+/* custom confirm */
+
 

@@ -167,3 +167,44 @@
 
 }(window));
 
+(function (win) {
+
+	"use strict";
+	/*global window, document */
+
+	win.ui = win.ui || {};
+
+	win.ui.confirm = {
+		handleEvent: function() {
+			this.wrapper = $('.js-confirm');
+			this.okBtn = $('.js-confirm-button-ok', this.wrapper);
+			this.cancelBtn = $('.js-confirm-button-cancel', this.wrapper);
+			this.message = $('.js-confirm-message', this.wrapper);
+
+			this.okBtn.addEventListener('click', this.hide.bind(this), false);
+			this.cancelBtn.addEventListener('click', this.hide.bind(this), false);
+
+		},
+		show: function(msg, okAction, cancelAction) {
+			$.html(this.message, msg);
+			this.wrapper.style.display = 'table';
+			var that = this;
+			setTimeout(function(){
+				that.wrapper.style.opacity = 1;
+			}, 20);
+			this.okBtn.onclick = okAction;
+			this.cancelBtn.onclick = cancelAction;
+		},
+		hide: function() {
+			var that = this;
+			this.wrapper.style.opacity = '';
+			setTimeout(function(){
+				that.wrapper.style.display = '';
+			}, 520);
+			player.play(soundList.click);
+		}
+	};
+
+	win.addEventListener('load', win.ui.confirm, false);
+
+}(window));
