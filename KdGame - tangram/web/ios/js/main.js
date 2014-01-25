@@ -106,7 +106,7 @@
 
 			var nodes = $$('.category-wrapper', main.wrapper);
 
-			var idsData = info.get('idsData');
+			var idsData = info.get('idsData') || {};
 
 			nodes.forEach(function(node){
 				var imageId = parseInt(node.getAttribute('figure-id'));

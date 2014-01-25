@@ -37,6 +37,20 @@
 				tx.executeSql("INSERT INTO " + that.tableName + " (figureId, categoryName, figureNumber, figureSVG, spendTime, timestamp) values(?, ?, ?, ?, ?, ?)", [data.figureId, data.categoryName, data.figureNumber, data.figureSVG, data.spendTime, data.timestamp], null, null);
 			});
 
+		},
+		getSvgByFigureId: function(id, func) {
+
+
+			var that = this;
+			this.db.transaction(function (tx) {
+				tx.executeSql("SELECT * FROM " + that.tableName + " WHERE figureId = ?", [id],
+					function (tx, result) {
+						func(result.rows.item(0).figureSVG);
+					}, null)
+			});
+
+
+
 		}
 
 

@@ -811,7 +811,40 @@
 			this.setStartFigurePosition();
 			this.setHint();
 			this.saveButton.init();
+			this.tryToRestoreState();
 			console.log('tangram init');
+
+		},
+		tryToRestoreState: function(){
+			var id = this.currentObject.id;
+			var polygons = $$('.js-figures-container polygon', main.wrapper);
+
+			var reGetNumber = /\D*(\d)\D*/gi;
+
+			dataBase.getSvgByFigureId(id, function(svg){
+
+				if (!svg) {
+					return;
+				}
+
+				var tempNode = document.createElement('div');
+				tempNode.innerHTML = svg;
+				var tempPolygons = $$('polygon', tempNode);
+				var positionMap = {};
+
+				tempPolygons.forEach(function(tempPolygon){
+					var field = parseInt(tempPolygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					positionMap[field] = tempPolygon.getAttribute('style');
+				});
+
+				polygons.forEach(function(polygon){
+					var field = parseInt(polygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					polygon.setAttribute('style', positionMap[field]);
+				});
+
+
+			});
+
 
 		},
 		back: function(e){
