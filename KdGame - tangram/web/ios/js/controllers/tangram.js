@@ -582,6 +582,7 @@
 			 * */
 
 			this.currentObject = JSON.parse(JSON.stringify(win.categories[info.currentCategoryName].figures[info.imageNumber]));
+			tg.currentSavedSVG = '';
 
 			var questionFigureSVG = win.categories[info.currentCategoryName].figures[info.imageNumber].svg.toString();
 
@@ -842,12 +843,13 @@
 					polygon.setAttribute('style', positionMap[field]);
 				});
 
+				tg.currentSavedSVG = $('.js-figures-container', main.wrapper).outerHTML;
 
 			});
 
 
 		},
-		back: function(e){
+		back: function(){
 
 			player.play(soundList.click);
 
@@ -858,8 +860,43 @@
 			}
 
 			// test for changes
-			var svgForSave = $('.js-figures-container', main.wrapper);
-			if (svgForSave.outerHTML === tg.currentSavedSVG) {
+			var wasChanges = false;
+			(function () {
+				if (!tg.currentSavedSVG) {
+					wasChanges = true;
+					return;
+				}
+				var polygons = $$('.js-figures-container polygon', main.wrapper);
+				var tempNode = document.createElement('div');
+				tempNode.innerHTML = tg.currentSavedSVG;
+				var tempPolygons = $$('polygon', tempNode);
+				tempPolygons.sort(function(a, b) {
+					var reGetNumber = /\D*(\d)\D*/gi;
+					var aNumber = parseInt(a.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					var bNumber = parseInt(b.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					return aNumber > bNumber;
+				});
+				polygons.sort(function(a, b) {
+					var reGetNumber = /\D*(\d)\D*/gi;
+					var aNumber = parseInt(a.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					var bNumber = parseInt(b.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					return aNumber > bNumber;
+				});
+
+				tempPolygons.forEach(function(tempPolygon, index){
+					console.log(tempPolygon.getAttribute('style'));
+					console.log(polygons[index].getAttribute('style'));
+					console.log(tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style'));
+
+
+					if (tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style')) {
+						wasChanges = true;
+					}
+
+				});
+			}());
+
+			if (!wasChanges) {
 				viewer.back();
 				return;
 			}
