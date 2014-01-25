@@ -6,6 +6,10 @@
 			this.node = $('.js-timer-wrapper', main.wrapper);
 			this.countValue = 0;
 
+			if (this.timeoutID !== undefined) {
+				clearTimeout(this.timeoutID);
+			}
+
 			if (!info.timerIsActive && this.node) {
 				this.node.style.display = 'none';
 				return;
@@ -13,7 +17,7 @@
 
 			this.isActive = true;
 			this.isPause = false;
-			setTimeout(this.count.bind(this), 1000);
+			this.timeoutID = setTimeout(this.count.bind(this), 1000);
 			console.log('timer is run');
 
 		},
@@ -30,7 +34,7 @@
 			var timerNode = $('.js-timer-wrapper', main.wrapper);
 			if (timerNode) {
 				timerNode.innerHTML = minutes + ':' + seconds;
-				setTimeout(this.count.bind(this), 1000);
+				this.timeoutID = setTimeout(this.count.bind(this), 1000);
 			} else {
 				this.stop();
 			}
@@ -38,6 +42,7 @@
 		},
 		stop: function(){
 			this.isActive = false;
+			clearTimeout(this.timeoutID);
 			console.log('timer is stopped');
 		},
 		pause: function(needPause){

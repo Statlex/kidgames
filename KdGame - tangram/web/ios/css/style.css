@@ -532,3 +532,39 @@
 	}
 
 }
+
+.arrow-left img,
+.arrow-right img {
+	width: 100%;
+	display: block;
+}
+
+.arrow-left,
+.arrow-right {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	background-image: url('../img/i/arrow-left.svg');
+	width: 12%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	z-index: 1;
+	margin: -6% 3% 0;
+	display: none;
+	opacity: 0.8;
+
+	/*display: block !important;*/
+}
+
+.arrow-right {
+	left: auto;
+	right: 0;
+	background-image: url('../img/i/arrow-right.svg');
+}
+
+.status-bar-back, .status-bar-more, .status-bar-play-again {
+	opacity: 0.8;
+}
+

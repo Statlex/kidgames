@@ -3,8 +3,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'tangramCollection_123',
-		tableName: 'tangramTable_123',
+		dbName: 'tangramCollection_124',
+		tableName: 'tangramTable_124',
 		init: function(){
 			var that = this;
 			// create or connect to db
@@ -40,7 +40,6 @@
 		},
 		getSvgByFigureId: function(id, func) {
 
-
 			var that = this;
 			this.db.transaction(function (tx) {
 				tx.executeSql("SELECT * FROM " + that.tableName + " WHERE figureId = ?", [id],
@@ -50,8 +49,6 @@
 						}
 					}, null)
 			});
-
-
 
 		}
 

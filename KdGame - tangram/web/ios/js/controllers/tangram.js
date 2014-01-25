@@ -687,6 +687,7 @@
 
 						e.stopPropagation();
 						console.log('polygon down 1');
+						tg.showArrows(false);
 					}, false);
 				});
 
@@ -813,7 +814,45 @@
 			this.setHint();
 			this.saveButton.init();
 			this.tryToRestoreState();
+			this.setArrowButtons();
 			console.log('tangram init');
+
+		},
+		setArrowButtons: function(){
+
+			function nextTangram(direction) {
+
+				var figures = win.categories[info.currentCategoryName].figures;
+				info.imageNumber += direction;
+
+				if (info.imageNumber > figures.length - 1) {
+					info.imageNumber = 0;
+				}
+
+				if (info.imageNumber < 0) {
+					info.imageNumber = figures.length - 1;
+				}
+
+				viewer.show('tangram-page');
+
+			}
+
+			this.arrowLeft = $('.js-arrow-left', main.wrapper);
+			this.arrowRight = $('.js-arrow-right', main.wrapper);
+
+			this.arrowLeft.addEventListener('click', nextTangram.bind(this, -1), false);
+			this.arrowRight.addEventListener('click', nextTangram.bind(this, 1), false);
+
+		},
+		showArrows: function(needShow){
+
+			if (needShow) {
+				this.arrowLeft.style.display = 'block';
+				this.arrowRight.style.display = 'block';
+			} else {
+				this.arrowLeft.style.display = 'none';
+				this.arrowRight.style.display = 'none';
+			}
 
 		},
 		tryToRestoreState: function(){
@@ -844,6 +883,8 @@
 				});
 
 				tg.currentSavedSVG = $('.js-figures-container', main.wrapper).outerHTML;
+
+				tg.showArrows(true);
 
 			});
 
@@ -945,6 +986,8 @@
 
 			var saveBtn = $('.js-save-button-wrapper', main.wrapper);
 			$.removeClass(saveBtn, 'active');
+
+			this.showArrows(true);
 
 		},
 		saveButton: {
