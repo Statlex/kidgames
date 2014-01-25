@@ -45,7 +45,9 @@
 			this.db.transaction(function (tx) {
 				tx.executeSql("SELECT * FROM " + that.tableName + " WHERE figureId = ?", [id],
 					function (tx, result) {
-						func(result.rows.item(0).figureSVG);
+						if (result.rows.length) {
+							func(result.rows.item(0).figureSVG);
+						}
 					}, null)
 			});
 
