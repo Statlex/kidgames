@@ -50,6 +50,38 @@
 					}, null)
 			});
 
+		},
+		getAllData: function(func) {
+
+			var that = this;
+			var data = {};
+
+			this.db.transaction(function (tx) {
+				tx.executeSql("SELECT * FROM " + that.tableName, [],
+					function (tx, result) {
+
+						console.log('----------');
+						for (var i = 0, len = result.rows.length; i < len; i += 1) {
+							var item = result.rows.item(i);
+							data[item.categoryName] = {};
+
+							data[item.categoryName][item.figureId] = {
+								figureId: item.figureId,
+								figureNumber: item.figureNumber,
+								figureSVG: item.figureSVG,
+								timestamp: item.timestamp,
+								spendTime: item.spendTime
+							};
+
+							console.log(data);
+
+						}
+						func(data);
+					}, null)
+			});
+
+
+
 		}
 
 

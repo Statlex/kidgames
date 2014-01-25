@@ -34,6 +34,7 @@
 	<!-- controllers -->
 	<script src="js/controllers/tangram.js" type="text/javascript"></script>
 	<script src="js/controllers/timer.js" type="text/javascript"></script>
+	<script src="js/controllers/collection.js" type="text/javascript"></script>
 
 	<!-- figures -->
 	<script src="js/figures/category-1.js" type="text/javascript"></script>
@@ -134,13 +135,35 @@
 	</div>
 </div>
 
-<div class="js-template hidden" template-id="my-collection-page" onshow="statusBar.show([]);">
+<div class="js-template hidden" template-id="my-collection-page" onshow="collection.show();statusBar.show([]);">
 	<div class="page my-collection-page">
 
-		<h1>my collection page</h1>
+		<h1>my-collection-page</h1>
+
+		<div class="my-collection-list-wrapper"></div>
 
 	</div>
 </div>
+
+<div class="js-template hidden" template-id="my-collection-list">
+
+
+
+	<div class="my-collection-list-item-wrapper">
+
+
+
+	</div>
+
+
+</div>
+
+
+
+
+
+
+
 
 <div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();main.setPreviewState();">
 
