@@ -888,7 +888,6 @@
 					console.log(polygons[index].getAttribute('style'));
 					console.log(tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style'));
 
-
 					if (tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style')) {
 						wasChanges = true;
 					}
@@ -943,6 +942,9 @@
 			ui.alert.show(lang[info.lang].stateSavedToYouCollection);
 
 			dataBase.saveProgress(data);
+
+			var saveBtn = $('.js-save-button-wrapper', main.wrapper);
+			$.removeClass(saveBtn, 'active');
 
 		},
 		saveButton: {
