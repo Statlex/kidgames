@@ -20,7 +20,10 @@
 		sound: 'звуки',
 		categories: 'категории',
 		stateSavedToYouCollection: 'Фигура сохранена в коллекцию.',
-		doYouWantSaveYouProgress: 'Хотите сохранить прогресс в коллекцию?'
+		doYouWantSaveYouProgress: 'Хотите сохранить прогресс в коллекцию?',
+		play: 'играть',
+		myCollection: 'моя коллекция'
+
 
 
 	}

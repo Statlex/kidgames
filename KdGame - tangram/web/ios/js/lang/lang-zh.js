@@ -17,7 +17,10 @@
 		sound: 'zh sound',
 		categories: 'zh categories',
 		stateSavedToYouCollection: 'zh state saved to you collection.',
-		doYouWantSaveYouProgress: 'zh you want save you progress?'
+		doYouWantSaveYouProgress: 'zh you want save you progress?',
+		play: 'zh play',
+		myCollection: 'zh my collection'
+
 
 
 	}

@@ -20,7 +20,10 @@
 		sound: 'sound',
 		categories: 'categories',
 		stateSavedToYouCollection: 'state saved to you collection.',
-		doYouWantSaveYouProgress: 'do you want save you progress?'
+		doYouWantSaveYouProgress: 'do you want save you progress?',
+		play: 'play',
+		myCollection: 'my collection'
+
 
 
 	}

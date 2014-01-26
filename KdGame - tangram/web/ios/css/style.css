@@ -568,3 +568,7 @@
 	opacity: 0.8;
 }
 
+.title-button.my-collection:after {
+	background-image: url('../img/i/collection.svg');
+
+}

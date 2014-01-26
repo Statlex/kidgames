@@ -20,7 +20,10 @@
 		sound: 'de sound',
 		categories: 'de categories',
 		stateSavedToYouCollection: 'de state saved to you collection.',
-		doYouWantSaveYouProgress: 'de you want save you progress?'
+		doYouWantSaveYouProgress: 'de you want save you progress?',
+		play: 'de play',
+		myCollection: 'de my collection'
+
 
 
 	}
