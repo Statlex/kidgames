@@ -3,8 +3,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'tangramCollection_124',
-		tableName: 'tangramTable_124',
+		dbName: 'tangramCollection_126',
+		tableName: 'tangramTable_126',
 		init: function(){
 			var that = this;
 			// create or connect to db
@@ -51,29 +51,25 @@
 			});
 
 		},
-		getAllData: function(func) {
+		getAllDataArray: function(func) {
 
-			var that = this;
-			var data = {};
+			var tableName = this.tableName;
 
 			this.db.transaction(function (tx) {
-				tx.executeSql("SELECT * FROM " + that.tableName, [],
+				tx.executeSql("SELECT * FROM " + tableName, [],
 					function (tx, result) {
-
-						console.log('----------');
+						var data = [];
 						for (var i = 0, len = result.rows.length; i < len; i += 1) {
 							var item = result.rows.item(i);
-							data[item.categoryName] = {};
 
-							data[item.categoryName][item.figureId] = {
+							data.push({
 								figureId: item.figureId,
+								categoryName: item.categoryName,
 								figureNumber: item.figureNumber,
 								figureSVG: item.figureSVG,
 								timestamp: item.timestamp,
 								spendTime: item.spendTime
-							};
-
-							console.log(data);
+							});
 
 						}
 						func(data);

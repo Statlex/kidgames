@@ -4,13 +4,26 @@
 		showState: 'list', // 'list' or categories
 		show: function() {
 
-			console.log('show---');
+			var wrapper = $('.js-my-collection-list-wrapper', main.wrapper);
 
-			// get all data
-			dataBase.getAllData(function(data){
-				console.log(data);
-			});
+			if (this.showState === 'list') {
+				// get all data
+				dataBase.getAllDataArray(function(data){
 
+					data = data.sort(function(a, b){
+						return a.timestamp < b.timestamp;
+					});
+
+					var templateHTML = viewer.templates['my-collection-list'];
+					console.log(templateHTML);
+
+
+				});
+			}
+
+			if (this.showState === 'categories') {
+
+			}
 
 
 

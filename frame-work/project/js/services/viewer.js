@@ -82,7 +82,7 @@
 			$$(this.templateClass).forEach(function(node){
 				that.templates[node.getAttribute('template-id')] = {
 					onShow: node.getAttribute('onshow'),
-					html: $.html(node)
+					html: $.html(node).replace(/\s+/gi, ' ').trim()
 				};
 				$.remove(node);
 			});
