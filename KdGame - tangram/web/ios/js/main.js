@@ -137,7 +137,7 @@
 							var timer = $('.js-timestamp', this.parentNode);
 							timer.style.display = 'none';
 							var saveIcon = $('.js-save-icon', this.parentNode);
-							saveIcon.style.display = 'none';
+							$.removeClass(saveIcon, 'saved');
 
 						}.bind(this),
 						function(){
