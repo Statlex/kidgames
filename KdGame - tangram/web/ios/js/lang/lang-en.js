@@ -22,7 +22,8 @@
 		stateSavedToYouCollection: 'state saved to you collection.',
 		doYouWantSaveYouProgress: 'do you want save you progress?',
 		play: 'play',
-		myCollection: 'my collection'
+		myCollection: 'my collection',
+		removeTgState: "Remove tangram's state ?"
 
 
 

@@ -147,23 +147,13 @@
 
 <div class="js-template hidden" template-id="my-collection-list">
 
-
-
-	<div class="my-collection-list-item-wrapper">
-
-
-
-	</div>
-
+	{{ arr.forEach(function(obj){ }}
+		<div class="list-item-wrapper">
+			{{= obj.figureSVG }}
+		</div>
+	{{ }); }}
 
 </div>
-
-
-
-
-
-
-
 
 <div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();main.setPreviewState();">
 
@@ -180,12 +170,15 @@
 			</div>
 			<div class="save-icon js-save-icon"></div>
 			<div class="timestamp js-timestamp">0:00</div>
+			<div class="remove-icon js-remove-icon"></div>
 		</div>
 		{{ }); }}
 
 	</div>
 
 </div>
+
+<!-- services - -->
 
 <div class="js-template hidden" template-id="more-page" onshow="statusBar.show([]);main.setMorePage();">
 
@@ -352,6 +345,8 @@
 <div class="js-logger logger-wrapper">
 	<div class="js-logger-inner-block logger-inner-block">Logger:<br></div>
 </div>
+
+<!-- services + -->
 
 </body>
 </html>

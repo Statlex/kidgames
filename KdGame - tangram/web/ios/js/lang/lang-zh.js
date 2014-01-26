@@ -19,7 +19,8 @@
 		stateSavedToYouCollection: 'zh state saved to you collection.',
 		doYouWantSaveYouProgress: 'zh you want save you progress?',
 		play: 'zh play',
-		myCollection: 'zh my collection'
+		myCollection: 'zh my collection',
+		removeTgState: "zh Remove tangram's state ?"
 
 
 

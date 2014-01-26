@@ -513,6 +513,24 @@
 	display: none;
 }
 
+.category-wrapper .remove-icon {
+	display: none;
+	background-image: url('../img/i/remove.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.category-wrapper .remove-icon.active {
+	display: block;
+}
+
 /* detect iPad */
 
 @media screen and (min-width: 700px) {
@@ -520,7 +538,7 @@
 	.category-wrapper .save-icon {
 		width: 35px;
 		height: 35px;
-		bottom: 9px;
+		bottom: 7px;
 		left: 10px;
 	}
 
@@ -529,6 +547,13 @@
 		right: 12px;
 		font-size: 25px;
 		line-height: 25px;
+	}
+
+	.category-wrapper .remove-icon {
+		width: 25px;
+		height: 25px;
+		top: 13px;
+		right: 12px;
 	}
 
 }
@@ -554,8 +579,6 @@
 	margin: -6% 3% 0;
 	display: none;
 	opacity: 0.8;
-
-	/*display: block !important;*/
 }
 
 .arrow-right {
@@ -564,11 +587,24 @@
 	background-image: url('../img/i/arrow-right.svg');
 }
 
-.status-bar-back, .status-bar-more, .status-bar-play-again {
+.status-bar-back,
+.status-bar-more,
+.status-bar-play-again {
 	opacity: 0.8;
 }
 
 .title-button.my-collection:after {
 	background-image: url('../img/i/collection.svg');
-
 }
+
+.list-item-wrapper {
+	position: relative;
+	width: 100%;
+	height: 200px;
+}
+
+.transition-polygon {
+	-webkit-transition: 0.7s all ease-out;
+	transition: 0.7s all ease-out;
+}
+

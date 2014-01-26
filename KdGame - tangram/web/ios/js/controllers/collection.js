@@ -8,14 +8,15 @@
 
 			if (this.showState === 'list') {
 				// get all data
-				dataBase.getAllDataArray(function(data){
+				dataBase.getAllDataArray(function(arr){
 
-					data = data.sort(function(a, b){
+					var data = {};
+					data.arr = arr.sort(function(a, b){
 						return a.timestamp < b.timestamp;
 					});
 
-					var templateHTML = viewer.templates['my-collection-list'];
-					console.log(templateHTML);
+					var templateHTML = viewer.templates['my-collection-list'].html;
+					wrapper.innerHTML = viewer.template(templateHTML)(data);
 
 
 				});

@@ -773,14 +773,14 @@
 			// add extra align points end
 
 			// add thumb image to left top angle for king difficult begin
-			(function () {
-				if (info.difficult === 'king') {
+//			(function () {
+//				if (info.difficult === 'king') {
 					var smallSVG = questionFigureSVG.toString(); // create new string
 					smallSVG = smallSVG.replace(/fill='.*?'/gi, "fill='" + info.mainFigureColor + "'");
 					var imgWrapper = $('.js-thumb-wrapper', main.wrapper);
 					imgWrapper.setAttribute('style', 'background-image: url("data:image/svg+xml;utf8,' + smallSVG + '")');
-				}
-			}());
+//				}
+//			}());
 			// add thumb image to left top angle for king difficult end
 
 			rotater.init();
@@ -867,6 +867,8 @@
 					return;
 				}
 
+				timer.pause(true);
+
 				var tempNode = document.createElement('div');
 				tempNode.innerHTML = svg;
 				var tempPolygons = $$('polygon', tempNode);
@@ -879,8 +881,15 @@
 
 				polygons.forEach(function(polygon){
 					var field = parseInt(polygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+					polygon.setAttribute('class', 'transition-polygon');
 					polygon.setAttribute('style', positionMap[field]);
 				});
+
+				setTimeout(function(){
+					polygons.forEach(function(polygon){
+						polygon.removeAttribute('class');
+					});
+				}, 700);
 
 				tg.currentSavedSVG = $('.js-figures-container', main.wrapper).outerHTML;
 
@@ -1000,6 +1009,8 @@
 					}
 
 					tg.saveProgressToDB();
+
+					timer.pause(true);
 
 				}, false);
 				this.button = button;

@@ -115,7 +115,37 @@
 				}
 				var timeNode = $('.js-timestamp', node);
 				var saveIcon = $('.js-save-icon', node);
+				var removeIcon = $('.js-remove-icon', node);
+				removeIcon.setAttribute('figure-id', imageId);
+				$.addClass(removeIcon, 'active');
 				$.addClass(saveIcon, 'saved');
+
+				removeIcon.addEventListener('click', function(e){
+					e.stopPropagation();
+					ui.confirm.show(lang[info.lang].removeTgState,
+						function(){
+							var imgId = parseInt(this.getAttribute('figure-id'));
+							// remove from LS
+							var idsData = info.get('idsData');
+							delete idsData[imgId];
+							info.set('idsData', idsData, true);
+							// remove from DB
+							dataBase.removeDataBySVGId(imgId);
+
+							// hide extra elements
+							this.style.display = 'none';
+							var timer = $('.js-timestamp', this.parentNode);
+							timer.style.display = 'none';
+							var saveIcon = $('.js-save-icon', this.parentNode);
+							saveIcon.style.display = 'none';
+
+						}.bind(this),
+						function(){
+
+						}
+					);
+
+				}, false);
 
 				if (!info.timerIsActive) {
 					return;
@@ -124,6 +154,7 @@
 				if (spendTime > 0) {
 					var min = Math.floor(spendTime / 60);
 					var sec = spendTime % 60;
+					sec = (sec <= 9) ? ('0' + sec) : sec;
 					timeNode.innerHTML = min + ':' + sec;
 					timeNode.style.display = 'block';
 				}

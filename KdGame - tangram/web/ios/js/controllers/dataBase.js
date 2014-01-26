@@ -3,8 +3,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'tangramCollection_126',
-		tableName: 'tangramTable_126',
+		dbName: 'tangramCollection_127',
+		tableName: 'tangramTable_127',
 		init: function(){
 			var that = this;
 			// create or connect to db
@@ -76,7 +76,14 @@
 					}, null)
 			});
 
+		},
+		removeDataBySVGId: function(svgId) {
 
+			var tableName = this.tableName;
+			// delete row from table
+			this.db.transaction(function (tx) {
+				tx.executeSql("DELETE FROM " + tableName + " WHERE figureId = ?", [svgId], null, null);
+			});
 
 		}
 
