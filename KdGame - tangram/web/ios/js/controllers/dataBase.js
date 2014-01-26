@@ -8,7 +8,7 @@
 		init: function(){
 			var that = this;
 			// create or connect to db
-			this.db = openDatabase(this.dbName, '0.1', "A list of tangrams.", 40 * 1024 * 1024);
+			this.db = openDatabase(this.dbName, '0.1', "A list of tangrams.", 4 * 1024 * 1024);
 			if (!this.db) {
 				console.warn("---- Failed to connect to database. ----");
 				return;
