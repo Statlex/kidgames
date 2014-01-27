@@ -533,7 +533,9 @@
 				return false;
 			}
 
-			event.stopPropagation();
+			if (event) {
+				event.stopPropagation();
+			}
 
 			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
 			coords[2] += 180;
@@ -874,10 +876,29 @@
 				var tempPolygons = $$('polygon', tempNode);
 				var positionMap = {};
 
+				var TRPRIsHere = false;
+
 				tempPolygons.forEach(function(tempPolygon){
 					var field = parseInt(tempPolygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
 					positionMap[field] = tempPolygon.getAttribute('style');
+					if (tempPolygon.getAttribute('figure-name') === 'TRPR') {
+						TRPRIsHere = true;
+					}
 				});
+
+				// detect TRPR and reflect TRP
+
+				if (TRPRIsHere) {
+					polygons[6].setAttribute('class', 'active');
+					mover.reflectFigure();
+				}
+
+				console.log(TRPRIsHere);
+				console.log(TRPRIsHere);
+				console.log(TRPRIsHere);
+				console.log(TRPRIsHere);
+				console.log(TRPRIsHere);
+				console.log(TRPRIsHere);
 
 				polygons.forEach(function(polygon){
 					var field = parseInt(polygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
@@ -1161,7 +1182,7 @@
 			// test for angles
 			(function () {
 
-				var delta = 2 * that.q;
+				var delta = 4 * that.q;
 
 				answer.points.forEach(function (xy, index, arr) {
 					polygonPoints.forEach(function (activeXY) {
