@@ -861,7 +861,11 @@
 			var id = this.currentObject.id;
 			var polygons = $$('.js-figures-container polygon', main.wrapper);
 
-			var reGetNumber = /\D*(\d)\D*/gi;
+			polygons = polygons.sort(function(a, b) {
+				var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				return (aNumber > bNumber) ? 1 : -1;
+			});
 
 			dataBase.getSvgByFigureId(id, function(svg){
 
@@ -869,41 +873,23 @@
 					return;
 				}
 
-				timer.pause(true);
-
-				var tempNode = document.createElement('div');
-				tempNode.innerHTML = svg;
-				var tempPolygons = $$('polygon', tempNode);
-				var positionMap = {};
-
-				var TRPRIsHere = false;
-
-				tempPolygons.forEach(function(tempPolygon){
-					var field = parseInt(tempPolygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
-					positionMap[field] = tempPolygon.getAttribute('style');
-					if (tempPolygon.getAttribute('figure-name') === 'TRPR') {
-						TRPRIsHere = true;
-					}
+				var polygonsInfo = svg.split(' ');
+				polygonsInfo.forEach(function(info, index, arr){
+					arr[index] = info.split('-');
 				});
 
-				// detect TRPR and reflect TRP
+				timer.pause(true);
 
-				if (TRPRIsHere) {
+				if (svg.indexOf('TRPR') !== -1) {
 					polygons[6].setAttribute('class', 'active');
 					mover.reflectFigure();
 				}
 
-				console.log(TRPRIsHere);
-				console.log(TRPRIsHere);
-				console.log(TRPRIsHere);
-				console.log(TRPRIsHere);
-				console.log(TRPRIsHere);
-				console.log(TRPRIsHere);
-
-				polygons.forEach(function(polygon){
-					var field = parseInt(polygon.getAttribute('fill').replace(reGetNumber, '$1'), 10);
+				polygons.forEach(function(polygon, index){
+					var style = info.preCSS + 'transform: translate({{x}}px, {{y}}px) rotate({{angle}}deg)';
+					style = style.replace('{{x}}', polygonsInfo[index][2]).replace('{{y}}', polygonsInfo[index][3]).replace('{{angle}}', polygonsInfo[index][4]);
 					polygon.setAttribute('class', 'transition-polygon');
-					polygon.setAttribute('style', positionMap[field]);
+					polygon.setAttribute('style', style);
 				});
 
 				setTimeout(function(){
@@ -912,12 +898,11 @@
 					});
 				}, 700);
 
-				tg.currentSavedSVG = $('.js-figures-container', main.wrapper).outerHTML;
+				tg.currentSavedSVG = svg;
 
 				tg.showArrows(true);
 
 			});
-
 
 		},
 		back: function(){
@@ -931,6 +916,7 @@
 			}
 
 			// test for changes
+			return;
 			var wasChanges = false;
 			(function () {
 				if (!tg.currentSavedSVG) {
@@ -942,16 +928,14 @@
 				tempNode.innerHTML = tg.currentSavedSVG;
 				var tempPolygons = $$('polygon', tempNode);
 				tempPolygons.sort(function(a, b) {
-					var reGetNumber = /\D*(\d)\D*/gi;
-					var aNumber = parseInt(a.getAttribute('fill').replace(reGetNumber, '$1'), 10);
-					var bNumber = parseInt(b.getAttribute('fill').replace(reGetNumber, '$1'), 10);
-					return aNumber > bNumber;
+					var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
+					var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+					return (aNumber > bNumber) ? 1 : -1;
 				});
-				polygons.sort(function(a, b) {
-					var reGetNumber = /\D*(\d)\D*/gi;
-					var aNumber = parseInt(a.getAttribute('fill').replace(reGetNumber, '$1'), 10);
-					var bNumber = parseInt(b.getAttribute('fill').replace(reGetNumber, '$1'), 10);
-					return aNumber > bNumber;
+				polygons = polygons.sort(function(a, b) {
+					var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
+					var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+					return (aNumber > bNumber) ? 1 : -1;
 				});
 
 				tempPolygons.forEach(function(tempPolygon, index){
@@ -982,22 +966,43 @@
 			);
 
 		},
-		saveProgressToDB: function(){
+		gatDataSVGForSave: function(){
+			var polygons = $$('.js-figures-container polygon', main.wrapper);
+			var dataSrt = '';
 
+			polygons = polygons.sort(function(a, b) {
+				var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				return (aNumber > bNumber) ? 1 : -1;
+			});
+			polygons.forEach(function(polygon){
+				var number = polygon.getAttribute('fill').match(/\d/gi)[0];
+				var type = polygon.getAttribute('figure-name');
+				var coords = polygon.getAttribute('style').match(/-?\d+[pd]|-?\d+\.\d+[pd]/gi);
+				coords.forEach(function (value, index, arr) {
+					arr[index] = parseFloat(value);
+				});
+				coords = type + '-' + number + '-' + coords.join('-');
+				coords = coords.replace(/\s/gi, '');
+				dataSrt += coords + ' ';
+			});
+			return dataSrt.trim();
+		},
+		saveProgressToDB: function(){
 			timer.pause(true);
 
-			var svgForSave = $('.js-figures-container', main.wrapper);
+			var figureSVG = this.gatDataSVGForSave();
 
 			var data = {
 				figureId: tg.currentObject.id,
 				categoryName: info.currentCategoryName,
 				figureNumber: info.imageNumber,
-				figureSVG: svgForSave.outerHTML,
+				figureSVG: figureSVG,
 				spendTime: timer.countValue,
 				timestamp: Date.now()
 			};
 
-			tg.currentSavedSVG = svgForSave.outerHTML;
+			tg.currentSavedSVG = figureSVG;
 
 			// save data to LS
 			var idsData = info.get('idsData') || {};

@@ -3,8 +3,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'tangramCollection_1299',
-		tableName: 'tangramTable_1299',
+		dbName: 'tangramCollection_2002',
+		tableName: 'tangramTable_2002',
 		init: function(){
 			var that = this;
 			// create or connect to db
