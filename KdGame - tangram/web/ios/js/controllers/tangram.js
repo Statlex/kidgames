@@ -917,13 +917,9 @@
 
 			// test for changes
 			var wasChanges = false;
-			(function () {
-				if (!tg.currentSavedSVG) {
-					wasChanges = true;
-					return;
-				}
+			if (tg.currentSavedSVG) {
 				wasChanges = tg.currentSavedSVG !== tg.gatDataSVGForSave();
-			}());
+			}
 
 			if (!wasChanges) {
 				viewer.back();
