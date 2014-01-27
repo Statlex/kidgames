@@ -916,38 +916,13 @@
 			}
 
 			// test for changes
-			return;
 			var wasChanges = false;
 			(function () {
 				if (!tg.currentSavedSVG) {
 					wasChanges = true;
 					return;
 				}
-				var polygons = $$('.js-figures-container polygon', main.wrapper);
-				var tempNode = document.createElement('div');
-				tempNode.innerHTML = tg.currentSavedSVG;
-				var tempPolygons = $$('polygon', tempNode);
-				tempPolygons.sort(function(a, b) {
-					var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
-					var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
-					return (aNumber > bNumber) ? 1 : -1;
-				});
-				polygons = polygons.sort(function(a, b) {
-					var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
-					var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
-					return (aNumber > bNumber) ? 1 : -1;
-				});
-
-				tempPolygons.forEach(function(tempPolygon, index){
-					console.log(tempPolygon.getAttribute('style'));
-					console.log(polygons[index].getAttribute('style'));
-					console.log(tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style'));
-
-					if (tempPolygon.getAttribute('style') !== polygons[index].getAttribute('style')) {
-						wasChanges = true;
-					}
-
-				});
+				wasChanges = tg.currentSavedSVG !== tg.gatDataSVGForSave();
 			}());
 
 			if (!wasChanges) {
