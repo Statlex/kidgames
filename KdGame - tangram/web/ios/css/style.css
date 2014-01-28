@@ -386,6 +386,7 @@
 .page.category-list-page,
 .page.images-of-categories {
 	padding-top: 0;
+	overflow: auto;
 }
 
 .category-list-page .category-wrapper h2 {
