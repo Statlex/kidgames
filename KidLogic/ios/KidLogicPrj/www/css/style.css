@@ -108,7 +108,7 @@ body .hidden {
 
 .category-button-wrapper {
 	float: left;
-	width: 25%;
+	width: 20%;
 	text-align: center;
 	cursor: pointer;
 }
@@ -246,6 +246,9 @@ body .hidden {
 }
 
 @media only screen and (orientation: portrait) {
+	body .category-button-wrapper {
+		width: 25%;
+	}
 
 	body .answer-div-type-1 {
 		width: 50%;
@@ -304,31 +307,7 @@ body .hidden {
 
 /* hide test section */
 .button-wrapper .category-button-wrapper:nth-child(1) {
-	margin-left: 25%;
+	margin-left: 30%;
 }
 
-@media screen and (min-width: 600px) {
 
-	.category-button {
-		width: 40%;
-	}
-
-	.category-button img {
-		width: 100%;
-		height: auto;
-	}
-
-	.category-button span {
-		font-size: 1.3em;
-		line-height: 1em;
-	}
-
-}
-
-@media screen and (max-width: 600px) {
-
-	.splash-screen h1 {
-		font-size: 4em;
-	}
-	
-}

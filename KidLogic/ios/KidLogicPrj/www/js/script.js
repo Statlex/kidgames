@@ -66,4 +66,3 @@
 	window.addEventListener('resize', onResize, false);
 
 }());
-

@@ -114,6 +114,10 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
     // This practically disables web navigation from the webView.
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"startBackgroundSound"]) {
+        // parse the rest of the URL object and execute functions
+    }
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:[request URL]];
         return FALSE;
