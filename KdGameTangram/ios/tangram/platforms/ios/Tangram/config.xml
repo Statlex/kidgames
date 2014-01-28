@@ -16,6 +16,9 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
     <name>Tangram</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
