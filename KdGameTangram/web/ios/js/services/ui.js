@@ -108,9 +108,10 @@
 
 	window.addEventListener('load', noBodyScroll, false); // + no gesture
 	function noBodyScroll() {
-		var wrapper = $('body');
-		wrapper.addEventListener('touchmove', function(e){
-			e.preventDefault();
+		$('body').addEventListener('touchmove', function(e){
+			if (!info.canScroll) {
+				e.preventDefault();
+			}
 		}, false);
 	}
 

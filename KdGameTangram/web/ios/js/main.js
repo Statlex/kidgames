@@ -67,7 +67,9 @@
 					polygon.setAttribute('stroke-miterlimit', '12');
 				});
 				img.setAttribute('style', pre + tempNode.innerHTML + post);
-			})
+			});
+
+			info.canScroll = true;
 
 		},
 		uniqueTest: function() {

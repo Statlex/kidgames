@@ -14,6 +14,7 @@
 		isTouch: docElem.hasOwnProperty('ontouchstart'),
 		preCSS: '-webkit-',
 		preJS: 'webkit',
+		canScroll: false,
 		debugger:{
 			isActive: false,
 			position: 'right' // while not use

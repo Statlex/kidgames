@@ -11,6 +11,8 @@
 		isBack: false,
 		show: function(templateId, model, notTrack) {
 
+			info.canScroll = false; // disable scroll
+
 			// do not push doubled state (selector)
 			if (templateId !== this.historyCurrentState && !notTrack) {
 				this.history.push(templateId);
