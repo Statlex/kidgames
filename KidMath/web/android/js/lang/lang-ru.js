@@ -37,7 +37,9 @@
 		thanks: 'Благодарности',
 		thanksForDe: 'Светлана Дубинецкая',
 		thanksForEs: 'Виктория Костюк',
-		shareUs: 'Поделиться'
+		shareUs: 'Поделиться',
+		designerName: 'Анна Рудницкая',
+		designer: 'Дизайнер'
 	};
 
 	for (var i = 0; i <= 9; i++) {

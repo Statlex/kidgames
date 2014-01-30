@@ -37,7 +37,9 @@
 		thanks: 'Thanks',
 		thanksForDe: 'Svetlana Dubinetskaya',
 		thanksForEs: 'Viktoriya Kostyuk',
-		shareUs: 'Share'
+		shareUs: 'Share',
+		designerName: 'Anna Rudnitskaya',
+		designer: 'Designer'
 	};
 
 	for (var i = 0; i <= 9; i++) {

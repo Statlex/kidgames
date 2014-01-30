@@ -17,7 +17,7 @@
 		thanks: 'Благодарности',
 		find: 'найди',
 		designerName: 'Анна Рудницкая',
-		designer: 'дизайнер'
+		designer: 'Дизайнер'
 	}
 
 }(window));

@@ -37,7 +37,9 @@
 		thanks: 'Danksagung',
 		thanksForDe: 'Svetlana Dubinetskaya',
 		thanksForEs: 'Viktoriya Kostyuk',
-		shareUs: 'Aktie'
+		shareUs: 'Aktie',
+		designerName: 'Anna Rudnitskaya',
+		designer: 'Designer'
 	};
 
 	for (var i = 0; i <= 9; i++) {
