@@ -171,6 +171,7 @@
 	background-position: center center;
 	cursor: pointer;
 	border-radius: 5px;
+	opacity: 0.9;
 }
 
 /* setting page */
@@ -259,32 +260,6 @@
 .setting-page label {
 	padding-right: 20px;
 }
-
-/*
-.custom-check-box {
-	display: inline-block;
-	height: 0;
-	width: 0;
-	position: relative;
-}
-
-.custom-check-box:after {
-	content: '';
-	position: absolute;
-	top: -10px;
-	font-weight: bold;
-	text-shadow: 1px 1px 1px #FFF;
-	width: 18px;
-	height: 18px;
-	background-image: url('../img/i/off.svg');
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.custom-check-box:checked:after {
-	background-image: url('../img/i/on.svg');
-}
-*/
 
 .custom-check-box {
 	position: relative;
@@ -420,7 +395,7 @@
 }
 
 .save-button-wrapper.active {
-	opacity: 1;
+	opacity: 0.9;
 	-webkit-transform: scale(1);
 	transform: scale(1);
 	left: 5px;
@@ -445,6 +420,7 @@
 	font-size: 16px;
 	line-height: 16px;
 	font-family: "Courier New", Courier, monospace;
+	opacity: 0.9;
 }
 
 .hidden-but-showed {
@@ -511,7 +487,7 @@
 }
 
 .category-wrapper .save-icon.saved {
-	opacity: 1;
+	opacity: 0.9;
 }
 
 .category-wrapper .timestamp {
@@ -520,6 +496,7 @@
 	right: 9px;
 	font-size: 12px;
 	line-height: 12px;
+	opacity: 0.9;
 	display: none;
 }
 
@@ -535,6 +512,7 @@
 	position: absolute;
 	top: 8px;
 	right: 8px;
+	opacity: 0.85;
 }
 
 .category-wrapper .remove-icon.active {
