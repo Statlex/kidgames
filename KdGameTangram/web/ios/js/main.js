@@ -82,6 +82,7 @@
 
 			for (var key in categories) {
 				if (categories.hasOwnProperty(key)) {
+					console.log(categories[key].figures.length);
 					categories[key].figures.forEach(function(data){
 						ids.push(data.id);
 					});

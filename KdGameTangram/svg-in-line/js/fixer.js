@@ -32,11 +32,16 @@
 		},
 		createSVGLine: function(svgLine, file) {
 			if (svgLine.indexOf('rect') !== -1) {
-				console.warn('Rectangle in ' + file.name + '!!!');
+				alert('Rectangle in ' + file.name + '!!!');
 				return '';
 			}
 			svgLine = (svgLine.match(/<svg[\s\S]+<\/svg>/gi))[0];
-			svgLine = svgLine.replace(/\n/gi, '').replace(/"/gi, "'").replace(/\s+/gi, ' ').replace(/\s'/gi, "'");
+			svgLine = svgLine.replace(/id=\"\S*?\"/gi , '')
+				.replace(/id=\"\S*?\"/gi , '')
+				.replace(/baseProfile=\"\S*?\"/gi , '')
+				.replace(/\n/gi, '').replace(/"/gi, "'").replace(/\s+/gi, ' ').replace(/\s'/gi, "'");
+
+
 			svgLine = 'svg:"' + svgLine + '",\n';
 			var id = Math.random().toString().replace('0.', '').replace(/^0+/gi, '');
 			id = 'id: ' + id + '\n';
