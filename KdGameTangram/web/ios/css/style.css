@@ -596,3 +596,19 @@
 	transition: 0.7s all ease-out;
 }
 
+.title-page .table {
+	position: relative;
+	z-index: 10;
+}
+
+.title-page-name {
+	display: block;
+	position: fixed;
+	width: 74%;
+	padding: 10px;
+	box-sizing: border-box;
+	left: 0;
+	margin-left: 13%;
+	z-index: 0;
+	opacity: 0.9;
+}
