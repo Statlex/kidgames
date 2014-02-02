@@ -30,8 +30,10 @@ body:after {
 }
 
 .images-wrapper svg {
+	display: block;
 	width: 100%;
 	height: 100%;
+	border-bottom: 1px solid #333;
 }
 
 .text-area {

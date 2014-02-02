@@ -919,6 +919,8 @@
 			var wasChanges = false;
 			if (tg.currentSavedSVG) {
 				wasChanges = tg.currentSavedSVG !== tg.gatDataSVGForSave();
+			} else {
+				wasChanges = true;
 			}
 
 			if (!wasChanges) {
