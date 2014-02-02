@@ -78,7 +78,7 @@
 				}
 			});
 
-			var circleTemplate = '<circle cx="{{x}}" cy="{{y}}" r="3" fill="#00C" />';
+			var circleTemplate = '<circle cx="{{x}}" cy="{{y}}" r="2" fill="#00C" />';
 			var circles = '';
 			dots.forEach(function(dot){
 				circles += circleTemplate.replace('{{x}}', dot.x).replace('{{y}}', dot.y);
