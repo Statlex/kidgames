@@ -30,7 +30,6 @@
 				return docElem.clientWidth / docElem.clientHeight;
 			}
 		},
-
 		getData: function() {
 			var data = ls.getItem(this.saveItem) || '{}';
 			return JSON.parse(data);

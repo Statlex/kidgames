@@ -49,8 +49,8 @@
 			var buttonPlus = $('.js-scale-button-plus', main.wrapper);
 			var buttonMinus = $('.js-scale-button-minus', main.wrapper);
 
-			buttonPlus.addEventListener('click', this.scaleImageBy.bind(this, 1.1), false);
-			buttonMinus.addEventListener('click', this.scaleImageBy.bind(this, 0.9), false);
+			buttonPlus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 1.1), false);
+			buttonMinus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 0.9), false);
 
 		},
 		scaleImageBy: function(q) {
