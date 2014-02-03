@@ -14,6 +14,20 @@
 			this.backButton = $('.js-back', this.wrapper);
 			this.update();
 			this.setLang();
+			this.setEvents();
+		},
+		setEvents: function(){
+			if (!info.isTouch) {
+				return;
+			}
+			function replaceHandler(node) {
+				var attributeValue = node.getAttribute('onclick');
+				node.removeAttribute('onclick');
+				node.setAttribute('ontouchend', attributeValue);
+			}
+			replaceHandler(this.more);
+			replaceHandler(this.playAgain);
+			replaceHandler(this.backButton);
 		},
 		setLang: function() {
 			this.words.forEach(function(node){

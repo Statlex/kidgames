@@ -5,16 +5,23 @@
 
 	var docElem = doc.documentElement;
 	var ls = localStorage;
+	var isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	var info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
 		saveItem: 'save-item-kid-game-tangram',
 		isPhone: false,
-		isTouch: docElem.hasOwnProperty('ontouchstart'),
+		isTouch: isTouch,
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		canScroll: false,
+		evt: {
+			down: isTouch ? 'touchstart' : 'mousedown',
+			move: isTouch ? 'touchmove' : 'mousemove',
+			up: isTouch ? 'touchend' : 'mouseup',
+			out: isTouch ? 'touchcancel' : 'mouseout'
+		},
 		debugger:{
 			isActive: false,
 			position: 'right' // while not use

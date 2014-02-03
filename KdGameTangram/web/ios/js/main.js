@@ -123,7 +123,7 @@
 				$.addClass(removeIcon, 'active');
 				$.addClass(saveIcon, 'saved');
 
-				removeIcon.addEventListener('click', function(e){
+				removeIcon.addEventListener(info.evt.up, function(e){
 					e.stopPropagation();
 					ui.confirm.show(lang[info.lang].removeTgState,
 						function(){

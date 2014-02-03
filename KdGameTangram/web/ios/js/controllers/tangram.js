@@ -842,8 +842,8 @@
 			this.arrowLeft = $('.js-arrow-left', main.wrapper);
 			this.arrowRight = $('.js-arrow-right', main.wrapper);
 
-			this.arrowLeft.addEventListener('click', nextTangram.bind(this, -1), false);
-			this.arrowRight.addEventListener('click', nextTangram.bind(this, 1), false);
+			this.arrowLeft.addEventListener(info.evt.up, nextTangram.bind(this, -1), false);
+			this.arrowRight.addEventListener(info.evt.up, nextTangram.bind(this, 1), false);
 
 		},
 		showArrows: function(needShow){
@@ -1002,7 +1002,7 @@
 			init: function() {
 
 				var button = $('.js-save-button-wrapper', main.wrapper);
-				button.addEventListener('click', function(){
+				button.addEventListener(info.evt.up, function(){
 					if (!$.hasClass(this, 'active')) {
 						return;
 					}
@@ -1029,7 +1029,7 @@
 				var hintBtn = $('.js-hint-button', main.wrapper);
 				var that = this;
 				hintBtn.style.display = 'block';
-				hintBtn.addEventListener('click', function(){
+				hintBtn.addEventListener(info.evt.up, function(){
 					$.addClass(hintBtn, 'active');
 					that.showMainFigure();
 				}, false);
@@ -1042,7 +1042,7 @@
 			splashNode.className = 'splash-question';
 			var questionFigureSVG = this.questionFigureSVG.replace(/fill='.*?'/gi, "fill='" + info.mainFigureColor + "'")
 			splashNode.setAttribute('style', "background-image: url(\"data:image/svg+xml;utf8," + questionFigureSVG + "\");");
-			splashNode.addEventListener('click', function(){
+			splashNode.addEventListener(info.evt.up, function(){
 				splashNode.parentNode.removeChild(splashNode);
 				var hintBtn = $('.js-hint-button', main.wrapper);
 				$.removeClass(hintBtn, 'active');

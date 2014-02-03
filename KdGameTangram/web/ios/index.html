@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>FW</title>
+	<title>Tangram</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -71,10 +71,17 @@
 			<div class="table full-area">
 				<div class="table-row">
 					<div class="table-cell">
-						<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
-						<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
-						<div style="display: none" onclick='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
-						<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
+						{{ if (info.isTouch) { }}
+							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
+							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div style="display: none" ontouchend='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
+							<div ontouchend='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
+						{{ } else { }}
+							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
+							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div style="display: none" onclick='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
+							<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
+						{{ }; }}
 					</div>
 				</div>
 			</div>
@@ -88,9 +95,9 @@
 <div class="js-template hidden" template-id="tangram-page" onshow="statusBar.hideStatusBar();tangram.start();">
 	<div class="page tangram-page">
 		{{ if (info.isTouch) { }}
-		<div ontouchend="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
+			<div ontouchend="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
 		{{ } else { }}
-		<div onclick="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
+			<div onclick="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
 		{{ }; }}
 		<div class="rotater js-rotater">
 			<div class="rotater-inner-point js-rotater-inner-point"></div>
@@ -98,7 +105,11 @@
 		<div class="thumb-wrapper js-thumb-wrapper"></div>
 		<div class="save-button-wrapper js-save-button-wrapper"><span></span></div>
 		<div class="timer-wrapper js-timer-wrapper">0:00</div>
+		{{ if (info.isTouch) { }}
+		<div class="tangram-back-button status-bar-back" ontouchend="tangram.back();"><span></span></div>
+		{{ } else { }}
 		<div class="tangram-back-button status-bar-back" onclick="tangram.back();"><span></span></div>
+		{{ }; }}
 
 		<svg class="hidden-but-showed">
 			<defs>
@@ -128,11 +139,19 @@
 			<div class="categories-wrapper clear-fix">
 				{{ for (var key in categories) { }}
 				<div class="category-wrapper">
+					{{ if (info.isTouch) { }}
+					<div class="category-button-wrapper" ontouchend='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
+						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
+							<img src="img/i/spacer.png" alt=""/>
+						</div>
+					</div>
+					{{ } else { }}
 					<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
 						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 							<img src="img/i/spacer.png" alt=""/>
 						</div>
 					</div>
+					{{ }; }}
 					<h2>{{= categories[key]['name_' + info.lang] }}</h2>
 				</div>
 				{{ }; }}
@@ -171,11 +190,19 @@
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper" figure-id="{{= figure.id }}">
+			{{ if (info.isTouch) { }}
+			<div class="category-button-wrapper" ontouchend='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
+				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
+					<img src="img/i/spacer.png" alt=""/>
+				</div>
+			</div>
+			{{ } else { }}
 			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>
 			</div>
+			{{ }; }}
 			<div class="save-icon js-save-icon"></div>
 			<div class="timestamp js-timestamp">0:00</div>
 			<div class="remove-icon js-remove-icon"></div>

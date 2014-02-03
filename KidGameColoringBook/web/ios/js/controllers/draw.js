@@ -42,6 +42,7 @@
 			this.svgNode.style.height = this.image.height + 'px';
 
 			this.setScaleButtons();
+			this.setSVGColoring();
 
 		},
 		setScaleButtons: function () {
@@ -51,6 +52,18 @@
 
 			buttonPlus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 1.1), false);
 			buttonMinus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 0.9), false);
+
+		},
+		setSVGColoring: function() {
+
+			var path = $$('*', this.svgNode);
+			function setColor() {
+				this.setAttribute('fill', '#c00');
+			}
+
+			path.forEach(function(node){
+				node.addEventListener(info.evt.up, setColor, false);
+			});
 
 		},
 		scaleImageBy: function(q) {
