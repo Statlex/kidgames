@@ -69,7 +69,7 @@
 				img.setAttribute('style', pre + tempNode.innerHTML + post);
 			});
 
-			info.canScroll = true;
+			this.setBodyScroll(true);
 
 		},
 		uniqueTest: function() {
@@ -164,7 +164,24 @@
 
 			});
 
+		},
+		setBodyScroll: function(isEnable) {
 
+			this.wrapper.removeAttribute('style');
+			info.canScroll = isEnable;
+			var body = $('body');
+
+			if (isEnable) {
+				$.addClass(body, 'add-scroll');
+			} else {
+				$.removeClass(body, 'add-scroll');
+			}
+
+			// set wrapper size if needed
+			var wrapperHeight = this.wrapper.clientHeight;
+			if (wrapperHeight <= info.screen.getHeight()) {
+				this.wrapper.style.height = info.screen.getHeight() + 'px';
+			}
 
 		}
 

@@ -117,9 +117,9 @@
 <div class="js-template hidden" template-id="category-list-page" onshow="statusBar.show([]); main.setImageColor();">
 	<div class="page category-list-page">
 
-		<div class="categories-page">
+		<h1 class="category-top-header">{{= lang[info.lang].categories }}:</h1>
 
-			<h1>{{= lang[info.lang].categories }}:</h1>
+		<div class="categories-page">
 
 			<div class="categories-wrapper clear-fix">
 				{{ for (var key in categories) { }}
@@ -161,9 +161,9 @@
 
 <div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();main.setPreviewState();">
 
-	<div class="page images-of-categories">
+	<h1 class="category-top-header">{{= categories[info.currentCategoryName]['name_' + info.lang] }}</h1>
 
-		<h1>{{= categories[info.currentCategoryName]['name_' + info.lang] }}</h1>
+	<div class="page images-of-categories">
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper" figure-id="{{= figure.id }}">

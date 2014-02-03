@@ -335,9 +335,8 @@
 	z-index: -10;
 }
 
-.categories-page h1,
-.images-of-categories h1 {
-	position: absolute;
+.category-top-header {
+	position: fixed;
 	top: 18px;
 	width: 100%;
 	text-align: center;
@@ -345,13 +344,14 @@
 	font-size: 30px;
 	line-height: 30px;
 	text-shadow: 2px 2px 2px #666;
+	left: 0;
+	z-index: 5;
 }
 
 @media screen and (max-height: 700px) {
 
-	.categories-page h1,
-	.images-of-categories h1 {
-		top: 5px;
+	.category-top-header {
+		top: 3px;
 		height: 25px;
 		font-size: 25px;
 		line-height: 30px;
@@ -612,3 +612,21 @@
 	z-index: 0;
 	opacity: 0.9;
 }
+
+.add-scroll #wrapper {
+	position: static;
+	box-sizing: border-box;
+}
+
+.add-scroll .status-bar {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+
+
+
+
+
+
