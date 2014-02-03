@@ -139,19 +139,11 @@
 			<div class="categories-wrapper clear-fix">
 				{{ for (var key in categories) { }}
 				<div class="category-wrapper">
-					{{ if (info.isTouch) { }}
-					<div class="category-button-wrapper" ontouchend='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
-						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
-							<img src="img/i/spacer.png" alt=""/>
-						</div>
-					</div>
-					{{ } else { }}
 					<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
 						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 							<img src="img/i/spacer.png" alt=""/>
 						</div>
 					</div>
-					{{ }; }}
 					<h2>{{= categories[key]['name_' + info.lang] }}</h2>
 				</div>
 				{{ }; }}
@@ -190,19 +182,11 @@
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper" figure-id="{{= figure.id }}">
-			{{ if (info.isTouch) { }}
-			<div class="category-button-wrapper" ontouchend='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
-				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
-					<img src="img/i/spacer.png" alt=""/>
-				</div>
-			</div>
-			{{ } else { }}
 			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>
 			</div>
-			{{ }; }}
 			<div class="save-icon js-save-icon"></div>
 			<div class="timestamp js-timestamp">0:00</div>
 			<div class="remove-icon js-remove-icon"></div>
