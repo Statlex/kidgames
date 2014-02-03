@@ -19,3 +19,26 @@
 	right: 0;
 	background-color: #0c0;
 }
+
+
+.color-picker {
+	display: none;
+}
+
+.show-color-picker .color-picker {
+	display: block;
+}
+
+.color-picker div {
+	float: left;
+	width: 20px;
+	height: 20px;
+}
+
+.show-color-picker .scale-button,
+.show-color-picker .main-svg,
+.show-color-picker .show-color-picker-button,
+.show-color-picker .active-color
+{
+	display: none;
+}

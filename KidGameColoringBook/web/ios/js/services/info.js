@@ -84,12 +84,39 @@
 			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
 			this.isPhone = maxSize < 700;
 			return this.isPhone;
+		},
+		runDetector: function() {
+
+			var body = $('body');
+			var that = this;
+
+			// detect XY onTouchStart
+			if (this.isTouch) {
+				body.addEventListener(this.evt.down, function(e){
+					that.evt.touchStart = {
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					};
+					that.evt.touchMove = {
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					};
+				}, false);
+				body.addEventListener(this.evt.move, function(e){
+					that.evt.touchMove = {
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					};
+				}, false);
+			}
+
 		}
 	};
 
 	win.addEventListener('load', info.getIsPhone.bind(info), false);
-
 	win.addEventListener('resize', info.getIsPhone.bind(info), false);
+
+	win.addEventListener('load', info.runDetector.bind(info), false);
 
 	info.init();
 
