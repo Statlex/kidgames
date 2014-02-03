@@ -45,10 +45,12 @@
 
 			svgLine = (svgLine.match(/<svg[\s\S]+<\/svg>/gi))[0];
 			svgLine = svgLine.replace(/id=\"\S*?\"/gi , '')
+				.replace(/<g>|<\/g>/gi, '')
 				.replace(/baseProfile=\"\S*?\"/gi , '')
 				.replace(/\n/gi, '')
+				.replace(/"/gi, "'")
 				.replace(/\s+/gi, ' ')
-				.replace(/<g>|<\/g>/gi, '')
+				.replace(/\s'/gi, "'")
 				.replace(/>\s+</gi, '><')
 				.replace(/fill='.*?'/gi, "fill='#FFF'");
 

@@ -9,6 +9,7 @@
 
 			this.wrapper = $('#wrapper');
 			viewer.show('title-page');
+			ui.fn.setBodyScroll(true);
 
 		},
 		setMorePage: function(){

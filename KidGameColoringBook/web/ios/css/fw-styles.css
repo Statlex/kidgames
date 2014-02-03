@@ -414,4 +414,6 @@ body {
 
 /* custom confirm */
 
-
+.add-scroll #wrapper {
+	position: static;
+}

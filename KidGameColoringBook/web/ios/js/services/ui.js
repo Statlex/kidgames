@@ -8,17 +8,17 @@
 	win.ui.splashScreen = {
 		showTime: 2000,
 		setTimeoutId: 0,
-		handleEvent: function() {
+		handleEvent: function () {
 			var that = this;
 			this.wrapper = $('.js-splash-screen');
 			this.goodAnswer = $('.js-good-answer', this.wrapper);
 			this.badAnswer = $('.js-bad-answer', this.wrapper);
-			this.wrapper.addEventListener('click', function(){
+			this.wrapper.addEventListener('click', function () {
 				clearTimeout(that.setTimeoutId);
 				that.hide();
 			}, false);
 		},
-		show: function(isRight, action) {
+		show: function (isRight, action) {
 			clearTimeout(this.setTimeoutId);
 			this.goodAnswer.style.display = isRight ? 'block' : 'none';
 			this.badAnswer.style.display = isRight ? 'none' : 'block';
@@ -27,10 +27,11 @@
 			player.play(isRight ? soundList.goodAnswer : soundList.badAnswer);
 			this.wrapper.setAttribute('onclick', action);
 		},
-		hide: function() {
+		hide: function () {
 			$.removeClass(this.wrapper, 'active');
 			this.wrapper.onclick();
-			this.wrapper.onclick = function() {};
+			this.wrapper.onclick = function () {
+			};
 		}
 	};
 
@@ -46,25 +47,25 @@
 	win.ui = win.ui || {};
 
 	win.ui.alert = {
-		handleEvent: function() {
+		handleEvent: function () {
 			this.wrapper = $('.js-alert');
 			this.okBtn = $('.js-alert-button', this.wrapper);
 			this.message = $('.js-alert-message', this.wrapper);
 			this.okBtn.addEventListener('click', this.hide.bind(this), false);
 		},
-		show: function(msg, action) {
+		show: function (msg, action) {
 			$.html(this.message, msg);
 			this.wrapper.style.display = 'table';
 			var that = this;
-			setTimeout(function(){
+			setTimeout(function () {
 				that.wrapper.style.opacity = 1;
 			}, 20);
 			this.okBtn.onclick = action;
 		},
-		hide: function() {
+		hide: function () {
 			var that = this;
 			this.wrapper.style.opacity = '';
-			setTimeout(function(){
+			setTimeout(function () {
 				that.wrapper.style.display = '';
 			}, 520);
 			player.play(soundList.click);
@@ -84,14 +85,14 @@
 	}
 
 	var logger = {
-		handleEvent: function(){
+		handleEvent: function () {
 			this.wrapper = $('.js-logger');
 			this.wrapper.style.display = 'block';
 			this.innerBlock = $('.js-logger-inner-block', this.wrapper);
 			// save current method
 			console._log = console.log;
 			var that = this;
-			console.log = function(text) {
+			console.log = function (text) {
 				that.innerBlock.innerHTML += text + '<br>';
 			}
 		}
@@ -102,20 +103,46 @@
 
 }(window));
 
-(function () {
+(function (win) {
 	"use strict";
 	/*global window, document, console, alert */
 
+	win.ui = win.ui || {};
+
+	win.ui.fn = win.ui.fn || {};
+
+	win.ui.fn.setBodyScroll = function (isEnable) {
+
+		var wrapper = $('#wrapper');
+		var body = $('body');
+
+		wrapper.removeAttribute('style');
+		info.canScroll = isEnable;
+
+		if (isEnable) {
+			$.addClass(body, 'add-scroll');
+		} else {
+			$.removeClass(body, 'add-scroll');
+		}
+
+		// set wrapper size if needed
+		var wrapperHeight = wrapper.clientHeight;
+		if (wrapperHeight <= info.screen.getHeight()) {
+			wrapper.style.height = info.screen.getHeight() + 'px';
+		}
+
+	};
+
 	window.addEventListener('load', noBodyScroll, false); // + no gesture
 	function noBodyScroll() {
-		$('body').addEventListener('touchmove', function(e){
+		$('body').addEventListener('touchmove', function (e) {
 			if (!info.canScroll) {
 				e.preventDefault();
 			}
 		}, false);
 	}
 
-}());
+}(window));
 
 (function (win) {
 
@@ -125,11 +152,11 @@
 	win.ui = win.ui || {};
 
 	win.ui.externalLinkHandler = {
-		setLinks: function(links) {
+		setLinks: function (links) {
 			var that = this;
-			links.forEach(function(link){
+			links.forEach(function (link) {
 				link.setAttribute('can-use', 'no');
-				link.addEventListener('click', function(e){
+				link.addEventListener('click', function (e) {
 					if (this.getAttribute('can-use') === 'no') {
 						e.preventDefault();
 						e.stopPropagation();
@@ -139,7 +166,7 @@
 				}, false);
 			})
 		},
-		showQuestion: function(link) {
+		showQuestion: function (link) {
 			var a, b, c, answer;
 			a = Math.round(Math.random() * 40);
 			b = Math.round(Math.random() * 40);
@@ -176,7 +203,7 @@
 	win.ui = win.ui || {};
 
 	win.ui.confirm = {
-		handleEvent: function() {
+		handleEvent: function () {
 			this.wrapper = $('.js-confirm');
 			this.okBtn = $('.js-confirm-button-ok', this.wrapper);
 			this.cancelBtn = $('.js-confirm-button-cancel', this.wrapper);
@@ -186,20 +213,20 @@
 			this.cancelBtn.addEventListener('click', this.hide.bind(this), false);
 
 		},
-		show: function(msg, okAction, cancelAction) {
+		show: function (msg, okAction, cancelAction) {
 			$.html(this.message, msg);
 			this.wrapper.style.display = 'table';
 			var that = this;
-			setTimeout(function(){
+			setTimeout(function () {
 				that.wrapper.style.opacity = 1;
 			}, 20);
 			this.okBtn.onclick = okAction;
 			this.cancelBtn.onclick = cancelAction;
 		},
-		hide: function() {
+		hide: function () {
 			var that = this;
 			this.wrapper.style.opacity = '';
-			setTimeout(function(){
+			setTimeout(function () {
 				that.wrapper.style.display = '';
 			}, 520);
 			player.play(soundList.click);
