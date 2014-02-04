@@ -15,39 +15,6 @@
 			x2 = info.evt.touchMove.x;
 			y2 = info.evt.touchMove.y;
 			return utils.getPathSize(x1, y1, x2, y2) < this.minMove;
-		},
-		generateColors: function() {
-
-			var rArr, gArr, bArr;
-
-			var colors = [];
-
-			rArr = $.createSimpleArray(0, 4);
-			gArr = $.createSimpleArray(0, 4);
-			bArr = $.createSimpleArray(0, 4);
-
-			rArr.forEach(function(r){
-				gArr.forEach(function(g){
-					bArr.forEach(function(b) {
-
-						var rValue = (r*4).toString(16);
-						var gValue = (g*4).toString(16);
-						var bValue = (b*4).toString(16);
-
-						rValue = (rValue.length > 1) ? 'f' : rValue;
-						gValue = (gValue.length > 1) ? 'f' : gValue;
-						bValue = (bValue.length > 1) ? 'f' : bValue;
-
-						var color = rValue + gValue + bValue;
-						if (colors.indexOf(color) === -1) {
-							colors.push(color);
-						}
-					});
-				});
-			});
-
-			return colors;
-
 		}
 
 	};
@@ -94,7 +61,6 @@
 			this.setScaleButtons();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
-			this.createColorForColorPicker();
 
 		},
 		setScaleButtons: function () {
@@ -182,20 +148,6 @@
 				}, false);
 			}
 
-		},
-		createColorForColorPicker: function() {
-			var colors = utils.generateColors();
-			var colorsHTML = '';
-			var template = '<div style="background-color: #{{color}}"><\/div>'
-
-			colors.forEach(function(color){
-				colorsHTML += template.replace('{{color}}', color);
-			});
-
-			var colorPickerWrapper = $('.js-color-picker', main.wrapper);
-			colorPickerWrapper.innerHTML = colorsHTML;
-			console.log(colors);
-			console.log(colors.length);
 		}
 
 	};
