@@ -18,14 +18,24 @@
 		},
 		arrayToColor: function (arr) {
 			return 'rgb(' + arr.join(',') + ')';
+		},
+		getPercent: function(e) {
+			var fillWidth = info.screen.getWidth();
+			var leftOffset = fillWidth * 0.05 + 5;
+			var fieldSize = fillWidth - leftOffset * 2;
+			var x = info.isTouch ? e.touches[0].pageX : e.pageX;
+			x -= leftOffset;
+			var percent = x / fieldSize;
+			percent = percent < 0 ? 0 : percent;
+			percent = percent > 1 ? 1 : percent;
+			return percent;
 		}
 
 	};
 
 	var colorPicker = {
-		newColor: [255, 255, 255],
-		oldColor: [255, 255, 255],
-		currentColor: [255, 255, 255],
+		newColor: [0, 255, 255],
+		oldColor: [255, 0, 255],
 		mainColors: [
 			[0, 0, 0], // black
 			[255, 0, 0], // red
@@ -47,6 +57,10 @@
 			this.createColorMap();
 			this.setButtonsColor();
 			this.setMainColorPicker();
+			this.setSecondaryColorPicker();
+			this.setFade();
+			this.setColorButtons();
+
 		},
 		setButtonsColor: function () {
 			this.newColorButton.style.backgroundColor = utils.arrayToColor(this.newColor);
@@ -62,9 +76,10 @@
 			this.colorMap = this.colorMap.sort(function(a, b) {
 				return a.percent - b.percent;
 			});
-
 		},
 		setMainColorPicker: function () {
+
+			var that = this;
 
 			// set bgi
 			var bgi = 'left';
@@ -75,34 +90,146 @@
 			this.mainColorNode.style.backgroundImage = bgi;
 
 			// add event listener
-			function getColorValue(e) {
+			function getMainColorValue(e) {
 				// get left offset
-				var fillWidth = info.screen.getWidth();
-				var leftOffset = fillWidth * 0.05 + 5;
-				var fieldSize = fillWidth - leftOffset * 2;
-				var x = info.isTouch ? e.touches[0].pageX : e.pageX;
-				x -= leftOffset;
-				var percent = x / fieldSize;
-				percent = percent < 0 ? 0 : percent;
-				percent = percent > 1 ? 1 : percent;
-				console.log(percent);
+				var percent = utils.getPercent(e);
+
+				// get color
+				var c1, c2;
+				that.colorMap.forEach(function(color, index, arr){
+					var tempC1 = arr[index];
+					var tempC2 = arr[index + 1] ? arr[index + 1] : arr[index];
+					if (percent >= tempC1.percent && percent <= tempC2.percent) {
+						c1 = tempC1;
+						c2 = tempC2;
+					}
+				});
+
+				var deltaPercent = (percent - c1.percent) / (c2.percent - c1.percent);
+				var r, g, b;
+				r = (c2.color[0] - c1.color[0]) * deltaPercent + c1.color[0];
+				g = (c2.color[1] - c1.color[1]) * deltaPercent + c1.color[1];
+				b = (c2.color[2] - c1.color[2]) * deltaPercent + c1.color[2];
+
+				var color = [Math.round(r), Math.round(g), Math.round(b)];
+				that.mainColorIs = color;
+				that.secondatyColorIs = color;
+				that.newColor = color;
+
+				// set color to nodes
+				bgi = 'left';
+				bgi += ', rgb(0, 0, 0) 0%';
+				bgi += ', ' + utils.arrayToColor(color) + ' 50%';
+				bgi += ', rgb(255, 255, 255) 100%';
+				that.secondaryColorNode.style.backgroundImage = info.preCSS + 'linear-gradient(' + bgi + ')';
+				that.newColorButton.style.backgroundColor = utils.arrayToColor(color);
+
 			}
 
-			this.mainColorNode.addEventListener(info.evt.down, getColorValue, false);
-			this.mainColorNode.addEventListener(info.evt.up, getColorValue, false);
+			this.mainColorNode.addEventListener(info.evt.down, getMainColorValue, false);
+			this.mainColorNode.addEventListener(info.evt.up, getMainColorValue, false);
 
 			if (info.isTouch) {
-				this.mainColorNode.addEventListener(info.evt.move, getColorValue, false);
+				this.mainColorNode.addEventListener(info.evt.move, getMainColorValue, false);
 			}
 			
+		},
+		setSecondaryColorPicker: function() {
+
+			var that = this;
+
+			function getSecondaryColorValue(e) {
+				var percent = utils.getPercent(e);
+				var c1, c2;
+				if (percent < 0.5) {
+					c1 = {percent: 0, color:[0, 0, 0]};
+					c2 = {percent: 0.5, color: that.mainColorIs};
+				} else {
+					c1 = {percent: 0.5, color: that.mainColorIs};
+					c2 = {percent: 1, color:[255, 255, 255]};
+				}
+
+				var deltaPercent = (percent - c1.percent) / (c2.percent - c1.percent);
+				var r, g, b;
+				r = (c2.color[0] - c1.color[0]) * deltaPercent + c1.color[0];
+				g = (c2.color[1] - c1.color[1]) * deltaPercent + c1.color[1];
+				b = (c2.color[2] - c1.color[2]) * deltaPercent + c1.color[2];
+
+				var color = [Math.round(r), Math.round(g), Math.round(b)];
+				that.secondatyColorIs = color;
+				that.newColor = color;
+				that.newColorButton.style.backgroundColor = utils.arrayToColor(color);
+
+			}
+
+			this.secondaryColorNode.addEventListener(info.evt.down, getSecondaryColorValue, false);
+			this.secondaryColorNode.addEventListener(info.evt.up, getSecondaryColorValue, false);
+
+			if (info.isTouch) {
+				this.secondaryColorNode.addEventListener(info.evt.move, getSecondaryColorValue, false);
+			}
+
+		},
+		setFade: function() {
+
+			if (info.isTouch) {
+				this.fadeNode.addEventListener(info.evt.up, function() {
+					if (utils.wasClick()) {
+						draw.showColorPickerTurn(false);
+					}
+				}, false);
+			} else {
+				this.fadeNode.addEventListener('click', draw.showColorPickerTurn.bind(draw, false), false);
+			}
+		},
+		setColorButtons: function() {
+
+			var that = this;
+
+			function setActiveColor() {
+				var color = this.getAttribute('style').match(/\d+/gi);
+				that.oldColor = that.newColor;
+				that.newColor = color;
+				draw.activeColor = color;
+				draw.showColorPickerTurn(false);
+			}
+
+			if (info.isTouch) {
+				this.newColorButton.addEventListener(info.evt.down, function(){
+					if (utils.wasClick()) {
+						setActiveColor.call(this);
+					}
+
+				}, false);
+				this.oldColorButton.addEventListener(info.evt.down, function(){
+					if (utils.wasClick()) {
+						setActiveColor.call(this);
+					}
+				}, false);
+			} else {
+				this.newColorButton.addEventListener('click', setActiveColor, false);
+				this.oldColorButton.addEventListener('click', setActiveColor, false);
+			}
+
+		},
+		coloringColorButtons: function() {
+			this.newColorButton.style.backgroundColor = utils.arrayToColor(this.newColor);
+			this.oldColorButton.style.backgroundColor = utils.arrayToColor(this.oldColor);
+
+			var bgi = 'left';
+			bgi += ', rgb(0, 0, 0) 0%';
+			bgi += ', ' + utils.arrayToColor(this.newColor) + ' 50%';
+			bgi += ', rgb(255, 255, 255) 100%';
+			this.secondaryColorNode.style.backgroundImage = info.preCSS + 'linear-gradient(' + bgi + ')';
+
 		}
 
 	};
 
 	var draw = {
-		activeColor: '#0c0',
+		activeColor: [100, 0, 0],
 		usedColors: [],
-		activeTool: 'brush',  // brush or picker
+		activeTool: 'brush',  // brush || picker || eraser
 		start: function () {
 
 			ui.fn.setBodyScroll(true);
@@ -160,7 +287,7 @@
 
 			function setColorClick() {
 				if (that.activeTool === 'brush') {
-					this.setAttribute('fill', that.activeColor);
+					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
 				}
 			}
 
@@ -170,7 +297,7 @@
 
 			function setColorTouchEnd() {
 				if (that.activePolygon === this && utils.wasClick() && that.activeTool === 'brush') {
-					this.setAttribute('fill', that.activeColor);
+					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
 				}
 			}
 
@@ -205,6 +332,7 @@
 		},
 		showColorPickerTurn: function (isEnable) {
 			if (isEnable) {
+				colorPicker.coloringColorButtons();
 				statusBar.hideStatusBar();
 				$.addClass(main.wrapper, 'show-color-picker');
 			} else {
