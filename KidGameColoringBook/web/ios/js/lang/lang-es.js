@@ -17,7 +17,7 @@
 		thanks: 'Agradecimientos',
 		find: 'encontrar',
 
-		selectNewColor: 'es Tap Old/New to select color'
+		selectNewColor: 'es Tap New/Old to select color'
 
 	}
 

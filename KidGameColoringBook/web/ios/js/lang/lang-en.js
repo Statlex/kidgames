@@ -17,7 +17,7 @@
 		thanks: 'Thanks',
 		find: 'find',
 
-		selectNewColor: 'en Tap Old/New to select color'
+		selectNewColor: 'en Tap New/Old to select color'
 
 	}
 

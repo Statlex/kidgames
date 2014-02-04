@@ -84,6 +84,14 @@
 	border-bottom: 5px solid #000;
 }
 
+.color-picker-old-color {
+	border-left: 2px solid #000;
+}
+
+.color-picker-new-color {
+	border-right: 3px solid #000;
+}
+
 .color-picker,
 .color-picker-fade {
 	display: none;

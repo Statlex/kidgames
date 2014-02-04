@@ -188,9 +188,14 @@
 
 			function setActiveColor() {
 				var color = this.getAttribute('style').match(/\d+/gi);
-				that.oldColor = that.newColor;
+				that.oldColor = color;
 				that.newColor = color;
 				draw.activeColor = color;
+
+				if ($.hasClass(this, 'color-picker-old-color')) {
+					that.mainColorIs = that.mainColorOldIs;
+				}
+
 				draw.showColorPickerTurn(false);
 			}
 
@@ -218,19 +223,27 @@
 
 			var bgi = 'left';
 			bgi += ', rgb(0, 0, 0) 0%';
-			bgi += ', ' + utils.arrayToColor(this.newColor) + ' 50%';
+			bgi += ', ' + utils.arrayToColor(this.mainColorIs) + ' 50%';
 			bgi += ', rgb(255, 255, 255) 100%';
 			this.secondaryColorNode.style.backgroundImage = info.preCSS + 'linear-gradient(' + bgi + ')';
+
+			this.mainColorOldIs = this.mainColorIs;
 
 		}
 
 	};
 
 	var draw = {
-		activeColor: [100, 0, 0],
+		activeColor: [255, 255, 0],
 		usedColors: [],
 		activeTool: 'brush',  // brush || picker || eraser
 		start: function () {
+
+			colorPicker.oldColor = this.activeColor;
+			colorPicker.newColor = this.activeColor;
+			colorPicker.mainColorIs = this.activeColor;
+			colorPicker.mainColorOldIs = this.activeColor;
+			colorPicker.secondatyColorIs = this.activeColor;
 
 			ui.fn.setBodyScroll(true);
 			main.wrapper.removeAttribute('style');

@@ -17,7 +17,7 @@
 		thanks: 'Благодарности',
 		find: 'найди',
 
-		selectNewColor: 'ru Tap Old/New to select color'
+		selectNewColor: 'ru Tap New/Old to select color'
 
 	}
 

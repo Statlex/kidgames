@@ -17,7 +17,7 @@
 		thanks: 'Grazie',
 		find: 'trovare',
 
-		selectNewColor: 'it Tap Old/New to select color'
+		selectNewColor: 'it Tap New/Old to select color'
 
 	}
 

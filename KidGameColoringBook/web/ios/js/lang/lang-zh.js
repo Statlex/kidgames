@@ -14,7 +14,7 @@
 		thanks: '谢谢',
 		find: '发现',
 
-		selectNewColor: 'zh Tap Old/New to select color'
+		selectNewColor: 'zh Tap New/Old to select color'
 
 	}
 

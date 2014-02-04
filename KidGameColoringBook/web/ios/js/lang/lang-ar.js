@@ -17,7 +17,7 @@
 		thanks: 'مفيد',
 		find: 'اكتشاف',
 
-		selectNewColor: 'ar Tap Old/New to select color'
+		selectNewColor: 'ar Tap New/Old to select color'
 
 	}
 
