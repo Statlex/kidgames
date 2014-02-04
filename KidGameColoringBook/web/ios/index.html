@@ -73,18 +73,26 @@
 		<div class="scale-button scale-button-plus js-scale-button-plus"><h1>+</h1></div>
 		<div class="scale-button scale-button-minus js-scale-button-minus"><h1>-</h1></div>
 		<div class="show-color-picker-button js-show-color-picker-button">show color picker</div>
-		<div class="active-color js-active-color">active color</div>
 
+		<div class="color-picker-fade js-color-picker-fade"></div>
 		<div class="color-picker js-color-picker">
 
 			<h2>{{= lang[info.lang].selectNewColor }}</h2>
+			<div class="color-pickers-colors-wrapper">
 
+				<div class="color-picker-new-color js-color-picker-new-color">new</div>
+				<div class="color-picker-old-color js-color-picker-old-color">old</div>
+				<div class="color-picker-main-color js-color-picker-main-color"></div>
+				<div class="color-picker-secondary-color js-color-picker-secondary-color"></div>
+
+			</div>
 
 		</div>
 
 	</div>
 
 </div>
+
 
 <div class="js-template hidden" template-id="more-page" onshow="statusBar.show([]);main.setMorePage();">
 
