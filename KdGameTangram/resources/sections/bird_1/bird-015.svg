@@ -3,11 +3,8 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="240.094px" height="300px" viewBox="0 0 240.094 300" enable-background="new 0 0 240.094 300" xml:space="preserve">
-<polygon fill="#CC3333" points="148.428,140.001 98.428,190.001 48.428,140.001 "/>
-<polygon fill="#33CC33" points="148.428,140.001 77.717,140.001 77.717,69.29 "/>
-<polygon fill="#996666" points="63.073,190.001 63.073,225.356 98.428,190.001 "/>
-<polygon fill="#CC33CC" points="98.428,225.356 133.783,225.356 98.428,190.001 "/>
-<polygon fill="#990066" points="113.072,104.645 148.428,140 148.426,104.646 113.07,69.291 "/>
-<polygon fill="#33CCCC" points="198.428,90 148.428,140 148.428,89.999 "/>
-<polygon fill="#CCCC33" points="77.717,104.644 77.717,104.644 42.362,104.644 42.362,140 77.717,140 "/>
+<polygon fill="#996666" points="63.073,190.001 63.073,225.355 98.428,190.001 "/>
+<polygon fill="#CC33CC" points="98.428,225.355 133.783,225.355 98.428,190.001 "/>
+<polygon fill="#CCCC33" points="198.428,90 148.428,89.999 148.428,104.648 148.426,104.646 113.07,69.291 113.072,104.645 
+	77.717,69.29 77.717,104.644 42.362,104.644 42.362,140 48.428,140.001 98.428,190.001 "/>
 </svg>
