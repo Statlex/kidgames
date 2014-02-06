@@ -9,6 +9,11 @@
 			return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
 		},
 		wasClick: function () {
+
+			if (!info.isTouch) {
+				return true;
+			}
+
 			var x1, y1, x2, y2;
 			x1 = info.evt.touchStart.x;
 			y1 = info.evt.touchStart.y;
@@ -54,6 +59,7 @@
 			this.newColorButton = $('.js-color-picker-new-color', main.wrapper);
 			this.oldColorButton = $('.js-color-picker-old-color', main.wrapper);
 			this.showColorPickerButton = $('.js-show-color-picker-button', main.wrapper);
+			this.simplePickerButton = $('.js-simple-color-picker', main.wrapper);
 
 			this.createColorMap();
 			this.setButtonsColor();
@@ -61,6 +67,39 @@
 			this.setSecondaryColorPicker();
 			this.setFade();
 			this.setColorButtons();
+			this.setActiveButtons();
+
+		},
+		setActiveButtons: function(){
+
+			// set color picker button
+			function colorPickerOnClick() {
+				if (!utils.wasClick()) {
+					return;
+				}
+				draw.activeTool = 'brush';
+			}
+
+			if (info.isTouch) {
+				this.showColorPickerButton.addEventListener(info.evt.up, colorPickerOnClick, false);
+			} else {
+				this.showColorPickerButton.addEventListener('click', colorPickerOnClick, false);
+			}
+
+			// set simple picker button
+			function simplePickerOnClick() {
+				if (!utils.wasClick()) {
+					return;
+				}
+				draw.activeTool = 'picker';
+			}
+
+			if (info.isTouch) {
+				this.simplePickerButton.addEventListener(info.evt.up, simplePickerOnClick, false);
+			} else {
+				this.simplePickerButton.addEventListener('click', simplePickerOnClick, false);
+			}
+
 
 		},
 		setButtonsColor: function () {
@@ -243,7 +282,7 @@
 	var draw = {
 		activeColor: [255, 255, 0],
 		usedColors: [],
-		activeTool: 'brush',  // brush || picker || eraser
+		activeTool: 'brush',  // brush || picker
 		start: function () {
 
 			colorPicker.oldColor = this.activeColor;
@@ -307,31 +346,33 @@
 
 			var that = this;
 
-			function setColorClick() {
+			function setColorTouchEnd() {
+
+				if (!utils.wasClick()) {
+					return;
+				}
+
 				if (that.activeTool === 'brush') {
 					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
 				}
-			}
 
-			function setColorTouchStart() {
-				that.activePolygon = this;
-			}
-
-			function setColorTouchEnd() {
-				if (that.activePolygon === this && utils.wasClick() && that.activeTool === 'brush') {
-					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
+				if (that.activeTool === 'picker') {
+					var color = this.getAttribute('fill').match(/\d+/gi) || [255, 255, 255];
+					colorPicker.setColorOfShowColorPicker(color);
+					that.activeColor = color;
+					that.activeTool = 'brush'
 				}
+
 			}
 
 			var parts = $$('*', this.svgNode);
 			if (info.isTouch) {
 				parts.forEach(function (node) {
-					node.addEventListener(info.evt.down, setColorTouchStart, false);
 					node.addEventListener(info.evt.up, setColorTouchEnd, false);
 				});
 			} else {
 				parts.forEach(function (node) {
-					node.addEventListener('click', setColorClick, false);
+					node.addEventListener('click', setColorTouchEnd, false);
 				});
 			}
 
