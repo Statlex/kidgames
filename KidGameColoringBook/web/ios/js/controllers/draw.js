@@ -19,7 +19,7 @@
 		arrayToColor: function (arr) {
 			return 'rgb(' + arr.join(',') + ')';
 		},
-		getPercent: function(e) {
+		getPercent: function (e) {
 			var fillWidth = info.screen.getWidth();
 			var leftOffset = fillWidth * 0.05 + 5;
 			var fieldSize = fillWidth - leftOffset * 2;
@@ -53,6 +53,7 @@
 			this.fadeNode = $('.js-color-picker-fade', main.wrapper);
 			this.newColorButton = $('.js-color-picker-new-color', main.wrapper);
 			this.oldColorButton = $('.js-color-picker-old-color', main.wrapper);
+			this.showColorPickerButton = $('.js-show-color-picker-button', main.wrapper);
 
 			this.createColorMap();
 			this.setButtonsColor();
@@ -65,6 +66,10 @@
 		setButtonsColor: function () {
 			this.newColorButton.style.backgroundColor = utils.arrayToColor(this.newColor);
 			this.oldColorButton.style.backgroundColor = utils.arrayToColor(this.oldColor);
+			this.setColorOfShowColorPicker(colorPicker.mainColorIs);
+		},
+		setColorOfShowColorPicker: function (color) {
+			this.showColorPickerButton.style.backgroundColor = utils.arrayToColor(color);
 		},
 		createColorMap: function () {
 			this.colorMap = [];
@@ -73,7 +78,7 @@
 				var percent = index / (arr.length - 1);
 				that.colorMap.push({percent: percent, color: color});
 			});
-			this.colorMap = this.colorMap.sort(function(a, b) {
+			this.colorMap = this.colorMap.sort(function (a, b) {
 				return a.percent - b.percent;
 			});
 		},
@@ -83,7 +88,7 @@
 
 			// set bgi
 			var bgi = 'left';
-			this.colorMap.forEach(function(color){
+			this.colorMap.forEach(function (color) {
 				bgi += ', ' + utils.arrayToColor(color.color) + ' ' + (color.percent * 100) + '%'
 			});
 			bgi = info.preCSS + 'linear-gradient(' + bgi + ')';
@@ -96,7 +101,7 @@
 
 				// get color
 				var c1, c2;
-				that.colorMap.forEach(function(color, index, arr){
+				that.colorMap.forEach(function (color, index, arr) {
 					var tempC1 = arr[index];
 					var tempC2 = arr[index + 1] ? arr[index + 1] : arr[index];
 					if (percent >= tempC1.percent && percent <= tempC2.percent) {
@@ -132,9 +137,9 @@
 			if (info.isTouch) {
 				this.mainColorNode.addEventListener(info.evt.move, getMainColorValue, false);
 			}
-			
+
 		},
-		setSecondaryColorPicker: function() {
+		setSecondaryColorPicker: function () {
 
 			var that = this;
 
@@ -142,11 +147,11 @@
 				var percent = utils.getPercent(e);
 				var c1, c2;
 				if (percent < 0.5) {
-					c1 = {percent: 0, color:[0, 0, 0]};
+					c1 = {percent: 0, color: [0, 0, 0]};
 					c2 = {percent: 0.5, color: that.mainColorIs};
 				} else {
 					c1 = {percent: 0.5, color: that.mainColorIs};
-					c2 = {percent: 1, color:[255, 255, 255]};
+					c2 = {percent: 1, color: [255, 255, 255]};
 				}
 
 				var deltaPercent = (percent - c1.percent) / (c2.percent - c1.percent);
@@ -170,10 +175,10 @@
 			}
 
 		},
-		setFade: function() {
+		setFade: function () {
 
 			if (info.isTouch) {
-				this.fadeNode.addEventListener(info.evt.up, function() {
+				this.fadeNode.addEventListener(info.evt.up, function () {
 					if (utils.wasClick()) {
 						draw.showColorPickerTurn(false);
 					}
@@ -182,7 +187,7 @@
 				this.fadeNode.addEventListener('click', draw.showColorPickerTurn.bind(draw, false), false);
 			}
 		},
-		setColorButtons: function() {
+		setColorButtons: function () {
 
 			var that = this;
 
@@ -196,17 +201,19 @@
 					that.mainColorIs = that.mainColorOldIs;
 				}
 
+				that.setColorOfShowColorPicker(color);
+
 				draw.showColorPickerTurn(false);
 			}
 
 			if (info.isTouch) {
-				this.newColorButton.addEventListener(info.evt.down, function(){
+				this.newColorButton.addEventListener(info.evt.down, function () {
 					if (utils.wasClick()) {
 						setActiveColor.call(this);
 					}
 
 				}, false);
-				this.oldColorButton.addEventListener(info.evt.down, function(){
+				this.oldColorButton.addEventListener(info.evt.down, function () {
 					if (utils.wasClick()) {
 						setActiveColor.call(this);
 					}
@@ -217,7 +224,7 @@
 			}
 
 		},
-		coloringColorButtons: function() {
+		coloringColorButtons: function () {
 			this.newColorButton.style.backgroundColor = utils.arrayToColor(this.newColor);
 			this.oldColorButton.style.backgroundColor = utils.arrayToColor(this.oldColor);
 
@@ -284,6 +291,8 @@
 			this.setShowColorPickerButton();
 			colorPicker.init();
 
+			statusBar.hideStatusBar();
+
 		},
 		setScaleButtons: function () {
 
@@ -346,10 +355,8 @@
 		showColorPickerTurn: function (isEnable) {
 			if (isEnable) {
 				colorPicker.coloringColorButtons();
-				statusBar.hideStatusBar();
 				$.addClass(main.wrapper, 'show-color-picker');
 			} else {
-				statusBar.showStatusBar();
 				$.removeClass(main.wrapper, 'show-color-picker');
 			}
 		},

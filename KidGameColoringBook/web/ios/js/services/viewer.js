@@ -11,6 +11,8 @@
 		isBack: false,
 		show: function(templateId, model, notTrack) {
 
+			statusBar.showStatusBar(); // show status bar
+
 			win.ui.fn.setBodyScroll(false); // disable scroll
 
 			// do not push doubled state (selector)

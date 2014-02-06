@@ -58,9 +58,11 @@
 		},
 		hideStatusBar: function() {
 			this.wrapper.style.display = 'none';
+			main.wrapper.style.paddingTop = 0;
 		},
 		showStatusBar: function() {
 			this.wrapper.style.display = 'block';
+			main.wrapper.style.paddingTop = '';
 		}
 
 	};

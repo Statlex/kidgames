@@ -109,4 +109,32 @@
 	display: none;
 }
 
+.show-color-picker-button {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	background-color: #000;
+	width: 34px;
+	height: 34px;
+	z-index: 1;
+	margin-left: -17px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
