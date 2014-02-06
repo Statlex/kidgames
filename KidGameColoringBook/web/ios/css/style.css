@@ -111,7 +111,8 @@
 
 .show-color-picker-button,
 .simple-color-picker,
-.eraser-button {
+.color-history-back,
+.color-history-save {
 	position: fixed;
 	top: 0;
 	left: 50%;
@@ -126,11 +127,14 @@
 	margin-left: -51px;
 }
 
-.eraser-button {
+.color-history-back {
 	margin-left: 17px;
 }
 
-
+.color-history-save {
+	margin-left: 51px;
+	background-color: #00c;
+}
 
 
 

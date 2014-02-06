@@ -38,6 +38,111 @@
 
 	};
 
+	var colorHistory = {
+		init: function () {
+			this.createIds();
+			this.arrChanges = [];
+			this.backButton = $('.js-color-history-back', main.wrapper);
+			this.saveButton = $('.js-color-history-save', main.wrapper);
+			this.setBackButton();
+			this.setSaveButton();
+		},
+		createIds: function () {
+			this.svgNode = draw.svgNode;
+			var polygons = $$('*', this.svgNode);
+			polygons.forEach(function (polygon, index) {
+				polygon.setAttribute('history-id', index);
+			});
+		},
+		addChanges: function (id, fromColor, toColor) {
+			fromColor.forEach(function (item, index) {
+				fromColor[index] = parseInt(fromColor[index], 10);
+				toColor[index] = parseInt(toColor[index], 10);
+			});
+			var savedItem = {
+				id: parseInt(id, 10),
+				from: fromColor,
+				to: toColor
+			};
+			var lastItem = this.arrChanges[this.arrChanges.length - 1] || {};
+			if ((savedItem.id === lastItem.id) && (savedItem.to === lastItem.to)) {
+				console.log('equals items');
+				return;
+			}
+			this.arrChanges.push(savedItem);
+
+		},
+		setBackButton: function () {
+			var that = this;
+
+			function back() {
+				if (utils.wasClick()) {
+					that.back();
+				}
+			}
+
+			if (info.isTouch) {
+				this.backButton.addEventListener(info.evt.up, back, false);
+			} else {
+				this.backButton.addEventListener('click', back, false);
+			}
+		},
+		setSaveButton: function () {
+			var that = this;
+
+			function save() {
+				if (utils.wasClick()) {
+					that.save();
+				}
+			}
+
+			if (info.isTouch) {
+				this.saveButton.addEventListener(info.evt.up, save, false);
+			} else {
+				this.saveButton.addEventListener('click', save, false);
+			}
+		},
+		back: function () {
+			var lastItem = this.arrChanges.pop();
+			if (!lastItem) {
+				return;
+			}
+			var polygon = $('[history-id="' + lastItem.id + '"]');
+			polygon.setAttribute('fill', utils.arrayToColor(lastItem.from));
+		},
+		save: function () {
+
+			var allData = {};
+			var polygons = $$('*', this.svgNode);
+			polygons.forEach(function (polygon) {
+				var color = (polygon.getAttribute('fill') || '').match(/\d+/gi);
+				if (!color) {
+					return;
+				}
+				var id = polygon.getAttribute('history-id');
+				allData[id] = color;
+			});
+			allData = JSON.stringify(allData);
+			dataBase.saveProgress({imageId:info.currentImageId, polygonsData: allData});
+		},
+		restoreImage: function(imageId) {
+			imageId = imageId || info.currentImageId;
+			var polygons = $$('*', this.svgNode);
+			dataBase.getDataByFigureId(imageId, function(data) {
+				data = JSON.parse(data);
+				polygons.forEach(function (polygon) {
+					var id = parseInt(polygon.getAttribute('history-id'), 10);
+					if (!data[id]) {
+						return;
+					}
+					polygon.setAttribute('fill', utils.arrayToColor(data[id]));
+				});
+
+			});
+		}
+
+	};
+
 	var colorPicker = {
 		newColor: [0, 255, 255],
 		oldColor: [255, 0, 255],
@@ -70,7 +175,7 @@
 			this.setActiveButtons();
 
 		},
-		setActiveButtons: function(){
+		setActiveButtons: function () {
 
 			// set color picker button
 			function colorPickerOnClick() {
@@ -332,6 +437,10 @@
 
 			statusBar.hideStatusBar();
 
+			colorHistory.init();
+
+			//colorHistory.restoreImage(); // only for test
+
 		},
 		setScaleButtons: function () {
 
@@ -353,6 +462,10 @@
 				}
 
 				if (that.activeTool === 'brush') {
+					var id = parseInt(this.getAttribute('history-id'), 10);
+					var fromColor = this.getAttribute('fill').match(/\d+/gi) || [255, 255, 255];
+					var toColor = that.activeColor;
+					colorHistory.addChanges(id, fromColor, toColor);
 					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
 				}
 
