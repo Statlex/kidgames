@@ -3,11 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="240.094px" height="300px" viewBox="0 0 240.094 300" enable-background="new 0 0 240.094 300" xml:space="preserve">
-<polygon fill="#CC3333" points="131.094,146 81.094,196 31.094,146 "/>
-<polygon fill="#33CC33" points="81.094,196 131.094,146 181.094,196 "/>
 <polygon fill="#996666" points="131.094,231.355 166.449,231.355 131.094,196 "/>
-<polygon fill="#CC33CC" points="206.094,135.645 170.738,135.645 206.094,171 "/>
-<polygon fill="#99CC99" points="170.738,135.644 135.383,100.289 170.738,100.289 206.094,135.644 "/>
-<polygon fill="#33CCCC" points="206.094,100.289 135.383,100.289 170.738,64.934 "/>
-<polygon fill="#CCCC33" points="181.093,146 181.093,146 156.093,171 181.093,196 206.094,171 "/>
+<polygon fill="#CCCC33" points="170.738,100.289 206.094,100.289 170.738,64.934 135.383,100.289 181.093,146 156.094,171 
+	131.094,146 31.094,146 81.094,196 181.094,196 206.094,171 206.094,135.645 206.091,135.644 206.094,135.644 "/>
 </svg>

@@ -3,11 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="240.094px" height="300px" viewBox="0 0 240.094 300" enable-background="new 0 0 240.094 300" xml:space="preserve">
-<polygon fill="#CC3333" points="70.427,168 120.427,118 170.427,168 "/>
-<polygon fill="#33CC33" points="70.427,168 141.138,168 141.138,238.711 "/>
-<polygon fill="#996666" points="95.426,93 70.426,68 70.426,118 "/>
-<polygon fill="#CC33CC" points="166.138,238.711 141.138,213.711 141.138,263.711 "/>
-<polygon fill="#990066" points="70.427,118 70.427,168 95.426,143 95.426,93 "/>
-<polygon fill="#33CCCC" points="95.426,93 45.426,43 95.426,43 "/>
-<polygon fill="#CCCC33" points="170.426,118 170.426,118 145.427,142.999 170.427,168 195.427,143 "/>
+<polygon fill="#CCCC33" points="170.427,168 195.427,143 170.426,118 145.427,142.999 145.428,143.001 120.427,118 95.426,143.001 
+	95.426,143 95.426,43 45.426,43 70.426,68 70.427,168 141.139,238.711 141.139,263.711 166.139,238.711 141.139,213.711 
+	141.139,168 "/>
 </svg>
