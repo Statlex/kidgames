@@ -123,12 +123,12 @@
 				allData[id] = color;
 			});
 			allData = JSON.stringify(allData);
-			dataBase.saveProgress({imageId:info.currentImageId, polygonsData: allData});
+			dataBase.saveProgress({imageId: info.currentImageId, polygonsData: allData});
 		},
-		restoreImage: function(imageId) {
+		restoreImage: function (imageId) {
 			imageId = imageId || info.currentImageId;
 			var polygons = $$('*', this.svgNode);
-			dataBase.getDataByFigureId(imageId, function(data) {
+			dataBase.getDataByFigureId(imageId, function (data) {
 				data = JSON.parse(data);
 				polygons.forEach(function (polygon) {
 					var id = parseInt(polygon.getAttribute('history-id'), 10);
@@ -380,8 +380,36 @@
 
 			this.mainColorOldIs = this.mainColorIs;
 
-		}
+		},
+		saveImageScrolls: function () {
+			var doc = document.documentElement,
+				body = document.body;
+			var left = (doc && doc.scrollLeft || body && body.scrollLeft || 0);
+			var top = (doc && doc.scrollTop || body && body.scrollTop || 0);
+			this.imagePosiiton = {
+				top: top,
+				left: left
+			}
+		},
+		restoreImageScrolls: function () {
+			var doc = document.documentElement,
+				body = document.body;
 
+			if (doc.hasOwnProperty('scrollTop')) {
+				doc.scrollTop = this.imagePosiiton.top;
+				doc.scrollLeft = this.imagePosiiton.left;
+				return;
+			}
+
+			if (body.hasOwnProperty('scrollTop')) {
+				body.scrollTop = this.imagePosiiton.top;
+				body.scrollLeft = this.imagePosiiton.left;
+				return;
+			}
+
+			return false;
+
+		}
 	};
 
 	var draw = {
@@ -439,7 +467,7 @@
 
 			colorHistory.init();
 
-			//colorHistory.restoreImage(); // only for test
+			colorHistory.restoreImage(); // only for test
 
 		},
 		setScaleButtons: function () {
@@ -509,9 +537,11 @@
 		showColorPickerTurn: function (isEnable) {
 			if (isEnable) {
 				colorPicker.coloringColorButtons();
+				colorPicker.saveImageScrolls();
 				$.addClass(main.wrapper, 'show-color-picker');
 			} else {
 				$.removeClass(main.wrapper, 'show-color-picker');
+				colorPicker.restoreImageScrolls();
 			}
 		},
 		setShowColorPickerButton: function () {
