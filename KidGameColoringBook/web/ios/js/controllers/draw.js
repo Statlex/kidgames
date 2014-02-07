@@ -64,8 +64,8 @@
 				from: fromColor,
 				to: toColor
 			};
-			var lastItem = this.arrChanges[this.arrChanges.length - 1] || {};
-			if ((savedItem.id === lastItem.id) && (savedItem.to === lastItem.to)) {
+			var lastItem = this.arrChanges[this.arrChanges.length - 1] || {id: -1, to: []};
+			if ((savedItem.id === lastItem.id) && (savedItem.to.join() === lastItem.to.join())) {
 				console.log('equals items');
 				return;
 			}
