@@ -27,6 +27,7 @@ body:after {
 
 .images-wrapper {
 	border: 1px solid #333;
+	background-color: #c00;
 }
 
 .images-wrapper svg {

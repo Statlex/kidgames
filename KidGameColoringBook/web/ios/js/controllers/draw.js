@@ -430,7 +430,7 @@
 			var that = this;
 
 			// get figure SVG
-			var section = win.allFigures[info.currentSectionName];
+			var section = win.allFigures[info.currentCategoryName].figures;
 			section.forEach(function (obj) {
 				if (obj.id === info.currentImageId) {
 					that.svg = obj.svg;
