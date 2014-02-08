@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="822px" height="567px" viewBox="0 0 822 567" enable-background="new 0 0 822 567" xml:space="preserve">
+<title>Coloring monkey mask</title>
+<desc>Vector coloring Monkey mask</desc>
+<circle fill="#FFFFFF" stroke="#000000" cx="600" cy="200" r="150"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="200" cy="200" r="150"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="210" cy="195" r="120"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="590" cy="195" r="120"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="400" cy="300" r="250"/>
+<circle fill="none" stroke="#000000" cx="320" cy="250" r="100.5"/>
+<circle fill="none" stroke="#000000" cx="480" cy="250" r="100.5"/>
+<ellipse fill="none" stroke="#000000" cx="400" cy="400" rx="175.5" ry="125.5"/>
+<ellipse fill="#FFFFFF" cx="400" cy="400" rx="175" ry="125"/>
+<circle fill="#FFFFFF" cx="320" cy="250" r="100"/>
+<circle fill="#FFFFFF" cx="480" cy="250" r="100"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="330" cy="250" r="50"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="470" cy="250" r="50"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="400" cy="350" r="50"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="330" cy="250" r="25"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="470" cy="250" r="25"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="330" cy="250" r="10"/>
+<circle fill="#FFFFFF" stroke="#000000" cx="470" cy="250" r="10"/>
+<ellipse fill="#FFFFFF" stroke="#000000" cx="400" cy="470" rx="40" ry="25"/>
+</svg>
