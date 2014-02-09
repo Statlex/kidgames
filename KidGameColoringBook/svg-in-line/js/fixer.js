@@ -23,7 +23,7 @@
 			console.log('-- GOT files is ' + evt.target.files.length + ' --');
 			setTimeout(function(){
 				console.log('-- DONE files is ' + that.filesDone + ' --');
-			}, 1000);
+			}, 5000);
 
 			// Loop through the FileList
 			for (var i = 0, f; f = files[i]; i++) {
@@ -45,17 +45,28 @@
 
 			svgLine = (svgLine.match(/<svg[\s\S]+<\/svg>/gi))[0];
 			svgLine = svgLine.replace(/id=\"\S*?\"/gi , '')
-				.replace(/<g>|<\/g>/gi, '')
 				.replace(/baseProfile=\"\S*?\"/gi , '')
+				.replace(/<g.*?>|<\/g>/gi, '')
 				.replace(/\n/gi, '')
 				.replace(/"/gi, "'")
 				.replace(/\s+/gi, ' ')
 				.replace(/\s'/gi, "'")
 				.replace(/>\s+</gi, '><')
-				.replace(/fill='.*?'/gi, "fill='#FFF'");
+				.replace(/fill='.*?'/gi, "fill='rgb(255,255,255)'");
 
+			if (svgLine.indexOf('text') !== -1) {
+				alert('text in ' + file.name);
+			}
+
+			// add white rectangle
 			var div = document.createElement('div');
-			div.innerHTML = svgLine;
+			var width = svgLine.match(/width='\d+px'/gi)[0].match(/\d+/gi)[0];
+			var height = svgLine.match(/height='\d+px'/gi)[0].match(/\d+/gi)[0];
+			var rect = "<rect x='0' y='0' width='" + width + "' height='" + height + "' fill='rgb(255,255,255)' />";
+			svgLine = svgLine.replace('><', '>' + rect + '<');
+
+			div.innerHTML = svgLine + file.name;
+
 			this.imagesWrapper.appendChild(div);
 
 			svgLine = 'svg:"' + svgLine + '",\n';
