@@ -17,6 +17,14 @@
 			percent = percent < 0 ? 0 : percent;
 			percent = percent > 1 ? 1 : percent;
 			return percent;
+		},
+		getCoordinates: function(node) {
+			var style = node.style[info.preJS + 'Transform'] || 'translate(0px, 0px)';
+			var arr = style.replace(/.*?translate\((-?\d+)px,.*?(-?\d+)px\).*/gi, '$1,$2').split(',');
+			return {
+				x: parseInt(arr[0], 10),
+				y: parseInt(arr[1], 10)
+			}
 		}
 
 	};
@@ -400,7 +408,7 @@
 
 			this.svgNode.style.width = this.image.width + 'px';
 			this.svgNode.style.height = this.image.height + 'px';
-			this.svgNode.style[info.preJS + 'Transform'] = 'translate(10px, 10px)';
+			this.svgNode.style[info.preJS + 'Transform'] = 'translate(0px, 0px)';
 
 			this.setBackButton();
 			this.setScaleButtons();
@@ -523,12 +531,36 @@
 				return false;
 			}
 
+			// get coordinates of center
+			var offset = utils.getCoordinates(this.svgNode);
+			var maxX, maxY;
+			maxX = info.screen.getWidth();
+			maxY = info.screen.getHeight();
+			var center = {
+				x: parseInt(this.image.currentWidth / 2 + offset.x, 10),
+				y: parseInt(this.image.currentHeight / 2 + offset.y, 10)
+			};
+			center = {
+				x: center.x < 0 ? 0 : center.x,
+				y: center.y < 0 ? 0 : center.y
+			};
+			center = {
+				x: center.x < maxX ? center.x : maxX,
+				y: center.y < maxY ? center.y : maxY
+			};
+
 			this.image.scale *= q;
 			this.image.currentWidth *= q;
 			this.image.currentHeight *= q;
 
+			var newOffset = {
+				x: parseInt(center.x - this.image.currentWidth / 2),
+				y: parseInt(center.y - this.image.currentHeight / 2)
+			};
+
 			this.svgNode.style.width = this.image.currentWidth + 'px';
 			this.svgNode.style.height = this.image.currentHeight + 'px';
+			this.svgNode.style[info.preJS + 'Transform'] = 'translate(' + newOffset.x + 'px,' + newOffset.y + 'px)';
 
 			return true;
 
