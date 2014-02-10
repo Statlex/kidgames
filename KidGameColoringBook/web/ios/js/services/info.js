@@ -10,7 +10,7 @@
 	var info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		saveItem: 'save-item-kid-game-logic-re-think',
+		saveItem: 'save-item-kid-game-coloring-book',
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: '-webkit-',
@@ -108,9 +108,39 @@
 						y: e.touches[0].pageY
 					};
 				}, false);
+			} else {
+				body.addEventListener(this.evt.down, function(e){
+					that.evt.touchStart = {
+						x: e.pageX,
+						y: e.pageY
+					};
+					that.evt.touchMove = {
+						x: e.pageX,
+						y: e.pageY
+					};
+				}, false);
+				body.addEventListener(this.evt.move, function(e){
+					that.evt.touchMove = {
+						x: e.pageX,
+						y: e.pageY
+					};
+				}, false);
 			}
 
+		},
+		getPathSize: function (x0, y0, x1, y1) {
+			return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
+		},
+		minMove: 4,
+		wasClick: function () {
+			var x1, y1, x2, y2;
+			x1 = this.evt.touchStart.x;
+			y1 = this.evt.touchStart.y;
+			x2 = this.evt.touchMove.x;
+			y2 = this.evt.touchMove.y;
+			return this.getPathSize(x1, y1, x2, y2) < this.minMove;
 		}
+
 	};
 
 	win.addEventListener('load', info.getIsPhone.bind(info), false);

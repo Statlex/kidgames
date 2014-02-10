@@ -4,23 +4,6 @@
 	/*global window, document, console, alert */
 
 	var utils = {
-		minMove: 4,
-		getPathSize: function (x0, y0, x1, y1) {
-			return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
-		},
-		wasClick: function () {
-
-			if (!info.isTouch) {
-				return true;
-			}
-
-			var x1, y1, x2, y2;
-			x1 = info.evt.touchStart.x;
-			y1 = info.evt.touchStart.y;
-			x2 = info.evt.touchMove.x;
-			y2 = info.evt.touchMove.y;
-			return utils.getPathSize(x1, y1, x2, y2) < this.minMove;
-		},
 		arrayToColor: function (arr) {
 			return 'rgb(' + arr.join(',') + ')';
 		},
@@ -76,31 +59,23 @@
 			var that = this;
 
 			function back() {
-				if (utils.wasClick()) {
+				if (info.wasClick()) {
 					that.back();
 				}
 			}
 
-			if (info.isTouch) {
-				this.backButton.addEventListener(info.evt.up, back, false);
-			} else {
-				this.backButton.addEventListener('click', back, false);
-			}
+			this.backButton.addEventListener(info.evt.up, back, false);
 		},
 		setSaveButton: function () {
 			var that = this;
 
 			function save() {
-				if (utils.wasClick()) {
+				if (info.wasClick()) {
 					that.save();
 				}
 			}
 
-			if (info.isTouch) {
-				this.saveButton.addEventListener(info.evt.up, save, false);
-			} else {
-				this.saveButton.addEventListener('click', save, false);
-			}
+			this.saveButton.addEventListener(info.evt.up, save, false);
 		},
 		back: function () {
 			var lastItem = this.arrChanges.pop();
@@ -186,32 +161,23 @@
 
 			// set color picker button
 			function colorPickerOnClick() {
-				if (!utils.wasClick()) {
+				if (!info.wasClick()) {
 					return;
 				}
 				draw.activeTool = 'brush';
 			}
 
-			if (info.isTouch) {
-				this.showColorPickerButton.addEventListener(info.evt.up, colorPickerOnClick, false);
-			} else {
-				this.showColorPickerButton.addEventListener('click', colorPickerOnClick, false);
-			}
+			this.showColorPickerButton.addEventListener(info.evt.up, colorPickerOnClick, false);
 
 			// set simple picker button
 			function simplePickerOnClick() {
-				if (!utils.wasClick()) {
+				if (!info.wasClick()) {
 					return;
 				}
 				draw.activeTool = 'picker';
 			}
 
-			if (info.isTouch) {
-				this.simplePickerButton.addEventListener(info.evt.up, simplePickerOnClick, false);
-			} else {
-				this.simplePickerButton.addEventListener('click', simplePickerOnClick, false);
-			}
-
+			this.simplePickerButton.addEventListener(info.evt.up, simplePickerOnClick, false);
 
 		},
 		setButtonsColor: function () {
@@ -328,15 +294,12 @@
 		},
 		setFade: function () {
 
-			if (info.isTouch) {
-				this.fadeNode.addEventListener(info.evt.up, function () {
-					if (utils.wasClick()) {
-						draw.showColorPickerTurn(false);
-					}
-				}, false);
-			} else {
-				this.fadeNode.addEventListener('click', draw.showColorPickerTurn.bind(draw, false), false);
-			}
+			this.fadeNode.addEventListener(info.evt.up, function () {
+				if (info.wasClick()) {
+					draw.showColorPickerTurn(false);
+				}
+			}, false);
+
 		},
 		setColorButtons: function () {
 
@@ -359,13 +322,13 @@
 
 			if (info.isTouch) {
 				this.newColorButton.addEventListener(info.evt.down, function () {
-					if (utils.wasClick()) {
+					if (info.wasClick()) {
 						setActiveColor.call(this);
 					}
 
 				}, false);
 				this.oldColorButton.addEventListener(info.evt.down, function () {
-					if (utils.wasClick()) {
+					if (info.wasClick()) {
 						setActiveColor.call(this);
 					}
 				}, false);
@@ -458,7 +421,7 @@
 
 			function back() {
 
-				if (!utils.wasClick()) {
+				if (!info.wasClick()) {
 					return;
 				}
 
@@ -509,11 +472,7 @@
 
 			}
 
-			if (info.isTouch) {
-				this.backButton.addEventListener(info.evt.up, back, false);
-			} else {
-				this.backButton.addEventListener('click', back, false);
-			}
+			this.backButton.addEventListener(info.evt.up, back, false);
 
 		},
 		setScaleButtons: function () {
@@ -531,7 +490,7 @@
 
 			function setColorTouchEnd() {
 
-				if (!utils.wasClick()) {
+				if (!info.wasClick()) {
 					return;
 				}
 
@@ -553,15 +512,9 @@
 			}
 
 			var parts = $$('*', this.svgNode);
-			if (info.isTouch) {
-				parts.forEach(function (node) {
-					node.addEventListener(info.evt.up, setColorTouchEnd, false);
-				});
-			} else {
-				parts.forEach(function (node) {
-					node.addEventListener('click', setColorTouchEnd, false);
-				});
-			}
+			parts.forEach(function (node) {
+				node.addEventListener(info.evt.up, setColorTouchEnd, false);
+			});
 
 		},
 		scaleImageBy: function (q) {
@@ -593,20 +546,14 @@
 			var button = $('.js-show-color-picker-button', main.wrapper);
 			var that = this;
 
-			if (info.isTouch) {
-				button.addEventListener(info.evt.down, function () {
-					that.activePolygon = this;
-				}, false);
-				button.addEventListener(info.evt.up, function () {
-					if (that.activePolygon === this && utils.wasClick()) {
-						that.showColorPickerTurn(true);
-					}
-				}, false);
-			} else {
-				button.addEventListener('click', function () {
+			button.addEventListener(info.evt.down, function () {
+				that.activePolygon = this;
+			}, false);
+			button.addEventListener(info.evt.up, function () {
+				if (that.activePolygon === this && info.wasClick()) {
 					that.showColorPickerTurn(true);
-				}, false);
-			}
+				}
+			}, false);
 
 		}
 

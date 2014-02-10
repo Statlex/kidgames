@@ -107,7 +107,7 @@
 .show-color-picker .main-svg,
 .show-color-picker .show-color-picker-button
 {
-	display: none;
+	/*display: none;*/
 }
 
 .show-color-picker-button,
@@ -183,3 +183,6 @@
 	background-color: #000;
 }
 
+#wrapper-for-transition {
+	overflow: hidden;
+}
