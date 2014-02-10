@@ -186,3 +186,12 @@
 #wrapper-for-transition {
 	overflow: hidden;
 }
+
+#wrapper-for-transition .draw-page-back,
+#wrapper-for-transition .scale-button,
+#wrapper-for-transition .show-color-picker-button,
+#wrapper-for-transition .simple-color-picker,
+#wrapper-for-transition .color-history-back,
+#wrapper-for-transition .color-history-save {
+	display: none;
+}

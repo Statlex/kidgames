@@ -5,19 +5,16 @@
 
 	var playerObj;
 	playerObj = {
-//		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
+		isEnable: false,
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
-//			console.log(src);
-//			return;
-
-//			if (this.musicOn === 'no') {
-//				return;
-//			}
+			if (!playerObj.isEnable) {
+				return;
+			}
 
 			if (this.currentMediaStatus <= 2 ) {
 				return;
@@ -38,7 +35,6 @@
 //			dataStorage.setItem('music-on', value);
 //		},
 		playQuestionAgain: function() {
-//			var currentSectionName = info.section;
 			// work for find number
 			if (info.section === 'findNumber') {
 				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
@@ -69,7 +65,9 @@
 
 	playerObj.play = function(src) {
 
-		console.log(this.toSoundPrefix + src);
+		if (!playerObj.isEnable) {
+			return;
+		}
 
 		this.currentSrc = src;
 		this.currentMedia = new Audio(this.toSoundPrefix + src);

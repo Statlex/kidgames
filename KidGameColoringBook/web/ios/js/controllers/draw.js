@@ -466,8 +466,6 @@
 
 				// get current saved data and test for equals with current data
 				dataBase.getDataByFigureId(info.currentImageId, function (data) {
-					console.log(data);
-					console.log(allData);
 					if (data === allData) {
 						viewer.back();
 						return;
