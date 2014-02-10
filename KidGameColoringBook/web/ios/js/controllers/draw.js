@@ -403,7 +403,6 @@
 			colorPicker.mainColorOldIs = this.activeColor;
 			colorPicker.secondatyColorIs = this.activeColor;
 
-			ui.fn.setBodyScroll(true);
 			main.wrapper.removeAttribute('style');
 
 			var that = this;
@@ -425,6 +424,8 @@
 			page.appendChild(svgNode);
 			this.svgNode = svgNode;
 
+			new BlockMover(this.svgNode);
+
 			// get image property
 			this.image = {};
 			this.image.width = parseInt(svgNode.getAttribute('width'), 10);
@@ -436,7 +437,7 @@
 
 			this.svgNode.style.width = this.image.width + 'px';
 			this.svgNode.style.height = this.image.height + 'px';
-
+			this.svgNode.style[info.preJS + 'Transform'] = 'translate(10px, 10px)';
 
 			this.setBackButton();
 			this.setScaleButtons();

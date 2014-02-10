@@ -171,12 +171,6 @@
 }
 
 .categories-list-page {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	overflow-scrolling: touch;
-}
-
-.categories-list-page {
 	padding-left: 0;
 	padding-right: 0;
 }
