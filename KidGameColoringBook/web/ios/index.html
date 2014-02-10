@@ -83,21 +83,7 @@
 
 <div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
 
-	<div class="page">
-
-		{{ if (info.isTouch) {  }}
-			<div ontouchend='viewer.show("categories-list-page")'>categories list</div>
-		{{ } else { }}
-			<div onclick='viewer.show("categories-list-page")'>categories list</div>
-		{{ }; }}
-
-	</div>
-
-</div>
-
-<div class="js-template hidden" template-id="categories-list-page" onshow="statusBar.show(['more']);">
-
-	<div class="page">
+	<div class="page categories-list-page">
 
 		<div class="categories-list-wrapper">
 		{{ for (var key in allFigures) { }}
@@ -115,7 +101,7 @@
 
 <div class="js-template hidden" template-id="image-list-page" onshow="statusBar.show(['more']);">
 
-	<div class="page">
+	<div class="page categories-list-page">
 
 		<div class="categories-list-wrapper">
 			{{ allFigures[info.currentCategoryName].figures.forEach(function(svg){ }}
@@ -133,7 +119,8 @@
 
 <div class="js-template hidden" template-id="draw-page" onshow="statusBar.show([]);draw.start();">
 
-	<div class="page">
+	<div class="page draw-page">
+		<div class="draw-page-back js-draw-page-back"></div>
 		<div class="scale-button scale-button-plus js-scale-button-plus"><h1>+</h1></div>
 		<div class="scale-button scale-button-minus js-scale-button-minus"><h1>-</h1></div>
 		<div class="show-color-picker-button js-show-color-picker-button"></div>

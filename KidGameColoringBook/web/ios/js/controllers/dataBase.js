@@ -3,8 +3,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'cb_db_11',
-		tableName: 'cb_t_2002',
+		dbName: 'cb_db_11_21',
+		tableName: 'cb_t_2002_21',
 		init: function(){
 			var that = this;
 			// create or connect to db
@@ -45,6 +45,8 @@
 					function (tx, result) {
 						if (result.rows.length) {
 							func(result.rows.item(0).polygonsData);
+						} else {
+							func('{}');
 						}
 					}, null)
 			});

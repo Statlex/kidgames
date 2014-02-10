@@ -119,11 +119,15 @@
 				if (!color) {
 					return;
 				}
-				var id = polygon.getAttribute('history-id');
+				var id = parseInt(polygon.getAttribute('history-id'), 10);
+				if (id !== 0 && !id) {
+					return;
+				}
 				allData[id] = color;
 			});
 			allData = JSON.stringify(allData);
 			dataBase.saveProgress({imageId: info.currentImageId, polygonsData: allData});
+			ui.alert.show(lang[info.lang].progressIsSaved, '');
 		},
 		restoreImage: function (imageId) {
 			imageId = imageId || info.currentImageId;
@@ -132,6 +136,9 @@
 				data = JSON.parse(data);
 				polygons.forEach(function (polygon) {
 					var id = parseInt(polygon.getAttribute('history-id'), 10);
+					if (id !== 0 && !id) {
+						return;
+					}
 					if (!data[id]) {
 						return;
 					}
@@ -380,36 +387,8 @@
 
 			this.mainColorOldIs = this.mainColorIs;
 
-		},
-		saveImageScrolls: function () {
-			var doc = document.documentElement,
-				body = document.body;
-			var left = (doc && doc.scrollLeft || body && body.scrollLeft || 0);
-			var top = (doc && doc.scrollTop || body && body.scrollTop || 0);
-			this.imagePosiiton = {
-				top: top,
-				left: left
-			}
-		},
-		restoreImageScrolls: function () {
-			var doc = document.documentElement,
-				body = document.body;
-
-			if (doc.hasOwnProperty('scrollTop')) {
-				doc.scrollTop = this.imagePosiiton.top;
-				doc.scrollLeft = this.imagePosiiton.left;
-				return;
-			}
-
-			if (body.hasOwnProperty('scrollTop')) {
-				body.scrollTop = this.imagePosiiton.top;
-				body.scrollLeft = this.imagePosiiton.left;
-				return;
-			}
-
-			return false;
-
 		}
+
 	};
 
 	var draw = {
@@ -458,6 +437,8 @@
 			this.svgNode.style.width = this.image.width + 'px';
 			this.svgNode.style.height = this.image.height + 'px';
 
+
+			this.setBackButton();
 			this.setScaleButtons();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
@@ -468,6 +449,70 @@
 			colorHistory.init();
 
 			colorHistory.restoreImage(); // only for test
+
+		},
+		setBackButton: function(){
+
+			this.backButton = $('.js-draw-page-back', main.wrapper);
+
+			function back() {
+
+				if (!utils.wasClick()) {
+					return;
+				}
+
+				// get all color data
+				var allData = {};
+				var polygons = $$('*', this.svgNode);
+				polygons.forEach(function (polygon) {
+					var color = (polygon.getAttribute('fill') || '').match(/\d+/gi);
+					if (!color) {
+						return;
+					}
+					var id = parseInt(polygon.getAttribute('history-id'), 10);
+					if (id !== 0 && !id) {
+						return;
+					}
+					allData[id] = color;
+				});
+
+				// test for all white image
+				var isAllFFF = true;
+				for (var key in allData) {
+					if (allData.hasOwnProperty(key)) {
+						if (allData[key].join() !== '255,255,255') {
+							isAllFFF = false;
+						}
+					}
+				}
+				if (isAllFFF) {
+					viewer.back();
+					return;
+				}
+
+				allData = JSON.stringify(allData);
+
+				// get current saved data and test for equals with current data
+				dataBase.getDataByFigureId(info.currentImageId, function (data) {
+					console.log(data);
+					console.log(allData);
+					if (data === allData) {
+						viewer.back();
+						return;
+					}
+					ui.confirm.show(lang[info.lang].doYouWantToSaveProgress, function(){
+						colorHistory.save(colorHistory);
+						viewer.back();
+					}, viewer.back.bind(viewer));
+				});
+
+			}
+
+			if (info.isTouch) {
+				this.backButton.addEventListener(info.evt.up, back, false);
+			} else {
+				this.backButton.addEventListener('click', back, false);
+			}
 
 		},
 		setScaleButtons: function () {
@@ -537,11 +582,9 @@
 		showColorPickerTurn: function (isEnable) {
 			if (isEnable) {
 				colorPicker.coloringColorButtons();
-				colorPicker.saveImageScrolls();
 				$.addClass(main.wrapper, 'show-color-picker');
 			} else {
 				$.removeClass(main.wrapper, 'show-color-picker');
-				colorPicker.restoreImageScrolls();
 			}
 		},
 		setShowColorPickerButton: function () {
