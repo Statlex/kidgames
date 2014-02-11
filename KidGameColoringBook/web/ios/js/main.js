@@ -7,9 +7,9 @@
 
 		handleEvent: function() {
 
-//			window.onerror = function(message, source, lineno) {
-//				alert("error: " + message + "\n" + "file: " + source + "\n" + "str: " + lineno);
-//			};
+			window.onerror = function(message, source, lineno) {
+				alert("error: " + message + "\n" + "file: " + source + "\n" + "str: " + lineno);
+			};
 
 			this.wrapper = $('#wrapper');
 			viewer.show('title-page');

@@ -412,6 +412,7 @@
 
 			this.setBackButton();
 			this.setScaleButtons();
+			this.setGesture();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
 			colorPicker.init();
@@ -420,7 +421,7 @@
 
 			colorHistory.init();
 
-			colorHistory.restoreImage(); // only for test
+			//colorHistory.restoreImage();
 
 		},
 		setBackButton: function(){
@@ -488,6 +489,34 @@
 
 			buttonPlus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 1.1), false);
 			buttonMinus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 0.9), false);
+
+		},
+		setGesture: function() {
+
+			var svgInfo = {
+				scale: {},
+				offset: {}
+			};
+
+			function gestureStart(e) {
+				svgInfo.offset.start = utils.getCoordinates(this);
+				svgInfo.scale.start = e.scale;
+			}
+
+			function gestureChange(e) {
+				svgInfo.scale.current = e.scale;
+				this.style[info.preJS + 'Transform'] = 'translate(' + svgInfo.offset.start.x + 'px, ' + svgInfo.offset.start.y + 'px) scale(' + svgInfo.scale.current + ')';
+			}
+
+			function gestureEnd(e) {
+				svgInfo.offset.start.x *= svgInfo.scale.current;
+				svgInfo.offset.start.y *= svgInfo.scale.current;
+				this.style[info.preJS + 'Transform'] = 'translate(' + Math.round(svgInfo.offset.start.x) + 'px, ' + Math.round(svgInfo.offset.start.y) + 'px)';
+			}
+
+			this.svgNode.addEventListener("gesturestart", gestureStart, false);
+			this.svgNode.addEventListener("gesturechange", gestureChange, false);
+			this.svgNode.addEventListener("gestureend", gestureEnd, false);
 
 		},
 		setSVGColoring: function () {
