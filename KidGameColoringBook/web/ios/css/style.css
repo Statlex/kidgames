@@ -187,16 +187,11 @@
 	background-image: linear-gradient(top, #FFFFFF, #F9F9f9);
 	background-color: #F5E1AE;
 	border-radius: 6px;
-	border: 1px solid #dcdcdc;
+	border: 6px solid #FFF;
 	cursor: pointer;
-	padding: 5px;
+	padding: 0;
 	fill: #121212;
 	margin: 0 auto;
-}
-
-.categories-list-page {
-	padding-left: 0;
-	padding-right: 0;
 }
 
 .status-bar-score {
