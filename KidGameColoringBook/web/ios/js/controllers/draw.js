@@ -445,31 +445,6 @@
 			});
 
 		},
-		colorTitlePage: function() {
-
-			var imgs = $$('.spacer', main.wrapper);
-			var color = '#212121';
-			imgs.forEach(function(img){
-				var svg = img.style.backgroundImage.match(/<svg.*?svg>/gi)[0];
-				//svg = svg.replace(/path /gi, "path fill=\'#000\' ");
-
-				console.log(svg);
-
-//				var polygons = $$('svg *', tempNode);
-//				polygons.forEach(function(polygon){
-//					polygon.setAttribute('fill', '#212121');
-//				});
-//
-//
-//				svg = tempNode.innerHTML;
-
-				img.style.backgroundImage = 'url("data:image/svg+xml;utf8,' + svg + '");';
-
-//				img.style.backgroundImage = img.style.backgroundImage.replace(/<svg.*?svg>/gi, svg);
-
-			});
-
-		},
 		setBackButton: function(){
 
 			this.backButton = $('.js-draw-page-back', main.wrapper);
