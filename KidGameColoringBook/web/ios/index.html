@@ -82,7 +82,7 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);">
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.createResize();">
 
 	<div class="page categories-list-page">
 
@@ -96,13 +96,13 @@
 
 </div>
 
-<div class="js-template hidden" template-id="image-list-page" onshow="statusBar.show(['more']);ui.fn.setBodyScroll(true);">
+<div class="js-template hidden" template-id="image-list-page" onshow="statusBar.show(['more']);ui.fn.setBodyScroll(true);draw.restoreSectionColorState();main.createResize();">
 
 	<div class="page categories-list-page">
 
 		<div class="categories-list-wrapper">
 			{{ allFigures[info.currentCategoryName].figures.forEach(function(svg){ }}
-				<div onclick='info.set("currentImageId", {{= svg.id }});viewer.show("draw-page");' class="categories-list-item">{{= svg.svg }}</div>
+				<div onclick='info.set("currentImageId", {{= svg.id }});viewer.show("draw-page");' class="categories-list-item" data-base-id="{{= svg.id }}">{{= svg.svg }}</div>
 			{{ }); }}
 		</div>
 

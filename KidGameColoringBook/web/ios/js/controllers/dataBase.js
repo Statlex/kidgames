@@ -53,26 +53,35 @@
 
 		},
 		getAllDataArray: function(func) {
-
 			var tableName = this.tableName;
-
 			this.db.transaction(function (tx) {
 				tx.executeSql("SELECT * FROM " + tableName, [],
 					function (tx, result) {
 						var data = [];
 						for (var i = 0, len = result.rows.length; i < len; i += 1) {
 							var item = result.rows.item(i);
-
 							data.push({
 								imageId: item.imageId,
 								polygonsData: item.polygonsData
 							});
-
 						}
 						func(data);
 					}, null)
 			});
-
+		},
+		getAllDataHashMap: function(func) {
+			var tableName = this.tableName;
+			this.db.transaction(function (tx) {
+				tx.executeSql("SELECT * FROM " + tableName, [],
+					function (tx, result) {
+						var data = {};
+						for (var i = 0, len = result.rows.length; i < len; i += 1) {
+							var item = result.rows.item(i);
+							data[item.imageId] = item.polygonsData;
+						}
+						func(data);
+					}, null)
+			});
 		},
 		removeDataByImageId: function(imageId) {
 			var tableName = this.tableName;
@@ -86,6 +95,6 @@
 
 	dataBase.init();
 
-	win.dataBase = dataBase;
+	window.dataBase = dataBase;
 
 }(window));
