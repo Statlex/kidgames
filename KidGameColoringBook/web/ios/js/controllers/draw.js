@@ -498,19 +498,17 @@
 				offset: {}
 			};
 
-			function gestureStart(e) {
+			function gestureStart() {
 				svgInfo.offset.start = utils.getCoordinates(this);
-				svgInfo.scale.start = e.scale;
+				svgInfo.scale.start = event.scale;
 			}
 
-			function gestureChange(e) {
-				svgInfo.scale.current = e.scale;
+			function gestureChange() {
+				svgInfo.scale.current = event.scale;
 				this.style[info.preJS + 'Transform'] = 'translate(' + svgInfo.offset.start.x + 'px, ' + svgInfo.offset.start.y + 'px) scale(' + svgInfo.scale.current + ')';
 			}
 
-			function gestureEnd(e) {
-				svgInfo.offset.start.x *= svgInfo.scale.current;
-				svgInfo.offset.start.y *= svgInfo.scale.current;
+			function gestureEnd() {
 				this.style[info.preJS + 'Transform'] = 'translate(' + Math.round(svgInfo.offset.start.x) + 'px, ' + Math.round(svgInfo.offset.start.y) + 'px)';
 			}
 

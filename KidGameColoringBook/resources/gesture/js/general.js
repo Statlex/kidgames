@@ -15,8 +15,8 @@ function getClick() {
 }
 
 function gestureStart() {
-
-	//alert(' gestureStart ' +  this.innerHTML);
+	this.innerHTML = 'ges start: ' + event.scale;
+	event.preventDefault();
 }
 
 //'scale(' + e.scale  + startScale  + ') rotate(' + e.rotation + startRotation + 'deg)';
@@ -27,7 +27,8 @@ function gestureChange() {
 }
 
 function gestureEnd() {
-
+	this.innerHTML = 'ges end: ' + event.scale;
+	event.preventDefault();
 }
 
 
