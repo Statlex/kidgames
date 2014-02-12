@@ -18,7 +18,7 @@
 			percent = percent > 1 ? 1 : percent;
 			return percent;
 		},
-		getCoordinates: function(node) {
+		getCoordinates: function (node) {
 			var style = node.style[info.preJS + 'Transform'] || 'translate(0px, 0px)';
 			var arr = style.replace(/.*?translate\((-?\d+)px,.*?(-?\d+)px\).*/gi, '$1,$2').split(',');
 			return {
@@ -412,7 +412,6 @@
 
 			this.setBackButton();
 			this.setScaleButtons();
-			this.setGesture();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
 			colorPicker.init();
@@ -424,12 +423,12 @@
 			colorHistory.restoreImage();
 
 		},
-		restoreSectionColorState: function() {
+		restoreSectionColorState: function () {
 
 			var wrappers = $$('.categories-list-item', main.wrapper);
 
-			dataBase.getAllDataHashMap(function(data){
-				wrappers.forEach(function(wrapper){
+			dataBase.getAllDataHashMap(function (data) {
+				wrappers.forEach(function (wrapper) {
 					var dataBaseId = parseInt(wrapper.getAttribute('data-base-id'));
 					if (!data.hasOwnProperty(dataBaseId)) {
 						return;
@@ -445,7 +444,7 @@
 			});
 
 		},
-		setBackButton: function(){
+		setBackButton: function () {
 
 			this.backButton = $('.js-draw-page-back', main.wrapper);
 
@@ -492,7 +491,7 @@
 						viewer.back();
 						return;
 					}
-					ui.confirm.show(lang[info.lang].doYouWantToSaveProgress, function(){
+					ui.confirm.show(lang[info.lang].doYouWantToSaveProgress, function () {
 						colorHistory.save(colorHistory);
 						viewer.back();
 					}, viewer.back.bind(viewer));
@@ -507,35 +506,74 @@
 
 			var buttonPlus = $('.js-scale-button-plus', main.wrapper);
 			var buttonMinus = $('.js-scale-button-minus', main.wrapper);
+			var scaleSwipe = $('.js-scale-swipe', main.wrapper);
 
 			buttonPlus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 1.1), false);
 			buttonMinus.addEventListener(info.evt.up, this.scaleImageBy.bind(this, 0.9), false);
 
-		},
-		setGesture: function() {
+			var offset = {};
+			var scaleSwipeInfo = {};
+			var that = this;
+			scaleSwipe.addEventListener(info.evt.down, function () {
+				that.scaleSwipeIsActive = true;
+				scaleSwipeInfo.startHeight = parseInt(that.svgNode.style.height, 10);
+				scaleSwipeInfo.startWidth = parseInt(that.svgNode.style.width, 10);
+				scaleSwipeInfo.swipeSize = this.clientHeight;
+				offset = utils.getCoordinates(that.svgNode);
+			}, false);
 
-			var svgInfo = {
-				scale: {},
-				offset: {}
-			};
+			scaleSwipe.addEventListener(info.evt.move, function () {
 
-			function gestureStart() {
-				svgInfo.offset.start = utils.getCoordinates(this);
-				svgInfo.scale.start = event.scale;
-			}
+				if (!that.scaleSwipeIsActive) {
+					return;
+				}
 
-			function gestureChange() {
-				svgInfo.scale.current = event.scale;
-				this.style[info.preJS + 'Transform'] = 'translate(' + svgInfo.offset.start.x + 'px, ' + svgInfo.offset.start.y + 'px) scale(' + svgInfo.scale.current + ')';
-			}
+				var dY = info.evt.touchStart.y - info.evt.touchMove.y;
 
-			function gestureEnd() {
-				this.style[info.preJS + 'Transform'] = 'translate(' + Math.round(svgInfo.offset.start.x) + 'px, ' + Math.round(svgInfo.offset.start.y) + 'px)';
-			}
+				var q = 1 + dY / scaleSwipeInfo.swipeSize;
+				if (q <= 0.05) {
+					q = 0.05;
+				}
 
-			this.svgNode.addEventListener("gesturestart", gestureStart, false);
-			this.svgNode.addEventListener("gesturechange", gestureChange, false);
-			this.svgNode.addEventListener("gestureend", gestureEnd, false);
+				if (((that.image.currentWidth < 150) || (that.image.currentHeight < 150)) && (q < 1)) {
+					return false;
+				}
+
+				// get coordinates of center
+				var maxX, maxY;
+				maxX = info.screen.getWidth();
+				maxY = info.screen.getHeight();
+				var center = {
+					x: parseInt(scaleSwipeInfo.startWidth / 2 + offset.x, 10),
+					y: parseInt(scaleSwipeInfo.startHeight / 2 + offset.y, 10)
+				};
+				center = {
+					x: center.x < 0 ? 0 : center.x,
+					y: center.y < 0 ? 0 : center.y
+				};
+				center = {
+					x: center.x < maxX ? center.x : maxX,
+					y: center.y < maxY ? center.y : maxY
+				};
+
+				var newOffset = {
+					x: parseInt(center.x - scaleSwipeInfo.startWidth * q / 2),
+					y: parseInt(center.y - scaleSwipeInfo.startHeight * q / 2)
+				};
+
+				that.svgNode.style.width = that.image.currentWidth + 'px';
+				that.svgNode.style.height = that.image.currentHeight + 'px';
+				that.svgNode.style[info.preJS + 'Transform'] = 'translate(' + newOffset.x + 'px,' + newOffset.y + 'px)';
+
+				that.image.currentWidth = scaleSwipeInfo.startWidth * q;
+				that.image.currentHeight = scaleSwipeInfo.startHeight * q;
+
+
+			}, false);
+
+			scaleSwipe.addEventListener(info.evt.up, function () {
+				that.scaleSwipeIsActive = false;
+			}, false);
 
 		},
 		setSVGColoring: function () {
@@ -638,5 +676,8 @@
 	};
 
 	win.draw = draw;
+	win.addEventListener('load', function () {
+		draw.scaleSwipeIsActive = false;
+	}, false);
 
 }(window));
