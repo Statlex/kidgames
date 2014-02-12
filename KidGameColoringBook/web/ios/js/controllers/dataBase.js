@@ -28,7 +28,6 @@
 		},
 		saveProgress: function(data) {
 			var that = this;
-			console.log(data);
 			this.db.transaction(function (tx) {
 				// remove data from db
 				tx.executeSql("DELETE FROM " + that.tableName + " WHERE imageId = ?", [data.imageId], null, null);

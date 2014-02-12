@@ -121,6 +121,7 @@
 		<div class="simple-color-picker js-simple-color-picker" title="color picker, pipetka"></div>
 		<div class="color-history-back js-color-history-back" title="crtl+z"></div>
 		<div class="color-history-save js-color-history-save" title="save progress, save"></div>
+		<div class="color-selector-button js-color-selector-button" title="color selector"></div>
 
 		<div class="color-picker-fade js-color-picker-fade"></div>
 		<div class="color-picker js-color-picker">
@@ -136,6 +137,24 @@
 			</div>
 
 		</div>
+
+		<div class="color-selector-fade js-color-selector-fade"></div>
+		<div class="color-selector-block js-color-selector-block">
+
+			<div class="color-selector-colors-container">
+
+				{{ draw.colorForSelect.forEach(function(color){ }}
+					<div class="color-for-select-wrapper">
+						<div color="{{= color }}" class="color-for-select" style="background-color: #{{= color }};">
+						</div>
+					</div>
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+
 
 	</div>
 

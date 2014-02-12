@@ -308,6 +308,13 @@
 				}
 			}, false);
 
+			var colorSelectFade = $('.js-color-selector-fade', main.wrapper);
+			colorSelectFade.addEventListener(info.evt.up, function () {
+				if (info.wasClick()) {
+					draw.showShowSelectColorTurn(false);
+				}
+			}, false);
+
 		},
 		setColorButtons: function () {
 
@@ -330,15 +337,10 @@
 
 			if (info.isTouch) {
 				this.newColorButton.addEventListener(info.evt.down, function () {
-					if (info.wasClick()) {
-						setActiveColor.call(this);
-					}
-
+					setActiveColor.call(this);
 				}, false);
 				this.oldColorButton.addEventListener(info.evt.down, function () {
-					if (info.wasClick()) {
-						setActiveColor.call(this);
-					}
+					setActiveColor.call(this);
 				}, false);
 			} else {
 				this.newColorButton.addEventListener('click', setActiveColor, false);
@@ -365,7 +367,8 @@
 	var draw = {
 		activeColor: [255, 255, 0],
 		usedColors: [],
-		activeTool: 'brush',  // brush || picker
+		colorForSelect: ['ffffff', 'a5a5a5', '505050', '000000', 'fffabc', 'fdf585', 'ffff00', 'ffc40c', '00ff00', '9bc33a', '008742', '305932', '79c9ad', '58b8e8', '0000ff', '273371', 'eabcd8', 'f389b8', 'ec008c', 'b9006e', 'cf02fb', '9200b1', '610176', '3a0048', 'b05f53', 'ed1c24', 'b40008', '7c011b', '020202', 'bf7329', '904801', '522800'],
+		activeTool: 'brush', // brush || picker
 		start: function () {
 
 			colorPicker.oldColor = this.activeColor;
@@ -414,6 +417,7 @@
 			this.setScaleButtons();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
+			this.setShowSelectColorButton();
 			colorPicker.init();
 
 			statusBar.hideStatusBar();
@@ -671,6 +675,44 @@
 				}
 			}, false);
 
+		},
+		setShowSelectColorButton: function() {
+
+			var button = $('.js-color-selector-button', main.wrapper);
+			var colorsBtn = $$('.color-for-select', main.wrapper);
+			var that = this;
+
+			button.addEventListener(info.evt.down, function () {
+				that.activePolygon = this;
+			}, false);
+			button.addEventListener(info.evt.up, function () {
+				if (that.activePolygon === this && info.wasClick()) {
+					that.showShowSelectColorTurn(true);
+				}
+			}, false);
+
+			colorsBtn.forEach(function(colorBtn) {
+				colorBtn.addEventListener(info.evt.up, function(){
+					if (!info.wasClick()) {
+						return;
+					}
+					var color = $.hexToRgb(this.getAttribute('color')).split(',');
+					color.forEach(function(value, index, arr){
+						arr[index] = parseInt(value, 10);
+					});
+					colorPicker.setColorOfShowColorPicker(color);
+					that.activeColor = color;
+					that.showShowSelectColorTurn(false);
+				}, false);
+			});
+
+		},
+		showShowSelectColorTurn: function(isEnable) {
+			if (isEnable) {
+				$.addClass(main.wrapper, 'show-color-select');
+			} else {
+				$.removeClass(main.wrapper, 'show-color-select');
+			}
 		}
 
 	};
