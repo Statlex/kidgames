@@ -31,17 +31,29 @@
 		setSizing: function() {
 			var blocks = $$('.categories-list-item', main.wrapper);
 			var height = false;
-			blocks.forEach(function(block){
+			var svgs = $$('.categories-list-item svg', main.wrapper);
+			blocks.forEach(function(block, index){
 				if (!height) {
 					height = Math.round(block.clientWidth) + 'px';
 				}
 				block.style.height = height;
+				svgs[index].style.display = 'none';
+				svgs[index].style.width = '0px';
+				svgs[index].style.height = '0px';
 			});
+
+			svgs.forEach(function(svg){
+				svg.style.display = '';
+				svg.style.width = '';
+				svg.style.height = '';
+			});
+
 		},
 		createResize: function() {
 			this.setSizing();
+			setTimeout(this.setSizing.bind(this), 100);
 			setTimeout(this.setSizing.bind(this), 200);
-			setTimeout(this.setSizing.bind(this), 400);
+			setTimeout(this.setSizing.bind(this), 300);
 		}
 
 	};
