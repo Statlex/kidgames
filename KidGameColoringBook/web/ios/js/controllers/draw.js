@@ -450,6 +450,9 @@
 					}
 					var polygons = $$('svg *', wrapper);
 					data[dataBaseId] = JSON.parse(data[dataBaseId]);
+					polygons.forEach(function(polygon){
+						polygon.setAttribute('fill', 'transparent');
+					});
 					for (var key in data[dataBaseId]) {
 						if (data[dataBaseId].hasOwnProperty(key) && polygons[key]) {
 							polygons[key].setAttribute('fill', utils.arrayToColor(data[dataBaseId][key]));
