@@ -5,6 +5,9 @@
 
 	var utils = {
 		arrayToColor: function (arr) {
+			if (arr === 'transparent') {
+				return arr;
+			}
 			return 'rgb(' + arr.join(',') + ')';
 		},
 		getPercent: function (e) {
@@ -424,7 +427,15 @@
 
 			colorHistory.init();
 
+			this.setImageDefaultColor();
 			colorHistory.restoreImage();
+
+		},
+		setImageDefaultColor: function(){
+			var parts = $$('.main-svg *');
+			parts.forEach(function(part){
+				part.setAttribute('fill', 'transparent');
+			});
 
 		},
 		restoreSectionColorState: function () {
@@ -477,9 +488,11 @@
 				var isAllFFF = true;
 				for (var key in allData) {
 					if (allData.hasOwnProperty(key)) {
-						if (allData[key].join() !== '255,255,255') {
+
+						if (allData[key] !== 'transparent') {
 							isAllFFF = false;
 						}
+
 					}
 				}
 				if (isAllFFF) {
@@ -491,6 +504,9 @@
 
 				// get current saved data and test for equals with current data
 				dataBase.getDataByFigureId(info.currentImageId, function (data) {
+					console.log(data);
+					console.log(allData);
+
 					if (data === allData) {
 						viewer.back();
 						return;
