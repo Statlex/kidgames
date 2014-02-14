@@ -49,10 +49,16 @@
 			});
 		},
 		addChanges: function (id, fromColor, toColor) {
-			fromColor.forEach(function (item, index) {
-				fromColor[index] = parseInt(fromColor[index], 10);
-				toColor[index] = parseInt(toColor[index], 10);
-			});
+			if (fromColor.forEach) { // detect transparent
+				fromColor.forEach(function (item, index) {
+					fromColor[index] = parseInt(fromColor[index], 10);
+					toColor[index] = parseInt(toColor[index], 10);
+				});
+			} else {
+				toColor.forEach(function (item, index) {
+					toColor[index] = parseInt(toColor[index], 10);
+				});
+			}
 			var savedItem = {
 				id: parseInt(id, 10),
 				from: fromColor,
@@ -507,9 +513,6 @@
 
 				// get current saved data and test for equals with current data
 				dataBase.getDataByFigureId(info.currentImageId, function (data) {
-					console.log(data);
-					console.log(allData);
-
 					if (data === allData) {
 						viewer.back();
 						return;
@@ -611,7 +614,7 @@
 
 				if (that.activeTool === 'brush') {
 					var id = parseInt(this.getAttribute('history-id'), 10);
-					var fromColor = this.getAttribute('fill').match(/\d+/gi) || [255, 255, 255];
+					var fromColor = this.getAttribute('fill').match(/\d+/gi) || 'transparent';
 					var toColor = that.activeColor;
 					colorHistory.addChanges(id, fromColor, toColor);
 					this.setAttribute('fill', utils.arrayToColor(that.activeColor));
