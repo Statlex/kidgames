@@ -433,15 +433,7 @@
 
 			colorHistory.init();
 
-			this.setImageDefaultColor();
 			colorHistory.restoreImage();
-
-		},
-		setImageDefaultColor: function(){
-			var parts = $$('.main-svg *');
-			parts.forEach(function(part){
-				part.setAttribute('fill', 'transparent');
-			});
 
 		},
 		restoreSectionColorState: function () {
@@ -456,9 +448,6 @@
 					}
 					var polygons = $$('svg *', wrapper);
 					data[dataBaseId] = JSON.parse(data[dataBaseId]);
-					polygons.forEach(function(polygon){
-						polygon.setAttribute('fill', 'transparent');
-					});
 					for (var key in data[dataBaseId]) {
 						if (data[dataBaseId].hasOwnProperty(key) && polygons[key]) {
 							polygons[key].setAttribute('fill', utils.arrayToColor(data[dataBaseId][key]));
