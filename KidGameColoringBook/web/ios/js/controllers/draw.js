@@ -434,6 +434,37 @@
 			colorHistory.init();
 
 			colorHistory.restoreImage();
+			this.centeringMainSvg();
+
+		},
+		centeringMainSvg: function(){
+
+			function getInfo(node, delta) {
+				var width = node.clientWidth + (delta || 0);
+				var height = node.clientHeight + (delta || 0);
+				var aspectRatio = width / height;
+				return {
+					width: width,
+					height: height,
+					aspectRatio: aspectRatio
+				};
+			}
+
+			var page = $('.draw-page', main.wrapper);
+			var pageInfo = getInfo(page, -10);
+			var mainSvg = $('.js-main-svg', main.wrapper);
+			var mainSvgInfo = getInfo(mainSvg);
+
+			var q = (pageInfo.aspectRatio > mainSvgInfo.aspectRatio) ? pageInfo.height / mainSvgInfo.height : pageInfo.width / mainSvgInfo.width;
+			mainSvgInfo.width = mainSvgInfo.width * q;
+			mainSvgInfo.height = mainSvgInfo.height * q;
+			mainSvg.style.width = Math.round(mainSvgInfo.width) + 'px';
+			mainSvg.style.height = Math.round(mainSvgInfo.height) + 'px';
+
+			var dx = Math.round((pageInfo.width - mainSvgInfo.width) / 2 );
+			var dy = Math.round((pageInfo.height - mainSvgInfo.height) / 2 );
+
+			mainSvg.style[info.preJS + 'Transform'] = 'translate(' + dx + 'px, ' + dy + 'px)';
 
 		},
 		restoreSectionColorState: function () {
