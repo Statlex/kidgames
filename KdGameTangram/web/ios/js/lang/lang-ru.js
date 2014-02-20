@@ -25,8 +25,6 @@
 		myCollection: 'моя коллекция',
 		removeTgState: "Удалить прогресс танграма?"
 
-
-
 	}
 
 }(window));

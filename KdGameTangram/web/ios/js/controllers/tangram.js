@@ -286,7 +286,6 @@
 
 			var that = this;
 			this.wrapper.addEventListener(evt.down, function (e) {
-				console.log('rotater wrapper down 0');
 				rotater.isActive = true;
 				that.startX = info.isTouch ? e.touches[0].pageX : e.pageX;
 				that.startY = info.isTouch ? e.touches[0].pageY : e.pageY;
@@ -303,7 +302,6 @@
 				};
 				that.showRotater();
 				that.startAngle = util.getAngle(that.rotateCenterX, that.rotateCenterY, that.startX, that.startY);
-				console.log('rotater wrapper down 1');
 
 			}, false);
 
@@ -318,16 +316,13 @@
 			}, false);
 
 			this.wrapper.addEventListener(evt.up, function (e) {
-				console.log('rotater wrapper up 0');
 				that.isActive = false;
 				that.alignAngle();
 				that.showRotater();
-				console.log('rotater wrapper up 1');
 			}, false);
 
 			var innerPoint = $('.js-rotater-inner-point', this.wrapper);
 			innerPoint.addEventListener(evt.down, function (e) {
-				console.log('rotater inner point down 0');
 				rotater.hideRotater();
 				mover.isActive = true;
 				mover.startX = info.isTouch ? e.touches[0].pageX : e.pageX;
@@ -342,13 +337,10 @@
 					angle: coords[2] || 0
 				};
 				e.stopPropagation();
-				console.log('rotater inner point down 1');
 			}, false);
 
 			innerPoint.addEventListener(evt.up, function () {
-				console.log('rotater inner point up 0');
 				that.alignAngle();
-				console.log('rotater inner point up 1');
 			}, false);
 
 		},
@@ -639,8 +631,6 @@
 					// scale figure end
 
 					// create all info
-					console.log(figuresCode);
-
 					figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
 						.replace('{{fillColor}}', 'url(#pattern-' + (index + 1) + ')')
 						.replace('{{strokeColor}}', tg.strokeColor)
@@ -666,7 +656,6 @@
 				var polygons = $$('.js-figures-container polygon');
 				polygons.forEach(function (polygon) {
 					polygon.addEventListener(evt.down, function (e) {
-						console.log('polygon down 0');
 						timer.pause(false);
 						mover.activePolygon.node.setAttribute('class', '');
 						rotater.hideRotater();
@@ -688,14 +677,12 @@
 						mover.activePolygon.node.setAttribute('class', 'active');
 
 						e.stopPropagation();
-						console.log('polygon down 1');
 						tg.showArrows(false);
 					}, false);
 				});
 
 				polygons.forEach(function (polygon) {
 					polygon.addEventListener(evt.up, function (e) {
-						console.log('polygon up 0');
 						timer.pause(false);
 						mover.isActive = false;
 
@@ -711,7 +698,6 @@
 						rotater.showRotater();
 						rotater.alignAngle();
 						e.stopPropagation();
-						console.log('polygon up 1');
 
 					}, false);
 				});
@@ -719,25 +705,21 @@
 				// set event listener to main svg (work field)
 				var field = $('.js-figures-container');
 				field.addEventListener(evt.down, function (e) {
-					console.log('field down 0');
 					timer.pause(false);
 
 					mover.isActive = false;
 					mover.activePolygon.node.setAttribute('class', '');
 					rotater.hideRotater();
-					console.log('field down 1');
 
 				}, false);
 				field.addEventListener(evt.move, function (e) {
 					mover.move(e);
 				}, false);
 				field.addEventListener(evt.up, function (e) {
-					console.log('field up 0');
 
 					mover.isActive = false;
 					rotater.hideRotater();
 					rotater.alignAngle();
-					console.log('field up 1');
 
 				}, false);
 
@@ -817,7 +799,6 @@
 			this.saveButton.init();
 			this.tryToRestoreState();
 			this.setArrowButtons();
-			console.log('tangram init');
 
 		},
 		setArrowButtons: function(){
@@ -1051,7 +1032,6 @@
 
 		},
 		setStartFigurePosition: function () {
-			console.log('setStartFigurePosition');
 
 			var width, height, positions, polygons;
 
@@ -1165,7 +1145,6 @@
 				answer.points.forEach(function (xy, index, arr) {
 					polygonPoints.forEach(function (activeXY) {
 						if (util.getPathSize(xy.x, xy.y, activeXY.x, activeXY.y) < delta) {
-							console.log(index);
 							arr[index].accordAngle = true;
 						}
 					});
@@ -1180,10 +1159,8 @@
 				});
 
 				if (properlyAnswers >= answer.points.length) {
-					console.log(' ----- ANGLE test is PASSED ----- ');
 					that.saveButton.setState(true);
 				} else {
-					console.log(' ----- ANGLE test is ERROR ----- ');
 					that.saveButton.setState(false);
 				}
 

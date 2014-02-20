@@ -25,8 +25,6 @@
 		myCollection: 'my collection',
 		removeTgState: "Remove tangram's state ?"
 
-
-
 	}
 
 }(window));

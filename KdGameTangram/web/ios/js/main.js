@@ -76,6 +76,10 @@
 			// test for unique id in categories
 			var categories = win.categories;
 
+			if (info.isTouch) {
+				return;
+			}
+
 			var ids = [];
 
 			var testIsPassed = true;

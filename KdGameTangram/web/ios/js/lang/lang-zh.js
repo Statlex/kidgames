@@ -22,8 +22,6 @@
 		myCollection: 'zh my collection',
 		removeTgState: "zh Remove tangram's state ?"
 
-
-
 	}
 
 }(window));

@@ -18,7 +18,6 @@
 			this.isActive = true;
 			this.isPause = false;
 			this.timeoutID = setTimeout(this.count.bind(this), 1000);
-			console.log('timer is run');
 
 		},
 		count: function(){
@@ -43,11 +42,9 @@
 		stop: function(){
 			this.isActive = false;
 			clearTimeout(this.timeoutID);
-			console.log('timer is stopped');
 		},
 		pause: function(needPause){
 			this.isPause = needPause === undefined || needPause === true;
-			console.log('timer - pause is - ' + this.isPause);
 		}
 
 
