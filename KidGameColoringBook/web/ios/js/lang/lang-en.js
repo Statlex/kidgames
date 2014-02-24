@@ -16,6 +16,9 @@
 		colors: ['0', '000000', '0000FF', '40E0D0', '000080', '006400', '008000', '800000', '800080', '808080', '804000', 'ADD8E6', 'EE82EE', 'F5F5DC', 'FF0000', 'FF00FF', 'FFA500', 'FFC0CB', 'FFFF00', 'FFFFFF'],
 		thanks: 'Thanks',
 		find: 'find',
+		designerName: 'Anna Rudnitskaya',
+		designer: 'designer',
+
 
 		doYouWantToSaveProgress: 'Do you want to save progress?',
 		progressIsSaved: 'Progress was saved.'
