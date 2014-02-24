@@ -16,7 +16,7 @@
 		colors: ['0', '000000', '0000FF', '40E0D0', '000080', '006400', '008000', '800000', '800080', '808080', 'A52A2A', 'ADD8E6', 'EE82EE', 'F5F5DC', 'FF0000', 'FF00FF', 'FFA500', 'FFC0CB', 'FFFF00', 'FFFFFF'],
 		thanks: 'Agradecimientos',
 		find: 'encontrar',
-		designer: 'designer',
+		designer: 'Designer',
 		designerName: 'Anna Rudnitskaya'
 	}
 

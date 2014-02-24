@@ -162,6 +162,10 @@ body {
 	line-height: 25px;
 }
 
+.more-wrapper .main-site-link {
+	text-indent: -38px;
+}
+
 .share-link-container {
 	width: 150px;
 	margin: 0 auto;

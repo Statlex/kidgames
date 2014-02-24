@@ -127,7 +127,7 @@
 
 		// set wrapper size if needed
 		var wrapperHeight = wrapper.clientHeight;
-		if (wrapperHeight <= info.screen.getHeight()) {
+		if (wrapperHeight < info.screen.getHeight()) {
 			wrapper.style.height = info.screen.getHeight() + 'px';
 		}
 
