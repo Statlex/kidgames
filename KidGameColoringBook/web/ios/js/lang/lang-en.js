@@ -19,9 +19,8 @@
 		designerName: 'Anna Rudnitskaya',
 		designer: 'designer',
 
-
-		doYouWantToSaveProgress: 'Do you want to save progress?',
-		progressIsSaved: 'Progress was saved.'
+		doYouWantToSaveProgress: 'Do you want to save progress?', //disc with '?'
+		progressIsSaved: 'Progress was saved.' // disk with 'V'
 
 	}
 
