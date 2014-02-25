@@ -7,28 +7,47 @@
 
 .scale-button {
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	background-color: #c00;
-	width: 34px;
-	height: 34px;
-	z-index: 1;
+	right: 0;
+	top: 75%;
+	background-color: #014142;
+	width: 50px;
+	height: 50px;
+	z-index: 2;
+	margin-top: -10px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border-radius: 7px;
+	border: 2px solid #e1e1e1;
+}
+
+.scale-button h1 {
+	color: #FFF;
+	line-height: 41px;
+	font-size: 38px;
+	font-family: Tahoma, sans-serif;
+	text-align: center;
+	font-weight: normal;
 }
 
 .scale-button.scale-button-plus {
 	left: auto;
-	right: 0;
-	background-color: #0c0;
+	top: 25%;
+	margin-top: -40px;
 }
 
 .scale-swipe {
 	position: fixed;
 	right: 0;
-	top: 0;
-	width: 32px;
-	height: 300px;
-	background-color: #c0c;
+	width: 50px;
+	background-color: rgba(1, 65, 66, 0.81);
+	background-image: url('../img/i/arrows-up.svg'), url('../img/i/arrows-down.svg');
+	background-repeat: no-repeat, no-repeat;
+	-webkit-background-size: 100% auto, 100% auto;
+	background-size: 100% auto, 100% auto;
+	background-position: 0 25%, 0 75%;
 	z-index: 1;
+	height: 50%;
+	top: 25%;
 }
 
 .color-picker-fade {
@@ -121,43 +140,6 @@
 	/*display: none;*/
 }
 
-.show-color-picker-button,
-.simple-color-picker,
-.color-history-back,
-.color-history-save {
-	position: fixed;
-	top: 0;
-	left: 50%;
-	background-color: #000;
-	width: 34px;
-	height: 34px;
-	z-index: 1;
-	margin-left: -17px;
-}
-
-.draw-page-back {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: #000;
-	width: 34px;
-	height: 34px;
-	z-index: 1;
-}
-
-.simple-color-picker {
-	margin-left: -51px;
-}
-
-.color-history-back {
-	margin-left: 17px;
-}
-
-.color-history-save {
-	margin-left: 51px;
-	background-color: #00c;
-}
-
 .categories-list-item {
 	width: 33.33%;
 	float: left;
@@ -208,7 +190,7 @@
 }
 
 .draw-page {
-	background-color: #000;
+	/*background-color: #000;*/
 }
 
 #wrapper-for-transition {
@@ -222,17 +204,6 @@
 #wrapper-for-transition .color-history-back,
 #wrapper-for-transition .color-history-save {
 	display: none;
-}
-
-.color-selector-button {
-	position: fixed;
-	top: 0;
-	left: 50%;
-	background-color: #0d0;
-	width: 34px;
-	height: 34px;
-	z-index: 1;
-	margin-left: 85px;
 }
 
 .color-selector-fade {
@@ -329,8 +300,70 @@ body {
 	padding-right: 15px;
 }
 
-.status-bar {
+.status-bar,
+.controls-buttons-wrapper {
 	background-color: #014142;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 64px;
+	z-index: 10;
+	font-size: 40px;
+	line-height: 58px;
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #000;
+}
+
+@media screen and (max-height: 700px) {
+
+	.status-bar,
+	.controls-buttons-wrapper {
+		height: 40px;
+	}
+
+}
+
+.controls-buttons-wrapper .controls-button {
+	width: 64px;
+	height: 64px;
+	float: right;
+	border: 3px solid #014142;
+	box-sizing: border-box;
+}
+
+.controls-buttons-wrapper .controls-button .inner-border {
+	border: 2px solid #e1e1e1;
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.controls-buttons-wrapper .inner-border img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 6px;
+}
+
+.controls-buttons-wrapper .draw-page-back {
+	float: left;
+	padding: 13px;
+}
+
+.controls-buttons-wrapper .draw-page-back span {
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	display: block;
+	background-image: url('../img/i/back.svg');
+	margin-top: -2px;
 }
 
 .status-bar-more {

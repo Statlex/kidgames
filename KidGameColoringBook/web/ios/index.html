@@ -117,15 +117,18 @@
 <div class="js-template hidden" template-id="draw-page" onshow="statusBar.show([]);draw.start();">
 
 	<div class="page draw-page">
-		<div class="draw-page-back js-draw-page-back" title="back to images"></div>
 		<div class="scale-button scale-button-plus js-scale-button-plus" title="zoom +"><h1>+</h1></div>
-		<div class="scale-button scale-button-minus js-scale-button-minus" title="zoom -"><h1>-</h1></div>
+		<div class="scale-button scale-button-minus js-scale-button-minus" title="zoom -"><h1>&ndash;</h1></div>
 		<div class="scale-swipe js-scale-swipe" title="swipe to zoom"></div>
-		<div class="show-color-picker-button js-show-color-picker-button" title="show all colors"></div>
-		<div class="simple-color-picker js-simple-color-picker" title="color picker, pipetka"></div>
-		<div class="color-history-back js-color-history-back" title="crtl+z"></div>
-		<div class="color-history-save js-color-history-save" title="save progress, save"></div>
-		<div class="color-selector-button js-color-selector-button" title="color selector"></div>
+
+		<div class="controls-buttons-wrapper">
+			<div class="controls-button draw-page-back js-draw-page-back" title="back to images"><span></span></div>
+			<div class="controls-button color-history-save js-color-history-save" title="save progress, save"><div class="inner-border"><img src="img/i/tool-save.svg" alt=""/></div></div>
+			<div class="controls-button color-selector-button js-color-selector-button" title="color selector"><div class="inner-border"><img src="img/i/tool-color-picker-from-all-selected-colors.svg" alt=""/></div></div>
+			<div class="controls-button show-color-picker-button js-show-color-picker-button" title="show all colors"><div class="inner-border"><img src="img/i/tool-color-picker-from-all-colors.svg" alt=""/></div></div>
+			<div class="controls-button simple-color-picker js-simple-color-picker" title="color picker, pipetka"><div class="inner-border"><img src="img/i/tool-color-picker.png" alt=""/></div></div>
+			<div class="controls-button color-history-back js-color-history-back" title="crtl+z"><div class="inner-border"><img src="img/i/tool-ctrl-z.png" alt=""/></div></div>
+		</div>
 
 		<div class="color-picker-fade js-color-picker-fade"></div>
 		<div class="color-picker js-color-picker">

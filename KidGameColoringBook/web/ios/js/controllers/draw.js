@@ -203,7 +203,11 @@
 			this.setColorOfShowColorPicker(colorPicker.mainColorIs);
 		},
 		setColorOfShowColorPicker: function (color) {
-			this.showColorPickerButton.style.backgroundColor = utils.arrayToColor(color);
+			var img;
+			img = $('.js-show-color-picker-button img', main.wrapper);
+			img.style.backgroundColor = utils.arrayToColor(color);
+			img = $('.js-color-selector-button img', main.wrapper);
+			img.style.backgroundColor = utils.arrayToColor(color);
 		},
 		createColorMap: function () {
 			this.colorMap = [];
@@ -581,7 +585,7 @@
 					q = 0.05;
 				}
 
-				if (((that.image.currentWidth < 150) || (that.image.currentHeight < 150)) && (q < 1)) {
+				if (((that.image.currentWidth < 250) || (that.image.currentHeight < 250)) && (q < 1)) {
 					return false;
 				}
 
@@ -761,7 +765,11 @@
 
 	win.draw = draw;
 	win.addEventListener('load', function () {
-		draw.scaleSwipeIsActive = false;
+		var body = $('body');
+		body.addEventListener(info.evt.up, function(){
+			draw.scaleSwipeIsActive = false;
+		}, false);
 	}, false);
+
 
 }(window));
