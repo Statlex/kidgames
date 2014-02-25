@@ -100,7 +100,7 @@
 			if (Math.random() > 0.1) {
 				return;
 			}
-			var arr = $.shuffle([0, 1, 2, 3]);
+			var arr = $.shuffle([0, 1, 1, 1, 2, 3]);
 			var body = $('body');
 			body.style.backgroundImage = 'url("img/i/bg-' + arr[1] + '.jpg")';
 		}

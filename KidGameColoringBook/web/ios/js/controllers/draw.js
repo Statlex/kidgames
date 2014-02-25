@@ -176,6 +176,8 @@
 		},
 		setActiveButtons: function () {
 
+			var that = this;
+
 			// set color picker button
 			function colorPickerOnClick() {
 				if (!info.wasClick()) {
@@ -192,6 +194,8 @@
 					return;
 				}
 				draw.activeTool = 'picker';
+				$.addClass(that.simplePickerButton, 'active');
+				event.stopPropagation();
 			}
 
 			this.simplePickerButton.addEventListener(info.evt.up, simplePickerOnClick, false);
@@ -649,6 +653,7 @@
 					colorPicker.setColorOfShowColorPicker(color);
 					that.activeColor = color;
 					that.activeTool = 'brush'
+					$.removeClass(colorPicker.simplePickerButton, 'active');
 				}
 
 			}
@@ -768,6 +773,9 @@
 		var body = $('body');
 		body.addEventListener(info.evt.up, function(){
 			draw.scaleSwipeIsActive = false;
+			if (draw.activeTool === 'picker') {
+				$.removeClass(colorPicker.simplePickerButton, 'active');
+			}
 		}, false);
 	}, false);
 
