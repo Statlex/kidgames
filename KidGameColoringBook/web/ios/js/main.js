@@ -30,24 +30,11 @@
 		},
 		setSizing: function() {
 			var blocks = $$('.categories-list-item', main.wrapper);
-			var height = false;
-			var svgs = $$('.categories-list-item svg', main.wrapper);
-			blocks.forEach(function(block, index){
-				if (!height) {
-					height = Math.round(block.clientWidth) + 'px';
-				}
-				block.style.height = height;
-				svgs[index].style.display = 'none';
-				svgs[index].style.width = '0px';
-				svgs[index].style.height = '0px';
+			var size = Math.floor((main.wrapper.clientWidth - 30) / 3) + 'px';
+			blocks.forEach(function(block){
+				block.style.width = size;
+				block.style.height = size;
 			});
-
-			svgs.forEach(function(svg){
-				svg.style.display = '';
-				svg.style.width = '';
-				svg.style.height = '';
-			});
-
 		},
 		createResize: function() {
 			this.setSizing();

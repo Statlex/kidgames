@@ -90,6 +90,8 @@
 		{{ for (var key in allFigures) { }}
 			<div onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("image-list-page");' class="categories-list-item">{{= allFigures[key].svg }}</div>
 		{{ }; }}
+			<img class="end-of-list-padding" src="img/i/pencils.png" alt=""/>
+			<img class="end-of-list-padding visible" src="img/i/pencils.png" alt=""/>
 		</div>
 
 	</div>
@@ -104,6 +106,8 @@
 			{{ allFigures[info.currentCategoryName].figures.forEach(function(svg){ }}
 				<div onclick='info.set("currentImageId", {{= svg.id }});viewer.show("draw-page");' class="categories-list-item" data-base-id="{{= svg.id }}">{{= svg.svg }}</div>
 			{{ }); }}
+			<img class="end-of-list-padding" src="img/i/pencils.png" alt=""/>
+			<img class="end-of-list-padding visible" src="img/i/pencils.png" alt=""/>
 		</div>
 
 	</div>
