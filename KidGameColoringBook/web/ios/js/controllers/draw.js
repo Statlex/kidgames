@@ -119,7 +119,7 @@
 			});
 			allData = JSON.stringify(allData);
 			dataBase.saveProgress({imageId: info.currentImageId, polygonsData: allData});
-			var img = '<img src="img/i/saved.svg" class="message-image"/>';
+			var img = '<img src="img/i/tool-save.png" class="message-image"/>';
 			ui.alert.show(img, '');
 		},
 		restoreImage: function (imageId) {
@@ -546,7 +546,7 @@
 						viewer.back();
 						return;
 					}
-					var img = '<img src="img/i/save-q.svg" class="message-image"/>';
+					var img = '<img src="img/i/tool-save.png" class="message-image"/>';
 					ui.confirm.show(img, function () {
 						colorHistory.save(colorHistory);
 						viewer.back();
