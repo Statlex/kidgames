@@ -209,9 +209,9 @@
 		},
 		setColorOfShowColorPicker: function (color) {
 			var img;
-			img = $('.js-show-color-picker-button img', main.wrapper);
+			img = $('.js-show-color-picker-button .inner-border', main.wrapper);
 			img.style.backgroundColor = utils.arrayToColor(color);
-			img = $('.js-color-selector-button img', main.wrapper);
+			img = $('.js-color-selector-button .inner-border', main.wrapper);
 			img.style.backgroundColor = utils.arrayToColor(color);
 		},
 		createColorMap: function () {
@@ -654,7 +654,7 @@
 					var color = this.getAttribute('fill').match(/\d+/gi) || [255, 255, 255];
 					colorPicker.setColorOfShowColorPicker(color);
 					that.activeColor = color;
-					that.activeTool = 'brush'
+					that.activeTool = 'brush';
 					$.removeClass(colorPicker.simplePickerButton, 'active');
 				}
 

@@ -6,11 +6,10 @@
 	 xml:space="preserve">
 <rect x="78" y="-0.625" fill="#F42E2E" width="78" height="78"/>
 <rect x="156" y="-0.625" fill="#EF5BBE" width="78" height="78"/>
-<rect x="78" y="77.375" fill="#FFFFFF" width="78" height="78"/>
 <rect x="156" y="77.375" fill="#B756E7" width="78" height="78"/>
 <rect x="156" y="155.375" fill="#4E4EE6" width="78" height="78"/>
 <rect x="78" y="155.375" fill="#6BC7F5" width="78" height="78"/>
-<rect y="155.375" fill="#23AD23" width="78" height="78"/>
-<rect y="-0.625" fill="#F7AC15" width="78" height="78"/>
-<rect y="77.375" fill="#A8D84B" width="78" height="78"/>
+<rect x="0" y="155.375" fill="#23AD23" width="78" height="78"/>
+<rect x="0" y="-0.625" fill="#F7AC15" width="78" height="78"/>
+<rect x="0" y="77.375" fill="#A8D84B" width="78" height="78"/>
 </svg>

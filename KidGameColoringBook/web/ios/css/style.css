@@ -3,19 +3,8 @@
 	position: relative;
 	z-index: 0;
 	background-color: #fff;
-	/*box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);*/
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 1px solid #ccc;
 }
-
-/*
-.main-svg {
-	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-	background-image: url('../img/i/frame-bg.png');
-	padding: 6%;
-}
-*/
 
 .scale-button {
 	position: fixed;
@@ -223,8 +212,9 @@
 	display: none;
 }
 
-.simple-color-picker.active img {
+.simple-color-picker.active .inner-border {
 	background-color: #fff;
+	background-image: -webkit-radial-gradient(#55ddff, #0081b5);
 }
 
 .color-selector-fade {
@@ -306,6 +296,7 @@ body {
 	max-width: 100%;
 	clear: both;
 	opacity: 0;
+	padding-top: 5%;
 }
 
 .end-of-list-padding.visible {
@@ -363,7 +354,14 @@ body {
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
-	padding: 6px;
+}
+
+.controls-buttons-wrapper .inner-border img.add-border-radius {
+	border-radius: 6px;
+}
+
+.controls-buttons-wrapper .inner-border {
+	padding: 8px;
 }
 
 .controls-buttons-wrapper .draw-page-back {
@@ -435,6 +433,10 @@ body {
 
 	.controls-buttons-wrapper .draw-page-back {
 		border-width: 3px;
+	}
+
+	.controls-buttons-wrapper .inner-border {
+		padding: 5px;
 	}
 
 }
