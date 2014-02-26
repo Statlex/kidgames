@@ -909,7 +909,8 @@
 				return;
 			}
 
-			ui.confirm.show(lang[info.lang].doYouWantSaveYouProgress,
+			var img = '<img src="img/i/save.svg" class="message-image"/>';
+			ui.confirm.show(img,
 				function() {
 					tg.saveProgressToDB();
 					viewer.back();
@@ -968,8 +969,8 @@
 			};
 
 			info.set('idsData', idsData, true);
-
-			ui.alert.show(lang[info.lang].stateSavedToYouCollection);
+			var img = '<img src="img/i/save.svg" class="message-image"/>';
+			ui.alert.show(img);
 
 			dataBase.saveProgress(data);
 

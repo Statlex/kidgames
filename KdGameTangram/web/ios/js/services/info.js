@@ -9,7 +9,8 @@
 
 	var info = {
 		lang: 'en', // current language
-		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
+//		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
+		availableLangs: ['en', 'ru'],
 		saveItem: 'save-item-kid-game-tangram',
 		isPhone: false,
 		isTouch: isTouch,

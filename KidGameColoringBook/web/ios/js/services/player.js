@@ -12,6 +12,7 @@
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
+			return;
 			if (!playerObj.isEnable) {
 				return;
 			}
@@ -58,6 +59,7 @@
 
 	win.player = playerObj;
 
+	return;
 	// overwrite some methods
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;

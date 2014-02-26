@@ -13,12 +13,8 @@
 
 	win.categories.people_4 = {
 		svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='125.466,70 125.466,70 125.466,70 125.465,70 125.466,70 100.467,95 100.467,109.645 65.111,145 100.465,145 90.111,155.354 125.466,155.354 125.466,169.999 104.755,190.71 122.434,190.71 122.434,226.066 157.789,226.066 157.788,190.71 175.466,190.71 175.466,70.001'/></svg>",
-		name_ar: 'ar people_4',
-		name_de: 'de people_4',
-		name_en: 'en people_4',
-		name_es: 'es people_4',
-		name_ru: 'ru people_4',
-		name_zh: 'zh people_4',
+		name_en: 'people 4',
+		name_ru: 'люди 4',
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='125.466,70 125.466,70 125.466,70 125.465,70 125.466,70 100.467,95 100.467,109.645 65.111,145 100.465,145 90.111,155.354 125.466,155.354 125.466,169.999 104.755,190.71 122.434,190.71 122.434,226.066 157.789,226.066 157.788,190.71 175.466,190.71 175.466,70.001'/></svg>",

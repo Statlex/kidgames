@@ -129,7 +129,8 @@
 
 				removeIcon.addEventListener(info.evt.up, function(e){
 					e.stopPropagation();
-					ui.confirm.show(lang[info.lang].removeTgState,
+					var img = '<img src="img/i/remove-state.svg" class="message-image"/>';
+					ui.confirm.show(img,
 						function(){
 							var imgId = parseInt(this.getAttribute('figure-id'));
 							// remove from LS

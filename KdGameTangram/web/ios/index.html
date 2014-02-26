@@ -9,8 +9,6 @@
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/fw-styles.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
-    <script src="cordova.js" type="text/javascript"></script>
-    <script src="cordova_plugins.js" type="text/javascript"></script>
 
 	<!-- services -->
 	<script src="js/services/info.js" type="text/javascript"></script>
@@ -23,12 +21,12 @@
 	<script src="js/controllers/dataBase.js" type="text/javascript"></script>
 
 	<!-- langs -->
-	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
-	<script src="js/lang/lang-de.js" type="text/javascript"></script>
+	<!--<script src="js/lang/lang-ar.js" type="text/javascript"></script>-->
+	<!--<script src="js/lang/lang-de.js" type="text/javascript"></script>-->
 	<script src="js/lang/lang-en.js" type="text/javascript"></script>
-	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<!--<script src="js/lang/lang-es.js" type="text/javascript"></script>-->
 	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
-	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
+	<!--<script src="js/lang/lang-zh.js" type="text/javascript"></script>-->
 
 	<!-- main js -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -180,9 +178,9 @@
 
 </div>
 
-<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show(['more']);main.setImageColor();main.setPreviewState();">
+<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show([]);main.setImageColor();main.setPreviewState();">
 
-	<h1 class="category-top-header">{{= categories[info.currentCategoryName]['name_' + info.lang] }}</h1>
+	<h1 class="category-top-header">{{= categories[info.currentCategoryName]['name_' + info.lang] }}:</h1>
 
 	<div class="page images-of-categories">
 
@@ -288,7 +286,10 @@
 			<div class="table-row">
 				<div class="table-cell">
 					<label>
-						<h2 class="more-header">{{= lang[info.lang].timer }}:</h2>
+						<h2 class="more-header">
+							<!--<img class="stopwatch" src="img/i/stopwatch.svg" alt=""/>-->
+							{{= lang[info.lang].timer }}
+						</h2>
 						{{ if (info.timerIsActive) { }}
 						<input type="checkbox" class="custom-check-box" checked="checked" save="timerIsActive"/>
 						{{ } else { }}
