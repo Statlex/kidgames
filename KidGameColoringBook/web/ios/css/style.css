@@ -439,7 +439,12 @@ body {
 
 }
 
-
+.alert-message .message-image {
+	display: block;
+	max-width: 100%;
+	max-height: 200px;
+	margin: 0 auto;
+}
 
 /* styling with PSD */
 

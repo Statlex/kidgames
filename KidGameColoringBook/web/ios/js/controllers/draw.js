@@ -119,7 +119,8 @@
 			});
 			allData = JSON.stringify(allData);
 			dataBase.saveProgress({imageId: info.currentImageId, polygonsData: allData});
-			ui.alert.show(lang[info.lang].progressIsSaved, '');
+			var img = '<img src="img/i/saved.svg" class="message-image"/>';
+			ui.alert.show(img, '');
 		},
 		restoreImage: function (imageId) {
 			imageId = imageId || info.currentImageId;
@@ -545,7 +546,8 @@
 						viewer.back();
 						return;
 					}
-					ui.confirm.show(lang[info.lang].doYouWantToSaveProgress, function () {
+					var img = '<img src="img/i/save-q.svg" class="message-image"/>';
+					ui.confirm.show(img, function () {
 						colorHistory.save(colorHistory);
 						viewer.back();
 					}, viewer.back.bind(viewer));
