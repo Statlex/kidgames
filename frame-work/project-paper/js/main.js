@@ -3,6 +3,8 @@
 	"use strict";
 	/*global window, document */
 
+	viewer.contextPath = 'http://localhost:63342/statlex_git/kidgames/frame-work/project-paper/';
+
 	// routing
 	app.routes['index.html'] = {
 		template: 'title-page'

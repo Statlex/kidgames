@@ -6,7 +6,7 @@
 	var viewer = {
 		wrapper: null, // field for page wrapper, type Node
 		templateClass: '.js-template',
-		contextPath: win.location.href.replace(/index\.html?[\s\S]*/gi, ''),
+		contextPath: '', // for example http://statlex.com
 		show: function (templateId, model) {
 
 			win.ui.fn.setBodyScroll(false); // disable scroll
