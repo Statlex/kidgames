@@ -9,6 +9,8 @@
 
 		this.isActive = true;
 
+		this.tower = tower;
+
 		this.coordinates = {
 			row: row || 0,
 			col: col || 0
@@ -38,13 +40,13 @@
 		this.coordinates.row += this.speed.row;
 		this.coordinates.col += this.speed.col;
 
-		if (this.coordinates.col > tower.field.size.width - 1) {
-			this.coordinates.col = tower.field.size.width - 1;
+		if (this.coordinates.col > this.tower.field.size.width - 1) {
+			this.coordinates.col = this.tower.field.size.width - 1;
 			this.speed.col = -this.speed.col;
 		}
 
-		if (this.coordinates.row > tower.field.size.height - 1) {
-			this.coordinates.row = tower.field.size.height - 1;
+		if (this.coordinates.row > this.tower.field.size.height - 1) {
+			this.coordinates.row = this.tower.field.size.height - 1;
 			this.isActive = false;
 		}
 
@@ -57,6 +59,18 @@
 			this.speed.col = -this.speed.col;
 		}
 
+
+		var blocks = this.constructor.prototype.blockMap,
+			key;
+		for (key in blocks) {
+			if (blocks.hasOwnProperty(key)) {
+				if (this.coordinates.col === blocks[key].coordinates.col && this.coordinates.row === blocks[key].coordinates.row && this.id !== blocks[key].id) {
+					this.coordinates.row -= this.speed.row;
+					break;
+				}
+			}
+		}
+
 	};
 
 	tower = {
@@ -67,10 +81,10 @@
 			}
 		},
 		isActive: false,
-		speed: 500,
+		speed: 200,
 		symbols: {
-			full: 1,
-			empty: 0
+			full: '<i><\/i>',
+			empty: '<b><\/b>'
 		},
 		handleEvent: function() {
 
@@ -99,7 +113,7 @@
 			}
 
 			for (key in blocks) {
-				if (blocks.hasOwnProperty(key) && blocks[key].isActive) {
+				if (blocks.hasOwnProperty(key)) {
 					this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.full;
 				}
 			}
@@ -149,7 +163,6 @@
 			new Block(0, 3);
 			new Block(0, 4);
 		}
-
 
 	};
 
