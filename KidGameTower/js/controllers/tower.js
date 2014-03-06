@@ -59,7 +59,6 @@
 			this.speed.col = -this.speed.col;
 		}
 
-
 		var blocks = this.constructor.prototype.blockMap,
 			key;
 		for (key in blocks) {
@@ -85,6 +84,9 @@
 		symbols: {
 			full: '<i><\/i>',
 			empty: '<b><\/b>'
+		},
+		rows: {
+			created: 0
 		},
 		handleEvent: function() {
 
@@ -162,6 +164,7 @@
 			new Block(0, 2);
 			new Block(0, 3);
 			new Block(0, 4);
+			this.rows.created += 1;
 		}
 
 	};
