@@ -14,6 +14,7 @@
 }
 
 .game-wrapper i,
+.game-wrapper em,
 .game-wrapper b {
 	display: block;
 	width: 20px;
@@ -26,6 +27,6 @@
 	background-color: #0c0;
 }
 
-.game-wrapper br {
-	display: none;
+.game-wrapper em {
+	background-color: #444;
 }
