@@ -1,0 +1,10 @@
+.game-wrapper {
+	background-color: #ccc;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.game-wrapper div {
+	float: left;
+	box-sizing: border-box;
+	border: 1px solid #000000;
+}
