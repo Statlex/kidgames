@@ -5,7 +5,7 @@
 
 	var tower;
 
-	function Block(row, col) {
+	function Block(row, col, colSpeedDirection) {
 
 		this.isActive = true;
 		this.tower = tower;
@@ -17,7 +17,7 @@
 
 		this.speed = {
 			row: 0,
-			col: 1
+			col: colSpeedDirection
 		};
 
 		this.id = this.constructor.prototype.curreentId ? this.constructor.prototype.curreentId + 1 : 1;
@@ -223,7 +223,7 @@
 			this.detectWrongBlocks();
 			this.removeExtraFloors();
 
-			var centerCol, i, that, newLineLength;
+			var centerCol, i, that, newLineLength, direction;
 			that = this;
 			newLineLength = 0;
 
@@ -251,9 +251,10 @@
 			this.blockInLine = newLineLength || this.blockInLine;
 
 			this.movingBlocks = [];
-			centerCol = Math.round((this.field.size.width - this.blockInLine) / 2) + 1;
+			centerCol = Math.round((this.field.size.width - this.blockInLine) / 2) + 2;
+			direction = (Math.random() > 0.5) ? 1 : -1;
 			for (i = 0; i < this.blockInLine; i += 1) {
-				this.movingBlocks.push(new Block(0, centerCol - i));
+				this.movingBlocks.push(new Block(0, centerCol - i, direction));
 			}
 			this.rows.created += 1;
 
