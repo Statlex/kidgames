@@ -1,4 +1,4 @@
-(function (win, doc, docElem) {
+(function (win) {
 
 	"use strict";
 	/*global window, document, console, alert, $, setTimeout, info, main */
@@ -82,6 +82,10 @@
 		delete this.constructor.prototype.blockMap[this.id];
 	};
 
+	Block.prototype.removeAll = function() {
+		Block.prototype.blockMap = {};
+	};
+
 	tower = {
 		field: {
 			size: {
@@ -103,19 +107,31 @@
 			created: 0
 		},
 		blockInLine: 3,
+		isPause: false,
 		handleEvent: function () {
 
 		},
 		startGame: function () {
+
+			// reset all active objects
+			this.resetGame();
+
+			// get and setup game node
 			this.wrapperNode = $('.game-wrapper', main.wrapper);
-			this.wrapperNode.style.width = this.field.size.width * this.cell.size + 'px';
 			this.wrapperNode.addEventListener(info.evt.down, this.dropLine.bind(this), false);
+
 			this.isActive = true;
 			this.createMatrix();
 			this.createLine();
 			setTimeout(this.step.bind(this), this.speed);
+
 		},
 		step: function () {
+
+			if (this.isPause) {
+				setTimeout(this.step.bind(this), this.speed);
+				return;
+			}
 
 			if (!this.isActive) {
 				return;
@@ -210,6 +226,7 @@
 
 			if (newLineLength > this.blockInLine || this.blockInLine === 0) {
 				console.log('--- game over ---');
+				alert('--- game over ---');
 				this.isActive = false;
 				this.movingBlocks.forEach(function(block){
 					that.matrix[block.coordinates.row][block.coordinates.col] = that.symbols.empty;
@@ -230,7 +247,7 @@
 		detectWrongBlocks: function () {
 
 			// get n last blocks
-			var lastRow, blockNumber, that, currentTowerHeight;
+			var lastRow, blockNumber, that, currentTowerHeight, re;
 			that = this;
 
 			currentTowerHeight = 0;
@@ -242,7 +259,7 @@
 
 			// scan last block line
 			lastRow = this.matrix[this.field.size.height - 1];
-			var re = new RegExp(this.symbols.inActiveFull, 'gi');
+			re = new RegExp(this.symbols.inActiveFull, 'gi');
 			blockNumber = (lastRow.join('').match(re) || []).length;
 			if (blockNumber <= this.blockInLine) {
 				return;
@@ -260,10 +277,18 @@
 				}
 			});
 
+		},
+		resetGame: function() {
+			Block.prototype.removeAll();
+			this.isActive = false;
+			this.isPause = false;
+		},
+		set: function(value, key) {
+			this[value] = key;
 		}
 
 	};
 
 	win.tower = tower;
 
-}(window, document, document.documentElement));
+}(window));

@@ -54,7 +54,7 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);tower.resetGame();">
 
 	<div class="page">
 
@@ -71,6 +71,16 @@
 		<div class="game-wrapper">
 
 		</div>
+
+		<style type="text/css">
+			.game-wrapper {
+				width: {{= tower.cell.size * tower.field.size.width }}px;
+			}
+			.game-wrapper * {
+				width: {{= tower.cell.size }}px;
+				height: {{= tower.cell.size }}px;
+			}
+		</style>
 
 	</div>
 
