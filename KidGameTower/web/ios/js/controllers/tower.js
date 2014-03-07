@@ -8,7 +8,6 @@
 	function Block(row, col) {
 
 		this.isActive = true;
-
 		this.tower = tower;
 
 		this.coordinates = {
@@ -82,7 +81,7 @@
 		delete this.constructor.prototype.blockMap[this.id];
 	};
 
-	Block.prototype.removeAll = function() {
+	Block.prototype.removeAll = function () {
 		Block.prototype.blockMap = {};
 	};
 
@@ -90,7 +89,7 @@
 		field: {
 			size: {
 				width: 7,
-				height: 7
+				height: 16
 			}
 		},
 		cell: {
@@ -107,7 +106,11 @@
 			created: 0
 		},
 		blockInLine: 3,
+		defaultValue: {
+			blockInLine: 3
+		},
 		isPause: false,
+		maxTowerHeight: 9,
 		handleEvent: function () {
 
 		},
@@ -145,7 +148,9 @@
 					if (blocks[key].isActive) {
 						this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.empty;
 					} else {
-						this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.inActiveFull;
+						if (this.matrix[blocks[key].coordinates.row]) {
+							this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.inActiveFull;
+						}
 					}
 					blocks[key].update();
 				}
@@ -157,8 +162,16 @@
 						this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.full;
 						activeBlockCounter += 1;
 					} else {
-						this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.inActiveFull;
+						if (this.matrix[blocks[key].coordinates.row]) {
+							this.matrix[blocks[key].coordinates.row][blocks[key].coordinates.col] = this.symbols.inActiveFull;
+						}
+
 					}
+
+					if (blocks[key].coordinates.row - this.field.size.height > 2) {
+						blocks[key].remove();
+					}
+
 				}
 			}
 
@@ -208,12 +221,13 @@
 		createLine: function () {
 
 			this.detectWrongBlocks();
+			this.removeExtraFloors();
 
 			var centerCol, i, that, newLineLength;
 			that = this;
 			newLineLength = 0;
 
-			this.matrix.forEach(function(row) {
+			this.matrix.forEach(function (row) {
 				if (row.indexOf(that.symbols.inActiveFull) === -1) {
 					return;
 				}
@@ -228,7 +242,7 @@
 				console.log('--- game over ---');
 				alert('--- game over ---');
 				this.isActive = false;
-				this.movingBlocks.forEach(function(block){
+				this.movingBlocks.forEach(function (block) {
 					that.matrix[block.coordinates.row][block.coordinates.col] = that.symbols.empty;
 				});
 				return;
@@ -251,7 +265,7 @@
 			that = this;
 
 			currentTowerHeight = 0;
-			this.matrix.forEach(function(row, index){
+			this.matrix.forEach(function (row, index) {
 				if (!currentTowerHeight && row.indexOf(that.symbols.inActiveFull) !== -1) {
 					currentTowerHeight = index;
 				}
@@ -265,11 +279,11 @@
 				return;
 			}
 
-			this.movingBlocks.sort(function(a, b){ // from big to small
+			this.movingBlocks.sort(function (a, b) { // from big to small
 				return a.coordinates.row - b.coordinates.row;
 			});
 
-			this.movingBlocks.forEach(function(block, index, arr){
+			this.movingBlocks.forEach(function (block, index, arr) {
 				if (arr[0].coordinates.row < block.coordinates.row || block.coordinates.row > currentTowerHeight) {
 					that.matrix[block.coordinates.row][block.coordinates.col] = that.symbols.empty;
 					block.remove();
@@ -278,13 +292,48 @@
 			});
 
 		},
-		resetGame: function() {
+		resetGame: function () {
 			Block.prototype.removeAll();
 			this.isActive = false;
 			this.isPause = false;
+			this.blockInLine = this.defaultValue.blockInLine;
 		},
-		set: function(value, key) {
+		set: function (value, key) {
 			this[value] = key;
+		},
+		removeExtraFloors: function () {
+
+			// maxTowerHeight
+			// get current tower height
+			var floorCounter, that, row, blocks, key;
+			that = this;
+
+			floorCounter = 0;
+			this.matrix.forEach(function (row) {
+				floorCounter += +(row.indexOf(that.symbols.inActiveFull) !== -1);
+			});
+
+			if (floorCounter < this.maxTowerHeight) {
+				return;
+			}
+
+			// remove first floor
+			// remove from matrix first floor
+			this.matrix.pop();
+			row = [];
+			$.createSimpleArray(1, this.field.size.width).forEach(function () {
+				row.push(that.symbols.empty);
+			});
+			this.matrix.unshift(row);
+
+			// remove downer blocks and pull down other blocks
+			blocks = Block.prototype.blockMap;
+			for (key in blocks) {
+				if (blocks.hasOwnProperty(key) && !blocks[key].isActive) {
+					blocks[key].coordinates.row += 1;
+				}
+			}
+
 		}
 
 	};
