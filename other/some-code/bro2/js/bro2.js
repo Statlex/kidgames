@@ -59,11 +59,10 @@
 		},
 		remove: {
 			value: function () {
-				var node;
-				while (this.length) {
-					node = this.pop();
+				this.forEach(function(node){
 					node.parentNode.removeChild(node);
-				}
+				});
+				this.clear();
 				return this;
 			}
 		},
@@ -74,6 +73,30 @@
 					isEmpty = isEmpty ? !value : false;
 				});
 				return isEmpty;
+			}
+		},
+		clear: {
+			value: function() {
+				this.splice(0, this.length);
+				return this;
+			}
+		},
+		attr: {
+			value: function(attr, value) {
+				if (value === undefined) {
+					return this[0].getAttribute(attr);
+				}
+				this[0].setAttribute(attr, value);
+				return this;
+			}
+		},
+		data: {
+			value: function(attr, value) {
+				if (value === undefined) {
+					return this[0].getAttribute('data-' + attr);
+				}
+				this[0].setAttribute('data-' + attr, value);
+				return this;
 			}
 		}
 

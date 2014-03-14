@@ -12,10 +12,11 @@
 		wind.on('resize', function() {
 			console.log(this);
 		});
-		console.log(wind);
 		divs.on('click', function(){
 			console.log(this);
 		});
+		divs.clear();
+		console.log(divs);
 //		divs.remove();
 
 //		console.log();
