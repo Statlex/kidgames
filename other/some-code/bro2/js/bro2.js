@@ -5,6 +5,11 @@
 
 	var fn;
 
+	// single
+	// hasClass
+	// html
+	// attr
+	// data
 	fn = {
 		on: {
 			value: function (eventName, func) {
@@ -37,6 +42,9 @@
 		},
 		hasClass: {
 			value: function (className) {
+				if (!this[0]) {
+					return false;
+				}
 				return this[0].classList.contains(className);
 			}
 		},
@@ -50,8 +58,16 @@
 		},
 		html: {
 			value: function (html) {
+
 				if (html !== undefined) {
+					if (!this[0]) {
+						return false;
+					}
 					return this[0].innerHTML;
+				}
+
+				if (!this[0]) {
+					return this;
 				}
 				this[0].innerHTML = html;
 				return this;
@@ -84,7 +100,13 @@
 		attr: {
 			value: function(attr, value) {
 				if (value === undefined) {
+					if (!this[0]) {
+						return false;
+					}
 					return this[0].getAttribute(attr);
+				}
+				if (!this[0]) {
+					return this;
 				}
 				this[0].setAttribute(attr, value);
 				return this;
@@ -93,7 +115,13 @@
 		data: {
 			value: function(attr, value) {
 				if (value === undefined) {
+					if (!this[0]) {
+						return false;
+					}
 					return this[0].getAttribute('data-' + attr);
+				}
+				if (!this[0]) {
+					return this;
 				}
 				this[0].setAttribute('data-' + attr, value);
 				return this;
@@ -117,6 +145,7 @@
 				context = context.nodeList || context;
 			}
 			nodeList = (context || doc).querySelectorAll(selector);
+			// or get nodes from array !!!!!!!!!!!!!!!!!!!!!
 			return new Bro(nodeList);
 		}
 
