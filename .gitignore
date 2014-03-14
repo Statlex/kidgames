@@ -10,3 +10,23 @@
 *.xcuserstate
 
 *.xcuserstate
+
+*.xcworkspacedata
+
+*.xcworkspacedata
+
+*.xcscheme
+
+KdGameTangram/ios/tangramNative/Tangram/Tangram.xcodeproj/xcuserdata/sychypav.xcuserdatad/xcschemes/Tangram.xcscheme
+
+*.xccheckout
+
+*.xcsettings
+
+*.pch
+
+*.xcbkptlist
+
+*.xcuserstate
+
+*.xcuserstate
