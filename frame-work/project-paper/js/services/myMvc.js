@@ -11,7 +11,7 @@
 			var history = win.history;
 			var that = this;
 
-			history.replaceState(null, null, viewer.contextPath + 'index.html');
+			history.replaceState(null, null, viewer.contextPath);
 
 			// handle history change
 			win.addEventListener('popstate', function(e) { // mozPopsate, webkitPopstate and etc...
@@ -32,6 +32,7 @@
 			var path = win.location.href.replace(viewer.contextPath, '');
 			if (!path.length) {
 				path = 'index.html';
+				history.replaceState(null, null, viewer.contextPath);
 			}
 
 			var data = this.routes[path];

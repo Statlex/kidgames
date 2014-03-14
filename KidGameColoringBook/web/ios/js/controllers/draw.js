@@ -644,6 +644,12 @@
 
 				if (that.activeTool === 'brush') {
 					var id = parseInt(this.getAttribute('history-id'), 10);
+
+					// detect first rectangle
+					if (id === 0) {
+						return;
+					}
+
 					var fromColor = this.getAttribute('fill').match(/\d+/gi) || 'transparent';
 					var toColor = that.activeColor;
 					colorHistory.addChanges(id, fromColor, toColor);

@@ -612,3 +612,7 @@ section p + p {
 	list-style: square outside;
 	margin-left: 28px;
 }
+
+p a {
+	text-decoration: underline;
+}
