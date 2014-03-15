@@ -13,8 +13,8 @@
 
 	win.categories.bird_2 = {
 		svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='134.047,216.356 169.402,216.356 134.047,181.001'/><polygon fill='#0C0' points='184.047,81.001 148.691,81.001 148.693,81.003 148.691,81.001 113.336,116.356 184.047,116.356 184.047,131 159.047,156 134.047,131 134.046,131.001 134.047,131 34.047,131 84.047,181 184.045,181 184.047,181.002 209.047,156.002 209.047,156.001 209.047,106.001'/></svg>",
-		name_en: 'bird 2',
-		name_ru: 'птицы 2',
+		name_en: 'Birds West',
+		name_ru: 'Птицы запада',
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='134.047,216.356 169.402,216.356 134.047,181.001'/><polygon fill='#0C0' points='184.047,81.001 148.691,81.001 148.693,81.003 148.691,81.001 113.336,116.356 184.047,116.356 184.047,131 159.047,156 134.047,131 134.046,131.001 134.047,131 34.047,131 84.047,181 184.045,181 184.047,181.002 209.047,156.002 209.047,156.001 209.047,106.001'/></svg>",

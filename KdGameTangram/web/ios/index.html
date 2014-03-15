@@ -76,13 +76,13 @@
 				<div class="table-row">
 					<div class="table-cell">
 						{{ if (info.isTouch) { }}
-							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
-							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
 							<div style="display: none" ontouchend='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
 							<div ontouchend='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
 						{{ } else { }}
-							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
-							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
 							<div style="display: none" onclick='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
 							<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
 						{{ }; }}

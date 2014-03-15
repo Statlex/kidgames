@@ -13,8 +13,8 @@
 
 	win.categories.animal_2 = {
 		svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='38.76,115.334 38.76,65.334 63.76,90.334 63.76,140.334'/><polygon fill='#0C0' points='134.473,140.334 63.76,140.333 99.117,104.979'/><polygon fill='#0C0' points='174.115,179.979 188.76,165.334 88.76,165.334 63.761,140.334 38.76,165.334 63.76,190.334 38.76,215.334 209.471,215.334'/></svg>",
-		name_en: 'animals 2',
-		name_ru: 'животные 2',
+		name_en: 'Animals West',
+		name_ru: 'Домашние',
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='38.76,115.334 38.76,65.334 63.76,90.334 63.76,140.334'/><polygon fill='#0C0' points='134.473,140.334 63.76,140.333 99.117,104.979'/><polygon fill='#0C0' points='174.115,179.979 188.76,165.334 88.76,165.334 63.761,140.334 38.76,165.334 63.76,190.334 38.76,215.334 209.471,215.334'/></svg>",
