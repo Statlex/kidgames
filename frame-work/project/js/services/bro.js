@@ -1,5 +1,6 @@
 (function (win, doc) {
 
+	"use strict";
 	/*global window, document, Array, RegExp */
 
 	var bro, broA;
@@ -32,7 +33,7 @@
 
 	bro.createSimpleArray = function(begin, end) {
 		var arr = [], i;
-		for (i = begin; i <= end; i++) {
+		for (i = begin; i <= end; i+= 1) {
 			arr.push(i);
 		}
 		return arr;
@@ -70,9 +71,6 @@
 
 	//	support old browser
 	(function () {
-
-		"use strict";
-		/*global window, document, console, alert */
 
 		// detect support Node.classList API
 		if (document.documentElement.hasOwnProperty('classList')) {

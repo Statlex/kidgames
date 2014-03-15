@@ -1,7 +1,6 @@
 (function (win, doc) {
 
-	"use strict";
-	/*global window, document, console, alert, Array, RegExp */
+	/*global window, document, Array, RegExp */
 
 	var bro, broA;
 	
@@ -14,39 +13,26 @@
 	};
 
 	bro.hasClass = function (node, className) {
-		var re = new RegExp('^' + className + ' | ' + className + ' | ' + className + '$|^' + className + '$', 'g');
-		return re.test(node.className);
+		return node.classList.contains(className);
 	};
 
 	bro.removeClass = function (node, className) {
-		var nodeClass, re;
-		re = new RegExp('^' + className + ' | ' + className + ' | ' + className + '$|^' + className + '$', 'g');
-		nodeClass = node.className;
-		if (re.test(nodeClass)) {
-			node.className = nodeClass.replace(re, ' ').trim();
-		}
+		node.classList.remove(className);
 	};
 
 	bro.addClass = function (node, className) {
-		if (!bro.hasClass(node, className)) {
-			node.className += node.className ? ' ' + className : className;
-		}
-	};
-
-	bro.assortFunction = function() {
-		return Math.random() - 0.5;
+		node.classList.add(className);
 	};
 
 	bro.shuffle = function (arr) {
-		arr.forEach(function (value, index, array) {
-			array.sort(bro.assortFunction);
+		return arr.sort(function() {
+			return Math.random() - 0.5;
 		});
-		return arr;
 	};
 
 	bro.createSimpleArray = function(begin, end) {
 		var arr = [], i;
-		for (i = begin; i <= end; i += 1) {
+		for (i = begin; i <= end; i++) {
 			arr.push(i);
 		}
 		return arr;
@@ -81,5 +67,47 @@
 
 	win.$ = bro;
 	win.$$ = broA;
+
+	//	support old browser
+	(function () {
+
+		"use strict";
+		/*global window, document, console, alert */
+
+		// detect support Node.classList API
+		if (document.documentElement.hasOwnProperty('classList')) {
+			return;
+		}
+
+		bro.hasClass = function (node, className) {
+			return node.className.split(' ').indexOf(className) !== -1;
+		};
+
+		bro.removeClass = function (node, className) {
+
+			var classArr, classIndex;
+			classArr = node.className.split(' ');
+			classIndex = classArr.indexOf(className);
+
+			if (classIndex === -1) {
+				return;
+			}
+
+			classArr.splice(classIndex, 1);
+			node.className = classArr.join(' ');
+
+		};
+
+		bro.addClass = function (node, className) {
+
+			if (bro.hasClass(node, className)) {
+				return;
+			}
+
+			node.className += node.className ? ' ' + className : className;
+
+		};
+
+	}());
 
 }(window, document));
