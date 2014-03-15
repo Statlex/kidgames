@@ -87,9 +87,9 @@
 		},
 		timerIsActive: true,
 		soundIsActive: true,
-		tangramPattern: 'wood',
+		tangramPattern: 'colored',
 		tangramPatternImgPath: 'img/preview/',
-		tangramPatterns: ['wood', 'colored', 'metal', 'chinese-symbol'],
+		tangramPatterns: ['colored', 'wood', 'metal', 'chinese-symbol'],
 		imageColor: '#FFF',
 		mainFigureColor: '#333'
 
