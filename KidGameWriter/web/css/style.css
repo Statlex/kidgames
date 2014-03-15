@@ -9,7 +9,7 @@
 	margin: 0 auto;
 }
 
-.symbolsContainer svg circle {
-	position: relative;
-	z-index: 0;
+.symbolsContainer svg g {
+	/*position: relative;*/
+	/*z-index: 0;*/
 }
