@@ -2,8 +2,12 @@
 
 	"use strict";
 	/*global window, document */
+ 
+    alert(/(iPhone|iPad|iPod)\sOS\s6/.test(navigator.userAgent));
+    alert(navigator.userAgent);
 
 	var main = {
+
 
 		handleEvent: function() {
 
