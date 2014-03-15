@@ -631,10 +631,22 @@
 					// scale figure end
 
 					// create all info
-					figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
-						.replace('{{fillColor}}', 'url(#pattern-' + (index + 1) + ')')
-						.replace('{{strokeColor}}', tg.strokeColor)
-						.replace('{{points}}', points);
+
+					// colors for IOS 6
+					var iOS6Colors = ['#F9F323', '#F195C8', '#F03C61', '#A796C2', '#F8CB2A', '#69C2D4', '#CAE892'];
+					if (info.isIOS6 || info.tangramPattern === 'colored') {
+						figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
+							.replace('{{fillColor}}', iOS6Colors[index])
+							.replace('{{strokeColor}}', tg.strokeColor)
+							.replace('{{points}}', points);
+					} else {
+						figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
+							.replace('{{fillColor}}', 'url(#pattern-' + (index + 1) + ')')
+							.replace('{{strokeColor}}', tg.strokeColor)
+							.replace('{{points}}', points);
+					}
+
+
 
 				});
 				tempNode.innerHTML = tempNode.innerHTML.replace('{{figures}}', figuresStr);

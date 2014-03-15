@@ -91,7 +91,8 @@
 		tangramPatternImgPath: 'img/preview/',
 		tangramPatterns: ['colored', 'wood', 'metal', 'chinese-symbol'],
 		imageColor: '#FFF',
-		mainFigureColor: '#333'
+		mainFigureColor: '#333',
+		isIOS6: (/(iPhone|iPad|iPod)\sOS\s6/).test(win.navigator.userAgent)
 
 	};
 
@@ -102,5 +103,8 @@
 	info.init();
 
 	win.info = info;
+
+	//
+//	info.isIOS6 = true;
 
 }(window, document));

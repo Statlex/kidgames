@@ -313,6 +313,9 @@
 			</div>
 
 			<div class="table-row">
+
+				{{ if (!info.isIOS6) { }}
+
 				<div class="table-cell tangram-preview-wrapper">
 
 					{{ info.tangramPatterns.forEach(function(item){ }}
@@ -332,6 +335,8 @@
 					{{ }); }}
 
 				</div>
+
+				{{ }; }}
 			</div>
 
 		</div>
