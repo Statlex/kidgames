@@ -19,11 +19,11 @@
 		timer: 'timer',
 		sound: 'sound',
 		categories: 'categories',
-		stateSavedToYouCollection: 'state saved to you collection.',
-		doYouWantSaveYouProgress: 'do you want save you progress?',
+		stateSavedToYouCollection: 'state is saved to you collection.',
+		doYouWantSaveYouProgress: 'do you want to save you progress?',
 		play: 'play',
-		hard: 'hard',
-		easy: 'easy',
+		hard: 'hard mode',
+		easy: 'easy mode',
 		myCollection: 'my collection',
 		removeTgState: "Remove tangram's state ?"
 

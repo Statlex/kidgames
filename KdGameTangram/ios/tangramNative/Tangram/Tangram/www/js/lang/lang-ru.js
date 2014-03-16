@@ -22,6 +22,8 @@
 		stateSavedToYouCollection: 'Фигура сохранена в коллекцию.',
 		doYouWantSaveYouProgress: 'Хотите сохранить прогресс в коллекцию?',
 		play: 'играть',
+		hard: 'трудный режим',
+		easy: 'легкий режим',
 		myCollection: 'моя коллекция',
 		removeTgState: "Удалить прогресс танграма?"
 

@@ -14,6 +14,17 @@
 
 @implementation ViewController
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    // This practically disables web navigation from the webView.
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return FALSE;
+    }
+    return TRUE;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -23,7 +34,9 @@
     _webView.autoresizesSubviews = YES;
     _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     [self loadGame];
+    _webView.userInteractionEnabled = YES;
     [self.view addSubview:_webView];
+    _webView.delegate = (id)self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +56,6 @@
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
 
-}
-
--(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
-    if ( inType == UIWebViewNavigationTypeLinkClicked ) {
-        [[UIApplication sharedApplication] openURL:[inRequest URL]];
-        return NO;
-    }
-    
-    return YES;
 }
 
 

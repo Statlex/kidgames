@@ -7,22 +7,19 @@
 //
 
 #import "AppDelegate.h"
+#import "Flurry.h"
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
+    [Flurry setCrashReportingEnabled:YES];
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked)
-    {
-        [[UIApplication sharedApplication] openURL:request.URL];
-        return NO;
-    }
+    // Replace YOUR_API_KEY with the api key in the downloaded package
+    [Flurry startSession:@"7NTW98TSP5T6PHB3SQDQ"];
     return YES;
 }
 							

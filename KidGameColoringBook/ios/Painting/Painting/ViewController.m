@@ -8,7 +8,20 @@
 
 #import "ViewController.h"
 
+
 @implementation ViewController
+
+@synthesize loadingImageView;
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    // This practically disables web navigation from the webView.
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return FALSE;
+    }
+    return TRUE;
+}
 
 - (void)viewDidLoad
 {
@@ -20,6 +33,7 @@
     _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     [self loadGame];
     [self.view addSubview:_webView];
+    _webView.delegate = (id)self;
 }
 
 - (void)didReceiveMemoryWarning

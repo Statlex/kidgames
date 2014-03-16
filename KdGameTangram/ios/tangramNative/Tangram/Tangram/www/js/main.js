@@ -2,12 +2,8 @@
 
 	"use strict";
 	/*global window, document */
- 
-    alert(/(iPhone|iPad|iPod)\sOS\s6/.test(navigator.userAgent));
-    alert(navigator.userAgent);
 
 	var main = {
-
 
 		handleEvent: function() {
 
@@ -26,8 +22,8 @@
 			}, false);
 
 			// set external link
-			var links = $$('a', main.wrapper);
-			ui.externalLinkHandler.setLinks(links);
+			//var links = $$('a', main.wrapper);
+			//ui.externalLinkHandler.setLinks(links);
 
 		},
 		setSettingPage: function(){

@@ -22,8 +22,8 @@
 			}, false);
 
 			// set external link
-			var links = $$('a', main.wrapper);
-			ui.externalLinkHandler.setLinks(links);
+			//var links = $$('a', main.wrapper);
+			//ui.externalLinkHandler.setLinks(links);
 
 		},
 		setSettingPage: function(){

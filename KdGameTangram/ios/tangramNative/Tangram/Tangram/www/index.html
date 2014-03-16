@@ -76,13 +76,13 @@
 				<div class="table-row">
 					<div class="table-cell">
 						{{ if (info.isTouch) { }}
-							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
-							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
 							<div style="display: none" ontouchend='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
 							<div ontouchend='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
 						{{ } else { }}
-							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].play }}</div>
-							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].play }}</div>
+							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
 							<div style="display: none" onclick='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
 							<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
 						{{ }; }}
@@ -232,7 +232,6 @@
 						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" target="_blank">Facebook</a>
 						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" target="_blank">Twitter</a>
 						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" target="_blank">Google+</a>
-						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" target="_blank">LinkedIn</a>
 						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" target="_blank">vk</a>
 					</div>
 				</div>
@@ -313,6 +312,9 @@
 			</div>
 
 			<div class="table-row">
+
+				{{ if (!info.isIOS6) { }}
+
 				<div class="table-cell tangram-preview-wrapper">
 
 					{{ info.tangramPatterns.forEach(function(item){ }}
@@ -332,6 +334,8 @@
 					{{ }); }}
 
 				</div>
+
+				{{ }; }}
 			</div>
 
 		</div>

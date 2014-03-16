@@ -11,5 +11,6 @@
 @interface ViewController : UIViewController
 
 @property IBOutlet UIWebView *webView;
+@property(nonatomic, strong) UIImageView *loadingImageView;
 
 @end
