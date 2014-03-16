@@ -10,7 +10,7 @@
 		},
 		start: function () {
 			this.wrapper = $('.jsSymbolContainer', main.wrapper);
-			this.curSymbol = win.symbols.number['5'];
+			this.curSymbol = win.symbols.number['1'];
 
 			this.wrapper.innerHTML = this.curSymbol.points;
 			this.groups = $$('g', this.wrapper);
@@ -59,7 +59,7 @@
 
 					this.setAttribute('fill', '#c00');
 
-				}, false);
+				}, true);
 
 				p.addEventListener(info.evt.move, function () {
 					var pIndex = +this.getAttribute('data-polygon-number'),
@@ -68,22 +68,22 @@
 						isLastPolygon = this.getAttribute('data-is-last-polygon');
 
 					if (isDisablePolygon) {
-						console.log('this is disable polygon');
+//						console.log('this is disable polygon');
 						return;
 					}
 
 					if (pIndex === 0) {
-						console.log('this is started point');
+//						console.log('this is started point');
 						return;
 					}
 
 					if (gIndex !== (info.svgInfo && info.svgInfo.gIndex)) {
-						console.log('this is not current group');
+//						console.log('this is not current group');
 						return;
 					}
 
 					if (pIndex !== (info.svgInfo.pIndex + 1)) {
-						console.log('is not next point');
+//						console.log('is not next point');
 						return;
 					}
 
@@ -93,6 +93,8 @@
 					};
 
 					this.setAttribute('fill', '#c00');
+
+					console.log(pIndex);
 
 					if (isLastPolygon) {
 						console.log('group is done');
@@ -106,7 +108,7 @@
 
 					}
 
-				}, false);
+				}, true);
 
 			});
 		},
