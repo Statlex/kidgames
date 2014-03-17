@@ -18,6 +18,6 @@
 		find: 'trovare',
 		designer: 'Designer',
 		designerName: 'Anna Rudnitskaya'
-	}
+	};
 
 }(window));

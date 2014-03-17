@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, console, info, $, $$, clearTimeout, setTimeout, player, soundList, prompt */
 
 	win.ui = win.ui || {};
 
@@ -80,7 +80,7 @@
 
 	"use strict";
 	/*global window, document, console, alert */
-	if (!info.debugger.isActive) {
+	if (!info.debuggerConsole.isActive) {
 		return;
 	}
 
@@ -90,11 +90,11 @@
 			this.wrapper.style.display = 'block';
 			this.innerBlock = $('.js-logger-inner-block', this.wrapper);
 			// save current method
-			console._log = console.log;
+			console.defaultLog = console.log;
 			var that = this;
 			console.log = function (text) {
 				that.innerBlock.innerHTML += text + '<br>';
-			}
+			};
 		}
 
 	};
@@ -113,8 +113,9 @@
 
 	win.ui.fn.setBodyScroll = function (isEnable) {
 
-		var wrapper = $('#wrapper');
-		var body = $('body');
+		var wrapper = $('#wrapper'),
+			body = $('body'),
+			wrapperHeight;
 
 		wrapper.removeAttribute('style');
 		info.canScroll = isEnable;
@@ -126,14 +127,13 @@
 		}
 
 		// set wrapper size if needed
-		var wrapperHeight = wrapper.clientHeight;
+		wrapperHeight = wrapper.clientHeight;
 		if (wrapperHeight < info.screen.getHeight()) {
 			wrapper.style.height = info.screen.getHeight() + 'px';
 		}
 
 	};
 
-	window.addEventListener('load', noBodyScroll, false); // + no gesture
 	function noBodyScroll() {
 		$('body').addEventListener('touchmove', function (e) {
 			if (!info.canScroll) {
@@ -141,6 +141,8 @@
 			}
 		}, false);
 	}
+
+	win.addEventListener('load', noBodyScroll, false);
 
 }(window));
 
@@ -163,8 +165,9 @@
 						that.showQuestion(this);
 						return false;
 					}
+					return true;
 				}, false);
-			})
+			});
 		},
 		showQuestion: function (link) {
 			var a, b, c, answer;
@@ -178,7 +181,7 @@
 					answer = true;
 					return;
 				}
-				if (parseInt(answer) === c) {
+				if (parseInt(answer, 10) === c) {
 					answer = true;
 					link.setAttribute('can-use', 'yes');
 					link.click();
@@ -191,7 +194,7 @@
 			}
 		}
 
-	}
+	};
 
 }(window));
 

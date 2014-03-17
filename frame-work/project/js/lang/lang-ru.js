@@ -18,6 +18,6 @@
 		find: 'найди',
 		designer: 'Дизайнер',
 		designerName: 'Анна Рудницкая'
-	}
+	};
 
 }(window));

@@ -1,11 +1,11 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, $, $$, info, lang */
 
 	var statusBar = {
 		buttons: ['more', 'playAgain'],
-		handleEvent: function() {
+		handleEvent: function () {
 			this.wrapper = $('.js-status-bar');
 			this.words = $$('[text]', this.wrapper);
 			this.score = $('.js-score-field', this.wrapper);
@@ -16,7 +16,7 @@
 			this.setLang();
 			this.setEvents();
 		},
-		setEvents: function(){
+		setEvents: function () {
 			if (!info.isTouch) {
 				return;
 			}
@@ -25,25 +25,26 @@
 				node.removeAttribute('onclick');
 				node.setAttribute('ontouchend', attributeValue);
 			}
+
 			replaceHandler(this.more);
 			replaceHandler(this.playAgain);
 			replaceHandler(this.backButton);
 		},
-		setLang: function() {
-			this.words.forEach(function(node){
+		setLang: function () {
+			this.words.forEach(function (node) {
 				$.html(node, lang[info.lang][node.getAttribute('text')]);
 			});
 		},
-		update: function() {
+		update: function () {
 			if (info.score < 0) {
 				info.score = 0;
 				info.set('score', 0, true);
 			}
 			$.html(this.score, info.score);
 		},
-		show: function(arr) {
+		show: function (arr) {
 			var that = this;
-			this.buttons.forEach(function(buttonName){
+			this.buttons.forEach(function (buttonName) {
 				if (arr.indexOf(buttonName) !== -1) {
 					$.removeClass(that[buttonName], 'hidden');
 				} else {
@@ -53,13 +54,13 @@
 			this.needShowBackButton(true);
 			this.showStatusBar();
 		},
-		needShowBackButton: function(needShow) {
+		needShowBackButton: function (needShow) {
 			this.backButton.style.display = needShow ? 'block' : 'none';
 		},
-		hideStatusBar: function() {
+		hideStatusBar: function () {
 			this.wrapper.style.display = 'none';
 		},
-		showStatusBar: function() {
+		showStatusBar: function () {
 			this.wrapper.style.display = 'block';
 		}
 

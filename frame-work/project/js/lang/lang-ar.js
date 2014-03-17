@@ -18,6 +18,6 @@
 		find: 'اكتشاف',
 		designer: 'Designer',
 		designerName: 'Anna Rudnitskaya'
-	}
+	};
 
 }(window));

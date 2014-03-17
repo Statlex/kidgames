@@ -1,13 +1,14 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, $, navigator */
 
-	var docElem = doc.documentElement;
-	var ls = localStorage;
-	var isTouch = docElem.hasOwnProperty('ontouchstart');
+	var docElem, ls, isTouch, info;
+	docElem = doc.documentElement;
+	ls = win.localStorage;
+	isTouch = docElem.hasOwnProperty('ontouchstart');
 
-	var info = {
+	info = {
 		lang: 'en', // current language
 		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		saveItem: 'save-item-kid-game-logic-re-think',
@@ -22,30 +23,30 @@
 			up: isTouch ? 'touchend' : 'mouseup',
 			out: isTouch ? 'touchcancel' : 'mouseout'
 		},
-		debugger:{
+		debuggerConsole: {
 			isActive: false,
 			position: 'right' // while not use
 		},
 		screen: {
-			getWidth: function() {
+			getWidth: function () {
 				return docElem.clientWidth;
 			},
-			getHeight: function() {
+			getHeight: function () {
 				return docElem.clientHeight;
 			},
-			getAspectRatio: function() {
+			getAspectRatio: function () {
 				return docElem.clientWidth / docElem.clientHeight;
 			}
 		},
 
-		getData: function() {
+		getData: function () {
 			var data = ls.getItem(this.saveItem) || '{}';
 			return JSON.parse(data);
 		},
-		get: function(key) {
+		get: function (key) {
 			return this[key];
 		},
-		set: function(key, value, toLS) {
+		set: function (key, value, toLS) {
 			this[key] = value;
 
 			if (!toLS) {
@@ -58,11 +59,11 @@
 			data = JSON.stringify(data);
 			ls.setItem(this.saveItem, data);
 		},
-		change: function(key, delta, toLS) {
+		change: function (key, delta, toLS) {
 			this.set(key, (this.get(key) || 0) + delta, toLS);
 		},
 
-		init: function() {
+		init: function () {
 
 			// set all fields from ls to info
 			this.setDataFromLS();
@@ -72,27 +73,28 @@
 			lang = lang.split('-')[0];
 			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.lang : lang;
 		},
-		setDataFromLS: function() {
-			var data = this.getData();
-			for (var key in data) {
+		setDataFromLS: function () {
+			var data = this.getData(),
+				key;
+			for (key in data) {
 				if (data.hasOwnProperty(key)) {
 					this[key] = data[key];
 				}
 			}
 		},
-		getIsPhone: function() {
+		getIsPhone: function () {
 			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
 			this.isPhone = maxSize < 700;
 			return this.isPhone;
 		},
-		runDetector: function() {
+		runDetector: function () {
 
-			var body = $('body');
-			var that = this;
+			var body = $('body'),
+				that = this;
 
 			// detect XY onTouchStart
 			if (this.isTouch) {
-				body.addEventListener(this.evt.down, function(e){
+				body.addEventListener(this.evt.down, function (e) {
 					that.evt.touchStart = {
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
@@ -102,7 +104,7 @@
 						y: e.touches[0].pageY
 					};
 				}, false);
-				body.addEventListener(this.evt.move, function(e){
+				body.addEventListener(this.evt.move, function (e) {
 					that.evt.touchMove = {
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY

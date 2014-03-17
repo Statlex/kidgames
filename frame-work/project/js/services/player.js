@@ -1,25 +1,17 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document, console, alert, dataStorage */
+	/*global window, document, console, alert, dataStorage, navigator, info, Media, Audio */
 
 	var playerObj;
 	playerObj = {
-//		musicOn: dataStorage.getItem('music-on') || 'yes',
 		currentSrc: '',
 		currentMedia: '',
 		currentMediaStatus: 4, // is stopped
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
-//			console.log(src);
-//			return;
-
-//			if (this.musicOn === 'no') {
-//				return;
-//			}
-
-			if (this.currentMediaStatus <= 2 ) {
+			if (this.currentMediaStatus <= 2) {
 				return;
 			}
 
@@ -30,15 +22,11 @@
 
 			try {
 				this.currentMedia.play();
-			} catch (e) {}
+			} catch (e) {
+			}
 
 		},
-//		setMusic: function(on) {
-//			var value = on ? 'yes' : 'no';
-//			dataStorage.setItem('music-on', value);
-//		},
-		playQuestionAgain: function() {
-//			var currentSectionName = info.section;
+		playQuestionAgain: function () {
 			// work for find number
 			if (info.section === 'findNumber') {
 				this.play('numbers/' + info.lang + '/' + win[info.section].answer + '.mp3');
@@ -55,7 +43,7 @@
 		onError: function (error) {
 //			alert(error.code + ' - ' + error.message);
 		},
-		onStatus: function(status) {
+		onStatus: function (status) {
 			playerObj.currentMediaStatus = status;
 		}
 	};
@@ -67,7 +55,7 @@
 		return;
 	}
 
-	playerObj.play = function(src) {
+	playerObj.play = function (src) {
 
 		console.log(this.toSoundPrefix + src);
 

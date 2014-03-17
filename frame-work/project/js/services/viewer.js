@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document, $ */
+	/*global window, document, $, statusBar, setTimeout, $$ */
 
 	var viewer = {
 		wrapper: null, // field for page wrapper, type Node
@@ -9,7 +9,7 @@
 		history: [],
 		historyCurrentState: '',
 		isBack: false,
-		show: function(templateId, model, notTrack) {
+		show: function (templateId, model, notTrack) {
 
 			win.ui.fn.setBodyScroll(false); // disable scroll
 
@@ -32,38 +32,39 @@
 			this.isBack = false; // only for decoration
 
 		},
-		back: function() {
+		back: function () {
 			this.isBack = true;
-			var curPage = this.history.pop();
+			var curPage = this.history.pop(),
+				prePage;
 			if (!curPage) {
 				return;
 			}
-			var prePage = this.history.pop();
+			prePage = this.history.pop();
 			if (!prePage) {
 				return;
 			}
 			this.show(prePage);
 		},
-		refresh: function(){
+		refresh: function () {
 			this.show(this.historyCurrentState, true);
 			statusBar.setLang();
 		},
-		transition1stPart: function() {
-			var wrapper = $('#wrapper');
-			var transitionWrapper = $('#wrapper-for-transition');
+		transition1stPart: function () {
+			var wrapper = $('#wrapper'),
+				transitionWrapper = $('#wrapper-for-transition');
 			transitionWrapper.style.webkitTransition = '';
 			$.removeClass(transitionWrapper, 'to-right');
 			$.removeClass(transitionWrapper, 'to-left');
 			transitionWrapper.innerHTML = wrapper.innerHTML;
 		},
-		transition2ndPart: function() {
-			setTimeout(function(back){
+		transition2ndPart: function () {
+			setTimeout(function (back) {
 				var transitionWrapper = $('#wrapper-for-transition');
 				transitionWrapper.style.webkitTransition = '0.4s all ease-out';
 				$.addClass(transitionWrapper, back ? 'to-left' : 'to-right');
 			}.bind(this, this.isBack), 10);
 		},
-		template: function(str) {
+		template: function (str) {
 			return new Function("obj",
 				"var p=[];" +
 					// Introduce the data as local variables using with(){}
@@ -77,11 +78,11 @@
 					.split("\r").join("\\'") + "');} return p.join('');");
 
 		},
-		init: function() {
+		init: function () {
 
 			var that = this;
 			this.templates = {};
-			$$(this.templateClass).forEach(function(node){
+			$$(this.templateClass).forEach(function (node) {
 				that.templates[node.getAttribute('template-id')] = {
 					onShow: node.getAttribute('onshow'),
 					html: $.html(node).replace(/\s+/gi, ' ').trim()
@@ -98,6 +99,5 @@
 	win.viewer = viewer;
 
 	win.addEventListener('load', viewer.init.bind(viewer), false);
-
 
 }(window));

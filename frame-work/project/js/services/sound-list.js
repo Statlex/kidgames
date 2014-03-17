@@ -9,6 +9,6 @@
 		click: 'click.mp3',
 		endSection: 'end-section.mp3',
 		swipe: 'swipe.mp3'
-	}
+	};
 
 }(window));

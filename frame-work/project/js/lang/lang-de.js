@@ -18,6 +18,6 @@
 		find: 'finden',
 		designer: 'Designer',
 		designerName: 'Anna Rudnitskaya'
-	}
+	};
 
 }(window));

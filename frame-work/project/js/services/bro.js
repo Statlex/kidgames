@@ -4,7 +4,7 @@
 	/*global window, document, Array, RegExp */
 
 	var bro, broA;
-	
+
 	bro = function (selector, context) {
 		return (context || doc).querySelector(selector);
 	};
@@ -26,20 +26,20 @@
 	};
 
 	bro.shuffle = function (arr) {
-		return arr.sort(function() {
+		return arr.sort(function () {
 			return Math.random() - 0.5;
 		});
 	};
 
-	bro.createSimpleArray = function(begin, end) {
+	bro.createSimpleArray = function (begin, end) {
 		var arr = [], i;
-		for (i = begin; i <= end; i+= 1) {
+		for (i = begin; i <= end; i += 1) {
 			arr.push(i);
 		}
 		return arr;
 	};
 
-	bro.hexToRgb = function(hex) {
+	bro.hexToRgb = function (hex) {
 
 		//#FCA -> #FFCCAA
 		if (hex.length <= 4) {
@@ -50,11 +50,11 @@
 		return parseInt(rgb[0], 16) + ',' + parseInt(rgb[1], 16) + ',' + parseInt(rgb[2], 16);
 	};
 
-	bro.toArray = function(list) {
+	bro.toArray = function (list) {
 		return Array.prototype.slice.call(list);
 	};
 
-	bro.html = function(node, html) {
+	bro.html = function (node, html) {
 		if (html !== undefined) {
 			node.innerHTML = html;
 			return true;
@@ -62,7 +62,7 @@
 		return node.innerHTML;
 	};
 
-	bro.remove = function(node) {
+	bro.remove = function (node) {
 		node.parentNode.removeChild(node);
 	};
 
