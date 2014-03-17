@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, console, alert, $, $$, statusBar, main, symbols, info */
+	/*global window, document, console, alert, setTimeout, $, $$, statusBar, main, symbols, info */
 
 	var log = console.log.bind(console);
 
@@ -56,6 +56,34 @@
 
 	};
 
+	Group.prototype.hasDeactivePoint = function() {
+		var i, len;
+		for (i = 0, len = this.points.length; i < len; i += 1) {
+			if (!this.points[i].isActive) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	Group.prototype.hasActivePoint = function() {
+		var i, len;
+		for (i = 0, len = this.points.length; i < len; i += 1) {
+			if (this.points[i].isActive) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	Group.prototype.activatePoints = function() {
+
+		this.points.forEach(function(point){
+			point.activate();
+		});
+
+	};
+
 	Point.prototype.addNode = function (node) {
 		this.node = node;
 	};
@@ -77,9 +105,25 @@
 		this.node.style.opacity = 0.5;
 	};
 
+	Point.prototype.activate = function() {
+		if (this.isActive) {
+			return;
+		}
+		this.isActive = true;
+		this.node.style.opacity = 1;
+	};
+
 	Point.prototype.clear = function() {
 		delete this.node;
 		delete this.polygon;
+	};
+
+	Point.prototype.flash = function() {
+		if (!this.node) {
+			return false;
+		}
+		this.node.style.backgroundColor = '#0c0';
+		return true;
 	};
 
 	var symbol = {
@@ -92,7 +136,8 @@
 			this.createGroups();
 			this.createPointsNode();
 			this.createEventHunter();
-			console.log(this);
+			this.showAction();
+			log(this);
 
 		},
 		getData: function () {
@@ -260,9 +305,18 @@
 						that.activeGroup = nextActiveGroup;
 						that.activeGroup.isActive = true;
 					} else {
-						console.log('DONE');
+						alert('done');
 					}
 
+				}
+
+			}, false);
+
+			node.addEventListener(info.evt.up, function(){
+
+				if (that.activeGroup.hasActivePoint() && that.activeGroup.hasDeactivePoint()) {
+					// activate all points
+					that.activeGroup.activatePoints();
 				}
 
 			}, false);
@@ -280,7 +334,31 @@
 
 			return false;
 
-		}
+		},
+		showAction: function() {
+
+			var that = this,
+				startIndex = 0;
+
+			this.groups.forEach(function (g, gIndex) {
+				var previousGroup, points;
+
+				if (gIndex) { // if gIndex > 0
+					previousGroup = that.groups[gIndex - 1];
+					startIndex += previousGroup.points.length;
+				}
+
+				points = g.points;
+				points.forEach(function (point, pIndex) {
+					setTimeout(function () {
+						this.flash();
+					}.bind(point), (pIndex + startIndex) * that.animationTime);
+				});
+
+			});
+
+		},
+		animationTime: 200
 
 	};
 
