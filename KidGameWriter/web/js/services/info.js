@@ -21,7 +21,20 @@
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',
 			up: isTouch ? 'touchend' : 'mouseup',
-			out: isTouch ? 'touchcancel' : 'mouseout'
+			out: isTouch ? 'touchcancel' : 'mouseout',
+
+			touchStart: {
+				x: 0,
+				y: 0
+			},
+			touchMove: {
+				x: 0,
+				y: 0
+			},
+			isActive: false,
+			isClick: function() {
+				return Math.abs(this.touchMove.x - this.touchStart.x) < 5 && Math.abs(this.touchMove.y - this.touchStart.y) < 5;
+			}
 		},
 		debuggerConsole: {
 			isActive: false,
@@ -103,14 +116,41 @@
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
 					};
-				}, false);
+					that.evt.isActive = true;
+				}, true);
 				body.addEventListener(this.evt.move, function (e) {
 					that.evt.touchMove = {
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
 					};
-				}, false);
+				}, true);
+			} else {
+				body.addEventListener(this.evt.down, function (e) {
+					that.evt.touchStart = {
+						x: e.pageX,
+						y: e.pageY
+					};
+					that.evt.touchMove = {
+						x: e.pageX,
+						y: e.pageY
+					};
+					that.evt.isActive = true;
+				}, true);
+				body.addEventListener(this.evt.move, function (e) {
+					that.evt.touchMove = {
+						x: e.pageX,
+						y: e.pageY
+					};
+				}, true);
 			}
+
+			body.addEventListener(this.evt.up, function (e) {
+				that.evt.isActive = false;
+			}, true);
+
+			body.addEventListener(this.evt.out, function (e) {
+				that.evt.isActive = false;
+			}, true);
 
 		}
 	};
