@@ -82,9 +82,11 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.createResize();">
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.createResize();main.setExternalLinks();">
 
 	<div class="page categories-list-page">
+
+		<a href="http://google.ru" class="ads-free"><img src="img/i/ads-free.svg" alt=""/></a>
 
 		<div class="categories-list-wrapper">
 		{{ for (var key in allFigures) { }}

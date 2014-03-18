@@ -388,7 +388,30 @@ body {
 	background-position: right center;
 }
 
+.ads-free {
+	text-decoration: none;
+	position: fixed;
+	height: 64px;
+	top: 0;
+	left: 20px;
+	z-index: 15;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.ads-free img {
+	height: 100%;
+	width: auto;
+	display: block;
+}
+
 @media screen and (max-height: 700px) {
+
+	.ads-free {
+		height: 40px;
+		padding: 5px;
+		margin-left: 5px;
+	}
 
 	.controls-buttons-wrapper .controls-button {
 		width: 40px;
