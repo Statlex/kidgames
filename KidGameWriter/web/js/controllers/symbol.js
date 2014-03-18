@@ -43,6 +43,7 @@
 		this.points.forEach(function(point){
 			var zIndex = +point.node.style.zIndex - 1000;
 			point.node.style.zIndex = zIndex;
+
 		});
 	};
 
@@ -86,23 +87,52 @@
 
 	Point.prototype.addNode = function (node) {
 		this.node = node;
+		node.style.backgroundColor = this.currentColor;
+		this.nodeSatelite = node.cloneNode();
+		this.nodeSatelite.style.zIndex = 1;
+		symbol.viewport.node.appendChild(this.nodeSatelite);
 	};
 
-	Point.prototype.defaultSize = 40;
+	Point.prototype.defaultSize = 10;
 
-	Point.prototype.size = 40;
+	Point.prototype.colors = ['#eb5d46', '#86ea94', '#e7db26', '#965db5', '#8abbff', '#82ece1', '#ec82cf', '#eca082', '#c0c0c0'];
+
+	Point.prototype.currentColor = '#eb5d46';
+
+	Point.prototype.setColor = function() {
+		this.colors = $.shuffle(this.colors);
+		this.currentColor = this.colors[3];
+	};
+
+	Point.prototype.size = 10;
 
 	Point.prototype.getPathLength = function (x1, y1, x2, y2) {
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 	};
 
 	Point.prototype.isCoordinateInPoint = function (x, y) {
-		return this.getPathLength(this.x, this.y, x, y) < this.size / 2;
+		return this.getPathLength(this.x, this.y, x, y) < this.size * 2; // this.size / 2 * 4 (4 is scale)
 	};
 
 	Point.prototype.deactivate = function() {
+
+		if (!this.isActive) {
+			return;
+		}
+
 		this.isActive = false;
-		this.node.style.opacity = 0.5;
+
+		// add light to node's color
+		var rgb = this.currentColor.match(/\w{2}/gi);
+		rgb.forEach(function(component, index, arr){
+			var value = parseInt(component, 16) + 50;
+			arr[index] = (value > 255) ? 255 : value;
+		});
+
+		this.node.style.backgroundColor = 'rgb(' + rgb.join(',') + ')';
+
+		$.addClass(this.node, 'bigFlash');
+
 	};
 
 	Point.prototype.activate = function() {
@@ -110,7 +140,10 @@
 			return;
 		}
 		this.isActive = true;
-		this.node.style.opacity = 1;
+		// remove light to node's color
+		this.node.style.backgroundColor = this.currentColor;
+		this.node.innerHTML = '';
+		$.removeClass(this.node, 'bigFlash');
 	};
 
 	Point.prototype.clear = function() {
@@ -122,7 +155,8 @@
 		if (!this.node) {
 			return false;
 		}
-		this.node.style.backgroundColor = '#0c0';
+
+		$.addClass(this.node, 'flash');
 		return true;
 	};
 
@@ -131,6 +165,8 @@
 
 		},
 		start: function () {
+
+			Point.prototype.setColor();
 
 			this.getData();
 			this.createGroups();
@@ -359,6 +395,15 @@
 				});
 
 			});
+
+			setTimeout(function(){
+				this.groups.forEach(function (g) {
+					g.points.forEach(function (point) {
+						$.addClass(point.node, 'state');
+					});
+
+				});
+			}.bind(this), (startIndex + this.groups[0].points.length) * that.animationTime);
 
 		},
 		animationTime: 200

@@ -9,9 +9,54 @@
 
 .symbol-page .point {
 	position: absolute;
-	background-color: #c00;
+	background-color: #000;
 	border-radius: 100%;
 	box-sizing: border-box;
+}
+
+.symbol-page .point.flash {
+	-webkit-animation-name: flash;
+	-webkit-animation-duration: 0.8s;
+	animation-name: flash;
+	animation-duration: 0.8s;
+}
+
+@-webkit-keyframes flash {
+	50% {
+		-webkit-transform: scale(4);
+	}
+}
+
+@keyframes flash {
+	50% {
+		transform: scale(4);
+	}
+}
+
+@-webkit-keyframes bigFlash {
+	50% {
+		-webkit-transform: scale(8);
+	}
+}
+
+@keyframes bigFlash {
+	50% {
+		transform: scale(8);
+	}
+}
+
+.symbol-page .point.flash.state {
+	-webkit-transition: all linear 0.3s;
+	-webkit-transform: scale(4);
+	transition: all linear 0.3s;
+	transform: scale(4);
+}
+
+.symbol-page .point.flash.bigFlash {
+	-webkit-animation-name: bigFlash;
+	-webkit-animation-duration: 0.8s;
+	animation-name: bigFlash;
+	animation-duration: 0.8s;
 }
 
 .symbol-page .event-hunter {
