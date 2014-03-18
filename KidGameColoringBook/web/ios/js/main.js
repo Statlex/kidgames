@@ -43,8 +43,14 @@
 			setTimeout(this.setSizing.bind(this), 300);
 		},
 		setExternalLinks: function() {
-			var links = $$('a', this.wrapper);
-			ui.externalLinkHandler.setLinks(links);
+			setTimeout(function(){
+				if (info.isAdsFree) {
+					return;
+				}
+				var link = $('.ads-free', this.wrapper);
+				link.style.display = 'block';
+				ui.externalLinkHandler.setLinks([link]);
+			}, 1500);
 		}
 
 	};
