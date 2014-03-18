@@ -44,6 +44,7 @@
 		},
 		show: function (arr) {
 			var that = this;
+			arr = arr || [];
 			this.buttons.forEach(function (buttonName) {
 				if (arr.indexOf(buttonName) !== -1) {
 					$.removeClass(that[buttonName], 'hidden');

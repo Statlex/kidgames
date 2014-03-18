@@ -142,7 +142,11 @@
 		},
 		getData: function () {
 
-			this.symbol = Object.create(symbols.number['5']);
+			this.symbol = info.get('current-symbol');
+			if ((/\d/).test(this.symbol)) {
+				this.symbol = Object.create(symbols.number[this.symbol]);
+			}
+
 			// get and set all coordinates and size
 			this.coordinates = {
 				offsetTop: statusBar.wrapper.clientHeight,
@@ -160,7 +164,6 @@
 				height: viewportNode.clientHeight // -"-
 			};
 			this.viewport.aspectRatio = this.viewport.width / this.viewport.height;
-
 
 			tempNode.innerHTML = this.symbol.points;
 			svgNode = $('svg', tempNode);

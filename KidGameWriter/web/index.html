@@ -6,9 +6,9 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/fw-styles.css" />
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/fw-styles.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
 	<!-- services -->
 	<script src="js/services/info.js" type="text/javascript"></script>
@@ -57,7 +57,44 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);symbol.start();">
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.onResize();">
+
+	<div class="page symbol-page-wrapper">
+
+		{{ ([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]).forEach(function(symbol){ }}
+		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
+			<div class="symbol-preview">
+				{{= symbol }}
+			</div>
+		</div>
+		{{ }); }}
+		<div class="clear">&nbsp;</div>
+		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
+		{{ if (index) { }}
+		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
+			<div class="symbol-preview">
+				{{= symbol.toUpperCase() }}
+			</div>
+		</div>
+		{{ }; }}
+		{{ }); }}
+		<div class="clear">&nbsp;</div>
+		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
+		{{ if (index) { }}
+		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
+			<div class="symbol-preview">
+				{{= symbol }}
+			</div>
+		</div>
+		{{ }; }}
+		{{ }); }}
+		<div class="clear">&nbsp;</div>
+
+	</div>
+
+</div>
+
+<div class="js-template hidden" template-id="symbol-page" onshow="statusBar.show();symbol.start();">
 
 	<div class="page symbol-page">
 
@@ -73,15 +110,16 @@
 			<div class="table-row">
 				<div class="table-cell">
 					<h2 class="more-header custom-select-header">{{= lang[info.lang].language }}:</h2>
+
 					<div class="select-wrapper clear-fix">
 						<div>{{= lang[info.lang].languageName }}</div>
 						<select class="js-language-select">
 							{{ for (var key in lang) { }}
-								{{ if (key === info.lang) { }}
-									<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
-								{{ } else { }}
-									<option value="{{= key }}">{{= lang[key].languageName }}</option>
-								{{ }; }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
 							{{ }; }}
 						</select>
 					</div>
@@ -103,6 +141,7 @@
 			<div class="table-row center-text">
 				<div class="table-cell">
 					<p class="thanks-header">{{= lang[info.lang].thanks }}:</p>
+
 					<p class="thanks-paragraph"><a href="#">{{= lang[info.lang].designerName }} - {{= lang[info.lang].designer }}</a></p>
 				</div>
 			</div>
@@ -147,7 +186,9 @@
 	</div>
 </div>
 
-<div class="js-logger logger-wrapper"><div class="js-logger-inner-block logger-inner-block">Logger:<br></div></div>
+<div class="js-logger logger-wrapper">
+	<div class="js-logger-inner-block logger-inner-block">Logger:<br></div>
+</div>
 
 </body>
 </html>

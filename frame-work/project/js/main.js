@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, $, $$, info, viewer, ui */
 
 	var main = {
 
@@ -13,15 +13,14 @@
 
 		},
 		setMorePage: function(){
-			var langSelectNode = $('.js-language-select', this.wrapper);
+			var langSelectNode = $('.js-language-select', this.wrapper),
+				links = $$('a', main.wrapper);
 
 			langSelectNode.addEventListener('change', function(){
 				info.set('lang', this.value, true);
 				viewer.refresh();
 			}, false);
 
-			// set external link
-			var links = $$('a', main.wrapper);
 			ui.externalLinkHandler.setLinks(links);
 
 		}
