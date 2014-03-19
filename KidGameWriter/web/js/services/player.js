@@ -23,6 +23,7 @@
 			try {
 				this.currentMedia.play();
 			} catch (e) {
+
 			}
 
 		},
@@ -50,7 +51,7 @@
 
 	win.player = playerObj;
 
-	// overwrite some methods
+	// overwrite some methods for PC
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 		return;
 	}

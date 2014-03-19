@@ -36,13 +36,26 @@
 					block.style.height = height;
 					var preview = $('.symbol-preview', block),
 						previewHeight = preview.clientHeight;
-					preview.style.lineHeight = previewHeight * 0.9 + 'px';
-					preview.style.fontSize = previewHeight * 0.8 + 'px';
+					preview.style.lineHeight = previewHeight * 1.05 + 'px';
+					preview.style.fontSize = previewHeight * 0.85 + 'px';
 				});
 
 			}.bind(this));
 			resize();
 			setTimeout(resize, 250);
+			this.pageOnResize();
+		},
+		pageOnResize: function() {
+			if (!$('.symbol-page', main.wrapper)) {
+				return;
+			}
+			viewer.refresh();
+		},
+		clearIntervals: function() {
+			var i;
+			for (i = 1; i < 99999; i += 1) {
+				window.clearInterval(i);
+			}
 		}
 
 	};

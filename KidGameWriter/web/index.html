@@ -94,11 +94,14 @@
 
 </div>
 
-<div class="js-template hidden" template-id="symbol-page" onshow="statusBar.show();symbol.start();">
+<div class="js-template hidden" template-id="symbol-page" onshow="statusBar.show(['playAgain']);symbol.start();">
 
 	<div class="page symbol-page">
-
-
+		<div class="symbol-card-wrapper">
+			<div class="symbol-card">
+				{{= info['current-symbol'] }}
+			</div>
+		</div>
 	</div>
 
 </div>

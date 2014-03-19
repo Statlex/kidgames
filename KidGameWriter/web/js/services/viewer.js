@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document, $, statusBar, setTimeout, $$ */
+	/*global window, document, $, statusBar, setTimeout, $$, main */
 
 	var viewer = {
 		wrapper: null, // field for page wrapper, type Node
@@ -10,6 +10,8 @@
 		historyCurrentState: '',
 		isBack: false,
 		show: function (templateId, model, notTrack) {
+
+			main.clearIntervals();
 
 			win.ui.fn.setBodyScroll(false); // disable scroll
 

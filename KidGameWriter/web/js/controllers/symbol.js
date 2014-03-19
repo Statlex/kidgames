@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, console, alert, setTimeout, $, $$, statusBar, main, symbols, info */
+	/*global window, document, console, alert, setTimeout, $, $$, statusBar, main, symbols, info, viewer, player */
 
 	var log = console.log.bind(console);
 
@@ -161,6 +161,7 @@
 	};
 
 	var symbol = {
+		animationTime: 200,
 		handleEvent: function () {
 
 		},
@@ -169,11 +170,42 @@
 			Point.prototype.setColor();
 
 			this.getData();
+			this.playSymbol();
 			this.createGroups();
 			this.createPointsNode();
 			this.createEventHunter();
 			this.showAction();
+			this.prepareCard();
 			log(this);
+
+			player.playQuestionAgain = viewer.refresh.bind(viewer);
+
+		},
+		playSymbol: function() {
+			var src = this.symbol.type + '/' + info.lang + '/' + this.symbol.symbol + '.mp3';
+			player.play(src);
+		},
+		prepareCard: function() {
+
+			var cardNode = $('.symbol-card', main.wrapper),
+				cardWrapper = $('.symbol-card-wrapper', main.wrapper),
+				height = main.wrapper.clientHeight - 60,
+				style = cardNode.style;
+
+			style.lineHeight = height * 0.95 + 'px';
+			style.fontSize = height * 0.85 + 'px';
+
+			cardWrapper.addEventListener(info.evt.up, function() {
+				if (!info.evt.isClick()) {
+					return;
+				}
+				viewer.back();
+			}, false);
+
+			this.card = {
+				node: cardNode,
+				cardWrapper: cardWrapper
+			};
 
 		},
 		getData: function () {
@@ -181,6 +213,8 @@
 			this.symbol = info.get('current-symbol');
 			if ((/\d/).test(this.symbol)) {
 				this.symbol = Object.create(symbols.number[this.symbol]);
+				this.symbol.type = 'number';
+				this.symbol.symbol = info.get('current-symbol');
 			}
 
 			// get and set all coordinates and size
@@ -344,7 +378,7 @@
 						that.activeGroup = nextActiveGroup;
 						that.activeGroup.isActive = true;
 					} else {
-						alert('done');
+						setTimeout(that.done.bind(that), 500);
 					}
 
 				}
@@ -363,6 +397,13 @@
 			this.viewport.node.appendChild(node);
 
 		},
+		done: function() {
+			if (!$('.symbol-page', main.wrapper)) {
+				return;
+			}
+			this.playSymbol();
+			$.addClass(this.card.cardWrapper, 'show');
+		},
 		getActivePoint: function(x, y) {
 			var i, len;
 			for (i = 0, len = this.activeGroup.points.length; i < len; i += 1) {
@@ -377,7 +418,8 @@
 		showAction: function() {
 
 			var that = this,
-				startIndex = 0;
+				startIndex = 0,
+				pointsLength = 0;
 
 			this.groups.forEach(function (g, gIndex) {
 				var previousGroup, points;
@@ -394,6 +436,8 @@
 					}.bind(point), (pIndex + startIndex) * that.animationTime);
 				});
 
+				pointsLength += g.points.length + 2;
+
 			});
 
 			setTimeout(function(){
@@ -401,12 +445,10 @@
 					g.points.forEach(function (point) {
 						$.addClass(point.node, 'state');
 					});
-
 				});
-			}.bind(this), (startIndex + this.groups[0].points.length) * that.animationTime);
+			}.bind(this), pointsLength * that.animationTime);
 
-		},
-		animationTime: 200
+		}
 
 	};
 
