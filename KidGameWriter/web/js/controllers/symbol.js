@@ -5,36 +5,32 @@
 
 	var log = console.log.bind(console);
 
-	function Group(index, polygon) {
+	function Group(index, pointsArray) {
 
 		this.index = index;
-		this.polygon = polygon;
 		this.isActive = false;
 
-		this.points = [];
+		this.points = pointsArray;
 		// init group
-		this.createPoints(polygon);
+		this.createPoints();
 
 	}
 
-	function Point(index, polygon) {
+	function Point(index, xy) {
+
 		var mainObj = symbol;
 
 		this.index = index;
-		this.polygon = polygon;
-
 		this.isActive = true;
 
-		this.x = mainObj.svg.scale * parseFloat(polygon.getAttribute('cx')) + mainObj.svg.offset.left;
-		this.y = mainObj.svg.scale * parseFloat(polygon.getAttribute('cy')) + mainObj.svg.offset.top;
+		this.x = xy.x * mainObj.svg.scale + mainObj.svg.offset.left;
+		this.y = xy.y * mainObj.svg.scale + mainObj.svg.offset.top;
 
 	}
 
-	Group.prototype.createPoints = function (gNode) {
-		var polygons = $$('*', gNode);
-		polygons.forEach(function (polygon, index) {
-			var point = new Point(index, polygon);
-			this.points.push(point);
+	Group.prototype.createPoints = function () {
+		this.points.forEach(function (xy, index, arr) {
+			arr[index] = new Point(index, xy);
 		}, this);
 	};
 
@@ -53,7 +49,6 @@
 		});
 
 		delete this.points;
-		delete this.polygon;
 
 	};
 
@@ -148,7 +143,6 @@
 
 	Point.prototype.clear = function() {
 		delete this.node;
-		delete this.polygon;
 	};
 
 	Point.prototype.flash = function() {
@@ -174,9 +168,11 @@
 			this.createGroups();
 			this.createPointsNode();
 			this.createEventHunter();
-			this.showAction();
+//			this.showAction();
 			this.prepareCard();
 			log(this);
+
+			setTimeout(this.showAction.bind(this), 1000);
 
 			player.playQuestionAgain = viewer.refresh.bind(viewer);
 
@@ -212,7 +208,7 @@
 
 			this.symbol = info.get('current-symbol');
 			if ((/\d/).test(this.symbol)) {
-				this.symbol = Object.create(symbols.number[this.symbol]);
+				this.symbol = JSON.parse(JSON.stringify(symbols.number[this.symbol])); // Object.create - works not properly
 				this.symbol.type = 'number';
 				this.symbol.symbol = info.get('current-symbol');
 			}
@@ -226,8 +222,7 @@
 			};
 
 			var viewportNode = $('.symbol-page', main.wrapper),
-				tempNode = document.createElement('div'),
-				svgNode, svg;
+				svg;
 			this.viewport = {
 				node: viewportNode,
 				width: viewportNode.clientWidth, // add reduce by padding
@@ -235,12 +230,10 @@
 			};
 			this.viewport.aspectRatio = this.viewport.width / this.viewport.height;
 
-			tempNode.innerHTML = this.symbol.points;
-			svgNode = $('svg', tempNode);
 			svg = {
 				original: {
-					width: parseInt(svgNode.getAttribute('width'), 10),
-					height: parseInt(svgNode.getAttribute('height'), 10)
+					width: this.symbol.width,
+					height: this.symbol.height
 				},
 				offset: {
 					top: 0,
@@ -267,12 +260,6 @@
 		},
 		createGroups: function () {
 
-			// add svg
-			var tempNode = doc.createElement('div'),
-				groupNodes;
-			tempNode.innerHTML = this.symbol.points;
-			groupNodes = $$('svg g', tempNode);
-
 			// clear groups
 			if (this.groups) {
 				this.groups.forEach(function(group){
@@ -282,7 +269,7 @@
 
 			// create groups
 			this.groups = [];
-			groupNodes.forEach(function (g, index) {
+			this.symbol.points.forEach(function (g, index) {
 				var group = new Group(index, g);
 				this.groups.push(group);
 			}, this);
@@ -303,8 +290,8 @@
 					style.zIndex = -group.index;
 					style.width = point.size + 'px';
 					style.height = point.size + 'px';
-					point.addNode(node);
 					this.viewport.node.appendChild(node);
+					point.addNode(node);
 				}, this);
 			}, this);
 		},
@@ -323,7 +310,7 @@
 
 				if (!firstPoint.isCoordinateInPoint(that.coordinates.x, that.coordinates.y)) {
 					log('touch is not in first point');
-					return;
+					//return;
 				}
 
 				if (!firstPoint.isActive) {
@@ -407,7 +394,7 @@
 		getActivePoint: function(x, y) {
 			var i, len;
 			for (i = 0, len = this.activeGroup.points.length; i < len; i += 1) {
-				if (this.activeGroup.points[i].isCoordinateInPoint(x, y)) {
+				if (this.activeGroup.points[i].isCoordinateInPoint(x, y) && this.activeGroup.points[i].isActive) {
 					return this.activeGroup.points[i];
 				}
 			}

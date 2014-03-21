@@ -1,0 +1,53 @@
+body,
+.text-area,
+.button,
+.wrapper {
+	margin: 0;
+	padding: 0;
+	display: block;
+	border: none;
+}
+
+body {
+	margin: 10px;
+}
+
+body:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.wrapper,
+.images-wrapper {
+	box-sizing: border-box;
+	float: left;
+	width: 50%;
+}
+
+.images-wrapper {
+	border: 1px solid #333;
+	background-color: #c00;
+}
+
+.images-wrapper svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-bottom: 1px solid #333;
+}
+
+.text-area {
+	box-sizing: border-box;
+	border: 1px solid #333;
+	width: 100%;
+	padding: 10px;
+}
+
+.button {
+	box-sizing: border-box;
+	padding: 10px;
+	border: 1px solid #333;
+	display: block;
+	margin: 10px auto;
+}
