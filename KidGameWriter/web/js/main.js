@@ -10,17 +10,22 @@
 			viewer.show('title-page');
 			ui.fn.setBodyScroll(true);
 
+			this.setBodyClassLang();
+
 			win.addEventListener('resize', this.onResize.bind(this), false);
 			this.onResize();
 
 		},
 		setMorePage: function(){
 			var langSelectNode = $('.js-language-select', this.wrapper),
-				links = $$('a', main.wrapper);
+				links = $$('a', main.wrapper),
+				that = this;
 
 			langSelectNode.addEventListener('change', function(){
 				info.set('lang', this.value, true);
+				that.setBodyClassLang();
 				viewer.refresh();
+
 			}, false);
 
 			ui.externalLinkHandler.setLinks(links);
@@ -56,6 +61,12 @@
 			for (i = 1; i < 99999; i += 1) {
 				window.clearInterval(i);
 			}
+		},
+		setBodyClassLang: function() {
+			info.availableLangs.forEach(function(lang){
+				$.removeClass(this.wrapper, 'lang-' + lang);
+			}, this);
+			$.addClass(this.wrapper, 'lang-' + info.lang);
 		}
 
 	};

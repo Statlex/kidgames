@@ -5,24 +5,34 @@
 
 	var main = {
 
-		handleEvent: function() {
+		handleEvent: function () {
 
 			this.wrapper = $('#wrapper');
 			viewer.show('title-page');
 			ui.fn.setBodyScroll(true);
+			this.setBodyClassLang();
 
 		},
-		setMorePage: function(){
+		setMorePage: function () {
 			var langSelectNode = $('.js-language-select', this.wrapper),
-				links = $$('a', main.wrapper);
+				links = $$('a', main.wrapper),
+				that = this;
 
-			langSelectNode.addEventListener('change', function(){
+			langSelectNode.addEventListener('change', function () {
 				info.set('lang', this.value, true);
+				that.setBodyClassLang();
 				viewer.refresh();
+
 			}, false);
 
 			ui.externalLinkHandler.setLinks(links);
 
+		},
+		setBodyClassLang: function () {
+			info.availableLangs.forEach(function (lang) {
+				$.removeClass(this.wrapper, 'lang-' + lang);
+			}, this);
+			$.addClass(this.wrapper, 'lang-' + info.lang);
 		}
 
 	};
