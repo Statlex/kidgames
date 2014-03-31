@@ -1,0 +1,22 @@
+.slider-wrapper {
+	width: 100%;
+	clear: both;
+}
+
+.slider-wrapper:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.slider-container {
+	width: 300%;
+}
+
+.slider-page {
+	width: 33.33%;
+	float: left;
+}
+
+
+

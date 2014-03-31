@@ -16,7 +16,6 @@
 		initialize: function() {
 			var template = templateContainer.templates['main-menu'];
 			this.$el.html(_.template(template, {}));
-
 		},
 		showCalendar: function() {
 			console.log(1);

@@ -11,15 +11,23 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
+	<!-- styles + -->
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/slider.css"/>
+	<!-- styles - -->
+
 	<!-- langs + -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
 	<script src="js/lang/ru.js" type="text/javascript"></script>
 	<!-- langs - -->
 
 	<!-- service + -->
+	<script src="js/service/info.js" type="text/javascript"></script>
+	<script src="js/service/calendar.js" type="text/javascript"></script>
 	<script src="js/service/util.js" type="text/javascript"></script>
 	<script src="js/service/template-container.js" type="text/javascript"></script>
 	<script src="js/service/lang.js" type="text/javascript"></script>
+	<script src="js/service/slider.js" type="text/javascript"></script>
 	<!-- service - -->
 
 	<!-- lib + -->
@@ -31,6 +39,7 @@
 
 	<!-- views + -->
 	<script src="js/view/main-menu.js" type="text/javascript"></script>
+	<script src="js/view/main-view.js" type="text/javascript"></script>
 	<!-- views - -->
 
 	<!-- main js -->
@@ -57,8 +66,6 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-menu">
 
-	<h1><%= lang.testWord %></h1>
-
 	<div class="js-calendar">calendar</div>
 	<div class="js-notes">notes</div>
 	<div class="js-time">time</div>
@@ -69,6 +76,24 @@
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar">
 
 	<h1>main calendar</h1>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-wrapper">
+
+	<div class="js-main-calendar-wrapper slider-wrapper">
+		<div class="js-main-calendar-inner-container slider-container">
+
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-page">
+
+	<div class="js-main-calendar-page slider-page">
+		<h1>some data</h1>
+	</div>
 
 </script>
 
