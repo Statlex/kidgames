@@ -8,4 +8,7 @@ $(function(){
 
 	new APP.MainView();
 
+	(new Calendar()).getMonthPage({year:2000, month: 1});
+
+
 });

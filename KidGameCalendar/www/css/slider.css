@@ -1,6 +1,7 @@
 .slider-wrapper {
 	width: 100%;
 	clear: both;
+	overflow-x: hidden;
 }
 
 .slider-wrapper:after {
