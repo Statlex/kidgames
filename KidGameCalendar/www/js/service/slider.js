@@ -3,6 +3,8 @@
 	"use strict";
 	/*global console, alert, window, document, info */
 
+	var log = console.log.bind(console);
+
 	function Slider(wrapper) {
 
 		this.wrapper = wrapper;
@@ -16,10 +18,11 @@
 	}
 
 	Slider.prototype.init = function() {
-		var that = this;
-		var ev = info.evt;
+		var that = this,
+			ev = info.evt;
 		this.wrapper.addEventListener(ev.down, function() {
 			that.isActive = true;
+			that.innerContainer.style[info.preJS + 'Transition'] = 'none';
 		}, false);
 		this.wrapper.addEventListener(ev.move, function() {
 			if (!ev.isActive || !that.isActive) {
@@ -33,12 +36,21 @@
 			var dX = ev.touchStart.x - ev.touchMove.x,
 				x = that.page.width;
 			if (Math.abs(dX) < that.page.width / 2 ) {
+				that.innerContainer.style[info.preJS + 'Transition'] = '0.2s all ease-out';
 				that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + x + 'px, 0)';
 				return;
 			}
 
-			x = (dX > 0) ? 2 * x : 0;
-			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + x + 'px, 0)';
+			if (dX > 0) {
+				x *= -2;
+				log('to LEFT');
+			} else {
+				x = 0;
+				log('to RIGHT');
+			}
+
+			that.innerContainer.style[info.preJS + 'Transition'] = '0.2s all ease-out';
+			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(' + x + 'px, 0)';
 
 		}, false);
 	};
