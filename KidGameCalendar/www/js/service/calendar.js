@@ -44,10 +44,37 @@
 			return (year % 4 === 0) && (year % 100 !== 0);
 		},
 		getMonthPage: function(data) {
+
+			var date = new Date();
+
+			if (!data) {
+				data = {
+					year: date.getFullYear(),
+					month: date.getMonth()
+				}
+			}
+
+			if (data.dMonth) { // only 1 or -1
+				if (data.dMonth > 0) {
+					if (data.month === 11) {
+						data.year += 1;
+						data.month = 0;
+					} else {
+						data.month += 1;
+					}
+				} else {
+					if (data.month === 0) {
+						data.year -= 1;
+						data.month = 11;
+					} else {
+						data.month -= 1;
+					}
+				}
+			}
+
 			var year = data.year,
 				month = data.month,
 				monthLength = this.getMonthLength(data.year, data.month),
-				date = new Date(),
 				startDay,
 				leftDatesOnPage = this.datesOnPage - monthLength,
 				preMonthLength,
@@ -55,7 +82,10 @@
 				months = {
 					pre: new Month(),
 					cur: new Month(),
-					next: new Month()
+					next: new Month(),
+					year: data.year,
+					month: data.month,
+					weekDays: this.getDaysOfWeek()
 				};
 
 				months.cur.cssIsActive = true;
@@ -135,6 +165,15 @@
 				monthLength += 1;
 			}
 			return monthLength;
+		},
+		getDaysOfWeek: function() {
+			var days = [0,1,2,3,4,5,6],
+				removedDays;
+			if (this.weekStart === 0) {
+				return days;
+			}
+			removedDays = days.splice(0, this.weekStart);
+			return days.concat(removedDays);
 		}
 
 	};

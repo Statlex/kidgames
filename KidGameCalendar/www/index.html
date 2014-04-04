@@ -81,6 +81,8 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-wrapper">
 
+	<div class="slider-date js-slider-date"></div>
+
 	<div class="js-main-calendar-wrapper slider-wrapper">
 		<div class="js-main-calendar-inner-container slider-container">
 
@@ -89,10 +91,35 @@
 
 </script>
 
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-date">
+
+	<%= date.month %> - <%= date.year %>
+
+</script>
+
+
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-page">
 
 	<div class="js-main-calendar-page slider-page">
-		<h1>some data</h1>
+
+		<div>
+			<% weekDays.forEach(function(day) { %>
+			<div class="week-day"><%= day %></div>
+			<% }); %>
+		</div>
+
+		<h1> <<-- <%= month %> / <%= year %> -->> </h1>
+
+		<% pre.dates.forEach(function(date) { %>
+		<div class="month-date"><%= date.date %></div>
+		<% }); %>
+		<% cur.dates.forEach(function(date) { %>
+			<div class="month-date active"><%= date.date %></div>
+		<% }); %>
+		<% next.dates.forEach(function(date) { %>
+		<div class="month-date"><%= date.date %></div>
+		<% }); %>
+
 	</div>
 
 </script>

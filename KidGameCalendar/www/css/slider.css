@@ -1,7 +1,7 @@
 .slider-wrapper {
 	width: 100%;
 	clear: both;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .slider-wrapper:after {
@@ -19,5 +19,15 @@
 	float: left;
 }
 
+.slider-page:after,
+.slider-container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
 
+.month-date {
+	float: left;
+	width: 14.28%;
+}
 

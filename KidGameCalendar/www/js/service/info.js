@@ -115,13 +115,13 @@
 						y: e.touches[0].pageY
 					};
 					that.evt.touchMove = that.evt.touchStart;
-				}, true);
+				}, false);
 				body.addEventListener(this.evt.move, function (e) {
 					that.evt.touchMove = {
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
 					};
-				}, true);
+				}, false);
 
 			} else {
 
@@ -132,23 +132,23 @@
 						y: e.pageY
 					};
 					that.evt.touchMove = that.evt.touchStart;
-				}, true);
+				}, false);
 				body.addEventListener(this.evt.move, function (e) {
 					that.evt.touchMove = {
 						x: e.pageX,
 						y: e.pageY
 					};
-				}, true);
+				}, false);
 
 			}
 
 			body.addEventListener(this.evt.up, function (e) {
 				that.evt.isActive = false;
-			}, true);
+			}, false);
 
 			body.addEventListener(this.evt.out, function (e) {
 				that.evt.isActive = false;
-			}, true);
+			}, false);
 
 		}
 	};

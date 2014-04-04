@@ -11,8 +11,7 @@
 		},
 		initialize: function() {
 			this.templates = {
-				calendarWrapper: templateContainer.templates['main-calendar-wrapper'],
-				calendarPage: templateContainer.templates['main-calendar-page']
+				calendarWrapper: templateContainer.templates['main-calendar-wrapper']
 			};
 
 			this.showCalendar();
@@ -21,22 +20,30 @@
 
 			this.$el.html(_.template(this.templates.calendarWrapper, {}));
 
-			var slider = new Slider(util.find('.js-main-calendar-wrapper'));
+			var slider = new Slider(util.find('.js-main-calendar-wrapper'), {year: 2014, month: 3});
 
-			var page0 = this.createCalendarPage();
-			var page1 = this.createCalendarPage();
-			var page2 = this.createCalendarPage();
-			slider.addRightPage(page0);
-			slider.addRightPage(page1);
-			slider.addRightPage(page2);
+			var calendar = new Calendar();
+
 			slider.setStartPosition();
 			slider.init();
 
-		},
-		createCalendarPage: function() {
-			var node = doc.createElement('div');
-			node.innerHTML = _.template(this.templates.calendarPage, {});
-			return node.querySelector(':scope > div');
+			slider.setCreatePages();
+
+/*
+			var page0 = calendar.getMonthPage({year: 2014, month: 3, dMonth: -1});
+			var page1 = calendar.getMonthPage({year: 2014, month: 3, dMonth: 0});
+			var page2 = calendar.getMonthPage({year: 2014, month: 3, dMonth: 1});
+
+			page0 = this.createCalendarPage(page0);
+			page1 = this.createCalendarPage(page1);
+			page2 = this.createCalendarPage(page2);
+
+			slider.addRightPage(page0);
+			slider.addRightPage(page1);
+			slider.addRightPage(page2);
+*/
+
+
 		}
 
 	});
