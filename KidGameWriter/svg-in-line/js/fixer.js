@@ -57,7 +57,7 @@
 
 			// test for path
 
-			polylines = svg.querySelectorAll('polyline, path');
+			polylines = svg.querySelectorAll('polyline, path, line');
 			polylines = Array.prototype.slice.call(polylines);
 //			polylines.reverse();
 			polylines.forEach(function(poly){
@@ -87,6 +87,20 @@
 						}
 						points.push([pointXY.x, pointXY.y].join(','));
 					}
+				}
+
+				if (poly.tagName === 'line') {
+					points = [];
+					pointXY = {
+						x: parseFloat(poly.getAttribute('x1')),
+						y: parseFloat(poly.getAttribute('y1'))
+					};
+					points.push([pointXY.x, pointXY.y].join(','));
+					pointXY = {
+						x: parseFloat(poly.getAttribute('x2')),
+						y: parseFloat(poly.getAttribute('y2'))
+					};
+					points.push([pointXY.x, pointXY.y].join(','));
 				}
 
 				points.forEach(function(xy){

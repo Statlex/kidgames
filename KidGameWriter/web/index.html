@@ -69,22 +69,25 @@
 			</div>
 		</div>
 		{{ }); }}
+
 		<div class="clear">&nbsp;</div>
-		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
-		{{ if (index) { }}
-		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
-			<div class="symbol-preview">
-				{{= symbol.toUpperCase() }}
-			</div>
-		</div>
-		{{ }; }}
-		{{ }); }}
-		<div class="clear">&nbsp;</div>
+
 		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
 		{{ if (index) { }}
 		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
 			<div class="symbol-preview">
 				{{= symbol }}
+			</div>
+		</div>
+		{{ }; }}
+		{{ }); }}
+
+		<div class="clear">&nbsp;</div>
+		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
+		{{ if (index) { }} <!-- detect Ь Ы Ъ by index -->
+		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
+			<div class="symbol-preview">
+				{{= symbol.toUpperCase() }}
 			</div>
 		</div>
 		{{ }; }}

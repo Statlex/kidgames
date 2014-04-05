@@ -47,9 +47,9 @@
 
 .symbol-page .point.flash.state {
 	-webkit-transition: all linear 0.3s;
-	-webkit-transform: scale(4);
+	-webkit-transform: scale(2);
 	transition: all linear 0.3s;
-	transform: scale(4);
+	transform: scale(2);
 }
 
 .symbol-page .point.flash.bigFlash {

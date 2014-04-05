@@ -178,6 +178,7 @@
 
 		},
 		playSymbol: function() {
+			// play letter >>>>>>>>
 			var src = this.symbol.type + '/' + info.lang + '/' + this.symbol.symbol + '.mp3';
 			player.play(src);
 		},
