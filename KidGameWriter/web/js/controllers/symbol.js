@@ -211,6 +211,10 @@
 				this.symbol = JSON.parse(JSON.stringify(symbols.number[this.symbol])); // Object.create - works not properly
 				this.symbol.type = 'number';
 				this.symbol.symbol = info.get('current-symbol');
+			} else {
+				this.symbol = JSON.parse(JSON.stringify(symbols['letters_' + info.lang][info.get('current-symbol')]));
+				this.symbol.type = 'letter';
+				this.symbol.symbol = info.get('current-symbol');
 			}
 
 			// get and set all coordinates and size

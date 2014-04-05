@@ -44,25 +44,45 @@
 		},
 		createSVGLine: function(svgLine, file) {
 
-			console.log(svgLine);
-
 			var obj = {},
 				div = document.createElement('div'),
 				svg, polylines,
-				string = '';
+				string,
+				stringParsed;
 			div.innerHTML = svgLine;
 			svg = div.getElementsByTagName('svg')[0];
 			obj.width = parseInt(svg.getAttribute('width'), 10);
 			obj.height = parseInt(svg.getAttribute('height'), 10);
 			obj.points = [];
 
-			polylines = svg.getElementsByTagName('polyline');
+			// test for path
+
+			polylines = svg.querySelectorAll('polyline, path');
 			polylines = Array.prototype.slice.call(polylines);
 			polylines.reverse();
 			polylines.forEach(function(poly){
-				console.log(poly);
-				var group = [],
+				console.log(poly.tagName);
+
+				var group, points, xyObj;
+				group = [];
+				if (poly.tagName === 'polyline') {
 					points = poly.getAttribute('points').trim().split(' ');
+				}
+
+				if (poly.tagName === 'path') {
+					points = [];
+					for (var i = 0, len = poly.normalizedPathSegList.numberOfItems; i < len; i += 1) {
+						console.log(poly.normalizedPathSegList.getItem(i).x + ' - ' + poly.normalizedPathSegList.getItem(i).y);
+						xyObj = {
+							x: poly.normalizedPathSegList.getItem(i).x,
+							y: poly.normalizedPathSegList.getItem(i).y
+						};
+						if (xyObj.x !== undefined && xyObj.y !== undefined) {
+							points.push([xyObj.x,xyObj.y].join(','));
+						}
+					}
+				}
+
 				points.forEach(function(xy){
 					xy = xy.trim();
 
@@ -78,44 +98,48 @@
 				obj.points.push(group);
 			}, this);
 
-			string = ['\'', file.name.replace('.svg', ''), '\': \n', JSON.stringify(obj), '\n,'].join('');
+			string = ['\'', file.name.replace('.svg', ''), '\': \n', JSON.stringify(obj)].join('');
 			this.filesDone += 1;
 
-			return string;
+			// adjust points
 
-/*
-			svgLine = (svgLine.match(/<svg[\s\S]+<\/svg>/gi))[0];
-			svgLine = svgLine.replace(/id=\"\S*?\"/gi , '')
-				.replace(/baseProfile=\"\S*?\"/gi , '')
-				.replace(/<g.*?>|<\/g>/gi, '')
-				.replace(/\n/gi, '')
-				.replace(/"/gi, "'")
-				.replace(/\s+/gi, ' ')
-				.replace(/\s'/gi, "'")
-				.replace(/>\s+</gi, '><')
-				.replace(/fill='.*?'/gi, "fill='rgb(255,255,255)'");
+			var sizes = {
+				max: {
+					x: 0,
+					y: 0
+				},
+				min: {
+					x: 1000000000,
+					y: 1000000000
+				}
+			};
+			stringParsed = JSON.parse(string.replace(/^'[\s\S]*?':/, ''));
+			stringParsed.points.forEach(function(points){
+				points.forEach(function(point){
+					sizes.max.x = (point.x > sizes.max.x) ? point.x : sizes.max.x;
+					sizes.min.x = (point.x < sizes.min.x) ? point.x : sizes.min.x;
+					sizes.max.y = (point.y > sizes.max.y) ? point.y : sizes.max.y;
+					sizes.min.y = (point.y < sizes.min.y) ? point.y : sizes.min.y;
+				});
+			});
 
-			if (svgLine.indexOf('text') !== -1) {
-				alert('text in ' + file.name);
+			stringParsed.points.forEach(function(points, indexB, pointsArr) {
+				points.forEach(function(point, indexS, pointArr){
+					pointsArr[indexB][indexS].x -= sizes.min.x;
+					pointsArr[indexB][indexS].y -= sizes.min.y;
+				});
+			});
+			stringParsed.width = sizes.max.x - sizes.min.x;
+			stringParsed.height = sizes.max.y - sizes.min.y;
+
+			var item = file.name.replace('.svg', '').split('-').pop();
+			if (file.name.indexOf('big') !== -1) {
+				item = item.toUpperCase();
 			}
 
-			// add white rectangle
-			var div = document.createElement('div');
-			var width = svgLine.match(/width='\d+px'/gi)[0].match(/\d+/gi)[0];
-			var height = svgLine.match(/height='\d+px'/gi)[0].match(/\d+/gi)[0];
-			var rect = "<rect x='0' y='0' width='" + width + "' height='" + height + "' fill='rgb(255,255,255)' />";
-			svgLine = svgLine.replace('><', '>' + rect + '<');
-
-			div.innerHTML = svgLine + file.name;
-
-			this.imagesWrapper.appendChild(div);
-
-			svgLine = 'svg:"' + svgLine + '",\n';
-			var id = Math.random().toString().replace('0.', '').replace(/^0+/gi, '');
-			id = 'id: ' + id + '\n';
-			svgLine += id;
-			svgLine = '{\n' + svgLine + '},\n';
-*/
+			string = ['\'', item, '\': \n', JSON.stringify(stringParsed)].join('');
+			console.log(stringParsed);
+			return string + ',\n';
 
 		}
 
