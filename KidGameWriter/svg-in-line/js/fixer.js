@@ -59,27 +59,33 @@
 
 			polylines = svg.querySelectorAll('polyline, path');
 			polylines = Array.prototype.slice.call(polylines);
-			polylines.reverse();
+//			polylines.reverse();
 			polylines.forEach(function(poly){
-				console.log(poly.tagName);
-
-				var group, points, xyObj;
+				var group, points, pointXY, i, len, segType;
 				group = [];
+				pointXY = {
+					x: 0,
+					y: 0
+				};
+
 				if (poly.tagName === 'polyline') {
 					points = poly.getAttribute('points').trim().split(' ');
 				}
 
 				if (poly.tagName === 'path') {
 					points = [];
-					for (var i = 0, len = poly.normalizedPathSegList.numberOfItems; i < len; i += 1) {
-						console.log(poly.normalizedPathSegList.getItem(i).x + ' - ' + poly.normalizedPathSegList.getItem(i).y);
-						xyObj = {
-							x: poly.normalizedPathSegList.getItem(i).x,
-							y: poly.normalizedPathSegList.getItem(i).y
-						};
-						if (xyObj.x !== undefined && xyObj.y !== undefined) {
-							points.push([xyObj.x,xyObj.y].join(','));
+					for (i = 0, len = poly.pathSegList.numberOfItems; i < len; i += 1) {
+						segType = poly.pathSegList.getItem(i).pathSegTypeAsLetter;
+						if (segType.toUpperCase() === segType) { // detect upper case -> abs point
+							pointXY = {
+								x: poly.pathSegList.getItem(i).x || pointXY.x,
+								y: poly.pathSegList.getItem(i).y || pointXY.y
+							};
+						} else { // if rel point
+							pointXY.x += poly.pathSegList.getItem(i).x || 0;
+							pointXY.y += poly.pathSegList.getItem(i).y || 0;
 						}
+						points.push([pointXY.x, pointXY.y].join(','));
 					}
 				}
 
@@ -132,13 +138,24 @@
 			stringParsed.width = sizes.max.x - sizes.min.x;
 			stringParsed.height = sizes.max.y - sizes.min.y;
 
+			var padding = stringParsed.width * 0.25;
+			stringParsed.width += padding * 2;
+			stringParsed.height += padding * 2;
+
+			stringParsed.points.forEach(function(points, indexB, pointsArr) {
+				points.forEach(function(point, indexS, pointArr){
+					pointsArr[indexB][indexS].x += padding;
+					pointsArr[indexB][indexS].y += padding;
+				});
+			});
+
+
 			var item = file.name.replace('.svg', '').split('-').pop();
 			if (file.name.indexOf('big') !== -1) {
 				item = item.toUpperCase();
 			}
 
 			string = ['\'', item, '\': \n', JSON.stringify(stringParsed)].join('');
-			console.log(stringParsed);
 			return string + ',\n';
 
 		}
