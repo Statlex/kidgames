@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar */
+	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar, setTimeout, util, Hammer */
 
 	var log = console.log.bind(console);
 
@@ -58,7 +58,7 @@
 
 			speed = Math.abs(dX / ((that.time.end - that.time.start) / 1000));
 
-			if (speed > 800) {
+			if (speed > 700) {
 				if (dX > 0) {
 					x *= -2;
 					that.changeMonth(1);
@@ -114,11 +114,12 @@
 
 	Slider.prototype.setCreatePages = function() {
 
-		var calendar = new Calendar();
+		var calendar = new Calendar(),
+			page0, page1, page2;
 
-		var page0 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: -1});
-		var page1 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: 0});
-		var page2 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: 1});
+		page0 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: -1});
+		page1 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: 0});
+		page2 = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: 1});
 
 		page0 = this.createCalendarPage(page0);
 		page1 = this.createCalendarPage(page1);
@@ -131,9 +132,45 @@
 	};
 
 	Slider.prototype.createCalendarPage = function(pageDate) {
-		var node = doc.createElement('div');
+		var node = doc.createElement('div'), page;
 		node.innerHTML = _.template(this.templates.calendarPage, pageDate);
-		return node.querySelector('.js-main-calendar-page');
+		page = node.querySelector('.js-main-calendar-page');
+		this.listenersToPage(page);
+		return page;
+	};
+
+	Slider.prototype.listenersToPage = function(page) {
+
+		var cells = page.querySelectorAll('.month-date');
+		cells = util.toArray(cells);
+		cells.forEach(function(cell){
+
+			Hammer(cell).on('tap', function() {
+
+				// set active date
+				if (util.hasClass(this, 'selected-date')) {
+					return;
+				}
+
+				var siblings = util.findAll('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .month-date');
+				siblings.forEach(function(node){
+					util.removeClass(node, 'selected-date');
+				});
+
+				util.addClass(this, 'selected-date');
+
+			});
+
+			Hammer(cell).on('doubletap', function() {
+				console.log('dt');
+			});
+
+			Hammer(cell).on('hold', function() {
+				console.log('h');
+			});
+
+		});
+
 	};
 
 	Slider.prototype.changeMonth = function(number) {

@@ -1,14 +1,15 @@
 $(function(){
 
+	window.APP = {};
+
 	lang.push(info.lang);
 
 	templateContainer.init();
 
-	new APP.MainMenuView();
+	APP.mainMenuView = new APP.MainMenuView();
 
-	new APP.MainView();
+	APP.mainView = new APP.MainView();
 
-	(new Calendar()).getMonthPage({year:2000, month: 1});
 
 
 });
