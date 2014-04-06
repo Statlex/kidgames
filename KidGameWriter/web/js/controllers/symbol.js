@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, console, alert, setTimeout, $, $$, statusBar, main, symbols, info, viewer, player */
+	/*global window, document, console, alert, setTimeout, $, $$, statusBar, main, symbols, info, viewer, player, lang */
 
 	var log = console.log.bind(console);
 
@@ -178,8 +178,15 @@
 
 		},
 		playSymbol: function() {
-			// play letter >>>>>>>>
-			var src = this.symbol.type + '/' + info.lang + '/' + this.symbol.symbol + '.mp3';
+			var src, index;
+			if (this.symbol.type === 'number') {
+				src = this.symbol.type + '/' + info.lang + '/' + this.symbol.symbol + '.mp3';
+			}
+			if (this.symbol.type === 'letter') {
+				// get index of letter
+				index = lang[info.lang].alphabet.indexOf(this.symbol.symbol.toLowerCase());
+				src = 'alphabet/' + info.lang + '/' + index + '.mp3';
+			}
 			player.play(src);
 		},
 		prepareCard: function() {
