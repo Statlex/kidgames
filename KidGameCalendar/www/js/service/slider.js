@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, info */
+	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar */
 
 	var log = console.log.bind(console);
 
@@ -25,7 +25,7 @@
 		this.changeMonth();
 
 		this.swipeTime = 100;
-		this.swipeTimeCSS = '0.1s';
+		this.swipeTimeCSS = this.swipeTime / 1000 + 's';
 
 	}
 
@@ -34,9 +34,12 @@
 			ev = info.evt;
 		this.wrapper.addEventListener(ev.down, function() {
 			that.innerContainer.style[info.preJS + 'Transition'] = 'none';
-			clearTimeout(this.timeoutId);
-			that.fixPageState();
+			clearTimeout(that.timeoutId);
+			//that.fixPageState();
 			that.isActive = true;
+			that.time = {
+				start: Date.now()
+			};
 		}, false);
 		this.wrapper.addEventListener(ev.move, function() {
 			if (!ev.isActive || !that.isActive) {
@@ -48,8 +51,28 @@
 		this.wrapper.addEventListener(ev.up, function() {
 			that.isActive = false;
 			var dX = ev.touchStart.x - ev.touchMove.x,
-				x = that.page.width;
-			if (Math.abs(dX) < that.page.width / 2 ) {
+				x = that.page.width,
+				speed;
+
+			that.time.end = Date.now();
+
+			speed = Math.abs(dX / ((that.time.end - that.time.start) / 1000));
+
+			if (speed > 800) {
+				if (dX > 0) {
+					x *= -2;
+					that.changeMonth(1);
+				} else {
+					x = 0;
+					that.changeMonth(-1);
+				}
+
+				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease-out';
+				that.innerContainer.style[info.preJS + 'Transform'] = 'translate(' + x + 'px, 0)';
+				return;
+			}
+
+			if (Math.abs(dX) < that.page.width / 2) {
 				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease-out';
 				that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + x + 'px, 0)';
 				return;
