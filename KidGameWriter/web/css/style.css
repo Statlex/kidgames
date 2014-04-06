@@ -23,25 +23,25 @@
 
 @-webkit-keyframes flash {
 	50% {
-		-webkit-transform: scale(4);
+		-webkit-transform: scale(3);
 	}
 }
 
 @keyframes flash {
 	50% {
-		transform: scale(4);
+		transform: scale(3);
 	}
 }
 
 @-webkit-keyframes bigFlash {
 	50% {
-		-webkit-transform: scale(8);
+		-webkit-transform: scale(6);
 	}
 }
 
 @keyframes bigFlash {
 	50% {
-		transform: scale(8);
+		transform: scale(6);
 	}
 }
 
