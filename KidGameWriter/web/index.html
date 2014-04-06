@@ -63,34 +63,44 @@
 	<div class="page symbol-page-wrapper">
 
 		{{ ([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]).forEach(function(symbol){ }}
-		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
-			<div class="symbol-preview">
-				{{= symbol }}
+			<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
+				<div class="symbol-preview">
+					{{= symbol }}
+				</div>
 			</div>
-		</div>
 		{{ }); }}
 
 		<div class="clear">&nbsp;</div>
 
 		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
-		{{ if (index) { }}
-		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
-			<div class="symbol-preview">
-				{{= symbol }}
-			</div>
-		</div>
-		{{ }; }}
+			{{ if (index) { }}
+				<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol }}");viewer.show("symbol-page");'>
+					<div class="symbol-preview">
+						{{= symbol }}
+					</div>
+				</div>
+			{{ }; }}
 		{{ }); }}
 
 		<div class="clear">&nbsp;</div>
 		{{ lang[info.lang].alphabet.forEach(function(symbol, index){ }}
-		{{ if (index) { }} <!-- detect Ь Ы Ъ by index -->
-		<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
-			<div class="symbol-preview">
-				{{= symbol.toUpperCase() }}
-			</div>
-		</div>
-		{{ }; }}
+			{{ if (index) { }}
+				{{ if (info.lang === 'ru') { }} <!-- detect Ь Ы Ъ by index -->
+					{{ if (([28, 29, 30]).indexOf(index) === -1 ) { }}
+						<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
+							<div class="symbol-preview">
+								{{= symbol.toUpperCase() }}
+							</div>
+						</div>
+					{{ }; }}
+				{{ } else { }}
+					<div class="symbol-thumbs" onclick='info.set("current-symbol", "{{= symbol.toUpperCase() }}");viewer.show("symbol-page");'>
+						<div class="symbol-preview">
+							{{= symbol.toUpperCase() }}
+						</div>
+					</div>
+				{{ }; }}
+			{{ }; }}
 		{{ }); }}
 		<div class="clear">&nbsp;</div>
 
