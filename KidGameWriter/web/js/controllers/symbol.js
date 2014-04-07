@@ -220,10 +220,13 @@
 				this.symbol.type = 'number';
 				this.symbol.symbol = info.get('current-symbol');
 			} else {
-				this.symbol = JSON.parse(JSON.stringify(symbols['letters_' + info.lang][info.get('current-symbol')]));
+				var symbolObj = (symbols['letters_' + info.lang][info.get('current-symbol')]) || (symbols['letters_' + info.lang][info.get('current-symbol').toUpperCase()]);
+				this.symbol = JSON.parse(JSON.stringify(symbolObj));
 				this.symbol.type = 'letter';
 				this.symbol.symbol = info.get('current-symbol');
 			}
+
+			console.log(this.symbol);
 
 			// get and set all coordinates and size
 			this.coordinates = {
@@ -234,7 +237,7 @@
 			};
 
 			var viewportNode = $('.symbol-page', main.wrapper),
-				svg;
+				svg, size;
 			this.viewport = {
 				node: viewportNode,
 				width: viewportNode.clientWidth, // add reduce by padding
@@ -259,16 +262,26 @@
 				svg.scale = this.viewport.height / svg.original.height;
 			}
 
+			svg.scale *= (this.symbol.symbol.toLowerCase() === this.symbol.symbol) ? 0.75 : 1;
+
 			svg.width = svg.original.width * svg.scale;
 			svg.height = svg.original.height * svg.scale;
 
 			svg.offset.left = (this.viewport.width - svg.width) / 2;
 			svg.offset.top = (this.viewport.height - svg.height) / 2;
 
-			Point.prototype.size = Point.prototype.defaultSize * svg.scale;
+			size = this.getSmallestScreenSide() * 0.05;
+			size = (size < 10) ? 10 : size;
+			size = (size > 40) ? 40 : size;
+			Point.prototype.size = size;
 
 			this.svg = svg;
 
+		},
+		getSmallestScreenSide: function() {
+			var w = info.screen.getWidth(),
+				h = info.screen.getHeight();
+			return (w < h) ? w : h;
 		},
 		createGroups: function () {
 
