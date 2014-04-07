@@ -2,10 +2,12 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone */
 
-	win.APP = win.APP || {};
 
-	win.APP.MainView = Backbone.View.extend({
+	win.GC = win.GC || {};
+
+	win.GC.MainView = Backbone.View.extend({
 		el: '.js-main-data-wrapper',
 		events: {
 		},

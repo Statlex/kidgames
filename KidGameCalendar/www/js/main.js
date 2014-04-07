@@ -1,15 +1,35 @@
 $(function(){
 
-	window.APP = {};
+	"use strict";
+	/*global window, document, console, alert */
+	/*global GC, lang, templateContainer, info, APP, $ */
 
 	lang.push(info.lang);
 
+	var Router = Backbone.Router.extend({
+		routes: {
+			'': 'home',
+			'date-info': 'dateInfo'
+		},
+		home: function() {
+			//APP.dateInfo.hide();
+		},
+		dateInfo: function() {
+			APP.dateInfo.show();
+		}
+	});
+
+	window.APP = window.APP || {};
+
 	templateContainer.init();
 
-	APP.mainMenuView = new APP.MainMenuView();
+	APP.router = new Router();
 
-	APP.mainView = new APP.MainView();
+	APP.mainMenuView = new GC.MainMenuView();
 
 
+	APP.dateInfo = new GC.DateInfoView();
+
+	Backbone.history.start();
 
 });

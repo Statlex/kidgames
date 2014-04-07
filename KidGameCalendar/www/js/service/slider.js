@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar, setTimeout, util, Hammer */
+	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar, setTimeout, util, Hammer, APP */
 
 	var log = console.log.bind(console);
 
@@ -162,7 +162,7 @@
 			});
 
 			Hammer(cell).on('doubletap', function() {
-				console.log('dt');
+				APP.router.navigate('date-info', {trigger: true});
 			});
 
 			Hammer(cell).on('hold', function() {

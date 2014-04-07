@@ -2,10 +2,11 @@
 
 	"use strict";
 	/*global console, alert */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone */
 
-	win.APP = win.APP || {};
+	win.GC = win.GC || {};
 
-	win.APP.MainMenuView = Backbone.View.extend({
+	win.GC.MainMenuView = Backbone.View.extend({
 		el: '.js-main-menu-wrapper',
 		events: {
 			'click .js-calendar': 'showCalendar',
@@ -18,7 +19,8 @@
 			this.$el.html(_.template(template, {}));
 		},
 		showCalendar: function() {
-			console.log(1);
+			console.log(this.$el[0]);
+			APP.mainView = new GC.MainView();
 		},
 		showNotes: function() {
 			console.log(2);
