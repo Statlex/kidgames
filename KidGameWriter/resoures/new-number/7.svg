@@ -3,5 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
-<text transform="matrix(1 0 0 1 66.375 536.3945)" font-family="'Raavi'" font-size="720">0</text>
+<text transform="matrix(1 0 0 1 66.375 536.3945)" font-family="'Raavi'" font-size="720">7</text>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M149.5,98.5h253c0,0,0,0-253,425"/>
 </svg>

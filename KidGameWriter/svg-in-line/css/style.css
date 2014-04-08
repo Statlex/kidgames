@@ -21,8 +21,7 @@ body:after {
 .wrapper,
 .images-wrapper {
 	box-sizing: border-box;
-	float: left;
-	width: 50%;
+	width: 100%;
 }
 
 .images-wrapper {

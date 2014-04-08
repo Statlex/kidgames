@@ -216,17 +216,17 @@
 
 			this.symbol = info.get('current-symbol');
 			if ((/\d/).test(this.symbol)) {
-				this.symbol = JSON.parse(JSON.stringify(symbols.number[this.symbol])); // Object.create - works not properly
-				this.symbol.type = 'number';
-				this.symbol.symbol = info.get('current-symbol');
+				this.symbol = {
+					svg: symbols.number[this.symbol].toString(),
+					symbol: this.symbol,
+					type: 'number'
+				};
 			} else {
 				var symbolObj = (symbols['letters_' + info.lang][info.get('current-symbol')]) || (symbols['letters_' + info.lang][info.get('current-symbol').toUpperCase()]);
 				this.symbol = JSON.parse(JSON.stringify(symbolObj));
 				this.symbol.type = 'letter';
 				this.symbol.symbol = info.get('current-symbol');
 			}
-
-			console.log(this.symbol);
 
 			// get and set all coordinates and size
 			this.coordinates = {
@@ -247,22 +247,21 @@
 
 			svg = {
 				original: {
-					width: this.symbol.width,
-					height: this.symbol.height
+					width: 600,
+					height: 600
 				},
 				offset: {
 					top: 0,
 					left: 0
-				}
+				},
+				svgAspectRatio: 1
 			};
-			svg.svgAspectRatio = svg.original.width / svg.original.height;
+
 			if (svg.svgAspectRatio > this.viewport.aspectRatio) {
 				svg.scale = this.viewport.width / svg.original.width;
 			} else {
 				svg.scale = this.viewport.height / svg.original.height;
 			}
-
-			svg.scale *= (this.symbol.symbol.toLowerCase() === this.symbol.symbol) ? 0.75 : 1;
 
 			svg.width = svg.original.width * svg.scale;
 			svg.height = svg.original.height * svg.scale;
@@ -292,6 +291,9 @@
 				});
 			}
 
+			// create points
+			this.createPointsFromSVG();
+
 			// create groups
 			this.groups = [];
 			this.symbol.points.forEach(function (g, index) {
@@ -303,6 +305,24 @@
 			this.groups[0].isActive = true;
 			this.activeGroup = this.groups[0];
 
+		},
+		createPointsFromSVG: function() {
+			this.symbol.points = [];
+			var node = doc.createElement('div'),
+				polygons;
+			node.innerHTML = this.symbol.svg;
+			polygons = $$('polyline, path, line', node);
+			polygons.forEach(function(poly){
+				var step = 30,
+					length = poly.getTotalLength(),
+					distance = 0,
+					points = [];
+				while (distance < length) {
+					points.push(poly.getPointAtLength(distance));
+					distance += step;
+				}
+				this.symbol.points.push(points);
+			}, this);
 		},
 		createPointsNode: function () {
 			this.groups.forEach(function (group) {
@@ -390,7 +410,7 @@
 						that.activeGroup = nextActiveGroup;
 						that.activeGroup.isActive = true;
 					} else {
-						setTimeout(that.done.bind(that), 500);
+						setTimeout(that.done.bind(that), 1500);
 					}
 
 				}
