@@ -4,5 +4,5 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
 <text transform="matrix(1 0 0 1 147.375 536.3945)" font-family="'Raavi'" font-size="720">1</text>
-<path fill="none" d="M226.094,173.597l94.573-93.263c0,0-0.042,41.687-0.042,455.667"/>
+<polyline fill="none" points="243.5,186.5 351.5,78.5 351.5,537.5 "/>
 </svg>

@@ -314,7 +314,7 @@
 			node.innerHTML = this.symbol.svg;
 			polygons = $$('polyline, path, line', node);
 			polygons.forEach(function(poly){
-				var step = 30,
+				var step = 60,
 					length = poly.getTotalLength(),
 					distance = 0,
 					points = [];
