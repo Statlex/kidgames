@@ -5,7 +5,7 @@
 
 	win.symbols = win.symbols || {};
 
-	win.symbols.letters_ru = {
+	win.symbols.letters_en = {
 
 	};
 

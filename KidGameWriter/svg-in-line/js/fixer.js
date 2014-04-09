@@ -1,7 +1,27 @@
-(function () {
+(function (win, doc) {
 
 	"use strict";
 	/*global window, document, console, alert, setTimeout, FileReader, event */
+
+	function polygonToPath(polygon) {
+		var points = polygon.getAttribute('points').split(/\s+/),
+			pathPoints = '',
+			path = doc.createElementNS('http://www.w3.org/2000/svg','path');
+
+		points.forEach(function(point, i){
+			pathPoints += point.trim() ? ((i && "L") || "M") + point : '';
+		});
+		path.setAttribute('d', pathPoints);
+		return path;
+	}
+
+
+	function lineToPath(line) {
+		var path = doc.createElementNS('http://www.w3.org/2000/svg','path'),
+			l = line;
+		path.setAttribute('d', 'M' + l.getAttribute('x1') + ',' + l.getAttribute('y1') + 'L' + l.getAttribute('x2') + ',' + l.getAttribute('y2'));
+		return path;
+	}
 
 	var inLiner = {
 		filesDone: 0,
@@ -48,20 +68,42 @@
 				div = document.createElement('div'),
 				svg,
 				string,
-				text;
+				polygons,
+				path,
+				removedAttr = ['stroke', 'fill', 'stroke-miterlimit'];
+			svgLine = svgLine.replace(/<g\s?[\s\S]*?>|<\/g>|<text\s?[\s\S]*?text>|\n|\s+/gi, ' ').replace(/>\s+</gi, '><');
 			div.innerHTML = svgLine;
 			svg = div.getElementsByTagName('svg')[0];
-			text = svg.querySelector('text');
-			if (text) {
-				text.parentNode.removeChild(text);
-			}
+			polygons = svg.querySelectorAll('*');
+			polygons = Array.prototype.slice.call(polygons);
+			polygons.forEach(function(poly){
+				switch (poly.tagName) {
+					case 'polyline' :
+					case 'polygon' :
+						path = polygonToPath(poly);
+						svg.replaceChild(path, poly);
+						break;
+					case 'line' :
+						path = lineToPath(poly);
+						svg.replaceChild(path, poly);
+						break;
+					case 'path' :
+						console.log('path :)');
+						break;
+					default :
+						alert(file.name + ' contains wrong element.');
+				}
+			});
+
+			polygons = svg.querySelectorAll('*');
+			polygons = Array.prototype.slice.call(polygons);
+			polygons.forEach(function(poly){
+				removedAttr.forEach(function(attr) {
+					poly.removeAttribute(attr);
+				});
+			});
 
 			string = '<svg>' + svg.innerHTML + '<\/svg>';
-			string = string.replace(/\s+/gi, ' ').replace(/>\s+</gi, '><');
-
-			if (svg.querySelectorAll('*').length !== svg.querySelectorAll('path').length || svg.querySelectorAll('path').length === 0) {
-				alert(file.name + ' is wrong!!!');
-			}
 
 			item = file.name.replace('.svg', '').split('-').pop();
 			if (file.name.indexOf('big') !== -1) {
@@ -77,4 +119,5 @@
 
 	window.addEventListener('load', inLiner, false);
 
-}());
+}(window, document));
+

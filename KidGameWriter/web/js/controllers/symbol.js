@@ -222,10 +222,11 @@
 					type: 'number'
 				};
 			} else {
-				var symbolObj = (symbols['letters_' + info.lang][info.get('current-symbol')]) || (symbols['letters_' + info.lang][info.get('current-symbol').toUpperCase()]);
-				this.symbol = JSON.parse(JSON.stringify(symbolObj));
-				this.symbol.type = 'letter';
-				this.symbol.symbol = info.get('current-symbol');
+				this.symbol = {
+					svg: symbols['letters_' + info.lang][this.symbol].toString(),
+					symbol: this.symbol,
+					type: 'letter'
+				};
 			}
 
 			// get and set all coordinates and size
