@@ -155,6 +155,8 @@
 	};
 
 	var symbol = {
+		pointSize: 20,
+		pointStep: 20,
 		animationTime: 200,
 		handleEvent: function () {
 
@@ -270,10 +272,7 @@
 			svg.offset.left = (this.viewport.width - svg.width) / 2;
 			svg.offset.top = (this.viewport.height - svg.height) / 2;
 
-			size = this.getSmallestScreenSide() * 0.05;
-			size = (size < 10) ? 10 : size;
-			size = (size > 40) ? 40 : size;
-			Point.prototype.size = size;
+			Point.prototype.size = this.pointSize;
 
 			this.svg = svg;
 
@@ -314,7 +313,7 @@
 			node.innerHTML = this.symbol.svg;
 			polygons = $$('polyline, path, line', node);
 			polygons.forEach(function(poly){
-				var step = 60,
+				var step = this.pointStep,
 					length = poly.getTotalLength(),
 					distance = 0,
 					points = [],

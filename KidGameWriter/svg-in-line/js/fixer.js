@@ -71,7 +71,7 @@
 				polygons,
 				path,
 				removedAttr = ['stroke', 'fill', 'stroke-miterlimit'];
-			svgLine = svgLine.replace(/<g\s?[\s\S]*?>|<\/g>|<text\s?[\s\S]*?text>|\n|\s+/gi, ' ').replace(/>\s+</gi, '><');
+			svgLine = svgLine.replace(/<g\s?[\s\S]*?>|<\/g>|<text\s?[\s\S]*?text>|\n|\s+|<image[\s\S]*?<\/image>/gi, ' ').replace(/>\s+</gi, '><');
 			div.innerHTML = svgLine;
 			svg = div.getElementsByTagName('svg')[0];
 			polygons = svg.querySelectorAll('*');
