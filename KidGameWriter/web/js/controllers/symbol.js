@@ -317,10 +317,15 @@
 				var step = 60,
 					length = poly.getTotalLength(),
 					distance = 0,
-					points = [];
+					points = [],
+					xy, x, y;
 				length += (length > step) ? 0 : step;
 				while (distance < length) {
-					points.push(poly.getPointAtLength(distance));
+					xy = poly.getPointAtLength(distance);
+					points.push({
+						x: parseInt(xy.x, 10),
+						y: parseInt(xy.y, 10)
+					});
 					distance += step;
 				}
 				this.symbol.points.push(points);
