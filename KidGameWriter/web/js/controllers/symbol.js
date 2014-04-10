@@ -318,7 +318,7 @@
 					length = poly.getTotalLength(),
 					distance = 0,
 					points = [],
-					xy, x, y;
+					xy;
 				length += (length > step) ? 0 : step;
 				while (distance < length) {
 					xy = poly.getPointAtLength(distance);
