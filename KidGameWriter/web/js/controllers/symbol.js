@@ -196,22 +196,49 @@
 			var cardNode = $('.symbol-card', main.wrapper),
 				cardWrapper = $('.symbol-card-wrapper', main.wrapper),
 				height = main.wrapper.clientHeight - 60,
-				style = cardNode.style;
+				style = cardNode.style,
+				that = this;
 
-			style.lineHeight = height * 0.95 + 'px';
-			style.fontSize = height * 0.85 + 'px';
+			style.lineHeight = height * 0.95 / 4 + 'px';
+			style.fontSize = height * 0.95 / 4 + 'px';
 
 			cardWrapper.addEventListener(info.evt.up, function() {
 				if (!info.evt.isClick()) {
 					return;
 				}
-				viewer.back();
+				that.startWithRandomSymbol();
 			}, false);
 
 			this.card = {
 				node: cardNode,
 				cardWrapper: cardWrapper
 			};
+
+		},
+		startWithRandomSymbol: function() {
+			// create symbols arrays
+			var letters = [],
+				letter;
+			letters = letters.concat(lang[info.lang].alphabet, lang[info.lang].alphabet, '0','1','2','3','4','5','6','7','8','9');
+			letters.shift();
+
+			// get random letter
+			letters = $.shuffle(letters);
+			letter = letters[5];
+
+			// create upper case
+			if (Math.random() > 0.6) {
+				letter = letter.toUpperCase();
+			}
+
+			// set symbol to info
+			info.set('current-symbol', letter);
+
+			// clear all setTimeouts
+			main.clearIntervals();
+
+			// refresh page with new symbol
+			player.playQuestionAgain();
 
 		},
 		getData: function () {
@@ -240,7 +267,7 @@
 			};
 
 			var viewportNode = $('.symbol-page', main.wrapper),
-				svg, size;
+				svg;
 			this.viewport = {
 				node: viewportNode,
 				width: viewportNode.clientWidth, // add reduce by padding
@@ -439,6 +466,39 @@
 			if (!$('.symbol-page', main.wrapper)) {
 				return;
 			}
+
+			var svg, paths,
+				attributs = {
+					'fill': 'none',
+					'stroke': '#000000',
+					'stroke-width': '20',
+					'stroke-linecap': 'round',
+					'stroke-linejoin': 'round',
+					'stroke-miterlimit': '10'
+				},
+				tempNode = doc.createElement('div');
+
+			tempNode.innerHTML = this.symbol.svg;
+			svg = tempNode.querySelector('svg');
+			svg.setAttribute('width', this.svg.original.width);
+			svg.setAttribute('height', this.svg.original.height);
+			svg.setAttribute('viewBox', '0 0 600 600');
+
+			svg.setAttribute('class', 'letter-on-card');
+
+			paths = $$('path', svg);
+
+			paths.forEach(function(path){
+				var key;
+				for (key in attributs) {
+					if (attributs.hasOwnProperty(key)) {
+						path.setAttribute(key, attributs[key]);
+					}
+				}
+			});
+
+			this.card.cardWrapper.querySelector('.symbol-card').appendChild(svg);
+
 			this.playSymbol();
 			$.addClass(this.card.cardWrapper, 'show');
 		},
