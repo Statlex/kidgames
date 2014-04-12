@@ -13,7 +13,7 @@
 		en: en
 	};
 
-	var state = ['en', 'small'];
+	var state = ['ru', 'small'];
 
 	input.addEventListener('change', createNewFiles, false);
 
