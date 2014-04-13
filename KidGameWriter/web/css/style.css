@@ -243,3 +243,23 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+@font-face {
+	font-family: 'Decor';
+	src: url('Decor.ttf');
+}
+
+@font-face {
+	font-family: 'Dancing Script';
+	src: url('Dancing%20Script.ttf');
+}
+
+.symbol-preview.symbol-preview-en {
+	font-family: 'Dancing Script', cursive;
+}
+
+.symbol-preview.symbol-preview-ru {
+	font-family: 'Decor', cursive;
+}
+
+

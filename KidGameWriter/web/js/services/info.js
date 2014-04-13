@@ -10,7 +10,7 @@
 
 	info = {
 		lang: 'en', // current language
-		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
+		availableLangs: ['en', 'ru'],
 		saveItem: 'save-item-kid-game-logic-re-think',
 		isPhone: false,
 		isTouch: isTouch,

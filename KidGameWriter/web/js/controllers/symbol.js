@@ -155,8 +155,8 @@
 	};
 
 	var symbol = {
-		pointSize: 20,
-		pointStep: 20,
+		pointSize: 10,
+		pointStep: 16,
 		animationTime: 200,
 		handleEvent: function () {
 
