@@ -37,7 +37,6 @@
 	<script src="js/lib/jquery-2.js" type="text/javascript"></script>
 	<script src="js/lib/backbone.js" type="text/javascript"></script>
 	<script src="js/lib/hammer.js" type="text/javascript"></script>
-
 	<!-- lib - -->
 
 	<!-- views + -->
@@ -62,11 +61,15 @@
 
 	<div class="js-main-data-wrapper">
 
-
+		<div class="js-calendar-wrapper hidden"></div>
+		<div class="js-notes-wrapper hidden">notes</div>
+		<div class="js-time-wrapper hidden">time</div>
 
 	</div>
 
-	<div class="js-date-info-wrapper"></div>
+	<div class="js-date-info-wrapper hidden">
+
+	</div>
 
 </div>
 
@@ -76,12 +79,6 @@
 	<div class="js-notes">notes</div>
 	<div class="js-time">time</div>
 	<div class="js-options">options</div>
-
-</script>
-
-<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar">
-
-	<h1>main calendar</h1>
 
 </script>
 
@@ -103,7 +100,6 @@
 
 </script>
 
-
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-page">
 
 	<div class="js-main-calendar-page slider-page">
@@ -120,7 +116,7 @@
 		<div class="month-date"><%= date.date %></div>
 		<% }); %>
 		<% cur.dates.forEach(function(date) { %>
-			<div class="month-date active"><%= date.date %></div>
+		<div class="month-date active"><%= date.date %></div>
 		<% }); %>
 		<% next.dates.forEach(function(date) { %>
 		<div class="month-date"><%= date.date %></div>
@@ -130,29 +126,37 @@
 
 </script>
 
-
-
-<script type="text/x-template" class="jsTemplate" data-template-name="main-notes">
-
-	<h1>main notes</h1>
-
-</script>
-
-<script type="text/x-template" class="jsTemplate" data-template-name="main-time">
-
-	<h1>main time</h1>
-
-</script>
-
 <script type="text/x-template" class="jsTemplate" data-template-name="date-info">
 
-	<div><span class="js-hide-view">hide</span></div>
+	<div>
+		<span class="js-hide-view">hide</span>
+		<span>date</span>
+		<span>apply</span>
+	</div>
 
-	<h1>date info</h1>
+	<div>
+		<h2>pencil</h2>
+		<h2>health</h2>
+		<h2>mood</h2>
+	</div>
+
+	<div class="js-date-details-wrapper">
+
+
+			<!-- details -> see date-info-details -->
+
+
+	</div>
 
 </script>
 
+<script type="text/x-template" class="jsTemplate" data-template-name="date-info-details">
 
+	<div class="js-pencil-details ">pencil</div>
+	<div class="js-health-details hidden">health</div>
+	<div class="js-mood-details hidden">mood</div>
+
+</script>
 
 </body>
 </html>

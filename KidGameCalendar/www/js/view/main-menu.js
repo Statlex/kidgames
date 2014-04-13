@@ -1,8 +1,8 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone */
+	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
 
 	win.GC = win.GC || {};
 
@@ -19,14 +19,13 @@
 			this.$el.html(_.template(template, {}));
 		},
 		showCalendar: function() {
-			console.log(this.$el[0]);
-			APP.mainView = new GC.MainView();
+			APP.mainView.show('calendar');
 		},
 		showNotes: function() {
-			console.log(2);
+			APP.mainView.show('notes');
 		},
 		showTime: function() {
-			console.log(3);
+			APP.mainView.show('time');
 		},
 		showOptions: function() {
 			console.log(4);

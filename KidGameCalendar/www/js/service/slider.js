@@ -1,7 +1,8 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, info, clearTimeout, templateContainer, _, Calendar, setTimeout, util, Hammer, APP */
+	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
 
 	var log = console.log.bind(console);
 
@@ -13,7 +14,7 @@
 		this.dateContainer = this.wrapper.parentNode.querySelector('.js-slider-date');
 		this.trigger = undefined; // update calendar nodes
 		this.page = {
-			width: wrapper.clientWidth
+			width: info.screen.getWidth()
 		};
 		this.date = date;
 
@@ -162,6 +163,7 @@
 			});
 
 			Hammer(cell).on('doubletap', function() {
+				console.log(this);
 				APP.router.navigate('date-info', {trigger: true});
 			});
 

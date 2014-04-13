@@ -2,8 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone */
-
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
 
 	win.GC = win.GC || {};
 
@@ -11,39 +10,45 @@
 		el: '.js-main-data-wrapper',
 		events: {
 		},
+		selectors: {
+			calendar: '.js-calendar-wrapper',
+			notes: '.js-notes-wrapper',
+			time: '.js-time-wrapper'
+		},
 		initialize: function() {
 			this.templates = {
 				calendarWrapper: templateContainer.templates['main-calendar-wrapper']
 			};
 
-			this.showCalendar();
+			// create calendar
+			this.createCalendar();
+
 		},
-		showCalendar: function() {
+		createCalendar: function() {
 
-			this.$el.html(_.template(this.templates.calendarWrapper, {}));
+			this.$el.find(this.selectors.calendar).html(_.template(this.templates.calendarWrapper, {}));
 
-			var slider = new Slider(util.find('.js-main-calendar-wrapper'), {year: 2014, month: 3});
-
-			var calendar = new Calendar();
+			var date = new Date(),
+				slider = new Slider(this.$el.find('.js-main-calendar-wrapper')[0], {year: date.getFullYear(), month: date.getMonth() + 1});
 
 			slider.setStartPosition();
 			slider.init();
 
 			slider.setCreatePages();
 
-/*
-			var page0 = calendar.getMonthPage({year: 2014, month: 3, dMonth: -1});
-			var page1 = calendar.getMonthPage({year: 2014, month: 3, dMonth: 0});
-			var page2 = calendar.getMonthPage({year: 2014, month: 3, dMonth: 1});
+		},
+		show: function(item) {
+			var key;
+			for (key in this.selectors) {
+				if (this.selectors.hasOwnProperty(key)) {
+					if (item === key) {
+						this.$el.find(this.selectors[key]).show();
+					} else {
+						this.$el.find(this.selectors[key]).hide();
+					}
+				}
+			}
 
-			page0 = this.createCalendarPage(page0);
-			page1 = this.createCalendarPage(page1);
-			page2 = this.createCalendarPage(page2);
-
-			slider.addRightPage(page0);
-			slider.addRightPage(page1);
-			slider.addRightPage(page2);
-*/
 
 
 		}
