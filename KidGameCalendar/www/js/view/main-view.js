@@ -29,7 +29,7 @@
 			this.$el.find(this.selectors.calendar).html(_.template(this.templates.calendarWrapper, {}));
 
 			var date = new Date(),
-				slider = new Slider(this.$el.find('.js-main-calendar-wrapper')[0], {year: date.getFullYear(), month: date.getMonth() + 1});
+				slider = new Slider(this.$el.find('.js-main-calendar-wrapper')[0], {year: date.getFullYear(), month: date.getMonth()});
 
 			slider.setStartPosition();
 			slider.init();

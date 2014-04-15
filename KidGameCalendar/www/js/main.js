@@ -13,15 +13,16 @@ $(function(){
 	var Router = Backbone.Router.extend({
 		routes: {
 			'': 'home',
-			'date-info': 'dateInfo'
+			'date-info/:id': 'dateInfo'
 		},
 		home: function() {
 			console.log('router:home');
 			APP.dateInfo.hide();
 		},
-		dateInfo: function() {
+		dateInfo: function(id) {
+			console.log(id);
 			console.log('router:date info');
-			APP.dateInfo.show();
+			APP.dateInfo.show(id);
 		}
 	});
 

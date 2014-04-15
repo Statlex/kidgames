@@ -96,7 +96,7 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-date">
 
-	<%= date.month %> - <%= date.year %>
+	<%= lang.month[date.month] %> - <%= date.year %>
 
 </script>
 
@@ -106,20 +106,20 @@
 
 		<div>
 			<% weekDays.forEach(function(day) { %>
-			<div class="week-day"><%= day %></div>
+				<div class="week-day"><%= lang.day[day] %></div>
 			<% }); %>
 		</div>
 
-		<h1> <<-- <%= month %> / <%= year %> -->> </h1>
+		<h1><<-- <%= lang.month[month] %> / <%= year %> -->></h1>
 
 		<% pre.dates.forEach(function(date) { %>
-		<div class="month-date"><%= date.date %></div>
+		<div class="month-date" data-date="<%= date.date %>-<%= date.month %>-<%= date.year %>"><%= date.date %></div>
 		<% }); %>
 		<% cur.dates.forEach(function(date) { %>
-		<div class="month-date active"><%= date.date %></div>
+		<div class="month-date day-of-current-month" data-date="<%= date.date %>-<%= date.month %>-<%= date.year %>"><%= date.date %></div>
 		<% }); %>
 		<% next.dates.forEach(function(date) { %>
-		<div class="month-date"><%= date.date %></div>
+		<div class="month-date" data-date="<%= date.date %>-<%= date.month %>-<%= date.year %>"><%= date.date %></div>
 		<% }); %>
 
 	</div>
@@ -130,14 +130,14 @@
 
 	<div>
 		<span class="js-hide-view">hide</span>
-		<span>date</span>
+		<span class="js-date-info-date">date</span>
 		<span>apply</span>
 	</div>
 
 	<div>
-		<h2>pencil</h2>
-		<h2>health</h2>
-		<h2>mood</h2>
+		<h2 class="js-pencil-button js-tab active-tab" data-tab-index="0">pencil</h2>
+		<h2 class="js-health-button js-tab" data-tab-index="1">health</h2>
+		<h2 class="js-mood-button js-tab" data-tab-index="2">mood</h2>
 	</div>
 
 	<div class="js-date-details-wrapper">
@@ -152,11 +152,17 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="date-info-details">
 
-	<div class="js-pencil-details ">pencil</div>
-	<div class="js-health-details hidden">health</div>
-	<div class="js-mood-details hidden">mood</div>
+	<div class="js-pencil-details js-tab-page" data-page-index="0">pencil</div>
+	<div class="js-health-details hidden js-tab-page" data-page-index="1">health</div>
+	<div class="js-mood-details hidden js-tab-page" data-page-index="2">mood</div>
 
 </script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-info-day-header">
+	<div><%= date %> <%= lang.month[month] %> <%= year %></div>
+</script>
+
+
 
 </body>
 </html>

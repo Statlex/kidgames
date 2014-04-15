@@ -164,7 +164,7 @@
 
 			Hammer(cell).on('doubletap', function() {
 				console.log(this);
-				APP.router.navigate('date-info', {trigger: true});
+				APP.router.navigate('date-info/'+ this.getAttribute('data-date'), {trigger: true});
 			});
 
 			Hammer(cell).on('hold', function() {
