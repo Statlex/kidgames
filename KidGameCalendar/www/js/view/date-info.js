@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, event, dataBase */
 
 	win.GC = win.GC || {};
 
@@ -11,7 +11,8 @@
 		el: '.js-date-info-wrapper',
 		events: {
 			'click .js-hide-view': 'hide',
-			'click .js-tab': 'showDetails'
+			'click .js-tab': 'showDetails',
+			'click .js-save-date-info': 'saveDateInfo'
 		},
 		selectors: {
 			details: '.js-date-details-wrapper'
@@ -25,7 +26,18 @@
 			this.$el.html(_.template(this.templates.main, {}));
 		},
 		show: function(id) {
-			var date = id.split('-');
+
+			this.date = id;
+
+			this.restoreDate();
+
+			var date = id.split('-'),
+				tabs;
+
+			// set default state for tabs
+			tabs = this.$el.find('.js-tab');
+			tabs.removeClass('active-tab');
+			tabs.eq(0).addClass('active-tab');
 
 			date = date.map(function(value) {
 				return parseInt(value, 10);
@@ -60,8 +72,23 @@
 			$this.addClass('active-tab');
 			pages.eq(index).show();
 
+		},
+		saveDateInfo: function() {
+			var json = util.nodeToJson(this.$el[0]);
+			json = JSON.stringify(json);
+			dataBase.saveDateInfo(this.date, JSON.stringify(json));
+		},
+		restoreDate: function(date) {
+			var that = this;
+			date = date || this.date;
 
-
+			date = dataBase.getDateInfo(date, function(date){
+				date = JSON.parse(date);
+				if (date.toString() === date) {
+					date = JSON.parse(date);
+				}
+				util.restoreNode(that.$el[0], date);
+			});
 
 
 
@@ -69,6 +96,5 @@
 		}
 
 	});
-
 
 }(window, document, document.documentElement));

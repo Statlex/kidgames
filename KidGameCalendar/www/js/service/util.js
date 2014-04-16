@@ -1,7 +1,7 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, document, Array, RegExp */
+	/*global window, document, Array, RegExp, console */
 
 	var bro = {
 		find: function(selector, context) {
@@ -62,6 +62,85 @@
 
 			var rgb = hex.match(/\w{2}/gi);
 			return parseInt(rgb[0], 16) + ',' + parseInt(rgb[1], 16) + ',' + parseInt(rgb[2], 16);
+		},
+		nodeToJson: function(node) {
+
+			var nodes = this.findAll('[data-handle]', node),
+				data = {};
+
+			nodes.forEach(function(node){
+				var fieldName = node.getAttribute('data-handle'),
+					nodeType = node.getAttribute('type') || 'textarea',
+					value;
+
+				switch (nodeType) {
+					case 'number' :
+						value = parseFloat(node.value);
+						if (value) {
+							data[fieldName] = value;
+						}
+						break;
+					case 'checkbox' :
+						if (node.checked) {
+							data[fieldName] = true;
+						}
+						break;
+					case 'text' :
+						value = node.value.trim();
+						if (value) {
+							data[fieldName] = value;
+						}
+						break;
+					case 'textarea' :
+						value = node.value.trim();
+						if (value) {
+							data[fieldName] = value;
+						}
+						break;
+					default :
+						console.warn('---- incorrect value type -----');
+						console.warn(node);
+						console.warn('---- incorrect value type -----');
+				}
+
+			});
+
+			return data;
+
+		},
+		restoreNode: function(node, data) {
+			var nodes = this.findAll('[data-handle]', node);
+
+			nodes.forEach(function(node){
+				var fieldName = node.getAttribute('data-handle'),
+					nodeType = node.getAttribute('type') || 'textarea',
+					value = data[fieldName];
+
+				if (!value) {
+					return;
+				}
+
+				switch (nodeType) {
+					case 'number' :
+						node.value = parseFloat(value);
+						break;
+					case 'checkbox' :
+						node.checked = true;
+						break;
+					case 'text' :
+						node.value = value;
+						break;
+					case 'textarea' :
+						node.value = value;
+						break;
+					default :
+						console.warn('---- incorrect value type -----');
+						console.warn(node);
+						console.warn('---- incorrect value type -----');
+				}
+
+			});
+
 		}
 	};
 
