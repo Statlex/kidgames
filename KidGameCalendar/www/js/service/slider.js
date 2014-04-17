@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, circle, clearTimeout */
 
 	var log = console.log.bind(console);
 
@@ -163,12 +163,13 @@
 			});
 
 			Hammer(cell).on('doubletap', function() {
-				console.log(this);
 				APP.router.navigate('date-info/'+ this.getAttribute('data-date'), {trigger: true});
 			});
 
 			Hammer(cell).on('hold', function() {
-				console.log('h');
+
+				circleMaster.scanDay(this);
+
 			});
 
 		});

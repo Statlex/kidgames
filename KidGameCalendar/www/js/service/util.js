@@ -141,6 +141,16 @@
 
 			});
 
+		},
+		strToDate: function(str) {
+			str = str.trim();
+			var date = str.split('-');
+			return {
+				str: str,
+				date: parseInt(date[0], 10),
+				month: parseInt(date[1], 10),
+				year: parseInt(date[2], 10)
+			};
 		}
 	};
 

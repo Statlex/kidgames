@@ -150,7 +150,12 @@
 				that.evt.isActive = false;
 			}, false);
 
-		}
+		},
+
+		// calendar part
+		circleLength: 28
+
+
 	};
 
 	win.addEventListener('load', info.getIsPhone.bind(info), false);

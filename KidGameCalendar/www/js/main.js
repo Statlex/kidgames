@@ -13,16 +13,21 @@ $(function(){
 	var Router = Backbone.Router.extend({
 		routes: {
 			'': 'home',
-			'date-info/:id': 'dateInfo'
+			'date-info/:id': 'dateInfo',
+			'confirm': 'confirm'
 		},
 		home: function() {
 			console.log('router:home');
 			APP.dateInfo.hide();
+			APP.confirm.hide();
 		},
 		dateInfo: function(id) {
 			console.log(id);
 			console.log('router:date info');
 			APP.dateInfo.show(id);
+		},
+		confirm: function() {
+			//APP.confirm.show();
 		}
 	});
 
@@ -33,6 +38,8 @@ $(function(){
 	APP.mainMenuView = new GC.MainMenuView();
 
 	APP.dateInfo = new GC.DateInfoView();
+
+	APP.confirm = new GC.ConfirmView();
 
 	// show calendar on app start
 	APP.mainView.show('calendar');
