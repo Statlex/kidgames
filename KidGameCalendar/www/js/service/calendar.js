@@ -174,6 +174,13 @@
 			}
 			removedDays = days.splice(0, this.weekStart);
 			return days.concat(removedDays);
+		},
+		getDifferent: function(date1, date2) {
+
+			date1 = (new Date(date1.year, date1.month, date1.date)).getTime();
+			date2 = (new Date(date2.year, date2.month, date2.date)).getTime();
+			return (date1 - date2) / 86400; // 60 * 60 * 24
+
 		}
 
 	};

@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global console, alert, window, util */
+	/*global console, alert, window, util, APP, lang, localStorage, info, Calendar */
 
 	var circleMaster;
 
@@ -11,7 +11,11 @@
 	}
 
 	Circle.prototype.save = function() {
-		localStorage.setItem(this.startCircle.str, JSON.stringify(this));
+
+		var circles = info.get('circles') || [];
+		circles.push(this);
+		info.set('circles', circles, true);
+
 	};
 
 	circleMaster = {
@@ -49,11 +53,18 @@
 				APP.router.navigate('confirm');
 			}
 
-			console.log(node);
-
 		},
 		getCircleByDate: function(date) {
-			// get circles by date
+
+			var circles = info.get('circles') || [],
+				calendar = new Calendar();
+
+			circles.forEach(function(circle){
+
+				var different = calendar.getDifferent(date, circle.startCircle),
+					currentCircle; // if different < 0 and |different| < 15 hunt circle
+
+			});
 
 			return undefined;
 		}
