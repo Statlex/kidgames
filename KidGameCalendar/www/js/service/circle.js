@@ -10,6 +10,10 @@
 		this.endFlow = {};
 	}
 
+	Circle.prototype.save = function() {
+		localStorage.setItem(this.startCircle.str, JSON.stringify(this));
+	};
+
 	circleMaster = {
 		circles: {},
 		scanDay: function(node) {
@@ -29,23 +33,24 @@
 				// else
 					// start new circle?
 
-			// if not exist
-				// start new circle?
 
 
-			if (circle) {
 
-			} else {
-				APP.confirm.show('Are you sure?');
+
+			// if not exist +
+				// start new circle? +
+			if (!circle) {
+				APP.confirm.show(lang.areYouSure,
+				function(){
+					var circle = new Circle(date);
+					circle.save();
+					APP.router.navigate('', {trigger: true});
+				}, this);
 				APP.router.navigate('confirm');
-
-				circle = new Circle(date);
-				console.log(circle);
 			}
 
-
-
 			console.log(node);
+
 		},
 		getCircleByDate: function(date) {
 			// get circles by date

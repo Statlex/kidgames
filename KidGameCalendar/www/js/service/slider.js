@@ -163,7 +163,8 @@
 			});
 
 			Hammer(cell).on('doubletap', function() {
-				APP.router.navigate('date-info/'+ this.getAttribute('data-date'), {trigger: true});
+				APP.router.navigate('date-info', {trigger: true});
+				APP.dateInfo.show(this.getAttribute('data-date'));
 			});
 
 			Hammer(cell).on('hold', function() {

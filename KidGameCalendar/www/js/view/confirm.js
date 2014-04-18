@@ -15,10 +15,12 @@
 		initialize: function() {
 			this.template = templateContainer.templates.confirm;
 		},
-		show: function(text, fun) {
-			console.log(text);
+		show: function(text, func, context) {
 			this.$el.html(_.template(this.template, {text: text}));
 			this.$el.show();
+			if (func) {
+				this.$el.find('.js-ok').on('click', func.bind(context || win));
+			}
 		},
 		hide: function() {
 			this.$el.hide();
