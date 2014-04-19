@@ -153,7 +153,8 @@
 		},
 
 		// calendar part
-		circleLength: 28
+		cycleLength: 28,
+		flowMaxLength: 12
 
 
 	};

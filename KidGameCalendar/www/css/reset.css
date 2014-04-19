@@ -48,7 +48,7 @@ ul {
 }
 
 ul ul {
-	list-style: circle;
+	list-style: cycle;
 }
 
 blockquote, q {

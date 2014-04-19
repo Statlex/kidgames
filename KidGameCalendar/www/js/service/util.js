@@ -151,6 +151,10 @@
 				month: parseInt(date[1], 10),
 				year: parseInt(date[2], 10)
 			};
+		},
+		removeItemByIndex: function(arr, index) {
+			arr.splice(index, 1);
+			return arr;
 		}
 	};
 

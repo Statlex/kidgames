@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, circle, clearTimeout */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, cycle, clearTimeout */
 
 	var log = console.log.bind(console);
 
@@ -169,7 +169,7 @@
 
 			Hammer(cell).on('hold', function() {
 
-				circleMaster.scanDay(this);
+				cycleMaster.scanDay(this);
 
 			});
 
