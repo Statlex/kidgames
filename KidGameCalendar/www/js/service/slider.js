@@ -136,6 +136,7 @@
 		var node = doc.createElement('div'), page;
 		node.innerHTML = _.template(this.templates.calendarPage, pageDate);
 		page = node.querySelector('.js-main-calendar-page');
+		this.addColoringToPage(page);
 		this.listenersToPage(page);
 		return page;
 	};
@@ -225,6 +226,38 @@
 	Slider.prototype.fixPageState = function() {
 
 	};
+
+	Slider.prototype.addColoringToPage = function(node) {
+		var cycles = info.get('cycles') || [],
+			dateNodes = util.findAll('.month-date', node),
+			calendar = new Calendar();
+
+		dateNodes = dateNodes.map(function(nodeDate){
+			var date = util.strToDate(nodeDate.getAttribute('data-date'));
+			date.node = nodeDate;
+			return date;
+		});
+
+		cycles.forEach(function(cycle){
+
+			dateNodes.forEach(function(dateNode){
+				var different = calendar.getDifferent(dateNode, cycle.startCycle);
+				if (different === 0) {
+					util.addClass(dateNode.node, 'start-flow');
+				}
+				if (different > 0 && different <= 3) {
+					util.addClass(dateNode.node, 'flow');
+				}
+
+			});
+
+			console.log('--------------------------------');
+
+		});
+
+	};
+
+
 
 	win.Slider = Slider;
 
