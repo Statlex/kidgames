@@ -238,20 +238,81 @@
 			return date;
 		});
 
+		// flow - 4
+		// after flow - safe - 5
+		// before zalyot - unsafe - 5
+		// zalyot - fertile - 4
+		// after zalyot - unsafe - 5
+		// before flow - safe - 5
+
+
 		cycles.forEach(function(cycle){
 
+			var dateMap = {
+					flow: 4,
+					safe_1: 5,
+					unsafe_1: 5,
+					fertile: 4,
+					unsafe_2: 5,
+					safe_2: 5
+				},
+				cycleLength = info.get('cycleLength'),
+				fullCycleLength = cycleLength,
+				dateMapDifferent;
+
+			if (cycleLength !== 28) { // also detect end of flow
+				dateMapDifferent = cycleLength - 28;
+				// add different to unsafe_1 and unsafe_2
+			}
+
+
 			dateNodes.forEach(function(dateNode){
-				var different = calendar.getDifferent(dateNode, cycle.startCycle);
-				if (different === 0) {
-					util.addClass(dateNode.node, 'start-flow');
+
+				var different = calendar.getDifferent(dateNode, cycle.startCycle),
+					cycleLength = fullCycleLength,
+					addedNodeClass;
+
+				if (different < 0 || different >= cycleLength) {
+					return;
 				}
-				if (different > 0 && different <= 3) {
-					util.addClass(dateNode.node, 'flow');
+
+				if (different < cycleLength) {
+					addedNodeClass = 'safe';
 				}
+
+				cycleLength -= dateMap.safe_2;
+				if (different < cycleLength) {
+					addedNodeClass = 'unsafe';
+				}
+
+				cycleLength -= dateMap.unsafe_2;
+				if (different < cycleLength) {
+					addedNodeClass = 'fertile';
+				}
+
+				cycleLength -= dateMap.fertile;
+				if (different < cycleLength) {
+					addedNodeClass = 'unsafe';
+				}
+
+				cycleLength -= dateMap.unsafe_1;
+				if (different < cycleLength) {
+					addedNodeClass = 'safe';
+				}
+
+				cycleLength -= dateMap.safe_1;
+				if (different < cycleLength) {
+					addedNodeClass = 'flow';
+				}
+
+				if (!different) {
+					addedNodeClass = 'start-flow';
+				}
+
+				util.addClass(dateNode.node, addedNodeClass);
 
 			});
 
-			console.log('--------------------------------');
 
 		});
 

@@ -179,7 +179,6 @@
 
 			date1 = (new Date(date1.year, date1.month, date1.date)).getTime();
 			date2 = (new Date(date2.year, date2.month, date2.date)).getTime();
-			console.log(date1, date2);
 			return (date1 - date2) / 86400000; // 60 * 60 * 24 * 1000 = one day in ms
 
 		}
