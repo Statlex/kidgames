@@ -47,6 +47,19 @@
 				text = {};
 			cycle = this.getCycleByDate(date);
 
+			different = calendar.getDifferent(date, util.getToday());
+
+			if (different > 0) {
+				text.title = lang.checkDate;
+				text.text = '!!! wrong {{date}} wrong !!!'.replace('{{date}}', dateStr);
+				// create notification with 'v' and '?'
+				APP.confirm.show(text,
+					function(){
+						APP.router.navigate('', {trigger: true});
+					}, this);
+				return;
+			}
+
 			if (cycle) {
 				if (cycle.startCycle.str === dateStr) {
 					text.title = lang.removeCycle;
@@ -90,7 +103,6 @@
 
 			cycles.forEach(function(cycle){
 				var different = calendar.getDifferent(date, cycle.startCycle);
-				console.log(different);
 				if (!nearestCycle && (different >= 0) && (different <= info.flowMaxLength)) {
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;

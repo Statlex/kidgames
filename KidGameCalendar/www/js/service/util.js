@@ -155,6 +155,16 @@
 		removeItemByIndex: function(arr, index) {
 			arr.splice(index, 1);
 			return arr;
+		},
+		getToday: function() {
+			var date = new Date(),
+			today = {
+				date: date.getDate(),
+				month: date.getMonth(),
+				year: date.getFullYear()
+			};
+			today.str = [today.date, today.month, today.year].join('-');
+			return today;
 		}
 	};
 

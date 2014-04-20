@@ -14,7 +14,7 @@
 		removeFromHistoryCycle: 'Remove from history the cycle that started on {{date}}?',
 		setEndOfFlow: 'Set end of flow',
 		setEndOfFlowOn: 'Set end of flow on {{date}}',
-
+		checkDate: 'checkDate',
 
 		month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		monthFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],

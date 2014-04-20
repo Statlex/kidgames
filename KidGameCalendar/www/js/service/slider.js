@@ -169,9 +169,7 @@
 			});
 
 			Hammer(cell).on('hold', function () {
-
 				cycleMaster.scanDay(this);
-
 			});
 
 		});
