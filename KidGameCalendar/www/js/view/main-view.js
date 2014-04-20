@@ -36,6 +36,8 @@
 
 			slider.setCreatePages();
 
+			APP.slider = slider;
+
 		},
 		show: function(item) {
 			var key;

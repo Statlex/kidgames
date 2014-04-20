@@ -7,7 +7,7 @@
 
 	dataBase = {
 		dbName: 'rd_bd',
-		tableName: 'rd_t',
+		tableName: 'rd_t_1',
 
 		init: function(){
 			var that = this;
@@ -39,7 +39,6 @@
 				tx.executeSql("INSERT INTO " + that.tableName + " (date, data) values(?, ?)", [date, data], null, null);
 			});
 		},
-
 		getDateInfo: function(date, func) {
 
 			var that = this;
@@ -51,6 +50,21 @@
 						} else {
 							func('{}');
 						}
+					}, null);
+			});
+
+		},
+		getSavedDates: function(func, context) {
+
+			var that = this;
+			this.db.transaction(function (tx) {
+				tx.executeSql("SELECT * FROM " + that.tableName, [],
+					function (tx, result) {
+						var arr = [], i, len;
+						for (i = 0, len = result.rows.length; i < len; i += 1) {
+							arr.push(result.rows.item(i).date);
+						}
+						func.call(context, arr);
 					}, null);
 			});
 

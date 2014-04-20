@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, cycle, clearTimeout */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, cycle, clearTimeout, dataBase */
 
 	var log = console.log.bind(console);
 
@@ -30,10 +30,10 @@
 
 	}
 
-	Slider.prototype.init = function() {
+	Slider.prototype.init = function () {
 		var that = this,
 			ev = info.evt;
-		this.wrapper.addEventListener(ev.down, function() {
+		this.wrapper.addEventListener(ev.down, function () {
 			that.innerContainer.style[info.preJS + 'Transition'] = 'none';
 			clearTimeout(that.timeoutId);
 			//that.fixPageState();
@@ -42,14 +42,14 @@
 				start: Date.now()
 			};
 		}, false);
-		this.wrapper.addEventListener(ev.move, function() {
+		this.wrapper.addEventListener(ev.move, function () {
 			if (!ev.isActive || !that.isActive) {
 				return;
 			}
 			var dX = ev.touchStart.x - ev.touchMove.x;
 			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + (that.page.width + dX) + 'px, 0)';
 		}, false);
-		this.wrapper.addEventListener(ev.up, function() {
+		this.wrapper.addEventListener(ev.up, function () {
 			that.isActive = false;
 			var dX = ev.touchStart.x - ev.touchMove.x,
 				x = that.page.width,
@@ -93,7 +93,7 @@
 		}, false);
 	};
 
-	Slider.prototype.addRightPage = function(node) {
+	Slider.prototype.addRightPage = function (node) {
 		var pages = this.innerContainer.querySelectorAll('.js-main-calendar-page');
 		if (pages.length === 3) {
 			this.innerContainer.removeChild(pages[0]);
@@ -101,7 +101,7 @@
 		this.innerContainer.appendChild(node);
 	};
 
-	Slider.prototype.addLeftPage = function(node) {
+	Slider.prototype.addLeftPage = function (node) {
 		var pages = this.innerContainer.querySelectorAll('.js-main-calendar-page');
 		if (pages.length === 3) {
 			this.innerContainer.removeChild(pages[2]);
@@ -109,11 +109,11 @@
 		this.innerContainer.insertBefore(node, pages[0]);
 	};
 
-	Slider.prototype.setStartPosition = function() {
+	Slider.prototype.setStartPosition = function () {
 		this.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + this.page.width + 'px, 0)';
 	};
 
-	Slider.prototype.setCreatePages = function() {
+	Slider.prototype.setCreatePages = function () {
 
 		var calendar = new Calendar(),
 			page0, page1, page2;
@@ -132,7 +132,7 @@
 
 	};
 
-	Slider.prototype.createCalendarPage = function(pageDate) {
+	Slider.prototype.createCalendarPage = function (pageDate) {
 		var node = doc.createElement('div'), page;
 		node.innerHTML = _.template(this.templates.calendarPage, pageDate);
 		page = node.querySelector('.js-main-calendar-page');
@@ -141,13 +141,13 @@
 		return page;
 	};
 
-	Slider.prototype.listenersToPage = function(page) {
+	Slider.prototype.listenersToPage = function (page) {
 
 		var cells = page.querySelectorAll('.month-date');
 		cells = util.toArray(cells);
-		cells.forEach(function(cell){
+		cells.forEach(function (cell) {
 
-			Hammer(cell).on('tap', function() {
+			Hammer(cell).on('tap', function () {
 
 				// set active date
 				if (util.hasClass(this, 'selected-date')) {
@@ -155,7 +155,7 @@
 				}
 
 				var siblings = util.findAll('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .month-date');
-				siblings.forEach(function(node){
+				siblings.forEach(function (node) {
 					util.removeClass(node, 'selected-date');
 				});
 
@@ -163,12 +163,12 @@
 
 			});
 
-			Hammer(cell).on('doubletap', function() {
+			Hammer(cell).on('doubletap', function () {
 				APP.router.navigate('date-info', {trigger: true});
 				APP.dateInfo.show(this.getAttribute('data-date'));
 			});
 
-			Hammer(cell).on('hold', function() {
+			Hammer(cell).on('hold', function () {
 
 				cycleMaster.scanDay(this);
 
@@ -178,7 +178,7 @@
 
 	};
 
-	Slider.prototype.changeMonth = function(number) {
+	Slider.prototype.changeMonth = function (number) {
 
 		// create needed page
 		// replace with extra page
@@ -190,7 +190,7 @@
 				} else {
 					this.date.month += 1;
 				}
-			} else  if (number < 0) {
+			} else if (number < 0) {
 				if (this.date.month === 0) {
 					this.date.year -= 1;
 					this.date.month = 11;
@@ -200,7 +200,7 @@
 
 			}
 
-			this.timeoutId = setTimeout(function(direction){
+			this.timeoutId = setTimeout(function (direction) {
 
 				var calendar = new Calendar(),
 					page = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: direction});
@@ -223,20 +223,21 @@
 
 	};
 
-	Slider.prototype.fixPageState = function() {
+	Slider.prototype.fixPageState = function () {
 
 	};
 
-	Slider.prototype.addColoringToPage = function(node) {
+	Slider.prototype.addColoringToPage = function (node) {
 		var cycles = info.get('cycles') || [],
 			dateNodes = util.findAll('.month-date', node),
 			calendar = new Calendar(),
-			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow'];
+			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow', 'future-start-flow'],
+			lastCycle = cycles[cycles.length - 1];
 
-		dateNodes = dateNodes.map(function(nodeDate){
+		dateNodes = dateNodes.map(function (nodeDate) {
 			var date = util.strToDate(nodeDate.getAttribute('data-date'));
 			date.node = nodeDate;
-			classList.forEach(function(className){
+			classList.forEach(function (className) {
 				util.removeClass(nodeDate, className);
 			});
 			return date;
@@ -249,7 +250,7 @@
 		// after zalyot - unsafe - 5
 		// before flow - safe - 5
 
-		cycles.forEach(function(cycle){
+		cycles.forEach(function (cycle) {
 
 			var dateMap = {
 					flow: 4,
@@ -280,13 +281,13 @@
 				}
 			}
 
-			dateNodes.forEach(function(dateNode){
+			dateNodes.forEach(function (dateNode) {
 
 				var different = calendar.getDifferent(dateNode, cycle.startCycle),
 					cycleLength = fullCycleLength,
 					addedNodeClass;
 
-				if (different < 0 || different >= cycleLength) {
+				if ((different < 0) || (different >= cycleLength)) {
 					return;
 				}
 
@@ -323,7 +324,7 @@
 					addedNodeClass = 'start-flow';
 				}
 
-				classList.forEach(function(className){
+				classList.forEach(function (className) {
 					util.removeClass(dateNode.node, className);
 				});
 
@@ -331,14 +332,31 @@
 
 			});
 
-
 		});
+
+		if (lastCycle) {
+			dateNodes.forEach(function (dateNode) {
+				var different = calendar.getDifferent(dateNode, lastCycle.startCycle);
+				if ((different > 0) && ((different % info.get('cycleLength')) === 0)) {
+					util.addClass(dateNode.node, 'future-start-flow');
+				}
+			});
+		}
+
+		dataBase.getSavedDates(function(data){
+			var dateNodes = util.findAll('.month-date', node);
+			dateNodes.forEach(function(node){
+				if (data.indexOf(node.getAttribute('data-date')) !== -1) {
+					util.addClass(node, 'tick');
+				}
+			});
+		}, this);
 
 	};
 
-	Slider.prototype.addColoringToAllPage = function() {
+	Slider.prototype.addColoringToAllPage = function () {
 		var nodes = util.findAll('.js-main-calendar-page');
-		nodes.forEach(function(node){
+		nodes.forEach(function (node) {
 			Slider.prototype.addColoringToPage(node);
 		});
 	};

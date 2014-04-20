@@ -77,6 +77,8 @@
 			var json = util.nodeToJson(this.$el[0]);
 			json = JSON.stringify(json);
 			dataBase.saveDateInfo(this.date, JSON.stringify(json));
+			APP.slider.addColoringToAllPage();
+			this.hide();
 		},
 		restoreDate: function(date) {
 			var that = this;
