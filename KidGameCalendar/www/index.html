@@ -47,6 +47,7 @@
 	<script src="js/view/main-view.js" type="text/javascript"></script>
 	<script src="js/view/date-info.js" type="text/javascript"></script>
 	<script src="js/view/confirm.js" type="text/javascript"></script>
+	<script src="js/view/alert.js" type="text/javascript"></script>
 	<!-- views - -->
 
 	<!-- main js -->
@@ -194,8 +195,18 @@
 
 	<p><%= text || '' %></p>
 
-	<input type="button" value="yes" class="js-ok"/>
-	<input type="button" value="no" class="js-cancel"/>
+	<input type="button" value="ok" class="js-ok"/>
+	<input type="button" value="cancel" class="js-cancel"/>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="alert">
+
+	<h2><%= title || '' %></h2>
+
+	<p><%= text || '' %></p>
+
+	<input type="button" value="ok" class="js-ok"/>
 
 </script>
 

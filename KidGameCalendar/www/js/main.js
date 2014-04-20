@@ -41,6 +41,8 @@ $(function(){
 
 	APP.confirm = new GC.ConfirmView();
 
+	APP.alert = new GC.AlertView();
+
 	// show calendar on app start
 	APP.mainView.show('calendar');
 

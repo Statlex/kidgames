@@ -51,12 +51,10 @@
 
 			if (different > 0) {
 				text.title = lang.checkDate;
-				text.text = '!!! wrong {{date}} wrong !!!'.replace('{{date}}', dateStr);
+				text.text = lang.cannotUseThisDay.replace('{{date}}', dateStr);
 				// create notification with 'v' and '?'
-				APP.confirm.show(text,
-					function(){
-						APP.router.navigate('', {trigger: true});
-					}, this);
+				APP.alert.show(text);
+				APP.router.navigate('alert');
 				return;
 			}
 

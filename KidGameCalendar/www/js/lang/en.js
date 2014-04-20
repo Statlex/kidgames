@@ -15,7 +15,7 @@
 		setEndOfFlow: 'Set end of flow',
 		setEndOfFlowOn: 'Set end of flow on {{date}}',
 		checkDate: 'checkDate',
-
+		cannotUseThisDay: 'You can not use {{date}}, because it is future.',
 		month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		monthFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 		dayShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
