@@ -1,3 +1,23 @@
 .selected-date {
 	background-color: #390c00;
 }
+
+.flow,
+.start-flow {
+	background-color: #c00;
+}
+
+.safe {
+	background-color: #00c;
+}
+
+.unsafe {
+	background-color: #cc0;
+}
+
+.fertile {
+	background-color: #0c0;
+}
+
+
+

@@ -230,11 +230,15 @@
 	Slider.prototype.addColoringToPage = function(node) {
 		var cycles = info.get('cycles') || [],
 			dateNodes = util.findAll('.month-date', node),
-			calendar = new Calendar();
+			calendar = new Calendar(),
+			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow'];
 
 		dateNodes = dateNodes.map(function(nodeDate){
 			var date = util.strToDate(nodeDate.getAttribute('data-date'));
 			date.node = nodeDate;
+			classList.forEach(function(className){
+				util.removeClass(nodeDate, className);
+			});
 			return date;
 		});
 
@@ -244,7 +248,6 @@
 		// zalyot - fertile - 4
 		// after zalyot - unsafe - 5
 		// before flow - safe - 5
-
 
 		cycles.forEach(function(cycle){
 
@@ -258,13 +261,24 @@
 				},
 				cycleLength = info.get('cycleLength'),
 				fullCycleLength = cycleLength,
-				dateMapDifferent;
+				dateMapDifferent, halfOfMapDifferent;
 
-			if (cycleLength !== 28) { // also detect end of flow
-				dateMapDifferent = cycleLength - 28;
-				// add different to unsafe_1 and unsafe_2
+			// detect end of flow
+			if (cycle.endFlow.str) {
+				dateMapDifferent = dateMap.flow - calendar.getDifferent(cycle.endFlow, cycle.startCycle) - 1;
+				dateMap.flow -= dateMapDifferent;
+				dateMap.safe_1 += dateMapDifferent;
 			}
 
+			if (cycleLength !== 28) {
+				dateMapDifferent = cycleLength - 28;
+				halfOfMapDifferent = Math.floor(dateMapDifferent / 2);
+				dateMap.unsafe_1 += halfOfMapDifferent;
+				dateMap.unsafe_2 += halfOfMapDifferent;
+				if (halfOfMapDifferent * 2 < dateMapDifferent) {
+					dateMap.unsafe_2 += 1;
+				}
+			}
 
 			dateNodes.forEach(function(dateNode){
 
@@ -309,6 +323,10 @@
 					addedNodeClass = 'start-flow';
 				}
 
+				classList.forEach(function(className){
+					util.removeClass(dateNode.node, className);
+				});
+
 				util.addClass(dateNode.node, addedNodeClass);
 
 			});
@@ -318,7 +336,12 @@
 
 	};
 
-
+	Slider.prototype.addColoringToAllPage = function() {
+		var nodes = util.findAll('.js-main-calendar-page');
+		nodes.forEach(function(node){
+			Slider.prototype.addColoringToPage(node);
+		});
+	};
 
 	win.Slider = Slider;
 

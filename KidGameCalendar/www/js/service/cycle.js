@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global console, alert, window, util, APP, lang, localStorage, info, Calendar, info */
+	/*global console, alert, window, util, APP, lang, localStorage, info, Calendar, info, Slider */
 
 	var cycleMaster;
 
@@ -47,8 +47,6 @@
 				text = {};
 			cycle = this.getCycleByDate(date);
 
-			console.log(cycle);
-
 			if (cycle) {
 				if (cycle.startCycle.str === dateStr) {
 					text.title = lang.removeCycle;
@@ -57,6 +55,7 @@
 						function(){
 							cycle.remove();
 							APP.router.navigate('', {trigger: true});
+							Slider.prototype.addColoringToAllPage();
 						}, this);
 				} else {
 					text.title = lang.setEndOfFlow;
@@ -65,6 +64,7 @@
 						function(){
 							cycle.setFlowEnd(date);
 							APP.router.navigate('', {trigger: true});
+							Slider.prototype.addColoringToAllPage();
 						}, this);
 				}
 			} else {
@@ -75,6 +75,7 @@
 					var cycle = new Cycle(date);
 					cycle.save();
 					APP.router.navigate('', {trigger: true});
+					Slider.prototype.addColoringToAllPage();
 				}, this);
 			}
 
