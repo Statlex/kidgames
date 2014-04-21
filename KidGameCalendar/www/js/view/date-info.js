@@ -74,17 +74,22 @@
 
 		},
 		saveDateInfo: function() {
-			var json = util.nodeToJson(this.$el[0]);
+			var json = util.nodeToJson(this.$el[0]),
+				callback = APP.slider.addColoringToAllPage;
 			json = JSON.stringify(json);
-			dataBase.saveDateInfo(this.date, JSON.stringify(json));
-			APP.slider.addColoringToAllPage();
+
+			if (json.replace(/\s/gi, '') === '{}') {
+				dataBase.removeDateInfo(this.date, callback);
+			} else {
+				dataBase.saveDateInfo(this.date, JSON.stringify(json), callback);
+			}
 			this.hide();
 		},
 		restoreDate: function(date) {
 			var that = this;
 			date = date || this.date;
 
-			date = dataBase.getDateInfo(date, function(date){
+			dataBase.getDateInfo(date, function(date){
 				date = JSON.parse(date);
 				if (date.toString() === date) {
 					date = JSON.parse(date);

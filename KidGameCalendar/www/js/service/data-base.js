@@ -30,15 +30,24 @@
 			});
 		},
 
-		saveDateInfo: function(date, data) {
+		saveDateInfo: function(date, data, func) {
 			var that = this;
 			this.db.transaction(function (tx) {
 				// remove data from db
 				tx.executeSql("DELETE FROM " + that.tableName + " WHERE date = ?", [date], null, null);
 				// save data to db
-				tx.executeSql("INSERT INTO " + that.tableName + " (date, data) values(?, ?)", [date, data], null, null);
+				tx.executeSql("INSERT INTO " + that.tableName + " (date, data) values(?, ?)", [date, data], func || null, null);
 			});
 		},
+
+		removeDateInfo: function(date, func) {
+			var that = this;
+			this.db.transaction(function (tx) {
+				// remove data from db
+				tx.executeSql("DELETE FROM " + that.tableName + " WHERE date = ?", [date], func || null, null);
+			});
+		},
+
 		getDateInfo: function(date, func) {
 
 			var that = this;

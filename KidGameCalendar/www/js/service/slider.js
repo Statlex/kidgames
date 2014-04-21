@@ -229,7 +229,7 @@
 		var cycles = info.get('cycles') || [],
 			dateNodes = util.findAll('.month-date', node),
 			calendar = new Calendar(),
-			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow', 'future-start-flow'],
+			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow', 'future-start-flow', 'tick'],
 			lastCycle = cycles[cycles.length - 1];
 
 		dateNodes = dateNodes.map(function (nodeDate) {
