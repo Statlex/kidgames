@@ -20,7 +20,7 @@
 		},
 		hide: function() {
 			this.$el.hide();
-			APP.router.navigate('', {trigger: true});
+			Backbone.history.history.back();
 		}
 
 	});

@@ -58,7 +58,7 @@
 		},
 		hide: function() {
 			this.$el.hide();
-			APP.router.navigate('', {trigger: true});
+			Backbone.history.history.back();
 		},
 		showDetails: function() {
 			var $this = $(event.target),
@@ -78,7 +78,7 @@
 				callback = APP.slider.addColoringToAllPage;
 			json = JSON.stringify(json);
 
-			if (json.replace(/\s/gi, '') === '{}') {
+			if (json.replace(/\s+/gi, '') === '{}') {
 				dataBase.removeDateInfo(this.date, callback);
 			} else {
 				dataBase.saveDateInfo(this.date, JSON.stringify(json), callback);

@@ -65,7 +65,7 @@
 					APP.confirm.show(text,
 						function(){
 							cycle.remove();
-							APP.router.navigate('', {trigger: true});
+							Backbone.history.history.back();
 							Slider.prototype.addColoringToAllPage();
 						}, this);
 				} else {
@@ -74,7 +74,7 @@
 					APP.confirm.show(text,
 						function(){
 							cycle.setFlowEnd(date);
-							APP.router.navigate('', {trigger: true});
+							Backbone.history.history.back();
 							Slider.prototype.addColoringToAllPage();
 						}, this);
 				}
@@ -85,7 +85,7 @@
 				function(){
 					var cycle = new Cycle(date);
 					cycle.save();
-					APP.router.navigate('', {trigger: true});
+					Backbone.history.history.back();
 					Slider.prototype.addColoringToAllPage();
 				}, this);
 			}
