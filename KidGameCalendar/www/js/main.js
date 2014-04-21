@@ -18,8 +18,9 @@ $(function(){
 		},
 		home: function() {
 			console.log('router:home');
-			APP.dateInfo.hide();
-			APP.confirm.hide();
+			APP.dateInfo.hide(true);
+			APP.confirm.hide(true);
+			APP.alert.hide(true);
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');

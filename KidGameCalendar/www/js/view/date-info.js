@@ -56,9 +56,11 @@
 			this.$el.show();
 
 		},
-		hide: function() {
+		hide: function(noHistoryBack) {
 			this.$el.hide();
-			Backbone.history.history.back();
+			if (!noHistoryBack) {
+				Backbone.history.history.back();
+			}
 		},
 		showDetails: function() {
 			var $this = $(event.target),

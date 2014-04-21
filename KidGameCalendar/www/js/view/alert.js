@@ -18,9 +18,11 @@
 			this.$el.html(_.template(this.template, text));
 			this.$el.show();
 		},
-		hide: function() {
+		hide: function(noHistoryBack) {
 			this.$el.hide();
-			Backbone.history.history.back();
+			if (!noHistoryBack) {
+				Backbone.history.history.back();
+			}
 		}
 
 	});

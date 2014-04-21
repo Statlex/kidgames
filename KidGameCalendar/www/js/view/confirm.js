@@ -22,9 +22,11 @@
 				this.$el.find('.js-ok').on('click', func.bind(context || win));
 			}
 		},
-		hide: function() {
+		hide: function(noHistoryBack) {
 			this.$el.hide();
-			Backbone.history.history.back();
+			if (!noHistoryBack) {
+				Backbone.history.history.back();
+			}
 		}
 
 
