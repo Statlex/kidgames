@@ -41,7 +41,7 @@
 					block.style.height = height;
 					var preview = $('.symbol-preview', block),
 						previewHeight = preview.clientHeight;
-					preview.style.lineHeight = previewHeight * 1.05 + 'px';
+					preview.style.lineHeight = previewHeight * 0.95 + 'px';
 					preview.style.fontSize = previewHeight * 0.85 + 'px';
 				});
 

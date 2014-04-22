@@ -5,6 +5,8 @@
 .symbol-page {
 	padding: 0;
 	position: relative;
+	background-color: #fff;
+	z-index: -50;
 }
 
 .symbol-page .point {
@@ -69,9 +71,8 @@
 }
 
 .symbol-thumbs {
-	display: block;
-	float: left;
-	width: 20%;
+	display: inline-block;
+	width: 25%;
 	padding: 5px;
 	box-sizing: border-box;
 }
@@ -93,20 +94,22 @@
 */
 
 .symbol-thumbs .symbol-preview {
-	border-top: 1px solid #96d1f8;
-	background: #65a9d7;
-	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-	background: linear-gradient(top, #3e779d, #65a9d7);
-	border-radius: 8px;
-	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	background-color: #fff;
+	border-radius: 7px;
+	box-shadow:  0 4px 8px #235a55;
 	text-shadow: rgba(0,0,0,.4) 0 1px 0;
-	color: white;
+	color: #3a6760;
 	font-size: 14px;
-	font-family: "Courier New", Courier, monospace;
+	font-family: Tahoma, sans-serif;
 	text-decoration: none;
+	font-weight: bold;
 	vertical-align: middle;
 	height: 100%;
 	text-align: center;
+}
+
+.number-thumbs .symbol-preview {
+	font-weight: normal;
 }
 
 .clear {
@@ -117,11 +120,9 @@
 
 body {
 	background-color: #fff;
-	background-image: url('../img/i/bg-main.jpg');
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-size: auto 100%;
-	background-position: center center;
+	background-image: url('../img/i/bg-main.png');
+	background-repeat: repeat;
+	background-attachment: fixed;
 }
 
 .status-bar {
@@ -263,3 +264,46 @@ body {
 }
 
 
+.status-bar {
+	background-color: #517a74;
+}
+
+.status-bar-more {
+	padding: 4px;
+}
+
+.status-bar-back,
+.status-bar-more,
+.status-bar-play-again {
+	opacity: 0.9;
+}
+
+.symbol-page-wrapper {
+	padding: 60px 34px 60px;
+	text-align: center;
+	line-height: 0;
+	font-size: 0;
+	background-image: url(../img/i/bg-top.png);
+	background-position: center 64px;
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-attachment: fixed;
+}
+
+.hidden-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	clear: both;
+}
+
+@media screen and (max-height: 700px) {
+
+	.symbol-page-wrapper {
+		padding: 45px 10px 20px;
+		background-image: url(../img/i/bg-top.png);
+		background-position: center 40px;
+	}
+
+}
