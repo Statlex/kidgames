@@ -16,6 +16,7 @@ $(function(){
 			'date-info': 'dateInfo',
 			'confirm': 'confirm',
 			'options': 'options'
+//			'options:/id': 'options'
 		},
 		home: function() {
 			console.log('router:home');
@@ -33,7 +34,9 @@ $(function(){
 			//APP.confirm.show();
 		},
 		options: function() {
+			// detect id
 			console.log('show options');
+			// hide all view from options
 			//APP.confirm.show();
 		}
 
