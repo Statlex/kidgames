@@ -28,7 +28,8 @@
 			APP.mainView.show('time');
 		},
 		showOptions: function() {
-			console.log(4);
+			APP.router.navigate('options', {trigger: true});
+			APP.options.show();
 		}
 
 	});

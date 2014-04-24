@@ -14,13 +14,15 @@ $(function(){
 		routes: {
 			'': 'home',
 			'date-info': 'dateInfo',
-			'confirm': 'confirm'
+			'confirm': 'confirm',
+			'options': 'options'
 		},
 		home: function() {
 			console.log('router:home');
 			APP.dateInfo.hide(true);
 			APP.confirm.hide(true);
 			APP.alert.hide(true);
+			APP.options.hide(true);
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');
@@ -29,7 +31,12 @@ $(function(){
 		confirm: function() {
 			console.log('router:confirm');
 			//APP.confirm.show();
+		},
+		options: function() {
+			console.log('show options');
+			//APP.confirm.show();
 		}
+
 	});
 
 	APP.router = new Router();
@@ -43,6 +50,8 @@ $(function(){
 	APP.confirm = new GC.ConfirmView();
 
 	APP.alert = new GC.AlertView();
+
+	APP.options = new GC.OptionsView();
 
 	// show calendar on app start
 	APP.mainView.show('calendar');
