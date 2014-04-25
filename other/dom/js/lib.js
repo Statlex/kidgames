@@ -1,4 +1,4 @@
-var jQuery = (function () {
+(function () {
 
 	var jQuery = function (selector, context) {
 		return new jQuery.fn.init(selector, context);
@@ -22,7 +22,11 @@ var jQuery = (function () {
 
 	jQuery.fn.init.prototype = jQuery.fn;
 
-	return (window.jQuery = window.$ = jQuery);
+	jQuery.re3 = function() {
+
+	}
+
+	window.jQuery = window.$ = jQuery;
 
 }());
 
