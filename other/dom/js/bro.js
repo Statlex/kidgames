@@ -43,6 +43,7 @@
 			}
 		},
 		init: function() {
+			this.getIsPhone();
 			this.runDetector();
 		},
 		getIsPhone: function () {
@@ -141,6 +142,18 @@
 		return this;
 	};
 
+	Bro.prototype.attr = function(attribute, value) {
+		var elem = this[0];
+		if (!elem) {
+			return this
+		}
+		if (value === undefined) {
+			return elem.getAttribute(attribute);
+		}
+		elem.setAttribute(attribute, value);
+		return this;
+	};
+
 	Bro.prototype.init = function(selector, context) {
 		this.selector = selector;
 		this.context = context;
@@ -150,6 +163,6 @@
 		}, this);
 	};
 
-	win.bro = bro;
+	win.$ = bro;
 
 }(window, document, document.documentElement));

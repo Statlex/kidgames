@@ -3,7 +3,7 @@
 	"use strict";
 	/*global console, alert */
 
-	console.log(bro('div'));
+	console.log($('div'));
 
 //	console.log(bro.bar);
 
