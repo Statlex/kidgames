@@ -71,7 +71,8 @@
 }
 
 .symbol-thumbs {
-	display: inline-block;
+	display: block;
+	float: left;
 	width: 25%;
 	padding: 5px;
 	box-sizing: border-box;
@@ -289,6 +290,14 @@ body {
 	-webkit-background-size: contain;
 	background-size: contain;
 	background-attachment: fixed;
+}
+
+.symbol-page-wrapper .clear {
+	height: 20px;
+}
+
+.symbol-page-wrapper .number-thumbs:nth-child(9) {
+	margin-left: 25%;
 }
 
 .hidden-image {

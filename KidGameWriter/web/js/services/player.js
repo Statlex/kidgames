@@ -11,9 +11,6 @@
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
-			console.warn('!!!! player is deactivated !!!!');
-			return;
-
 			if (this.currentMediaStatus <= 2) {
 				return;
 			}
@@ -26,7 +23,8 @@
 			try {
 				this.currentMedia.play();
 			} catch (e) {
-
+				console.log(e);
+				console.log('--- can not play (new Media) ---');
 			}
 
 		},
