@@ -2,6 +2,7 @@
 	width: 100%;
 	clear: both;
 	overflow: hidden;
+	padding-top: 30px;
 }
 
 .slider-wrapper:after {
@@ -29,5 +30,17 @@
 .month-date {
 	float: left;
 	width: 14.28%;
+	height: 46px;
+	box-sizing: border-box;
+	padding: 5px;
+	border-radius: 100%;
 }
 
+.inner-month-date {
+	height: 100%;
+	width: 100%;
+	border-radius: 100%;
+	text-align: center;
+	font-size: 14px;
+	line-height: 35px;
+}

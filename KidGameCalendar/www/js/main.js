@@ -15,7 +15,8 @@ $(function(){
 			'': 'home',
 			'date-info': 'dateInfo',
 			'confirm': 'confirm',
-			'options': 'options'
+			'options': 'options',
+			'help': 'help'
 //			'options:/id': 'options'
 		},
 		home: function() {
@@ -24,6 +25,7 @@ $(function(){
 			APP.confirm.hide(true);
 			APP.alert.hide(true);
 			APP.options.hide(true);
+			APP.help.hide(true);
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');
@@ -38,6 +40,10 @@ $(function(){
 			console.log('show options');
 			// hide all view from options
 			//APP.confirm.show();
+		},
+		help: function() {
+			APP.help.show();
+			console.log('show help');
 		}
 
 	});
@@ -55,6 +61,8 @@ $(function(){
 	APP.alert = new GC.AlertView();
 
 	APP.options = new GC.OptionsView();
+
+	APP.help = new GC.HelpView();
 
 	// show calendar on app start
 	APP.mainView.show('calendar');

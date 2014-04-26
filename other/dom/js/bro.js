@@ -1,10 +1,10 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert */
+	/*global console, alert, window, document */
 
 
-	var isTouch, info, util;
+	var isTouch, info, util, bro;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	//=== info start ===//
@@ -51,11 +51,12 @@
 			w = docElem.clientWidth;
 			h = docElem.clientHeight;
 			maxSize = (h > w) ? h : w;
-			return this.isPhone = (maxSize < 700);
+			this.isPhone = maxSize < 700;
+			return this.isPhone;
 		},
 		runDetector: function () {
 
-			var body = document.body,
+			var body = doc.body,
 				that = this;
 
 			// detect XY onTouchStart
@@ -119,16 +120,15 @@
 	};
 	//=== util end ===//
 
-	var bro = function(selector, context) {
-		return new Bro(selector, context);
-	};
-
-	bro.ajax = function() {
-
-	};
-
 	function Bro(selector, context) {
+		if (!this) {
+			return new Bro(selector, context);
+		}
 		this.init(selector, context || doc);
+	}
+
+	bro = function(selector, context) {
+		return new Bro(selector, context);
 	};
 
 	Bro.prototype = Array.prototype;
@@ -145,7 +145,7 @@
 	Bro.prototype.attr = function(attribute, value) {
 		var elem = this[0];
 		if (!elem) {
-			return this
+			return this;
 		}
 		if (value === undefined) {
 			return elem.getAttribute(attribute);
@@ -155,6 +155,9 @@
 	};
 
 	Bro.prototype.init = function(selector, context) {
+		if (!selector) {
+			return;
+		}
 		this.selector = selector;
 		this.context = context;
 		var nodes = context.querySelectorAll(selector);
@@ -163,6 +166,13 @@
 		}, this);
 	};
 
+	Bro.prototype.isEmpty = function() {
+		return !!this.length;
+	};
+
+
 	win.$ = bro;
+
+	//win.Bro = Bro;
 
 }(window, document, document.documentElement));

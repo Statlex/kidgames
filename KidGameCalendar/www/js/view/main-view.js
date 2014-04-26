@@ -38,6 +38,8 @@
 
 			APP.slider = slider;
 
+			this.bindHelpButton();
+
 		},
 		show: function(item) {
 			var key;
@@ -51,7 +53,11 @@
 				}
 			}
 
-
+		},
+		bindHelpButton: function() {
+			this.$el.find('.js-show-help').on('click', function(){
+				APP.router.navigate('help', {trigger: true});
+			});
 
 		}
 
