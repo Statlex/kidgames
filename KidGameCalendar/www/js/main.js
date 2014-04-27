@@ -26,6 +26,7 @@ $(function(){
 			APP.alert.hide(true);
 			APP.options.hide(true);
 			APP.help.hide(true);
+			APP.mainView.fade.hide();
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');

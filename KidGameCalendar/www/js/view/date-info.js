@@ -27,6 +27,8 @@
 		},
 		show: function(id) {
 
+//			APP.mainView.fade.show();
+
 			this.date = id;
 
 			this.restoreDate();
@@ -53,11 +55,12 @@
 
 			// get template and add to wrapper
 			this.$el.find(this.selectors.details).html(_.template(this.templates.details, {}));
-			this.$el.show();
+			this.$el.css('top', '0');
 
 		},
 		hide: function(noHistoryBack) {
-			this.$el.hide();
+			//this.$el.hide();
+			this.$el.css('top', '');
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}

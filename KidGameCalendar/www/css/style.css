@@ -23,10 +23,22 @@
 	background-color: #c0c;
 }
 
-.tick {
-	box-shadow: 0px 0px 0px 10px rgba(0, 0, 0, 0.5);
+.tick .inner-month-date {
+	position: relative;
 }
 
+.tick .inner-month-date:after {
+	content: '';
+	display: block;
+	background-image: url('../img/icon-sprite.svg');
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	background-position: -247px -8px;
+	bottom: 0;
+	right: 0;
+}
 
 
 
@@ -126,9 +138,10 @@ body,
 	background-image: url('../img/icon-sprite.svg');
 	background-repeat: no-repeat;
 	background-position: -207px 0;
-	top: 70px;
-	right: 20px;
+	top: 64px;
+	right: 10px;
 	z-index: 1;
+	opacity: 0.8;
 }
 
 .slider-date {
@@ -165,9 +178,9 @@ body,
 .week-day {
 	float: left;
 	width: 14.28%;
-	font-size: 13px;
-	line-height: 13px;
-	padding-bottom: 13px;
+	font-size: 15px;
+	line-height: 15px;
+	padding-bottom: 5px;
 	text-align: center;
 }
 
@@ -185,4 +198,23 @@ body,
 	left: 0;
 	width: 100%;
 	height: 100%;
+	z-index: 10;
 }
+
+.date-info-wrapper {
+	position: fixed;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+	background-color: #fff;
+	transition: all ease-out 0.3s;
+	-webkit-transition: all ease-out 0.3s;
+}
+
+
+
+
+
+
