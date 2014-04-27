@@ -181,47 +181,59 @@
 		// create needed page
 		// replace with extra page
 		if (number) {
-			if (number > 0) {
-				if (this.date.month === 11) {
-					this.date.year += 1;
-					this.date.month = 0;
-				} else {
-					this.date.month += 1;
-				}
-			} else if (number < 0) {
-				if (this.date.month === 0) {
-					this.date.year -= 1;
-					this.date.month = 11;
-				} else {
-					this.date.month -= 1;
-				}
-
-			}
-
-			this.timeoutId = setTimeout(function (direction) {
-
-				var calendar = new Calendar(),
-					page = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: direction});
-
-				page = this.createCalendarPage(page);
-
-				if (direction > 0) {
-					this.addRightPage(page);
-				} else {
-					this.addLeftPage(page);
-				}
-				this.innerContainer.style[info.preJS + 'Transition'] = 'none';
-				this.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + this.page.width + 'px, 0)';
-
-			}.bind(this, number), this.swipeTime);
-
+			this.changeMonthDate(number);
+			this.timeoutId = setTimeout(this.changePage.bind(this, number), this.swipeTime);
 		}
 
+		this.updateDateNode();
+
+	};
+
+	Slider.prototype.updateDateNode = function() {
 		this.dateContainer.innerHTML = _.template(this.templates.calendarDate, this);
+	};
+
+	Slider.prototype.changeMonthDate = function(number) {
+		if (!number) {
+			return;
+		}
+
+		if (number > 0) {
+			if (this.date.month === 11) {
+				this.date.year += 1;
+				this.date.month = 0;
+			} else {
+				this.date.month += 1;
+			}
+		} else if (number < 0) {
+			if (this.date.month === 0) {
+				this.date.year -= 1;
+				this.date.month = 11;
+			} else {
+				this.date.month -= 1;
+			}
+
+		}
 
 	};
 
 	Slider.prototype.fixPageState = function () {
+
+	};
+
+	Slider.prototype.changePage = function(direction) {
+		var calendar = new Calendar(),
+			page = calendar.getMonthPage({year: this.date.year, month: this.date.month, dMonth: direction});
+
+		page = this.createCalendarPage(page);
+
+		if (direction > 0) {
+			this.addRightPage(page);
+		} else {
+			this.addLeftPage(page);
+		}
+		this.innerContainer.style[info.preJS + 'Transition'] = 'none';
+		this.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + this.page.width + 'px, 0)';
 
 	};
 

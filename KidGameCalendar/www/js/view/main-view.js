@@ -9,6 +9,7 @@
 	win.GC.MainView = Backbone.View.extend({
 		el: '.js-main-data-wrapper',
 		events: {
+			'click .js-fade': 'back'
 		},
 		selectors: {
 			calendar: '.js-calendar-wrapper',
@@ -39,7 +40,8 @@
 			APP.slider = slider;
 
 			this.bindHelpButton();
-
+			this.bindArrowButton();
+			this.bindFade();
 		},
 		show: function(item) {
 			var key;
@@ -58,7 +60,21 @@
 			this.$el.find('.js-show-help').on('click', function(){
 				APP.router.navigate('help', {trigger: true});
 			});
-
+		},
+		bindArrowButton: function() {
+			function changePage(direction) {
+				APP.slider.changeMonthDate(direction);
+				APP.slider.changePage(direction);
+				APP.slider.updateDateNode();
+			}
+			this.$el.find('.js-slider-to-left').on('click', changePage.bind(APP.slider, -1));
+			this.$el.find('.js-slider-to-right').on('click', changePage.bind(APP.slider, 1));
+		},
+		bindFade: function() {
+			this.fade = $('.js-fade');
+			this.fade.on('click', function(){
+				Backbone.history.history.back();
+			});
 		}
 
 	});

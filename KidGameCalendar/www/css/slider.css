@@ -34,6 +34,11 @@
 	box-sizing: border-box;
 	padding: 5px;
 	border-radius: 100%;
+	opacity: 0.4;
+}
+
+.day-of-current-month {
+	opacity: 1;
 }
 
 .inner-month-date {
@@ -42,5 +47,24 @@
 	border-radius: 100%;
 	text-align: center;
 	font-size: 14px;
-	line-height: 35px;
+	line-height: 36px;
+	box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

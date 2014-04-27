@@ -7,7 +7,7 @@
 
 	dataBase = {
 		dbName: 'rd_bd',
-		tableName: 'rd_t_1',
+		tableName: 'rd_t_4',
 
 		init: function(){
 			var that = this;

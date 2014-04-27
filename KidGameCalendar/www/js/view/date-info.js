@@ -99,9 +99,6 @@
 				util.restoreNode(that.$el[0], date);
 			});
 
-
-
-
 		}
 
 	});

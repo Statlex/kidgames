@@ -29,14 +29,14 @@ Hammer.defaults = {
   // set to false to disable this
   stop_browser_behavior: {
     // this also triggers onselectstart=false for IE
-    userSelect       : 'none',
+//    userSelect       : 'none',
     // this makes the element blocking in IE10>, you could experiment with the value
     // see for more options this issue; https://github.com/EightMedia/hammer.js/issues/241
     touchAction      : 'none',
     touchCallout     : 'none',
-    contentZooming   : 'none',
-    userDrag         : 'none',
-    tapHighlightColor: 'rgba(0,0,0,0)'
+    contentZooming   : 'none'
+//    userDrag         : 'none',
+//    tapHighlightColor: 'rgba(0,0,0,0)'
   }
 
   //
