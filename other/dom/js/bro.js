@@ -131,7 +131,7 @@
 		return new Bro(selector, context);
 	};
 
-	Bro.prototype = Array.prototype;
+	Bro.prototype = Object.create(Array.prototype);
 
 	Bro.prototype.html = function(html) {
 		var elem = this[0] || {};
