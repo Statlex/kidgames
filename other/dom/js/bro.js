@@ -143,15 +143,34 @@
 	};
 
 	Bro.prototype.attr = function(attribute, value) {
-		var elem = this[0];
+
+		var elem = this[0],
+			attributeIsString = typeof attribute === 'string';
+
 		if (!elem) {
 			return this;
 		}
-		if (value === undefined) {
+
+		// try to get attribute
+		if (value === undefined && attributeIsString) {
 			return elem.getAttribute(attribute);
 		}
-		// TODO: detect list of attributes in {}
-		elem.setAttribute(attribute, value);
+
+		// try to set attribute
+		if (attributeIsString) {
+			this.forEach(function(node){
+				node.setAttribute(attribute, value);
+			});
+		} else {
+			this.forEach(function(node){
+				for (var key in attribute) {
+					if (attribute.hasOwnProperty(key)) {
+						node.setAttribute(key, attribute[key]);
+					}
+				}
+			});
+		}
+
 		return this;
 	};
 
@@ -172,7 +191,7 @@
 	};
 
 
-	win.$ = bro;
+	win.bro = bro;
 
 	//win.Bro = Bro;
 
