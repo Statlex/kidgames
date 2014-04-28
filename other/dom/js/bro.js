@@ -111,15 +111,6 @@
 	win.addEventListener('load', info.init.bind(info), false);
 	//=== info end ===//
 
-	//=== util start ===//
-	util = {
-		arr: Array.prototype,
-		toArray: function(list) {
-			return this.arr.slice.call(list);
-		}
-	};
-	//=== util end ===//
-
 	function Bro(selector, context) {
 		if (!this) {
 			return new Bro(selector, context);
@@ -144,20 +135,99 @@
 
 	Bro.prototype.attr = function(attribute, value) {
 
-		var elem = this[0],
-			attributeIsString = typeof attribute === 'string';
+		var elem = this[0];
 
 		if (!elem) {
 			return this;
 		}
 
 		// try to get attribute
-		if (value === undefined && attributeIsString) {
+		if (value === undefined && typeof attribute === 'string') {
 			return elem.getAttribute(attribute);
 		}
 
+		this.setAttribute(attribute, value);
+
+		return this;
+
+	};
+
+	Bro.prototype.init = function(selector, context) {
+
+		// detect empty selector
+		if ( !selector ) {
+			return this;
+		}
+
+		// detect Bro
+		if ( selector instanceof Bro ) {
+			return selector;
+		}
+
+		if ( typeof selector === "string" ) {
+
+			var nodes;
+			if ( /^<[\s\S]+\/\w*>$/.test(selector) ) {
+				// create new node
+				var tempNode = doc.createElement('div');
+				tempNode.innerHTML = selector;
+				nodes = tempNode.childNodes;
+			} else {
+				// find nodes
+				if (context.querySelectorAll) {
+					// detect DOMNode or doc
+					nodes = context.querySelectorAll(selector);
+				} else if (context.find) {
+					// detect bro
+					nodes = context.find(selector);
+				} else {
+					// find in doc
+					nodes = doc.querySelectorAll(selector);
+				}
+			}
+
+			this.forEach.call(nodes, function(node) {
+				this.push(node);
+			}, this);
+
+			if (this.isPlainObject(context)) {
+				this.setAttribute(context);
+				context = doc;
+			}
+
+			// detect single node
+		} else if ( selector.nodeType ) {
+			this.selector = selector;
+			this.push(selector);
+			// detect nodeList and Array
+		} else if ( typeof selector.length === 'number' ) {
+			this.forEach.call(selector, function(node) {
+				this.push(node);
+			}, this);
+			this.selector = selector;
+			// detect function
+		} else if ( typeof selector === 'function' ) {
+			console.warn('function detected !!!!');
+		}
+
+		this.context = context;
+
+		return this;
+
+	};
+
+	Bro.prototype.isEmpty = function() {
+		return !!this.length;
+	};
+
+	Bro.prototype.isPlainObject = function(obj) {
+		return obj.constructor === Object;
+	};
+
+	Bro.prototype.setAttribute = function(attribute, value) {
+
 		// try to set attribute
-		if (attributeIsString) {
+		if (typeof attribute === 'string') {
 			this.forEach(function(node){
 				node.setAttribute(attribute, value);
 			});
@@ -172,24 +242,19 @@
 		}
 
 		return this;
+
 	};
 
-	Bro.prototype.init = function(selector, context) {
-		if (!selector) {
-			return;
-		}
-		this.selector = selector;
-		this.context = context;
-		var nodes = context.querySelectorAll(selector);
-		util.arr.forEach.call(nodes, function(node) {
-			this.push(node);
+	Bro.prototype.find = function(selecotor) {
+		var nodes = [];
+		this.forEach(function(node){
+			var childes = node.querySelectorAll(selecotor);
+			this.forEach.call(childes, function(node) {
+				nodes.push(node);
+			}, this);
 		}, this);
+		return new Bro(nodes);
 	};
-
-	Bro.prototype.isEmpty = function() {
-		return !!this.length;
-	};
-
 
 	win.bro = bro;
 
