@@ -115,7 +115,7 @@
 		if (!this) {
 			return new Bro(selector, context);
 		}
-		this.init(selector, context || doc);
+		this.init(selector, context);
 	}
 
 	bro = function(selector, context) {
@@ -166,18 +166,19 @@
 
 		if ( typeof selector === "string" ) {
 
-			var nodes;
+			var nodes, isHTML;
 			if ( /^<[\s\S]+\/\w*>$/.test(selector) ) {
 				// create new node
 				var tempNode = doc.createElement('div');
 				tempNode.innerHTML = selector;
 				nodes = tempNode.childNodes;
+				isHTML = true;
 			} else {
 				// find nodes
-				if (context.querySelectorAll) {
+				if (context && context.querySelectorAll) {
 					// detect DOMNode or doc
 					nodes = context.querySelectorAll(selector);
-				} else if (context.find) {
+				} else if (context && context.find) {
 					// detect bro
 					nodes = context.find(selector);
 				} else {
@@ -190,9 +191,14 @@
 				this.push(node);
 			}, this);
 
-			if (this.isPlainObject(context)) {
-				this.setAttribute(context);
-				context = doc;
+			if (isHTML && context) {
+				if (context.append) {
+					context.append(this)
+				} else if (context.appendChild) {
+					this.forEach(function(node){
+						context.appendChild(node);
+					});
+				}
 			}
 
 			// detect single node
@@ -210,6 +216,10 @@
 			console.warn('function detected !!!!');
 		}
 
+		if (this.isPlainObject(context)) {
+			this.setAttribute(context);
+		}
+
 		this.context = context;
 
 		return this;
@@ -221,7 +231,7 @@
 	};
 
 	Bro.prototype.isPlainObject = function(obj) {
-		return obj.constructor === Object;
+		return obj && obj.constructor === Object;
 	};
 
 	Bro.prototype.setAttribute = function(attribute, value) {
@@ -246,14 +256,29 @@
 	};
 
 	Bro.prototype.find = function(selecotor) {
-		var nodes = [];
+		this.splice(0, this.length);
 		this.forEach(function(node){
 			var childes = node.querySelectorAll(selecotor);
 			this.forEach.call(childes, function(node) {
-				nodes.push(node);
+				this.push(node);
 			}, this);
 		}, this);
-		return new Bro(nodes);
+		return this;
+	};
+
+	Bro.prototype.append = function(nodes) {
+		var elem = this[0];
+
+		if (!elem) {
+			return this;
+		}
+
+		this.forEach.call(nodes, function(node){
+			elem.appendChild(node)
+		});
+
+		return this;
+
 	};
 
 	win.bro = bro;

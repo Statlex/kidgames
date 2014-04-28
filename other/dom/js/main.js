@@ -4,8 +4,8 @@
 	/*global console, alert */
 
 	console.log($('div').attr('bind'));
-	console.log(bro(document.querySelectorAll('div')).attr('test',45));
-	console.log(bro('<div/>', {test:34,test2:44}));
+	var t = bro(document.querySelector('div'), {rr:'eeererer'});
+	console.log(t);
 
 //	console.log(bro.bar);
 
