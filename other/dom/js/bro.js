@@ -150,6 +150,7 @@
 		if (value === undefined) {
 			return elem.getAttribute(attribute);
 		}
+		// TODO: detect list of attributes in {}
 		elem.setAttribute(attribute, value);
 		return this;
 	};
