@@ -10,8 +10,14 @@
 	console.log(t);
 
 
-	t = bro('<div/>', {test:45677}).appendTo(document.body);
+	t = bro('<div/>', {test:45677}).appendTo(document.body).addClass('test');
 	console.log(t);
+
+	bro('div').on('click', 'span', function(){
+		console.log(this);
+		console.log(event.data);
+	});
+
 //	console.log(bro.bar);
 
 

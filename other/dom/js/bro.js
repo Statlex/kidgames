@@ -27,7 +27,7 @@
 				y: 0
 			},
 			isActive: false,
-			isClick: function() {
+			isClick: function () {
 				return Math.abs(this.touchMove.x - this.touchStart.x) < 5 && Math.abs(this.touchMove.y - this.touchStart.y) < 5;
 			}
 		},
@@ -42,7 +42,7 @@
 				return docElem.clientWidth / docElem.clientHeight;
 			}
 		},
-		init: function() {
+		init: function () {
 			this.getIsPhone();
 			this.runDetector();
 		},
@@ -122,13 +122,13 @@
 		this.init(selector, context);
 	}
 
-	bro = function(selector, context) {
+	bro = function (selector, context) {
 		return new Bro(selector, context);
 	};
 
 	Bro.prototype = Object.create(Array.prototype);
 
-	Bro.prototype.html = function(html) {
+	Bro.prototype.html = function (html) {
 		var elem = this[0] || {};
 		if (html === undefined) {
 			return elem.innerHTML || '';
@@ -137,7 +137,7 @@
 		return this;
 	};
 
-	Bro.prototype.attr = function(attribute, value) {
+	Bro.prototype.attr = function (attribute, value) {
 
 		var elem = this[0];
 
@@ -156,22 +156,22 @@
 
 	};
 
-	Bro.prototype.init = function(selector, context) {
+	Bro.prototype.init = function (selector, context) {
 
 		// detect empty selector
-		if ( !selector ) {
+		if (!selector) {
 			return this;
 		}
 
 		// detect Bro
-		if ( selector instanceof Bro ) {
+		if (selector instanceof Bro) {
 			return selector;
 		}
 
-		if ( typeof selector === "string" ) {
+		if (typeof selector === "string") {
 
 			var nodes, isHTML, tempNode;
-			if ( re.htmlNode.test(selector) ) {
+			if (re.htmlNode.test(selector)) {
 				// create new node
 				tempNode = doc.createElement('div');
 				tempNode.innerHTML = selector;
@@ -191,7 +191,7 @@
 				}
 			}
 
-			this.forEach.call(nodes, function(node) {
+			this.forEach.call(nodes, function (node) {
 				this.push(node);
 			}, this);
 
@@ -199,24 +199,24 @@
 				if (context.append) {
 					context.append(this);
 				} else if (context.appendChild) {
-					this.forEach(function(node){
+					this.forEach(function (node) {
 						context.appendChild(node);
 					});
 				}
 			}
 
 			// detect single node
-		} else if ( selector.nodeType ) {
+		} else if (selector.nodeType) {
 			this.selector = selector;
 			this.push(selector);
 			// detect nodeList and Array
-		} else if ( typeof selector.length === 'number' ) {
-			this.forEach.call(selector, function(node) {
+		} else if (typeof selector.length === 'number') {
+			this.forEach.call(selector, function (node) {
 				this.push(node);
 			}, this);
 			this.selector = selector;
 			// detect function
-		} else if ( typeof selector === 'function' ) {
+		} else if (typeof selector === 'function') {
 			console.warn('function detected !!!!');
 		}
 
@@ -230,23 +230,23 @@
 
 	};
 
-	Bro.prototype.isEmpty = function() {
+	Bro.prototype.isEmpty = function () {
 		return !!this.length;
 	};
 
-	Bro.prototype.isPlainObject = function(obj) {
+	Bro.prototype.isPlainObject = function (obj) {
 		return obj && obj.constructor === Object;
 	};
 
-	Bro.prototype.setAttribute = function(attribute, value) {
+	Bro.prototype.setAttribute = function (attribute, value) {
 
 		// try to set attribute
 		if (typeof attribute === 'string') {
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				node.setAttribute(attribute, value);
 			});
 		} else {
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				var key;
 				for (key in attribute) {
 					if (attribute.hasOwnProperty(key)) {
@@ -260,25 +260,25 @@
 
 	};
 
-	Bro.prototype.find = function(selecotor) {
-		this.splice(0, this.length);
-		this.forEach(function(node){
+	Bro.prototype.find = function (selecotor) {
+		var nodes = [];
+		this.forEach(function (node) {
 			var childes = node.querySelectorAll(selecotor);
-			this.forEach.call(childes, function(node) {
-				this.push(node);
-			}, this);
+			this.forEach.call(childes, function (node) {
+				nodes.push(node);
+			});
 		}, this);
-		return this;
+		return new Bro(nodes);
 	};
 
-	Bro.prototype.append = function(nodes) {
+	Bro.prototype.append = function (nodes) {
 		var elem = this[0];
 
 		if (!elem) {
 			return this;
 		}
 
-		this.forEach.call(nodes, function(node){
+		this.forEach.call(nodes, function (node) {
 			elem.appendChild(node);
 		});
 
@@ -286,7 +286,7 @@
 
 	};
 
-	Bro.prototype.appendTo = function(elem) {
+	Bro.prototype.appendTo = function (elem) {
 
 		if (!elem) {
 			return this;
@@ -299,7 +299,7 @@
 
 		elem = elem[0] || elem;
 		if (elem.appendChild) {
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				elem.appendChild(node);
 			});
 		}
@@ -308,9 +308,9 @@
 
 	};
 
-	Bro.prototype.hasClass = function(className) {
+	Bro.prototype.hasClass = function (className) {
 		var has = false;
-		this.forEach(function(node){
+		this.forEach(function (node) {
 			if (has) {
 				return;
 			}
@@ -319,19 +319,21 @@
 		return has;
 	};
 
-	Bro.prototype.addClass = function(className) {
-		this.forEach(function(node){
+	Bro.prototype.addClass = function (className) {
+		this.forEach(function (node) {
 			node.classList.add(className);
 		});
+		return this;
 	};
 
-	Bro.prototype.removeClass = function(className) {
-		this.forEach(function(node){
+	Bro.prototype.removeClass = function (className) {
+		this.forEach(function (node) {
 			node.classList.remove(className);
 		});
+		return this;
 	};
 
-	Bro.prototype.toggleClass = function(className, addOrRemove) {
+	Bro.prototype.toggleClass = function (className, addOrRemove) {
 
 		if (addOrRemove !== undefined) {
 			if (addOrRemove) {
@@ -342,7 +344,7 @@
 			return this;
 		}
 
-		this.forEach(function(node){
+		this.forEach(function (node) {
 			node.classList.toggle(className);
 		});
 
@@ -350,9 +352,49 @@
 
 	};
 
+	Bro.prototype.each = function(func) {
+		this.forEach(function(node, index) {
+			func.call(node, index, node);
+		}, this);
 
+		return this;
 
-	
+	};
+
+	Bro.prototype.on = function(type, selector, data, func) {
+
+		var nodes = this;
+
+		if (typeof selector === 'function') { // click, func
+			func = selector;
+		} else if (typeof func === 'function') { // click, 'span', {rr:55}, func
+			nodes = this.find(selector);
+		} else if (this.isPlainObject(selector)) { // click, {rr:55}, func
+			func = data;
+			data = selector;
+		} else {                                    // click, 'span', func
+			nodes = this.find(selector);
+			func = data;
+			data = undefined;
+		}
+
+		if (data) {
+			nodes.forEach(function(node){
+				node.addEventListener(type, function(e){
+					e.data = data;
+					func.call(node, e);
+				}, false);
+			});
+		} else {
+			nodes.forEach(function(node){
+				node.addEventListener(type, func, false);
+			});
+		}
+
+		return this;
+
+	};
+
 	win.bro = bro;
 
 	//win.Bro = Bro;
