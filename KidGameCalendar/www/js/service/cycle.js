@@ -49,6 +49,8 @@
 
 			different = calendar.getDifferent(date, util.getToday());
 
+			console.log(date);
+
 			if (different > 0) {
 				text.title = lang.checkDate;
 				text.text = lang.cannotUseThisDay.replace('{{date}}', dateStr);
@@ -101,6 +103,9 @@
 
 			cycles.forEach(function(cycle){
 				var different = calendar.getDifferent(date, cycle.startCycle);
+				if (different === 0) {
+					nearestCycle = new Cycle(cycle.startCycle);
+				}
 				if (!nearestCycle && (different >= 0) && (different <= info.flowMaxLength)) {
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;
