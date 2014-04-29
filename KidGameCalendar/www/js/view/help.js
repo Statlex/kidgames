@@ -16,10 +16,10 @@
 		},
 		show: function() {
 			this.$el.html(_.template(this.template, {}));
-			this.$el.show();
+			this.$el.css('top', '0');
 		},
 		hide: function(noHistoryBack) {
-			this.$el.hide();
+			this.$el.css('top', '');
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}

@@ -16,15 +16,16 @@
 		},
 		show: function() {
 			this.$el.html(_.template(this.template, {}));
-			this.$el.show();
+			this.$el.css('top', '0');
 			this.setEvents();
 		},
 		hide: function(noHistoryBack) {
-			this.$el.hide();
+			//this.$el.hide();
+			this.$el.css('top', '');
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}
-			this.$el.html('');
+			this.$el.empty();
 		},
 		setEvents: function() {
 			// add events to elements

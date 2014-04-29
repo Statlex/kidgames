@@ -10,9 +10,6 @@
 
 		el: '.js-date-info-wrapper',
 		events: {
-			'click .js-hide-view': 'hide',
-			'click .js-tab': 'showDetails',
-			'click .js-save-date-info': 'saveDateInfo'
 		},
 		selectors: {
 			details: '.js-date-details-wrapper'
@@ -24,10 +21,14 @@
 				date: templateContainer.templates['date-info-day-header']
 			};
 			this.$el.html(_.template(this.templates.main, {}));
+
+			// set listeners
+			$('.js-hide-view', this.$el).on('click' , this.hide.bind(this, false));
+			$('.js-tab', this.$el).on('click', this.showDetails.bind(this));
+			$('.js-save-date-info', this.$el).on('click', this.saveDateInfo.bind(this));
+
 		},
 		show: function(id) {
-
-//			APP.mainView.fade.show();
 
 			this.date = id;
 

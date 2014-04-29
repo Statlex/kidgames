@@ -487,6 +487,18 @@
 
 	};
 
+	Bro.prototype.eq = function(number) {
+		return new Bro(this[number]);
+	};
+
+	Bro.prototype.empty = function() {
+		this.forEach(function(node){
+			while (node.firstChild) {
+				node.removeChild(node.firstChild);
+			}
+		});
+	};
+
 	win.$ = bro;
 
 	//win.Bro = Bro;

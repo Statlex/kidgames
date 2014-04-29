@@ -9,14 +9,17 @@
 	win.GC.MainMenuView = Backbone.View.extend({
 		el: '.js-main-menu-wrapper',
 		events: {
-			'click .js-calendar': 'showCalendar',
-			'click .js-notes': 'showNotes',
-			'click .js-time': 'showTime',
-			'click .js-options': 'showOptions'
+
 		},
 		initialize: function() {
 			var template = templateContainer.templates['main-menu'];
 			this.$el.html(_.template(template, {}));
+
+			this.$el.find('.js-calendar').on('click', this.showCalendar.bind(this));
+			this.$el.find('.js-notes').on('click', this.showNotes.bind(this));
+			this.$el.find('.js-time').on('click', this.showTime.bind(this));
+			this.$el.find('.js-options').on('click', this.showOptions.bind(this));
+
 		},
 		showCalendar: function() {
 			APP.mainView.show('calendar');
