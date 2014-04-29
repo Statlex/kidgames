@@ -201,9 +201,7 @@ body,
 	z-index: 10;
 }
 
-.date-info-wrapper,
-.confirm-wrapper,
-.options-wrapper {
+.date-info-wrapper {
 	position: fixed;
 	top: 100%;
 	left: 0;
@@ -215,14 +213,11 @@ body,
 	-webkit-transition: all ease-out 0.3s;
 }
 
-
-
-
-
-
-
-
 .month-date,
 .inner-month-date {
 	border-radius: 0 !important;
 }
+
+
+
+
