@@ -105,6 +105,7 @@
 				var different = calendar.getDifferent(date, cycle.startCycle);
 				if (different === 0) {
 					nearestCycle = new Cycle(cycle.startCycle);
+					nearestCycle.endFlow = cycle.endFlow;
 				}
 				if (!nearestCycle && (different >= 0) && (different <= info.flowMaxLength)) {
 					nearestCycle = new Cycle(cycle.startCycle);
