@@ -16,10 +16,9 @@
 	bro('div').on('click', 'span', function(){
 		console.log(this);
 		console.log(event.data);
+		console.log('clicked');
 	});
 
-//	console.log(bro.bar);
-
-
+	bro('div span').on('click');
 
 }(window, document, document.documentElement));

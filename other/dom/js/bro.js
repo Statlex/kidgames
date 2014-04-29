@@ -363,6 +363,15 @@
 
 	Bro.prototype.on = function(type, selector, data, func) {
 
+		if (!selector) { // click
+			this.forEach(function(node){
+				var evObj = document.createEvent('Events');
+				evObj.initEvent(type, true, false);
+				node.dispatchEvent(evObj);
+			});
+			return this;
+		}
+
 		var nodes = this;
 
 		if (typeof selector === 'function') { // click, func
