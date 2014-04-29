@@ -91,6 +91,9 @@
 			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(' + x + 'px, 0)';
 
 		}, false);
+
+		win.addEventListener('resize', this.fixPageState.bind(this), false);
+
 	};
 
 	Slider.prototype.addRightPage = function (node) {
@@ -218,7 +221,8 @@
 	};
 
 	Slider.prototype.fixPageState = function () {
-
+		this.page.width = this.wrapper.clientWidth;
+		this.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + this.page.width + 'px, 0)';
 	};
 
 	Slider.prototype.changePage = function(direction) {
