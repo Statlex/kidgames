@@ -4,7 +4,7 @@
 	/*global console, alert, window, document */
 
 
-	var isTouch, info, bro, re;
+	var isTouch, info, bro, re, events;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	//=== info start ===//
@@ -113,6 +113,13 @@
 
 	re = {
 		htmlNode: /^<[\s\S]+\/\w*>$/
+	};
+
+	events = {
+		type: ['blur', 'focus', 'focusin', 'focusout', 'load', 'resize', 'scroll', 'unload',
+			'click', 'dblclick', 'mousedown', 'mouseup', 'mousemove', 'mouseover', 'mouseout',
+			'mouseenter', 'mouseleave', 'change', 'select', 'submit', 'keydown',
+			'keypress', 'keyup', 'error', 'contextmenu']
 	};
 
 	function Bro(selector, context) {
