@@ -201,6 +201,8 @@ body,
 	z-index: 10;
 }
 
+.confirm-wrapper,
+.options-wrapper,
 .date-info-wrapper {
 	position: fixed;
 	top: 100%;
