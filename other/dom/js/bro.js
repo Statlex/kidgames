@@ -308,7 +308,51 @@
 
 	};
 
+	Bro.prototype.hasClass = function(className) {
+		var has = false;
+		this.forEach(function(node){
+			if (has) {
+				return;
+			}
+			has = node.classList.contains(className);
+		});
+		return has;
+	};
 
+	Bro.prototype.addClass = function(className) {
+		this.forEach(function(node){
+			node.classList.add(className);
+		});
+	};
+
+	Bro.prototype.removeClass = function(className) {
+		this.forEach(function(node){
+			node.classList.remove(className);
+		});
+	};
+
+	Bro.prototype.toggleClass = function(className, addOrRemove) {
+
+		if (addOrRemove !== undefined) {
+			if (addOrRemove) {
+				this.addClass(className);
+			} else {
+				this.removeClass(className);
+			}
+			return this;
+		}
+
+		this.forEach(function(node){
+			node.classList.toggle(className);
+		});
+
+		return this;
+
+	};
+
+
+
+	
 	win.bro = bro;
 
 	//win.Bro = Bro;
