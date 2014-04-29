@@ -21,6 +21,6 @@
 
 	bro('div span').on('click');
 
-	console.log(bro('div').remove());
+//	console.log(bro('div').find('span').remove());
 
 }(window, document, document.documentElement));
