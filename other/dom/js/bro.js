@@ -404,6 +404,14 @@
 
 	};
 
+	Bro.prototype.remove = function() {
+		this.forEach(function(node){
+			node.parentNode.removeChild(node);
+		}, this);
+		this.splice(0, this.length);
+		return this;
+	};
+
 	win.bro = bro;
 
 	//win.Bro = Bro;
