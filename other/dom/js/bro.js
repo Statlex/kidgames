@@ -4,7 +4,7 @@
 	/*global console, alert, window, document */
 
 
-	var isTouch, info, util, bro;
+	var isTouch, info, bro, re;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	//=== info start ===//
@@ -111,6 +111,10 @@
 	win.addEventListener('load', info.init.bind(info), false);
 	//=== info end ===//
 
+	re = {
+		htmlNode: /^<[\s\S]+\/\w*>$/
+	};
+
 	function Bro(selector, context) {
 		if (!this) {
 			return new Bro(selector, context);
@@ -166,10 +170,10 @@
 
 		if ( typeof selector === "string" ) {
 
-			var nodes, isHTML;
-			if ( /^<[\s\S]+\/\w*>$/.test(selector) ) {
+			var nodes, isHTML, tempNode;
+			if ( re.htmlNode.test(selector) ) {
 				// create new node
-				var tempNode = doc.createElement('div');
+				tempNode = doc.createElement('div');
 				tempNode.innerHTML = selector;
 				nodes = tempNode.childNodes;
 				isHTML = true;
@@ -193,7 +197,7 @@
 
 			if (isHTML && context) {
 				if (context.append) {
-					context.append(this)
+					context.append(this);
 				} else if (context.appendChild) {
 					this.forEach(function(node){
 						context.appendChild(node);
@@ -243,7 +247,8 @@
 			});
 		} else {
 			this.forEach(function(node){
-				for (var key in attribute) {
+				var key;
+				for (key in attribute) {
 					if (attribute.hasOwnProperty(key)) {
 						node.setAttribute(key, attribute[key]);
 					}
@@ -274,12 +279,35 @@
 		}
 
 		this.forEach.call(nodes, function(node){
-			elem.appendChild(node)
+			elem.appendChild(node);
 		});
 
 		return this;
 
 	};
+
+	Bro.prototype.appendTo = function(elem) {
+
+		if (!elem) {
+			return this;
+		}
+
+		if (elem.append) {
+			elem.append(this);
+			return this;
+		}
+
+		elem = elem[0] || elem;
+		if (elem.appendChild) {
+			this.forEach(function(node){
+				elem.appendChild(node);
+			});
+		}
+
+		return this;
+
+	};
+
 
 	win.bro = bro;
 

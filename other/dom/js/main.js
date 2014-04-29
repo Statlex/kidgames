@@ -3,10 +3,15 @@
 	"use strict";
 	/*global console, alert */
 
-	console.log($('div').attr('bind'));
 	var t = bro(document.querySelector('div'), {rr:'eeererer'});
 	console.log(t);
 
+	t = bro('body').append( bro('<div><img src="" alt=""/></div>', {rr:'eeererer'}));
+	console.log(t);
+
+
+	t = bro('<div/>', {test:45677}).appendTo(document.body);
+	console.log(t);
 //	console.log(bro.bar);
 
 
