@@ -205,15 +205,15 @@
 	win.util = bro;
 
 	win.addEventListener('load', function(){
-		doc.body.addEventListener('touchstart', function(e){
-			e.preventDefault();
-		}, false);
+//		doc.body.addEventListener('touchstart', function(e){
+//			e.preventDefault();
+//		}, false);
 		doc.body.addEventListener('touchmove', function(e){
 			e.preventDefault();
 		}, false);
-		doc.body.addEventListener('touchend', function(e){
-			e.preventDefault();
-		}, false);
+//		doc.body.addEventListener('touchend', function(e){
+//			e.preventDefault();
+//		}, false);
 	}, false);
 
 }(window, document));
