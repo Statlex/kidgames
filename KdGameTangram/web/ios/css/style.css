@@ -174,6 +174,25 @@
 	opacity: 0.9;
 }
 
+@-webkit-keyframes animate-reflect {
+	50% {
+		-webkit-transform: scaleY(-1);
+	}
+}
+
+@keyframes animate-reflect {
+	50% {
+		-webkit-transform: scaleY(-1);
+	}
+}
+
+.animate-reflect {
+	-webkit-animation-name: animate-reflect;
+	-webkit-animation-duration: 0.5s;
+	animation-name: animate-reflect;
+	animation-duration: 0.5s;
+}
+
 /* setting page */
 .setting-page {
 	color: #000;
@@ -634,8 +653,6 @@
 	position: relative;
 	top: 9px;
 }
-
-
 
 
 

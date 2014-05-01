@@ -344,11 +344,14 @@
 
 		},
 		showRotater: function () {
+
 			//this.isActive = true;
 			var activePolygon = $('.js-figures-container polygon.active');
 			if (!activePolygon) {
 				return;
 			}
+
+			this.showReflectButton();
 
 			this.wrapper.style.display = 'block';
 			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
@@ -366,6 +369,26 @@
 			this.rotateCenterY = (poly.y + dY);
 			this.wrapper.style[info.preJS + 'Transform'] = 'translate(' + this.rotateCenterX + 'px, ' + this.rotateCenterY + 'px)';
 			this.wrapper.style.display = 'block';
+		},
+		showReflectButton: function() {
+
+			var clickedCount = info.get('clickedCount') || 0;
+			var lastReflect = info.get('lastReflect');
+			var curReflect = Date.now();
+			var dateDifferent = curReflect - lastReflect;
+
+			var reflectButton = $('.js-reflect-button', main.wrapper);
+
+			$.removeClass(reflectButton, 'animate-reflect');
+
+			if (clickedCount <= 10 || dateDifferent > 86400000) { //86400000
+				setTimeout(function(){
+					$.addClass(reflectButton, 'animate-reflect');
+				}, 10);
+			} else {
+				console.log('no reflect');
+			}
+
 		},
 		hideRotater: function () {
 			this.isActive = false;
@@ -527,6 +550,13 @@
 			if (event) {
 				event.stopPropagation();
 			}
+
+			var clickedCount = info.get('clickedCount') || 0;
+
+			info.set('clickedCount', clickedCount, true);
+			info.change('clickedCount', 1, true);
+
+			info.set('lastReflect', Date.now(), true);
 
 			var coords = util.getCoordinatesFromStyle(activePolygon.getAttribute('style'));
 			coords[2] += 180;
