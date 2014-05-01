@@ -638,11 +638,13 @@
 						figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
 							.replace('{{fillColor}}', iOS6Colors[index])
 							.replace('{{strokeColor}}', tg.strokeColor)
+							.replace('{{figure-number}}', (index + 1))
 							.replace('{{points}}', points);
 					} else {
 						figuresStr += figuresCode.template.replace('{{figureName}}', figureName)
 							.replace('{{fillColor}}', 'url(#pattern-' + (index + 1) + ')')
 							.replace('{{strokeColor}}', tg.strokeColor)
+							.replace('{{figure-number}}', (index + 1))
 							.replace('{{points}}', points);
 					}
 
@@ -855,8 +857,8 @@
 			var polygons = $$('.js-figures-container polygon', main.wrapper);
 
 			polygons = polygons.sort(function(a, b) {
-				var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
-				var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				var aNumber = parseInt(a.getAttribute('figure-number'), 10);
+				var bNumber = parseInt(b.getAttribute('figure-number'), 10);
 				return (aNumber > bNumber) ? 1 : -1;
 			});
 
@@ -938,8 +940,8 @@
 			var dataSrt = '';
 
 			polygons = polygons.sort(function(a, b) {
-				var aNumber = parseInt(a.getAttribute('fill').replace('url(#pattern-', ''), 10);
-				var bNumber = parseInt(b.getAttribute('fill').replace('url(#pattern-', ''), 10);
+				var aNumber = parseInt(a.getAttribute('figure-number'), 10);
+				var bNumber = parseInt(b.getAttribute('figure-number'), 10);
 				return (aNumber > bNumber) ? 1 : -1;
 			});
 			polygons.forEach(function(polygon){
@@ -1220,7 +1222,7 @@
 		TRPRX: 12.5,
 		TRPRY: 37.5,
 
-		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
+		template: '<polygon figure-name="{{figureName}}" fill="{{fillColor}}" figure-number="{{figure-number}}" stroke="{{strokeColor}}" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="{{points}}"/>'
 
 	};
 
