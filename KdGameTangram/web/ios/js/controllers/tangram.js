@@ -902,6 +902,13 @@
 					arr[index] = info.split('$');
 				});
 
+				var idsData = info.get('idsData') || {};
+
+				timer.spendTime = idsData[id] && idsData[id].spendTime;
+
+				if (typeof timer.spendTime === 'number') {
+					timer.countValue = timer.spendTime;
+				}
 				timer.pause(true);
 
 				if (svg.indexOf('TRPR') !== -1) {
