@@ -381,7 +381,7 @@
 
 			$.removeClass(reflectButton, 'animate-reflect');
 
-			if (clickedCount <= 10 || dateDifferent > 86400000) { //86400000
+			if (clickedCount <= 5 || dateDifferent > 86400000) { //86400000
 				setTimeout(function(){
 					$.addClass(reflectButton, 'animate-reflect');
 				}, 10);
@@ -842,6 +842,7 @@
 			this.saveButton.init();
 			this.tryToRestoreState();
 			this.setArrowButtons();
+			this.resetButton.init();
 
 		},
 		setArrowButtons: function(){
@@ -1053,6 +1054,24 @@
 				} else {
 					$.removeClass(this.button, 'active');
 				}
+			}
+		},
+		resetButton: {
+			init: function() {
+				var button = $('.js-reset-tangram', main.wrapper);
+				button.addEventListener('click', function(){
+
+					var img = '<img src="img/i/reset.svg" class="message-image"/>';
+					ui.confirm.show(img,
+						function() {
+							viewer.refresh();
+						},
+						function(){
+							console.log('cancel');
+						}
+					);
+
+				}, false);
 			}
 		},
 		setHint: function(){
