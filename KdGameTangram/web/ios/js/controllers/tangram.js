@@ -12,7 +12,6 @@
 				arr[index] = parseFloat(value);
 			});
 			return coords;
-
 		},
 		getAngle: function (centerX, centerY, pointX, pointY) {
 			var x = centerX - pointX;
@@ -764,7 +763,7 @@
 						x = parseFloat(xy.split(',')[0]) * tg.q + offsetX;
 						y = parseFloat(xy.split(',')[1]) * tg.q + offsetY;
 						extraAlignPoints.push({x: x, y: y});
-					})
+					});
 				});
 			}());
 			this.extraAlignPoints = extraAlignPoints;
@@ -870,7 +869,7 @@
 
 				var polygonsInfo = svg.split(' ');
 				polygonsInfo.forEach(function(info, index, arr){
-					arr[index] = info.split('-');
+					arr[index] = info.split('$');
 				});
 
 				timer.pause(true);
@@ -951,7 +950,7 @@
 				coords.forEach(function (value, index, arr) {
 					arr[index] = parseFloat(value);
 				});
-				coords = type + '-' + number + '-' + coords.join('-');
+				coords = type + '$' + number + '$' + coords.join('$');
 				coords = coords.replace(/\s/gi, '');
 				dataSrt += coords + ' ';
 			});
@@ -1154,6 +1153,9 @@
 
 			// test for angles
 			(function () {
+
+				that.saveButton.setState(true);
+				return;
 
 				var delta = 4 * that.q;
 
