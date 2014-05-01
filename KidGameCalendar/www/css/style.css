@@ -2,24 +2,28 @@
 	background-color: #c6c6c6;
 }
 
-.flow,
-.start-flow {
-	background-color: #c00;
+.flow .inner-month-date,
+.start-flow .inner-month-date {
+	background-color: #ff7777;
 }
 
-.safe {
+.start-flow .inner-month-date {
+	background-color: #cc0000;
+}
+
+.safe .inner-month-date{
 	background-color: #00c;
 }
 
-.unsafe {
+.unsafe .inner-month-date{
 	background-color: #cc0;
 }
 
-.fertile {
+.fertile .inner-month-date{
 	background-color: #0c0;
 }
 
-.future-start-flow {
+.future-start-flow .inner-month-date{
 	background-color: #c0c;
 }
 
@@ -217,7 +221,7 @@ body,
 
 .month-date,
 .inner-month-date {
-	border-radius: 0 !important;
+	/*border-radius: 0 !important;*/
 }
 
 

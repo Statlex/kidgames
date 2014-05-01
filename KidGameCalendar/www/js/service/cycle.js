@@ -54,6 +54,7 @@
 			if (different > 0) {
 				text.title = lang.checkDate;
 				text.text = lang.cannotUseThisDay.replace('{{date}}', dateStr);
+				text.text = lang.replaceMonth(text.text);
 				// create notification with 'v' and '?'
 				APP.alert.show(text);
 				APP.router.navigate('alert');
@@ -64,6 +65,7 @@
 				if (cycle.startCycle.str === dateStr) {
 					text.title = lang.removeCycle;
 					text.text = lang.removeFromHistoryCycle.replace('{{date}}', dateStr);
+					text.text = lang.replaceMonth(text.text);
 					APP.confirm.show(text,
 						function(){
 							cycle.remove();
@@ -73,6 +75,7 @@
 				} else {
 					text.title = lang.setEndOfFlow;
 					text.text = lang.setEndOfFlowOn.replace('{{date}}', dateStr);
+					text.text = lang.replaceMonth(text.text);
 					APP.confirm.show(text,
 						function(){
 							cycle.setFlowEnd(date);
@@ -83,6 +86,7 @@
 			} else {
 				text.title = lang.confirmNewCycle;
 				text.text = lang.setStartDateOfLastCycleAs.replace('{{date}}', dateStr);
+				text.text = lang.replaceMonth(text.text);
 				APP.confirm.show(text,
 				function(){
 					var cycle = new Cycle(date);
