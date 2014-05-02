@@ -9,7 +9,7 @@
 	win.GC.OptionsView = Backbone.View.extend({
 		el: '.js-options-wrapper',
 		events: {
-			'click h1': 'test' // test field
+			'click .js-options-back': 'hide' // test field
 		},
 		initialize: function() {
 			this.template = templateContainer.templates.options;
@@ -17,7 +17,7 @@
 		show: function() {
 			this.$el.html(_.template(this.template, {}));
 			this.$el.css('top', '0');
-			this.setEvents();
+			this.bindEvents();
 		},
 		hide: function(noHistoryBack) {
 			//this.$el.hide();
@@ -27,10 +27,24 @@
 			}
 			this.$el.empty();
 		},
-		setEvents: function() {
-			// add events to elements
-			console.log(this.events);
+		bindEvents: function() {
+
+			var events = this.events,
+				key, selector, type, func, arr;
+
+			for (key in events) {
+				if (events.hasOwnProperty(key)) {
+					func = events[key];
+					arr = key.split(' ');
+					type = arr.shift();
+					selector = arr.join(' ');
+					this.$el.find(selector).on(type, this[func].bind(this, null));
+				}
+			}
+
 		}
+
+
 
 	});
 

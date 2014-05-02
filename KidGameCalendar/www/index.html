@@ -189,36 +189,41 @@
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="confirm">
-
-	<h2><%= title || '' %></h2>
-
-	<p><%= text || '' %></p>
-
-	<input type="button" value="ok" class="js-ok"/>
-	<input type="button" value="cancel" class="js-cancel"/>
-
+	<div class="notification">
+		<h2><%= title || '' %></h2>
+		<p><%= text || '' %></p>
+		<input type="button" value="" class="js-ok btn-ok"/>
+		<input type="button" value="" class="js-cancel btn-cancel"/>
+	</div>
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="alert">
-
-	<h2><%= title || '' %></h2>
-
-	<p><%= text || '' %></p>
-
-	<input type="button" value="ok" class="js-ok"/>
-
+	<div class="notification">
+		<h2><%= title || '' %></h2>
+		<p><%= text || '' %></p>
+		<input type="button" value="" class="js-ok btn-ok"/>
+	</div>
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="options">
 
 	<h1>option</h1>
 
+	<div class="js-options-back"> << back</div>
+
+
 </script>
 
 
 <script type="text/x-template" class="jsTemplate" data-template-name="help">
 
-	<h1>help</h1>
+	<div>
+
+		<h1>help</h1>
+
+		<div class="js-help-back"> << back</div>
+
+	</div>
 
 </script>
 

@@ -71,10 +71,21 @@
 			this.$el.find('.js-slider-to-right').on('click', changePage.bind(APP.slider, 1));
 		},
 		bindFade: function() {
-			this.fade = $('.js-fade');
-			this.fade.on('click', function(){
+			this.fade = {
+				node: $('.js-fade'),
+				show: function() {
+					$(doc.body).addClass('blur');
+					this.node.show();
+				},
+				hide: function() {
+					$(doc.body).removeClass('blur');
+					this.node.hide();
+				}
+			};
+			this.fade.node.on('click', function(){
 				Backbone.history.history.back();
 			});
+
 		}
 
 	});

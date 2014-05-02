@@ -22,8 +22,6 @@
 		},
 		hide: function(noHistoryBack) {
 			//this.$el.hide();
-			console.log('hide');
-			console.log(noHistoryBack);
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}

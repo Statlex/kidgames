@@ -1,37 +1,50 @@
+.blur .main-menu-wrapper,
+.blur .main-data-wrapper {
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+}
+
+.inner-month-date {
+	background-color: #d2d2d7;
+}
+
 .selected-date .inner-month-date {
-	background-color: #c6c6c6;
+	background-color: #8e8e93;
 }
 
 .flow .inner-month-date,
 .start-flow .inner-month-date {
-	background-color: #ff7777;
+	background-color: #ff3d30;
 }
 
 .start-flow .inner-month-date {
-	background-color: #cc0000;
+	background-color: #ff2d55;
 }
 
 .safe .inner-month-date{
-	background-color: #00c;
+	background-color: #5ac8fa;
 }
 
 .unsafe .inner-month-date{
-	background-color: #cc0;
+	background-color: #fc0;
 }
 
 .fertile .inner-month-date{
-	background-color: #0c0;
+	background-color: #4cd964;
 }
 
 .future-start-flow .inner-month-date{
-	background-color: #c0c;
+	background-color: rgba(255, 67, 49, 0.71);
 }
 
-.tick .inner-month-date {
+.tick .inner-month-date,
+.start-flow .inner-month-date {
 	position: relative;
 }
 
-.tick .inner-month-date:after {
+
+.tick .inner-month-date:after,
+.start-flow .inner-month-date:before {
 	content: '';
 	display: block;
 	background-image: url('../img/icon-sprite.svg');
@@ -40,17 +53,23 @@
 	height: 15px;
 	width: 15px;
 	background-position: -247px -8px;
-	bottom: 0;
-	right: 0;
+	bottom: 1px;
+	left: 50%;
+	margin-left: -8px;
 }
 
+.start-flow .inner-month-date:before {
+	background-position: -343px -8px;
+}
 
+.start-flow.tick .inner-month-date:after,
+.start-flow.tick .inner-month-date:before {
+	margin-left: -3px;
+}
 
-
-
-
-
-
+.start-flow.tick .inner-month-date:before {
+	margin-left: -14px;
+}
 
 
 
@@ -86,6 +105,7 @@ body,
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
+	letter-spacing: 1px;
 }
 
 .main-menu-wrapper {
@@ -216,7 +236,32 @@ body,
 	z-index: 20;
 	background-color: #fff;
 	transition: all ease-out 0.3s;
+	padding: 20px 10px 10px;
+	box-sizing: border-box;
 	-webkit-transition: all ease-out 0.3s;
+}
+
+.confirm-wrapper h2,
+.options-wrapper h2,
+.date-info-wrapper h2 {
+	padding-bottom: 10px;
+	font-size: 18px;
+	line-height: 18px;
+	text-align: center;
+	font-weight: normal;
+}
+
+.confirm-wrapper p,
+.options-wrapper p,
+.date-info-wrapper p {
+	padding: 10px;
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+}
+
+.notification {
+	text-align: center;
 }
 
 .month-date,
@@ -224,6 +269,26 @@ body,
 	/*border-radius: 0 !important;*/
 }
 
+label {
+	display: block;
+	clear: both;
+}
 
+.btn-ok,
+.btn-cancel {
+	background-color: #fff;
+	background-image: url(../img/icon-sprite.svg);
+	background-repeat: no-repeat;
+	background-position: -271px 0;
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	border: none;
+	margin: 8px 20px;
+	outline: none;
+}
 
+.btn-cancel {
+	background-position: -303px 0;
 
+}
