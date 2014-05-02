@@ -21,6 +21,7 @@
 
 	setTimeout(function(){
 		$('div span').on('click', {ee:55});
+//		$('div span').off();
 	},2000);
 
 	setTimeout(function(){

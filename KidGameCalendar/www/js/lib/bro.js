@@ -227,7 +227,6 @@
 				this.push(node);
 			}, this);
 			this.selector = selector;
-			// detect function
 		}
 
 		if (this.isPlainObject(context)) {
@@ -470,12 +469,14 @@
 		this.forEach(function(node){
 			node.style.display = 'block';
 		});
+		return this;
 	};
 
 	Bro.prototype.hide = function() {
 		this.forEach(function(node){
 			node.style.display = 'none';
 		});
+		return this;
 	};
 
 	Bro.prototype.css = function(css, value) {
@@ -513,6 +514,7 @@
 				node.removeChild(node.firstChild);
 			}
 		});
+		return this;
 	};
 
 	win.$ = bro;
