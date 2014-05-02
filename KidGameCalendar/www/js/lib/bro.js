@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document */
+	/*global console, alert, window, document, Event */
 
 
 	var isTouch, info, bro, re, events;
@@ -377,16 +377,21 @@
 
 	Bro.prototype.on = function(type, selector, data, func) {
 
-		if (!selector) { // click
+		var evt, nodes;
+
+		if ( (this.isPlainObject(selector) && !data) || !selector ) { // click or click {rr:55}
+			data = selector;
+			evt = new Event(type);
+			if (data) {
+				evt.data = data;
+			}
 			this.forEach(function(node){
-				var evObj = document.createEvent('Events');
-				evObj.initEvent(type, true, false);
-				node.dispatchEvent(evObj);
+				node.dispatchEvent(evt);
 			});
 			return this;
 		}
 
-		var nodes = this;
+		nodes = this;
 
 		if (typeof selector === 'function') { // click, func
 			func = selector;
@@ -404,7 +409,18 @@
 		if (data) {
 			nodes.forEach(function(node){
 				node.addEventListener(type, function(e){
-					e.data = data;
+					var key, dataObj;
+					if (e.data) {
+						dataObj = Object.create(data);
+						for (key in e.data) {
+							if (e.data.hasOwnProperty(key)) {
+								dataObj[key] = e.data[key];
+							}
+						}
+						e.data = dataObj;
+					} else {
+						e.data = data;
+					}
 					func.call(node, e);
 				}, false);
 			});
