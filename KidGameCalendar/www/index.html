@@ -162,11 +162,14 @@
 <script type="text/x-template" class="jsTemplate" data-template-name="date-info-details">
 
 	<div class="js-pencil-details js-tab-page" data-page-index="0">
-		<label><input type="checkbox" data-handle="sex"/>heart</label>
-		<label><input type="checkbox" data-handle="pill"/>pill</label>
-		<label><input type="number" data-handle="weight"/>weight</label>
-		<label><input type="number" data-handle="temperature"/>temperature</label>
-		<textarea data-handle="notes"></textarea>
+		<form>
+			<label><input type="checkbox" data-handle="sex"/>heart</label>
+			<label><input type="checkbox" data-handle="pill"/>pill</label>
+			<label><input type="number" data-handle="weight"/>weight</label>
+			<label><input type="number" data-handle="temperature"/>temperature</label>
+			<textarea data-handle="notes"></textarea>
+			<input type="reset" value="reset all"/>
+		</form>
 	</div>
 
 	<div class="js-health-details hidden js-tab-page" data-page-index="1">
