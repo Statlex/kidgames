@@ -246,6 +246,8 @@
 		this.innerContainer.style[info.preJS + 'Transition'] = 'none';
 		this.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + this.page.width + 'px, 0)';
 
+		this.updateSelectedDate();
+
 	};
 
 	Slider.prototype.addColoringToPage = function (node) {
@@ -380,10 +382,7 @@
 		}, this);
 
 
-		(function () {
-			var selectedDate = util.find('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .selected-date');
-			selectedDate && sliderTap.call(selectedDate);
-		}());
+		this.updateSelectedDate();
 
 	};
 
@@ -392,6 +391,21 @@
 		nodes.forEach(function (node) {
 			Slider.prototype.addColoringToPage(node);
 		});
+	};
+
+	Slider.prototype.updateSelectedDate = function() {
+		var selectedDate = util.find('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .selected-date'),
+			selectedDates;
+		console.log(selectedDate);
+		if (selectedDate) {
+			sliderTap.call(selectedDate);
+		} else {
+			selectedDates = util.findAll('.selected-date');
+			selectedDates.forEach(function(node){
+				util.removeClass(node, 'selected-date');
+			});
+			util.find('.js-cycle-progress-wrapper').innerHTML = '';
+		}
 	};
 
 	win.Slider = Slider;
