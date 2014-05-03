@@ -2,26 +2,33 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, event */
 
 	win.GC = win.GC || {};
 
 	win.GC.OptionsView = Backbone.View.extend({
 		el: '.js-options-wrapper',
 		events: {
-			'click .js-options-back': 'hide' // test field
+
+			'click [data-show]': 'showItem'
+
+
+
+
 		},
 		initialize: function() {
 			this.template = templateContainer.templates.options;
 		},
 		show: function() {
 			this.$el.html(_.template(this.template, {}));
-			this.$el.css('top', '0');
+			this.$el.css('left', '25%');
+			APP.mainView.fade.show();
 			this.bindEvents();
 		},
 		hide: function(noHistoryBack) {
 			//this.$el.hide();
-			this.$el.css('top', '');
+			this.$el.css('left', '');
+//			APP.mainView.fade.hide();
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}
@@ -42,6 +49,9 @@
 				}
 			}
 
+		},
+		showItem: function() {
+			APP.window.show($(event.currentTarget).attr('data-show'));
 		}
 
 

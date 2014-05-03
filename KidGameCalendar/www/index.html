@@ -49,6 +49,7 @@
 	<script src="js/view/alert.js" type="text/javascript"></script>
 	<script src="js/view/options.js" type="text/javascript"></script>
 	<script src="js/view/help.js" type="text/javascript"></script>
+	<script src="js/view/window-view.js" type="text/javascript"></script>
 	<!-- views - -->
 
 	<!-- main js -->
@@ -74,6 +75,8 @@
 	<div class="js-fade fade hidden"></div>
 	<div class="js-confirm-wrapper confirm-wrapper"></div>
 	<div class="js-options-wrapper options-wrapper"></div>
+
+	<div class="js-window-wrapper window-wrapper"></div>
 
 </div>
 
@@ -216,11 +219,10 @@
 
 	<h1>option</h1>
 
-	<div class="js-options-back"> << back</div>
-
+	<div><p data-show="settings">settings</p></div>
+	<div><p data-show="help">help</p></div>
 
 </script>
-
 
 <script type="text/x-template" class="jsTemplate" data-template-name="help">
 
@@ -228,7 +230,15 @@
 
 		<h1>help</h1>
 
-		<div class="js-help-back"> << back</div>
+		<div class="js-help-back" data-back-button="true"> << back</div>
+
+		<% if (info.lang === 'ru') { %>
+			<h1>ru</h1>
+		<% }; %>
+
+		<% if (info.lang === 'en') { %>
+			<h1>en</h1>
+		<% }; %>
 
 	</div>
 

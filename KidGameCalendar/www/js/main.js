@@ -39,6 +39,8 @@ $(function(){
 		options: function() {
 			// detect id
 			console.log('show options');
+			APP.options.show();
+			APP.window.hide(true);
 			// hide all view from options
 			//APP.confirm.show();
 		},
@@ -64,6 +66,8 @@ $(function(){
 	APP.options = new GC.OptionsView();
 
 	APP.help = new GC.HelpView();
+
+	APP.window = new GC.WindowView();
 
 	// show calendar on app start
 	APP.mainView.show('calendar');
