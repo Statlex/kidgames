@@ -9,7 +9,7 @@
 }
 
 .selected-date .inner-month-date {
-	background-color: #8e8e93;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 .flow .inner-month-date,
@@ -41,7 +41,6 @@
 .start-flow .inner-month-date {
 	position: relative;
 }
-
 
 .tick .inner-month-date:after,
 .start-flow .inner-month-date:before {
@@ -291,4 +290,9 @@ label {
 .btn-cancel {
 	background-position: -303px 0;
 
+}
+
+.cycle-progress-wrapper {
+	text-align: center;
+	padding: 10px;
 }

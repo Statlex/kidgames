@@ -101,6 +101,10 @@
 		</div>
 	</div>
 
+	<div class="js-cycle-progress-wrapper cycle-progress-wrapper">
+
+	</div>
+
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-date">
@@ -230,7 +234,13 @@
 
 </script>
 
+<script type="text/x-template" class="jsTemplate" data-template-name="cycle-progress-info">
 
+	<%= lang.progress %> : <%= dateOfCycle %> / <%= length %>
+	<br/>
+	<%= lang.cycle[state] %>
+
+</script>
 
 </body>
 </html>

@@ -144,27 +144,34 @@
 		return page;
 	};
 
+	function sliderTap() {
+
+		var siblings = util.findAll('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .month-date'),
+			dateInfo = {
+				state: this.getAttribute('data-cycle-state'),
+				dateOfCycle: this.getAttribute('data-date-number'),
+				length: info.get('cycleLength')
+			},
+			cycleInfoWrapper = util.find('.js-cycle-progress-wrapper');
+
+		siblings.forEach(function (node) {
+			util.removeClass(node, 'selected-date');
+		});
+
+		util.addClass(this, 'selected-date');
+
+		// set state, hind under the calendar
+		cycleInfoWrapper.innerHTML = dateInfo.dateOfCycle ? _.template(templateContainer.templates['cycle-progress-info'], dateInfo) : '';
+
+	}
+
 	Slider.prototype.listenersToPage = function (page) {
 
 		var cells = page.querySelectorAll('.month-date');
 		cells = util.toArray(cells);
 		cells.forEach(function (cell) {
 
-			Hammer(cell).on('tap', function () {
-
-				// set active date
-				if (util.hasClass(this, 'selected-date')) {
-					return;
-				}
-
-				var siblings = util.findAll('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .month-date');
-				siblings.forEach(function (node) {
-					util.removeClass(node, 'selected-date');
-				});
-
-				util.addClass(this, 'selected-date');
-
-			});
+			Hammer(cell).on('tap', sliderTap);
 
 			Hammer(cell).on('doubletap', function () {
 				APP.router.navigate('date-info', {trigger: true});
@@ -242,6 +249,7 @@
 	};
 
 	Slider.prototype.addColoringToPage = function (node) {
+
 		var cycles = info.get('cycles') || [],
 			dateNodes = util.findAll('.month-date', node),
 			calendar = new Calendar(),
@@ -251,6 +259,8 @@
 		dateNodes = dateNodes.map(function (nodeDate) {
 			var date = util.strToDate(nodeDate.getAttribute('data-date'));
 			date.node = nodeDate;
+			nodeDate.removeAttribute('data-date-number');
+			nodeDate.removeAttribute('data-cycle-state');
 			classList.forEach(function (className) {
 				util.removeClass(nodeDate, className);
 			});
@@ -344,6 +354,9 @@
 
 				util.addClass(dateNode.node, addedNodeClass);
 
+				dateNode.node.setAttribute('data-date-number', different + 1);
+				dateNode.node.setAttribute('data-cycle-state', addedNodeClass);
+
 			});
 
 		});
@@ -365,6 +378,12 @@
 				}
 			});
 		}, this);
+
+
+		(function () {
+			var selectedDate = util.find('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .selected-date');
+			selectedDate && sliderTap.call(selectedDate);
+		}());
 
 	};
 
