@@ -4,6 +4,8 @@ $(function(){
 	/*global window, document, console, alert */
 	/*global GC, lang, templateContainer, info, APP, $, Backbone */
 
+	lang.push('en');
+
 	lang.push(info.lang);
 
 	templateContainer.init();

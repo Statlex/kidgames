@@ -7,7 +7,7 @@
 
 	win.langs.ru = {
 
-		testWord: 'тест'
+		progress: 'прогресс'
 
 	}
 
