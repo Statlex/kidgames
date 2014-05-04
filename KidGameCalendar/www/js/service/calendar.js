@@ -1,9 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, console, util */
-
-	var log = console.log.bind(console);
+	/*global window, document, console, util, info */
 
 	function MonthsDate(data) {
 		this.year = data.year;
@@ -23,7 +21,7 @@
 
 	Calendar.prototype = {
 		monthLength: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-		weekStart: 1, // 1 - monday, 0 - sunday
+		weekStart: info.get('weekStart'), // 1 - monday, 0 - sunday
 		datesOnPage: 42,
 		getYear: function() {
 			var date = new Date();
@@ -51,7 +49,7 @@
 				data = {
 					year: date.getFullYear(),
 					month: date.getMonth()
-				}
+				};
 			}
 
 			if (data.dMonth) { // only 1 or -1
@@ -88,7 +86,7 @@
 					weekDays: this.getDaysOfWeek()
 				};
 
-				months.cur.cssIsActive = true;
+			months.cur.cssIsActive = true;
 
 			date.setDate(1);
 			date.setMonth(month);
@@ -184,6 +182,7 @@
 		}
 
 	};
+
 
 	win.Calendar = Calendar;
 

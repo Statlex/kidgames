@@ -20,6 +20,7 @@
 			this.template = templateContainer.templates.options;
 		},
 		show: function() {
+			this.$el.empty();
 			this.$el.html(_.template(this.template, {}));
 			this.$el.css('left', '25%');
 			APP.mainView.fade.show();

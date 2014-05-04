@@ -258,6 +258,8 @@
 			classList = ['safe', 'unsafe', 'fertile', 'flow', 'start-flow', 'future-start-flow', 'tick'],
 			lastCycle = cycles[cycles.length - 1];
 
+		this.calendar = calendar;
+
 		dateNodes = dateNodes.map(function (nodeDate) {
 			var date = util.strToDate(nodeDate.getAttribute('data-date'));
 			date.node = nodeDate;
@@ -396,7 +398,6 @@
 	Slider.prototype.updateSelectedDate = function() {
 		var selectedDate = util.find('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .selected-date'),
 			selectedDates;
-		console.log(selectedDate);
 		if (selectedDate) {
 			sliderTap.call(selectedDate);
 		} else {

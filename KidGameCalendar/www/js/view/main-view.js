@@ -71,6 +71,8 @@
 			this.$el.find('.js-slider-to-right').on('click', changePage.bind(APP.slider, 1));
 		},
 		bindFade: function() {
+			$('.js-fade').off();
+
 			this.fade = {
 				node: $('.js-fade'),
 				show: function() {
@@ -82,6 +84,7 @@
 					this.node.hide();
 				}
 			};
+
 			this.fade.node.on('click', function(){
 				Backbone.history.history.back();
 			});

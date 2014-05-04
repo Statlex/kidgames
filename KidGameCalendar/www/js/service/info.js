@@ -154,7 +154,11 @@
 
 		// calendar part
 		cycleLength: 28,
-		flowMaxLength: 12
+		cycleLengthMin: 21,
+		cycleLengthMax: 45,
+		flowMaxLength: 12,
+		weekStart: 1
+
 
 
 	};
@@ -167,5 +171,7 @@
 	info.init();
 
 	win.info = info;
+
+	//todo: set start week relative from localization
 
 }(window, document));

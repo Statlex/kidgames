@@ -517,6 +517,23 @@
 		return this;
 	};
 
+	Bro.prototype.val = function(value) {
+		if (!this.length) {
+			return '';
+		}
+
+		if (typeof value === 'string') {
+			this.forEach(function(node){
+				node.value = value;
+			});
+		} else{
+			return this[0].value;
+		}
+
+		return this;
+
+	};
+
 	win.$ = bro;
 
 	//win.Bro = Bro;
