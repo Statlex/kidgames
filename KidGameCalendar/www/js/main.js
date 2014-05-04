@@ -69,6 +69,10 @@ $(function(){
 
 	APP.window = new GC.WindowView();
 
+	APP.cycleDelayed = new GC.CycleDelayedView();
+
+	//APP.cycleDelayed.show();
+
 	// show calendar on app start
 	APP.mainView.show('calendar');
 

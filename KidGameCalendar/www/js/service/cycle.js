@@ -49,8 +49,6 @@
 
 			different = calendar.getDifferent(date, util.getToday());
 
-			console.log(date);
-
 			if (different > 0) {
 				text.title = lang.checkDate;
 				text.text = lang.cannotUseThisDay.replace('{{date}}', dateStr);

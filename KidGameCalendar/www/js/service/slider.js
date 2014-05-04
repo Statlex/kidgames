@@ -68,13 +68,13 @@
 					that.changeMonth(-1);
 				}
 
-				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease-out';
+				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease';
 				that.innerContainer.style[info.preJS + 'Transform'] = 'translate(' + x + 'px, 0)';
 				return;
 			}
 
 			if (Math.abs(dX) < that.page.width / 2) {
-				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease-out';
+				that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease';
 				that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + x + 'px, 0)';
 				return;
 			}
@@ -87,7 +87,7 @@
 				that.changeMonth(-1);
 			}
 
-			that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease-out';
+			that.innerContainer.style[info.preJS + 'Transition'] = that.swipeTimeCSS + ' all ease';
 			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(' + x + 'px, 0)';
 
 		}, false);

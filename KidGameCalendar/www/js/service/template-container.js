@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert */
+	/*global window, document, console, alert, util */
 
 	var templateContainer;
 

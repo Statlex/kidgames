@@ -227,7 +227,8 @@ body,
 .confirm-wrapper,
 .options-wrapper,
 .date-info-wrapper,
-.window-wrapper {
+.window-wrapper,
+.delayed-view {
 	position: fixed;
 	top: 100%;
 	left: 0;

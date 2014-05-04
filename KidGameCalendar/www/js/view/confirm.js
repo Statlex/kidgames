@@ -22,6 +22,7 @@
 				this.$el.find('.js-ok').on('click', func.bind(context || win));
 			}
 			this.$el.find('.js-cancel').on('click' , this.hide.bind(this, false));
+			APP.cycleDelayed.hide();
 		},
 		hide: function(noHistoryBack) {
 			if (!noHistoryBack) {
