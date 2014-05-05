@@ -171,7 +171,9 @@
 		cells = util.toArray(cells);
 		cells.forEach(function (cell) {
 
-			Hammer(cell).on('tap', sliderTap);
+			var $cell = $(cell);
+
+			$cell.on('click', sliderTap);
 
 			Hammer(cell).on('doubletap', function () {
 				APP.router.navigate('date-info', {trigger: true});

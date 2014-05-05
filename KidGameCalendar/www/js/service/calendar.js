@@ -179,6 +179,16 @@
 			date2 = (new Date(date2.year, date2.month, date2.date)).getTime();
 			return (date1 - date2) / 86400000; // 60 * 60 * 24 * 1000 = one day in ms
 
+		},
+		getToday: function() {
+			var dataObj = new Date(),
+				today = {
+					year: dataObj.getFullYear(),
+					month: dataObj.getMonth(),
+					date: dataObj.getDate()
+				};
+			today.str = [today.date, today.month, today.year].join('-');
+			return today;
 		}
 
 	};

@@ -42,6 +42,8 @@
 			this.bindHelpButton();
 			this.bindArrowButton();
 			this.bindFade();
+			this.showToday();
+
 		},
 		show: function(item) {
 			var key;
@@ -88,6 +90,12 @@
 			this.fade.node.on('click', function(){
 				Backbone.history.history.back();
 			});
+
+		},
+		showToday: function() {
+
+			var today = Calendar.prototype.getToday();
+			$('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0).on('click');
 
 		}
 
