@@ -10,11 +10,7 @@
 		el: '.js-options-wrapper',
 		events: {
 
-			'click [data-show]': 'showItem',
-			'click .js-select-language': 'setLang'
-
-
-
+			'click [data-show]': 'showItem'
 
 		},
 		initialize: function() {
@@ -54,24 +50,7 @@
 		},
 		showItem: function() {
 			APP.window.show($(event.currentTarget).attr('data-show'));
-		},
-		setLang: function() {
-
-			var lang = $(event.currentTarget).attr('data-lang');
-
-			console.log(lang);
-
-			if (lang === info.lang) {
-				return;
-			}
-
-			info.set('lang', lang, true);
-
-			window.location.reload();
-
 		}
-
-
 
 	});
 

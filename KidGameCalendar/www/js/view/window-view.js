@@ -65,7 +65,26 @@
 		customFunction: {
 			settings: function() {
 
+				// set lang
+				this.$el.find('.js-select-language').on('click', function(){
 
+					var lang = $(this).attr('data-lang');
+
+					console.log(lang);
+
+					if (lang === info.lang) {
+						return;
+					}
+
+					info.set('lang', lang, true);
+
+					Backbone.history.history.back();
+
+					win.setTimeout(function(){
+						window.location.reload();
+					}, 100);
+
+				});
 
 				// set cycle length
 				this.$el.find('.js-change-cycle-length').on('click', function(){

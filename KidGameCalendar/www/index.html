@@ -221,19 +221,6 @@
 
 	<h1>option</h1>
 
-	<div>
-		<% info.availableLangs.forEach(function(lang){ %>
-
-			<% if (lang === info.lang) { %>
-				<div class="js-select-language current-lang" data-lang="<%= lang %>"><%= lang %></div>
-			<% } else { %>
-				<div class="js-select-language" data-lang="<%= lang %>"><%= lang %></div>
-			<% }; %>
-
-		<% }); %>
-
-	</div>
-
 	<div><p data-show="settings">settings</p></div>
 	<div><p data-show="help">help</p></div>
 
@@ -299,6 +286,19 @@
 	<h1>settings</h1>
 
 	<div data-back-button="true"> << back </div>
+
+	<div>
+		<% info.availableLangs.forEach(function(lang){ %>
+
+			<% if (lang === info.lang) { %>
+			<div class="js-select-language current-lang" data-lang="<%= lang %>"><%= lang %></div>
+			<% } else { %>
+			<div class="js-select-language" data-lang="<%= lang %>"><%= lang %></div>
+			<% }; %>
+
+		<% }); %>
+
+	</div>
 
 	<section>
 
