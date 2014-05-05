@@ -26,9 +26,23 @@
 				x: 0,
 				y: 0
 			},
+			maxDistance: {
+				x: 0,
+				y: 0
+			},
+			updateMaxDistance: function() {
+				this.maxDistance.x = Math.max(this.maxDistance.x, Math.abs(this.touchMove.x - this.touchStart.x));
+				this.maxDistance.y = Math.max(this.maxDistance.y, Math.abs(this.touchMove.y - this.touchStart.y));
+			},
+			resetMaxDistance: function() {
+				this.maxDistance = {
+					x: 0,
+					y: 0
+				};
+			},
 			isActive: false,
 			isClick: function () {
-				return Math.abs(this.touchMove.x - this.touchStart.x) < 5 && Math.abs(this.touchMove.y - this.touchStart.y) < 5;
+				return Math.max(this.maxDistance.x, this.maxDistance.y) < 5;
 			}
 		},
 		screen: {
@@ -47,11 +61,7 @@
 			this.runDetector();
 		},
 		getIsPhone: function () {
-			var h, w, maxSize;
-			w = docElem.clientWidth;
-			h = docElem.clientHeight;
-			maxSize = (h > w) ? h : w;
-			this.isPhone = maxSize < 700;
+			this.isPhone = Math.max(docElem.clientWidth, docElem.clientHeight) < 700;
 			return this.isPhone;
 		},
 		runDetector: function () {
@@ -64,6 +74,7 @@
 
 				body.addEventListener(this.evt.down, function (e) {
 					that.evt.isActive = true;
+					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
@@ -75,12 +86,14 @@
 						x: e.touches[0].pageX,
 						y: e.touches[0].pageY
 					};
+					that.evt.updateMaxDistance();
 				}, true);
 
 			} else {
 
 				body.addEventListener(this.evt.down, function (e) {
 					that.evt.isActive = true;
+					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
 						x: e.pageX,
 						y: e.pageY
@@ -92,6 +105,7 @@
 						x: e.pageX,
 						y: e.pageY
 					};
+					that.evt.updateMaxDistance();
 				}, true);
 
 			}
