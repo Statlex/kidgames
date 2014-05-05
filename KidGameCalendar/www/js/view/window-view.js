@@ -70,8 +70,6 @@
 
 					var lang = $(this).attr('data-lang');
 
-					console.log(lang);
-
 					if (lang === info.lang) {
 						return;
 					}

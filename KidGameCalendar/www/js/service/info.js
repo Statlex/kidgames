@@ -157,9 +157,21 @@
 		cycleLengthMin: 21,
 		cycleLengthMax: 45,
 		flowMaxLength: 12,
-		weekStart: 1
+		weekStart: 1,
+		setCalendarSetting: function() {
+			var data = this.getData();
 
+			if (data.hasOwnProperty('weekStart')) {
+				return;
+			}
 
+			if (this.lang === 'ru') {
+				this.set('weekStart', 1, true);
+			} else {
+				this.set('weekStart', 0, true);
+			}
+
+		}
 
 	};
 
@@ -169,6 +181,7 @@
 	win.addEventListener('load', info.runDetector.bind(info), false);
 
 	info.init();
+	info.setCalendarSetting();
 
 	win.info = info;
 
