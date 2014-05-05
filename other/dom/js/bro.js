@@ -112,7 +112,8 @@
 	//=== info end ===//
 
 	re = {
-		htmlNode: /^<[\s\S]+>$/
+		htmlNode: /^<[\s\S]+>$/,
+		json: /^\{[\s\S]*\}$/
 	};
 
 	events = {
@@ -519,7 +520,7 @@
 
 	Bro.prototype.val = function(value) {
 		if (!this.length) {
-			return '';
+			return this;
 		}
 
 		if (typeof value === 'string') {
@@ -528,6 +529,66 @@
 			});
 		} else{
 			return this[0].value;
+		}
+
+		return this;
+
+	};
+
+	Bro.prototype.data = function(key, value) {
+
+		if (!this.length) {
+			return this;
+		}
+
+		if (!arguments.length) { // ()
+			return this[0].dataset;
+		}
+
+		if (typeof key === 'string') {
+			if (value !== undefined) { // 'key'
+
+				if (this.isPlainObject(value)) {
+					value = JSON.stringify(value);
+				}
+
+				this.forEach(function(node){
+					node.dataset[key] = value;
+				});
+
+				return this;
+			}
+
+			value = this[0].dataset[key];
+			if (re.json.test(value)) {
+				try {
+					return JSON.parse(this[0].dataset[key]);
+				} catch (e) {
+					return value;
+				}
+			}
+
+			return value;
+
+		}
+
+		if (this.isPlainObject(key)) {
+
+			this.forEach(function(node){
+				var i;
+				for (i in key) {
+					if (key.hasOwnProperty(i)) {
+						if (this.isPlainObject(key[i])) {
+							node.dataset[i] = JSON.stringify(key[i]);
+						} else {
+							node.dataset[i] = key[i];
+						}
+					}
+				}
+			}, this);
+
+			return this;
+
 		}
 
 		return this;
