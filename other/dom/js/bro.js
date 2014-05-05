@@ -366,8 +366,8 @@
 
 	};
 
-	Bro.prototype.each = function(func) {
-		this.forEach(function(node, index) {
+	Bro.prototype.each = function (func) {
+		this.forEach(function (node, index) {
 			func.call(node, index, node);
 		}, this);
 
@@ -375,17 +375,17 @@
 
 	};
 
-	Bro.prototype.on = function(type, selector, data, func) {
+	Bro.prototype.on = function (type, selector, data, func) {
 
 		var evt, nodes;
 
-		if ( (this.isPlainObject(selector) && !data) || !selector ) { // click or click {rr:55}
+		if ((this.isPlainObject(selector) && !data) || !selector) { // click or click {rr:55}
 			data = selector;
 			evt = new Event(type);
 			if (data) {
 				evt.data = data;
 			}
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				node.dispatchEvent(evt);
 			});
 			return this;
@@ -407,8 +407,8 @@
 		}
 
 		if (data) {
-			nodes.forEach(function(node){
-				node.addEventListener(type, function(e){
+			nodes.forEach(function (node) {
+				node.addEventListener(type, function (e) {
 					var key, dataObj;
 					if (e.data) {
 						dataObj = Object.create(data);
@@ -425,7 +425,7 @@
 				}, false);
 			});
 		} else {
-			nodes.forEach(function(node){
+			nodes.forEach(function (node) {
 				node.addEventListener(type, func, false);
 			});
 		}
@@ -434,7 +434,7 @@
 
 	};
 
-	Bro.prototype.off = function(type, selector, func) {
+	Bro.prototype.off = function (type, selector, func) {
 
 		var nodes = this;
 
@@ -445,11 +445,11 @@
 		}
 
 		if (type) {
-			nodes.forEach(function(node){
+			nodes.forEach(function (node) {
 				node.removeEventListener(type, func);
 			});
 		} else {
-			nodes.forEach(function(node){
+			nodes.forEach(function (node) {
 				node.parentNode.replaceChild(node.cloneNode(true), node);
 			});
 		}
@@ -458,32 +458,32 @@
 
 	};
 
-	Bro.prototype.remove = function() {
-		this.forEach(function(node){
+	Bro.prototype.remove = function () {
+		this.forEach(function (node) {
 			node.parentNode.removeChild(node);
 		}, this);
 		this.splice(0, this.length);
 		return this;
 	};
 
-	Bro.prototype.show = function() {
-		this.forEach(function(node){
+	Bro.prototype.show = function () {
+		this.forEach(function (node) {
 			node.style.display = 'block';
 		});
 		return this;
 	};
 
-	Bro.prototype.hide = function() {
-		this.forEach(function(node){
+	Bro.prototype.hide = function () {
+		this.forEach(function (node) {
 			node.style.display = 'none';
 		});
 		return this;
 	};
 
-	Bro.prototype.css = function(css, value) {
+	Bro.prototype.css = function (css, value) {
 
 		if (typeof value === "string") { /// display , block
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				node.style[css] = value;
 			});
 		} else if (typeof css === "string") { // display
@@ -491,7 +491,7 @@
 				return win.getComputedStyle(this[0], null)[css];
 			}
 		} else { // {}
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				var key;
 				for (key in css) {
 					if (css.hasOwnProperty(key)) {
@@ -505,12 +505,12 @@
 
 	};
 
-	Bro.prototype.eq = function(number) {
+	Bro.prototype.eq = function (number) {
 		return new Bro(this[number]);
 	};
 
-	Bro.prototype.empty = function() {
-		this.forEach(function(node){
+	Bro.prototype.empty = function () {
+		this.forEach(function (node) {
 			while (node.firstChild) {
 				node.removeChild(node.firstChild);
 			}
@@ -518,16 +518,16 @@
 		return this;
 	};
 
-	Bro.prototype.val = function(value) {
+	Bro.prototype.val = function (value) {
 		if (!this.length) {
 			return this;
 		}
 
 		if (typeof value === 'string') {
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				node.value = value;
 			});
-		} else{
+		} else {
 			return this[0].value;
 		}
 
@@ -535,13 +535,13 @@
 
 	};
 
-	Bro.prototype.data = function(key, value) {
+	Bro.prototype.data = function (key, value) {
 
 		if (!this.length) {
 			return this;
 		}
 
-		if (!arguments.length) { // ()
+		if (!key) { // ()
 			return this[0].dataset;
 		}
 
@@ -552,7 +552,7 @@
 					value = JSON.stringify(value);
 				}
 
-				this.forEach(function(node){
+				this.forEach(function (node) {
 					node.dataset[key] = value;
 				});
 
@@ -574,7 +574,7 @@
 
 		if (this.isPlainObject(key)) {
 
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				var i;
 				for (i in key) {
 					if (key.hasOwnProperty(i)) {
