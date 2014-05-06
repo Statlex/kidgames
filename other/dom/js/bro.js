@@ -100,6 +100,10 @@
 					hold = new Event('$hold$'),
 					now = Date.now();
 
+				this.before.click.time = this.current.click.time;
+				this.before.click.x = this.current.click.x;
+				this.before.click.y = this.current.click.y;
+
 				// detect click
 					// detect node
 				if (this.current.down.nodes.indexOf(node) === -1) {
@@ -124,40 +128,17 @@
 				this.current.click.x = this.touchMove.x;
 				this.current.click.y = this.touchMove.y;
 
-				var newClick = Object.create(this.current.click);
-
 				// detect dblclick
-				console.log(now - this.before.click.time);
-				if (this.lastClick.time - this.currentClick.time < 300) {
-					console.log('dbl');
-					node.dispatchEvent(dblclick);
+				if (this.current.click.time - this.before.click.time < 300) {
+					console.log('dbl - 1');
+					if (Math.abs(this.before.click.y - this.current.click.y) < 5) {
+						console.log('dbl -2');
+					}
+
 				}
 
-				this.before.up = Object.create(this.current.click);
 
 
-			},
-			setLastClick: function() {
-
-				// detect click
-				var now = Date.now();
-
-				if (!this.isClick()) {
-					return false;
-				}
-
-				// detect time
-				if ((now - this.current.down.time) > 300) {
-					return false;
-				}
-
-				this.lastClick = Object.create(this.currentClick || {});
-
-				this.currentClick = {
-					time: now,
-					x: this.touchMove.x,
-					y: this.touchMove.y
-				};
 
 			}
 		},
@@ -189,8 +170,14 @@
 			if (this.isTouch) {
 
 				body.addEventListener(this.evt.down, function (e) {
-					that.evt.current.down.time = Date.now();
-					that.evt.current.down.nodes = [];
+					that.evt.before.down = Object.create(that.evt.current.down);
+					that.evt.current.down = {
+						time: Date.now(),
+						nodes: [],
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					};
+
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -210,8 +197,13 @@
 			} else {
 
 				body.addEventListener(this.evt.down, function (e) {
-					that.evt.current.down.time = Date.now();
-					that.evt.current.down.nodes = [];
+					that.evt.before.down = Object.create(that.evt.current.down);
+					that.evt.current.down = {
+						time: Date.now(),
+						nodes: [],
+						x: e.pageX,
+						y: e.pageY
+					};
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -231,7 +223,13 @@
 			}
 
 			body.addEventListener(this.evt.up, function () {
-				that.evt.setLastClick();
+				that.evt.before.up = Object.create(that.evt.current.up);
+				that.evt.current.up = {
+					time: Date.now(),
+					nodes: [],
+					x: that.evt.touchMove.x,
+					y: that.evt.touchMove.y
+				};
 				that.evt.isActive = false;
 			}, true);
 
