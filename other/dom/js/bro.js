@@ -50,7 +50,6 @@
 					time: 0
 				},
 				click: {
-					nodes: [],
 					time: 0,
 					x: NaN,
 					y: NaN
@@ -66,7 +65,6 @@
 					time: 0
 				},
 				click: {
-					nodes: [],
 					time: 0,
 					x: NaN,
 					y: NaN
@@ -82,7 +80,6 @@
 					time: 0
 				},
 				click: {
-					nodes: [],
 					time: 0,
 					x: NaN,
 					y: NaN
@@ -95,50 +92,44 @@
 			},
 			dispatchEvent: function(node) {
 
-				var click = new Event('$click$'),
-					dblclick = new Event('$dblclick$'),
-					hold = new Event('$hold$'),
-					now = Date.now();
-
-				this.before.click.time = this.current.click.time;
-				this.before.click.x = this.current.click.x;
-				this.before.click.y = this.current.click.y;
+				var now = Date.now();
 
 				// detect click
-					// detect node
+				// detect node
 				if (this.current.down.nodes.indexOf(node) === -1) {
 					return false;
 				}
 
-					// detect click
+				// detect click
 				if (!this.isClick()) {
 					return false;
 				}
 
-					// detect time
+				// detect time
 				if ((now - this.current.down.time) > 300) {
 					return false;
 				}
 
+				node.dispatchEvent(new Event('$click$'));
 
-				node.dispatchEvent(click);
+				this.before.click = Object.create(this.current.click);
+				this.current.click = {
+					time : now,
+					x: this.touchMove.x,
+					y: this.touchMove.y
+				};
 
-				this.current.click.nodes.push(node);
-				this.current.click.time = now;
-				this.current.click.x = this.touchMove.x;
-				this.current.click.y = this.touchMove.y;
-
-				// detect dblclick
-				if (this.current.click.time - this.before.click.time < 300) {
-					console.log('dbl - 1');
-					if (Math.abs(this.before.click.y - this.current.click.y) < 5) {
-						console.log('dbl -2');
-					}
-
+				// detect dblclick time
+				if (this.current.click.time - this.before.click.time > 300) {
+					return false;
 				}
 
+				// detect dblclick position
+				if (Math.max(Math.abs(this.before.click.x - this.current.click.x), Math.abs(this.before.click.y - this.current.click.y)) > 5) {
+					return false;
+				}
 
-
+				node.dispatchEvent(new Event('$dblclick$'));
 
 			}
 		},
@@ -170,7 +161,6 @@
 			if (this.isTouch) {
 
 				body.addEventListener(this.evt.down, function (e) {
-					that.evt.before.down = Object.create(that.evt.current.down);
 					that.evt.current.down = {
 						time: Date.now(),
 						nodes: [],
@@ -197,13 +187,13 @@
 			} else {
 
 				body.addEventListener(this.evt.down, function (e) {
-					that.evt.before.down = Object.create(that.evt.current.down);
 					that.evt.current.down = {
 						time: Date.now(),
 						nodes: [],
 						x: e.pageX,
 						y: e.pageY
 					};
+
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -223,18 +213,10 @@
 			}
 
 			body.addEventListener(this.evt.up, function () {
-				that.evt.before.up = Object.create(that.evt.current.up);
-				that.evt.current.up = {
-					time: Date.now(),
-					nodes: [],
-					x: that.evt.touchMove.x,
-					y: that.evt.touchMove.y
-				};
 				that.evt.isActive = false;
 			}, true);
 
 			body.addEventListener(this.evt.out, function () {
-				//that.evt.current.up.time = Date.now();
 				that.evt.isActive = false;
 			}, true);
 
@@ -244,8 +226,6 @@
 
 	win.addEventListener('load', info.init.bind(info), false);
 	//=== info end ===//
-
-	win.info = info;
 
 	re = {
 		htmlNode: /^<[\s\S]+>$/,
@@ -737,6 +717,14 @@
 
 	// mobile override
 
+	function pushNode() {
+		info.evt.current.down.nodes.push(this);
+	}
+
+	function dispatchEventNode() {
+		info.evt.dispatchEvent(this);
+	}
+
 	Bro.prototype.on = function (type, selector, data, func) {
 
 		var evt, nodes;
@@ -774,15 +762,10 @@
 
 		if (data) {
 			nodes.forEach(function (node) {
-
-				node.addEventListener(info.evt.down, function(){
-					info.evt.current.down.nodes.push(this);
-				}, false);
-
-				node.addEventListener(info.evt.up, function(){
-					//info.evt.current.up.nodes.push(this);
-					info.evt.dispatchEvent(this);
-				}, false);
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
 
 				node.addEventListener(type, function (e) {
 					var key, dataObj;
@@ -802,15 +785,10 @@
 			});
 		} else {
 			nodes.forEach(function (node) {
-
-				node.addEventListener(info.evt.down, function(){
-					info.evt.current.down.nodes.push(this);
-				}, false);
-
-				node.addEventListener(info.evt.up, function(){
-					//info.evt.current.up.nodes.push(this);
-					info.evt.dispatchEvent(this);
-				}, false);
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
 
 				node.addEventListener(type, func, false);
 			});

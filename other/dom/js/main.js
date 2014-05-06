@@ -28,6 +28,11 @@
 		$('div span').on('click', {rr:55});
 	},3000);
 
+	$('div span').on('dblclick', function(){
+		console.log('!!!!!!!!!');
+		console.log(Date.now());
+	});
+
 	console.log($('div').data('test'));
 	console.log($('div').data());
 	$('div').data('test', 345);

@@ -175,7 +175,7 @@
 
 			$cell.on('click', sliderTap);
 
-			Hammer(cell).on('doubletap', function () {
+			$cell.on('dblclick', function () {
 				APP.router.navigate('date-info', {trigger: true});
 				APP.dateInfo.show(this.getAttribute('data-date'));
 			});

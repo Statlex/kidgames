@@ -40,9 +40,97 @@
 					y: 0
 				};
 			},
+			before: {
+				down: {
+					nodes: [],
+					time: 0
+				},
+				up: {
+					nodes: [],
+					time: 0
+				},
+				click: {
+					time: 0,
+					x: NaN,
+					y: NaN
+				}
+			},
+			current: {
+				down: {
+					nodes: [],
+					time: 0
+				},
+				up: {
+					nodes: [],
+					time: 0
+				},
+				click: {
+					time: 0,
+					x: NaN,
+					y: NaN
+				}
+			},
+			defaultEventContainer: {
+				down: {
+					nodes: [],
+					time: 0
+				},
+				up: {
+					nodes: [],
+					time: 0
+				},
+				click: {
+					time: 0,
+					x: NaN,
+					y: NaN
+				}
+			},
+			extraTypes: ['click', 'dblclick', 'hold'],
 			isActive: false,
 			isClick: function () {
 				return Math.max(this.maxDistance.x, this.maxDistance.y) < 5;
+			},
+			dispatchEvent: function(node) {
+
+				var now = Date.now();
+
+				// detect click
+				// detect node
+				if (this.current.down.nodes.indexOf(node) === -1) {
+					return false;
+				}
+
+				// detect click
+				if (!this.isClick()) {
+					return false;
+				}
+
+				// detect time
+				if ((now - this.current.down.time) > 300) {
+					return false;
+				}
+
+				node.dispatchEvent(new Event('$click$'));
+
+				this.before.click = Object.create(this.current.click);
+				this.current.click = {
+					time : now,
+					x: this.touchMove.x,
+					y: this.touchMove.y
+				};
+
+				// detect dblclick time
+				if (this.current.click.time - this.before.click.time > 300) {
+					return false;
+				}
+
+				// detect dblclick position
+				if (Math.max(Math.abs(this.before.click.x - this.current.click.x), Math.abs(this.before.click.y - this.current.click.y)) > 5) {
+					return false;
+				}
+
+				node.dispatchEvent(new Event('$dblclick$'));
+
 			}
 		},
 		screen: {
@@ -73,6 +161,13 @@
 			if (this.isTouch) {
 
 				body.addEventListener(this.evt.down, function (e) {
+					that.evt.current.down = {
+						time: Date.now(),
+						nodes: [],
+						x: e.touches[0].pageX,
+						y: e.touches[0].pageY
+					};
+
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -92,6 +187,13 @@
 			} else {
 
 				body.addEventListener(this.evt.down, function (e) {
+					that.evt.current.down = {
+						time: Date.now(),
+						nodes: [],
+						x: e.pageX,
+						y: e.pageY
+					};
+
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -612,5 +714,90 @@
 	win.$ = bro;
 
 	//win.Bro = Bro;
+
+	// mobile override
+
+	function pushNode() {
+		info.evt.current.down.nodes.push(this);
+	}
+
+	function dispatchEventNode() {
+		info.evt.dispatchEvent(this);
+	}
+
+	Bro.prototype.on = function (type, selector, data, func) {
+
+		var evt, nodes;
+
+		if (info.evt.extraTypes.indexOf(type) !== -1) {
+			type = '$' + type + '$';
+		}
+
+		if ((this.isPlainObject(selector) && !data) || !selector) { // click or click {rr:55}
+			data = selector;
+			evt = new Event(type);
+			if (data) {
+				evt.data = data;
+			}
+			this.forEach(function (node) {
+				node.dispatchEvent(evt);
+			});
+			return this;
+		}
+
+		nodes = this;
+
+		if (typeof selector === 'function') { // click, func
+			func = selector;
+		} else if (typeof func === 'function') { // click, 'span', {rr:55}, func
+			nodes = this.find(selector);
+		} else if (this.isPlainObject(selector)) { // click, {rr:55}, func
+			func = data;
+			data = selector;
+		} else {                                    // click, 'span', func
+			nodes = this.find(selector);
+			func = data;
+			data = undefined;
+		}
+
+		if (data) {
+			nodes.forEach(function (node) {
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
+
+				node.addEventListener(type, function (e) {
+					var key, dataObj;
+					if (e.data) {
+						dataObj = Object.create(data);
+						for (key in e.data) {
+							if (e.data.hasOwnProperty(key)) {
+								dataObj[key] = e.data[key];
+							}
+						}
+						e.data = dataObj;
+					} else {
+						e.data = data;
+					}
+					func.call(node, e);
+				}, false);
+			});
+		} else {
+			nodes.forEach(function (node) {
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
+
+				node.addEventListener(type, func, false);
+			});
+		}
+
+		return this;
+
+	};
+
+
 
 }(window, document, document.documentElement));
