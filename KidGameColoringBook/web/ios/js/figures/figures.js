@@ -6,7 +6,6 @@
 	win.allFigures = win.allFigures || {};
 
 	win.allFigures.figures = {
-		svg:"<svg width='36px' height='24px' viewBox='0 0 36 24'><path d='m18,5c-15-15-20,10 0,18 20-10 15-32 0-18'></path></svg>",
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='822px' height='567px' viewBox='0 0 822 567' enable-background='new 0 0 822 567' xml:space='preserve'><rect x='0' y='0' width='822' height='567' fill='transparent' /><title>Circle</title><desc>Vector coloring circle. Author Lobaz Roman. In the public domain. Site www. abc-color.com</desc><circle fill='transparent' stroke='#000000' cx='411' cy='283.5' r='260'/></svg>",

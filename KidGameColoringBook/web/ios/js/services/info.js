@@ -16,7 +16,7 @@
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		canScroll: false,
-		isAdsFree: false,
+		isAdsFree: true,
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',
