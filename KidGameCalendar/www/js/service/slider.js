@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, cycle, clearTimeout, dataBase */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, cycle, clearTimeout, dataBase, cycleMaster, setTimeout */
 
 	var log = console.log.bind(console);
 
@@ -153,7 +153,7 @@
 			},
 			cycleInfoWrapper = util.find('.js-cycle-progress-wrapper');
 
-		$('.month-date').removeClass('selected-date');
+		$('.selected-date').removeClass('selected-date');
 
 		util.addClass(this, 'selected-date');
 
@@ -177,7 +177,7 @@
 				APP.dateInfo.show(this.getAttribute('data-date'));
 			});
 
-			Hammer(cell).on('hold', function () {
+			$cell.on('hold', function () {
 				cycleMaster.scanDay(this);
 			});
 

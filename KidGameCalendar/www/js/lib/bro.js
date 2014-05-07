@@ -138,7 +138,21 @@
 				node.dispatchEvent(evt);
 				//node.dispatchEvent(new Event('$dblclick$'));
 
-			}
+			},
+			detectHold: function(){
+				var evt;
+				if (Date.now() - this.current.up.time < this.holdPeriod) { // to little to create hold event
+					return false;
+				}
+
+				evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+				evt.initEvent('$hold$', true, true);      // todo: future use evt = new Event(type);
+				this.current.down.nodes.forEach(function(node){
+					node.dispatchEvent(evt);
+				});
+
+			},
+			holdPeriod: 500
 		},
 		screen: {
 			getWidth: function () {
@@ -175,6 +189,8 @@
 						y: e.touches[0].pageY
 					};
 
+					win.setTimeout(that.evt.detectHold.bind(that.evt), that.evt.holdPeriod);
+
 					that.evt.isActive = true;
 					that.evt.resetMaxDistance();
 					that.evt.touchStart = {
@@ -194,6 +210,7 @@
 			} else {
 
 				body.addEventListener(this.evt.down, function (e) {
+					win.setTimeout(that.evt.detectHold.bind(that.evt), that.evt.holdPeriod);
 					that.evt.current.down = {
 						time: Date.now(),
 						nodes: [],
@@ -220,10 +237,12 @@
 			}
 
 			body.addEventListener(this.evt.up, function () {
+				that.evt.current.up.time = Date.now();
 				that.evt.isActive = false;
 			}, true);
 
 			body.addEventListener(this.evt.out, function () {
+				that.evt.current.up.time = Date.now();
 				that.evt.isActive = false;
 			}, true);
 
