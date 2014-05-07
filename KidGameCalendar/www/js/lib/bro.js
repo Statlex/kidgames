@@ -30,11 +30,11 @@
 				x: 0,
 				y: 0
 			},
-			updateMaxDistance: function() {
+			updateMaxDistance: function () {
 				this.maxDistance.x = Math.max(this.maxDistance.x, Math.abs(this.touchMove.x - this.touchStart.x));
 				this.maxDistance.y = Math.max(this.maxDistance.y, Math.abs(this.touchMove.y - this.touchStart.y));
 			},
-			resetMaxDistance: function() {
+			resetMaxDistance: function () {
 				this.maxDistance = {
 					x: 0,
 					y: 0
@@ -90,7 +90,7 @@
 			isClick: function () {
 				return Math.max(this.maxDistance.x, this.maxDistance.y) < 5;
 			},
-			dispatchEvent: function(node) {
+			dispatchEvent: function (node) {
 
 				var now = Date.now(),
 					evt;
@@ -118,7 +118,7 @@
 
 				this.before.click = Object.create(this.current.click);
 				this.current.click = {
-					time : now,
+					time: now,
 					x: this.touchMove.x,
 					y: this.touchMove.y
 				};
@@ -139,7 +139,7 @@
 				//node.dispatchEvent(new Event('$dblclick$'));
 
 			},
-			detectHold: function(){
+			detectHold: function () {
 				var evt;
 				if (Date.now() - this.current.up.time < this.holdPeriod) { // to little to create hold event
 					return false;
@@ -147,7 +147,7 @@
 
 				evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
 				evt.initEvent('$hold$', true, true);      // todo: future use evt = new Event(type);
-				this.current.down.nodes.forEach(function(node){
+				this.current.down.nodes.forEach(function (node) {
 					node.dispatchEvent(evt);
 				});
 
@@ -825,7 +825,5 @@
 		return this;
 
 	};
-
-
 
 }(window, document, document.documentElement));
