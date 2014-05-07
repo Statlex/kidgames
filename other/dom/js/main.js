@@ -7,6 +7,10 @@
 		console.log('////');
 	});
 
+	$('div').on('mousemove', function(e){
+		console.log(e);
+	});
+
 
 
 	$('div').on('rerere1')
