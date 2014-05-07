@@ -92,7 +92,8 @@
 			},
 			dispatchEvent: function(node) {
 
-				var now = Date.now();
+				var now = Date.now(),
+					evt;
 
 				// detect click
 				// detect node
@@ -110,7 +111,10 @@
 					return false;
 				}
 
-				node.dispatchEvent(new Event('$click$'));
+				evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+				evt.initEvent('$click$', true, true);      // todo: future use evt = new Event(type);
+				node.dispatchEvent(evt);
+				//node.dispatchEvent(new Event('$click$'));
 
 				this.before.click = Object.create(this.current.click);
 				this.current.click = {
@@ -129,7 +133,10 @@
 					return false;
 				}
 
-				node.dispatchEvent(new Event('$dblclick$'));
+				evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+				evt.initEvent('$dblclick$', true, true);      // todo: future use evt = new Event(type);
+				node.dispatchEvent(evt);
+				//node.dispatchEvent(new Event('$dblclick$'));
 
 			}
 		},
@@ -735,7 +742,10 @@
 
 		if ((this.isPlainObject(selector) && !data) || !selector) { // click or click {rr:55}
 			data = selector;
-			evt = new Event(type);
+
+			evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+			evt.initEvent(type, true, true);      // todo: future use evt = new Event(type);
+
 			if (data) {
 				evt.data = data;
 			}
@@ -789,7 +799,6 @@
 				node.removeEventListener(info.evt.up, dispatchEventNode);
 				node.addEventListener(info.evt.down, pushNode, false);
 				node.addEventListener(info.evt.up, dispatchEventNode, false);
-
 				node.addEventListener(type, func, false);
 			});
 		}

@@ -146,17 +146,14 @@
 
 	function sliderTap() {
 
-		var siblings = util.findAll('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) .month-date'),
-			dateInfo = {
+		var dateInfo = {
 				state: this.getAttribute('data-cycle-state'),
 				dateOfCycle: this.getAttribute('data-date-number'),
 				length: info.get('cycleLength')
 			},
 			cycleInfoWrapper = util.find('.js-cycle-progress-wrapper');
 
-		siblings.forEach(function (node) {
-			util.removeClass(node, 'selected-date');
-		});
+		$('.month-date').removeClass('selected-date');
 
 		util.addClass(this, 'selected-date');
 
