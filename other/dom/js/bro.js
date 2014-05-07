@@ -136,7 +136,7 @@
 				}
 
 				// detect dblclick position
-				if (Math.max(Math.abs(this.before.click.x - this.current.click.x), Math.abs(this.before.click.y - this.current.click.y)) > 5) {
+				if (Math.max(Math.abs(this.before.click.x - this.current.click.x), Math.abs(this.before.click.y - this.current.click.y)) > 10) {
 					return false;
 				}
 
@@ -147,8 +147,9 @@
 
 			},
 			detectHold: function () {
+
 				var evt;
-				if (Date.now() - this.current.up.time < this.holdPeriod) { // to little to create hold event
+				if (((Date.now() - this.current.up.time) < this.holdPeriod) || !this.isClick()) { // to little to create hold event
 					return false;
 				}
 
