@@ -78,7 +78,7 @@
 			this.setBodyScroll(true);
 
 			bro('.js-category-button-wrapper').on('click', function(){
-				console.log(this);
+				//console.log(this);
 				eval(this.dataset.onclick);
 			});
 
@@ -97,7 +97,7 @@
 
 			for (var key in categories) {
 				if (categories.hasOwnProperty(key)) {
-					console.log(key + '-' + categories[key].figures.length);
+					//console.log(key + '-' + categories[key].figures.length);
 					categories[key].figures.forEach(function(data){
 						ids.push(data.id);
 					});
