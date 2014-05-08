@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="css/fw-styles.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
+	<script src="js/services/bro-2.js" type="text/javascript"></script>
+
 	<!-- services -->
 	<script src="js/services/info.js" type="text/javascript"></script>
 	<script src="js/services/bro.js" type="text/javascript"></script>
@@ -144,7 +146,7 @@
 			<div class="categories-wrapper clear-fix">
 				{{ for (var key in categories) { }}
 				<div class="category-wrapper">
-					<div class="category-button-wrapper" onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
+					<div class="category-button-wrapper js-category-button-wrapper" data-onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
 						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
 							<img src="img/i/spacer.png" alt=""/>
 						</div>
@@ -187,7 +189,7 @@
 
 		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
 		<div class="category-wrapper" figure-id="{{= figure.id }}">
-			<div class="category-button-wrapper" onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
+			<div class="category-button-wrapper js-category-button-wrapper" data-onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
 				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
 					<img src="img/i/spacer.png" alt=""/>
 				</div>
@@ -320,13 +322,13 @@
 
 					{{ info.tangramPatterns.forEach(function(item){ }}
 					{{ if (item === info.tangramPattern) { }}
-					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview active">
+					<div data-onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview active">
 						<div class="tangram-preview-inner-block">
 							<img src="img/preview/tangram-frame.svg" alt=""/>
 						</div>
 					</div>
 					{{ } else { }}
-					<div onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview">
+					<div data-onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview">
 						<div class="tangram-preview-inner-block">
 							<img src="img/preview/tangram-frame.svg" alt=""/>
 						</div>

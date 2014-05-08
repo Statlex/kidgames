@@ -41,6 +41,12 @@
 				}, false);
 			});
 
+			var skins = bro('.js-tangram-preview');
+			var that = this;
+			skins.on('click', function(){
+				that.setPreview(this);
+			});
+
 		},
 		setPreview: function(wrapper) {
 			var activePreviews = $('.js-tangram-preview.active', main.wrapper);
@@ -70,6 +76,11 @@
 			});
 
 			this.setBodyScroll(true);
+
+			bro('.js-category-button-wrapper').on('click', function(){
+				console.log(this);
+				eval(this.dataset.onclick);
+			});
 
 		},
 		uniqueTest: function() {

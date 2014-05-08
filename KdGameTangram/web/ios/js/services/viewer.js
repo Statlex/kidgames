@@ -54,7 +54,8 @@
 			transitionWrapper.style.webkitTransition = '';
 			$.removeClass(transitionWrapper, 'to-right');
 			$.removeClass(transitionWrapper, 'to-left');
-			transitionWrapper.innerHTML = wrapper.innerHTML;
+//			transitionWrapper.innerHTML = wrapper.innerHTML;
+			transitionWrapper.innerHTML = '';
 		},
 		transition2ndPart: function() {
 			setTimeout(function(back){
