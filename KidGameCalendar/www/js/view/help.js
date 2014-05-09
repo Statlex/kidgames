@@ -18,12 +18,20 @@
 			this.$el.html(_.template(this.template, {}));
 			this.$el.css('top', '0');
 			this.bindEvents();
+			this.addNativeSwipe();
 		},
 		hide: function(noHistoryBack) {
 			this.$el.css('top', '');
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}
+		},
+		addNativeSwipe: function(){
+			var div = this.$el.find('.js-help-text-container');
+			div.addClass('scroll');
+			div.on('mousemove', function(e){
+				e.stopPropagation();
+			});
 		},
 		bindEvents: function() {
 

@@ -6,7 +6,7 @@
 	var dataBaseA;
 
 	dataBaseA = {
-		dbName: 'rd_bd',
+		dbName: 'red_days_bd_a',
 		tableName: 'rd_t_a',
 
 		init: function(){

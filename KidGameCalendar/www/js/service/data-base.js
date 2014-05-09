@@ -6,8 +6,8 @@
 	var dataBase;
 
 	dataBase = {
-		dbName: 'rd_bd',
-		tableName: 'rd_t_4',
+		dbName: 'red_days_bd',
+		tableName: 'rd_t',
 
 		init: function(){
 			var that = this;
