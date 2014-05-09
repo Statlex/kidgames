@@ -25,8 +25,8 @@
 
 		this.changeMonth();
 
-		this.swipeTime = 100;
-		this.swipeTimeCSS = this.swipeTime / 1000 + 's';
+		this.swipeTime = 150;
+		this.swipeTimeCSS = this.swipeTime - 50 + 'ms';
 
 	}
 
