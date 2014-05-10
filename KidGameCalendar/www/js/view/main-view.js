@@ -18,11 +18,14 @@
 		},
 		initialize: function() {
 			this.templates = {
-				calendarWrapper: templateContainer.templates['main-calendar-wrapper']
+				calendarWrapper: templateContainer.templates['main-calendar-wrapper'],
+				noteItem: templateContainer.templates['date-note']
 			};
 
 			// create calendar
 			this.createCalendar();
+
+			this.showNotes();
 
 		},
 		createCalendar: function() {
@@ -96,6 +99,60 @@
 
 			var today = Calendar.prototype.getToday();
 			$('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0).on('click');
+
+		},
+
+
+		showNotes: function() {
+
+			var cycles = info.get('cycles'),
+				that = this,
+				addedData = [];
+
+			cycles.forEach(function(cycle){
+				cycle.startCycle.dateMs = new Date([cycle.startCycle.year, cycle.startCycle.month + 1, cycle.startCycle.date].join(' ')).getTime();
+				cycle.startCycle.cycleType = 'start cycle';
+				addedData.push(JSON.parse(JSON.stringify(cycle.startCycle)));
+				if (cycle.endFlow.str) {
+					cycle.endFlow.dateMs = new Date([cycle.endFlow.year, cycle.endFlow.month + 1, cycle.endFlow.date].join(' ')).getTime();
+					cycle.endFlow.cycleType = 'end flow';
+					addedData.push(JSON.parse(JSON.stringify(cycle.endFlow)));
+				}
+			});
+
+
+
+			dataBase.getAllDataArray(function(data){
+
+				data = data.concat(addedData);
+
+				data = data.sort(function(a, b){
+					return b.dateMs - a.dateMs;
+				});
+
+				data.forEach(function(date, index, arr){
+					var nearestDate;
+					if (date.cycleType) { // detect cycles
+						nearestDate = arr[index - 1];
+						if (nearestDate  && nearestDate.dateMs === date.dateMs && !nearestDate.cycleType) {
+							nearestDate.addedType = date.cycleType;
+							date.doNotShow = 1;
+						}
+						nearestDate = arr[index + 1];
+						if (nearestDate  && nearestDate.dateMs === date.dateMs && !nearestDate.cycleType) {
+							nearestDate.addedType = date.cycleType;
+							date.doNotShow = 1;
+						}
+
+
+
+					}
+				});
+
+				that.$el.find('.js-date-notes-list').html(_.template(that.templates.noteItem, {data:data}));
+
+			});
+			console.log(this.templates.noteItem);
 
 		}
 

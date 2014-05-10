@@ -67,7 +67,18 @@
 	<!-- main wrapper -->
 	<div class="js-main-data-wrapper main-data-wrapper">
 		<div class="js-calendar-wrapper hidden"></div>
-		<div class="js-notes-wrapper hidden">notes</div>
+		<div class="js-notes-wrapper hidden">
+
+			<div>
+				<input type="search"/>
+			</div>
+
+			<div class="js-date-notes-list">
+				<!-- date notes here -->
+			</div>
+
+		</div>
+
 		<div class="js-time-wrapper hidden">time</div>
 	</div>
 
@@ -87,6 +98,22 @@
 	<div class="js-notes main-menu-item"><div class="main-menu-item-notes"></div></div>
 	<div class="js-time main-menu-item"><div class="main-menu-item-time"></div></div>
 	<div class="js-options main-menu-item"><div class="main-menu-item-options"></div></div>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-note">
+
+	<% data.forEach(function(note){ %>
+		<div class="js-date-note">
+			<%= note.date %>
+			<%= lang.month[note.month] %>
+			<%= note.year %>
+			    - date
+			<h1><%= note.addedType %></h1>
+			<h1><%= note.doNotShow %></h1>
+		</div>
+	<% }) %>
+
 
 </script>
 

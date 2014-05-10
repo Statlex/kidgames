@@ -84,13 +84,27 @@
 				tx.executeSql("SELECT * FROM " + tableName, [],
 					function (tx, result) {
 						var data = [],
-							i, len, item;
+							i, len, item, jsonItem, date;
 						for (i = 0, len = result.rows.length; i < len; i += 1) {
 							item = result.rows.item(i);
-							data.push({
-								imageId: item.imageId,
-								polygonsData: item.polygonsData
-							});
+							jsonItem = {};
+
+							date = item.date.split('-');
+
+							jsonItem.year = +date[2];
+							jsonItem.month = +date[1];
+							jsonItem.date = +date[0];
+
+							date[1] = +date[1];
+							date[1] += 1;
+							date.reverse();
+
+							jsonItem.dateMs = new Date(date.join(' ')).getTime();
+
+							jsonItem.data = JSON.parse(JSON.parse(item.data));
+
+							data.push(jsonItem);
+
 						}
 						func(data);
 					}, null);
