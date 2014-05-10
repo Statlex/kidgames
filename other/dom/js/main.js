@@ -3,19 +3,24 @@
 	"use strict";
 	/*global console, alert */
 
-	$('div').on('rerere1', function(){
+	var divs = $('div');
+
+	divs.on('rerere1', function(){
 		console.log('////');
 	});
 
-	$('div').on('mousemove', function(e){
+	divs.on('mousemove', function(e){
 		console.log(e);
 	});
 
 
 
-	$('div').on('rerere1')
+	divs.off();
 
 
+	console.log(divs);
+
+	divs.css('height', '200px');
 
 
 }(window, document, document.documentElement));

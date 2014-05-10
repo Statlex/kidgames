@@ -541,8 +541,10 @@
 				node.removeEventListener(type, func);
 			});
 		} else {
-			nodes.forEach(function (node) {
-				node.parentNode.replaceChild(node.cloneNode(true), node);
+			nodes.forEach(function (node, index, arr) {
+				var silentNode = node.cloneNode(true);
+				arr[index] = silentNode;
+				node.parentNode.replaceChild(silentNode, node);
 			});
 		}
 
