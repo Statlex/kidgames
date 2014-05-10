@@ -13,6 +13,7 @@
 		isTouch: isTouch,
 		preCSS: '-webkit-',
 		preJS: 'webkit',
+		isAndroid: (/android/i).test(win.navigator.userAgent),
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',
