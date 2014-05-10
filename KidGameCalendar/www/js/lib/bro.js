@@ -602,9 +602,7 @@
 
 	Bro.prototype.empty = function () {
 		this.forEach(function (node) {
-			while (node.firstChild) {
-				node.removeChild(node.firstChild);
-			}
+			node.textContent = '';
 		});
 		return this;
 	};

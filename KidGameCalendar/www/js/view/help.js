@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, setTimeout */
 
 	win.GC = win.GC || {};
 
@@ -25,13 +25,23 @@
 			if (!noHistoryBack) {
 				Backbone.history.history.back();
 			}
+			setTimeout(this.$el.empty.bind(this.$el), 300);
 		},
 		addNativeSwipe: function(){
-			var div = this.$el.find('.js-help-text-container');
+			var div = this.$el.find('.js-help-text-container'),
+				canScroll = true;
 			div.addClass('scroll');
-			div.on('mousemove', function(e){
-				e.stopPropagation();
+
+			div.on('mousedown', function(e){
+				var wrapperHeight = this.clientHeight,
+					containerHeight = this.querySelector('.js-inner-scroll-container').clientHeight;
+				canScroll = wrapperHeight < containerHeight;
 			});
+
+			div.on('mousemove', function(e){
+				canScroll && e.stopPropagation();
+			});
+
 		},
 		bindEvents: function() {
 
