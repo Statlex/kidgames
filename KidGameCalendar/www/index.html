@@ -117,25 +117,60 @@
 
 					<h1>pencil header</h1>
 
-				<% }; %>
+					<% if (note.categories.pencil.sex) { %>
+						<span data-default-text="<%= lang.sex %>">
+							<%= lang.sex %>
+						</span>
+					<%	}; %>
 
+					<% if (note.categories.pencil.pill) { %>
+						<span data-default-text="<%= lang.pill %>">
+							<%= lang.pill %>
+						</span>
+					<%	}; %>
+
+					<% if (note.categories.pencil.weight) { %>
+						<span data-default-text="<%= lang.weight %>">
+							<%= lang.weight %> = <%= note.categories.pencil.weight %>
+						</span>
+					<%	}; %>
+
+					<% if (note.categories.pencil.notes) { %>
+						<span data-default-text="<%= note.categories.pencil.notes %>">
+							<%= lang.notes %> = <%= note.categories.pencil.notes %>
+						</span>
+					<%	}; %>
+
+				<% }; %>
 
 				<% if (Object.keys(note.categories.health).length) { %>
 
 					<h1>health header</h1>
+
+					<!-- todo: add russian language -->
+					<% for (var key in note.categories.health) { %>
+						<% if (note.categories.health.hasOwnProperty(key)) { %>
+							<span data-default-text="<%= key %>">
+								<%= key %>
+							</span>
+						<% }; %>
+					<% }; %>
 
 				<% }; %>
 
 				<% if (Object.keys(note.categories.mood).length) { %>
 
 					<h1>mood header</h1>
+					<!-- todo: add russian language -->
+					<% for (var key in note.categories.mood) { %>
+						<% if (note.categories.mood.hasOwnProperty(key)) { %>
+							<span data-default-text="<%= key %>">
+								<%= key %>
+							</span>
+						<% }; %>
+					<% }; %>
 
 				<% }; %>
-
-
-
-
-
 
 			<% }; %>
 

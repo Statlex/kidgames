@@ -28,7 +28,14 @@
 			unsafe: 'unsafe',
 			fertile: 'fertile'
 		},
-		progress: 'progress'
+		progress: 'progress',
+
+		// notes section
+		sex: 'sex',
+		pill: 'pill',
+		weight: 'weight',
+		notes: 'notes'
+
 
 	};
 
