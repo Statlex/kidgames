@@ -3,7 +3,6 @@
 	"use strict";
 	/*global console, alert, window, document, Event */
 
-
 	var isTouch, info, bro, re, events;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
@@ -526,6 +525,111 @@
 
 	};
 
+	Bro.prototype.inArray = function(arr, obj) {
+		return !!~arr.indexOf(obj);
+	};
+
+	Bro.prototype.template = function(str) {
+		return new Function("obj",
+				"var p=[]; with(obj){p.push('" + str
+				.replace(/[\r\t\n]/g, " ")
+				.split("<%").join("\t")
+				.replace(/((^|%>)[^\t]*)'/g, "$1\r")
+				.replace(/\t=([\s\S]*?)%>/g, "',$1,'")
+				.split("\t").join("');")
+				.split("%>").join("p.push('")
+				.split("\r").join("\\'") + "');} return p.join('');");
+	};
+
+	function pushNode() {
+		info.evt.current.down.nodes.push(this);
+	}
+
+	function dispatchEventNode() {
+		info.evt.dispatchEvent(this);
+	}
+
+	Bro.prototype.on = function (type, selector, data, func) {
+
+		var evt, nodes, newType;
+
+		newType = info.evt.touchMouseMap[type];
+
+		if (isTouch && newType) {
+			type = newType;
+		}
+
+		if (info.evt.extraTypes.indexOf(type) !== -1) {
+			type = '$' + type + '$';
+		}
+
+		if ((this.isPlainObject(selector) && !data) || !selector) { // click or click {rr:55}
+			data = selector;
+
+			evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+			evt.initEvent(type, true, true);      // todo: future use evt = new Event(type);
+
+			if (data) {
+				evt.data = data;
+			}
+			this.forEach(function (node) {
+				node.dispatchEvent(evt);
+			});
+			return this;
+		}
+
+		nodes = this;
+
+		if (typeof selector === 'function') { // click, func
+			func = selector;
+		} else if (typeof func === 'function') { // click, 'span', {rr:55}, func
+			nodes = this.find(selector);
+		} else if (this.isPlainObject(selector)) { // click, {rr:55}, func
+			func = data;
+			data = selector;
+		} else {                                    // click, 'span', func
+			nodes = this.find(selector);
+			func = data;
+			data = undefined;
+		}
+
+		if (data) {
+			nodes.forEach(function (node) {
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
+
+				node.addEventListener(type, function (e) {
+					var key, dataObj;
+					if (e.data) {
+						dataObj = Object.create(data);
+						for (key in e.data) {
+							if (e.data.hasOwnProperty(key)) {
+								dataObj[key] = e.data[key];
+							}
+						}
+						e.data = dataObj;
+					} else {
+						e.data = data;
+					}
+					func.call(node, e);
+				}, false);
+			});
+		} else {
+			nodes.forEach(function (node) {
+				node.removeEventListener(info.evt.down, pushNode);
+				node.removeEventListener(info.evt.up, dispatchEventNode);
+				node.addEventListener(info.evt.down, pushNode, false);
+				node.addEventListener(info.evt.up, dispatchEventNode, false);
+				node.addEventListener(type, func, false);
+			});
+		}
+
+		return this;
+
+	};
+
 	Bro.prototype.off = function (type, selector, func) {
 
 		var nodes = this;
@@ -691,93 +795,5 @@
 
 	//win.Bro = Bro;
 
-	function pushNode() {
-		info.evt.current.down.nodes.push(this);
-	}
-
-	function dispatchEventNode() {
-		info.evt.dispatchEvent(this);
-	}
-
-	Bro.prototype.on = function (type, selector, data, func) {
-
-		var evt, nodes, newType;
-
-		newType = info.evt.touchMouseMap[type];
-
-		if (isTouch && newType) {
-			type = newType;
-		}
-
-		if (info.evt.extraTypes.indexOf(type) !== -1) {
-			type = '$' + type + '$';
-		}
-
-		if ((this.isPlainObject(selector) && !data) || !selector) { // click or click {rr:55}
-			data = selector;
-
-			evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
-			evt.initEvent(type, true, true);      // todo: future use evt = new Event(type);
-
-			if (data) {
-				evt.data = data;
-			}
-			this.forEach(function (node) {
-				node.dispatchEvent(evt);
-			});
-			return this;
-		}
-
-		nodes = this;
-
-		if (typeof selector === 'function') { // click, func
-			func = selector;
-		} else if (typeof func === 'function') { // click, 'span', {rr:55}, func
-			nodes = this.find(selector);
-		} else if (this.isPlainObject(selector)) { // click, {rr:55}, func
-			func = data;
-			data = selector;
-		} else {                                    // click, 'span', func
-			nodes = this.find(selector);
-			func = data;
-			data = undefined;
-		}
-
-		if (data) {
-			nodes.forEach(function (node) {
-				node.removeEventListener(info.evt.down, pushNode);
-				node.removeEventListener(info.evt.up, dispatchEventNode);
-				node.addEventListener(info.evt.down, pushNode, false);
-				node.addEventListener(info.evt.up, dispatchEventNode, false);
-
-				node.addEventListener(type, function (e) {
-					var key, dataObj;
-					if (e.data) {
-						dataObj = Object.create(data);
-						for (key in e.data) {
-							if (e.data.hasOwnProperty(key)) {
-								dataObj[key] = e.data[key];
-							}
-						}
-						e.data = dataObj;
-					} else {
-						e.data = data;
-					}
-					func.call(node, e);
-				}, false);
-			});
-		} else {
-			nodes.forEach(function (node) {
-				node.removeEventListener(info.evt.down, pushNode);
-				node.removeEventListener(info.evt.up, dispatchEventNode);
-				node.addEventListener(info.evt.down, pushNode, false);
-				node.addEventListener(info.evt.up, dispatchEventNode, false);
-				node.addEventListener(type, func, false);
-			});
-		}
-
-		return this;
-
-	};
 
 }(window, document, document.documentElement));

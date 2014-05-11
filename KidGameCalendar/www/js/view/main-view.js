@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase */
 
 	win.GC = win.GC || {};
 
@@ -107,7 +107,15 @@
 
 			var cycles = info.get('cycles'),
 				that = this,
-				addedData = [];
+				addedData = [],
+				notesMap = {
+					pencil: ['sex', 'pill', 'weight', 'temperature', 'notes'],
+					health: ['achy', 'acne', 'bloated', 'diarrhea'],
+					mood: ['angry', 'calm', 'happy']
+				},
+				broFn = $();
+
+			console.log(broFn);
 
 			cycles.forEach(function(cycle){
 				cycle.startCycle.dateMs = new Date([cycle.startCycle.year, cycle.startCycle.month + 1, cycle.startCycle.date].join(' ')).getTime();
@@ -120,8 +128,6 @@
 				}
 			});
 
-
-
 			dataBase.getAllDataArray(function(data){
 
 				data = data.concat(addedData);
@@ -131,28 +137,62 @@
 				});
 
 				data.forEach(function(date, index, arr){
-					var nearestDate;
+					var nearestDate, key, keyJ;
 					if (date.cycleType) { // detect cycles
 						nearestDate = arr[index - 1];
 						if (nearestDate  && nearestDate.dateMs === date.dateMs && !nearestDate.cycleType) {
 							nearestDate.addedType = date.cycleType;
 							date.doNotShow = 1;
 						}
+
 						nearestDate = arr[index + 1];
+
 						if (nearestDate  && nearestDate.dateMs === date.dateMs && !nearestDate.cycleType) {
 							nearestDate.addedType = date.cycleType;
 							date.doNotShow = 1;
 						}
 
-
+						date.addedType = date.cycleType;
 
 					}
+
+					if (date.data) {
+						date.categories = {};
+						// get available categories
+						for (key in notesMap) {
+							if (notesMap.hasOwnProperty(key)) {
+								// create empty category
+								date.categories[key] = {};
+								for (keyJ in date.data) {
+									if (date.data.hasOwnProperty(keyJ)) {
+										// detect saves data in current category
+										if (broFn.inArray(notesMap[key], keyJ)) {
+											// add data tu current category
+											date.categories[key][keyJ] = date.data[keyJ];
+										}
+									}
+								}
+							}
+						}
+					}
+
+					arr[index] = JSON.parse(JSON.stringify(date));
+
+					console.log(date);
+					console.log(Object.keys(date));
+					console.log(Object.keys({}).length);
+
+
+
 				});
 
-				that.$el.find('.js-date-notes-list').html(_.template(that.templates.noteItem, {data:data}));
+				console.log(that.templates.noteItem);
+				console.log(data);
+
+				that.$el.find('.js-date-notes-list').html(broFn.template(that.templates.noteItem)({data:data}));
+
 
 			});
-			console.log(this.templates.noteItem);
 
 		}
 

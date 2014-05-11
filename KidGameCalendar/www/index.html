@@ -104,15 +104,43 @@
 <script type="text/x-template" class="jsTemplate" data-template-name="date-note">
 
 	<% data.forEach(function(note){ %>
-		<div class="js-date-note">
+		<div class="js-date-note date-note" style="opacity: <%= note.doNotShow ? 0.2 : 1 %>">
 			<%= note.date %>
 			<%= lang.month[note.month] %>
 			<%= note.year %>
-			    - date
-			<h1><%= note.addedType %></h1>
-			<h1><%= note.doNotShow %></h1>
+			<br/>-----------
+			<span><%= note.addedType %></span>
+
+			<% if (note.categories) { %>
+
+				<% if (Object.keys(note.categories.pencil).length) { %>
+
+					<h1>pencil header</h1>
+
+				<% }; %>
+
+
+				<% if (Object.keys(note.categories.health).length) { %>
+
+					<h1>health header</h1>
+
+				<% }; %>
+
+				<% if (Object.keys(note.categories.mood).length) { %>
+
+					<h1>mood header</h1>
+
+				<% }; %>
+
+
+
+
+
+
+			<% }; %>
+
 		</div>
-	<% }) %>
+	<% }); %>
 
 
 </script>

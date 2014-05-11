@@ -320,4 +320,6 @@ label {
 	overflow-scrolling: touch;
 }
 
-
+.date-note {
+	padding: 10px;
+}
