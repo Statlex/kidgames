@@ -53,6 +53,12 @@
 			for (key in this.selectors) {
 				if (this.selectors.hasOwnProperty(key)) {
 					if (item === key) {
+
+						if (key === 'notes') {
+							this.showNotes();
+							this.bindNotes();
+						}
+
 						this.$el.find(this.selectors[key]).show();
 					} else {
 						this.$el.find(this.selectors[key]).hide();
@@ -115,8 +121,6 @@
 				},
 				broFn = $();
 
-			console.log(broFn);
-
 			cycles.forEach(function(cycle){
 				cycle.startCycle.dateMs = new Date([cycle.startCycle.year, cycle.startCycle.month + 1, cycle.startCycle.date].join(' ')).getTime();
 				cycle.startCycle.cycleType = 'start cycle';
@@ -176,13 +180,9 @@
 						}
 					}
 
-					arr[index] = JSON.parse(JSON.stringify(date));
-
 					console.log(date);
 					console.log(Object.keys(date));
 					console.log(Object.keys({}).length);
-
-
 
 				});
 
@@ -193,6 +193,20 @@
 
 
 			});
+
+		},
+		bindNotes: function() {
+			$('.js-notes-wrapper').off();
+
+			// bind search
+			var search = $('.js-notes-wrapper .js-search-notes');
+
+			search.on('input', function(){
+				console.log(this.value);
+			});
+
+			search.on('input');
+
 
 		}
 
