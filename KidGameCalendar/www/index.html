@@ -118,7 +118,7 @@
 					<h1>pencil header</h1>
 
 					<% if (note.categories.pencil.sex) { %>
-						<span data-default-text="<%= lang.sex %>">
+						<span data-text="<%= lang.sex %>">
 							<%= lang.sex %>
 						</span>
 					<%	}; %>
@@ -131,8 +131,8 @@
 
 					<% if (note.categories.pencil.weight) { %>
 						<span data-default-text="<%= lang.weight %>">
-							<%= lang.weight %> = <%= note.categories.pencil.weight %>
-						</span>
+							<%= lang.weight %>
+						</span> = <%= note.categories.pencil.weight %>
 					<%	}; %>
 
 					<% if (note.categories.pencil.notes) { %>

@@ -202,7 +202,42 @@
 			var search = $('.js-notes-wrapper .js-search-notes');
 
 			search.on('input', function(){
+
+				var notes = doc.querySelectorAll('.js-date-note'),
+					value = this.value,
+					re,
+					reStr = '--' + value + '--';
+
+				if (!value.trim()) {
+					Array.prototype.forEach.call(notes, function(node){
+						var findElems = node.querySelectorAll('[data-default-text]');
+						Array.prototype.forEach.call(findElems, function(findNodes){
+							findNodes.innerText = findNodes.dataset.defaultText;
+						});
+						node.classList.remove('hidden');
+					});
+					return;
+				}
+
+				re = new RegExp(value, 'gi');
+
+				Array.prototype.forEach.call(notes, function(node){
+					var findElems = node.querySelectorAll('[data-default-text]');
+					node.classList.add('hidden');
+					Array.prototype.forEach.call(findElems, function(findNodes){
+
+						var newText = findNodes.dataset.defaultText.replace(re, reStr);
+						findNodes.innerText = newText;
+
+						if (findNodes.dataset.defaultText !== newText) { // replace was
+							node.classList.remove('hidden');
+						}
+
+					});
+				});
+
 				console.log(this.value);
+
 			});
 
 			search.on('input');

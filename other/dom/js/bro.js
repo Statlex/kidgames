@@ -263,7 +263,10 @@
 
 	re = {
 		htmlNode: /^<[\s\S]+>$/,
-		json: /^\{[\s\S]*\}$/
+		json: /^\{[\s\S]*\}$/,
+		xToX: function(str) {
+			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
+		}
 	};
 
 	events = {
@@ -740,6 +743,9 @@
 		if (!key) { // ()
 			return this[0].dataset;
 		}
+
+		// some-tome-tone -> someTomeTone
+		key = re.xToX(key);
 
 		if (typeof key === 'string') {
 			if (value !== undefined) { // 'key'

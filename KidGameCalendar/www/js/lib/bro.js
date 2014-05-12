@@ -263,7 +263,10 @@
 
 	re = {
 		htmlNode: /^<[\s\S]+>$/,
-		json: /^\{[\s\S]*\}$/
+		json: /^\{[\s\S]*\}$/,
+		xToX: function(str) {
+			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
+		}
 	};
 
 	events = {
@@ -531,14 +534,14 @@
 
 	Bro.prototype.template = function(str) {
 		return new Function("obj",
-			"var p=[]; with(obj){p.push('" + str
-			.replace(/[\r\t\n]/g, " ")
-			.split("<%").join("\t")
-			.replace(/((^|%>)[^\t]*)'/g, "$1\r")
-			.replace(/\t=([\s\S]*?)%>/g, "',$1,'")
-			.split("\t").join("');")
-			.split("%>").join("p.push('")
-			.split("\r").join("\\'") + "');} return p.join('');");
+				"var p=[]; with(obj){p.push('" + str
+				.replace(/[\r\t\n]/g, " ")
+				.split("<%").join("\t")
+				.replace(/((^|%>)[^\t]*)'/g, "$1\r")
+				.replace(/\t=([\s\S]*?)%>/g, "',$1,'")
+				.split("\t").join("');")
+				.split("%>").join("p.push('")
+				.split("\r").join("\\'") + "');} return p.join('');");
 	};
 
 	function pushNode() {
@@ -740,6 +743,9 @@
 		if (!key) { // ()
 			return this[0].dataset;
 		}
+
+		// some-tome-tone -> someTomeTone
+		key = re.xToX(key);
 
 		if (typeof key === 'string') {
 			if (value !== undefined) { // 'key'
