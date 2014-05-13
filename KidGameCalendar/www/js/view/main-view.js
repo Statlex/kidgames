@@ -111,7 +111,7 @@
 
 		showNotes: function() {
 
-			var cycles = info.get('cycles'),
+			var cycles = info.get('cycles') || [],
 				that = this,
 				addedData = [],
 				notesMap = {
