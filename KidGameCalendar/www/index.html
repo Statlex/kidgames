@@ -104,7 +104,7 @@
 <script type="text/x-template" class="jsTemplate" data-template-name="date-note">
 
 	<% data.forEach(function(note){ %>
-		<div class="js-date-note date-note" style="opacity: <%= note.doNotShow ? 0.2 : 1 %>">
+		<div class="js-date-note date-note <%= note.doNotShow ? 'not-show-item' : 'show-item' %>">
 			<%= note.date %>
 			<%= lang.month[note.month] %>
 			<%= note.year %>

@@ -323,3 +323,12 @@ label {
 .date-note {
 	padding: 10px;
 }
+
+.show-item {
+	background-color: #cc5e66;
+}
+
+.not-show-item {
+	background-color: #e4d5e1;
+	opacity: 0.4;
+}
