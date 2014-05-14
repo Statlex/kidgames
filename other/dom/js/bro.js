@@ -298,17 +298,16 @@
 		return this;
 	};
 
+	// todo: add .text() like .html()
+
 	Bro.prototype.attr = function (attribute, value) {
-
-		var elem = this[0];
-
-		if (!elem) {
-			return this;
-		}
 
 		// try to get attribute
 		if (value === undefined && typeof attribute === 'string') {
-			return elem.getAttribute(attribute);
+			if (!this.length) {
+				return '';
+			}
+			return this[0].getAttribute(attribute);
 		}
 
 		this.setAttribute(attribute, value);
@@ -394,7 +393,7 @@
 	};
 
 	Bro.prototype.isEmpty = function () {
-		return !!this.length;
+		return !this.length;
 	};
 
 	Bro.prototype.isPlainObject = function (obj) {
@@ -529,7 +528,7 @@
 	};
 
 	Bro.prototype.inArray = function(arr, obj) {
-		return !!~arr.indexOf(obj);
+		return arr.indexOf(obj) !== -1;
 	};
 
 	Bro.prototype.template = function(str) {
@@ -687,20 +686,24 @@
 			this.forEach(function (node) {
 				node.style[css] = value;
 			});
-		} else if (typeof css === "string") { // display
+			return this;
+		}
+
+		if (typeof css === "string") { // display
 			if (this.length) {
 				return win.getComputedStyle(this[0], null)[css];
 			}
-		} else { // {}
-			this.forEach(function (node) {
-				var key;
-				for (key in css) {
-					if (css.hasOwnProperty(key)) {
-						node.style[key] = css[key];
-					}
-				}
-			});
+			return '';
 		}
+
+		this.forEach(function (node) { // {}
+			var key;
+			for (key in css) {
+				if (css.hasOwnProperty(key)) {
+					node.style[key] = css[key];
+				}
+			}
+		});
 
 		return this;
 
@@ -718,16 +721,13 @@
 	};
 
 	Bro.prototype.val = function (value) {
-		if (!this.length) {
-			return this;
-		}
 
 		if (typeof value === 'string') {
 			this.forEach(function (node) {
 				node.value = value;
 			});
 		} else {
-			return this[0].value;
+			return this.length ? this[0].value : '';
 		}
 
 		return this;
@@ -736,12 +736,8 @@
 
 	Bro.prototype.data = function (key, value) {
 
-		if (!this.length) {
-			return this;
-		}
-
 		if (!key) { // ()
-			return this[0].dataset;
+			return this.length ? this[0].dataset : {};
 		}
 
 		// some-tome-tone -> someTomeTone
@@ -761,7 +757,7 @@
 				return this;
 			}
 
-			value = this[0].dataset[key];
+			value = this.length ? this[0].dataset[key] : '';
 			if (re.json.test(value)) {
 				try {
 					return JSON.parse(this[0].dataset[key]);
@@ -793,6 +789,39 @@
 
 		}
 
+		return this;
+
+	};
+
+	Bro.prototype.prop = function(key, value) {
+
+		if (typeof key === 'string' && value === undefined) {
+			return this.length ? this[0][key] : '';
+		}
+
+
+		if (this.isPlainObject(key)) { // {},
+			this.forEach(function(node){
+				var i;
+				for (i in key) {
+					if (key.hasOwnProperty(i)) {
+						node[i] = key[i];
+					}
+				}
+			});
+			return this;
+		}
+
+		if (typeof value === 'function') { // 'checked', function
+			this.forEach(function(node, index){
+				node[key] = value.call(node, index, node[key]);
+			});
+			return this;
+		}
+
+		this.forEach(function(node){ // 'checked', some value
+			node[key] = value;
+		});
 		return this;
 
 	};
