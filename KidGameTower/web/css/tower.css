@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+}
+
+.main-field {
+	margin: 50px;
+	width: 140px;
+	height: 280px;
+	background-color: #ccc;
+	border: 2px solid #000;
+	position: relative;
+}
+
+.main-field .block {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-color: #700;
+}

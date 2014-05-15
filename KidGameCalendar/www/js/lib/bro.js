@@ -440,7 +440,9 @@
 			return this;
 		}
 
-		this.forEach.call(nodes, function (node) {
+		nodes = new Bro(nodes);
+
+		nodes.forEach(function(node){
 			elem.appendChild(node);
 		});
 

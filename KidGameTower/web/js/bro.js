@@ -828,7 +828,8 @@
 
 	};
 
-	win.$ = bro;
+	win.$ = bro; // optionally
+	win.bro = bro;
 
 	//win.Bro = Bro;
 
