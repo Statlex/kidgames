@@ -48,6 +48,8 @@
 	text-transform: lowercase;
 }
 
+
+
 .title-button:after {
 	content: '';
 	display: block;
@@ -90,6 +92,16 @@
 	top: 0;
 	left: 0;
 	z-index: 0;
+}
+
+.lang-ru .title-button.buy-button {
+	height: auto;
+	line-height: 25px;
+	padding: 15px 0;
+}
+
+.title-button.buy-button:after {
+	display: none;
 }
 
 .tangram-page {
@@ -207,6 +219,7 @@
 
 .header-cell {
 	height: 40px;
+	padding-bottom: 20px;
 }
 
 .header-cell h1 {

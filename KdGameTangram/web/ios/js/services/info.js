@@ -17,6 +17,7 @@
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		canScroll: false,
+		isFreeVersion: true,
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',

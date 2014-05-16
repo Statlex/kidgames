@@ -25,8 +25,9 @@
 		hard: 'hard mode',
 		easy: 'easy mode',
 		myCollection: 'my collection',
-		removeTgState: "Remove tangram's state ?"
+		removeTgState: "Remove tangram's state ?",
+		buyAdsFree: 'buy ads free version'
 
-	}
+	};
 
 }(window));
