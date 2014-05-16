@@ -168,8 +168,8 @@
 
 .reflect-button {
 	position: absolute;
-	width: 40px;
-	height: 30px;
+	width: 32px;
+	height: 32px;
 	z-index: 5;
 	margin: 15px 0 0 20px;
 	left: 25%;
@@ -178,14 +178,13 @@
 	background-image: url('../img/i/flip.svg');
 	background-position: center center;
 	cursor: pointer;
-	opacity: 0.8;
 }
 
 @media screen and (max-height: 700px) {
 	.reflect-button {
-		width: 40px;
-		height: 25px;
-		margin-top: 5px;
+		width: 24px;
+		height: 24px;
+		margin-top: 7px;
 	}
 }
 
@@ -412,11 +411,11 @@
 
 .save-button-wrapper {
 	position: fixed;
-	height: 35px;
-	width: 45px;
+	height: 32px;
+	width: 32px;
 	cursor: pointer;
 	z-index: 1;
-	opacity: 0.8;
+	/*opacity: 0.8;*/
 	right: 14px;
 	top: 16px;
 }
@@ -442,10 +441,10 @@
 
 @media screen and (max-height: 700px) {
 	.save-button-wrapper {
-		height: 25px;
+		height: 24px;
 		width: 45px;
 		right: 2px;
-		top: 6px;
+		top: 7px;
 	}
 }
 
@@ -614,7 +613,7 @@
 .status-bar-back,
 .status-bar-more,
 .status-bar-play-again {
-	opacity: 0.8;
+	/*opacity: 0.8;*/
 }
 
 .title-button.my-collection:after {
@@ -673,8 +672,8 @@
 
 .reset-tangram {
 	position: absolute;
-	width: 40px;
-	height: 30px;
+	width: 32px;
+	height: 32px;
 	z-index: 5;
 	margin: 15px 20px 0 0;
 	right: 25%;
@@ -683,7 +682,7 @@
 	background-image: url('../img/i/reset.svg');
 	background-position: center center;
 	cursor: pointer;
-	opacity: 0.8;
+	/*opacity: 0.8;*/
 }
 
 @media screen and (max-height: 700px) {
@@ -694,4 +693,18 @@
 	}
 }
 
+.top-bar-bg {
+	position: fixed;
+	z-index: -1000;
+	top: 0;
+	left: 0;
+	height: 64px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+}
 
+@media screen and (max-height: 700px) {
+	.top-bar-bg {
+		height: 40px;
+	}
+}

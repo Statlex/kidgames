@@ -100,6 +100,7 @@
 
 <div class="js-template hidden" template-id="tangram-page" onshow="statusBar.hideStatusBar();tangram.start();">
 	<div class="page tangram-page">
+		<div class="top-bar-bg"></div>
 		{{ if (info.isTouch) { }}
 			<div ontouchend="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
 		{{ } else { }}
