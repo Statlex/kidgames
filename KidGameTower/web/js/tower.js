@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, setTimeout */
+	/*global console, alert, setTimeout, window, document */
 	/*global bro */
 
 	var tower, block, cssPre, jsPre, info;
