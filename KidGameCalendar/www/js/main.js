@@ -1,3 +1,4 @@
+/*global $ */
 $(function(){
 
 	"use strict";
@@ -18,7 +19,8 @@ $(function(){
 			'date-info': 'dateInfo',
 			'confirm': 'confirm',
 			'options': 'options',
-			'help': 'help'
+			'help': 'help',
+			'title': 'title'
 //			'options:/id': 'options'
 		},
 		home: function() {
@@ -29,6 +31,10 @@ $(function(){
 			APP.options.hide(true);
 			APP.help.hide(true);
 			APP.mainView.fade.hide();
+			APP.title.hide();
+		},
+		title: function() {
+			APP.title.show();
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');
@@ -73,11 +79,18 @@ $(function(){
 
 	APP.cycleDelayed = new GC.CycleDelayedView();
 
+	APP.title = new GC.TitleView();
+
 	//APP.cycleDelayed.show();
 
 	// show calendar on app start
 	APP.mainView.show('calendar');
 
 	Backbone.history.start();
+
+	// go to calendar page
+	APP.router.navigate('', {trigger: true});
+	// go to title page
+	APP.router.navigate('title', {trigger: true});
 
 });

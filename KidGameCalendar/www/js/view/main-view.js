@@ -180,14 +180,14 @@
 						}
 					}
 
-					console.log(date);
-					console.log(Object.keys(date));
-					console.log(Object.keys({}).length);
+//					console.log(date);
+//					console.log(Object.keys(date));
+//					console.log(Object.keys({}).length);
 
 				});
 
-				console.log(that.templates.noteItem);
-				console.log(data);
+//				console.log(that.templates.noteItem);
+//				console.log(data);
 
 				that.$el.find('.js-date-notes-list').html(broFn.template(that.templates.noteItem)({data:data}));
 

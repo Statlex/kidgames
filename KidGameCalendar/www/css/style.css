@@ -332,3 +332,49 @@ label {
 	background-color: #e4d5e1;
 	opacity: 0.4;
 }
+
+.title-view {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: #fff;
+}
+
+.main-state {
+	background-color: #c00;
+	opacity: 0.5;
+	position: fixed;
+}
+
+.main-state .main-button {
+	position: absolute;
+	z-index: 1;
+	top: 19%;
+	left: 19%;
+	width: 62%;
+	height: 62%;
+	background-image: url(../img/title-button-bg.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-color: #fff;
+}
+
+.cycle-days-wrapper {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
