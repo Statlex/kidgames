@@ -11,12 +11,13 @@
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar'],
 		availableLangs: ['en', 'ru'],
-		saveItem: 'save-item-kid-game-tangram',
+		saveItem: 'save-item-kid-game-tangram-2',
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		canScroll: false,
+		isFreeVersion: false,
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',
