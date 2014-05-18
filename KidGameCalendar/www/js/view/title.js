@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global Backbone, $, info, APP */
+	/*global Backbone, $, info, APP, Calendar */
 
 	win.GC = win.GC || {};
 
@@ -11,7 +11,7 @@
 		selectors: {
 			'click .js-to-calendar': 'toHome'
 		},
-		initialize: function() {
+		initialize: function () {
 
 			//$(win).on('resize', this.show.bind(this));
 
@@ -27,10 +27,10 @@
 			}
 
 		},
-		toHome: function(){
+		toHome: function () {
 			APP.router.navigate('', {trigger: true});
 		},
-		show: function() {
+		show: function () {
 
 			var mainStateWrapper = $('.js-main-state-wrapper'),
 				mainStateNode = this.createMainState();
@@ -38,19 +38,16 @@
 			mainStateWrapper.append(mainStateNode);
 
 
-
-
-
 			this.$el.show();
 
 		},
-		hide: function() {
+		hide: function () {
 
 			this.$el.hide();
 
 		},
 
-		createMainState: function() {
+		createMainState: function () {
 
 			// create circle wrapper
 			var util, screenInfo, mainNode;
@@ -65,7 +62,7 @@
 
 			// create button
 			var button;
-			button = $('<div class="main-button"></div>');
+			button = $('<div class="main-button js-main-button"></div>');
 			mainNode.append(button);
 
 			// create cycle's days
@@ -85,7 +82,94 @@
 
 			// add coloring
 
+			// detect cycles
+			var cycles, lastCycle, lastDate, date, now, different;
+			cycles = info.get('cycles') || [];
 
+
+			// detect cycles is > 1
+			if (cycles.length) {
+				lastCycle = cycles[cycles.length - 1];
+
+				lastDate = lastCycle.startCycle;
+				date = new Date();
+				now = {
+					date: date.getDate(),
+					month: date.getMonth(),
+					year: date.getFullYear()
+				};
+
+				different = Calendar.prototype.getDifferent(now, lastDate) - info.get('cycleLength');
+
+				if (different <= 0) {
+					// no delayed
+
+
+						var cycle = lastCycle,
+							dateMap = JSON.parse(JSON.stringify(info.dateMap)),
+							cycleLength = info.get('cycleLength'),
+							calendar = new Calendar(),
+							dateMapDifferent, halfOfMapDifferent,
+							dateNodes = $('.js-title-cycle-date', mainNode);
+
+						// detect end of flow
+						if (cycle.endFlow.str) {
+							dateMapDifferent = dateMap.flow - calendar.getDifferent(cycle.endFlow, cycle.startCycle) - 1;
+							dateMap.flow -= dateMapDifferent;
+							dateMap.safe_1 += dateMapDifferent;
+						}
+
+						if (cycleLength !== 28) {
+							dateMapDifferent = cycleLength - 28;
+							halfOfMapDifferent = Math.floor(dateMapDifferent / 2);
+							dateMap.unsafe_1 += halfOfMapDifferent;
+							dateMap.unsafe_2 += halfOfMapDifferent;
+							if (halfOfMapDifferent * 2 < dateMapDifferent) {
+								dateMap.unsafe_2 += 1;
+							}
+						}
+
+						var key, dateNodeIndex = 0, className;
+
+
+						for (key in dateMap) {
+							if (dateMap.hasOwnProperty(key)) {
+								for (ii = 0, ll = dateMap[key]; ii < ll; ii += 1) {
+									className = dateNodes[dateNodeIndex].getAttribute('class');
+									className += ' ' + (dateNodeIndex ? key.toString().replace(/_\d/gi, '') : 'start-flow');
+									dateNodes[dateNodeIndex].setAttribute('class', className);
+									dateNodeIndex += 1;
+								}
+							}
+						}
+
+
+
+						// detect current date
+						var number = calendar.getDifferent(now, cycle.startCycle);
+						className = dateNodes[number].getAttribute('class');
+						dateNodes[number].setAttribute('class', className + ' current-day');
+
+						// rotate circle arrow
+						var mainButton, angle, singleDayAngle;
+						mainButton = $('.js-main-button', mainNode);
+						singleDayAngle = 360 / cycleLength;
+						angle = singleDayAngle * (number + 0.5);
+						mainButton.css({
+							transform: 'rotate(' + angle + 'deg)'
+						})
+						.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
+
+					//return;
+				} else {
+					console.log('you have delayed ' + different);
+				}
+
+
+			} else {
+				// user have no any cycles
+				console.log('you have no cycles, start new cycles?');
+			}
 
 			return mainNode;
 
@@ -115,9 +199,9 @@
 //			return path;
 //
 //		},
-		createSVGDay: function(x, y, angle1, angle2, r1, r2, data) {
+		createSVGDay: function (x, y, angle1, angle2, r1, r2, data) {
 
-			var path = '<path d="{{d}}" fill="green" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
+			var path = '<path class="js-title-cycle-date title-cycle-date" d="{{d}}" fill="none" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
 				d = {},
 				dStr;
 

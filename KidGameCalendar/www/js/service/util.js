@@ -203,6 +203,7 @@
 	}());
 
 	win.util = bro;
+	win.tool = bro;
 
 	win.addEventListener('load', function(){
 //		doc.body.addEventListener('touchstart', function(e){

@@ -89,7 +89,7 @@ $(function(){
 	Backbone.history.start();
 
 	// go to calendar page
-	APP.router.navigate('', {trigger: true});
+	//APP.router.navigate('', {trigger: true});
 	// go to title page
 	APP.router.navigate('title', {trigger: true});
 

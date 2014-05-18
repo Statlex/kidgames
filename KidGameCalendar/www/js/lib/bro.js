@@ -443,10 +443,7 @@
 			return this;
 		}
 
-		console.log(nodes);
-
 		nodes = new Bro(nodes);
-		console.log(nodes);
 
 		nodes.forEach(function(node){
 			elem.appendChild(node);
@@ -853,6 +850,10 @@
 			};
 
 			return info;
+		},
+		vendorPrefix: {
+			css: '-webkit-',
+			js: 'webkit'
 		}
 	};
 
