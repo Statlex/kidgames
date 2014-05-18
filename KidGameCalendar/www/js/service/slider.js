@@ -279,14 +279,7 @@
 
 		cycles.forEach(function (cycle) {
 
-			var dateMap = {
-					flow: 4,
-					safe_1: 5,
-					unsafe_1: 5,
-					fertile: 4,
-					unsafe_2: 5,
-					safe_2: 5
-				},
+			var dateMap = Object.create(info.dateMap),
 				cycleLength = info.get('cycleLength'),
 				fullCycleLength = cycleLength,
 				dateMapDifferent, halfOfMapDifferent;

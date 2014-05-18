@@ -360,7 +360,8 @@ label {
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
-	background-color: #fff;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
 }
 
 .cycle-days-wrapper {
