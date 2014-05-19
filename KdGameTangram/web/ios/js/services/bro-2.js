@@ -3,7 +3,6 @@
 	"use strict";
 	/*global console, alert, window, document, Event */
 
-
 	var isTouch, info, bro, re, events;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
@@ -13,6 +12,7 @@
 		isTouch: isTouch,
 		preCSS: '-webkit-',
 		preJS: 'webkit',
+		isAndroid: (/android/i).test(win.navigator.userAgent),
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
 			move: isTouch ? 'touchmove' : 'mousemove',
@@ -263,7 +263,10 @@
 
 	re = {
 		htmlNode: /^<[\s\S]+>$/,
-		json: /^\{[\s\S]*\}$/
+		json: /^\{[\s\S]*\}$/,
+		xToX: function(str) {
+			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
+		}
 	};
 
 	events = {
@@ -276,6 +279,9 @@
 	function Bro(selector, context) {
 		if (!this) {
 			return new Bro(selector, context);
+		}
+		if (selector instanceof Bro) {
+			return selector;
 		}
 		this.init(selector, context);
 	}
@@ -295,17 +301,16 @@
 		return this;
 	};
 
+	// todo: add .text() like .html()
+
 	Bro.prototype.attr = function (attribute, value) {
-
-		var elem = this[0];
-
-		if (!elem) {
-			return this;
-		}
 
 		// try to get attribute
 		if (value === undefined && typeof attribute === 'string') {
-			return elem.getAttribute(attribute);
+			if (!this.length) {
+				return '';
+			}
+			return this[0].getAttribute(attribute);
 		}
 
 		this.setAttribute(attribute, value);
@@ -391,7 +396,7 @@
 	};
 
 	Bro.prototype.isEmpty = function () {
-		return !!this.length;
+		return !this.length;
 	};
 
 	Bro.prototype.isPlainObject = function (obj) {
@@ -438,7 +443,9 @@
 			return this;
 		}
 
-		this.forEach.call(nodes, function (node) {
+		nodes = new Bro(nodes);
+
+		nodes.forEach(function(node){
 			elem.appendChild(node);
 		});
 
@@ -525,169 +532,21 @@
 
 	};
 
-	Bro.prototype.off = function (type, selector, func) {
-
-		var nodes = this;
-
-		if (typeof selector === 'string') { // click, selector, func
-			nodes = this.find(selector);
-		} else {
-			func = selector;
-		}
-
-		if (type) {
-			nodes.forEach(function (node) {
-				node.removeEventListener(type, func);
-			});
-		} else {
-			nodes.forEach(function (node) {
-				node.parentNode.replaceChild(node.cloneNode(true), node);
-			});
-		}
-
-		return this;
-
+	Bro.prototype.inArray = function(arr, obj) {
+		return arr.indexOf(obj) !== -1;
 	};
 
-	Bro.prototype.remove = function () {
-		this.forEach(function (node) {
-			node.parentNode.removeChild(node);
-		}, this);
-		this.splice(0, this.length);
-		return this;
+	Bro.prototype.template = function(str) {
+		return new Function("obj",
+				"var p=[]; with(obj){p.push('" + str
+				.replace(/[\r\t\n]/g, " ")
+				.split("<%").join("\t")
+				.replace(/((^|%>)[^\t]*)'/g, "$1\r")
+				.replace(/\t=([\s\S]*?)%>/g, "',$1,'")
+				.split("\t").join("');")
+				.split("%>").join("p.push('")
+				.split("\r").join("\\'") + "');} return p.join('');");
 	};
-
-	Bro.prototype.show = function () {
-		this.forEach(function (node) {
-			node.style.display = 'block';
-		});
-		return this;
-	};
-
-	Bro.prototype.hide = function () {
-		this.forEach(function (node) {
-			node.style.display = 'none';
-		});
-		return this;
-	};
-
-	Bro.prototype.css = function (css, value) {
-
-		if (typeof value === "string") { /// display , block
-			this.forEach(function (node) {
-				node.style[css] = value;
-			});
-		} else if (typeof css === "string") { // display
-			if (this.length) {
-				return win.getComputedStyle(this[0], null)[css];
-			}
-		} else { // {}
-			this.forEach(function (node) {
-				var key;
-				for (key in css) {
-					if (css.hasOwnProperty(key)) {
-						node.style[key] = css[key];
-					}
-				}
-			});
-		}
-
-		return this;
-
-	};
-
-	Bro.prototype.eq = function (number) {
-		return new Bro(this[number]);
-	};
-
-	Bro.prototype.empty = function () {
-		this.forEach(function (node) {
-			while (node.firstChild) {
-				node.removeChild(node.firstChild);
-			}
-		});
-		return this;
-	};
-
-	Bro.prototype.val = function (value) {
-		if (!this.length) {
-			return this;
-		}
-
-		if (typeof value === 'string') {
-			this.forEach(function (node) {
-				node.value = value;
-			});
-		} else {
-			return this[0].value;
-		}
-
-		return this;
-
-	};
-
-	Bro.prototype.data = function (key, value) {
-
-		if (!this.length) {
-			return this;
-		}
-
-		if (!key) { // ()
-			return this[0].dataset;
-		}
-
-		if (typeof key === 'string') {
-			if (value !== undefined) { // 'key'
-
-				if (this.isPlainObject(value)) {
-					value = JSON.stringify(value);
-				}
-
-				this.forEach(function (node) {
-					node.dataset[key] = value;
-				});
-
-				return this;
-			}
-
-			value = this[0].dataset[key];
-			if (re.json.test(value)) {
-				try {
-					return JSON.parse(this[0].dataset[key]);
-				} catch (e) {
-					return value;
-				}
-			}
-
-			return value;
-
-		}
-
-		if (this.isPlainObject(key)) {
-
-			this.forEach(function (node) {
-				var i;
-				for (i in key) {
-					if (key.hasOwnProperty(i)) {
-						if (this.isPlainObject(key[i])) {
-							node.dataset[i] = JSON.stringify(key[i]);
-						} else {
-							node.dataset[i] = key[i];
-						}
-					}
-				}
-			}, this);
-
-			return this;
-
-		}
-
-		return this;
-
-	};
-
-
-	//win.Bro = Bro;
 
 	function pushNode() {
 		info.evt.current.down.nodes.push(this);
@@ -778,6 +637,229 @@
 
 	};
 
-	win.bro = bro;
+	Bro.prototype.off = function (type, selector, func) {
+
+		var nodes = this;
+
+		if (typeof selector === 'string') { // click, selector, func
+			nodes = this.find(selector);
+		} else {
+			func = selector;
+		}
+
+		if (type) {
+			nodes.forEach(function (node) {
+				node.removeEventListener(type, func);
+			});
+		} else {
+			nodes.forEach(function (node, index, arr) {
+				var silentNode = node.cloneNode(true);
+				arr[index] = silentNode;
+				node.parentNode.replaceChild(silentNode, node);
+			});
+		}
+
+		return this;
+
+	};
+
+	Bro.prototype.remove = function () {
+		this.forEach(function (node) {
+			node.parentNode.removeChild(node);
+		}, this);
+		this.splice(0, this.length);
+		return this;
+	};
+
+	Bro.prototype.show = function () {
+		this.forEach(function (node) {
+			node.style.display = 'block';
+		});
+		return this;
+	};
+
+	Bro.prototype.hide = function () {
+		this.forEach(function (node) {
+			node.style.display = 'none';
+		});
+		return this;
+	};
+
+	Bro.prototype.css = function (css, value) {
+
+		if (typeof value === "string") { /// display , block
+			this.forEach(function (node) {
+				node.style[css] = value;
+			});
+			return this;
+		}
+
+		if (typeof css === "string") { // display
+			if (this.length) {
+				return win.getComputedStyle(this[0], null)[css];
+			}
+			return '';
+		}
+
+		this.forEach(function (node) { // {}
+			var key;
+			for (key in css) {
+				if (css.hasOwnProperty(key)) {
+					node.style[key] = css[key];
+				}
+			}
+		});
+
+		return this;
+
+	};
+
+	Bro.prototype.eq = function (number) {
+		return new Bro(this[number]);
+	};
+
+	Bro.prototype.empty = function () {
+		this.forEach(function (node) {
+			node.textContent = '';
+		});
+		return this;
+	};
+
+	Bro.prototype.val = function (value) {
+
+		if (typeof value === 'string') {
+			this.forEach(function (node) {
+				node.value = value;
+			});
+		} else {
+			return this.length ? this[0].value : '';
+		}
+
+		return this;
+
+	};
+
+	Bro.prototype.data = function (key, value) {
+
+		if (!key) { // ()
+			return this.length ? this[0].dataset : {};
+		}
+
+		// some-tome-tone -> someTomeTone
+		key = re.xToX(key);
+
+		if (typeof key === 'string') {
+			if (value !== undefined) { // 'key'
+
+				if (this.isPlainObject(value)) {
+					value = JSON.stringify(value);
+				}
+
+				this.forEach(function (node) {
+					node.dataset[key] = value;
+				});
+
+				return this;
+			}
+
+			value = this.length ? this[0].dataset[key] : '';
+			if (re.json.test(value)) {
+				try {
+					return JSON.parse(this[0].dataset[key]);
+				} catch (e) {
+					return value;
+				}
+			}
+
+			return value;
+
+		}
+
+		if (this.isPlainObject(key)) {
+
+			this.forEach(function (node) {
+				var i;
+				for (i in key) {
+					if (key.hasOwnProperty(i)) {
+						if (this.isPlainObject(key[i])) {
+							node.dataset[i] = JSON.stringify(key[i]);
+						} else {
+							node.dataset[i] = key[i];
+						}
+					}
+				}
+			}, this);
+
+			return this;
+
+		}
+
+		return this;
+
+	};
+
+	Bro.prototype.prop = function(key, value) {
+
+		if (typeof key === 'string' && value === undefined) {
+			return this.length ? this[0][key] : '';
+		}
+
+
+		if (this.isPlainObject(key)) { // {},
+			this.forEach(function(node){
+				var i;
+				for (i in key) {
+					if (key.hasOwnProperty(i)) {
+						node[i] = key[i];
+					}
+				}
+			});
+			return this;
+		}
+
+		if (typeof value === 'function') { // 'checked', function
+			this.forEach(function(node, index){
+				node[key] = value.call(node, index, node[key]);
+			});
+			return this;
+		}
+
+		this.forEach(function(node){ // 'checked', some value
+			node[key] = value;
+		});
+		return this;
+
+	};
+
+	Bro.prototype.util = {
+		screen: function() {
+
+			var info = {},
+				width = docElem.clientWidth,
+				height = docElem.clientHeight;
+
+			info.width = width;
+			info.height = height;
+			info.orientation = width > height ? 'landscape' : 'portrait';
+			info.aspectRatio = width / height;
+			info.smallestSide = width > height ? height : width;
+			info.biggestSide = width < height ? height : width;
+			info.center = {
+				x: width / 2,
+				y: height / 2
+			};
+
+			return info;
+		},
+		vendorPrefix: {
+			css: '-webkit-',
+			js: 'webkit'
+		}
+	};
+
+	win.$ = bro;
+
+	//win.Bro = Bro;
+
 
 }(window, document, document.documentElement));

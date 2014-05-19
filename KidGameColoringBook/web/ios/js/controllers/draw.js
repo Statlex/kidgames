@@ -416,7 +416,7 @@
 			page.appendChild(svgNode);
 			this.svgNode = svgNode;
 
-			new BlockMover(this.svgNode);
+			//new BlockMover(this.svgNode);
 
 			// get image property
 			this.image = {};
@@ -432,7 +432,7 @@
 			this.svgNode.style[info.preJS + 'Transform'] = 'translate(0px, 0px)';
 
 			this.setBackButton();
-			this.setScaleButtons();
+			//this.setScaleButtons();
 			this.setSVGColoring();
 			this.setShowColorPickerButton();
 			this.setShowSelectColorButton();
@@ -444,6 +444,104 @@
 
 			colorHistory.restoreImage();
 			this.centeringMainSvg();
+			this.setMover();
+
+		},
+		setMover: function(){
+
+			this.resetMoverData();
+
+			var elemRect = document.querySelector('#wrapper .js-main-svg'),
+				that = this,
+				colorPickerButton = $('#wrapper .js-simple-color-picker'),
+				wrapperNode = $('#wrapper');
+
+			function manageMultitouch(ev){
+
+
+				if (colorPickerButton.classList.contains('active')) {
+					return;
+				}
+
+				if (wrapperNode.classList.contains('show-color-picker') || wrapperNode.classList.contains('show-color-select')) {
+					return;
+				}
+
+				that.detectMoverDefaultState(elemRect);
+
+				switch(ev.type) {
+
+					case 'touch':
+						that.moverData.lastScale = that.moverData.scale;
+						break;
+
+					case 'drag':
+						that.moverData.posX = ev.gesture.deltaX + that.moverData.lastPosX;
+						that.moverData.posY = ev.gesture.deltaY + that.moverData.lastPosY;
+						break;
+
+					case 'transform':
+						that.moverData.scale = Math.max(1, Math.min(that.moverData.lastScale * ev.gesture.scale, 20));
+						break;
+
+					case 'dragend':
+						that.moverData.lastPosX = that.moverData.posX;
+						that.moverData.lastPosY = that.moverData.posY;
+						break;
+				}
+
+				var transform =	"translate(" + that.moverData.posX + "px, " + that.moverData.posY + "px) " + "scale(" + that.moverData.scale + ", " + that.moverData.scale + ")";
+
+//				elemRect.style.transform = transform;
+				elemRect.style.webkitTransform = transform;
+
+			}
+
+			var hammertime = Hammer(document.querySelector('#wrapper .draw-page'), {
+				transform_always_block: true,
+				transform_min_scale: 1,
+				drag_block_horizontal: true,
+				drag_block_vertical: true,
+				drag_min_distance: 0
+			});
+
+			hammertime.on('touch drag dragend transform', manageMultitouch);
+
+		},
+		detectMoverDefaultState: function(node) {
+
+			if (this.moverData.posX || this.moverData.posY || this.moverData.lastPosX || this.moverData.lastPosY) {
+				return;
+			}
+
+//			var transformStyle = node.style.transform || node.style.webkitTransform;
+			var transformStyle = node.style.webkitTransform;
+			transformStyle = transformStyle.match(/\-?\d+/gi) || [];
+			console.log(transformStyle);
+			transformStyle.forEach(function(value, index, arr){
+				arr[index] = parseInt(value, 10);
+			});
+
+
+			this.moverData = {
+				posX: transformStyle[0],
+				posY: transformStyle[1],
+				lastPosX: transformStyle[0],
+				lastPosY: transformStyle[1],
+				scale: transformStyle[2] || 1,
+				lastScale: transformStyle[2] || 1
+			};
+
+		},
+		resetMoverData: function() {
+			this.moverData = {
+				posX: 0,
+				posY: 0,
+				lastPosX: 0,
+				lastPosY: 0,
+				scale: 1,
+				lastScale: 1
+			};
 
 		},
 		centeringMainSvg: function(){
@@ -629,7 +727,6 @@
 				that.image.currentWidth = scaleSwipeInfo.startWidth * q;
 				that.image.currentHeight = scaleSwipeInfo.startHeight * q;
 
-
 			}, false);
 
 			scaleSwipe.addEventListener(info.evt.up, function () {
@@ -731,6 +828,7 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				$('#wrapper .js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
@@ -747,6 +845,7 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				$('#wrapper .js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
@@ -793,6 +892,7 @@
 	}, false);
 
 	win.addEventListener('resize', function(){
+		draw.resetMoverData();
 		draw.centeringMainSvg();
 	}, false);
 

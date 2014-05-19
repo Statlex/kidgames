@@ -62,3 +62,22 @@
 
 }(window));
 
+
+// >>>>>>>> gesture
+(function (win, doc, docElem) {
+
+	"use strict";
+	/*global console, alert */
+
+	win.addEventListener('load', function(){
+
+
+
+
+
+
+
+
+	}, false);
+
+}(window, document, document.documentElement));
