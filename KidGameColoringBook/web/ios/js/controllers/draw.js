@@ -481,7 +481,7 @@
 						break;
 
 					case 'transform':
-						that.moverData.scale = Math.max(1, Math.min(that.moverData.lastScale * ev.gesture.scale, 20));
+						that.moverData.scale = Math.max(1, Math.min(that.moverData.lastScale * ev.gesture.scale, 10));
 						break;
 
 					case 'dragend':
@@ -490,24 +490,24 @@
 						break;
 				}
 
-				if (that.moverData.posX < that.moverData.minX) {
-					that.moverData.posX = that.moverData.minX;
-					that.moverData.lastPosX = that.moverData.minX;
+				if (that.moverData.posX < that.moverData.minX * that.moverData.scale) {
+					that.moverData.posX = that.moverData.minX * that.moverData.scale;
+					that.moverData.lastPosX = that.moverData.minX * that.moverData.scale;
 				}
 
-				if (that.moverData.posX > that.moverData.maxX) {
-					that.moverData.posX = that.moverData.maxX;
-					that.moverData.lastPosX = that.moverData.maxX;
+				if (that.moverData.posX > that.moverData.maxX * that.moverData.scale) {
+					that.moverData.posX = that.moverData.maxX * that.moverData.scale;
+					that.moverData.lastPosX = that.moverData.maxX * that.moverData.scale;
 				}
 
-				if (that.moverData.posY < that.moverData.minY) {
-					that.moverData.posY = that.moverData.minY;
-					that.moverData.lastPosY = that.moverData.minY;
+				if (that.moverData.posY < that.moverData.minY * that.moverData.scale) {
+					that.moverData.posY = that.moverData.minY * that.moverData.scale;
+					that.moverData.lastPosY = that.moverData.minY * that.moverData.scale;
 				}
 
-				if (that.moverData.posY > that.moverData.maxY) {
-					that.moverData.posY = that.moverData.maxY;
-					that.moverData.lastPosY = that.moverData.maxY;
+				if (that.moverData.posY > that.moverData.maxY * that.moverData.scale) {
+					that.moverData.posY = that.moverData.maxY * that.moverData.scale;
+					that.moverData.lastPosY = that.moverData.maxY * that.moverData.scale;
 				}
 
 
