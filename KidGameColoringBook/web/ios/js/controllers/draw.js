@@ -460,8 +460,13 @@
 			}
 
 			var page = $('.draw-page', main.wrapper);
-			var pageInfo = getInfo(page, -10);
 			var mainSvg = $('.js-main-svg', main.wrapper);
+
+			if (!page || !mainSvg) {
+				return;
+			}
+
+			var pageInfo = getInfo(page, -10);
 			var mainSvgInfo = getInfo(mainSvg);
 
 			var q = (pageInfo.aspectRatio > mainSvgInfo.aspectRatio) ? pageInfo.height / mainSvgInfo.height : pageInfo.width / mainSvgInfo.width;
@@ -787,5 +792,8 @@
 		}, false);
 	}, false);
 
+	win.addEventListener('resize', function(){
+		draw.centeringMainSvg();
+	}, false);
 
 }(window));

@@ -61,6 +61,7 @@
 				that.wrapper.style.opacity = 1;
 			}, 20);
 			this.okBtn.onclick = action;
+			setTimeout(this.hide.bind(this), 900);
 		},
 		hide: function () {
 			var that = this;
