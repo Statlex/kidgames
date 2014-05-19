@@ -490,6 +490,31 @@
 						break;
 				}
 
+				if (that.moverData.posX < that.moverData.minX) {
+					that.moverData.posX = that.moverData.minX;
+					that.moverData.lastPosX = that.moverData.minX;
+				}
+
+				if (that.moverData.posX > that.moverData.maxX) {
+					that.moverData.posX = that.moverData.maxX;
+					that.moverData.lastPosX = that.moverData.maxX;
+				}
+
+				if (that.moverData.posY < that.moverData.minY) {
+					that.moverData.posY = that.moverData.minY;
+					that.moverData.lastPosY = that.moverData.minY;
+				}
+
+				if (that.moverData.posY > that.moverData.maxY) {
+					that.moverData.posY = that.moverData.maxY;
+					that.moverData.lastPosY = that.moverData.maxY;
+				}
+
+
+
+
+
+
 				var transform =	"translate(" + that.moverData.posX + "px, " + that.moverData.posY + "px) " + "scale(" + that.moverData.scale + ", " + that.moverData.scale + ")";
 
 //				elemRect.style.transform = transform;
@@ -523,24 +548,34 @@
 			});
 
 
-			this.moverData = {
-				posX: transformStyle[0],
-				posY: transformStyle[1],
-				lastPosX: transformStyle[0],
-				lastPosY: transformStyle[1],
-				scale: transformStyle[2] || 1,
-				lastScale: transformStyle[2] || 1
-			};
+			this.moverData.posX = transformStyle[0];
+			this.moverData.posY = transformStyle[1];
+			this.moverData.lastPosX = transformStyle[0];
+			this.moverData.lastPosY = transformStyle[1];
+			this.moverData.scale = transformStyle[2] || 1;
+			this.moverData.lastScale = transformStyle[2] || 1;
 
 		},
 		resetMoverData: function() {
+
+			var svg = $('#wrapper .js-main-svg'),
+				svgH = svg.clientHeight,
+				svgW = svg.clientWidth,
+				screenW = document.documentElement.clientWidth,
+				screenH = document.documentElement.clientHeight;
+
+
 			this.moverData = {
 				posX: 0,
 				posY: 0,
 				lastPosX: 0,
 				lastPosY: 0,
 				scale: 1,
-				lastScale: 1
+				lastScale: 1,
+				minX: -svgW / 2,
+				minY: -svgH / 2,
+				maxX: screenW - svgW / 2,
+				maxY: screenH - svgH / 2
 			};
 
 		},
@@ -892,8 +927,8 @@
 	}, false);
 
 	win.addEventListener('resize', function(){
-		draw.resetMoverData();
 		draw.centeringMainSvg();
+		draw.resetMoverData();
 	}, false);
 
 }(window));
