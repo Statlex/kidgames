@@ -63,12 +63,13 @@
 		transition1stPart: function() {
 			var wrapper = $('#wrapper');
 			var transitionWrapper = $('#wrapper-for-transition');
-			transitionWrapper.style.webkitTransition = '';
+			//transitionWrapper.style.webkitTransition = '';
 			$.removeClass(transitionWrapper, 'to-right');
 			$.removeClass(transitionWrapper, 'to-left');
-			transitionWrapper.innerHTML = wrapper.innerHTML;
+			//transitionWrapper.innerHTML = wrapper.innerHTML;
 		},
 		transition2ndPart: function() {
+
 			setTimeout(function(back){
 				var transitionWrapper = $('#wrapper-for-transition');
 				transitionWrapper.style.webkitTransition = '0.4s all ease-out';
