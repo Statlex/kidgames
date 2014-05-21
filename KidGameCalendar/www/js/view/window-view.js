@@ -21,7 +21,7 @@
 			this.addEventListenersToContent();
 			this.runCustomFunction(selector);
 			this.$el.css('top', '0');
-			APP.mainView.fade.show();
+			//APP.mainView.fade.show();
 		},
 		hide: function(noHistoryBack) {
 			this.$el.css('top', '');
@@ -77,6 +77,7 @@
 					info.set('lang', lang, true);
 
 					Backbone.history.history.back();
+					//APP.router.navigate('title', {trigger: true});
 
 					win.setTimeout(function(){
 						window.location.reload();

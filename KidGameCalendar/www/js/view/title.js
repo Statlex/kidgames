@@ -9,7 +9,8 @@
 	win.GC.TitleView = Backbone.View.extend({
 		el: '.js-title-view',
 		selectors: {
-			'click .js-to-calendar': 'toHome'
+			'click .js-to-calendar': 'toHome',
+			'click .js-setting': 'setting'
 		},
 		initialize: function () {
 
@@ -30,6 +31,9 @@
 		toHome: function () {
 			APP.router.navigate('', {trigger: true});
 		},
+		setting: function() {
+			APP.window.show('settings');
+		},
 		show: function () {
 
 			var mainStateWrapper = $('.js-main-state-wrapper'),
@@ -37,8 +41,9 @@
 			mainStateWrapper.empty();
 			mainStateWrapper.append(mainStateNode);
 
-
 			this.$el.show();
+
+			//$('.js-start-tracking-button').off().on('click', this.setTracking);
 
 		},
 		hide: function () {
@@ -62,7 +67,7 @@
 
 			// create button
 			var button;
-			button = $('<div class="main-button js-main-button"></div>');
+			button = $('<div class="main-button js-start-tracking-button"></div>');
 			mainNode.append(button);
 
 			// create cycle's days
@@ -152,13 +157,10 @@
 
 						// rotate circle arrow
 						var mainButton, angle, singleDayAngle;
-						mainButton = $('.js-main-button', mainNode);
+						mainButton = $('.js-start-tracking-button', mainNode);
 						singleDayAngle = 360 / cycleLength;
 						angle = singleDayAngle * (number + 0.5);
-						mainButton.css({
-							transform: 'rotate(' + angle + 'deg)'
-						})
-						.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
+						mainButton.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
 
 					//return;
 				} else {

@@ -35,6 +35,7 @@ $(function(){
 		},
 		title: function() {
 			APP.title.show();
+			APP.window.hide();
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');

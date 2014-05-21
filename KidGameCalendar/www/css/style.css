@@ -57,7 +57,7 @@
 }
 
 .title-cycle-date.current-day {
-	opacity: 0.2;
+	fill: #cc00cc;
 }
 
 .future-start-flow .inner-month-date {
