@@ -731,6 +731,8 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				that.activeTool = 'brush';
+				$('.js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
@@ -747,6 +749,8 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				that.activeTool = 'brush';
+				$('.js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
