@@ -392,7 +392,10 @@ label {
 	height: 100%;
 }
 
-
+.date-picker-wrapper {
+	position: relative;
+	z-index: 11;
+}
 
 
 

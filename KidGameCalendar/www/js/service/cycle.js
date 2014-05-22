@@ -40,7 +40,8 @@
 		scanDay: function(node) {
 			// try to get closest cycle
 
-			var dateStr = node.getAttribute('data-date'),
+			var dateStr = node.getStateOnly ? node.date : node.getAttribute('data-date'),
+				options = node,
 				date = util.strToDate(dateStr),
 				cycle, different,
 				calendar = new Calendar(),
@@ -64,6 +65,11 @@
 					text.title = lang.removeCycle;
 					text.text = lang.removeFromHistoryCycle.replace('{{date}}', dateStr);
 					text.text = lang.replaceMonth(text.text);
+					if (options && options.getStateOnly) {
+						return {
+							state: 'removeCycle'
+						};
+					}
 					APP.confirm.show(text,
 						function(){
 							cycle.remove();
@@ -74,6 +80,11 @@
 					text.title = lang.setEndOfFlow;
 					text.text = lang.setEndOfFlowOn.replace('{{date}}', dateStr);
 					text.text = lang.replaceMonth(text.text);
+					if (options && options.getStateOnly) {
+						return {
+							state: 'setEndOfFlow'
+						};
+					}
 					APP.confirm.show(text,
 						function(){
 							cycle.setFlowEnd(date);
@@ -85,6 +96,11 @@
 				text.title = lang.confirmNewCycle;
 				text.text = lang.setStartDateOfLastCycleAs.replace('{{date}}', dateStr);
 				text.text = lang.replaceMonth(text.text);
+				if (options && options.getStateOnly) {
+					return {
+						state: 'confirmNewCycle'
+					};
+				}
 				APP.confirm.show(text,
 				function(){
 					var cycle = new Cycle(date);

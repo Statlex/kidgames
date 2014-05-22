@@ -32,10 +32,12 @@ $(function(){
 			APP.help.hide(true);
 			APP.mainView.fade.hide();
 			APP.title.hide();
+			APP.closeDatePicker();
 		},
 		title: function() {
 			APP.title.show();
 			APP.window.hide();
+			APP.closeDatePicker();
 		},
 		dateInfo: function() {
 			console.log('router:dateInfo');
@@ -61,6 +63,14 @@ $(function(){
 	});
 
 	APP.router = new Router();
+
+	APP.closeDatePicker = function() {
+		if (APP.datePicher && APP.datePicher.close) {
+			APP.datePicher.close();
+			delete APP.datePicher;
+			console.log('datePickerClose');
+		}
+	};
 
 	APP.mainView = new GC.MainView();
 

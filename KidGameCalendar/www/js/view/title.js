@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global Backbone, $, info, APP, Calendar */
+	/*global Backbone, $, info, APP, Calendar, cycleMaster */
 
 	win.GC = win.GC || {};
 
@@ -37,13 +37,29 @@
 		show: function () {
 
 			var mainStateWrapper = $('.js-main-state-wrapper'),
-				mainStateNode = this.createMainState();
+				mainStateNode = this.createMainState(),
+				date = new Date(),
+				dayState = cycleMaster.scanDay({
+					getStateOnly: true,
+					date: [date.getDate(), date.getMonth(), date.getFullYear()].join('-')
+				});
 			mainStateWrapper.empty();
 			mainStateWrapper.append(mainStateNode);
 
 			this.$el.show();
 
-			//$('.js-start-tracking-button').off().on('click', this.setTracking);
+			// detect 'start cycle' or 'end flow' or 'remove cycle'
+
+			$('.js-start-tracking-button').off().on('click', this.showDatePicker.bind(this));
+			$('.js-start-tracking-button.js-bottom-button').html('tracking ' + dayState.state + ' tracking');
+
+		},
+		showDatePicker: function() {
+
+			APP.closeDatePicker();
+			APP.datePicher = new GC.DatePicherView();
+			APP.datePicher.show();
+
 
 		},
 		hide: function () {

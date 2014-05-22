@@ -52,6 +52,7 @@
 	<script src="js/view/window-view.js" type="text/javascript"></script>
 	<script src="js/view/cycle-delayed-view.js" type="text/javascript"></script>
 	<script src="js/view/title.js" type="text/javascript"></script>
+	<script src="js/view/date-picker.js" type="text/javascript"></script>
 	<!-- views - -->
 
 	<!-- main js -->
@@ -95,7 +96,7 @@
 		<div class="js-to-calendar">home</div>
 		<div class="js-setting">setting</div>
 		<div class="main-state-wrapper js-main-state-wrapper"></div>
-		<div class="js-start-tracking-button">start tracking</div>
+		<div class="js-start-tracking-button js-bottom-button">tracking button</div>
 		<!-- some text -->
 	</div>
 
@@ -458,6 +459,37 @@
 	<% }; %>
 
 </script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-picker-fade">
+	<div class="js-date-picker-fade fade"></div>
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-picker">
+
+	<div class="js-date-picker-wrapper date-picker-wrapper">
+		<div class="js-select-wrapper">
+			<select class="js-select-date"></select>
+			<h1 class="js-change-date js-change-plus">+</h1>
+			<h1 class="js-change-date js-change-minus">-</h1>
+		</div>
+
+		<div class="js-select-wrapper">
+			<select class="js-select-month"></select>
+			<h1 class="js-change-month js-change-plus">+</h1>
+			<h1 class="js-change-month js-change-minus">-</h1>
+		</div>
+
+		<div class="js-select-wrapper">
+			<select class="js-select-year"></select>
+			<h1 class="js-change-year js-change-plus">+</h1>
+			<h1 class="js-change-year js-change-minus">-</h1>
+		</div>
+
+
+	</div>
+
+</script>
+
 
 </body>
 </html>
