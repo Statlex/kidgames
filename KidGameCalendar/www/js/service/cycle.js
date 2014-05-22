@@ -55,6 +55,11 @@
 				text.text = lang.cannotUseThisDay.replace('{{date}}', dateStr);
 				text.text = lang.replaceMonth(text.text);
 				// create notification with 'v' and '?'
+				if (options && options.getStateOnly) {
+					return {
+						state: 'checkDate - impossible date'
+					};
+				}
 				APP.alert.show(text);
 				APP.router.navigate('alert');
 				return;

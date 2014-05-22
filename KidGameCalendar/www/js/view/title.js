@@ -60,7 +60,6 @@
 			APP.datePicher = new GC.DatePicherView();
 			APP.datePicher.show();
 
-
 		},
 		hide: function () {
 

@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase, cycleMaster */
 
 	win.GC = win.GC || {};
 
@@ -76,7 +76,8 @@
 
 			var date = this.picker.find('.js-select-date'),
 				month = this.picker.find('.js-select-month'),
-				year = this.picker.find('.js-select-year');
+				year = this.picker.find('.js-select-year'),
+				state;
 
 			if (data) {
 				this.date = new Date([data.year, data.month, data.date].join(' '));
@@ -87,12 +88,21 @@
 			month.prop('selectedIndex', this.date.getMonth());
 			year.prop('selectedIndex', 0);
 
+			state = cycleMaster.scanDay({
+				getStateOnly: true,
+				date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
+			});
+
+			console.log(state);
+
+
 		},
 		bindSelects: function() {
 
-			var selects = this.picker.find('.js-select-wrapper select');
-			console.log(selects);
-			selects.on('change', function(){
+			var selects = this.picker.find('.js-select-wrapper select'),
+				buttons = this.picker.find('.js-select-wrapper .js-change-plus, .js-select-wrapper .js-change-minus');
+
+			selects.on('change', (function(){
 				var date = this.picker.find('.js-select-date'),
 					month = this.picker.find('.js-select-month'),
 					year = this.picker.find('.js-select-year'),
@@ -103,11 +113,35 @@
 					month: month.prop('options')[month.prop('selectedIndex')].value,
 					year: year.prop('options')[year.prop('selectedIndex')].value
 				};
-				data.month = + data.month;
+				data.month = +data.month;
 				data.month += 1;
 
 				this.setDate(data);
-			}.bind(this));
+			}.bind(this)));
+
+
+			buttons.on('click', function(){
+
+				var select = this.parentNode.querySelector('select'),
+					selectedIndex = select.selectedIndex,
+					optionLength = select.options.length;
+
+				selectedIndex += this.classList.contains('js-change-plus') ? 1 : -1;
+
+				if (selectedIndex < 0) {
+					selectedIndex = optionLength - 1;
+				}
+
+				if (selectedIndex > optionLength - 1) {
+					selectedIndex = 0;
+				}
+
+				select.selectedIndex = selectedIndex;
+
+				$(select).on('change');
+
+			});
+
 
 		},
 		close: function() {
