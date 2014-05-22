@@ -34,7 +34,20 @@
 			this.bindSelects();
 			this.$el.append(this.picker);
 
+			this.setStateBtn = this.picker.find('.js-set-date-picker');
+			this.setStateBtn.on('click', function(){
+				cycleMaster.scanDay({
+					forceRun: true,
+					date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
+				});
+
+			}.bind(this));
+
+
 			this.setDate();
+
+			this.picker.find('.js-close-date-picker').on('click', this.close.bind(this));
+
 
 			APP.datePicher = this;
 
@@ -94,6 +107,8 @@
 			});
 
 			console.log(state);
+
+			this.setStateBtn.html(state.state);
 
 
 		},

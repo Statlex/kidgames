@@ -40,7 +40,7 @@
 		scanDay: function(node) {
 			// try to get closest cycle
 
-			var dateStr = node.getStateOnly ? node.date : node.getAttribute('data-date'),
+			var dateStr = (node.getStateOnly || node.forceRun) ? node.date : node.getAttribute('data-date'),
 				options = node,
 				date = util.strToDate(dateStr),
 				cycle, different,
@@ -60,6 +60,9 @@
 						state: 'checkDate - impossible date'
 					};
 				}
+				if (options && options.forceRun) {
+					return;
+				}
 				APP.alert.show(text);
 				APP.router.navigate('alert');
 				return;
@@ -75,6 +78,11 @@
 							state: 'removeCycle'
 						};
 					}
+					if (options && options.forceRun) {
+						cycle.remove();
+						Slider.prototype.addColoringToAllPage();
+						return;
+					}
 					APP.confirm.show(text,
 						function(){
 							cycle.remove();
@@ -89,6 +97,11 @@
 						return {
 							state: 'setEndOfFlow'
 						};
+					}
+					if (options && options.forceRun) {
+						cycle.setFlowEnd(date);
+						Slider.prototype.addColoringToAllPage();
+						return;
 					}
 					APP.confirm.show(text,
 						function(){
@@ -106,10 +119,14 @@
 						state: 'confirmNewCycle'
 					};
 				}
+				if (options && options.forceRun) {
+					(new Cycle(date)).save();
+					Slider.prototype.addColoringToAllPage();
+					return;
+				}
 				APP.confirm.show(text,
 				function(){
-					var cycle = new Cycle(date);
-					cycle.save();
+					(new Cycle(date)).save();
 					Backbone.history.history.back();
 					Slider.prototype.addColoringToAllPage();
 				}, this);
