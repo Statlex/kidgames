@@ -161,6 +161,10 @@
 		},
 		close: function() {
 
+			if ($('.js-date-picker-fade').isEmpty()) {
+				return;
+			}
+
 			Backbone.history.history.back();
 
 			console.log('close');

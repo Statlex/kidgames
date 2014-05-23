@@ -24,6 +24,11 @@
 			//APP.mainView.fade.show();
 		},
 		hide: function(noHistoryBack) {
+
+			if (!this.$el[0].style.top) { // if 'top' === '', window is closed
+				return;
+			}
+
 			this.$el.css('top', '');
 			if (!noHistoryBack) {
 				Backbone.history.history.back();

@@ -67,6 +67,7 @@ $(function(){
 	APP.closeDatePicker = function() {
 		if (APP.datePicher && APP.datePicher.close) {
 			APP.datePicher.close();
+			APP.datePicher = false;
 			delete APP.datePicher;
 			console.log('datePickerClose');
 		}
@@ -99,9 +100,10 @@ $(function(){
 
 	Backbone.history.start();
 
-	// go to calendar page
-	//APP.router.navigate('', {trigger: true});
 	// go to title page
 	APP.router.navigate('title', {trigger: true});
+
+	// go to calendar page
+	//APP.router.navigate('', {trigger: true});
 
 });
