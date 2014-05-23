@@ -43,15 +43,11 @@
 
 			}.bind(this));
 
-
 			this.setDate();
 
 			this.picker.find('.js-close-date-picker').on('click', this.close.bind(this));
 
-
 			APP.datePicher = this;
-
-
 
 		},
 		createSelects: function() {

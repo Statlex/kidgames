@@ -24,6 +24,7 @@ $(function(){
 //			'options:/id': 'options'
 		},
 		home: function() {
+			APP.state = 'home';
 			console.log('router:home');
 			APP.dateInfo.hide(true);
 			APP.confirm.hide(true);
@@ -35,6 +36,7 @@ $(function(){
 			APP.closeDatePicker();
 		},
 		title: function() {
+			APP.state = 'title';
 			APP.title.show();
 			APP.window.hide();
 			APP.closeDatePicker();

@@ -82,11 +82,14 @@
 					info.set('lang', lang, true);
 
 					Backbone.history.history.back();
-					//APP.router.navigate('title', {trigger: true});
+
+					if (APP.state !== 'title') {
+						APP.router.navigate('title', {trigger: true});
+					}
 
 					win.setTimeout(function(){
 						window.location.reload();
-					}, 100);
+					}, 300);
 
 				});
 
