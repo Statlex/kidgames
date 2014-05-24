@@ -61,7 +61,7 @@
 					};
 				}
 				if (options && options.forceRun) {
-					return;
+					return 'impossible day';
 				}
 				APP.alert.show(text);
 				APP.router.navigate('alert');
@@ -81,7 +81,7 @@
 					if (options && options.forceRun) {
 						cycle.remove();
 						Slider.prototype.addColoringToAllPage();
-						return;
+						return 'remove cycle';
 					}
 					APP.confirm.show(text,
 						function(){
@@ -101,7 +101,7 @@
 					if (options && options.forceRun) {
 						cycle.setFlowEnd(date);
 						Slider.prototype.addColoringToAllPage();
-						return;
+						return 'end flow';
 					}
 					APP.confirm.show(text,
 						function(){
@@ -122,7 +122,7 @@
 				if (options && options.forceRun) {
 					(new Cycle(date)).save();
 					Slider.prototype.addColoringToAllPage();
-					return;
+					return 'new cycle';
 				}
 				APP.confirm.show(text,
 				function(){

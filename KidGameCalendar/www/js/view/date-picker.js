@@ -38,10 +38,15 @@
 
 			this.setStateBtn = this.picker.find('.js-set-date-picker');
 			this.setStateBtn.on('click', function(){
-				cycleMaster.scanDay({
+				var state = cycleMaster.scanDay({
 					forceRun: true,
 					date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
 				});
+
+				if (state !== 'impossible day') { // detect normal day
+					this.close();
+				}
+
 			}.bind(this));
 
 			this.setDate();
@@ -102,8 +107,6 @@
 				getStateOnly: true,
 				date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
 			});
-
-			console.log(state);
 
 			this.setStateBtn.html(state.state);
 			this.header.html(state.state);
