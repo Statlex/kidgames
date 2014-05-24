@@ -18,6 +18,8 @@
 			console.log('init');
 			this.fade = $(templateContainer.templates['date-picker-fade']);
 			this.picker = $(templateContainer.templates['date-picker']);
+			this.header = this.picker.find('.js-period-state');
+			this.day = this.picker.find('.js-date-picker-day');
 		},
 		show: function() {
 
@@ -40,7 +42,6 @@
 					forceRun: true,
 					date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
 				});
-
 			}.bind(this));
 
 			this.setDate();
@@ -105,7 +106,8 @@
 			console.log(state);
 
 			this.setStateBtn.html(state.state);
-
+			this.header.html(state.state);
+			this.day.html(lang.dayFull[this.date.getDay()]);
 
 		},
 		bindSelects: function() {
