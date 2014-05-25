@@ -57,7 +57,8 @@
 				// create notification with 'v' and '?'
 				if (options && options.getStateOnly) {
 					return {
-						state: 'checkDate - impossible date'
+						state: 'checkDate - impossible date',
+						text: lang.thisDayFromFuture
 					};
 				}
 				if (options && options.forceRun) {
@@ -75,7 +76,8 @@
 					text.text = lang.replaceMonth(text.text);
 					if (options && options.getStateOnly) {
 						return {
-							state: 'removeCycle'
+							state: 'removeCycle',
+							text: lang.clickHereToRemoveCycle
 						};
 					}
 					if (options && options.forceRun) {
@@ -95,7 +97,8 @@
 					text.text = lang.replaceMonth(text.text);
 					if (options && options.getStateOnly) {
 						return {
-							state: 'setEndOfFlow'
+							state: 'setEndOfFlow',
+							text: lang.clickHereToSetEndOfFlow
 						};
 					}
 					if (options && options.forceRun) {
@@ -116,7 +119,8 @@
 				text.text = lang.replaceMonth(text.text);
 				if (options && options.getStateOnly) {
 					return {
-						state: 'confirmNewCycle'
+						state: 'confirmNewCycle',
+						text: lang.clickHereToStartNewCycle
 					};
 				}
 				if (options && options.forceRun) {

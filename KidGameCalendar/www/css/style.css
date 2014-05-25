@@ -18,51 +18,57 @@
 
 .flow .inner-month-date,
 .legend-flow {
-	background-color: #ff3d30;
+	background-color: #ee3534;
+}
+.title-cycle-date.flow {
+	fill: #ee3534;
 }
 
-.title-cycle-date.flow {
-	fill: #ff3d30;
-}
 
 .start-flow .inner-month-date,
 .legend-start-flow {
-	background-color: #ff2d55;
+	background-color: #ee3534;
+}
+.title-cycle-date.start-flow {
+	fill: #ee3534;
 }
 
-.title-cycle-date.start-flow {
-	fill: #ff2d55;
-}
 
 .safe .inner-month-date,
 .legend-safe {
-	background-color: #5ac8fa;
+	background-color: #003eef;
+}
+.title-cycle-date.safe {
+	fill: #003eef;
 }
 
-.title-cycle-date.safe {
-	fill: #5ac8fa;
-}
 
 .unsafe .inner-month-date,
 .legend-unsafe {
-	background-color: #fc0;
+	background-color: #f9ef45;
+}
+.title-cycle-date.unsafe {
+	fill: #f9ef45;
 }
 
-.title-cycle-date.unsafe {
-	fill: #fc0;
-}
+
 
 .fertile .inner-month-date,
 .legend-fertile {
-	background-color: #4cd964;
+	background-color: #03cf08;
+}
+.title-cycle-date.fertile {
+	fill: #03cf08;
 }
 
-.title-cycle-date.fertile {
-	fill: #4cd964;
-}
+
 
 .title-cycle-date.current-day {
-	fill: #cc00cc;
+	/*fill: #cc00cc;*/
+}
+
+.title-cycle-date {
+	opacity: 0.7;
 }
 
 .future-start-flow .inner-month-date {
@@ -373,24 +379,26 @@ label {
 }
 
 .main-state {
-	background-color: #c00;
-	opacity: 0.5;
+	/*opacity: 0.5;*/
 	position: fixed;
+	margin-top: -35px;
 }
 
 .main-state .main-button {
 	position: absolute;
 	z-index: 1;
-	top: 19%;
-	left: 19%;
-	width: 62%;
-	height: 62%;
-	background-image: url(../img/title-button-bg.svg);
+	top: 28%;
+	left: 28%;
+	width: 44%;
+	height: 44%;
+	/*background-image: url(../img/title-button-bg.svg);*/
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
+	background-color: #fbe7e9;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), inset 0px 0px 4px 1px rgba(255, 255, 255, 1), inset 0px -2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .cycle-days-wrapper {
@@ -448,7 +456,7 @@ label {
 	bottom: 42px;
 	left: 50%;
 	margin-left: -122px;
-	padding: 12px 0 0 50px;
+	padding: 12px 25px 0 75px;
 	box-shadow: inset 0px -3px 3px rgba(0, 0, 0, 0.2), 0px 2px 3px rgba(0, 0, 0, 0.4);
 	background-image: url(../img/title-period-button-bg.png);
 	background-repeat: no-repeat;
@@ -458,27 +466,34 @@ label {
 }
 
 .main-state-wrapper {
-	display: none;
+
 }
 
 .legend-wrapper {
 	text-align: center;
 	font-size: 0;
 	line-height: 0;
+	position: fixed;
+	width: 100%;
+	bottom: 115px;
 }
 
 .cycle-legend-item {
 	display: inline-block;
 	font-size: 10px;
 	line-height: 10px;
+	margin: 0 5px;
 }
 
 .cycle-legend-point {
+	font-size: 10px;
+	line-height: 10px;
 	float: left;
 	width: 8px;
 	height: 8px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+	margin-top: 1px;
 }
 
 .cycle-legend-description {
@@ -490,4 +505,9 @@ label {
 	text-transform: uppercase;
 	color: #767777;
 	letter-spacing: -0.5px;
+	padding: 0px 0px 0px 2px;
+}
+
+.title-bg-circle {
+	fill: #e47595;
 }

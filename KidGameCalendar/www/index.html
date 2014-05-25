@@ -101,7 +101,7 @@
 
 		<div class="main-state-wrapper js-main-state-wrapper"></div>
 		<div class="legend-wrapper js-legend-wrapper"></div>
-		<div class="js-start-tracking-button js-bottom-button title-tracking-button">tracking button</div>
+		<div class="js-start-tracking-button js-bottom-button title-tracking-button"></div>
 		<!-- some text -->
 	</div>
 
@@ -109,25 +109,36 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="title-legend">
 
+	<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
 	<div class="cycle-legend-item">
-		<div class="legend-flow cycle-legend-point"></div>
-		<div class="cycle-legend-description"><%= lang.cycle.flow %></div>
+		<div class="legend-<%= type %> cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
 	</div>
+	<% }); %>
 
-	<div class="cycle-legend-item">
-		<div class="legend-safe cycle-legend-point"></div>
-		<div class="cycle-legend-description"><%= lang.cycle.safe %></div>
-	</div>
+</script>
 
-	<div class="cycle-legend-item">
-		<div class="legend-unsafe cycle-legend-point"></div>
-		<div class="cycle-legend-description"><%= lang.cycle.unsafe %></div>
-	</div>
+<script type="text/x-template" class="jsTemplate" data-template-name="title-cycle-state-button">
 
-	<div class="cycle-legend-item">
-		<div class="legend-fertile cycle-legend-point"></div>
-		<div class="cycle-legend-description"><%= lang.cycle.fertile %></div>
-	</div>
+	<% if (haveData) { %>
+
+		<div>
+			<%= date %><%= lang.month[month]%>, <%= year %>
+		</div>
+
+		<div>
+			<%= lang.dayW %>: <%= dayOfCycle %> / <%= cycleLength %>
+		</div>
+
+		<div>
+			<%= periodName %>
+		</div>
+
+	<% } else { %>
+
+		<%= lang.clickHereToStartNewCycle %>
+
+	<% }; %>
 
 </script>
 

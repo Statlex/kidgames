@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global Backbone, $, info, APP, Calendar, cycleMaster */
+	/*global Backbone, $, info, APP, Calendar, cycleMaster, lang */
 
 	win.GC = win.GC || {};
 
@@ -51,7 +51,7 @@
 			// detect 'start cycle' or 'end flow' or 'remove cycle'
 
 			$('.js-start-tracking-button').off().on('click', this.showDatePicker.bind(this));
-			$('.js-start-tracking-button.js-bottom-button').html('tracking ' + dayState.state + ' tracking');
+			$('.js-start-tracking-button.js-bottom-button').html(dayState.text);
 			$('.js-legend-wrapper').html(_.template(templateContainer.templates['title-legend'], {}));
 		},
 		showDatePicker: function() {
@@ -80,11 +80,6 @@
 				left: (screenInfo.width - screenInfo.smallestSide) / 2 + 'px'
 			});
 
-			// create button
-			var button;
-			button = $('<div class="main-button js-start-tracking-button"></div>');
-			mainNode.append(button);
-
 			// create cycle's days
 			var svgStr, svg, ii, ll, paths, halfSize, sectorAngle, cycleLength, angle1, angle2;
 			svgStr = '<svg class="cycle-days-wrapper" x="0px" y="0px" width="' + screenInfo.smallestSide + 'px" height="' + screenInfo.smallestSide + 'px" viewBox="0 0 ' + screenInfo.smallestSide + ' ' + screenInfo.smallestSide + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">{{paths}}</svg>';
@@ -95,8 +90,11 @@
 			for (ii = 0, ll = cycleLength; ii < ll; ii += 1) {
 				angle1 = -(Math.PI + ii * sectorAngle) - Math.PI / 1000;
 				angle2 = -(Math.PI + (ii + 1) * sectorAngle) + Math.PI / 1000;
-				paths += this.createSVGDay(halfSize, halfSize, angle1, angle2, halfSize * 0.64, halfSize * 0.78, ii);
+				paths += this.createSVGDay(halfSize, halfSize, angle1, angle2, halfSize * 0.63, halfSize * 0.79, ii);
 			}
+
+			// add bg circle
+			paths = '<circle class="title-bg-circle" cx="' + halfSize + '" cy="' + halfSize + '" r="' + (halfSize * 0.79) + '" stroke="none" fill="none" />' + paths;
 			svg = $(svgStr.replace('{{paths}}', paths));
 			mainNode.append(svg);
 
@@ -123,7 +121,6 @@
 
 				if (different <= 0) {
 					// no delayed
-
 
 						var cycle = lastCycle,
 							dateMap = JSON.parse(JSON.stringify(info.dateMap)),
@@ -168,14 +165,14 @@
 						// detect current date
 						var number = calendar.getDifferent(now, cycle.startCycle);
 						className = dateNodes[number].getAttribute('class');
-						dateNodes[number].setAttribute('class', className + ' current-day');
+						dateNodes[number].setAttribute('class', className + ' current-day js-current-day');
 
 						// rotate circle arrow
-						var mainButton, angle, singleDayAngle;
-						mainButton = $('.js-start-tracking-button', mainNode);
-						singleDayAngle = 360 / cycleLength;
-						angle = singleDayAngle * (number + 0.5);
-						mainButton.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
+//						var mainButton, angle, singleDayAngle;
+//						mainButton = $('.js-start-tracking-button', mainNode);
+//						singleDayAngle = 360 / cycleLength;
+//						angle = singleDayAngle * (number + 0.5);
+//						mainButton.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
 
 					//return;
 				} else {
@@ -188,37 +185,19 @@
 				console.log('you have no cycles, start new cycles?');
 			}
 
+			// create button
+			var button, mainButtonData;
+			mainButtonData = this.createMainButtonData(lastCycle, mainNode);
+			button = $('<div class="main-button js-start-tracking-button"></div>');
+			button.html(_.template(templateContainer.templates['title-cycle-state-button'], mainButtonData));
+			mainNode.append(button);
+
 			return mainNode;
 
 		},
-//		createSVGDay: function(x, y, angle1, angle2, r1, r2, data) {
-//
-//			var path = '<path d="{{d}}" fill="none" stroke="#000" stroke-width="1" data-data="' + data + '"/>',
-//				d = {},
-//				dStr;
-//
-//			d.x1 = x + Math.sin(angle1) * r1;
-//			d.y1 = y + Math.cos(angle1) * r1;
-//
-//			d.x2 = x + Math.sin(angle1) * r2;
-//			d.y2 = y + Math.cos(angle1) * r2;
-//
-//			d.x3 = x + Math.sin(angle2) * r2;
-//			d.y3 = y + Math.cos(angle2) * r2;
-//
-//			d.x4 = x + Math.sin(angle2) * r1;
-//			d.y4 = y + Math.cos(angle2) * r1;
-//
-//			dStr = 'M ' + d.x1 + ',' + d.y1 + ' L' + d.x2 + ',' + d.y2 + ' L' + d.x3 + ',' + d.y3 + ' L' + d.x4 + ',' + d.y4 + ' z';
-//
-//			path = path.replace('{{d}}', dStr);
-//
-//			return path;
-//
-//		},
 		createSVGDay: function (x, y, angle1, angle2, r1, r2, data) {
 
-			var path = '<path class="js-title-cycle-date title-cycle-date" d="{{d}}" fill="none" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
+			var path = '    <path class="js-title-cycle-date title-cycle-date" d="{{d}}" fill="none" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
 				d = {},
 				dStr;
 
@@ -245,6 +224,46 @@
 			path = path.replace('{{d}}', dStr);
 
 			return path;
+
+		},
+		createMainButtonData: function(lastCycle, mainNode) {
+
+			if (!lastCycle) {
+				return {haveData: false};
+			}
+
+			var data = {
+					haveData: true
+				},
+				date = new Date(),
+				calendar = new Calendar(),
+
+				now = {
+					date: date.getDate(),
+					month: date.getMonth(),
+					year: date.getFullYear()
+				};
+
+			data.date = now.date;
+			data.month = now.month;
+			data.year = now.year;
+			data.dayOfCycle = calendar.getDifferent(now, lastCycle.startCycle) + 1;
+			data.cycleLength = info.get('cycleLength');
+
+			// get period name
+			var currentDay = $('.current-day', mainNode),
+				classes = currentDay.attr('class').split(' '),
+				periodName = '';
+
+			['start-flow', 'flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){
+				if (classes.indexOf(type) !== -1){
+					periodName = lang.cycle[type];
+				}
+			});
+
+			data.periodName = periodName;
+
+			return data;
 
 		}
 

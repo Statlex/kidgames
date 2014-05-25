@@ -28,7 +28,12 @@
 			unsafe: 'unsafe',
 			fertile: 'fertile'
 		},
+		dayW: 'day',
 		progress: 'progress',
+		thisDayFromFuture: 'this day<br>from future',
+		clickHereToRemoveCycle: 'click here to<br>remove cycle',
+		clickHereToSetEndOfFlow: 'click here to<br>set end of flow',
+		clickHereToStartNewCycle: 'click here to<br>start new cycle',
 
 		// notes section
 		sex: 'sex',

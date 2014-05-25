@@ -294,7 +294,7 @@
 
 	Bro.prototype.html = function (html) {
 		var elem = this[0] || {};
-		if (html === undefined) {
+		if (!arguments.length) {
 			return elem.innerHTML || '';
 		}
 		elem.innerHTML = html;
