@@ -93,14 +93,43 @@
 	<div class="js-window-wrapper window-wrapper"></div>
 
 	<div class="title-view js-title-view">
-		<div class="js-to-calendar">home</div>
-		<div class="js-setting">setting</div>
+
+		<header class="title-header">
+			<div class="js-to-calendar title-to-calendar"></div>
+			<div class="js-setting title-to-setting"></div>
+		</header>
+
 		<div class="main-state-wrapper js-main-state-wrapper"></div>
-		<div class="js-start-tracking-button js-bottom-button">tracking button</div>
+		<div class="legend-wrapper js-legend-wrapper"></div>
+		<div class="js-start-tracking-button js-bottom-button title-tracking-button">tracking button</div>
 		<!-- some text -->
 	</div>
 
 </div>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="title-legend">
+
+	<div class="cycle-legend-item">
+		<div class="legend-flow cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle.flow %></div>
+	</div>
+
+	<div class="cycle-legend-item">
+		<div class="legend-safe cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle.safe %></div>
+	</div>
+
+	<div class="cycle-legend-item">
+		<div class="legend-unsafe cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle.unsafe %></div>
+	</div>
+
+	<div class="cycle-legend-item">
+		<div class="legend-fertile cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle.fertile %></div>
+	</div>
+
+</script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-menu">
 

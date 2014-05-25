@@ -52,7 +52,7 @@
 
 			$('.js-start-tracking-button').off().on('click', this.showDatePicker.bind(this));
 			$('.js-start-tracking-button.js-bottom-button').html('tracking ' + dayState.state + ' tracking');
-
+			$('.js-legend-wrapper').html(_.template(templateContainer.templates['title-legend'], {}));
 		},
 		showDatePicker: function() {
 
