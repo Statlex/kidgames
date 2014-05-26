@@ -120,25 +120,32 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="title-cycle-state-button">
 
-	<% if (haveData) { %>
+	<div class="table main-cycle-button-data-wrapper">
+		<div class="table-row">
+			<div class="table-cell">
+				<% if (haveData) { %>
 
-		<div>
-			<%= date %><%= lang.month[month]%>, <%= year %>
+				<div class="main-cycle-button-today"><%= date %> <%= lang.month[month] %>, <%= year %></div>
+
+				<div class="main-cycle-button-period-state">
+					<span class="main-cycle-button-period-state-day"><%= lang.dayW %></span>
+					<span class="main-cycle-button-period-state-progress"><%= dayOfCycle %><!--/ <%= cycleLength %>--></span>
+				</div>
+
+				<div class="main-cycle-button-period-name">
+					<%= periodName %>
+				</div>
+
+				<% } else { %>
+
+				<%= lang.clickHereToStartNewCycle %>
+
+				<% }; %>
+
+			</div>
 		</div>
+	</div>
 
-		<div>
-			<%= lang.dayW %>: <%= dayOfCycle %> / <%= cycleLength %>
-		</div>
-
-		<div>
-			<%= periodName %>
-		</div>
-
-	<% } else { %>
-
-		<%= lang.clickHereToStartNewCycle %>
-
-	<% }; %>
 
 </script>
 
