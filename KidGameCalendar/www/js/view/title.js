@@ -98,14 +98,9 @@
 			svg = $(svgStr.replace('{{paths}}', paths));
 			mainNode.append(svg);
 
-			// add coloring
-			// todo: add coloring to days
-
-
 			// detect cycles
 			var cycles, lastCycle, lastDate, date, now, different;
 			cycles = info.get('cycles') || [];
-
 
 			// detect cycles is > 1
 			if (cycles.length) {
@@ -124,50 +119,49 @@
 				if (different <= 0) {
 					// no delayed
 
-						var cycle = lastCycle,
-							dateMap = JSON.parse(JSON.stringify(info.dateMap)),
-							cycleLength = info.get('cycleLength'),
-							calendar = new Calendar(),
-							dateMapDifferent, halfOfMapDifferent,
-							dateNodes = $('.js-title-cycle-date', mainNode);
+					var cycle = lastCycle,
+						dateMap = JSON.parse(JSON.stringify(info.dateMap)),
+						cycleLength = info.get('cycleLength'),
+						calendar = new Calendar(),
+						dateMapDifferent, halfOfMapDifferent,
+						dateNodes = $('.js-title-cycle-date', mainNode);
 
-						// detect end of flow
-						if (cycle.endFlow.str) {
-							dateMapDifferent = dateMap.flow - calendar.getDifferent(cycle.endFlow, cycle.startCycle) - 1;
-							dateMap.flow -= dateMapDifferent;
-							dateMap.safe_1 += dateMapDifferent;
+					// detect end of flow
+					if (cycle.endFlow.str) {
+						dateMapDifferent = dateMap.flow - calendar.getDifferent(cycle.endFlow, cycle.startCycle) - 1;
+						dateMap.flow -= dateMapDifferent;
+						dateMap.safe_1 += dateMapDifferent;
+					}
+
+					if (cycleLength !== 28) {
+						dateMapDifferent = cycleLength - 28;
+						halfOfMapDifferent = Math.floor(dateMapDifferent / 2);
+						dateMap.unsafe_1 += halfOfMapDifferent;
+						dateMap.unsafe_2 += halfOfMapDifferent;
+						if (halfOfMapDifferent * 2 < dateMapDifferent) {
+							dateMap.unsafe_2 += 1;
 						}
+					}
 
-						if (cycleLength !== 28) {
-							dateMapDifferent = cycleLength - 28;
-							halfOfMapDifferent = Math.floor(dateMapDifferent / 2);
-							dateMap.unsafe_1 += halfOfMapDifferent;
-							dateMap.unsafe_2 += halfOfMapDifferent;
-							if (halfOfMapDifferent * 2 < dateMapDifferent) {
-								dateMap.unsafe_2 += 1;
+					var key, dateNodeIndex = 0, className;
+
+					for (key in dateMap) {
+						if (dateMap.hasOwnProperty(key)) {
+							for (ii = 0, ll = dateMap[key]; ii < ll; ii += 1) {
+								className = dateNodes[dateNodeIndex].getAttribute('class');
+								className += ' ' + (dateNodeIndex ? key.toString().replace(/_\d/gi, '') : 'flow start-flow');
+								dateNodes[dateNodeIndex].setAttribute('class', className);
+								dateNodes[dateNodeIndex].setAttribute('data-group', key.toString());
+								dateNodes[dateNodeIndex].setAttribute('data-date-index', dateNodeIndex);
+								dateNodeIndex += 1;
 							}
 						}
+					}
 
-						var key, dateNodeIndex = 0, className;
-
-
-						for (key in dateMap) {
-							if (dateMap.hasOwnProperty(key)) {
-								for (ii = 0, ll = dateMap[key]; ii < ll; ii += 1) {
-									className = dateNodes[dateNodeIndex].getAttribute('class');
-									className += ' ' + (dateNodeIndex ? key.toString().replace(/_\d/gi, '') : 'start-flow');
-									dateNodes[dateNodeIndex].setAttribute('class', className);
-									dateNodeIndex += 1;
-								}
-							}
-						}
-
-
-
-						// detect current date
-						var number = calendar.getDifferent(now, cycle.startCycle);
-						className = dateNodes[number].getAttribute('class');
-						dateNodes[number].setAttribute('class', className + ' current-day js-current-day');
+					// detect current date
+					var number = calendar.getDifferent(now, cycle.startCycle);
+					className = dateNodes[number].getAttribute('class');
+					dateNodes[number].setAttribute('class', className + ' current-day js-current-day');
 
 					//return;
 				} else {
@@ -178,6 +172,19 @@
 			} else {
 				// user have no any cycles
 				console.log('you have no cycles, start new cycles?');
+			}
+
+			// add coloring
+			var circleDays = $('.js-title-cycle-date', svg),
+				currentDay = $('.js-current-day', svg);
+			if (!currentDay.isEmpty()) {
+				var groupName = currentDay.attr('data-group');
+				circleDays.forEach(function(path) {
+					if (path.getAttribute('data-group') === groupName) {
+						var className = path.getAttribute('class') + ' current-active-period active';
+						path.setAttribute('class', className);
+					}
+				});
 			}
 
 			// create button
@@ -271,19 +278,17 @@
 				return doc.createElement('svg');
 			}
 
-			var data = {};
-
 			// rotate circle arrow
-			var calendar = new Calendar(),
-			date = new Date(),
-			now = {
-				date: date.getDate(),
-				month: date.getMonth(),
-				year: date.getFullYear()
-			},
-			number;
-
-			number = calendar.getDifferent(now, lastCycle.startCycle);
+			var data = {},
+				calendar = new Calendar(),
+				date = new Date(),
+				now = {
+					date: date.getDate(),
+					month: date.getMonth(),
+					year: date.getFullYear()
+				},
+				number = calendar.getDifferent(now, lastCycle.startCycle),
+				svgStr, svg;
 
 			data.rotate = 360 / info.get('cycleLength') * (number + 0.5);
 			data.rotateRad = data.rotate / 180 * Math.PI ;
@@ -296,8 +301,8 @@
 			data.gradientX2 = Math.sin(data.rotateRad) * 100 + 50;
 			data.gradientY2 = Math.cos(data.rotateRad) * 100 + 50;
 
-			var svgStr = _.template(templateContainer.templates['title-cycle-arrow'], data),
-				svg = $(svgStr);
+			svgStr = _.template(templateContainer.templates['title-cycle-arrow'], data);
+			svg = $(svgStr);
 
 			return svg;
 

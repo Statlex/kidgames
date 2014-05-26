@@ -68,7 +68,11 @@
 }
 
 .title-cycle-date {
-	opacity: 0.7;
+	opacity: 0.5;
+}
+
+.active.title-cycle-date {
+	opacity: 1;
 }
 
 .future-start-flow .inner-month-date {
@@ -461,6 +465,7 @@ label {
 	height: 16px;
 	font-family: Arial, Verdana, sans-serif;
 	font-weight: normal;
+	letter-spacing: -0.5px;
 }
 
 .main-cycle-button-period-state-progress {
@@ -484,6 +489,7 @@ label {
 .main-cycle-button-period-name,
 .main-cycle-button-today {
 	position: relative;
+	letter-spacing: -0.5px;
 }
 
 .main-cycle-button-period-name:after,
