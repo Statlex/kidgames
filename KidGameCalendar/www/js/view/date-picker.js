@@ -95,7 +95,10 @@
 				state;
 
 			if (data) {
-				this.date = new Date([data.year, data.month, data.date].join(' '));
+				this.date = new Date();
+				this.date.setDate(data.date);
+				this.date.setMonth(data.month);
+				this.date.setFullYear(data.year);
 			}
 
 			// set default state
@@ -129,8 +132,6 @@
 					month: month.prop('options')[month.prop('selectedIndex')].value,
 					year: year.prop('options')[year.prop('selectedIndex')].value
 				};
-				data.month = +data.month;
-				data.month += 1;
 
 				this.setDate(data);
 			}.bind(this)));
