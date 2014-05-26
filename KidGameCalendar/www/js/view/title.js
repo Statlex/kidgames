@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global Backbone, $, info, APP, Calendar, cycleMaster, lang */
+	/*global Backbone, $, info, APP, Calendar, cycleMaster, lang, templateContainer */
 
 	win.GC = win.GC || {};
 
@@ -99,6 +99,8 @@
 			mainNode.append(svg);
 
 			// add coloring
+			// todo: add coloring to days
+
 
 			// detect cycles
 			var cycles, lastCycle, lastDate, date, now, different;
@@ -167,13 +169,6 @@
 						className = dateNodes[number].getAttribute('class');
 						dateNodes[number].setAttribute('class', className + ' current-day js-current-day');
 
-						// rotate circle arrow
-//						var mainButton, angle, singleDayAngle;
-//						mainButton = $('.js-start-tracking-button', mainNode);
-//						singleDayAngle = 360 / cycleLength;
-//						angle = singleDayAngle * (number + 0.5);
-//						mainButton.css(util.vendorPrefix.css + 'transform', 'rotate(' + angle + 'deg)');
-
 					//return;
 				} else {
 					console.log('you have delayed ' + different);
@@ -192,12 +187,16 @@
 			button.html(_.template(templateContainer.templates['title-cycle-state-button'], mainButtonData));
 			mainNode.append(button);
 
+			// add circle arrow
+			var circleArrow = this.createCircleArrow(lastCycle);
+			mainNode.append(circleArrow);
+
 			return mainNode;
 
 		},
 		createSVGDay: function (x, y, angle1, angle2, r1, r2, data) {
 
-			var path = '    <path class="js-title-cycle-date title-cycle-date" d="{{d}}" fill="none" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
+			var path = '<path class="js-title-cycle-date title-cycle-date" d="{{d}}" fill="none" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-data="' + data + '"/>',
 				d = {},
 				dStr;
 
@@ -257,13 +256,50 @@
 
 			['start-flow', 'flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){
 				if (classes.indexOf(type) !== -1){
-					periodName = lang.cycle[type];
+					periodName = lang.period[type];
 				}
 			});
 
 			data.periodName = periodName;
 
 			return data;
+
+		},
+		createCircleArrow: function(lastCycle) {
+
+			if (!lastCycle) {
+				return doc.createElement('svg');
+			}
+
+			var data = {};
+
+			// rotate circle arrow
+			var calendar = new Calendar(),
+			date = new Date(),
+			now = {
+				date: date.getDate(),
+				month: date.getMonth(),
+				year: date.getFullYear()
+			},
+			number;
+
+			number = calendar.getDifferent(now, lastCycle.startCycle);
+
+			data.rotate = 360 / info.get('cycleLength') * (number + 0.5);
+			data.rotateRad = data.rotate / 180 * Math.PI ;
+			data.shadowSize = 4;
+			data.shadowDx = Math.sin(data.rotateRad) * data.shadowSize;
+			data.shadowDy = Math.cos(data.rotateRad) * data.shadowSize;
+
+			data.gradientX1 = Math.sin(data.rotateRad + Math.PI) * 100 + 50;
+			data.gradientY1 = Math.cos(data.rotateRad + Math.PI) * 100 + 50;
+			data.gradientX2 = Math.sin(data.rotateRad) * 100 + 50;
+			data.gradientY2 = Math.cos(data.rotateRad) * 100 + 50;
+
+			var svgStr = _.template(templateContainer.templates['title-cycle-arrow'], data),
+				svg = $(svgStr);
+
+			return svg;
 
 		}
 

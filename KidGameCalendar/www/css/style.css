@@ -424,6 +424,24 @@ label {
 	font-size: 0;
 	line-height: 0;
 	text-align: center;
+	position: relative;
+}
+
+.main-cycle-button-period-state:after,
+.main-cycle-button-period-state:before {
+	content: '';
+	display: block;
+	width: 15px;
+	height: 1px;
+	background-color: #5b2273;
+	position: absolute;
+	top: 13px;
+	left: 15px;
+}
+
+.main-cycle-button-period-state:after {
+	left: auto;
+	right: 15px;
 }
 
 .main-cycle-button-period-state-day,
@@ -460,6 +478,41 @@ label {
 	text-transform: uppercase;
 	font-family: Arial, Verdana, sans-serif;
 	font-weight: normal;
+	padding-top: 7px;
+}
+
+.main-cycle-button-period-name,
+.main-cycle-button-today {
+	position: relative;
+}
+
+.main-cycle-button-period-name:after,
+.main-cycle-button-today:before {
+	content: '...';
+	font-size: 20px;
+	line-height: 2px;
+	display: block;
+	color: #420461;
+	clear: both;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	letter-spacing: -1px;
+	top: -14px;
+}
+
+.main-cycle-button-period-name:after {
+	top: auto;
+	bottom: -1px;
+}
+
+.title-cycle-arrow {
+	display: block;
+	top: 20%;
+	left: 20%;
+	height: 60%;
+	width: 60%;
+	position: relative;
 }
 
 .cycle-days-wrapper {

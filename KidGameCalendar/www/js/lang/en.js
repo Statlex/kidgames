@@ -28,6 +28,13 @@
 			unsafe: 'unsafe',
 			fertile: 'fertile'
 		},
+		period: {
+			'start-flow': 'start period',
+			flow: 'flow period',
+			safe: 'safe period',
+			unsafe: 'unsafe period',
+			fertile: 'fertile period'
+		},
 		dayW: 'day',
 		progress: 'progress',
 		thisDayFromFuture: 'this day<br>from future',

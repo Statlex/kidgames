@@ -138,7 +138,7 @@
 
 				<% } else { %>
 
-				<%= lang.clickHereToStartNewCycle %>
+					<%= lang.clickHereToStartNewCycle %>
 
 				<% }; %>
 
@@ -146,6 +146,31 @@
 		</div>
 	</div>
 
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="title-cycle-arrow">
+
+	<svg class="title-cycle-arrow" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="263.15px" height="263.15px" viewBox="0 0 263.15 263.15" enable-background="new 0 0 263.15 263.15" xml:space="preserve">
+
+		<defs>
+			<linearGradient id="circleArrowGradient" x1="<%= gradientX1 %>%" y1="<%= gradientY1 %>%" x2="<%= gradientX2 %>%" y2="<%= gradientY2 %>%" spreadMethod="pad" >
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+				<stop offset="100%" stop-color="#cad2d8" stop-opacity="1"/>
+			</linearGradient>
+		</defs>
+
+		<filter id="dropShadow" height="150%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+			<feOffset dx="<%= shadowDx %>" dy="<%= shadowDy %>" result="offsetblur"/>
+			<feMerge>
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+
+		<path style="filter:url(#dropShadow); fill:url(#circleArrowGradient);" transform="rotate(<%= rotate %>, 131.58, 131.58)" fill="#FFFFFF" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M157.42,20.69 L157.42,20.69L131.575,4.724l-25.844,15.965v0.001c-50.418,11.704-87.99,56.907-87.99,110.886 c0,62.868,50.965,113.835,113.834,113.835s113.834-50.967,113.834-113.835C245.409,77.597,207.838,32.395,157.42,20.69z"/>
+
+	</svg>
 
 </script>
 
