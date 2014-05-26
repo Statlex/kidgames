@@ -121,7 +121,7 @@
 			var selects = this.picker.find('.js-select-wrapper select'),
 				buttons = this.picker.find('.js-select-wrapper .js-change-plus, .js-select-wrapper .js-change-minus');
 
-			selects.on('change', (function(){
+			var selectChange = function () {
 				var date = this.picker.find('.js-select-date'),
 					month = this.picker.find('.js-select-month'),
 					year = this.picker.find('.js-select-year'),
@@ -134,8 +134,9 @@
 				};
 
 				this.setDate(data);
-			}.bind(this)));
+			}.bind(this);
 
+			selects.on('change', selectChange);
 
 			buttons.on('click', function(){
 
@@ -155,7 +156,7 @@
 
 				select.selectedIndex = selectedIndex;
 
-				$(select).on('change');
+				selectChange();
 
 			});
 
