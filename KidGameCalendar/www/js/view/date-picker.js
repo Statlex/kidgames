@@ -110,7 +110,7 @@
 
 			win.setTimeout((function(){
 				this.picker.find('select').forEach(function(node){
-					node.removeAttribute('disabled');
+					node.style.display = 'block';
 				});
 			}.bind(this)), 300);
 

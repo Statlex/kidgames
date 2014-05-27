@@ -745,7 +745,7 @@ label {
 .date-picker-select-tag {
 	position: relative;
 	z-index: 1;
-	display: block;
+	display: none;
 	margin: 0 auto;
 	height: 100%;
 	width: 100%;
