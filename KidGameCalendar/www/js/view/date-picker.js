@@ -58,7 +58,9 @@
 
 			APP.datePicher = this;
 
-			$('.js-main-wrapper').addClass('blur');
+			win.setTimeout(function(){
+				$('.js-main-wrapper').addClass('blur');
+			}, 100);
 
 		},
 
@@ -108,6 +110,12 @@
 			}
 			monthSelect.html(monthStr);
 
+			win.setTimeout((function(){
+				this.picker.find('select').forEach(function(node){
+					node.removeAttribute('disabled');
+				});
+			}.bind(this)), 300);
+
 		},
 		setDate: function(data) {
 
@@ -127,8 +135,13 @@
 			selects = {
 				date: date.prop('selectedIndex', this.date.getDate() - 1),
 				month: month.prop('selectedIndex', this.date.getMonth()),
-				year: year.prop('selectedIndex', 0)
+				year: year.prop('selectedIndex', (new Date().getFullYear()) - this.date.getFullYear())
 			};
+
+			console.log(data && data.year);
+
+			console.log(new Date().getFullYear());
+			console.log(this.date.getFullYear());
 
 			state = cycleMaster.scanDay({
 				getStateOnly: true,
@@ -173,9 +186,10 @@
 
 				var select = this.parentNode.parentNode.querySelector('select'),
 					selectedIndex = select.selectedIndex,
-					optionLength = select.options.length;
+					optionLength = select.options.length,
+					q = this.classList.contains('js-change-year') ? -1 : 1;
 
-				selectedIndex += this.classList.contains('js-change-plus') ? 1 : -1;
+				selectedIndex += this.classList.contains('js-change-plus') ? q : -q;
 
 				if (selectedIndex < 0) {
 					selectedIndex = optionLength - 1;
@@ -199,7 +213,9 @@
 				return;
 			}
 
-			Backbone.history.history.back();
+			if (Backbone.history.fragment === 'date-picker') {
+				Backbone.history.history.back();
+			}
 
 			this.fade.remove();
 			this.picker.remove();

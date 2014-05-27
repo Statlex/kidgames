@@ -745,10 +745,12 @@ label {
 
 .set-date-picker,
 .close-date-picker {
+	font-family: Arial, Verdana, sans-serif;
 	float: left;
 	color: #fff;
 	font-size: 12px;
 	line-height: 12px;
+	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
 	width: 47%;
