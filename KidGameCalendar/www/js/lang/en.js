@@ -41,6 +41,15 @@
 		clickHereToRemoveCycle: 'click here to<br>remove cycle',
 		clickHereToSetEndOfFlow: 'click here to<br>set end of flow',
 		clickHereToStartNewCycle: 'click here to<br>start new cycle',
+		impossibleDayDP: 'impossible day',
+		removeCycleDP: 'remove cycle',
+		endOfFlowDP: 'end of flow',
+		startNewCycleDP: 'start new cycle',
+		impossibleBtn: 'impossible',
+		removeBtn: 'remove',
+		endOfFlowBtn: 'end of flow',
+		startBtn: 'start',
+		cancelBtn: 'cancel',
 
 		// notes section
 		sex: 'sex',

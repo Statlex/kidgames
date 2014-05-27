@@ -88,8 +88,8 @@
 			cycleLength = info.get('cycleLength');
 			sectorAngle = 2 * Math.PI / cycleLength;
 			for (ii = 0, ll = cycleLength; ii < ll; ii += 1) {
-				angle1 = -(Math.PI + ii * sectorAngle) - Math.PI / 1000;
-				angle2 = -(Math.PI + (ii + 1) * sectorAngle) + Math.PI / 1000;
+				angle1 = -(Math.PI + ii * sectorAngle) - Math.PI / 500;
+				angle2 = -(Math.PI + (ii + 1) * sectorAngle) + Math.PI / 500;
 				paths += this.createSVGDay(halfSize, halfSize, angle1, angle2, halfSize * 0.63, halfSize * 0.79, ii);
 			}
 

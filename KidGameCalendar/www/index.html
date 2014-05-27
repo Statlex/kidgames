@@ -395,7 +395,6 @@
 	<div><p data-show="settings">settings</p></div>
 	<div><p data-show="help">help</p></div>
 
-
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="help">
@@ -540,30 +539,40 @@
 
 	<div class="js-date-picker-wrapper date-picker-wrapper">
 
-		<h1 class="js-period-state">period state</h1>
+		<div class="js-period-state date-picker-period-state">period state</div>
 
-		<div class="js-select-wrapper">
-			<select class="js-select-date"></select>
-			<h1 class="js-change-date js-change-plus">+</h1>
-			<h1 class="js-change-date js-change-minus">-</h1>
+
+		<div class="date-picker-selects-wrapper clear-fix">
+
+			<% ['date', 'month', 'year'].forEach(function(type){ %>
+				<div class="js-select-wrapper date-picker-select-block">
+
+					<img src="img/date-picker-button-bg.png" class="date-picker-button-bg" alt=""/>
+
+					<div class="date-picker-button-wrapper date-picker-button-wrapper-plus">
+						<input type="button" class="js-change-<%= type %> js-change-plus date-picker-change-date-button" value="+"/>
+					</div>
+
+					<div class="date-picker-select-wrapper">
+						<div class="js-current-input js-current-input-<%= type %> date-picker-current-input"></div>
+						<select class="js-select-<%= type %> date-picker-select-tag"></select>
+					</div>
+
+					<div class="date-picker-button-wrapper date-picker-button-wrapper-minus">
+						<input type="button" class="js-change-<%= type %> js-change-minus date-picker-change-date-button" value="-"/>
+					</div>
+
+				</div>
+			<% }); %>
+
 		</div>
 
-		<div class="js-select-wrapper">
-			<select class="js-select-month"></select>
-			<h1 class="js-change-month js-change-plus">+</h1>
-			<h1 class="js-change-month js-change-minus">-</h1>
+		<div class="js-date-picker-day date-picker-period-day">day</div>
+
+		<div class="date-picker-cycle-button-wrapper clear-fix">
+			<div class="js-set-date-picker set-date-picker">status</div>
+			<div class="js-close-date-picker close-date-picker"><%= lang.cancelBtn %></div>
 		</div>
-
-		<div class="js-select-wrapper">
-			<select class="js-select-year"></select>
-			<h1 class="js-change-year js-change-plus">+</h1>
-			<h1 class="js-change-year js-change-minus">-</h1>
-		</div>
-
-		<h1 class="js-date-picker-day">day</h1>
-
-		<button class="js-set-date-picker">status</button>
-		<button class="js-close-date-picker">close</button>
 
 	</div>
 

@@ -57,8 +57,10 @@
 				// create notification with 'v' and '?'
 				if (options && options.getStateOnly) {
 					return {
-						state: 'checkDate - impossible date',
-						text: lang.thisDayFromFuture
+						state: 'impossible',
+						text: lang.thisDayFromFuture,
+						shortText: lang.impossibleDayDP,
+						buttonText: lang.impossibleBtn
 					};
 				}
 				if (options && options.forceRun) {
@@ -77,7 +79,9 @@
 					if (options && options.getStateOnly) {
 						return {
 							state: 'removeCycle',
-							text: lang.clickHereToRemoveCycle
+							text: lang.clickHereToRemoveCycle,
+							shortText: lang.removeCycleDP,
+							buttonText: lang.removeBtn
 						};
 					}
 					if (options && options.forceRun) {
@@ -98,7 +102,9 @@
 					if (options && options.getStateOnly) {
 						return {
 							state: 'setEndOfFlow',
-							text: lang.clickHereToSetEndOfFlow
+							text: lang.clickHereToSetEndOfFlow,
+							shortText: lang.endOfFlowDP,
+							buttonText: lang.endOfFlowBtn
 						};
 					}
 					if (options && options.forceRun) {
@@ -120,7 +126,9 @@
 				if (options && options.getStateOnly) {
 					return {
 						state: 'confirmNewCycle',
-						text: lang.clickHereToStartNewCycle
+						text: lang.clickHereToStartNewCycle,
+						shortText: lang.startNewCycleDP,
+						buttonText: lang.startBtn
 					};
 				}
 				if (options && options.forceRun) {

@@ -17,7 +17,7 @@
 		initialize: function() {
 			console.log('init');
 			this.fade = $(templateContainer.templates['date-picker-fade']);
-			this.picker = $(templateContainer.templates['date-picker']);
+			this.picker = $(_.template(templateContainer.templates['date-picker'], {}));
 			this.header = this.picker.find('.js-period-state');
 			this.day = this.picker.find('.js-date-picker-day');
 		},
@@ -36,8 +36,11 @@
 			this.bindSelects();
 			this.$el.append(this.picker);
 
+			this.setSelectInputsSize();
+
 			this.setStateBtn = this.picker.find('.js-set-date-picker');
-			this.setStateBtn.on('click', function(){
+			this.setStateBtn.on('click', (function(){
+
 				var state = cycleMaster.scanDay({
 					forceRun: true,
 					date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
@@ -47,13 +50,32 @@
 					this.close();
 				}
 
-			}.bind(this));
+			}.bind(this)));
 
 			this.setDate();
 
 			this.picker.find('.js-close-date-picker').on('click', this.close.bind(this));
 
 			APP.datePicher = this;
+
+			$('.js-main-wrapper').addClass('blur');
+
+		},
+
+		setSelectInputsSize: function() {
+			var inputs = this.picker.find('.js-current-input'),
+				height = inputs[0].clientHeight;
+
+			inputs.forEach(function(node){
+				node.style.lineHeight = height + 'px';
+				node.style.fontSize = height * 0.6 + 'px';
+
+			});
+
+			if (height < 2) {
+				console.warn('setSelectInputsSize');
+				win.setTimeout(this.setSelectInputsSize.bind(this), 100);
+			}
 
 		},
 		createSelects: function() {
@@ -92,7 +114,7 @@
 			var date = this.picker.find('.js-select-date'),
 				month = this.picker.find('.js-select-month'),
 				year = this.picker.find('.js-select-year'),
-				state;
+				state, selects;
 
 			if (data) {
 				this.date = new Date();
@@ -102,45 +124,54 @@
 			}
 
 			// set default state
-			date.prop('selectedIndex', this.date.getDate() - 1);
-			month.prop('selectedIndex', this.date.getMonth());
-			year.prop('selectedIndex', 0);
+			selects = {
+				date: date.prop('selectedIndex', this.date.getDate() - 1),
+				month: month.prop('selectedIndex', this.date.getMonth()),
+				year: year.prop('selectedIndex', 0)
+			};
 
 			state = cycleMaster.scanDay({
 				getStateOnly: true,
 				date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
 			});
 
-			this.setStateBtn.html(state.state);
-			this.header.html(state.state);
+			this.setStateBtn.html(state.buttonText);
+			this.setStateBtn.data('state', state.state);
+			this.header.html(state.shortText);
 			this.day.html(lang.dayFull[this.date.getDay()]);
+
+			['date', 'month', 'year'].forEach(function(item) {
+				var select = selects[item][0],
+					text = select.options[select.selectedIndex].innerHTML;
+				this.picker.find('.js-current-input-' + item).html(text);
+			}, this);
 
 		},
 		bindSelects: function() {
 
 			var selects = this.picker.find('.js-select-wrapper select'),
-				buttons = this.picker.find('.js-select-wrapper .js-change-plus, .js-select-wrapper .js-change-minus');
+				buttons = this.picker.find('.js-select-wrapper .js-change-plus, .js-select-wrapper .js-change-minus'),
 
-			var selectChange = function () {
-				var date = this.picker.find('.js-select-date'),
-					month = this.picker.find('.js-select-month'),
-					year = this.picker.find('.js-select-year'),
-					data;
+				selectChange = function () {
+					var date = this.picker.find('.js-select-date'),
+						month = this.picker.find('.js-select-month'),
+						year = this.picker.find('.js-select-year'),
+						data;
 
-				data = {
-					date: date.prop('options')[date.prop('selectedIndex')].value,
-					month: month.prop('options')[month.prop('selectedIndex')].value,
-					year: year.prop('options')[year.prop('selectedIndex')].value
-				};
+					data = {
+						date: date.prop('options')[date.prop('selectedIndex')].value,
+						month: month.prop('options')[month.prop('selectedIndex')].value,
+						year: year.prop('options')[year.prop('selectedIndex')].value
+					};
 
-				this.setDate(data);
-			}.bind(this);
+					this.setDate(data);
+				}.bind(this);
 
 			selects.on('change', selectChange);
 
 			buttons.on('click', function(){
 
-				var select = this.parentNode.querySelector('select'),
+				var select = this.parentNode.parentNode.querySelector('select'),
 					selectedIndex = select.selectedIndex,
 					optionLength = select.options.length;
 
@@ -170,11 +201,10 @@
 
 			Backbone.history.history.back();
 
-			console.log('close');
-
 			this.fade.remove();
 			this.picker.remove();
 
+			$('.js-main-wrapper').removeClass('blur');
 
 			// remove nodes
 
