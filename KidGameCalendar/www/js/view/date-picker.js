@@ -58,9 +58,7 @@
 
 			APP.datePicher = this;
 
-			win.setTimeout(function(){
-				$('.js-main-wrapper').addClass('blur');
-			}, 100);
+			$('.js-main-wrapper').addClass('blur');
 
 		},
 
