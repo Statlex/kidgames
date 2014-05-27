@@ -112,7 +112,7 @@
 				this.picker.find('select').forEach(function(node){
 					node.style.display = 'block';
 				});
-			}.bind(this)), 300);
+			}.bind(this)), 500);
 
 		},
 		setDate: function(data) {
