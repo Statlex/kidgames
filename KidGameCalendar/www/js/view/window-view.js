@@ -30,9 +30,11 @@
 			}
 
 			this.$el.css('top', '');
-			if (!noHistoryBack) {
+
+			if (Backbone.history.fragment === 'window') {
 				Backbone.history.history.back();
 			}
+
 		},
 
 		addEventListenersToContent: function() {
