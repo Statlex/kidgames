@@ -3,7 +3,7 @@
 .blur .main-data-wrapper
 {
 	-webkit-animation-name: blur;
-	-webkit-animation-duration: 3s;
+	-webkit-animation-duration: 1s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 1s;
 	-webkit-animation-iteration-count: 1;
@@ -11,7 +11,7 @@
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: blur;
-	animation-duration: 3s;
+	animation-duration: 1s;
 	animation-timing-function: linear;
 	animation-delay: 1s;
 	animation-iteration-count: 1;
@@ -699,13 +699,24 @@ label {
 	margin: 0 1.66%;
 }
 
-.date-picker-button-bg {
+.date-picker-button-bg,
+.date-picker-button-bg-plus-minus {
 	display: block;
 	width: 100%;
 	height: auto;
+	position: relative;
+	z-index: 0;
+}
+
+.date-picker-button-bg-plus-minus {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
 
 .date-picker-select-wrapper {
+	z-index: 2;
 	position: absolute;
 	width: 100%;
 	height: 38%;
@@ -713,6 +724,7 @@ label {
 }
 
 .date-picker-button-wrapper {
+	z-index: 2;
 	position: absolute;
 	width: 100%;
 	height: 31%;
