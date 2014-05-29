@@ -273,10 +273,11 @@
 
 	<div class="js-show-help show-help"></div>
 
-	<div class="slider-date js-slider-date"></div>
-
-	<div class="js-slider-to-left slider-to-left"></div>
-	<div class="js-slider-to-right slider-to-right"></div>
+	<div class="slider-date-n-button-wrapper">
+		<div class="js-slider-to-left slider-to-left"></div>
+		<div class="slider-date js-slider-date"></div>
+		<div class="js-slider-to-right slider-to-right"></div>
+	</div>
 
 	<div class="js-main-calendar-wrapper slider-wrapper">
 		<div class="js-main-calendar-inner-container slider-container">
@@ -292,7 +293,7 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-date">
 
-	<%= lang.month[date.month] %> - <%= date.year %>
+	<%= lang.monthFull[date.month] %> <%= date.year %>
 
 </script>
 
