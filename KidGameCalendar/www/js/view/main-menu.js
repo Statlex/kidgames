@@ -19,6 +19,7 @@
 			this.$el.find('.js-notes').on('click', this.showNotes.bind(this));
 			this.$el.find('.js-time').on('click', this.showTime.bind(this));
 			this.$el.find('.js-options').on('click', this.showOptions.bind(this));
+			this.$el.find('.js-to-home').on('click', this.showHome.bind(this));
 
 		},
 		showCalendar: function() {
@@ -33,6 +34,9 @@
 		showOptions: function() {
 			APP.router.navigate('options', {trigger: true});
 			APP.options.show();
+		},
+		showHome: function() {
+			APP.router.navigate('title', {replace: true, trigger: true}); // replace: true -> remove history
 		}
 
 	});
