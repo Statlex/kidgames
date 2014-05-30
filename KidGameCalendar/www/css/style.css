@@ -34,7 +34,7 @@
 }
 
 .inner-month-date {
-	background-color: #d2d2d7;
+	background-color: #FFF;
 }
 
 .title-cycle-date {
@@ -42,39 +42,55 @@
 }
 
 .selected-date .inner-month-date {
-	box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
-.flow .inner-month-date,
-.legend-flow {
+
+.legend-flow,
+.flow.month-date-today .inner-month-date {
 	background-color: #ee3534;
+}
+.flow .inner-month-date {
+	background-color: rgba(238, 53, 52, 0.25);
 }
 .title-cycle-date.flow {
 	fill: #ee3534;
 }
 
 
-.start-flow .inner-month-date,
-.legend-start-flow {
+
+.legend-start-flow,
+.start-flow.month-date-today .inner-month-date {
 	background-color: #ee3534;
+}
+.start-flow .inner-month-date {
+	background-color: rgba(238, 53, 52, 0.25);
 }
 .title-cycle-date.start-flow {
 	fill: #ee3534;
 }
 
 
-.safe .inner-month-date,
-.legend-safe {
+
+.legend-safe,
+.safe.month-date-today .inner-month-date {
 	background-color: #003eef;
+}
+.safe .inner-month-date {
+	background-color: rgba(0, 62, 239, 0.25);
 }
 .title-cycle-date.safe {
 	fill: #003eef;
 }
 
 
-.unsafe .inner-month-date,
-.legend-unsafe {
+
+.legend-unsafe,
+.unsafe.month-date-today .inner-month-date {
 	background-color: #f9ef45;
+}
+.unsafe .inner-month-date {
+	background-color: rgba(249, 239, 69, 0.25);
 }
 .title-cycle-date.unsafe {
 	fill: #f9ef45;
@@ -82,14 +98,25 @@
 
 
 
-.fertile .inner-month-date,
-.legend-fertile {
+.legend-fertile,
+.fertile.month-date-today .inner-month-date {
 	background-color: #03cf08;
+}
+.fertile .inner-month-date {
+	background-color: rgba(3, 207, 8, 0.25);
 }
 .title-cycle-date.fertile {
 	fill: #03cf08;
 }
 
+
+.future-start-flow.month-date-today .inner-month-date {
+	background-color: #E83838;
+}
+
+.future-start-flow .inner-month-date {
+	background-color: rgba(232, 56, 56, 0.25);
+}
 
 
 .title-cycle-date.current-day {
@@ -97,15 +124,11 @@
 }
 
 .title-cycle-date {
-	opacity: 0.25;
+	opacity: 0.3;
 }
 
 .active.title-cycle-date {
 	opacity: 1;
-}
-
-.future-start-flow .inner-month-date {
-	background-color: rgba(255, 67, 49, 0.71);
 }
 
 .tick .inner-month-date,
@@ -206,13 +229,14 @@ body,
 	text-align: center;
 	font-size: 0;
 	line-height: 0;
-	background-color: rgba(255, 255, 255, 0.77);
+	background-color: rgba(255, 255, 255, 0.8);
 	margin-top: 5px;
+	padding-top: 8px;
 }
 
 .slider-wrapper {
-	background-color: rgba(255, 255, 255, 0.77);
-	padding-top: 25px;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding-top: 8px;
 }
 
 .slider-date {
@@ -249,10 +273,13 @@ body,
 .week-day {
 	float: left;
 	width: 14.28%;
-	font-size: 15px;
-	line-height: 15px;
-	padding-bottom: 5px;
+	font-size: 11px;
+	line-height: 11px;
+	padding-bottom: 1px;
 	text-align: center;
+	color: #f6bf7e;
+	font-weight: bold;
+	font-family: Arial, Verdana, sans-serif;
 }
 
 .week-days-wrapper:after {
@@ -364,6 +391,8 @@ label {
 	overflow: auto;
 	position: fixed;
 	height: 100%;
+	top: 0;
+	left: 0;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
 }

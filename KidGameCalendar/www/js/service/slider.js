@@ -375,6 +375,10 @@
 			});
 		}, this);
 
+		// mark today
+		var today = Calendar.prototype.getToday(),
+			$today = $('[data-date="' + today.str + '"]', node);
+		$today.addClass('month-date-today');
 
 		this.updateSelectedDate();
 

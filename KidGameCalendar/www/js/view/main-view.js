@@ -103,11 +103,11 @@
 		},
 		showToday: function() {
 
-			var today = Calendar.prototype.getToday();
-			$('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0).on('click');
+			var today = Calendar.prototype.getToday(),
+				$today = $('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0);
+			$today.on('click');
 
 		},
-
 
 		showNotes: function() {
 
