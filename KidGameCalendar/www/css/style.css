@@ -97,7 +97,7 @@
 }
 
 .title-cycle-date {
-	opacity: 0.5;
+	opacity: 0.25;
 }
 
 .active.title-cycle-date {
@@ -691,9 +691,8 @@ label {
 }
 
 .title-bg-circle {
-	fill: #e47595;
-	/*fill: #fff;*/
-	/*opacity: 0.5;*/
+	fill: #f2efd0;
+	opacity: 0.7;
 }
 
 .date-picker-period-state,
