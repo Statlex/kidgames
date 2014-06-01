@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase, cycleMaster */
 
 	win.GC = win.GC || {};
 
@@ -46,6 +46,36 @@
 			this.bindArrowButton();
 			this.bindFade();
 			this.showToday();
+			this.showCalendarProgress();
+
+		},
+		showCalendarProgress: function() {
+			var cycleInfoWrapper = $('.js-cycle-progress-block', this.$el),
+				tmpl = templateContainer.templates['main-calendar-progress'],
+				today = $('.js-main-calendar-page .month-date-today', this.$el),
+				dateInfo = {
+					state: today.data('cycle-state'),
+					dateOfCycle: today.data('date-number'),
+					length: info.get('cycleLength'),
+					date: today.data('date')
+				},
+				todayArr = dateInfo.date.split('-'),
+				todayObj = {
+					date: +todayArr[0],
+					month: +todayArr[1],
+					year: +todayArr[2]
+				},
+				cycle = cycleMaster.createCycleByDate(todayObj);
+
+			console.log(cycle);
+
+			// $('.selected-date').removeClass('selected-date');
+
+			// util.addClass(this, 'selected-date');
+
+			// set state, hind under the calendar
+
+			cycleInfoWrapper.html(dateInfo.dateOfCycle ? _.template(tmpl, dateInfo) : '');
 
 		},
 		show: function(item) {

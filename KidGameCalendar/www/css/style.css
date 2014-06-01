@@ -375,12 +375,12 @@ label {
 
 .btn-cancel {
 	background-position: -303px 0;
-
 }
 
 .cycle-progress-wrapper {
 	text-align: center;
 	padding: 10px;
+	display: none;
 }
 
 .current-lang {
@@ -871,4 +871,10 @@ label {
 	line-height: 21px;
 	color: #A73AA7;
 	letter-spacing: 0;
+}
+
+.cycle-progress-point {
+	display: inline-block;
+	font-size: 6px;
+	line-height: 6px;
 }
