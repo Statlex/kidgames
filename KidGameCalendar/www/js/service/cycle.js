@@ -236,6 +236,7 @@
 							month: dateObj.getMonth(),
 							year: dateObj.getFullYear()
 						};
+						obj.dates[index].date.str = [obj.dates[index].date.date, obj.dates[index].date.month, obj.dates[index].date.year].join('-');
 						index += 1;
 					}
 				}
