@@ -150,8 +150,8 @@
 
 		util.addClass(this, 'selected-date');
 
-
-
+		$('.progress-selected-date').removeClass('progress-selected-date');
+		$('.js-cycle-progress-point[data-date="' + this.dataset.date + '"]').addClass('progress-selected-date');
 
 	}
 

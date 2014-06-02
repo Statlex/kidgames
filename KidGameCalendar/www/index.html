@@ -298,12 +298,7 @@
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-progress">
 
 	<% dates.forEach(function(date){ %>
-		<div class="
-				js-cycle-progress-point
-				cycle-progress-point
-				<%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %>
-				<%= date.isActive ? 'active' : ' ' %>
-				" data-date="<%= date.date.str %>">1</div>
+		<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
 	<% }); %>
 
 	<div>
@@ -339,7 +334,7 @@
 			<% }); %>
 		</div>
 
-		<h1 style="display: none"><<-- <%= lang.month[month] %> / <%= year %> -->></h1>
+		<h1 style="display: none;"><<-- <%= lang.month[month] %> / <%= year %> -->></h1>
 
 		<% pre.dates.forEach(function(date) { %>
 		<div class="month-date" data-date="<%= date.date %>-<%= date.month %>-<%= date.year %>"><div class="inner-month-date"><%= date.date %></div></div>
