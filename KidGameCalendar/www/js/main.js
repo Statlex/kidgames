@@ -75,11 +75,12 @@ $(function(){
 		}
 	};
 
+
+	APP.dateInfo = new GC.DateInfoView();
+
 	APP.mainView = new GC.MainView();
 
 	APP.mainMenuView = new GC.MainMenuView();
-
-	APP.dateInfo = new GC.DateInfoView();
 
 	APP.confirm = new GC.ConfirmView();
 

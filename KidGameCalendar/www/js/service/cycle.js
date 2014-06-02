@@ -199,6 +199,8 @@
 				return obj;
 			}
 
+			console.log('/////');
+
 			obj.hasCycle = true;
 
 			obj.currentDate = calendar.getDifferent(date, cycle.startCycle);

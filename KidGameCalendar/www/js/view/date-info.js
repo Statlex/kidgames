@@ -103,6 +103,19 @@
 				util.restoreNode(that.$el[0], date);
 			});
 
+		},
+		showBottomDateInfo: function(date) {
+			var $el = $('.js-notes-bottom-block');
+			dataBase.getDateInfo(date, function(date){
+				date = JSON.parse(date);
+				if (date.toString() === date) {
+					date = JSON.parse(date);
+				}
+
+				$el.html(JSON.stringify(date));
+
+			});
+
 		}
 
 	});

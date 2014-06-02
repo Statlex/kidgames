@@ -293,27 +293,35 @@
 
 	</div>
 
+	<div class="js-notes-bottom-block notes-bottom-block">
+		no notes
+	</div>
+
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-progress">
 
-	<% dates.forEach(function(date){ %>
+	<% if (typeof hasCycle !== 'undefined') { %>
+
+		<% dates.forEach(function(date){ %>
 		<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
-	<% }); %>
-
-	<div>
-		<%= lang.dayW %> <%= currentDate + 1 %>
-		<br/><%= lang.period[activePeriodName] %>
-	</div>
-
-	<div class="legend-wrapper">
-		<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
-		<div class="cycle-legend-item">
-			<div class="legend-<%= type %> cycle-legend-point"></div>
-			<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
-		</div>
 		<% }); %>
-	</div>
+
+		<div>
+			<%= lang.dayW %> <%= currentDate + 1 %>
+			<br/><%= lang.period[activePeriodName] %>
+		</div>
+
+		<div class="legend-wrapper">
+			<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
+			<div class="cycle-legend-item">
+				<div class="legend-<%= type %> cycle-legend-point"></div>
+				<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
+			</div>
+			<% }); %>
+		</div>
+
+	<% }; %>
 
 
 </script>

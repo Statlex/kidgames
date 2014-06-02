@@ -153,6 +153,8 @@
 		$('.progress-selected-date').removeClass('progress-selected-date');
 		$('.js-cycle-progress-point[data-date="' + this.dataset.date + '"]').addClass('progress-selected-date');
 
+		APP.dateInfo.showBottomDateInfo(this.dataset.date);
+
 	}
 
 	Slider.prototype.listenersToPage = function (page) {

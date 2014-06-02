@@ -48,6 +48,9 @@
 			this.showToday();
 			this.showCalendarProgress();
 
+			// show notes
+			APP.dateInfo.showBottomDateInfo($('.js-main-calendar-page selected-date').data('date'));
+
 		},
 		showCalendarProgress: function() {
 			var cycleInfoWrapper = $('.js-cycle-progress-block', this.$el),
