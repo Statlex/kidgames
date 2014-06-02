@@ -67,15 +67,7 @@
 				},
 				cycle = cycleMaster.createCycleByDate(todayObj);
 
-			console.log(cycle);
-
-			// $('.selected-date').removeClass('selected-date');
-
-			// util.addClass(this, 'selected-date');
-
-			// set state, hind under the calendar
-
-			cycleInfoWrapper.html(dateInfo.dateOfCycle ? _.template(tmpl, dateInfo) : '');
+			cycleInfoWrapper.html(_.template(tmpl, cycle));
 
 		},
 		show: function(item) {

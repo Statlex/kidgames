@@ -146,19 +146,12 @@
 
 	function sliderTap() {
 
-		var dateInfo = {
-				state: this.getAttribute('data-cycle-state'),
-				dateOfCycle: this.getAttribute('data-date-number'),
-				length: info.get('cycleLength')
-			},
-			cycleInfoWrapper = util.find('.js-cycle-progress-wrapper');
-
 		$('.selected-date').removeClass('selected-date');
 
 		util.addClass(this, 'selected-date');
 
-		// set state, hind under the calendar
-		cycleInfoWrapper.innerHTML = dateInfo.dateOfCycle ? _.template(templateContainer.templates['cycle-progress-info'], dateInfo) : '';
+
+
 
 	}
 
@@ -389,6 +382,7 @@
 		nodes.forEach(function (node) {
 			Slider.prototype.addColoringToPage(node);
 		});
+		APP.mainView.showCalendarProgress();
 	};
 
 	Slider.prototype.updateSelectedDate = function() {
@@ -401,7 +395,6 @@
 			selectedDates.forEach(function(node){
 				util.removeClass(node, 'selected-date');
 			});
-			util.find('.js-cycle-progress-wrapper').innerHTML = '';
 		}
 	};
 

@@ -159,7 +159,7 @@
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;
 				}
-				if (!nearestCycle && (different >= 0) && (different <= info.flowMaxLength)) {
+				if ((different >= 0) && (different <= info.get('cycleLength'))) {
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;
 				}
@@ -190,7 +190,8 @@
 
 			for (ii = 0, ll = obj.cycleLength; ii < ll; ii += 1) {
 				obj.dates.push({
-					dayNumber: ii
+					dayNumber: ii,
+					date: {}
 				});
 			}
 
@@ -200,7 +201,8 @@
 
 			obj.hasCycle = true;
 
-			obj.dates[calendar.getDifferent(date, cycle.startCycle)].isActive = true;
+			obj.currentDate = calendar.getDifferent(date, cycle.startCycle);
+			obj.dates[obj.currentDate].isActive = true;
 
 			var dateMap = JSON.parse(JSON.stringify(info.dateMap)),
 				cycleLength = info.get('cycleLength'),
@@ -227,20 +229,26 @@
 			for (var key in dateMap) {
 				if (dateMap.hasOwnProperty(key)) {
 					for (ii = 0, ll = dateMap[key]; ii < ll; ii += 1) {
-						obj.dates[index].cycleState = key;
-						obj.dates[index].periodName = key.replace(/_\d/gi, '');
-						var dateObj = new Date();
+						var dateDay = obj.dates[index];
+						dateDay.cycleState = key;
+						dateDay.periodName = key.replace(/_\d/gi, '');
+						var dateObj = new Date(cycle.startCycle.year, cycle.startCycle.month, cycle.startCycle.date);
 						dateObj.setDate(cycle.startCycle.date + index);
 						obj.dates[index].date = {
 							date: dateObj.getDate(),
 							month: dateObj.getMonth(),
 							year: dateObj.getFullYear()
 						};
-						obj.dates[index].date.str = [obj.dates[index].date.date, obj.dates[index].date.month, obj.dates[index].date.year].join('-');
+						dateDay.date.str = [dateDay.date.date, dateDay.date.month, dateDay.date.year].join('-');
 						index += 1;
 					}
 				}
 			}
+
+			obj.activePeriod = obj.dates[obj.currentDate].cycleState;
+			obj.activePeriodName = obj.dates[obj.currentDate].periodName;
+
+			console.log(obj);
 
 			return obj;
 

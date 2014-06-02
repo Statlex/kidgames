@@ -287,10 +287,6 @@
 		</div>
 	</div>
 
-	<div class="js-cycle-progress-wrapper cycle-progress-wrapper">
-
-	</div>
-
 	<div class="js-cycle-progress-block cycle-progress-block">
 
 
@@ -301,17 +297,10 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-progress">
 
-	<% for (var ii = 0; ii < length; ii += 1) { %>
+	<% dates.forEach(function(date){ %>
+		<div class="js-cycle-progress-point cycle-progress-point " data-date="<%= date.date.str %>">1</div>
+	<% }); %>
 
-	<div class="js-cycle-progress-point cycle-progress-point"><%= ii %></div>
-
-	<% }; %>
-
-
-
-	<%= lang.progress %> : <%= dateOfCycle %> / <%= length %>
-	<br/>
-	<%= lang.cycle[state] %>
 
 </script>
 
