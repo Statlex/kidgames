@@ -49,7 +49,7 @@
 			this.showCalendarProgress();
 
 			// show notes
-			APP.dateInfo.showBottomDateInfo($('.js-main-calendar-page selected-date').data('date'));
+			APP.dateInfo.showBottomDateInfo($('.js-main-calendar-page .selected-date').data('date'));
 
 		},
 		showCalendarProgress: function() {
