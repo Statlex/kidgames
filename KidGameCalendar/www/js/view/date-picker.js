@@ -136,11 +136,6 @@
 				year: year.prop('selectedIndex', (new Date().getFullYear()) - this.date.getFullYear())
 			};
 
-			console.log(data && data.year);
-
-			console.log(new Date().getFullYear());
-			console.log(this.date.getFullYear());
-
 			state = cycleMaster.scanDay({
 				getStateOnly: true,
 				date: [this.date.getDate(), this.date.getMonth(), this.date.getFullYear()].join('-')
