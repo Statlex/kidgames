@@ -954,7 +954,7 @@ label {
 }
 
 .cycle-progress-point-text {
-	padding: 6px 0 3px;
+	padding: 8px 0 1px;
 	color: #cb051e;
 	text-transform: uppercase;
 	font-family: Arial, Verdana, sans-serif;
