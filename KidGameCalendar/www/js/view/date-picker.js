@@ -198,7 +198,6 @@
 
 			});
 
-
 		},
 		close: function() {
 

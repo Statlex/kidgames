@@ -403,6 +403,16 @@
 		return obj && obj.constructor === Object;
 	};
 
+	Bro.prototype.isEmptyObject = function (obj) {
+
+		if (!this.isPlainObject(obj)) {
+			return false;
+		}
+
+		return !Object.keys(obj).length;
+
+	};
+
 	Bro.prototype.setAttribute = function (attribute, value) {
 
 		// try to set attribute
@@ -831,32 +841,33 @@
 
 	};
 
+	Bro.prototype.util = Bro.prototype;
+	
 	Bro.prototype.util = {
 		screen: function() {
-
-			var info = {},
+			var data = {},
 				width = docElem.clientWidth,
 				height = docElem.clientHeight;
 
-			info.width = width;
-			info.height = height;
-			info.orientation = width > height ? 'landscape' : 'portrait';
-			info.aspectRatio = width / height;
-			info.smallestSide = width > height ? height : width;
-			info.biggestSide = width < height ? height : width;
-			info.center = {
+			data.width = width;
+			data.height = height;
+			data.orientation = width > height ? 'landscape' : 'portrait';
+			data.aspectRatio = width / height;
+			data.smallestSide = width > height ? height : width;
+			data.biggestSide = width < height ? height : width;
+			data.center = {
 				x: width / 2,
 				y: height / 2
 			};
 
-			return info;
+			return data;
 		},
 		vendorPrefix: {
 			css: '-webkit-',
 			js: 'webkit'
 		}
 	};
-
+	
 	win.$ = bro;
 
 	//win.Bro = Bro;

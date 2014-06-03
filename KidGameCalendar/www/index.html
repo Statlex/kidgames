@@ -287,14 +287,24 @@
 		</div>
 	</div>
 
-	<div class="js-cycle-progress-block cycle-progress-block">
+	<div class="js-cycle-progress-block cycle-progress-block"></div>
+
+	<div class="js-notes-bottom-block notes-bottom-block">
+
+
 
 
 
 	</div>
 
-	<div class="js-notes-bottom-block notes-bottom-block">
-		no notes
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-bottom-notes">
+
+	<h3 class="bottom-notes-header"><%= lang.notes %></h3>
+
+	<div class="bottom-notes-container">
+		notes is here
 	</div>
 
 </script>
@@ -303,13 +313,14 @@
 
 	<% if (typeof hasCycle !== 'undefined') { %>
 
-		<% dates.forEach(function(date){ %>
-		<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
-		<% }); %>
+		<div class="clear-fix cycle-progress-point-wrapper">
+			<% dates.forEach(function(date){ %>
+			<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
+			<% }); %>
+		</div>
 
-		<div>
-			<%= lang.dayW %> <%= currentDate + 1 %>
-			<br/><%= lang.period[activePeriodName] %>
+		<div class="cycle-progress-point-text">
+			<%= lang.dayW %> <b><%= currentDate + 1 %></b>&nbsp;&nbsp;<%= lang.period[activePeriodName] %>
 		</div>
 
 		<div class="legend-wrapper">

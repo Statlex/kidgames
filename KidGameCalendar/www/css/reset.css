@@ -88,7 +88,7 @@ center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, t
 tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer,
 header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video,
 .clear {
-	vertical-align: bottom;
+	vertical-align: baseline;
 
 	-webkit-tap-highlight-color: transparent;
 	-moz-tap-highlight-color: transparent;

@@ -105,17 +105,23 @@
 
 		},
 		showBottomDateInfo: function(date) {
-			var $el = $('.js-notes-bottom-block');
+			var that = this;
 			dataBase.getDateInfo(date, function(date){
 				date = JSON.parse(date);
 				if (date.toString() === date) {
 					date = JSON.parse(date);
 				}
 
-				$el.html(JSON.stringify(date));
+				that.createBottomNote(date);
 
 			});
 
+		},
+		createBottomNote: function(data) {
+			var $el = $('.js-notes-bottom-block'),
+				template = templateContainer.templates['main-calendar-bottom-notes'];
+			data.isEmpty = $el.isEmptyObject(data);
+			$el.html(_.template(template, data));
 		}
 
 	});
