@@ -857,7 +857,7 @@
 		}
 	};
 
-	win.$ = bro;
+	win.bro = bro;
 
 	//win.Bro = Bro;
 
