@@ -167,6 +167,7 @@
 			unsafe_2: 5,
 			safe_2: 5
 		},
+		flowLength: 4,
 		setCalendarSetting: function() {
 			var data = this.getData();
 

@@ -45,6 +45,17 @@
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
+.future-start-flow,
+.future-start-flow.month-date-today .inner-month-date {
+	background-color: #e83eb5;
+}
+
+.future-start-flow-transparent,
+.future-start-flow .inner-month-date {
+	background-color: rgba(232, 62, 181, 0.25);
+}
+
+
 .flow,
 .legend-flow,
 .flow.month-date-today .inner-month-date {
@@ -112,16 +123,6 @@
 }
 .title-cycle-date.fertile {
 	fill: #03cf08;
-}
-
-.future-start-flow,
-.future-start-flow.month-date-today .inner-month-date {
-	background-color: #E83838;
-}
-
-.future-start-flow-transparent,
-.future-start-flow .inner-month-date {
-	background-color: rgba(232, 56, 56, 0.25);
 }
 
 .no-set-day {

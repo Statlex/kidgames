@@ -353,9 +353,11 @@
 		});
 
 		if (lastCycle) {
+			var cycleLength = info.get('cycleLength'),
+				flowLength = info.get('flowLength');
 			dateNodes.forEach(function (dateNode) {
 				var different = calendar.getDifferent(dateNode, lastCycle.startCycle);
-				if ((different > 0) && ((different % info.get('cycleLength')) === 0)) {
+				if ((different > 0) && ((different % cycleLength) < flowLength)) {
 					util.addClass(dateNode.node, 'future-start-flow');
 				}
 			});
