@@ -303,16 +303,18 @@
 
 	<div class="notes-bottom-inner-block">
 
-		<div class="bottom-notes-container">
+		<div class="bottom-notes-container js-bottom-notes-container" data-notes-date="<%= date.str %>">
 
 			<% if (isEmpty) { %>
 
-			click here to set notes
+				<h3 class="no-notice-message">
+					<%= lang.noNoticeMessage %>:<br><%= date.date %> <%= lang.monthFull[date.month] %> <%= date.year %>
+				</h3>
 
 			<% } else { %>
 
+				<%= JSON.stringify(obj) %>
 
-			
 			<% }; %>
 
 			<!-- notes is here -->

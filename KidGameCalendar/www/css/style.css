@@ -956,7 +956,7 @@ label {
 }
 
 .bottom-notes-container {
-
+	height: 100%;
 }
 
 .cycle-progress-block {
@@ -983,4 +983,12 @@ label {
 	text-align: center;
 }
 
-
+.no-notice-message {
+	color: #b65bb7;
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: normal;
+	font-family: Arial, Verdana, sans-serif;
+	text-align: center;
+	padding: 20px 20px 20px;
+}
