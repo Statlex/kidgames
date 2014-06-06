@@ -301,39 +301,59 @@
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-bottom-notes">
 
-	<h3 class="bottom-notes-header"><%= lang.notes %></h3>
+	<div class="notes-bottom-inner-block">
 
-	<div class="bottom-notes-container">
-		notes is here
+		<div class="bottom-notes-container">
+
+			<% if (isEmpty) { %>
+
+			click here to set notes
+
+			<% } else { %>
+
+
+			
+			<% }; %>
+
+			<!-- notes is here -->
+
+		</div>
+
 	</div>
 
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-progress">
 
-	<% if (typeof hasCycle !== 'undefined') { %>
 
+	<% if (typeof hasCycle !== 'undefined') { %>
 		<div class="clear-fix cycle-progress-point-wrapper">
 			<% dates.forEach(function(date){ %>
 			<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
 			<% }); %>
 		</div>
-
 		<div class="cycle-progress-point-text">
 			<%= lang.dayW %> <b><%= currentDate + 1 %></b>&nbsp;&nbsp;<%= lang.period[activePeriodName] %>
 		</div>
-
-		<div class="legend-wrapper">
-			<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
-			<div class="cycle-legend-item">
-				<div class="legend-<%= type %> cycle-legend-point"></div>
-				<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
-			</div>
+	<% } else { %>
+		<div class="clear-fix cycle-progress-point-wrapper">
+			<% dates.forEach(function(date){ %>
+			<div class="js-cycle-progress-point cycle-progress-point no-set-day"></div>
 			<% }); %>
 		</div>
-
+		<div class="cycle-progress-point-text">
+			<%= lang.toStartNewCycle %>
+		</div>
 	<% }; %>
 
+	<div class="legend-wrapper">
+		<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
+		<div class="cycle-legend-item">
+			<div class="legend-<%= type %> cycle-legend-point"></div>
+			<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
+		</div>
+		<% }); %>
+	</div>
 
 </script>
 

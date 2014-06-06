@@ -55,7 +55,8 @@
 		sex: 'sex',
 		pill: 'pill',
 		weight: 'weight',
-		notes: 'notes'
+		notes: 'notes',
+		toStartNewCycle: 'to start new cycle press and hold needed day'
 
 
 	};

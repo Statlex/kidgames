@@ -120,7 +120,9 @@
 		createBottomNote: function(data) {
 			var $el = $('.js-notes-bottom-block'),
 				template = templateContainer.templates['main-calendar-bottom-notes'];
+
 			data.isEmpty = $el.isEmptyObject(data);
+
 			$el.html(_.template(template, data));
 		}
 

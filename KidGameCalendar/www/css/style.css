@@ -124,6 +124,9 @@
 	background-color: rgba(232, 56, 56, 0.25);
 }
 
+.no-set-day {
+	background-color: rgba(128, 128, 128, 0.2);
+}
 
 .title-cycle-date.current-day {
 	/*fill: #cc00cc;*/
@@ -254,6 +257,8 @@ body,
 	text-transform: uppercase;
 	font-family: Arial, Verdana, sans-serif;
 	display: inline-block;
+	position: relative;
+	top: -5px;
 }
 
 .slider-to-left,
@@ -929,7 +934,21 @@ label {
 }
 
 .notes-bottom-block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 385px 14px 14px;
+}
 
+.notes-bottom-inner-block {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ebaeb1;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .bottom-notes-header {

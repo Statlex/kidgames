@@ -159,9 +159,12 @@
 					}
 
 					// detect current date
-					var number = calendar.getDifferent(now, cycle.startCycle);
-					className = dateNodes[number].getAttribute('class');
-					dateNodes[number].setAttribute('class', className + ' current-day js-current-day');
+					var number = calendar.getDifferent(now, cycle.startCycle),
+						dataNodeNumber = dateNodes[number];
+					if (dataNodeNumber) {
+						className = dataNodeNumber.getAttribute('class');
+						dataNodeNumber.setAttribute('class', className + ' current-day js-current-day');
+					}
 
 					//return;
 				} else {

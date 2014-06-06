@@ -159,7 +159,7 @@
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;
 				}
-				if ((different >= 0) && (different <= info.get('cycleLength'))) {
+				if ((different >= 0) && (different < info.get('cycleLength'))) {
 					nearestCycle = new Cycle(cycle.startCycle);
 					nearestCycle.endFlow = cycle.endFlow;
 				}
@@ -204,6 +204,7 @@
 			obj.hasCycle = true;
 
 			obj.currentDate = calendar.getDifferent(date, cycle.startCycle);
+
 			obj.dates[obj.currentDate].isActive = true;
 
 			var dateMap = JSON.parse(JSON.stringify(info.dateMap)),
