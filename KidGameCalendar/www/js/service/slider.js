@@ -33,6 +33,7 @@
 	Slider.prototype.init = function () {
 		var that = this,
 			ev = info.evt;
+
 		this.wrapper.addEventListener(ev.down, function () {
 			that.innerContainer.style[info.preJS + 'Transition'] = 'none';
 			clearTimeout(that.timeoutId);
@@ -42,6 +43,7 @@
 				start: Date.now()
 			};
 		}, false);
+
 		this.wrapper.addEventListener(ev.move, function () {
 			if (!ev.isActive || !that.isActive) {
 				return;
@@ -49,11 +51,14 @@
 			var dX = ev.touchStart.x - ev.touchMove.x;
 			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + (that.page.width + dX) + 'px, 0)';
 		}, false);
+
 		this.wrapper.addEventListener(ev.up, function () {
 			that.isActive = false;
 			var dX = ev.touchStart.x - ev.touchMove.x,
 				x = that.page.width,
 				speed;
+
+			that.time = that.time || { start: 0 };
 
 			that.time.end = Date.now();
 
