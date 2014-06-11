@@ -12,7 +12,17 @@
 		squareSize: 20,
 		w: 7,
 		h: 14,
-		maxFloor: 9
+		maxFloor: 9,
+		colors: ['5856d6', '007aff', '34aadc', '5ac8fa', '4cd964', 'ff2d55', 'ff3d30', 'ff9500', 'ffcc00', '8e8e93'],
+		getColor: function() {
+
+			this.colors = this.colors.sort(function(){
+				return Math.random() - 0.5;
+			});
+
+			return this.colors[3];
+
+		}
 	};
 
 	tower = {
@@ -195,14 +205,13 @@
 
 				if (block.remove) {
 					block.remove += 1;
-					block.node.style.opacity = 1 - block.remove / 10;
+					block.node.style.opacity = 1 - block.remove / 8;
 				}
 
 				if (block.remove > 9) {
 					block.removeBlock();
 					arr.splice(index, 1);
 				}
-
 
 			});
 
@@ -241,7 +250,7 @@
 		direction: 1, // 1 to right, -1 to left
 		g: 0,
 		init: function (direction) {
-			this.node = $('<div class="block"/>')[0];
+			this.node = $('<div class="block"/>').css('background-color', '#' + gameInfo.getColor())[0];
 			this.timeStamp = Date.now();
 			this.direction = direction || 1;
 		},
@@ -347,16 +356,18 @@
 
 			var h = info.screen.getHeight() - (info.isAdsFree ? 0 : 80) - 80,
 				w = h / 2,
-				wrapper = $('.js-main-field');
+				wrapper = $('.js-main-field'),
+				blockSize;
 
 			wrapper.css({
 				height: h + 'px',
 				width: w + 'px'
 			});
 
-			gameInfo.squareSize = h / gameInfo.h;
+			blockSize = h / gameInfo.h;
+			gameInfo.squareSize = blockSize;
 
-			$('<style type="text/css">.block {width: ' + gameInfo.squareSize + 'px; height: ' + gameInfo.squareSize + 'px;}</style>').appendTo('body');
+			$('<style type="text/css">.block {width: ' + blockSize + 'px; height: ' + blockSize + 'px;}</style>').appendTo('body');
 
 		}
 

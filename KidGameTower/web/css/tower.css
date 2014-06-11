@@ -24,22 +24,34 @@ body,
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	position: relative;
+	z-index: 0;
 	overflow: hidden;
 	margin: 39px auto 0;
 }
 
 .block {
 	position: absolute;
-	width: 20px;
-	height: 20px;
+	/*width: 20px;*/
+	/*height: 20px;*/
 	background-color: #700;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #FFF;
 }
 
 .count {
 	position: absolute;
-	font-size: 100px;
+	z-index: -1;
+	font-size: 80px;
 	width: 100%;
-	line-height: 100px;
+	line-height: 80px;
 	text-align: center;
 	bottom: 50%;
+	color: #8e8e93;
+}
+
+.remove {
+	opacity: 0;
 }
