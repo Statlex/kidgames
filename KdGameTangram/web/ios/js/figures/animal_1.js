@@ -1,9 +1,5 @@
 (function () {
 
-	"use strict";
-	/*global window, document, console, alert */
-
-
 	'use strict';
 	/*global window, document */
 
@@ -14,7 +10,8 @@
 	win.categories.animal_1 = {
 		svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='133.304,132 133.304,82 158.304,107 158.304,157'/><polygon fill='#0C0' points='158.304,157 87.594,157 87.594,157 87.594,107 62.594,132 62.594,132 62.594,132 37.594,107 37.594,157 62.594,182 37.594,207 137.593,207 158.304,227.711 158.304,207 208.304,207'/></svg>",
 		name_en: 'Animals East',
-		name_ru: 'Дикие',
+		name_ru: 'Животные востока',
+		name_zn: '动物东',
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='133.304,132 133.304,82 158.304,107 158.304,157'/><polygon fill='#0C0' points='158.304,157 87.594,157 87.594,157 87.594,107 62.594,132 62.594,132 62.594,132 37.594,107 37.594,157 62.594,182 37.594,207 137.593,207 158.304,227.711 158.304,207 208.304,207'/></svg>",
@@ -226,6 +223,6 @@
 			}
 		]
 
-	}
+	};
 
 }());
