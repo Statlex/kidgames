@@ -11,7 +11,7 @@
 		svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='124.395,118.893 74.395,118.893 145.105,189.604 145.105,239.604 120.105,264.604 170.105,264.604 170.105,73.183'/><polygon fill='#0C0' points='39.039,83.538 109.75,83.538 74.394,118.893'/><polygon fill='#0C0' points='187.783,37.827 187.783,37.827 152.428,37.827 152.428,73.183 187.783,73.183'/></svg>",
 		name_en: 'Running',
 		name_ru: 'Бегаюшие',
-		name_zn: '跑步',
+		name_zh: '跑步',
 		figures: [
 			{
 				svg:"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='240.094px' height='300px' viewBox='0 0 240.094 300' enable-background='new 0 0 240.094 300' xml:space='preserve'><polygon fill='#0C0' points='124.395,118.893 74.395,118.893 145.105,189.604 145.105,239.604 120.105,264.604 170.105,264.604 170.105,73.183'/><polygon fill='#0C0' points='39.039,83.538 109.75,83.538 74.394,118.893'/><polygon fill='#0C0' points='187.783,37.827 187.783,37.827 152.428,37.827 152.428,73.183 187.783,73.183'/></svg>",
