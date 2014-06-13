@@ -52,7 +52,7 @@
 		lineLength: 3, // must be
 		defaultLineLength: 3, // the same
 		stepTime: 150,
-		speedIncrease: 0.98,
+		speedIncrease: 0.99,
 		init: function () {
 			this.wrapper.on('click', this.dropBlocks.bind(this));
 		},
