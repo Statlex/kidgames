@@ -51,6 +51,9 @@
 			},
 			getAspectRatio: function () {
 				return docElem.clientWidth / docElem.clientHeight;
+			},
+			orientation: function() {
+				return (docElem.clientWidth > docElem.clientHeight) ? '_' : '|';
 			}
 		},
 

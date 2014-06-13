@@ -51,7 +51,8 @@
 		isActive: true,
 		lineLength: 3, // must be
 		defaultLineLength: 3, // the same
-		stepTime: 220,
+		stepTime: 150,
+		speedIncrease: 0.98,
 		init: function () {
 			this.wrapper.on('click', this.dropBlocks.bind(this));
 		},
@@ -137,7 +138,7 @@
 				return;
 			}
 
-			this.stepTime *= 0.99;
+			this.stepTime *= this.speedIncrease;
 			this.count += 1;
 
 			$('.js-count').html(this.count);
@@ -358,17 +359,6 @@
 
 	// run game
 
-//	$(win).on('load', function(){
-//
-//		var towerObj = Object.create(tower);
-//		towerObj.wrapper = $('.js-main-field');
-//		towerObj.createLine();
-//
-//		towerObj.init();
-//		towerObj.step();
-//
-//	});
-
 	function startGame() {
 
 		function setGameStyles() {
@@ -395,7 +385,6 @@
 		// begin - show n set tutor screen
 		$('.js-tutor-screen').on('click', function(){
 
-
 			this.style.display = 'none';
 
 			var towerObj = Object.create(tower);
@@ -410,6 +399,14 @@
 
 	}
 
+	function gameOnResize () {
+		if (info.screen.orientation() === '|' && document.querySelector('.js-tutor-screen').clientHeight) {
+			win.location.reload();
+		}
+	}
+
 	$(win).on('load', startGame);
+
+	$(win).on('resize', gameOnResize);
 
 }(window));
