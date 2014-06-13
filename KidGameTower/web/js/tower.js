@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, setTimeout, window, document */
-	/*global $, info */
+	/*global $, info, lang */
 
 	var tower, block, jsPre, gameInfo;
 	jsPre = 'webkit';
@@ -24,6 +24,25 @@
 
 		}
 	};
+
+	function customAlert(args) {
+
+		if (args.hide) {
+			// hide all alerts
+			console.log('hide alerts');
+			return;
+		}
+
+		var html, template, $node;
+		html = $('.js-alert-template').html();
+		template = $().template(html);
+		$node = $(template(args)).appendTo('body');
+
+		setTimeout(function(){
+			$('body').addClass('blur');
+		}, 20);
+
+	}
 
 	tower = {
 		count: -1, // see lineLength
@@ -238,9 +257,9 @@
 
 		},
 		endGame: function () {
-			alert('your count is: ' + this.count);
-			alert('end game, to restart refresh page');
-
+			customAlert({
+				msg: lang[info.lang].yourScoreIs + ': ' + this.count
+			});
 		}
 	};
 

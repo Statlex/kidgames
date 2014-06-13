@@ -262,7 +262,7 @@
 	//=== info end ===//
 
 	re = {
-		htmlNode: /^<[\s\S]+>$/,
+		htmlNode: /(^|\s+)<[\s\S]+>($|\s+)/,
 		json: /^\{[\s\S]*\}$/,
 		xToX: function(str) {
 			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');

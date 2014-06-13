@@ -14,6 +14,60 @@ body,
 	background-color: #fff;
 }
 
+.blur .count,
+.blur .main-field {
+	-webkit-filter: blur(3px);
+
+	filter: blur(3px);
+	opacity: 0.5;
+}
+
+.alert-wrapper {
+	width: 80%;
+	/* height: 140px; */
+	position: fixed;
+	z-index: 11;
+	top: 30%;
+	left: 10%;
+	background-color: #FFF;
+	border-radius: 4px;
+	box-sizing: border-box;
+	border: 1px solid #8e8e93;
+	padding: 25px 10px 20px;
+	color: #141414;
+	-webkit-transition: 0.1s all ease-out;
+	transition: 0.1s all ease-out;
+	-webkit-transform: scale(0.01);
+	transform: scale(0.01);
+	box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.alert-header {
+	font-weight: normal;
+	text-align: center;
+	font-size: 16px;
+	line-height: 16px;
+}
+
+.reload-button {
+	width: 50px;
+	height: 50px;
+	background-image: url('../img/sprite.svg');
+	background-repeat: no-repeat;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	background-position: 0 0;
+	box-sizing: border-box;
+	border-radius: 4px;
+	border: 1px solid #8e8e93;
+	margin: 26px auto 0;
+}
+
+.blur .alert-wrapper {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
 .tutor-screen {
 	background-color: rgba(165, 51, 95, 0.25);
 	z-index: 10;
@@ -54,4 +108,8 @@ body,
 
 .remove {
 	opacity: 0;
+}
+
+.alert-wrapper {
+
 }
