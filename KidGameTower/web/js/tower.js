@@ -410,7 +410,7 @@
 	$(win).on('resize', gameOnResize);
 
 	function noBodyScroll() {
-		$('body').addEventListener('touchmove', function (e) {
+		document.body.addEventListener('touchmove', function (e) {
 			if (!info.canScroll) {
 				e.preventDefault();
 			}
