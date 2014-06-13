@@ -409,4 +409,16 @@
 
 	$(win).on('resize', gameOnResize);
 
+	function noBodyScroll() {
+		$('body').addEventListener('touchmove', function (e) {
+			if (!info.canScroll) {
+				e.preventDefault();
+			}
+		}, false);
+	}
+
+	win.addEventListener('load', noBodyScroll, false);
+
+
+
 }(window));
