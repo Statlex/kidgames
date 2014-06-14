@@ -36,8 +36,6 @@
 
 			}, this);
 
-			console.log(this);
-
 		}
 
 	};
