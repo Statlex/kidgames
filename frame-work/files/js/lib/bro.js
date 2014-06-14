@@ -830,6 +830,16 @@
 		return arr.indexOf(obj) !== -1;
 	};
 
+	Bro.prototype.shuffle = function(arr) {
+		return arr.sort(function () {
+			return Math.random() - 0.5;
+		});
+	};
+
+	Bro.prototype.duplicate = function(obj) {
+		return JSON.parse(JSON.stringify(obj));
+	};
+
 	Bro.prototype.isPlainObject = function (obj) {
 		return obj && obj.constructor === Object;
 	};

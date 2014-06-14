@@ -3,7 +3,12 @@
 	"use strict";
 	/*global console, alert, templateMaster, $, window */
 
-	$(win).on('load', templateMaster.init.bind(templateMaster));
+	function start() {
+		templateMaster.init();
+		game.start();
+	}
+
+	$(win).on('load', start);
 
 
 

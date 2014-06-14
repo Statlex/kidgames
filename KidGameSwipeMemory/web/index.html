@@ -50,12 +50,13 @@
 
 
 
-<script type="text/x-template" data-name="level-1">
-	<h1>level</h1>
+<script type="text/x-template" data-name="level">
+
+	<% directions.forEach(function(obj){ %>
+		<div><%= obj.arrow %></div>
+	<% }); %>
+
 </script>
-
-
-
 
 
 </body>
