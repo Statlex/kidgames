@@ -6,3 +6,11 @@ body {
 	top: 0;
 	left: 0;
 }
+
+.done-dir {
+	background-color: #1dff1d;
+}
+
+.wrong-dir {
+	background-color: #e83838;
+}

@@ -477,27 +477,30 @@
 
 	};
 
-	Bro.prototype.hasClass = function (className) {
-		var has = false;
+	Bro.prototype.hasClass = function () {
+		var has = false,
+			args = arguments;
 		this.forEach(function (node) {
 			if (has) {
 				return;
 			}
-			has = node.classList.contains(className);
+			has = node.classList.contains.apply(node.classList, args);
 		});
 		return has;
 	};
 
-	Bro.prototype.addClass = function (className) {
+	Bro.prototype.addClass = function () {
+		var args = arguments;
 		this.forEach(function (node) {
-			node.classList.add(className);
+			node.classList.add.apply(node.classList, args);
 		});
 		return this;
 	};
 
-	Bro.prototype.removeClass = function (className) {
+	Bro.prototype.removeClass = function() {
+		var args = arguments;
 		this.forEach(function (node) {
-			node.classList.remove(className);
+			node.classList.remove.apply(node.classList, args);
 		});
 		return this;
 	};

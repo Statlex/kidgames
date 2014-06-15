@@ -53,7 +53,7 @@
 <script type="text/x-template" data-name="level">
 
 	<% directions.forEach(function(obj){ %>
-		<div><%= obj.arrow %></div>
+		<div class="js-dir" data-index="<%= obj.index %>"><%= obj.dir %></div>
 	<% }); %>
 
 </script>
