@@ -15,6 +15,6 @@
 		find: '发现',
 		designerName: 'Anna Rudnitskaya',
 		designer: 'designer'
-	}
+	};
 
 }(window));

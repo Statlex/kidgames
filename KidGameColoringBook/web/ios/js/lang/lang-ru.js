@@ -19,6 +19,6 @@
 		designerName: 'Анна Рудницкая',
 		designer: 'Дизайнер'
 
-	}
+	};
 
 }(window));

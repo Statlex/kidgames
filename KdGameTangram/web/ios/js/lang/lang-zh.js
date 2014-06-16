@@ -23,7 +23,11 @@
 		easy: '简单模式',
 		myCollection: 'my collection',
 		removeTgState: "Remove tangram's state ?",
-		buyAdsFree: '买免费广告版。'
+		buyAdsFree: '买免费广告版。',
+
+		thanks: '谢谢',
+		designerName: 'Anna Rudnitskaya',
+		designer: 'designer'
 
 	};
 
