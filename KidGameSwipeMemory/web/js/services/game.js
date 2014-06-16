@@ -1,13 +1,16 @@
 (function (win) {
 
 	"use strict";
-	/*global console, alert, $, window, document, templateMaster */
+	/*global console, alert, $, window, document, templateMaster, lang, info */
 
-	var game = {
+	var game, header;
+
+	game = {
 
 		$field: false,
 		directions: ['left', 'up', 'right', 'down'],
 		mode: 'show', // show ^ test
+		mistakePercent: 25,
 		keyMap: {
 //			'left': 37,
 //			'up': 38,
@@ -19,6 +22,11 @@
 			40: 'down'
 		},
 		start: function() {
+
+
+
+
+			header.init();
 
 			this.$field = $('.js-main-field');
 
@@ -32,6 +40,8 @@
 			this.$field.html('');
 		},
 		createLevel: function(number) {
+
+			header.text(lang[info.lang].swipe);
 
 			this.mode = 'show';
 
@@ -61,12 +71,21 @@
 				mistake: 0
 			};
 
+			info.set('hi-score', number, true);
+
+			header.mistake(0);
+
 			html = templateMaster.tmplFn.level(data);
 
 			this.$field.html(html);
 
 		},
 		dispatchSwipe: function(args) {
+
+			if (this.mode === 'endGame') {
+				return;
+			}
+
 			var dir = args.dir || this.keyMap[args.key],
 				firstNode,
 				lastNode,
@@ -110,7 +129,12 @@
 						$node.addClass('done-dir');
 					} else {
 						this.curLevelData.mistake += 1;     // use only for test
+						header.mistake(this.curLevelData.mistake);
 						$node.addClass('wrong-dir');
+						if (this.hasExtraMistakes()) {
+							this.alertEndGame();
+							console.log('-- too many mistakes - end game --');
+						}
 					}
 
 
@@ -131,6 +155,8 @@
 
 					case 'show':
 
+						header.text(lang[info.lang].swipeAgain);
+
 						this.mode = 'test';
 
 						this.curLevelData.directions.forEach(function(dir){
@@ -146,11 +172,9 @@
 
 					case 'test':
 
-
 						console.log(' -- test level is done -- ');
 
 						this.createLevel(this.curLevelData.number + 1);
-
 
 						break;
 
@@ -161,14 +185,48 @@
 
 			}
 
+		},
 
+		hasExtraMistakes: function() {
 
+			var allPoints = this.curLevelData.directions.length,
+				mistakes = this.curLevelData.mistake,
+				percent = mistakes / allPoints * 100;
 
+			return percent > this.mistakePercent;
 
+		},
+
+		alertEndGame: function() {
+
+			this.mode = 'endGame';
+
+			var data = {
+					score: this.curLevelData.number,
+					hiScore: info.get('hi-score') || 0
+				},
+				html = templateMaster.tmplFn.alert(data),
+				$node = $(html);
+
+			$node.appendTo('.js-main-wrapper');
 
 		}
 
 	};
+
+	header = {
+		init: function() {
+			this.$text = $('.js-main-wrapper .js-text');
+			this.$mistake = $('.js-main-wrapper .js-mistake');
+		},
+		text: function(text) {
+			this.$text.html(text);
+		},
+		mistake: function(miss) {
+			this.$mistake.html(miss);
+		}
+	};
+
 
 	win.game = game;
 

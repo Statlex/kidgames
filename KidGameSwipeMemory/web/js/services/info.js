@@ -11,7 +11,7 @@
 	info = {
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['en', 'ru'],
+		availableLangs: ['en'],
 		saveItem: 'memory-swipe',
 		isPhone: false,
 		isTouch: isTouch,
