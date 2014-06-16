@@ -1,6 +1,6 @@
 (function (win, doc, docElem) {
 
-	//"use strict";
+	"use strict";
 	/*global console, alert, langs, window, document */
 
 	win.lang = {

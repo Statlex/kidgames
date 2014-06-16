@@ -18,7 +18,4 @@
 
 	$(win).on('load', start);
 
-
-
-
 }(window));

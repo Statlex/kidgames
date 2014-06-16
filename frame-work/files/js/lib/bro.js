@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, Event */
+	/*global window, document, Event */
 
 	var isTouch, info, bro, Bro, re;
 
