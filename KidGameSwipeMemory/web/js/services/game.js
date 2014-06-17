@@ -12,10 +12,6 @@
 		mode: 'show', // show ^ test
 		mistakePercent: 25,
 		keyMap: {
-//			'left': 37,
-//			'up': 38,
-//			'right': 39,
-//			'down': 40,
 			37: 'left',
 			38: 'up',
 			39: 'right',
@@ -23,17 +19,15 @@
 		},
 		start: function() {
 
-
-
-
 			header.init();
 
 			this.$field = $('.js-main-field');
 
 			this.clearField();
 
+			this.createLevel(1);
 
-			this.createLevel(3);
+			this.startGame = Date.now();
 
 		},
 		clearField: function() {
@@ -41,7 +35,9 @@
 		},
 		createLevel: function(number) {
 
-			header.text(lang[info.lang].swipe);
+			if (number <= 3) {
+				header.text(lang[info.lang].swipe);
+			}
 
 			this.mode = 'show';
 
@@ -79,6 +75,20 @@
 
 			this.$field.html(html);
 
+
+			// detect too many
+			win.setTimeout((function(){
+
+				var wrapperH = $('.js-main-wrapper').prop('clientHeight'),
+					containerH = $('.js-arrows-wrapper').prop('clientHeight');
+
+				if (wrapperH < containerH) {
+					this.alertEndGame();
+				}
+
+			}.bind(this)), 1000);
+
+
 		},
 		dispatchSwipe: function(args) {
 
@@ -104,6 +114,10 @@
 					firstNode = dir;
 				}
 			});
+
+			if (!firstNode) {
+				return;
+			}
 
 			$node = $('.js-dir[data-index="' + firstNode.index + '"]');
 
@@ -133,10 +147,14 @@
 						$node.addClass('wrong-dir');
 						if (this.hasExtraMistakes()) {
 							this.alertEndGame();
+
+							$node = $('.js-dir');
+							$node.addClass('show-arrow');
+							$node.removeClass('hide-arrow' ,'wrong-dir', 'done-dir');
+
 							console.log('-- too many mistakes - end game --');
 						}
 					}
-
 
 					break;
 
@@ -155,7 +173,9 @@
 
 					case 'show':
 
-						header.text(lang[info.lang].swipeAgain);
+						if (this.curLevelData.number <= 3) {
+							header.text(lang[info.lang].swipeAgain);
+						}
 
 						this.mode = 'test';
 
@@ -164,7 +184,8 @@
 						});
 
 						$node = $('.js-dir');
-						$node.removeClass('wrong-dir', 'done-dir');
+						$node.addClass('hide-arrow');
+						$node.removeClass('wrong-dir', 'done-dir', 'show-arrow');
 
 						console.log(' -- show level is done -- ');
 
@@ -174,7 +195,9 @@
 
 						console.log(' -- test level is done -- ');
 
-						this.createLevel(this.curLevelData.number + 1);
+						win.setTimeout((function(){
+							this.createLevel(this.curLevelData.number + 1);
+						}.bind(this)), 1500);
 
 						break;
 
@@ -197,18 +220,43 @@
 
 		},
 
+		getGameTime: function() {
+
+			var gameTime = Date.now() - this.startGame;
+
+			if (gameTime > 86400 * 1000) {
+				return false;
+			}
+
+			gameTime = new Date(gameTime);
+
+			return {
+				s: gameTime.getSeconds(),
+				m: gameTime.getMinutes(),
+				h: gameTime.getUTCHours()
+			};
+
+		},
+
 		alertEndGame: function() {
 
 			this.mode = 'endGame';
 
 			var data = {
 					score: this.curLevelData.number,
-					hiScore: info.get('hi-score') || 0
+					hiScore: info.get('hi-score') || 0,
+					gameTime: this.getGameTime()
 				},
 				html = templateMaster.tmplFn.alert(data),
 				$node = $(html);
 
+			console.log(data.gameTime);
+
 			$node.appendTo('.js-main-wrapper');
+
+			win.setTimeout(function(){
+				$('.js-main-wrapper').addClass('blur');
+			}, 10);
 
 		}
 
@@ -218,13 +266,49 @@
 		init: function() {
 			this.$text = $('.js-main-wrapper .js-text');
 			this.$mistake = $('.js-main-wrapper .js-mistake');
+
+			this.$text.on('click', this.hideText.bind(this));
+
 		},
 		text: function(text) {
+
+			win.clearTimeout(this.textTimeId);
+
 			this.$text.html(text);
+
+			this.textIsShow = true;
+
+			this.$text.removeClass('show-alert');
+
+			win.setTimeout((function(){
+				this.$text.addClass('show-alert');
+			}.bind(this)), 300);
+
+			this.textTimeId = win.setTimeout((function(){
+				this.hideText();
+				win.clearTimeout(this.textTimeId);
+			}.bind(this)), 3000);
+
 		},
+
+		hideText: function() {
+
+			win.clearTimeout(this.textTimeId);
+
+			if (!this.textIsShow) {
+				return;
+			}
+
+			this.textIsShow = false;
+
+			this.$text.removeClass('show-alert');
+
+		},
+
 		mistake: function(miss) {
 			this.$mistake.html(miss);
 		}
+
 	};
 
 
