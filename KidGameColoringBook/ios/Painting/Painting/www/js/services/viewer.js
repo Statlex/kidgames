@@ -35,6 +35,14 @@
 			this.transition2ndPart(); // only for decoration
 			this.isBack = false; // only for decoration
 
+			this.setEventListenersBro();
+
+		},
+		setEventListenersBro: function(){
+			var items = bro('#wrapper .js-onclick-handler');
+			items.on('click', function(){
+				eval(this.dataset.onclick);
+			});
 		},
 		back: function() {
 			this.isBack = true;

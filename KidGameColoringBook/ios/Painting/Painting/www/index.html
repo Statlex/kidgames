@@ -2,13 +2,15 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>FW</title>
+	<title>Statlex - Kid Game - Coloring Book</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<link rel="stylesheet" href="css/reset.css" />
 	<link rel="stylesheet" href="css/fw-styles.css" />
 	<link rel="stylesheet" href="css/style.css" />
+
+	<script src="js/services/bro-2.js" type="text/javascript"></script>
 
 	<!-- services -->
 	<script src="js/services/info.js" type="text/javascript"></script>
@@ -36,22 +38,25 @@
 	<script src="js/figures/butterflies.js" type="text/javascript"></script>
 	<script src="js/figures/car.js" type="text/javascript"></script>
 	<script src="js/figures/cats.js" type="text/javascript"></script>
+
 	<script src="js/figures/chickens.js" type="text/javascript"></script>
 	<script src="js/figures/clouds.js" type="text/javascript"></script>
 	<script src="js/figures/dolphins.js" type="text/javascript"></script>
 	<script src="js/figures/fence.js" type="text/javascript"></script>
 	<script src="js/figures/figures.js" type="text/javascript"></script>
-	<script src="js/figures/flowers.js" type="text/javascript"></script>
+
 	<script src="js/figures/fruit.js" type="text/javascript"></script>
 	<script src="js/figures/girls.js" type="text/javascript"></script>
 	<script src="js/figures/leaves.js" type="text/javascript"></script>
 	<script src="js/figures/masks.js" type="text/javascript"></script>
 	<script src="js/figures/mosaic.js" type="text/javascript"></script>
+
 	<script src="js/figures/mountains.js" type="text/javascript"></script>
 	<script src="js/figures/phones.js" type="text/javascript"></script>
 	<script src="js/figures/prince.js" type="text/javascript"></script>
 	<script src="js/figures/princess.js" type="text/javascript"></script>
 	<script src="js/figures/some.js" type="text/javascript"></script>
+
 	<script src="js/figures/sun.js" type="text/javascript"></script>
 	<script src="js/figures/thing.js" type="text/javascript"></script>
 	<script src="js/figures/trees.js" type="text/javascript"></script>
@@ -82,13 +87,17 @@
 
 </div>
 
-<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.createResize();">
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);ui.fn.setBodyScroll(true);main.createResize();main.setExternalLinks();">
 
 	<div class="page categories-list-page">
 
+		<a href="https://itunes.apple.com/us/app/coloring-book-develop-color/id832321284?mt=8" class="ads-free"><img src="img/i/ads-free.svg" alt=""/></a>
+
 		<div class="categories-list-wrapper">
 		{{ for (var key in allFigures) { }}
-			<div onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("image-list-page");' class="categories-list-item">{{= allFigures[key].svg }}</div>
+			<div data-onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("image-list-page");' class="categories-list-item js-onclick-handler">
+				<div class="preview-image" style="background-image: url(img/preview/{{= key }}.png);"></div>
+			</div>
 		{{ }; }}
 			<img class="end-of-list-padding" src="img/i/pencils.png" alt=""/>
 			<img class="end-of-list-padding visible" src="img/i/pencils.png" alt=""/>
@@ -104,7 +113,7 @@
 
 		<div class="categories-list-wrapper">
 			{{ allFigures[info.currentCategoryName].figures.forEach(function(svg){ }}
-				<div onclick='info.set("currentImageId", {{= svg.id }});viewer.show("draw-page");' class="categories-list-item" data-base-id="{{= svg.id }}">{{= svg.svg }}</div>
+				<div data-onclick='info.set("currentImageId", {{= svg.id }});viewer.show("draw-page");' class="categories-list-item js-onclick-handler" data-base-id="{{= svg.id }}">{{= svg.svg }}</div>
 			{{ }); }}
 			<img class="end-of-list-padding" src="img/i/pencils.png" alt=""/>
 			<img class="end-of-list-padding visible" src="img/i/pencils.png" alt=""/>
@@ -195,6 +204,7 @@
 						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" target="_blank">Facebook</a>
 						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" target="_blank">Twitter</a>
 						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" target="_blank">Google+</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" target="_blank">LinkedIn</a>
 						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" target="_blank">vk</a>
 					</div>
 				</div>

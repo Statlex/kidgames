@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, $$, $, ui, setTimeout, info, viewer */
 
 	var main = {
 
@@ -41,6 +41,16 @@
 			setTimeout(this.setSizing.bind(this), 100);
 			setTimeout(this.setSizing.bind(this), 200);
 			setTimeout(this.setSizing.bind(this), 300);
+		},
+		setExternalLinks: function() {
+			setTimeout(function(){
+				if (info.isAdsFree) {
+					return;
+				}
+				var link = $('.ads-free', this.wrapper);
+				link.style.display = 'block';
+				ui.externalLinkHandler.setLinks([link]);
+			}, 1500);
 		}
 
 	};
