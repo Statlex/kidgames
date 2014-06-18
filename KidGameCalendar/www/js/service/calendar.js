@@ -163,6 +163,9 @@
 				monthLength += 1;
 			}
 			return monthLength;
+//			getDaysOfMonth: function (month, year) {
+//				return 32 - new Date(year, month - 1, 32).getDate();
+//			},
 		},
 		getDaysOfWeek: function() {
 			var days = [0,1,2,3,4,5,6],

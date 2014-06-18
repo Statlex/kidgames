@@ -105,7 +105,7 @@
 			e.preventDefault();
 		}, false);
 
-		window.addEventListener('resize', this.restorePosition.bind(this), false);
+		//window.addEventListener('resize', this.restorePosition.bind(this), false);
 
 	};
 

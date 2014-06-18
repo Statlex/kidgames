@@ -21,13 +21,20 @@
 			this.addEventListenersToContent();
 			this.runCustomFunction(selector);
 			this.$el.css('top', '0');
-			APP.mainView.fade.show();
+			//APP.mainView.fade.show();
 		},
 		hide: function(noHistoryBack) {
+
+			if (!this.$el[0].style.top) { // if 'top' === '', window is closed
+				return;
+			}
+
 			this.$el.css('top', '');
-			if (!noHistoryBack) {
+
+			if (Backbone.history.fragment === 'window') {
 				Backbone.history.history.back();
 			}
+
 		},
 
 		addEventListenersToContent: function() {
@@ -78,9 +85,13 @@
 
 					Backbone.history.history.back();
 
+					if (APP.state !== 'title') {
+						APP.router.navigate('title', {trigger: true});
+					}
+
 					win.setTimeout(function(){
 						window.location.reload();
-					}, 100);
+					}, 300);
 
 				});
 

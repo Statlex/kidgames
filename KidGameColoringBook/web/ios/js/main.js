@@ -30,7 +30,7 @@
 		},
 		setSizing: function() {
 			var blocks = $$('.categories-list-item', main.wrapper);
-			var size = Math.floor((main.wrapper.clientWidth - 30) / 3) + 'px';
+			var size = Math.floor((this.wrapper.clientWidth - 30) / 3) + 'px';
 			blocks.forEach(function(block){
 				block.style.width = size;
 				block.style.height = size;

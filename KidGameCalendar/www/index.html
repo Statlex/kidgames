@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<title>red days</title>
 
 	<!-- mobile device -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta charset="UTF-8" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
 	<!-- keywords and description -->
 	<meta name="keywords" content="">
@@ -51,6 +57,8 @@
 	<script src="js/view/help.js" type="text/javascript"></script>
 	<script src="js/view/window-view.js" type="text/javascript"></script>
 	<script src="js/view/cycle-delayed-view.js" type="text/javascript"></script>
+	<script src="js/view/title.js" type="text/javascript"></script>
+	<script src="js/view/date-picker.js" type="text/javascript"></script>
 	<!-- views - -->
 
 	<!-- main js -->
@@ -90,10 +98,93 @@
 
 	<div class="js-window-wrapper window-wrapper"></div>
 
+	<div class="title-view js-title-view">
+
+		<header class="title-header">
+			<div class="js-to-calendar title-to-calendar"></div>
+			<div class="js-setting title-to-setting"></div>
+		</header>
+
+		<div class="main-state-wrapper js-main-state-wrapper"></div>
+		<div class="legend-wrapper js-legend-wrapper"></div>
+		<div class="js-start-tracking-button js-bottom-button title-tracking-button"></div>
+		<!-- some text -->
+	</div>
+
 </div>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="title-legend">
+
+	<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
+	<div class="cycle-legend-item">
+		<div class="legend-<%= type %> cycle-legend-point"></div>
+		<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
+	</div>
+	<% }); %>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="title-cycle-state-button">
+
+	<div class="table main-cycle-button-data-wrapper">
+		<div class="table-row">
+			<div class="table-cell">
+				<% if (haveData) { %>
+
+				<div class="main-cycle-button-today"><%= date %> <%= lang.month[month] %>, <%= year %></div>
+
+				<div class="main-cycle-button-period-state">
+					<span class="main-cycle-button-period-state-day"><%= lang.dayW %></span>
+					<span class="main-cycle-button-period-state-progress"><%= dayOfCycle %><!--/ <%= cycleLength %>--></span>
+				</div>
+
+				<div class="main-cycle-button-period-name">
+					<%= periodName %>
+				</div>
+
+				<% } else { %>
+
+				<div class="no-cycles-notice">
+					<%= lang.clickHereToStartNewCycle %>
+				</div>
+
+				<% }; %>
+
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="title-cycle-arrow">
+
+	<svg class="title-cycle-arrow" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="263.15px" height="263.15px" viewBox="0 0 263.15 263.15" enable-background="new 0 0 263.15 263.15" xml:space="preserve">
+
+		<defs>
+			<linearGradient id="circleArrowGradient" x1="<%= gradientX1 %>%" y1="<%= gradientY1 %>%" x2="<%= gradientX2 %>%" y2="<%= gradientY2 %>%" spreadMethod="pad" >
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+				<stop offset="100%" stop-color="#cad2d8" stop-opacity="1"/>
+			</linearGradient>
+		</defs>
+
+		<filter id="dropShadow" height="150%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+			<feOffset dx="<%= shadowDx %>" dy="<%= shadowDy %>" result="offsetblur"/>
+			<feMerge>
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+
+		<path style="filter:url(#dropShadow); fill:url(#circleArrowGradient);" transform="rotate(<%= rotate %>, 131.58, 131.58)" fill="#FFFFFF" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M157.42,20.69 L157.42,20.69L131.575,4.724l-25.844,15.965v0.001c-50.418,11.704-87.99,56.907-87.99,110.886 c0,62.868,50.965,113.835,113.834,113.835s113.834-50.967,113.834-113.835C245.409,77.597,207.838,32.395,157.42,20.69z"/>
+
+	</svg>
+
+</script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-menu">
 
+	<div class="js-to-home main-menu-item"><div class="main-menu-item-to-home"></div></div>
 	<div class="js-calendar main-menu-item"><div class="main-menu-item-calendar"></div></div>
 	<div class="js-notes main-menu-item"><div class="main-menu-item-notes"></div></div>
 	<div class="js-time main-menu-item"><div class="main-menu-item-time"></div></div>
@@ -184,10 +275,11 @@
 
 	<div class="js-show-help show-help"></div>
 
-	<div class="slider-date js-slider-date"></div>
-
-	<div class="js-slider-to-left slider-to-left"></div>
-	<div class="js-slider-to-right slider-to-right"></div>
+	<div class="slider-date-n-button-wrapper">
+		<div class="js-slider-to-left slider-to-left"></div>
+		<div class="slider-date js-slider-date"></div>
+		<div class="js-slider-to-right slider-to-right"></div>
+	</div>
 
 	<div class="js-main-calendar-wrapper slider-wrapper">
 		<div class="js-main-calendar-inner-container slider-container">
@@ -195,15 +287,81 @@
 		</div>
 	</div>
 
-	<div class="js-cycle-progress-wrapper cycle-progress-wrapper">
+	<div class="js-cycle-progress-block cycle-progress-block"></div>
 
+	<div class="js-notes-bottom-block notes-bottom-block">
+
+
+
+
+
+	</div>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-bottom-notes">
+
+	<div class="notes-bottom-inner-block">
+
+		<div class="bottom-notes-container js-bottom-notes-container" data-notes-date="<%= date.str %>">
+
+			<% if (isEmpty) { %>
+
+				<h3 class="no-notice-message">
+					<%= lang.noNoticeMessage %>:<br><%= date.date %> <%= lang.monthFull[date.month] %> <%= date.year %>
+				</h3>
+
+			<% } else { %>
+
+				<%= JSON.stringify(obj) %>
+
+			<% }; %>
+
+			<!-- notes is here -->
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-progress">
+
+
+	<% if (typeof hasCycle !== 'undefined') { %>
+		<div class="clear-fix cycle-progress-point-wrapper">
+			<% dates.forEach(function(date){ %>
+			<div class="js-cycle-progress-point cycle-progress-point <%= date.periodName + (activePeriod === date.cycleState ? ''  : '-transparent') %> <%= date.isActive ? 'active' : ' ' %>" data-date="<%= date.date.str %>">1</div>
+			<% }); %>
+		</div>
+		<div class="cycle-progress-point-text">
+			<%= lang.dayW %> <b><%= currentDate + 1 %></b>&nbsp;&nbsp;<%= lang.period[activePeriodName] %>
+		</div>
+	<% } else { %>
+		<div class="clear-fix cycle-progress-point-wrapper">
+			<% dates.forEach(function(date){ %>
+			<div class="js-cycle-progress-point cycle-progress-point no-set-day"></div>
+			<% }); %>
+		</div>
+		<div class="cycle-progress-point-text">
+			<%= lang.toStartNewCycle %>
+		</div>
+	<% }; %>
+
+	<div class="legend-wrapper">
+		<% ['flow', 'safe', 'unsafe', 'fertile'].forEach(function(type){ %>
+		<div class="cycle-legend-item">
+			<div class="legend-<%= type %> cycle-legend-point"></div>
+			<div class="cycle-legend-description"><%= lang.cycle[type] %></div>
+		</div>
+		<% }); %>
 	</div>
 
 </script>
 
 <script type="text/x-template" class="jsTemplate" data-template-name="main-calendar-date">
 
-	<%= lang.month[date.month] %> - <%= date.year %>
+	<%= lang.month[date.month] %> <%= date.year %>
 
 </script>
 
@@ -217,7 +375,7 @@
 			<% }); %>
 		</div>
 
-		<h1 style="display: none"><<-- <%= lang.month[month] %> / <%= year %> -->></h1>
+		<h1 style="display: none;"><<-- <%= lang.month[month] %> / <%= year %> -->></h1>
 
 		<% pre.dates.forEach(function(date) { %>
 		<div class="month-date" data-date="<%= date.date %>-<%= date.month %>-<%= date.year %>"><div class="inner-month-date"><%= date.date %></div></div>
@@ -312,7 +470,6 @@
 
 	<div><p data-show="settings">settings</p></div>
 	<div><p data-show="help">help</p></div>
-
 
 </script>
 
@@ -449,6 +606,55 @@
 	<% }; %>
 
 </script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-picker-fade">
+	<div class="js-date-picker-fade fade"></div>
+</script>
+
+<script type="text/x-template" class="jsTemplate" data-template-name="date-picker">
+
+	<div class="js-date-picker-wrapper date-picker-wrapper">
+
+		<div class="js-period-state date-picker-period-state">period state</div>
+
+
+		<div class="date-picker-selects-wrapper clear-fix">
+
+			<% ['date', 'month', 'year'].forEach(function(type){ %>
+				<div class="js-select-wrapper date-picker-select-block">
+
+					<img src="img/date-picker-button-bg.png" class="date-picker-button-bg" alt=""/>
+					<img src="img/date-picker-button-bg-sprite.svg" class="date-picker-button-bg-plus-minus" alt=""/>
+
+					<div class="date-picker-button-wrapper date-picker-button-wrapper-plus">
+						<input type="button" class="js-change-<%= type %> js-change-plus date-picker-change-date-button" value="+"/>
+					</div>
+
+					<div class="date-picker-select-wrapper">
+						<div class="js-current-input js-current-input-<%= type %> date-picker-current-input"></div>
+						<select class="js-select-<%= type %> date-picker-select-tag" ></select>
+					</div>
+
+					<div class="date-picker-button-wrapper date-picker-button-wrapper-minus">
+						<input type="button" class="js-change-<%= type %> js-change-minus date-picker-change-date-button" value="-"/>
+					</div>
+
+				</div>
+			<% }); %>
+
+		</div>
+
+		<div class="js-date-picker-day date-picker-period-day">day</div>
+
+		<div class="date-picker-cycle-button-wrapper clear-fix">
+			<div class="js-set-date-picker set-date-picker">status</div>
+			<div class="js-close-date-picker close-date-picker"><%= lang.cancelBtn %></div>
+		</div>
+
+	</div>
+
+</script>
+
 
 </body>
 </html>

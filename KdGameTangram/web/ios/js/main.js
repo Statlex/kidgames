@@ -21,7 +21,7 @@
 				viewer.refresh();
 			}, false);
 
-			// set external link
+			//set external link
 			//var links = $$('a', main.wrapper);
 			//ui.externalLinkHandler.setLinks(links);
 
@@ -76,6 +76,10 @@
 			});
 
 			this.setBodyScroll(true);
+
+
+
+
 
 			bro('.js-category-button-wrapper').on('click', function(){
 				//console.log(this);

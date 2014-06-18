@@ -262,7 +262,7 @@
 	//=== info end ===//
 
 	re = {
-		htmlNode: /^<[\s\S]+>$/,
+		htmlNode: /(^|\s+)<[\s\S]+>($|\s+)/,
 		json: /^\{[\s\S]*\}$/,
 		xToX: function(str) {
 			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
@@ -280,6 +280,9 @@
 		if (!this) {
 			return new Bro(selector, context);
 		}
+		if (selector instanceof Bro) {
+			return selector;
+		}
 		this.init(selector, context);
 	}
 
@@ -291,7 +294,7 @@
 
 	Bro.prototype.html = function (html) {
 		var elem = this[0] || {};
-		if (html === undefined) {
+		if (!arguments.length) {
 			return elem.innerHTML || '';
 		}
 		elem.innerHTML = html;
@@ -398,6 +401,16 @@
 
 	Bro.prototype.isPlainObject = function (obj) {
 		return obj && obj.constructor === Object;
+	};
+
+	Bro.prototype.isEmptyObject = function (obj) {
+
+		if (!this.isPlainObject(obj)) {
+			return false;
+		}
+
+		return !Object.keys(obj).length;
+
 	};
 
 	Bro.prototype.setAttribute = function (attribute, value) {
@@ -828,6 +841,33 @@
 
 	};
 
+	Bro.prototype.util = Bro.prototype;
+	
+	Bro.prototype.util = {
+		screen: function() {
+			var data = {},
+				width = docElem.clientWidth,
+				height = docElem.clientHeight;
+
+			data.width = width;
+			data.height = height;
+			data.orientation = width > height ? 'landscape' : 'portrait';
+			data.aspectRatio = width / height;
+			data.smallestSide = width > height ? height : width;
+			data.biggestSide = width < height ? height : width;
+			data.center = {
+				x: width / 2,
+				y: height / 2
+			};
+
+			return data;
+		},
+		vendorPrefix: {
+			css: '-webkit-',
+			js: 'webkit'
+		}
+	};
+	
 	win.$ = bro;
 
 	//win.Bro = Bro;

@@ -33,6 +33,7 @@
 	Slider.prototype.init = function () {
 		var that = this,
 			ev = info.evt;
+
 		this.wrapper.addEventListener(ev.down, function () {
 			that.innerContainer.style[info.preJS + 'Transition'] = 'none';
 			clearTimeout(that.timeoutId);
@@ -42,6 +43,7 @@
 				start: Date.now()
 			};
 		}, false);
+
 		this.wrapper.addEventListener(ev.move, function () {
 			if (!ev.isActive || !that.isActive) {
 				return;
@@ -49,11 +51,14 @@
 			var dX = ev.touchStart.x - ev.touchMove.x;
 			that.innerContainer.style[info.preJS + 'Transform'] = 'translate(-' + (that.page.width + dX) + 'px, 0)';
 		}, false);
+
 		this.wrapper.addEventListener(ev.up, function () {
 			that.isActive = false;
 			var dX = ev.touchStart.x - ev.touchMove.x,
 				x = that.page.width,
 				speed;
+
+			that.time = that.time || { start: 0 };
 
 			that.time.end = Date.now();
 
@@ -146,19 +151,14 @@
 
 	function sliderTap() {
 
-		var dateInfo = {
-				state: this.getAttribute('data-cycle-state'),
-				dateOfCycle: this.getAttribute('data-date-number'),
-				length: info.get('cycleLength')
-			},
-			cycleInfoWrapper = util.find('.js-cycle-progress-wrapper');
-
 		$('.selected-date').removeClass('selected-date');
 
 		util.addClass(this, 'selected-date');
 
-		// set state, hind under the calendar
-		cycleInfoWrapper.innerHTML = dateInfo.dateOfCycle ? _.template(templateContainer.templates['cycle-progress-info'], dateInfo) : '';
+		$('.progress-selected-date').removeClass('progress-selected-date');
+		$('.js-cycle-progress-point[data-date="' + this.dataset.date + '"]').addClass('progress-selected-date');
+
+		APP.dateInfo.showBottomDateInfo(this.dataset.date);
 
 	}
 
@@ -279,14 +279,7 @@
 
 		cycles.forEach(function (cycle) {
 
-			var dateMap = {
-					flow: 4,
-					safe_1: 5,
-					unsafe_1: 5,
-					fertile: 4,
-					unsafe_2: 5,
-					safe_2: 5
-				},
+			var dateMap = Object.create(info.dateMap),
 				cycleLength = info.get('cycleLength'),
 				fullCycleLength = cycleLength,
 				dateMapDifferent, halfOfMapDifferent;
@@ -365,9 +358,11 @@
 		});
 
 		if (lastCycle) {
+			var cycleLength = info.get('cycleLength'),
+				flowLength = info.get('flowLength');
 			dateNodes.forEach(function (dateNode) {
 				var different = calendar.getDifferent(dateNode, lastCycle.startCycle);
-				if ((different > 0) && ((different % info.get('cycleLength')) === 0)) {
+				if ((different > 0) && ((different % cycleLength) < flowLength)) {
 					util.addClass(dateNode.node, 'future-start-flow');
 				}
 			});
@@ -382,6 +377,10 @@
 			});
 		}, this);
 
+		// mark today
+		var today = Calendar.prototype.getToday(),
+			$today = $('[data-date="' + today.str + '"]', node);
+		$today.addClass('month-date-today');
 
 		this.updateSelectedDate();
 
@@ -392,6 +391,7 @@
 		nodes.forEach(function (node) {
 			Slider.prototype.addColoringToPage(node);
 		});
+		APP.mainView.showCalendarProgress();
 	};
 
 	Slider.prototype.updateSelectedDate = function() {
@@ -404,7 +404,6 @@
 			selectedDates.forEach(function(node){
 				util.removeClass(node, 'selected-date');
 			});
-			util.find('.js-cycle-progress-wrapper').innerHTML = '';
 		}
 	};
 

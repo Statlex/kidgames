@@ -4,7 +4,14 @@
 	<meta charset="UTF-8">
 	<title>tower</title>
 
+	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/tower.css"/>
+
+	<!-- services -->
+	<script src="js/info.js" type="text/javascript"></script>
+
+	<script src="js/lang/en.js" type="text/javascript"></script>
+
 
 	<script src="js/bro.js" type="text/javascript"></script>
 	<script src="js/tower.js" type="text/javascript"></script>
@@ -19,8 +26,32 @@
 </head>
 <body>
 
-	<h3 style="text-align: center" class="js-count"></h3>
+	<span class="js-count count">0</span>
 	<div class="js-main-field main-field"></div>
+
+	<div class="tutor-screen js-tutor-screen">
+		<h1 class="tutor-header">top to start</h1>
+		<h1 class="tutor-header">and</h1>
+		<h1 class="tutor-header">top to drop blocks</h1>
+		<h1 class="tutor-header">and</h1>
+		<h1 class="tutor-header">build a tower!</h1>
+	</div>
+
+	<div class="rotate-screen"></div>
+
+	<script class="js-alert-template" type="text/x-handlebars">
+
+		<div class="alert-wrapper js-alert-wrapper">
+
+			<h3 class="alert-header"><%= msg %></h3>
+
+			<div class="reload-button" onclick="window.location.reload();"></div>
+
+		</div>
+
+	</script>
+
+
 
 </body>
 </html>

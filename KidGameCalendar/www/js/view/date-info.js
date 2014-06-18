@@ -80,14 +80,16 @@
 
 		},
 		saveDateInfo: function() {
-			var json = util.nodeToJson(this.$el[0]),
-				callback = APP.slider.addColoringToAllPage;
-			json = JSON.stringify(json);
+			var callback = function(){
+					APP.slider.addColoringToAllPage();
+					$('.month-date[data-date="' + this.date + '"]').on('click');
+				},
+				json = JSON.stringify( util.nodeToJson(this.$el[0]));
 
 			if (json.replace(/\s+/gi, '') === '{}') {
-				dataBase.removeDateInfo(this.date, callback);
+				dataBase.removeDateInfo(this.date, callback.bind(this));
 			} else {
-				dataBase.saveDateInfo(this.date, JSON.stringify(json), callback);
+				dataBase.saveDateInfo(this.date, JSON.stringify(json), callback.bind(this));
 			}
 			this.hide();
 		},
@@ -101,6 +103,44 @@
 					date = JSON.parse(date);
 				}
 				util.restoreNode(that.$el[0], date);
+			});
+
+		},
+		showBottomDateInfo: function(date) {
+			var that = this,
+				data = date;
+			dataBase.getDateInfo(date, function(date){
+				date = JSON.parse(date);
+				if (date.toString() === date) {
+					date = JSON.parse(date);
+				}
+
+				that.createBottomNote(date, data);
+
+			});
+
+		},
+		createBottomNote: function(data, date) {
+			var $el = $('.js-notes-bottom-block'),
+				template = templateContainer.templates['main-calendar-bottom-notes'],
+				arr = date.split('-'),
+				that = this;
+
+			data.isEmpty = $el.isEmptyObject(data);
+
+			data.date = {
+				date: arr[0],
+				month: arr[1],
+				year: arr[2],
+				str: date
+			};
+
+			$el.html(_.template(template, data));
+
+			// show note window
+			$('.js-bottom-notes-container').on('click', function() {
+				APP.router.navigate('date-info', {trigger: true});
+				that.show(this.dataset.notesDate);
 			});
 
 		}

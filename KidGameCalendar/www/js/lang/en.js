@@ -28,13 +28,36 @@
 			unsafe: 'unsafe',
 			fertile: 'fertile'
 		},
+		period: {
+			'start-flow': 'start period',
+			flow: 'flow period',
+			safe: 'safe period',
+			unsafe: 'unsafe period',
+			fertile: 'fertile period'
+		},
+		dayW: 'day',
 		progress: 'progress',
+		thisDayFromFuture: 'this day<br>from future',
+		clickHereToRemoveCycle: 'click here to<br>remove cycle',
+		clickHereToSetEndOfFlow: 'click here to<br>set end of flow',
+		clickHereToStartNewCycle: 'click here to<br>start new cycle',
+		impossibleDayDP: 'impossible day',
+		removeCycleDP: 'remove cycle',
+		endOfFlowDP: 'end of flow',
+		startNewCycleDP: 'start new cycle',
+		impossibleBtn: 'impossible',
+		removeBtn: 'remove',
+		endOfFlowBtn: 'end of flow',
+		startBtn: 'start',
+		cancelBtn: 'cancel',
 
 		// notes section
 		sex: 'sex',
 		pill: 'pill',
 		weight: 'weight',
-		notes: 'notes'
+		notes: 'notes',
+		toStartNewCycle: 'to start new cycle press and hold needed day',
+		noNoticeMessage: 'Click here to set notice for'
 
 
 	};

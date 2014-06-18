@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, Backbone, window, document, util, Slider, _, templateContainer */
-	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase */
+	/*global GC, lang, templateContainer, info, APP, $, Backbone, Calendar, dataBase, cycleMaster */
 
 	win.GC = win.GC || {};
 
@@ -46,6 +46,31 @@
 			this.bindArrowButton();
 			this.bindFade();
 			this.showToday();
+			this.showCalendarProgress();
+
+			// show notes
+			APP.dateInfo.showBottomDateInfo($('.js-main-calendar-page .selected-date').data('date'));
+
+		},
+		showCalendarProgress: function() {
+			var cycleInfoWrapper = $('.js-cycle-progress-block', this.$el),
+				tmpl = templateContainer.templates['main-calendar-progress'],
+				today = $('.js-main-calendar-page .month-date-today', this.$el),
+				dateInfo = {
+					state: today.data('cycle-state'),
+					dateOfCycle: today.data('date-number'),
+					length: info.get('cycleLength'),
+					date: today.data('date')
+				},
+				todayArr = dateInfo.date.split('-'),
+				todayObj = {
+					date: +todayArr[0],
+					month: +todayArr[1],
+					year: +todayArr[2]
+				},
+				cycle = cycleMaster.createCycleByDate(todayObj);
+
+			cycleInfoWrapper.html(_.template(tmpl, cycle));
 
 		},
 		show: function(item) {
@@ -103,11 +128,11 @@
 		},
 		showToday: function() {
 
-			var today = Calendar.prototype.getToday();
-			$('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0).on('click');
+			var today = Calendar.prototype.getToday(),
+				$today = $('.js-main-calendar-wrapper .js-main-calendar-page:nth-child(2) [data-date="' + today.str + '"]').eq(0);
+			$today.on('click');
 
 		},
-
 
 		showNotes: function() {
 
@@ -180,17 +205,9 @@
 						}
 					}
 
-					console.log(date);
-					console.log(Object.keys(date));
-					console.log(Object.keys({}).length);
-
 				});
 
-				console.log(that.templates.noteItem);
-				console.log(data);
-
 				that.$el.find('.js-date-notes-list').html(broFn.template(that.templates.noteItem)({data:data}));
-
 
 			});
 

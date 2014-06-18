@@ -159,6 +159,15 @@
 		cycleLengthMax: 45,
 		flowMaxLength: 12,
 		weekStart: 1,
+		dateMap: {
+			flow: 4,
+			safe_1: 5,
+			unsafe_1: 5,
+			fertile: 4,
+			unsafe_2: 5,
+			safe_2: 5
+		},
+		flowLength: 4,
 		setCalendarSetting: function() {
 			var data = this.getData();
 

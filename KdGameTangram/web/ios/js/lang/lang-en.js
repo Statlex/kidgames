@@ -26,7 +26,12 @@
 		easy: 'easy mode',
 		myCollection: 'my collection',
 		removeTgState: "Remove tangram's state ?",
-		buyAdsFree: 'buy ads free version'
+		buyAdsFree: 'buy ads free version',
+
+		thanks: 'Thanks',
+		designerName: 'Anna Rudnitskaya',
+		designer: 'designer'
+
 
 	};
 

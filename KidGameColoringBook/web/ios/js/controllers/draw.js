@@ -460,8 +460,13 @@
 			}
 
 			var page = $('.draw-page', main.wrapper);
-			var pageInfo = getInfo(page, -10);
 			var mainSvg = $('.js-main-svg', main.wrapper);
+
+			if (!page || !mainSvg) {
+				return;
+			}
+
+			var pageInfo = getInfo(page, -10);
 			var mainSvgInfo = getInfo(mainSvg);
 
 			var q = (pageInfo.aspectRatio > mainSvgInfo.aspectRatio) ? pageInfo.height / mainSvgInfo.height : pageInfo.width / mainSvgInfo.width;
@@ -726,6 +731,8 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				that.activeTool = 'brush';
+				$('.js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
@@ -742,6 +749,8 @@
 			var that = this;
 
 			button.addEventListener(info.evt.down, function () {
+				that.activeTool = 'brush';
+				$('.js-simple-color-picker').classList.remove('active');
 				that.activePolygon = this;
 			}, false);
 			button.addEventListener(info.evt.up, function () {
@@ -787,5 +796,8 @@
 		}, false);
 	}, false);
 
+	win.addEventListener('resize', function(){
+		draw.centeringMainSvg();
+	}, false);
 
 }(window));
