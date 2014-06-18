@@ -14,6 +14,13 @@
 			game.dispatchSwipe(data);
 		});
 
+		$('.js-main-wrapper').on('swipe', function(e){
+			var data = {
+				dir: e.direction
+			};
+			game.dispatchSwipe(data);
+		});
+
 	}
 
 	$(win).on('load', start);

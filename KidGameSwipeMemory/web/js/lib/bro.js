@@ -118,7 +118,7 @@
 					y: NaN
 				}
 			},
-			extraTypes: ['click', 'dblclick', 'hold'],
+			extraTypes: ['click', 'dblclick', 'hold', 'swipe'],
 			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
@@ -133,7 +133,7 @@
 			dispatchEvent: function (node) {
 
 				var now = Date.now(),
-					evt;
+					evt, dX, dY, direction;
 
 				// detect click
 				// detect node
@@ -141,12 +141,31 @@
 					return false;
 				}
 
-				// detect click
+				// detect swipe - begin
+				if ((now - this.current.down.time) < 600 && Math.max(this.maxDistance.x, this.maxDistance.y) > 80) { // 600 - max swipe time, 70 - min swipe distance
+
+					dX = this.current.down.x - this.touchMove.x;
+					dY = this.current.down.y - this.touchMove.y;
+
+					if (Math.abs(dX) > Math.abs(dY)) {
+						direction = (dX > 0) ? 'left' : 'right';
+					} else {
+						direction = (dY > 0) ? 'up' : 'down';
+					}
+
+					evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+					evt.direction = direction;
+					evt.initEvent('$swipe$', true, true);      // todo: future use evt = new Event(type);
+					node.dispatchEvent(evt);
+				}
+				// detect swipe - end
+
+				// detect click position
 				if (!this.isClick()) {
 					return false;
 				}
 
-				// detect time
+				// detect time of last probably click
 				if ((now - this.current.down.time) > 300) {
 					return false;
 				}
