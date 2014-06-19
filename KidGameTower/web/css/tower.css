@@ -17,7 +17,6 @@ body,
 .blur .count,
 .blur .main-field {
 	-webkit-filter: blur(3px);
-
 	filter: blur(3px);
 	opacity: 0.5;
 }
@@ -71,17 +70,44 @@ body,
 .tutor-screen {
 	background-color: rgba(255, 255, 255, 0.95);
 	z-index: 10;
-	padding-top: 100px;
+	background-image: url(../img/tutor-bg.jpg);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
 }
 
-.tutor-header {
-	font-weight: normal;
-	text-align: center;
-	font-size: 16px;
-	line-height: 20px;
-	padding-bottom: 12px;
-	text-transform: capitalize;
-	color: #141414;
+.tutor-block-wrapper {
+	width: 100%;
+	height: 50%;
+	padding: 15px 25px 8px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.tutor-block-wrapper:last-child {
+	padding: 8px 25px 15px;
+}
+
+.tutor-block {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 23px rgba(69, 65, 230, 0.75);
+	border: 1px solid #c9c9cc;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url(../img/tutor-1.png);
+}
+
+.tutor-block-wrapper:last-child .tutor-block {
+	background-image: url(../img/tutor-2.png);
 }
 
 .main-field {
