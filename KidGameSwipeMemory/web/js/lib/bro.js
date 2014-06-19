@@ -498,28 +498,37 @@
 
 	Bro.prototype.hasClass = function () {
 		var has = false,
-			args = arguments;
+			args = this.toArray(arguments);
 		this.forEach(function (node) {
 			if (has) {
 				return;
 			}
-			has = node.classList.contains.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				has = has || node.classList.contains(className);
+			});
+			// has = node.classList.contains.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return has;
 	};
 
 	Bro.prototype.addClass = function () {
-		var args = arguments;
+		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			node.classList.add.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				node.classList.add(className);
+			});
+			//node.classList.add.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return this;
 	};
 
 	Bro.prototype.removeClass = function() {
-		var args = arguments;
+		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			node.classList.remove.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				node.classList.remove(className);
+			});
+			//node.classList.remove.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return this;
 	};
@@ -846,6 +855,10 @@
 				.split("\t").join("');")
 				.split("%>").join("p.push('")
 				.split("\r").join("\\'") + "');} return p.join('');");
+	};
+
+	Bro.prototype.toArray = function(arr) {
+		return Array.prototype.slice.call(arr);
 	};
 
 	Bro.prototype.inArray = function(arr, obj) {

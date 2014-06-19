@@ -51,7 +51,7 @@ body {
 .hide-arrow.done-dir,
 .show-arrow {
 	-webkit-animation-name: show-arrow;
-	-webkit-animation-duration: 0.4s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 0;
 	-webkit-animation-iteration-count: 1;
@@ -59,7 +59,7 @@ body {
 	-webkit-animation-play-state: forward;
 	-webkit-animation-fill-mode: forwards;
 	animation-name: show-arrow;
-	animation-duration: 0.4s;
+	animation-duration: 0.2s;
 	animation-timing-function: linear;
 	animation-delay: 0;
 	animation-iteration-count: 1;
@@ -72,21 +72,21 @@ body {
 
 @-webkit-keyframes show-arrow {
 	0% {
-		-webkit-transform: rotateY(90deg);
+		-webkit-transform: scale(0.5);
 	}
 
 	100% {
-		-webkit-transform: rotateY(0);
+		-webkit-transform: scale(1);
 	}
 }
 
 @keyframes show-arrow {
 	0% {
-		transform: rotateY(90deg);
+		transform: scale(0.5);
 	}
 
 	100% {
-		transform: rotateY(0);
+		transform: scale(1);
 	}
 }
 
@@ -107,14 +107,14 @@ body {
 }
 
 .done-dir {
-	-webkit-transition: background-color 0.3s ease-out;
-	transition: background-color 0.3s ease-out;
+	-webkit-transition: background-color 0.2s ease-out;
+	transition: background-color 0.2s ease-out;
 	background-color: #83E983;
 }
 .hide-arrow.wrong-dir,
 .wrong-dir {
 	-webkit-animation-name: error-arrow;
-	-webkit-animation-duration: 0.5s;
+	-webkit-animation-duration: 0.4s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 0;
 	-webkit-animation-iteration-count: 1;
@@ -122,7 +122,7 @@ body {
 	-webkit-animation-play-state: forward;
 	-webkit-animation-fill-mode: forwards;
 	animation-name: error-arrow;
-	animation-duration: 0.5s;
+	animation-duration: 0.4s;
 	animation-timing-function: linear;
 	animation-delay: 0;
 	animation-iteration-count: 1;
@@ -156,7 +156,7 @@ body {
 
 .hide-arrow {
 	-webkit-animation-name: hide-arrow;
-	-webkit-animation-duration: 0.5s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 0;
 	-webkit-animation-iteration-count: 1;
@@ -164,7 +164,7 @@ body {
 	-webkit-animation-play-state: forward;
 	-webkit-animation-fill-mode: forwards;
 	animation-name: hide-arrow;
-	animation-duration: 0.5s;
+	animation-duration: 0.2s;
 	animation-timing-function: linear;
 	animation-delay: 0;
 	animation-iteration-count: 1;
@@ -175,19 +175,27 @@ body {
 
 @-webkit-keyframes hide-arrow {
 	0% {
-
+		background-image: url(../img/sprite-arrow.svg);
+		-webkit-transform: scale(1);
+	}
+	50% {
+		background-image: none;
 	}
 	100% {
-		opacity: 0.5;
+		-webkit-transform: scale(0.5);
 	}
 }
 
 @keyframes hide-arrow {
 	0% {
-
+		background-image: url(../img/sprite-arrow.svg);
+		transform: scale(1);
+	}
+	50% {
+		background-image: none;
 	}
 	100% {
-		opacity: 0.5;
+		transform: scale(0.5);
 	}
 }
 
@@ -201,6 +209,7 @@ body {
 	background-color: #FFF;
 	border: 1px solid #C7C7C7;
 	width: 70%;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	margin-left: 15%;
 	text-align: center;
@@ -208,6 +217,7 @@ body {
 	line-height: 20px;
 	border-radius: 5px;
 
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 
 	-webkit-transition: all 0.3s ease-out;
@@ -240,6 +250,7 @@ body {
 	left: 10%;
 	background-color: #FFF;
 	border-radius: 4px;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border: 1px solid #8e8e93;
 	padding: 25px 10px 20px;
@@ -273,6 +284,7 @@ body {
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
 	background-position: 0 0;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 4px;
 	border: 1px solid #8e8e93;

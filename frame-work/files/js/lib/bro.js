@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, Event */
+	/*global console, alert, window, document, Event */
 
 	var isTouch, info, bro, Bro, re;
 
@@ -118,7 +118,7 @@
 					y: NaN
 				}
 			},
-			extraTypes: ['click', 'dblclick', 'hold'],
+			extraTypes: ['click', 'dblclick', 'hold', 'swipe'],
 			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
@@ -133,7 +133,7 @@
 			dispatchEvent: function (node) {
 
 				var now = Date.now(),
-					evt;
+					evt, dX, dY, direction;
 
 				// detect click
 				// detect node
@@ -141,12 +141,31 @@
 					return false;
 				}
 
-				// detect click
+				// detect swipe - begin
+				if ((now - this.current.down.time) < 600 && Math.max(this.maxDistance.x, this.maxDistance.y) > 80) { // 600 - max swipe time, 70 - min swipe distance
+
+					dX = this.current.down.x - this.touchMove.x;
+					dY = this.current.down.y - this.touchMove.y;
+
+					if (Math.abs(dX) > Math.abs(dY)) {
+						direction = (dX > 0) ? 'left' : 'right';
+					} else {
+						direction = (dY > 0) ? 'up' : 'down';
+					}
+
+					evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+					evt.direction = direction;
+					evt.initEvent('$swipe$', true, true);      // todo: future use evt = new Event(type);
+					node.dispatchEvent(evt);
+				}
+				// detect swipe - end
+
+				// detect click position
 				if (!this.isClick()) {
 					return false;
 				}
 
-				// detect time
+				// detect time of last probably click
 				if ((now - this.current.down.time) > 300) {
 					return false;
 				}
@@ -479,28 +498,37 @@
 
 	Bro.prototype.hasClass = function () {
 		var has = false,
-			args = arguments;
+			args = this.toArray(arguments);
 		this.forEach(function (node) {
 			if (has) {
 				return;
 			}
-			has = node.classList.contains.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				has = has || node.classList.contains(className);
+			});
+			// has = node.classList.contains.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return has;
 	};
 
 	Bro.prototype.addClass = function () {
-		var args = arguments;
+		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			node.classList.add.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				node.classList.add(className);
+			});
+			//node.classList.add.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return this;
 	};
 
 	Bro.prototype.removeClass = function() {
-		var args = arguments;
+		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			node.classList.remove.apply(node.classList, args);
+			args.forEach(function(className){ // this workaround only for old android and io6
+				node.classList.remove(className);
+			});
+			//node.classList.remove.apply(node.classList, args); // todo: uncommet this in future
 		});
 		return this;
 	};
@@ -827,6 +855,10 @@
 				.split("\t").join("');")
 				.split("%>").join("p.push('")
 				.split("\r").join("\\'") + "');} return p.join('');");
+	};
+
+	Bro.prototype.toArray = function(arr) {
+		return Array.prototype.slice.call(arr);
 	};
 
 	Bro.prototype.inArray = function(arr, obj) {

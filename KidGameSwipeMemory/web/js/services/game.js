@@ -183,9 +183,11 @@
 							dir.isDone = false;
 						});
 
-						$node = $('.js-dir');
-						$node.addClass('hide-arrow');
-						$node.removeClass('wrong-dir', 'done-dir', 'show-arrow');
+						win.setTimeout(function(){
+							var $node = $('.js-dir');
+							$node.addClass('hide-arrow');
+							$node.removeClass('wrong-dir', 'done-dir', 'show-arrow');
+						}, 300);
 
 						console.log(' -- show level is done -- ');
 
