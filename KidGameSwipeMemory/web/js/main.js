@@ -21,6 +21,8 @@
 			game.dispatchSwipe(data);
 		});
 
+		var util = $();
+		util.setBodyScroll(false);
 	}
 
 	$(win).on('load', start);

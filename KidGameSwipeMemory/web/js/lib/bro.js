@@ -45,6 +45,7 @@
 		isTouch: isTouch,
 		preCSS: '-webkit-', // see bro vendorPrefix
 		preJS: 'webkit',
+		canScroll: true,
 		isAndroid: (/android/i).test(win.navigator.userAgent),
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',
@@ -142,7 +143,7 @@
 				}
 
 				// detect swipe - begin
-				if ((now - this.current.down.time) < 600 && Math.max(this.maxDistance.x, this.maxDistance.y) > 80) { // 600 - max swipe time, 70 - min swipe distance
+				if ((now - this.current.down.time) < 600 && Math.max(this.maxDistance.x, this.maxDistance.y) > 60) { // 600 - max swipe time, 70 - min swipe distance
 
 					dX = this.current.down.x - this.touchMove.x;
 					dY = this.current.down.y - this.touchMove.y;
@@ -228,6 +229,7 @@
 		init: function () {
 			this.getIsPhone();
 			this.runDetector();
+			this.bindBodyScroll();
 		},
 		getIsPhone: function () {
 			this.isPhone = Math.max(docElem.clientWidth, docElem.clientHeight) < 700;
@@ -306,6 +308,11 @@
 				that.evt.isActive = false;
 			}, true);
 
+		},
+		bindBodyScroll: function() {
+			doc.body.addEventListener('touchmove', function(e){
+				return !this.canScroll && e.preventDefault();
+			}.bind(this), false);
 		}
 
 	};
@@ -907,6 +914,10 @@
 
 		return data;
 
+	};
+
+	Bro.prototype.setBodyScroll = function(canScroll) {
+		info.canScroll = canScroll;
 	};
 
 	Bro.prototype.vendorPrefix = function() {

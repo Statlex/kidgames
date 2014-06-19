@@ -3,6 +3,10 @@
 	src: url(HelveticaNeueCyr-UltraLight.otf);
 }
 
+html {
+	height: 100%;
+}
+
 body {
 	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 	width: 100%;
