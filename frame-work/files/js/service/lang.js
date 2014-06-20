@@ -2,6 +2,7 @@
 
 	"use strict";
 	/*global window */
+	/*global info */
 
 	win.lang = {
 		push: function(lang) {
@@ -14,5 +15,8 @@
 			}
 		}
 	};
+
+	// default language
+	win.lang.push(info.lang);
 
 }(window));
