@@ -92,7 +92,6 @@ html, body {
 	border: 1px solid #8e8e93;
 }
 
-
 @media only screen and (orientation: landscape) {
 	.bingo-greeting {
 		display: none;

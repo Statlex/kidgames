@@ -112,6 +112,9 @@
 
 		},
 		alertEndGame: function() {
+
+
+
 			this.$endGameAlert.show();
 		},
 		closeAlert: function() {
