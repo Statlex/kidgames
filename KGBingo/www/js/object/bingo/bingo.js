@@ -21,8 +21,6 @@
 
 			var obj = this.copyObject(bingo[this.name]);
 
-			console.log(obj);
-
 			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
 
 			this.$wrapper = $('.js-wrapper');
@@ -50,8 +48,7 @@
 
 		},
 		bingoTest: function() {
-			var table = this.$el.find('.js-words-tablet'),
-				i, diagonal_1 = [], diagonal_2 = [], $nodes, isBingo, $row, $column, diagonalNode;
+			var i, diagonal_1 = [], diagonal_2 = [], $nodes, isBingo, $row, $column, diagonalNode;
 
 			for (i = 1; i <= 5; i += 1) {
 
