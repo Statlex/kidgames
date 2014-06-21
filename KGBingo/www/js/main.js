@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window */
-	/*global templateMaster, Backbone, lang */
+	/*global templateMaster, Backbone, lang, APP */
 
 	lang.push('ru');
 
@@ -15,29 +15,21 @@
 			'': 'title'
 		},
 		title: function() {
-
-
-			new win.APP.TitleView();
-
-
+			APP.titleView = new win.APP.TitleView();
 		}
 	});
 
 	APP.router = new Router();
 
-
-
 	// start of app here
 	var main = function () {
 		templateMaster.init();
 		Backbone.history.start();
+		APP.router.navigate('', {trigger: true});
 	};
 
 	win.addEventListener('load', main, false);
 
 	// other data here
-
-
-
 
 }(window));

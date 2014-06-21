@@ -16,13 +16,11 @@
 		},
 		init: function() {
 
-			console.log(this.name);
-
-			var obj = bingo[this.name];
+			var obj = this.copyObject(bingo[this.name]);
 
 			console.log(obj);
 
-			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo({}));
+			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
 
 			this.$wrapper = $('.js-wrapper');
 
@@ -30,6 +28,9 @@
 
 			this.$wrapper.append(this.$el);
 
+		},
+		copyObject: function(obj) {
+			return JSON.parse(JSON.stringify(obj));
 		}
 
 
