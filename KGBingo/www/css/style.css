@@ -1,3 +1,92 @@
+@font-face {
+	font-family: 'HelveticaNeueCyr';
+	src: url(HelveticaNeueCyr-UltraLight.otf);
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+	color: #333;
+}
+
+.bingo-greeting {
+	text-align: center;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: normal;
+	padding: 13px 5px;
+	border-bottom: 1px solid #8e8e93;
+	background-color: #fff;
+}
+
+.bingo .bingo-greeting {
+	text-transform: capitalize;
+	margin-bottom: 20px;
+}
+
+.bingo-items-wrapper {
+	padding: 35px 15px 15px;
+}
+
+.bingo-preview {
+	border: 1px solid #8e8e93;
+	border-radius: 5px;
+	text-align: center;
+	padding: 12px;
+	font-size: 16px;
+	line-height: 16px;
+	margin: 0 auto 16px;
+	width: 58%;
+}
+
+.words-tablet {
+	margin: 0 auto;
+}
+
+.bingo-word {
+	font-size: 13px;
+	line-height: 15px;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+
+.table-cell-word {
+	word-break: break-word;
+	position: relative;
+	box-sizing: border-box;
+	padding: 3px;
+}
+
+.table-cell-word:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 2%;
+	left: 2%;
+	width: 96%;
+	height: 96%;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	border: 1px solid #8e8e93;
+}
+
+
+@media only screen and (orientation: landscape) {
+	.bingo-greeting {
+		display: none;
+	}
+}
+
+
+
+
 .checked {
 	background-color: #c00;
+}
+
+.end-game-alert-wrapper {
+	display: none;
 }

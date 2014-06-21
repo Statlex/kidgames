@@ -1,8 +1,8 @@
-(function (win) {
+(function (win, doc, docElem) {
 
 	"use strict";
-	/*global window */
-	/*global templateMaster, Backbone, lang, APP */
+	/*global window, document */
+	/*global templateMaster, Backbone, lang, APP, $ */
 
 	lang.push('ru');
 
@@ -32,4 +32,5 @@
 
 	// other data here
 
-}(window));
+
+}(window, document, document.documentElement));

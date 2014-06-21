@@ -10,7 +10,8 @@
 		templates: ['bingo'],
 		events: {
 
-			'click .js-bingo-word': 'setWord'
+			'click .js-table-cell-word': 'setWord',
+			'click .js-end-game-alert-wrapper': 'closeAlert'
 
 
 		},
@@ -23,24 +24,48 @@
 
 			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
 
+			this.$endGameAlert = this.$el.find('.js-end-game-alert-wrapper');
+
 			this.$wrapper = $('.js-wrapper');
 
 			this.$wrapper.html('');
 
 			this.$wrapper.append(this.$el);
 
+			this.setCellSize();
+
+		},
+		setCellSize: function() {
+			var $cells = this.$el.find('.js-table-cell-word'),
+				$table = this.$el.find('.js-words-tablet'),
+				docElem = win.document.documentElement,
+				size = Math.min(docElem.clientHeight, docElem.clientWidth);
+
+			$table.css({
+				width: size + 'px',
+				height: size + 'px'
+			});
+
+			size /= 5;
+
+			$cells.each(function(){
+				this.style.width = size + 'px';
+				this.style.height = size + 'px';
+			});
+
 		},
 		copyObject: function(obj) {
 			return JSON.parse(JSON.stringify(obj));
 		},
 		setWord: function(e) {
-			var $node = $(e.currentTarget);
+			var $node = $(e.currentTarget),
+				$word = $node.find('.js-bingo-word');
 
-			if ($node.data('checked') === 'true') {
-				$node.data('checked', 'false');
+			if ($word.data('checked') === 'true') {
+				$word.data('checked', 'false');
 				$node.removeClass('checked');
 			} else {
-				$node.data('checked', 'true');
+				$word.data('checked', 'true');
 				$node.addClass('checked');
 			}
 
@@ -81,8 +106,16 @@
 
 			}
 
-			console.log(isBingo);
+			if (isBingo) {
+				this.alertEndGame();
+			}
 
+		},
+		alertEndGame: function() {
+			this.$endGameAlert.show();
+		},
+		closeAlert: function() {
+			this.$endGameAlert.hide();
 		}
 
 
