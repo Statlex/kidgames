@@ -29,7 +29,6 @@
 				this.init();
 			}
 
-
 			for (key in events) {
 				if (events.hasOwnProperty(key)) {
 					arr = key.replace(/,/gi, ' ').replace(/\s+/gi, ' ').match(/[\S]+/g);
@@ -39,7 +38,19 @@
 				}
 			}
 
+			this.bindBackButton();
+
+		},
+		bindBackButton: function() {
+			this.$el.find('.js-back').on('click', function(){
+				if (Backbone.history.fragment) {
+					Backbone.history.history.back();
+				}
+			});
 		}
+
+
+
 
 	});
 
