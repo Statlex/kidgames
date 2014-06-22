@@ -25,12 +25,16 @@
 	var main = function () {
 		templateMaster.init();
 		Backbone.history.start();
-		APP.router.navigate('', {trigger: true});
+
+		if (Backbone.history.fragment) {
+			Backbone.history.history.back();
+			APP.router.navigate('', {trigger: true});
+		}
+
 	};
 
 	win.addEventListener('load', main, false);
 
 	// other data here
-
 
 }(window, document, document.documentElement));

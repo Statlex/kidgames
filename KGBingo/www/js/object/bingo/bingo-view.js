@@ -10,9 +10,7 @@
 		templates: ['bingo'],
 		events: {
 
-			'click .js-table-cell-word': 'setWord',
-			'click .js-end-game-alert-wrapper': 'closeAlert'
-
+			'click .js-table-cell-word': 'setWord'
 
 		},
 		selectors: {
@@ -112,13 +110,8 @@
 
 		},
 		alertEndGame: function() {
-
-
-
-			this.$endGameAlert.show();
-		},
-		closeAlert: function() {
-			this.$endGameAlert.hide();
+			this.$endGameAlert.addClass('show-alert');
+			$('.bingo').addClass('blur');
 		}
 
 
