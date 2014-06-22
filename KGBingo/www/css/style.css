@@ -15,9 +15,11 @@ html, body {
 	font-size: 20px;
 	line-height: 20px;
 	font-weight: normal;
-	padding: 13px 5px;
+	padding: 13px 40px;
 	border-bottom: 1px solid #8e8e93;
 	background-color: #fff;
+	position: relative;
+	z-index: 2;
 }
 
 .bingo .bingo-greeting {
@@ -98,7 +100,8 @@ html, body {
 	}
 }
 
-.bingo-back-button {
+.bingo-back-button,
+.info {
 	top: 0;
 	left: 0;
 	width: 46px;
@@ -109,6 +112,15 @@ html, body {
 	-webkit-background-size: 35px 20px;
 	background-size: 35px 20px;
 	position: absolute;
+	z-index: 2;
+}
+
+.info {
+	background-image: url(../img/info.svg);
+	left: auto;
+	right: 0;
+	-webkit-background-size: 10px auto;
+	background-size: 10px auto;
 }
 
 
@@ -134,7 +146,7 @@ html, body {
 
 .show-alert .end-game-table {
 	-webkit-animation-name: show-set-bg;
-	-webkit-animation-duration: 0.5s;
+	-webkit-animation-duration: 0.3s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 0;
 	-webkit-animation-iteration-count: 1;
@@ -153,7 +165,6 @@ html, body {
 	}
 }
 
-
 .end-bingo-alert-wrapper {
 	width: 85%;
 	margin: 0 auto;
@@ -167,7 +178,7 @@ html, body {
 	text-transform: capitalize;
 
 	-webkit-animation-name: show-alert;
-	-webkit-animation-duration: 0.5s;
+	-webkit-animation-duration: 0.3s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-delay: 0;
 	-webkit-animation-iteration-count: 1;
@@ -192,3 +203,21 @@ html, body {
 	-webkit-filter: blur(1px);
 	filter: blur(1px);
 }
+
+.description {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: #fff;
+	padding-top: 47px;
+}
+
+.description-text {
+	padding: 30px;
+	font-size: 16px;
+	line-height: 16px;
+}
+

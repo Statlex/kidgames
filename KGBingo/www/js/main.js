@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, location */
 	/*global templateMaster, Backbone, lang, APP, $ */
 
 	lang.push('ru');
@@ -21,12 +21,24 @@
 
 	APP.router = new Router();
 
+	$(win).on('hashchange', function(){
+
+		var $description = $('.js-description');
+		// hide info
+		if (location.hash === '#info') {
+			$description.show();
+		} else {
+			$description.hide();
+		}
+
+	});
+
 	// start of app here
 	var main = function () {
 		templateMaster.init();
 		Backbone.history.start();
 
-		if (Backbone.history.fragment) {
+		if (window.location.hash) {
 			Backbone.history.history.back();
 			APP.router.navigate('', {trigger: true});
 		}
