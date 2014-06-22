@@ -19,8 +19,6 @@
 		},
 		init: function() {
 
-			alert('init');
-
 			var obj = this.copyObject(bingo[this.name]);
 
 			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
