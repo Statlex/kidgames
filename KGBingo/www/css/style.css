@@ -223,3 +223,21 @@ html, body {
 	line-height: 16px;
 }
 
+@media only screen and (min-height: 700px) {
+
+	.bingo-word {
+		font-size: 23px;
+		line-height: 25px;
+	}
+
+	.bingo-preview {
+		font-size: 22px;
+		line-height: 22px;
+	}
+
+    .bingo-back-button, .info {
+	    width: 65px;
+	    height: 65px;
+    }
+
+}
