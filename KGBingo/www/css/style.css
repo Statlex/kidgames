@@ -54,7 +54,7 @@ html, body {
 	text-align: center;
 	position: relative;
 	z-index: 1;
-}
+	}
 
 .table-cell-word {
 	word-break: break-word;
@@ -90,10 +90,10 @@ html, body {
 	left: 2%;
 	width: 96%;
 	height: 96%;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	/* -webkit-border-radius: 12px; */
+	/* border-radius: 12px; */
 	box-sizing: border-box;
-	border: 1px solid #8e8e93;
+	border: 1px solid #000000;
 }
 
 @media only screen and (orientation: landscape) {
