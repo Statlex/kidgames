@@ -38,10 +38,14 @@
 		templateMaster.init();
 		Backbone.history.start();
 
-		if (window.location.hash) {
-			Backbone.history.history.back();
-			APP.router.navigate('', {trigger: true});
+		function back() {
+			if (window.location.hash) {
+				Backbone.history.history.back();
+				win.setTimeout(back, 200);
+			}
 		}
+
+		back();
 
 	};
 
