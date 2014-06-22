@@ -25,13 +25,14 @@
 
 		startBingo: function(e) {
 
-			var $node = $(e.currentTarget);
+			var $node = $(e.currentTarget),
+				name = $node.data('name');
 
-			win.APP.router.navigate($node.data('name'));
-			
-			new win.APP.BingoView($node.data());
+			win.APP.router.navigate(name);
 
-
+			new win.APP.BingoView({
+				name: name
+			});
 
 		}
 

@@ -762,6 +762,7 @@
 	Bro.prototype.data = function (key, value) {
 
 		if (!key) { // ()
+			console.warn('dataset - do not support for old android browser');
 			return this.length ? this[0].dataset : {};
 		}
 
