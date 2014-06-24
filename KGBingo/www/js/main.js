@@ -47,6 +47,9 @@
 
 		back();
 
+		var util = $();
+		util.setBodyScroll(false);
+
 	};
 
 	win.addEventListener('load', main, false);

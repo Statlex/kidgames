@@ -24,11 +24,11 @@ html, body {
 
 .bingo .bingo-greeting {
 	text-transform: capitalize;
-	margin-bottom: 20px;
+	margin-bottom: 3px;
 }
 
 .bingo-items-wrapper {
-	padding: 35px 15px 15px;
+	padding: 25px 15px 15px;
 }
 
 .bingo-preview {
@@ -221,6 +221,15 @@ html, body {
 	padding: 30px;
 	font-size: 16px;
 	line-height: 16px;
+}
+
+
+@media only screen and (orientation: landscape) and (max-height: 450px) {
+	.description-text {
+		padding: 30px;
+		font-size: 10px;
+		line-height: 12px;
+	}
 }
 
 @media only screen and (min-height: 700px) {
