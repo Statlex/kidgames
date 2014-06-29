@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document, console, alert */
+	/*global window, document */
 
 	var utils = {
 		arrayToColor: function (arr) {
@@ -66,7 +66,7 @@
 			};
 			var lastItem = this.arrChanges[this.arrChanges.length - 1] || {id: -1, to: []};
 			if ((savedItem.id === lastItem.id) && (savedItem.to.join() === lastItem.to.join())) {
-				console.log('equals items');
+				//console.log('equals items');
 				return;
 			}
 			this.arrChanges.push(savedItem);
