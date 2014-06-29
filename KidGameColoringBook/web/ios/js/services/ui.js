@@ -182,7 +182,11 @@
 				if (parseInt(answer) === c) {
 					answer = true;
 					link.setAttribute('can-use', 'yes');
-					link.click();
+					if (info.isAndroid) {
+						navigator.app.loadUrl(link.getAttribute('href'), {openExternal: true});
+					} else {
+						link.click();
+					}
 				} else {
 					answer = false;
 					a = Math.round(Math.random() * 40);

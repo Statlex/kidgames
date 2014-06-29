@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- keywords and description -->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<script src="cordova-2.1.0.js" type="text/javascript"></script>
+
+
+
+
+
+
+</head>
+<body>
+
+<h1>hello word</h1>
+
+<div data-href="http://google.com"> blank google new 44 </div>
+
+<script type="text/javascript">
+
+	var link = document.querySelector('div');
+
+	link.addEventListener('click', function(e){
+		navigator.app.loadUrl(this.getAttribute('data-href'), {openExternal: true});
+	}, false);
+
+</script>
+
+
+</body>
+</html>
