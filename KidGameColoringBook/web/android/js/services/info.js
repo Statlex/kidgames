@@ -16,7 +16,7 @@
 		preCSS: '-webkit-',
 		preJS: 'webkit',
 		canScroll: false,
-		isAdsFree: true,
+		isAdsFree: false,
 		isAndroid: (/android/i).test(win.navigator.userAgent),
 		evt: {
 			down: isTouch ? 'touchstart' : 'mousedown',

@@ -165,12 +165,12 @@
 						return false;
 					}
 				}, false);
-			})
+			});
 		},
 		showQuestion: function (link) {
 			var a, b, c, answer;
-			a = Math.round(Math.random() * 40);
-			b = Math.round(Math.random() * 40);
+			a = Math.round(Math.random() * 10) + 1;
+			b = Math.round(Math.random() * 10) + 1;
 			c = a + b;
 			answer = 0;
 			while (!answer) {
