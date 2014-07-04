@@ -3,6 +3,7 @@ package com.statlex.coloringbookfree;
 import com.google.android.gms.ads.*;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebChromeClient;
@@ -51,6 +52,12 @@ public class MainActivity extends Activity {
         adView.loadAd(adRequest);
         
     }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){        
+        super.onConfigurationChanged(newConfig);
+    }
+    
     
     @Override
     public void onBackPressed() {
