@@ -382,6 +382,8 @@
 
 	};
 
+	win.colorHistory = colorHistory;
+
 	var draw = {
 		activeColor: [255, 255, 0],
 		usedColors: [],

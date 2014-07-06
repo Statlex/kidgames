@@ -708,3 +708,16 @@
 		height: 40px;
 	}
 }
+
+.thanks-header {
+	padding-bottom: 10px;
+}
+
+.thanks-paragraph {
+	padding: 0 10px 10px;
+}
+
+.thanks-paragraph a {
+	color: #FFF;
+	text-decoration: underline;
+}

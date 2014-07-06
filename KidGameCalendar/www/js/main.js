@@ -101,6 +101,8 @@ $(function(){
 	// show calendar on app start
 	APP.mainView.show('calendar');
 
+
+
 	Backbone.history.start();
 
 	// go to title page

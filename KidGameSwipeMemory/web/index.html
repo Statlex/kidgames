@@ -51,7 +51,13 @@
 		<h3 class="alert-header"><%= lang[info.lang].hiScore %> - <%= hiScore %></h3>
 
 		<% if (gameTime)  { %>
-			<h3 class="alert-header"><%= lang[info.lang].timeGame %> - <%= gameTime.h %><%= lang[info.lang].h %>&nbsp;<%= gameTime.m %><%= lang[info.lang].m %>&nbsp;<%= gameTime.s %><%= lang[info.lang].s %></h3>
+
+			<% if (gameTime.h) { %>
+				<h3 class="alert-header"><%= lang[info.lang].timeGame %> - <%= gameTime.h %><%= lang[info.lang].h %>&nbsp;<%= gameTime.m %><%= lang[info.lang].m %>&nbsp;<%= gameTime.s %><%= lang[info.lang].s %></h3>
+			<% } else { %>
+				<h3 class="alert-header"><%= lang[info.lang].timeGame %> - <%= gameTime.m %><%= lang[info.lang].m %>&nbsp;<%= gameTime.s %><%= lang[info.lang].s %></h3>
+			<% }; %>
+
 		<% } else { %>
 			<h3 class="alert-header"><%= lang[info.lang].timeGame %> - <%= lang[info.lang].biggerThanADay %></h3>
 		<% }; %>
