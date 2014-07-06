@@ -13,7 +13,7 @@
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		availableLangs: ['en'],
 		saveItem: 'tower-v-1',
-		isAdsFree: true,
+		isAdsFree: false,
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: '-webkit-',
