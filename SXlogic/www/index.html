@@ -35,7 +35,7 @@
 	<script src="js/service/template-master.js" type="text/javascript"></script>
 
 	<!-- sections -->
-	<script src="js/question/section.js" type="text/javascript"></script>
+	<script src="js/question/sectionZagadkiSPodvohom.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -76,7 +76,7 @@
 
 		<% questions.forEach(function(question, index){ %>
 
-			<h1 class="js-question-item" data-number="<%= index %>"><%= question.name %></h1>
+			<h1 class="js-question-item" data-number="<%= index %>"><%= question.title %></h1>
 
 		<% }); %>
 
@@ -88,7 +88,25 @@
 
 <script type="text/x-template" data-name="question">
 
-	<h1>question</h1>
+	<h1><%= title %></h1>
+
+	<p><%= text %></p>
+
+	<% if (image) { %>
+		<img src="image" alt=""/>
+	<% }; %>
+
+	<% if (obj.hint) { %>
+		<p class="js-hint-button">подсказка</p>
+		<p class="js-hint-text hidden"><%= hint %></p>
+	<% }; %>
+
+
+
+	<p><%= answer %></p>
+
+	<div class="js-set-question" data-direction="-1">prev</div>
+	<div class="js-set-question" data-direction="1">next</div>
 
 </script>
 

@@ -9,19 +9,55 @@
 	win.APP.QuestionView = win.APP.MainView.extend({
 		templates: ['question'],
 		events: {
-
+			'click .js-set-question': 'setQuestion',
+			'click .js-hint-button': 'showHint'
 		},
 		init: function() {
 
-			this.$el = $('<div class="question js-question"/>').html(this.tmpl.question({}));
+			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
 
-			this.$wrapper = $('.js-wrapper');
+				var question = win.sections[info.currentSectionName].questions[info.currentQuestionNumber];
 
-			this.$wrapper.html('');
+				this.$el = $('<div class="question js-question"/>').html(this.tmpl.question(question));
 
-			this.$wrapper.append(this.$el);
+				this.$wrapper = $('.js-wrapper');
 
+				this.$wrapper.html('');
+
+				this.$wrapper.append(this.$el);
+
+			} else {
+
+				Backbone.history.history.back();
+
+			}
+
+		},
+
+		setQuestion: function(e) {
+
+			var $this = $(e.currentTarget),
+				direction = +$this.data('direction'),
+				length = win.sections[info.currentSectionName].questions.length,
+				currentQuestion = +info.currentQuestionNumber + direction;
+
+			if (currentQuestion < 0) {
+				currentQuestion = length - 1;
+			}
+
+			if (currentQuestion >= length) {
+				currentQuestion = 0;
+			}
+
+			info.set('currentQuestionNumber', currentQuestion);
+
+			APP.questionView = new win.APP.QuestionView();
+
+		},
+		showHint: function() {
+			$('.js-hint-text').removeClass('hidden');
 		}
+
 
 
 
