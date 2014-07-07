@@ -27,7 +27,7 @@
 			var $node = $(e.currentTarget),
 				sectionName = $node.data('section-name');
 
-			console.log(sectionName);
+			APP.router.navigate('section/' + sectionName, {trigger: true});
 
 		}
 

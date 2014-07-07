@@ -26,7 +26,7 @@
 			}, this);
 
 			if (this.init) {
-				this.init();
+				this.init(data);
 			}
 
 			for (key in events) {

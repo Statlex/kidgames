@@ -12,10 +12,18 @@
 
 	Router = Backbone.Router.extend({
 		routes: {
-			'': 'title'
+			'': 'title',
+			'section/:id': 'section',
+			'question': 'question'
 		},
 		title: function() {
 			APP.titleView = new win.APP.TitleView();
+		},
+		section: function(id) {
+			APP.sectionView = new win.APP.SectionView({id: id});
+		},
+		question: function() {
+			APP.questionView = new win.APP.QuestionView();
 		}
 	});
 

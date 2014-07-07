@@ -7,7 +7,7 @@
 
 	win.sections.test = {
 		name: 'тестовая секция',
-		items: [
+		questions: [
 			{
 				name: 'Прошлогодний снег',
 				image: '',
