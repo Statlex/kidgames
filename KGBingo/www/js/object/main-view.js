@@ -40,6 +40,8 @@
 
 			this.bindBackButton();
 
+			window.scrollTo(0, 0);
+
 		},
 		bindBackButton: function() {
 			this.$el.find('.js-back').on('click', function(){
