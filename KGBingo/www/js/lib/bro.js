@@ -347,6 +347,12 @@
 
 	};
 
+	Bro.prototype.removeAttr = function(attr) {
+		this.forEach(function(node){
+			node.removeAttribute(attr);
+		});
+	};
+
 	Bro.prototype.init = function (selector, context) {
 
 		// detect empty selector
@@ -926,6 +932,42 @@
 			css: '-webkit-',
 			js: 'webkit'
 		};
+	};
+
+	Bro.prototype.ajax = function(data) {
+
+		data.type = data.type || 'GET';
+
+		data.success = data.success || function(){};
+		data.error = data.error || function(){};
+
+		var xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function() {
+			if ( xhr.readyState !== 4 ) {
+				return;
+			}
+
+			if (xhr.status !== 200) {
+				data.error();
+				return;
+			}
+
+			data.success(xhr.responseText);
+		};
+
+		switch (data.type) {
+			case 'GET':
+				xhr.open(data.type, data.url, true);
+				xhr.send(null);
+				break;
+			default :
+				console.warn('not supported type of ajax request');
+
+		}
+
+		return xhr;
+
 	};
 
 }(window, document, document.documentElement));

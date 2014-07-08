@@ -100,6 +100,19 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-o-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+
 }
 
 .clear {

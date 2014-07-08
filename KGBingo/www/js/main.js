@@ -17,15 +17,19 @@
 		title: function() {
 			APP.titleView = new win.APP.TitleView();
 		}
+
 	});
 
 	APP.router = new Router();
 
 	$(win).on('hashchange', function(){
 
-		var $description = $('.js-description');
+		var $description = $('.js-description'),
+			location = win.location.hash.replace('#', ''),
+			util = $();
+
 		// hide info
-		if (location.hash === '#info') {
+		if (location === 'info') {
 			$description.show();
 		} else {
 			$description.hide();
@@ -47,12 +51,19 @@
 
 		back();
 
-		var util = $();
-		util.setBodyScroll(false);
+	};
 
+	var resize = function () {
+		if (win.APP.bingoView) {
+			win.APP.bingoView.setCellSize();
+		}
 	};
 
 	win.addEventListener('load', main, false);
+
+	win.addEventListener('resize', resize, false);
+
+
 
 	// other data here
 
