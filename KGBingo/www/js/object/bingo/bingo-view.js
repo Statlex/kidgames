@@ -33,24 +33,36 @@
 
 			this.setCellSize();
 
+			var util = $();
+			util.setBodyScroll(false);
+
 		},
 		setCellSize: function() {
-			var $cells = this.$el.find('.js-table-cell-word'),
-				$table = this.$el.find('.js-words-tablet'),
-				docElem = win.document.documentElement,
-				size = Math.min(docElem.clientHeight, docElem.clientWidth);
 
-			$table.css({
-				width: size + 'px',
-				height: size + 'px'
-			});
+			function setCellSize() {
+				var $cells = this.$el.find('.js-table-cell-word'),
+					$table = this.$el.find('.js-words-tablet'),
+					docElem = win.document.documentElement,
+					size = Math.min(docElem.clientHeight, docElem.clientWidth);
 
-			size /= 5;
+				size -= 30;
 
-			$cells.each(function(){
-				this.style.width = size + 'px';
-				this.style.height = size + 'px';
-			});
+				$table.css({
+					width: size + 'px',
+					height: size + 'px'
+				});
+
+				size = Math.floor(size / 5);
+
+				$cells.each(function(){
+					this.style.width = size + 'px';
+					this.style.height = size + 'px';
+				});
+			}
+
+			setCellSize.call(this);
+
+			setTimeout(setCellSize.bind(this), 200);
 
 		},
 		copyObject: function(obj) {
