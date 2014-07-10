@@ -78,6 +78,12 @@
 
 			<h1 class="js-question-item" data-number="<%= index %>"><%= question.title %></h1>
 
+			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
+
+				<span>1</span>
+
+			<% }; %>
+
 		<% }); %>
 
 	</div>

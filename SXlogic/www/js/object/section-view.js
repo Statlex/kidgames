@@ -15,6 +15,8 @@
 		},
 		init: function(data) {
 
+			info.set('currentSectionName', data.id);
+
 			this.$el = $('<div class="list js-list"/>').html(this.tmpl.list(win.sections[data.id]));
 
 			this.$wrapper = $('.js-wrapper');
@@ -23,7 +25,6 @@
 
 			this.$wrapper.append(this.$el);
 
-			info.set('currentSectionName', data.id);
 
 		},
 		showQuestion: function(e) {
