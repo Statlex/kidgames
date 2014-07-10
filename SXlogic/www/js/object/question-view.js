@@ -10,7 +10,8 @@
 		templates: ['question'],
 		events: {
 			'click .js-set-question': 'setQuestion',
-			'click .js-hint-button': 'showHint'
+			'click .js-hint-button': 'showHint',
+			'click .js-answer-button': 'showAnswer'
 		},
 		init: function() {
 
@@ -56,6 +57,21 @@
 		},
 		showHint: function() {
 			$('.js-hint-text').removeClass('hidden');
+		},
+		showAnswer: function() {
+
+			$('.js-answer-text').removeClass('hidden');
+
+			var sections = info.get('sections') || {},
+				sectionName = info.currentSectionName,
+				questionNumber = info.currentQuestionNumber;
+
+			sections[sectionName] = sections[sectionName] || {};
+
+			sections[sectionName][questionNumber] = 1;
+
+			info.set('sections', sections, true);
+
 		}
 
 
