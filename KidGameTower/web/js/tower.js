@@ -78,10 +78,10 @@
 			});
 
 		},
-		createBlock: function (direction) {
+		createBlock: function (direction, color) {
 
 			var newBlock = Object.create(block);
-			newBlock.init(direction);
+			newBlock.init(direction, color);
 
 			this.wrapper.append(newBlock.node);
 			this.blocks.push(newBlock);
@@ -93,36 +93,37 @@
 
 			var centerX = Math.round(gameInfo.w - 1.5) / 2,
 				direction = Math.random() > 0.5 ? 1 : -1,
-				linesBlock;
+				linesBlock,
+				color = gameInfo.getColor();
 
 			switch (this.lineLength) {
 
 				case 1:
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX;
 					break;
 
 				case 2:
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX;
 
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX + 1;
 					break;
 
 				case 3:
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX;
 
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX + 1;
 
-					linesBlock = this.createBlock(direction);
+					linesBlock = this.createBlock(direction, color);
 					linesBlock.tower = this;
 					linesBlock.x = centerX - 1;
 					break;
@@ -224,8 +225,7 @@
 			this.blocks.forEach(function (block, index, arr) {
 
 				if (block.remove) {
-					block.remove += 1;
-					block.node.style.opacity = 1 - block.remove / 8;
+					block.node.style.opacity = 0.5 - (block.remove % 2);
 				}
 
 				if (block.remove > 9) {
@@ -258,8 +258,17 @@
 
 		},
 		endGame: function () {
+			var hiScore = info.get('hiScore') || 0,
+				isNewRecord = this.count > hiScore;
+
+			hiScore = Math.max(hiScore, this.count);
+
+			info.set('hiScore', hiScore, true);
+
 			customAlert({
-				msg: lang[info.lang].yourScoreIs + ': ' + this.count
+				isNewRecord: isNewRecord,
+				msg: lang[info.lang].yourScoreIs + ': ' + this.count,
+				hiScore: lang[info.lang].yourHiScoreIs + ': ' + hiScore
 			});
 		}
 	};
@@ -269,8 +278,9 @@
 		y: 0,
 		direction: 1, // 1 to right, -1 to left
 		g: 0,
-		init: function (direction) {
-			this.node = $('<div class="block"/>').css('background-color', '#' + gameInfo.getColor())[0];
+		init: function (direction, color) {
+
+			this.node = $('<div class="block"/>').css('background-color', '#' + color)[0];
 			this.timeStamp = Date.now();
 			this.direction = direction || 1;
 		},

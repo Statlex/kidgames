@@ -46,7 +46,12 @@
 
 		<div class="alert-wrapper js-alert-wrapper">
 
+			<% if (isNewRecord) { %>
+			<h3 class="alert-header"><%= lang[info.lang].newRecord %></h3>
+			<% }; %>
+
 			<h3 class="alert-header"><%= msg %></h3>
+			<h3 class="alert-header"><%= hiScore %></h3>
 
 			<div class="reload-button" onclick="window.location.reload();"></div>
 
