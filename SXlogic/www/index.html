@@ -43,7 +43,7 @@
 </head>
 <body>
 
-<div class="js-wrapper">
+<div class="js-wrapper wrapper">
 
 
 
@@ -52,13 +52,13 @@
 
 <script type="text/x-template" data-name="title">
 
-	<h1>title</h1>
+	<h1 class="header">Логика и Находчивость</h1>
 
-	<div>
+	<div class="list-wrapper">
 
 		<% for (var key in sections) { %>
 
-			<div class="js-go-to-section" data-section-name="<%= key %>"><%= sections[key].name %></div>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>"><%= sections[key].name %></div>
 
 		<% }; %>
 
@@ -68,25 +68,29 @@
 
 <script type="text/x-template" data-name="list">
 
-	<h1>list</h1>
+	<h1 class="header"><%= name %></h1>
 
-	<h1><%= name %></h1>
-
-	<div>
+	<div class="list-wrapper">
 
 		<% questions.forEach(function(question, index){ %>
 
-			<h1 class="js-question-item" data-number="<%= index %>"><%= question.title %></h1>
 
 			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
 
-				<span>1</span>
+				<div class="js-question-item list-item question-was-done" data-number="<%= index %>"><%= question.title %></div>
+
+			<% } else { %>
+
+				<div class="js-question-item list-item" data-number="<%= index %>"><%= question.title %></div>
 
 			<% }; %>
+
 
 		<% }); %>
 
 	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
 
 </script>
 
@@ -94,25 +98,33 @@
 
 <script type="text/x-template" data-name="question">
 
-	<h1><%= title %></h1>
+	<h1 class="header"><%= title %></h1>
 
-	<p><%= text %></p>
-
-	<% if (image) { %>
-		<img src="image" alt=""/>
-	<% }; %>
-
-	<% if (obj.hint) { %>
-		<p class="js-hint-button">подсказка</p>
-		<p class="js-hint-text hidden"><%= hint %></p>
-	<% }; %>
+	<div class="list-wrapper">
 
 
-	<p class="js-answer-button">ответ</p>
-	<p class="js-answer-text hidden"><%= answer %></p>
+		<p class="question-paragraph"><%= text %></p>
 
-	<div class="js-set-question" data-direction="-1">prev</div>
-	<div class="js-set-question" data-direction="1">next</div>
+		<% if (image) { %>
+		<img class="image" src="<%= image.replace('http://', '//') %>" alt=""/>
+		<% }; %>
+
+		<% if (obj.hint) { %>
+		<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
+		<p class="js-hint-text hidden question-paragraph"><%= hint %></p>
+		<% }; %>
+
+		<p class="question-paragraph button-wrapper"><span class="js-answer-button button">ответ</span></p>
+		<p class="js-answer-text hidden question-paragraph"><%= answer %></p>
+
+	</div>
+
+	<div class="navigation-buttons-wrapper clear-fix">
+		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
+		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
 
 </script>
 

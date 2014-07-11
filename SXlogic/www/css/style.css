@@ -1,0 +1,179 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	background-color: #f7f0ea;
+}
+
+.wrapper {
+	padding: 10px;
+	font-family: "Times New Roman", serif;
+	font-size: 16px;
+	line-height: 18px;
+	font-weight: normal;
+	color: #4a3a2d;
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.header {
+	font-size: 18px;
+	line-height: 18px;
+	padding: 13px 45px;
+	text-align: center;
+	background-color: #f7f0ea;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(247, 240, 234, 0.9);
+	z-index: 1;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.list-item {
+	font-size: 17px;
+	line-height: 17px;
+	padding: 11px;
+}
+
+.list-wrapper {
+	padding: 50px 0 100px;
+}
+
+.back {
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 44px;
+	height: 44px;
+}
+
+.navigation-left,
+.navigation-right,
+.navigation-left:after,
+.navigation-right:after,
+.back-icon,
+.back-icon:after {
+	width: 0;
+	height: 0;
+	border: 12px solid transparent;
+	float: left;
+	border-right-color: #A7A19D;
+	border-right-width: 21px;
+	margin: 10px 0 0 -2px;
+	position: relative;
+}
+
+.navigation-left:after,
+.navigation-right:after,
+.back-icon:after {
+	content: '';
+	display: block;
+	border-right-color: #797674;
+	position: absolute;
+	top: -22px;
+	left: -3px;
+	z-index: -1;
+}
+
+.navigation-left:after,
+.navigation-right:after {
+	border-right-color: #A7A19D;
+}
+
+
+.navigation-right,
+.navigation-right:after {
+	border: 12px solid transparent;
+	float: right;
+	border-left-color: #A7A19D;
+	border-left-width: 21px;
+	margin: 10px -2px 0 0;
+}
+
+.navigation-right:after {
+	border-left-color: #A7A19D;
+	left: -28px;
+}
+
+.question-was-done {
+	opacity: 0.4;
+}
+
+.image {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding-bottom: 10px;
+}
+
+.question-paragraph {
+	padding-bottom: 10px;
+	font-size: 17px;
+	line-height: 20px;
+	text-indent: 15px;
+}
+
+.button-wrapper {
+	text-indent: 0;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.button {
+	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+	box-shadow: inset 0px 1px 0px 0px #ffffff;
+	background-image: -webkit-linear-gradient(top, #ededed, #dfdfdf );
+	background-image: linear-gradient(top, #ededed, #dfdfdf );
+	background-color: #ededed;
+	border-radius: 6px;
+	text-indent: 0;
+	border: 1px solid #dcdcdc;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 1px 1px 0px #ffffff;
+	text-indent: 0;
+	padding: 5px 15px;
+	min-width: 110px;
+}
+
+.button:active {
+	background: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+	background: linear-gradient(top, #dfdfdf, #ededed);
+	background-color: #dfdfdf;
+	position: relative;
+	top: 1px;
+}
+
+.navigation-buttons-wrapper {
+	clear: both;
+	padding: 0 0 50px;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(247, 240, 234, 0.9);
+}
+
+.navigation-button-wrapper-left,
+.navigation-button-wrapper-right {
+	width: 44px;
+	height: 44px;
+	float: left;
+	position: relative;
+}
+
+.navigation-button-wrapper-right {
+	float: right;
+}
+
+
+
+
+
+
+

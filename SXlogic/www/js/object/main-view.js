@@ -40,13 +40,34 @@
 
 			this.bindBackButton();
 
+			win.scrollTo(0, 0);
+
+			this.setStyles();
+
+
 		},
+
 		bindBackButton: function() {
 			this.$el.find('.js-back').on('click', function(){
 				if (Backbone.history.fragment) {
 					Backbone.history.history.back();
 				}
 			});
+		},
+
+		setStyles: function() {
+
+			function topPadding() {
+				var header = $('.header'),
+					wrapper = $('.list-wrapper');
+				wrapper.css('padding-top', header.prop('clientHeight') + 'px');
+			}
+
+			topPadding();
+			setTimeout(topPadding, 100);
+			setTimeout(topPadding, 200);
+			setTimeout(topPadding, 300);
+
 		}
 
 
