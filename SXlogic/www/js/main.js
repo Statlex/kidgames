@@ -45,7 +45,12 @@
 		back();
 	}
 
+	function resize() {
+		APP.titleView.setStyles();
+	}
+
 	win.addEventListener('load', main, false);
+	win.addEventListener('resize', resize, false);
 
 	// other data here
 
