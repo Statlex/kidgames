@@ -15,15 +15,24 @@
 
 				sections[key].questions.forEach(function(question){
 
-					var image, key, body;
+					var image, key, body, strArr;
 
 					body = doc.body;
 
 					for (key in question) {
-						if (question.hasOwnProperty(key) && question[key].indexOf('http') !== -1) {
-							image = new Image();
-							image.src = question.image;
-							body.appendChild(image);
+						if (question.hasOwnProperty(key)) {
+
+							var img;
+
+							question[key].split(/\s*_!_\s*/gi).forEach(function(str){
+								if (str.indexOf('http:') !== -1) {
+									img = new Image();
+									console.log(str);
+									img.src = str;
+									body.appendChild(img);
+								}
+							});
+
 						}
 					}
 

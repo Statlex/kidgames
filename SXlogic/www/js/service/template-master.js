@@ -36,7 +36,39 @@
 
 			}, this);
 
+		},
+
+		// create template for question
+		createText: function(text, addedClass) {
+
+			if (addedClass) {
+				addedClass = ' ' + addedClass;
+			} else {
+				addedClass = '';
+			}
+
+			var arrStr = text.split(/\s*_!_\s*/gi);
+
+			arrStr.forEach(function(str, index, arr){
+
+				if (str.indexOf('http:') !== -1) {
+//					str = str.split('/').pop(); // it is works
+//					console.log(str);
+					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
+				} else {
+					if (str[str.length-1] !== '.') {
+						str += '.';
+					}
+					arr[index] = '<p class="question-paragraph' + addedClass + '">' + str + '</p>';
+				}
+
+			});
+
+			return arrStr.join('');
+
 		}
+
+
 
 	};
 

@@ -107,19 +107,36 @@
 	<div class="list-wrapper">
 
 
-		<p class="question-paragraph"><%= text %></p>
 
-		<% if (image) { %>
-		<img class="image" src="<%= image.replace('http://', '//') %>" alt=""/>
-		<% }; %>
+		<%= templateMaster.createText(text) %>
+
+		<!--<p class="question-paragraph">-->
+			<!--<%= text %>-->
+		<!--</p>-->
+
+
+		<!--<% if (image) { %>-->
+		<!--<img class="image" src="<%= image %>" alt=""/>-->
+		<!--<% }; %>-->
 
 		<% if (obj.hint) { %>
 		<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
-		<p class="js-hint-text hidden question-paragraph"><%= hint %></p>
+
+		<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
+
+		<!--<p class="js-hint-text hidden question-paragraph">-->
+
+			<!--<%= hint %>-->
+
+		<!--</p>-->
 		<% }; %>
 
 		<p class="question-paragraph button-wrapper"><span class="js-answer-button button">ответ</span></p>
-		<p class="js-answer-text hidden question-paragraph"><%= answer %></p>
+
+		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
+
+
+		<!--<p class="js-answer-text hidden question-paragraph"><%= answer %></p>-->
 
 	</div>
 

@@ -110,6 +110,10 @@ html, body {
 	padding-bottom: 10px;
 }
 
+.image.hidden {
+	display: none;
+}
+
 .question-paragraph {
 	padding-bottom: 10px;
 	font-size: 17px;
