@@ -19,8 +19,9 @@
 		return new Bro(selector, context);
 	};
 
-	win.$ = bro;
+//	win.$ = bro;
 	//win.Bro = Bro;
+	win.bro = bro;
 
 	re = {
 		htmlNode: /(^|\s+)<[\s\S]+>($|\s+)/,
@@ -119,7 +120,7 @@
 					y: NaN
 				}
 			},
-			extraTypes: ['click', 'dblclick', 'hold', 'swipe'],
+			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe'] : ['hold', 'swipe'],
 			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
