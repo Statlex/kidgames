@@ -51,6 +51,8 @@
 
 			arrStr.forEach(function(str, index, arr){
 
+				str = str.trim();
+
 				if (str.indexOf('http:') !== -1) {
 //					str = str.split('/').pop(); // it is works
 //					console.log(str);
