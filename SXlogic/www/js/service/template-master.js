@@ -54,8 +54,7 @@
 				str = str.trim();
 
 				if (str.indexOf('http:') !== -1) {
-//					str = str.split('/').pop(); // it is works
-//					console.log(str);
+					str = 'image/' + str.split('/').pop(); // it is works
 					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
 				} else {
 					if (str[str.length-1] !== '.') {
