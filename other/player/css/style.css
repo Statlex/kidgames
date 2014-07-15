@@ -1,4 +1,31 @@
+body {
+	padding: 10px;
+}
+
+.player {
+
+}
+
+.track,
+.current-track {
+	padding: 4px 0;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.current-track {
+	background-color: #ffcf9d;
+	text-align: center;
+}
+
+.current-track:empty {
+	display: none;
+}
+
 .drop-zone {
-	background-color: #c00;
-	padding: 100px;
+	background-color: #9BCF9B;
+	padding: 34px 10px;
+	width: 100%;
+	box-sizing: border-box;
 }

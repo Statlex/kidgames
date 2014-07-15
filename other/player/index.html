@@ -17,14 +17,11 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
+	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
 	<!-- libs -->
 	<script src="js/lib/bro.js" type="text/javascript"></script>
-
-
-	<script src="js/objects/event-binding.js" type="text/javascript"></script>
-	<script src="js/objects/player.js" type="text/javascript"></script>
 
 
 	<!-- main -->
@@ -35,7 +32,15 @@
 <body>
 
 
-		<input class="js-drop-zone drop-zone" type="file" multiple/>
+	<audio class="js-player player" src="#" controls="controls"></audio>
+
+	<div class="js-current-track current-track">current track</div>
+	<input class="js-drop-zone drop-zone" type="file" multiple/>
+
+	<div class="js-play-list">
+
+	</div>
+
 
 
 </body>

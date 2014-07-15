@@ -773,6 +773,19 @@
 			return this.length ? this[0].dataset : {};
 		}
 
+		if (this.isPlainObject(key)) {
+			for (var i in key) {
+				if (key.hasOwnProperty(i)) {
+					this.forEach(function(node){
+						node.dataset[i] = key[i];
+					});
+				}
+			}
+
+			return this;
+		}
+
+
 		// some-tome-tone -> someTomeTone
 		key = re.xToX(key);
 
