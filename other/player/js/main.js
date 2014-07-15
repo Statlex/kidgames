@@ -32,25 +32,34 @@ bro(function () {
 	});
 
 	dropZone.on('dragover', function(e){
+
 		e.stopPropagation();
 		e.preventDefault();
+
 	});
 
 	dropZone.on('drop', function (e) {
+
 		e.stopPropagation();
 		e.preventDefault();
 
-		var fileCounter = 0;
+		player
+			.prop('src', '#')
+			.prop('pause').call(player[0]);
 
-		var files = e.dataTransfer.files; // FileList object
+		list = [];
+		playList.html('');
 
-		for (var i = 0, len = files.length; i < len; i++) {
+		var fileCounter = 0,
+			util = $(),
+			files = util.toArray(e.dataTransfer.files),
+			len = files.length; // FileList object
+
+		files.forEach(function(f, i){
 
 			var reader = new FileReader();
 
-			var f = files[i];
-
-			reader.onload = function (file, index) {
+			reader.addEventListener('loadend', function(file, index){
 
 				list[index] = {
 					file: file,
@@ -65,17 +74,12 @@ bro(function () {
 					createList();
 				}
 
-				// save to LS
-				var files = info.get('audio-files');
-				files[index] = list[index];
-				info.set('audio-files', files, true);
-
-			}.bind(this, f, i);
+			}.bind(reader, f, i), false);
 
 			// Read in the image file as a data URL.
 			reader.readAsBinaryString(f);
 
-		}
+		});
 
 	});
 
