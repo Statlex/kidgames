@@ -8,6 +8,8 @@ bro(function () {
 
 	var player = $('.js-player');
 
+	var dropZone = $('.js-drop-zone');
+
 	player.on('ended', function () {
 
 		var $this = $(this),
@@ -22,15 +24,25 @@ bro(function () {
 			.data('index', nextItem.data('index'))
 			.prop('play').call(this);
 
-		$('.js-current-track').html(nextItem.html());
+		$('.js-current-track').html(nextItem.html()).data('duration', nextItem.data('duration'));
+
+		$('.active-track').removeClass('active-track');
+		nextItem.addClass('active-track');
 
 	});
 
-	$('.js-drop-zone').on('change', function (e) {
+	dropZone.on('dragover', function(e){
+		e.stopPropagation();
+		e.preventDefault();
+	});
+
+	dropZone.on('drop', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
 
 		var fileCounter = 0;
 
-		var files = e.target.files; // FileList object
+		var files = e.dataTransfer.files; // FileList object
 
 		for (var i = 0, len = files.length; i < len; i++) {
 
@@ -52,6 +64,11 @@ bro(function () {
 				if (fileCounter === len) {
 					createList();
 				}
+
+				// save to LS
+				var files = info.get('audio-files');
+				files[index] = list[index];
+				info.set('audio-files', files, true);
 
 			}.bind(this, f, i);
 
@@ -80,15 +97,17 @@ bro(function () {
 						.data('index', $this.data('index'))
 						.prop('play').call(player[0]);
 
-					$('.js-current-track').html($this.html());
+					$('.js-current-track').html($this.html()).data('duration', $this.data('duration'));
+
+					$('.active-track').removeClass('active-track');
+					$this.addClass('active-track');
 
 				});
 
 			playList.append($track);
 
-
+			// add track duration only
 			var audio = new Audio();
-
 			audio.src = item.src;
 			audio.index = index;
 			$(audio).on('canplaythrough', function () {
@@ -96,6 +115,7 @@ bro(function () {
 				var sec = parseInt(this.duration),
 					min = Math.floor(sec / 60);
 				sec %= 60;
+				sec = sec < 10 ? '0' + sec : sec;
 
 				$('.js-track').eq(this.index).data('duration', min + '.' + sec);
 
