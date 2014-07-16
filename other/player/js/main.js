@@ -4,8 +4,6 @@ bro(function () {
 
 	var list = [];
 
-	var playList = $('.js-play-list');
-
 	var player = $('.js-player');
 
 	var dropZone = $('.js-drop-zone');
@@ -48,7 +46,7 @@ bro(function () {
 			.prop('pause').call(player[0]);
 
 		list = [];
-		playList.html('');
+		$('.js-play-list').html('');
 
 		var util = $(),
 			files = util.toArray(e.dataTransfer.files); // FileList object
@@ -71,6 +69,9 @@ bro(function () {
 
 	function createList() {
 
+
+		var playList = $('.js-play-list');
+		
 		list.forEach(function (item, index) {
 
 			var $track = $('<div/>', {
