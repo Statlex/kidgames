@@ -54,7 +54,15 @@
 
 <script type="text/x-template" data-name="player">
 
-	<h1>player</h1>
+	<div class="js-track-name"><%= track.name %></div>
+
+	<div class="js-track-duration"><%= track.duration %></div>
+
+	<input class="js-button-play" type="button" value="play"/>
+	<input class="js-button-pause" type="button" value="pause"/>
+	<input class="js-button-next" type="button" value="next"/>
+	<input class="js-button-prev" type="button" value="prev"/>
+	<input class="js-button-stop" type="button" value="stop"/>
 
 </script>
 
@@ -65,14 +73,13 @@
 
 		<% list.forEach(function(song){ %>
 
-			<div class="js-song-block" data-src="<%= song.src %>" >
+			<div class="js-song-block" data-name="<%= song.name %>" data-src="<%= song.src %>" >
 
 				<h2><%= song.name %></h2>
 
 			</div>
 
 		<% });  %>
-
 
 	</div>
 

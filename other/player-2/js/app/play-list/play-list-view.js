@@ -43,7 +43,8 @@
 
 			var util = $(),
 				files = util.toArray(e.dataTransfer.files),
-				list = this.model.get('list');
+				list = this.model.get('list'),
+				that = this;
 
 			files.forEach(function (file) {
 
@@ -63,7 +64,13 @@
 				var audio = new Audio();
 
 				audio.addEventListener('canplaythrough', function(){
-					$('.js-song-block[data-src="' + this.src + '"]').data('duration', parseInt(this.duration, 10));
+
+					var item = that.model.getDataBySrc(this.src),
+						duration = Math.round(this.duration);
+
+					that.$el.find('.js-song-block[data-src="' + this.src + '"]').data('duration', duration);
+					item.duration = duration;
+
 				}, false);
 
 				audio.src = data.src;
@@ -76,14 +83,16 @@
 
 			this.$el.html(this.tmpl['play-list'](this.model.toJSON()));
 
-			this.bindEvents()
+			this.bindEvents();
 
 		},
 
 		play: function(e) {
 
-			var $node = $(e.currentTarget);
-			this.playerModel.play($node.data('src'));
+			var $node = $(e.currentTarget),
+				data = this.model.getDataBySrc($node.data('src'));
+
+			this.playerModel.play(data);
 
 		},
 

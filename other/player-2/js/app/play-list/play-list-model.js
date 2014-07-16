@@ -10,7 +10,19 @@
 			this.set('list', []);
 			this.on('change:list', this.view.update.bind(this.view));
 
+		},
+		getDataBySrc: function(src) {
 
+			var list = this.get('list'),
+				data = {};
+
+			list.forEach(function(item){
+				if (item.src === src) {
+					data = item;
+				}
+			});
+
+			return data;
 
 		}
 

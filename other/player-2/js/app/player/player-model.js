@@ -5,19 +5,58 @@
 
 	win.APP.PlayerModel = Backbone.Model.extend({
 		initialize: function (data) {
+			this.track = {};
+			this.currentTime = 0;
 			this.view = data.view;
 
-			this.set('audio', new Audio());
+			var audio = new Audio(),
+				that = this;
+			audio.addEventListener('canplay', function(){
+				this.currentTime = that.currentTime;
+			}, false);
+
+			this.audio = audio;
 
 		},
 
-		play: function (src) {
+		play: function (data) {
 
-			var audio = this.get('audio');
-			audio.src = src;
+			var audio = this.audio;
+
+			if (data.src !== this.track.src) {
+				this.currentTime = 0;
+			}
+
+			if (data.src === this.track.src && !audio.paused) {
+				return;
+			}
+
+			this.track = data;
+
+			this.view.update();
+
+			audio.src = data.src;
 			audio.play();
 
+			console.log(data.name);
+
+		},
+		pause: function() {
+			var audio = this.audio;
+			this.currentTime = audio.currentTime;
+			audio.pause();
+		},
+		stop: function() {
+			var audio = this.audio;
+			audio.pause();
+			this.currentTime = 0;
+			audio.currentTime = 0;
+
 		}
+
+
+
+
 	});
 
 }(window, document, document.documentElement));
