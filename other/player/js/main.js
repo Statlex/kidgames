@@ -31,7 +31,7 @@ bro(function () {
 
 	});
 
-	dropZone.on('dragover', function(e){
+	dropZone.on('dragover', function (e) {
 
 		e.stopPropagation();
 		e.preventDefault();
@@ -50,36 +50,23 @@ bro(function () {
 		list = [];
 		playList.html('');
 
-		var fileCounter = 0,
-			util = $(),
-			files = util.toArray(e.dataTransfer.files),
-			len = files.length; // FileList object
+		var util = $(),
+			files = util.toArray(e.dataTransfer.files); // FileList object
 
-		files.forEach(function(f, i){
+		files.forEach(function (file, index) {
 
-			var reader = new FileReader();
+			list.push({
+				file: file,
+				src: URL.createObjectURL(file),
+				name: file.name,
+				index: index
+			});
 
-			reader.addEventListener('loadend', function(file, index){
-
-				list[index] = {
-					file: file,
-					src: URL.createObjectURL(file),
-					name: file.name,
-					index: index
-				};
-
-				fileCounter += 1;
-
-				if (fileCounter === len) {
-					createList();
-				}
-
-			}.bind(reader, f, i), false);
-
-			// Read in the image file as a data URL.
-			reader.readAsBinaryString(f);
+			console.log(list[index].src);
 
 		});
+
+		createList();
 
 	});
 
