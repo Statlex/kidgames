@@ -62,8 +62,6 @@ bro(function () {
 				index: index
 			});
 
-			console.log(list[index].src);
-
 		});
 
 		createList();
