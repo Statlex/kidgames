@@ -77,13 +77,10 @@
 			this.model.pause();
 		},
 		next: function() {
-
 			this.playNextTrack(1);
-
 		},
 		prev: function() {
 			this.playNextTrack(-1);
-
 		},
 		playNextTrack: function(direction) {
 

@@ -15,6 +15,10 @@
 				this.currentTime = that.currentTime;
 			}, false);
 
+			audio.addEventListener('ended', function(){
+				that.view.next();
+			}, false);
+
 			this.audio = audio;
 
 		},
