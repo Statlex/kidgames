@@ -59,6 +59,21 @@
 			this.currentTime = 0;
 			audio.currentTime = 0;
 			this.view.setProgressBar();
+		},
+		moveTo: function(data) {
+			data = data || {};
+			var part = data.part || 0,
+				audio = this.audio;
+
+			if (!audio.currentTime) { // detect stop state
+				return;
+			}
+
+			this.currentTime = audio.duration * part;
+			audio.currentTime = this.currentTime;
+
+			this.view.setProgressBar(audio.paused ? {} : {percent: 100});
+
 		}
 
 

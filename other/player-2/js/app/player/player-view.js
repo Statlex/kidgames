@@ -13,7 +13,8 @@
 			'click .js-button-pause': 'pause',
 			'click .js-button-next': 'next',
 			'click .js-button-prev': 'prev',
-			'click .js-button-stop': 'stop'
+			'click .js-button-stop': 'stop',
+			'click .js-progress-bar-wrapper': 'moveTo'
 		},
 
 		eventsForRestore: {
@@ -21,7 +22,8 @@
 			'click .js-button-pause': 'pause',
 			'click .js-button-next': 'next',
 			'click .js-button-prev': 'prev',
-			'click .js-button-stop': 'stop'
+			'click .js-button-stop': 'stop',
+			'click .js-progress-bar-wrapper': 'moveTo'
 		},
 
 		init: function() {
@@ -43,7 +45,9 @@
 		},
 
 		setProgressBar: function(data){
+
 			data = data || {};
+
 			var bar = this.$el.find('.js-progress-bar'),
 				duration = this.model.track.duration || 0,
 				currentPosition = this.model.currentTime,
@@ -52,13 +56,15 @@
 
 			bar.css('width', currentPosition / duration * 100 + '%');
 			bar.css(prefix + 'transition', 'none');
+
 			if (data.hasOwnProperty('percent')) {
-				bar.css(prefix + 'transition', duration - currentPosition + 's all linear ');
 				setTimeout(function(){
-					bar.css('width', data.percent + '%');
+					bar.css(prefix + 'transition', duration - currentPosition + 's all linear ');
+					setTimeout(function(){
+						bar.css('width', data.percent + '%');
+					}, 10);
 				}, 10);
 			}
-
 
 		},
 
@@ -124,8 +130,20 @@
 			this.model.play(nextTrack);
 
 		},
+
 		stop: function() {
 			this.model.stop();
+		},
+
+		moveTo: function(e) {
+			var target = e.currentTarget,
+				rect = target.getBoundingClientRect(),
+				offsetX = e.clientX - rect.left,
+				width = target.clientWidth,
+				part = 1 - (width - offsetX) / width;
+
+			this.model.moveTo({part: part});
+
 		}
 
 
