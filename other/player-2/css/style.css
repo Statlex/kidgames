@@ -1,6 +1,6 @@
 .song-container {
 	padding: 40px;
-	background-color: #c00;
+	background-color: #91cc69;
 }
 
 .progress-bar-wrapper {
@@ -15,6 +15,6 @@
 	background-color: #4f66ff;
 }
 
-.width100 {
-	width: 100% !important;
+.song-block {
+	padding: 10px;
 }

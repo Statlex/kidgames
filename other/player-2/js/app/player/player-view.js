@@ -14,7 +14,10 @@
 			'click .js-button-next': 'next',
 			'click .js-button-prev': 'prev',
 			'click .js-button-stop': 'stop',
-			'click .js-progress-bar-wrapper': 'moveTo'
+			'click .js-progress-bar-wrapper': 'moveTo',
+			'mousemove .js-volume-bar-wrapper': 'volumeMoveTo',
+			'mousedown .js-volume-bar-wrapper': 'volumeTo',
+			'mouseup .js-volume-bar-wrapper': 'volumeTo'
 		},
 
 		eventsForRestore: {
@@ -23,7 +26,10 @@
 			'click .js-button-next': 'next',
 			'click .js-button-prev': 'prev',
 			'click .js-button-stop': 'stop',
-			'click .js-progress-bar-wrapper': 'moveTo'
+			'click .js-progress-bar-wrapper': 'moveTo',
+			'mousemove .js-volume-bar-wrapper': 'volumeMoveTo',
+			'mousedown .js-volume-bar-wrapper': 'volumeTo',
+			'mouseup .js-volume-bar-wrapper': 'volumeTo'
 		},
 
 		init: function() {
@@ -34,13 +40,14 @@
 			this.$el.html(this.tmpl.player(this.model));
 
 			this.playListView = new APP.PlayListView({playerView: this, playerModel: this.model});
-
+			this.setVolumeBar();
 		},
 
 		update: function() {
 
 			this.$el.html(this.tmpl.player(this.model));
 			this.bindEvents();
+			this.setVolumeBar();
 
 		},
 
@@ -144,7 +151,45 @@
 
 			this.model.moveTo({part: part});
 
+		},
+
+		volumeMoveTo: function(e){
+			var util = $(),
+				info = util.info();
+
+			if (!info.evt.isActive) {
+				return;
+			}
+
+			this.setVolume(e);
+
+		},
+
+		volumeTo: function(e) {
+			this.setVolume(e);
+		},
+
+		setVolume: function(e) {
+			var target = e.currentTarget,
+				rect = target.getBoundingClientRect(),
+				offsetX = e.clientX - rect.left,
+				width = target.clientWidth,
+				part = 1 - (width - offsetX) / width;
+
+			this.model.volumeTo({part: part});
+
+		},
+
+		setVolumeBar: function() {
+
+			var bar = this.$el.find('.js-volume-bar'),
+				currentPosition = this.model.audio.volume;
+
+			bar.css('width', currentPosition  * 100 + '%');
+
 		}
+
+
 
 
 

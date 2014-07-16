@@ -19,6 +19,8 @@
 				that.view.next();
 			}, false);
 
+			audio.volume = 0.50;
+
 			this.audio = audio;
 
 		},
@@ -73,6 +75,17 @@
 			audio.currentTime = this.currentTime;
 
 			this.view.setProgressBar(audio.paused ? {} : {percent: 100});
+
+		},
+		volumeTo: function(data) {
+			data = data || {};
+
+			var part = data.part || 0,
+				audio = this.audio;
+
+			audio.volume = part;
+
+			this.view.setVolumeBar();
 
 		}
 
