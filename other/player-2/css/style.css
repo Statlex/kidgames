@@ -2,3 +2,19 @@
 	padding: 40px;
 	background-color: #c00;
 }
+
+.progress-bar-wrapper {
+	width: 300px;
+	height: 10px;
+	background-color: #ff7837;
+}
+
+.progress-bar {
+	height: 100%;
+	width: 0%;
+	background-color: #4f66ff;
+}
+
+.width100 {
+	width: 100% !important;
+}

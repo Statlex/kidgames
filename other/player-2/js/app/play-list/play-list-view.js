@@ -44,7 +44,8 @@
 			var util = $(),
 				files = util.toArray(e.dataTransfer.files),
 				list = this.model.get('list'),
-				that = this;
+				that = this,
+				autoPlay = !list.length;
 
 			files.forEach(function (file) {
 
@@ -70,6 +71,10 @@
 
 					that.$el.find('.js-song-block[data-src="' + this.src + '"]').data('duration', duration);
 					item.duration = duration;
+
+					if (item === that.model.get('list')[0] && autoPlay){
+						that.playerModel.play(item);
+					}
 
 				}, false);
 

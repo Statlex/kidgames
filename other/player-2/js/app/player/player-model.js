@@ -37,10 +37,12 @@
 
 			this.track = data;
 
-			this.view.update();
 
 			audio.src = data.src;
 			audio.play();
+
+			this.view.update();
+			this.view.setProgressBar({percent: 100});
 
 			console.log(data.name);
 
@@ -49,13 +51,14 @@
 			var audio = this.audio;
 			this.currentTime = audio.currentTime;
 			audio.pause();
+			this.view.setProgressBar();
 		},
 		stop: function() {
 			var audio = this.audio;
 			audio.pause();
 			this.currentTime = 0;
 			audio.currentTime = 0;
-
+			this.view.setProgressBar();
 		}
 
 
