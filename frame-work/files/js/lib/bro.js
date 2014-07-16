@@ -22,6 +22,7 @@
 //	win.$ = bro;
 	//win.Bro = Bro;
 	win.bro = bro;
+	win.$ = bro;
 
 	re = {
 		htmlNode: /(^|\s+)<[\s\S]+>($|\s+)/,
@@ -1001,5 +1002,12 @@
 		return xhr;
 
 	};
+
+	Bro.prototype.info = function() {
+
+		return info;
+
+	};
+
 
 }(window, document, document.documentElement));

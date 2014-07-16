@@ -1003,4 +1003,11 @@
 
 	};
 
+	Bro.prototype.info = function() {
+
+		return info;
+
+	};
+
+
 }(window, document, document.documentElement));
