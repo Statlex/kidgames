@@ -46,6 +46,8 @@
 			this.view.update();
 			this.view.setProgressBar({percent: 100});
 
+			this.view.playListView.markSong(data);
+
 			console.log(data.name);
 
 		},

@@ -74,7 +74,6 @@
 
 					if (item === that.model.get('list')[0] && autoPlay){
 						that.playerModel.play(item);
-						that.$el.find('.js-song-block[data-src="' + item.src + '"]').addClass('current-playing');
 					}
 
 				}, false);
@@ -100,8 +99,12 @@
 
 			this.playerModel.play(data);
 
-			this.$el.find('.js-song-block.current-playing').removeClass('current-playing');
+		},
 
+		markSong: function(data) {
+
+			var $node = this.$el.find('.js-song-block[data-src="' + data.src + '"]');
+			this.$el.find('.js-song-block.current-playing').removeClass('current-playing');
 			$node.addClass('current-playing');
 
 		},
