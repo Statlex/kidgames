@@ -18,3 +18,9 @@
 .song-block {
 	padding: 10px;
 }
+
+.current-playing {
+	background-color: #ff6d4a;
+}
+
+

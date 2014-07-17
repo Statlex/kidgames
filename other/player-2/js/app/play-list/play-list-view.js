@@ -74,6 +74,7 @@
 
 					if (item === that.model.get('list')[0] && autoPlay){
 						that.playerModel.play(item);
+						that.$el.find('.js-song-block[data-src="' + item.src + '"]').addClass('current-playing');
 					}
 
 				}, false);
@@ -98,6 +99,10 @@
 				data = this.model.getDataBySrc($node.data('src'));
 
 			this.playerModel.play(data);
+
+			this.$el.find('.js-song-block.current-playing').removeClass('current-playing');
+
+			$node.addClass('current-playing');
 
 		},
 
