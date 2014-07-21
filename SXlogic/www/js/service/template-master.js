@@ -52,12 +52,13 @@
 			arrStr.forEach(function(str, index, arr){
 
 				str = str.trim();
+				var lastChar = str[str.length-1];
 
 				if (str.indexOf('http:') !== -1) {
 					str = 'image/' + str.split('/').pop(); // it is works
 					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
 				} else {
-					if (str[str.length-1] !== '.') {
+					if ( ['.', '?'].indexOf(lastChar) === -1 ) {
 						str += '.';
 					}
 					arr[index] = '<p class="question-paragraph' + addedClass + '">' + str + '</p>';
