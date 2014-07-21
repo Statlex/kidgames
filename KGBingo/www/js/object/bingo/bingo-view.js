@@ -86,15 +86,19 @@
 		bingoTest: function() {
 			var i, diagonal_1 = [], diagonal_2 = [], $nodes, isBingo, $row, $column, diagonalNode;
 
+			isBingo = false;
+
 			for (i = 1; i <= 5; i += 1) {
 
 				// get diagonal data
-				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ') .table-cell:nth-child(' + i + ') [data-checked="true"]');
+				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ')').find('.table-cell:nth-child(' + i + ')');
+				diagonalNode = diagonalNode.find('[data-checked="true"]');
 				if (!diagonalNode.isEmpty()) {
 					diagonal_1.push(diagonalNode);
 				}
 
-				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ') .table-cell:nth-child(' + (6 - i) + ') [data-checked="true"]');
+				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ')').find('.table-cell:nth-child(' + (6 - i) + ')');
+				diagonalNode = diagonalNode.find('[data-checked="true"]');
 				if (!diagonalNode.isEmpty()) {
 					diagonal_2.push(diagonalNode);
 				}
