@@ -56,11 +56,6 @@
 
 				if (str.indexOf('http:') !== -1) {
 					str = 'image/' + str.split('/').pop(); // it is works
-
-//					str = this.rusToCode(str);
-
-//					str = decodeURIComponent(str);
-
 					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
 				} else {
 					if ( ['.', '?'].indexOf(lastChar) === -1 ) {
@@ -73,18 +68,7 @@
 
 			return arrStr.join('');
 
-		},
-		rusToCode: function(rus) {
-
-//			rus = decodeURIComponent(rus);
-
-//			console.log(rus);
-
-			return rus;
-
 		}
-
-
 
 	};
 
