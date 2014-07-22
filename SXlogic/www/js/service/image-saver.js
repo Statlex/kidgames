@@ -15,7 +15,7 @@
 
 				sections[key].questions.forEach(function(question){
 
-					var image, key, body, strArr;
+					var key, body;
 
 					body = doc.body;
 
@@ -25,7 +25,7 @@
 							var img;
 
 							question[key].split(/\s*_!_\s*/gi).forEach(function(str){
-								if (str.indexOf('http:') !== -1) {
+								if (str.indexOf('http') !== -1) {
 									img = new Image();
 									console.log(str);
 									img.src = str;
