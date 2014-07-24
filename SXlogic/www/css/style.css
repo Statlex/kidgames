@@ -47,56 +47,35 @@ html, body {
 	z-index: 2;
 	top: 0;
 	left: 0;
-	width: 44px;
+	width: 58px;
 	height: 44px;
 }
 
+.back-icon {
+	width: 32px;
+	height: 32px;
+	background-image: url(../i/sprite.png);
+	background-repeat: no-repeat;
+	background-position: -32px 0;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	margin: 4px 0 0 10px;
+}
+
 .navigation-left,
-.navigation-right,
-.navigation-left:after,
-.navigation-right:after,
-.back-icon,
-.back-icon:after {
-	width: 0;
-	height: 0;
-	border: 12px solid transparent;
-	float: left;
-	border-right-color: #A7A19D;
-	border-right-width: 21px;
-	margin: 10px 0 0 -2px;
-	position: relative;
+.navigation-right {
+	background-image: url(../i/sprite.png);
+	background-repeat: no-repeat;
+	background-position: -32px 0;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	width: 32px;
+	height: 32px;
+	margin: 0 auto;
 }
 
-.navigation-left:after,
-.navigation-right:after,
-.back-icon:after {
-	content: '';
-	display: block;
-	border-right-color: #797674;
-	position: absolute;
-	top: -22px;
-	left: -3px;
-	z-index: -1;
-}
-
-.navigation-left:after,
-.navigation-right:after {
-	border-right-color: #A7A19D;
-}
-
-
-.navigation-right,
-.navigation-right:after {
-	border: 12px solid transparent;
-	float: right;
-	border-left-color: #A7A19D;
-	border-left-width: 21px;
-	margin: 10px -2px 0 0;
-}
-
-.navigation-right:after {
-	border-left-color: #A7A19D;
-	left: -28px;
+.navigation-right {
+	background-position: 0 0;
 }
 
 .question-was-done {
@@ -152,7 +131,7 @@ html, body {
 
 .navigation-buttons-wrapper {
 	clear: both;
-	padding: 0 0 50px;
+	padding: 0 0 54px;
 	position: fixed;
 	width: 100%;
 	left: 0;
@@ -162,11 +141,9 @@ html, body {
 
 .navigation-button-wrapper-left,
 .navigation-button-wrapper-right {
-	width: 44px;
+	width: 52px;
 	height: 32px;
 	float: left;
-	position: relative;
-	top: -4px;
 }
 
 .navigation-button-wrapper-right {
