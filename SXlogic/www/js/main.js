@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window */
-	/*global templateMaster, lang, Backbone, APP */
+	/*global templateMaster, lang, Backbone, APP, info */
 
 	lang.push('ru');
 
@@ -16,22 +16,21 @@
 			'section/:id': 'section',
 			'question': 'question'
 		},
-		title: function() {
+		title: function () {
 			APP.titleView = new win.APP.TitleView();
 		},
-		section: function(id) {
+		section: function (id) {
 			APP.sectionView = new win.APP.SectionView({id: id});
 		},
-		question: function() {
+		question: function () {
 			APP.questionView = new win.APP.QuestionView();
 		}
 	});
 
 	APP.router = new Router();
 
-
 	// start of app here
-	function main () {
+	function main() {
 		templateMaster.init();
 		Backbone.history.start();
 
@@ -53,6 +52,5 @@
 	win.addEventListener('resize', resize, false);
 
 	// other data here
-
 
 }(window));

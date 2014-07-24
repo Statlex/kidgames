@@ -7,7 +7,8 @@
 
 	win.langs.en = {
 		language: 'language',
-		languageName: 'english'
+		languageName: 'english',
+		rateUs: 'Rate Us'
 	};
 
 }(window));

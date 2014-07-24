@@ -460,6 +460,11 @@
 	Bro.prototype.find = function (selecotor) {
 		var nodes = [];
 		this.forEach(function (node) {
+
+			if (!node.querySelectorAll) {
+				return;
+			}
+
 			var childes = node.querySelectorAll(selecotor);
 			this.forEach.call(childes, function (node) {
 				nodes.push(node);
@@ -1030,7 +1035,7 @@
 
 		img.src = 'http://statlex.com/img/statlex-icon.png?no-cache=' + Math.random();
 
-	}
+	};
 
 
 }(window, document, document.documentElement));
