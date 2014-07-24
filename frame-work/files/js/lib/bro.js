@@ -5,7 +5,7 @@
 
 	var isTouch, info, bro, Bro, re;
 
-	Bro = function(selector, context) {
+	Bro = function (selector, context) {
 		if (!this) {
 			return new Bro(selector, context);
 		}
@@ -27,7 +27,7 @@
 	re = {
 		htmlNode: /(^|\s+)<[\s\S]+>($|\s+)/,
 		json: /(^|\s+)\{[\s\S]*\}($|\s+)/,
-		xToX: function(str) {
+		xToX: function (str) {
 			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
 		}
 	};
@@ -311,8 +311,8 @@
 			}, true);
 
 		},
-		bindBodyScroll: function() {
-			doc.body.addEventListener('touchmove', function(e){
+		bindBodyScroll: function () {
+			doc.body.addEventListener('touchmove', function (e) {
 				return !this.canScroll && e.preventDefault();
 			}.bind(this), false);
 		}
@@ -349,8 +349,8 @@
 
 	};
 
-	Bro.prototype.removeAttr = function(attr) {
-		this.forEach(function(node){
+	Bro.prototype.removeAttr = function (attr) {
+		this.forEach(function (node) {
 			node.removeAttribute(attr);
 		});
 	};
@@ -477,7 +477,7 @@
 
 		nodes = new Bro(nodes);
 
-		nodes.forEach(function(node){
+		nodes.forEach(function (node) {
 			elem.appendChild(node);
 		});
 
@@ -518,7 +518,7 @@
 			if (has) {
 				return;
 			}
-			args.forEach(function(className){ // this workaround only for old android and io6
+			args.forEach(function (className) { // this workaround only for old android and io6
 				has = has || node.classList.contains(className);
 			});
 			// has = node.classList.contains.apply(node.classList, args); // todo: uncommet this in future
@@ -529,7 +529,7 @@
 	Bro.prototype.addClass = function () {
 		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			args.forEach(function(className){ // this workaround only for old android and io6
+			args.forEach(function (className) { // this workaround only for old android and io6
 				node.classList.add(className);
 			});
 			//node.classList.add.apply(node.classList, args); // todo: uncommet this in future
@@ -537,10 +537,10 @@
 		return this;
 	};
 
-	Bro.prototype.removeClass = function() {
+	Bro.prototype.removeClass = function () {
 		var args = this.toArray(arguments);
 		this.forEach(function (node) {
-			args.forEach(function(className){ // this workaround only for old android and io6
+			args.forEach(function (className) { // this workaround only for old android and io6
 				node.classList.remove(className);
 			});
 			//node.classList.remove.apply(node.classList, args); // todo: uncommet this in future
@@ -777,7 +777,7 @@
 		if (this.isPlainObject(key)) {
 			for (var i in key) {
 				if (key.hasOwnProperty(i)) {
-					this.forEach(function(node){
+					this.forEach(function (node) {
 						node.dataset[i] = key[i];
 					});
 				}
@@ -840,7 +840,7 @@
 
 	};
 
-	Bro.prototype.prop = function(key, value) {
+	Bro.prototype.prop = function (key, value) {
 
 		if (typeof key === 'string' && value === undefined) {
 			return this.length ? this[0][key] : '';
@@ -848,7 +848,7 @@
 
 
 		if (this.isPlainObject(key)) { // {},
-			this.forEach(function(node){
+			this.forEach(function (node) {
 				var i;
 				for (i in key) {
 					if (key.hasOwnProperty(i)) {
@@ -860,13 +860,13 @@
 		}
 
 		if (typeof value === 'function') { // 'checked', function
-			this.forEach(function(node, index){
+			this.forEach(function (node, index) {
 				node[key] = value.call(node, index, node[key]);
 			});
 			return this;
 		}
 
-		this.forEach(function(node){ // 'checked', some value
+		this.forEach(function (node) { // 'checked', some value
 			node[key] = value;
 		});
 		return this;
@@ -874,7 +874,7 @@
 	};
 
 	// util section
-	Bro.prototype.template = function(str) {
+	Bro.prototype.template = function (str) {
 		return new Function("obj",
 				"var p=[]; with(obj){p.push('" + str
 				.replace(/[\r\t\n]/g, " ")
@@ -886,21 +886,21 @@
 				.split("\r").join("\\'") + "');} return p.join('');");
 	};
 
-	Bro.prototype.toArray = function(arr) {
+	Bro.prototype.toArray = function (arr) {
 		return Array.prototype.slice.call(arr);
 	};
 
-	Bro.prototype.inArray = function(arr, obj) {
+	Bro.prototype.inArray = function (arr, obj) {
 		return arr.indexOf(obj) !== -1;
 	};
 
-	Bro.prototype.shuffle = function(arr) {
+	Bro.prototype.shuffle = function (arr) {
 		return arr.sort(function () {
 			return Math.random() - 0.5;
 		});
 	};
 
-	Bro.prototype.duplicate = function(obj) {
+	Bro.prototype.duplicate = function (obj) {
 		return JSON.parse(JSON.stringify(obj));
 	};
 
@@ -918,7 +918,7 @@
 
 	};
 
-	Bro.prototype.extend = function(obj, add) {
+	Bro.prototype.extend = function (obj, add) {
 
 		if (!this.isPlainObject(add)) {
 			return;
@@ -936,7 +936,7 @@
 
 	};
 
-	Bro.prototype.screen = function() {
+	Bro.prototype.screen = function () {
 		var data = {},
 			width = docElem.clientWidth,
 			height = docElem.clientHeight;
@@ -956,28 +956,30 @@
 
 	};
 
-	Bro.prototype.setBodyScroll = function(canScroll) {
+	Bro.prototype.setBodyScroll = function (canScroll) {
 		info.canScroll = canScroll;
 	};
 
-	Bro.prototype.vendorPrefix = function() {
+	Bro.prototype.vendorPrefix = function () {
 		return {
 			css: '-webkit-',
 			js: 'webkit'
 		};
 	};
 
-	Bro.prototype.ajax = function(data) {
+	Bro.prototype.ajax = function (data) {
 
 		data.type = data.type || 'GET';
 
-		data.success = data.success || function(){};
-		data.error = data.error || function(){};
+		data.success = data.success || function () {
+		};
+		data.error = data.error || function () {
+		};
 
 		var xhr = new XMLHttpRequest();
 
-		xhr.onreadystatechange = function() {
-			if ( xhr.readyState !== 4 ) {
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState !== 4) {
 				return;
 			}
 
@@ -1003,11 +1005,32 @@
 
 	};
 
-	Bro.prototype.info = function() {
+	Bro.prototype.info = function () {
 
 		return info;
 
 	};
+
+	Bro.prototype.testConnection = function (data) { // data -> onSuccess, onError
+
+		var img = new Image();
+
+		if (data instanceof Function) {
+			data = { success: data };
+		}
+
+		data.error = data.error || function () {
+		};
+
+		data.success = data.success || function () {
+		};
+
+		img.addEventListener('load', data.success, false);
+		img.addEventListener('error', data.error, false);
+
+		img.src = 'http://statlex.com/img/statlex-icon.png?no-cache=' + Math.random();
+
+	}
 
 
 }(window, document, document.documentElement));
