@@ -8,7 +8,13 @@
 	win.langs.en = {
 		language: 'language',
 		languageName: 'english',
-		rateUs: 'Rate Us'
+		// <-- rate us
+		rateUs: {
+			rateUs: 'Rate Us',
+			pleaseRateUs: 'Please, Rate Us :)',
+			stars: ['none', 'very bad', 'bad', 'normal', 'good', 'very good']
+		}
+		// /--> rate us
 	};
 
 }(window));

@@ -33,6 +33,8 @@
 
 			}
 
+			win.scrollTo(0, 0);
+
 		},
 
 		setQuestion: function(e) {

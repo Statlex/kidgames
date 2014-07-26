@@ -25,6 +25,7 @@
 
 			this.$wrapper.append(this.$el);
 
+			win.scrollTo(0, 0);
 
 		},
 		showQuestion: function(e) {

@@ -40,10 +40,7 @@
 
 			this.bindBackButton();
 
-			win.scrollTo(0, 0);
-
 			this.setStyles();
-
 
 		},
 
@@ -64,9 +61,7 @@
 			}
 
 			topPadding();
-			setTimeout(topPadding, 100);
 			setTimeout(topPadding, 200);
-			setTimeout(topPadding, 300);
 
 		}
 
