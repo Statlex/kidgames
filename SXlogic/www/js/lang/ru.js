@@ -5,7 +5,7 @@
 
 	win.langs = win.langs || {};
 
-	win.langs.en = {
+	win.langs.ru = {
 		language: 'language',
 		languageName: 'english',
 		// <-- rate us
@@ -18,7 +18,10 @@
 			sendFeedback: 'Send feedback to developers',
 			rateUsOnGooglePlay: 'Rate Us on Google Play',
 			notNow: 'not now'
-		}
+		},
+
+		mailSendingIsSuccessful: 'Письмо успешно отправлено!',
+		mailSendingIsFailed: 'Письмо НЕ было отпралено,\nпроверте соедение с интеренетом.'
 		// /--> rate us
 	};
 

@@ -18,6 +18,7 @@
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
+	<script src="js/lang/ru.js" type="text/javascript"></script>
 
 	<!-- libs -->
 	<script src="js/lib/bro.js" type="text/javascript"></script>
@@ -143,35 +144,39 @@
 
 	<div class="rate-us-wrapper js-rate-us-wrapper">
 
-		<div class="rate-us-form">
+		<div class="rate-us-form js-rate-us-form">
 
 			<h3 class="rate-us-header"><%= lang.rateUs.pleaseRateUs %></h3>
 
-			<div class="stars-wrapper">
+			<div class="stars-wrapper clear-fix">
 
 				<% [1, 2, 3, 4, 5].forEach(function(value){ %>
 
-				<div class="rate-us-star" data-value="<%= value %>" data-word="<%= lang.rateUs.stars[value] %>">star</div>
+				<div class="rate-us-star js-rate-us-star" data-value="<%= value %>" data-word="<%= lang.rateUs.stars[value] %>"></div>
 
 				<% }); %>
 
 			</div>
 
-			<div class="rate-us-send-feedback">
+			<h3 class="rate-us-header js-rate-by-star"><%= lang.rateUs.stillNotRated %></h3>
 
-				<textarea cols="30" rows="10" placeholder="write feedback"></textarea>
 
-				<input type="button" value="send feedback" />
+
+			<div class="rate-us-send-feedback hidden js-rate-us-send-feedback">
+
+				<textarea class="rate-us-send-textarea js-rate-us-send-textarea" cols="30" rows="10" placeholder="<%= lang.rateUs.writeFeedBackHere %>"></textarea>
+
+				<span class="rate-us-send-button js-rate-us-send-button button-is-disabled"><%= lang.rateUs.sendFeedback %></span>
 
 			</div>
 
-			
+			<span class="rate-us-send-button js-rate-us-on-google-play hidden"><%= lang.rateUs.rateUsOnGooglePlay %></span>
 
+			<span class="rate-us-send-button js-not-now"><%= lang.rateUs.notNow %></span>
 
 		</div>
 
-
-		<div class="rate-us-fade"></div>
+		<div class="rate-us-fade js-rate-us-fade"></div>
 
 	</div>
 

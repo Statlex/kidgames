@@ -12,6 +12,18 @@
 		events: {},
 		initialize: function(data) {
 
+			data = data || {};
+
+			// detect current state
+			data.forceDraw = data.forceDraw || this.forceDraw;
+			if (!data.forceDraw) {
+				if  (win.APP.viewState === this.templates) {
+					return data.currentView;
+				}
+			}
+
+			win.APP.viewState = this.templates;
+
 			var events = this.events,
 				key, event, selector, arr;
 

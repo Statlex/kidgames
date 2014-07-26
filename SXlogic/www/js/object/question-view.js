@@ -13,6 +13,7 @@
 			'click .js-hint-button': 'showHint',
 			'click .js-answer-button': 'showAnswer'
 		},
+		forceDraw: true,
 		init: function() {
 
 			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
