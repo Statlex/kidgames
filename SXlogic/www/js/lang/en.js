@@ -12,12 +12,12 @@
 		rateUs: {
 			rateUs: 'Rate Us',
 			pleaseRateUs: 'Please, Rate Us :)',
-			stars: ['none', 'very bad', 'bad', 'normal', 'good', 'very good'],
-			stillNotRated: 'still not rated',
-			writeFeedBackHere: 'Write feedback here...',
+			stars: ['none', 'Hated it', 'Disliked it', 'it\'s OK', 'Liked it', 'Loved it'],
+			stillNotRated: 'Still not rated',
+			writeFeedBackHere: 'Write feedback...',
 			sendFeedback: 'Send feedback to developers',
 			rateUsOnGooglePlay: 'Rate Us on Google Play',
-			notNow: 'not now'
+			notNow: 'Not now'
 		}
 		// /--> rate us
 	};

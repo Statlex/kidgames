@@ -10,18 +10,18 @@
 		languageName: 'english',
 		// <-- rate us
 		rateUs: {
-			rateUs: 'Rate Us',
-			pleaseRateUs: 'Please, Rate Us :)',
-			stars: ['none', 'very bad', 'bad', 'normal', 'good', 'very good'],
-			stillNotRated: 'still not rated',
-			writeFeedBackHere: 'Write feedback here...',
-			sendFeedback: 'Send feedback to developers',
-			rateUsOnGooglePlay: 'Rate Us on Google Play',
-			notNow: 'not now'
+			rateUs: 'Оценить приложение',
+			pleaseRateUs: 'Пожалуйста, оцените приложение :)',
+			stars: ['none', 'Ужасно', 'Плохо', 'Неплохо', 'Хорошо', 'Отлично'],
+			stillNotRated: 'Пока нет оценки',
+			writeFeedBackHere: 'Написать отзыв...',
+			sendFeedback: 'Отправить отзыв разработчикам',
+			rateUsOnGooglePlay: 'Оценить приложение на Google Play',
+			notNow: 'Не сейчас'
 		},
 
 		mailSendingIsSuccessful: 'Письмо успешно отправлено!',
-		mailSendingIsFailed: 'Письмо НЕ было отпралено,\nпроверте соедение с интеренетом.'
+		mailSendingIsFailed: 'Письмо НЕ было отпралено,\nпроверьте соединение с интернетом.'
 		// /--> rate us
 	};
 

@@ -9,18 +9,17 @@
 	win.APP.RateUsView = win.APP.MainView.extend({
 		templates: ['rate-us'],
 		events: {
-//			'click .js-set-question': 'setQuestion',
-//			'click .js-hint-button': 'showHint',
-//			'click h1': 'test'
 			'click .js-rate-us-fade': 'hide',
 			'click .js-not-now': 'hide',
-			'click .js-rate-us-star': 'setRate',
+			'mousedown .js-rate-us-star': 'setRate',
 			'click .js-rate-us-on-google-play': 'toMarket',
 			'click .js-rate-us-send-button': 'sendFeedback',
-			'input .js-rate-us-send-textarea': 'setSendButton'
+			'input .js-rate-us-send-textarea': 'setSendButton',
+			'blur .js-rate-us-send-textarea': 'onBlurTextarea',
+			'focus .js-rate-us-send-textarea': 'onFocusTextarea'
 		},
 		toMarketLink: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit',
-		period: 1, // one day
+		period: 3, // 1 === one day
 		oneDayMs: 1000 * 60 * 60 * 24,
 		parent: '.js-wrapper',
 		init: function (data) {
@@ -35,7 +34,7 @@
 			var now = Date.now(),
 				lastShow = info.get('last-show-rate-us');
 
-			if (now < (lastShow + this.period * this.oneDayMs * 0.00000000001 )) {
+			if (now < (lastShow + this.period * this.oneDayMs )) {
 				return;
 			}
 
@@ -92,13 +91,13 @@
 		},
 		toMarket: function() {
 			window.open(this.toMarketLink);
+			info.set('was-rated', true, true);
 		},
 		sendFeedback: function(e) {
 			var $textArea = this.$el.find('.js-rate-us-send-textarea'),
-				description = encodeURIComponent($textArea.html()),
+				description = encodeURIComponent($textArea.val()),
 				ratingToMail = encodeURIComponent(this.ratingToMail),
 				util = $(),
-				$this = $(e.currentTarget),
 				$form = this.$el.find('.js-rate-us-form');
 
 			if ( !$textArea.val() ) {
@@ -120,6 +119,8 @@
 						Backbone.history.history.back();
 					}
 
+					info.set('was-rated', true, true);
+
 				},
 				error: function() {
 					alert(lang.mailSendingIsFailed);
@@ -138,7 +139,12 @@
 				$button.addClass('button-is-disabled');
 			}
 
-
+		},
+		onBlurTextarea: function() {
+			this.$el.removeClass('focusTextArea');
+		},
+		onFocusTextarea: function() {
+			this.$el.addClass('focusTextArea');
 		}
 
 	});
@@ -157,8 +163,11 @@
 		// --> get data of first run
 
 		setTimeout(function () {
-			win.APP.rateUsView = new win.APP.RateUsView();
-		}, 200); // todo: 2000 -> 10-15 min
+			var util = $();
+			util.testConnection(function(){
+				win.APP.rateUsView = new win.APP.RateUsView();
+			});
+		}, 10 * 1000 * 60); // 10 min
 
 	}, false);
 
