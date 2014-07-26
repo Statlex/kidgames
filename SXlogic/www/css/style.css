@@ -131,12 +131,12 @@ html, body {
 
 .navigation-buttons-wrapper {
 	clear: both;
-	padding: 0 0 54px;
+	/* padding: 0 0 54px; */
 	position: fixed;
 	width: 100%;
 	left: 0;
 	bottom: 0;
-	background-color: rgba(247, 240, 234, 0.9);
+	/* background-color: rgba(247, 240, 234, 0.9); */
 }
 
 .navigation-button-wrapper-left,
@@ -144,13 +144,31 @@ html, body {
 	width: 52px;
 	height: 32px;
 	float: left;
+	position: fixed;
+	bottom: 65px;
+	background-color: #f7f0ea;
+	border: 1px solid #868686;
+	border-left: none;
+	border-radius: 0 9px 9px 0;
 }
 
 .navigation-button-wrapper-right {
 	float: right;
+	right: 0;
+	border: 1px solid #868686;
+	border-right: none;
+	border-radius: 9px 0 0 9px;
 }
 
-
+.banner-ads-example {
+	width: 320px;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	margin-left: -160px;
+	background-color: #808000;
+}
 
 
 
