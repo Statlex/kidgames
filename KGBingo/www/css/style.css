@@ -40,6 +40,8 @@ html, body {
 	line-height: 16px;
 	margin: 0 auto 16px;
 	width: 58%;
+	display: block;
+	color: inherit;
 }
 
 .bingo-items-wrapper .bingo-preview:last-child {

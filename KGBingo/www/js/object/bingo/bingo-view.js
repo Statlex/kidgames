@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, location */
-	/*global bingo, $, Backbone, APP */
+	/*global bingo, $, Backbone, APP, info */
 
 	win.APP = win.APP || {};
 
@@ -20,6 +20,8 @@
 		init: function() {
 
 			var obj = this.copyObject(bingo[this.name]);
+
+			obj = this.shuffleWords(obj);
 
 			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
 
@@ -138,6 +140,21 @@
 				APP.router.navigate('info');
 			}
 
+		},
+
+		shuffleWords: function(obj) {
+
+			var words = obj.words[info.lang],
+				util = $(),
+				centerWord = words[12],
+				i = 0;
+
+			do {
+				words = util.shuffle(words);
+				i += 1;
+			} while (i < 1000 && centerWord !== words[12]);
+
+			return obj;
 
 		}
 

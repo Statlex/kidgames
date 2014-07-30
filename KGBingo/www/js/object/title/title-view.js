@@ -43,8 +43,9 @@
 		},
 
 		sendMail: function() {
-			win.APP.router.navigate('send-mail');
-			win.APP.sendMailView = new win.APP.SendMailView();
+//			win.APP.router.navigate('send-mail');
+			//win.open('https://play.google.com/store/apps/details?id=com.statlex.bingo');
+//			win.APP.sendMailView = new win.APP.SendMailView();
 		},
 
 		removeAds: function() {
