@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window */
-	/*global bingo, $ */
+	/*global bingo, $, info, Backbone, APP */
 
 	win.APP = win.APP || {};
 
@@ -13,6 +13,7 @@
 			'click .js-hint-button': 'showHint',
 			'click .js-answer-button': 'showAnswer'
 		},
+		hideAnswerButtonPeriod: 30 * 1000,
 		forceDraw: true,
 		init: function() {
 
@@ -35,6 +36,13 @@
 			}
 
 			win.scrollTo(0, 0);
+
+			clearTimeout(APP.showAnswerButtonTimeOut);
+
+			APP.showAnswerButtonTimeOut = setTimeout((function(){
+				this.$el.find('.js-answer-button').removeClass('button-is-disabled');
+				this.canShowAnswer = true;
+			}.bind(this)), this.hideAnswerButtonPeriod);
 
 		},
 
@@ -62,6 +70,11 @@
 			$('.js-hint-text').removeClass('hidden');
 		},
 		showAnswer: function() {
+
+			if (!this.canShowAnswer) {
+				alert('Слишком рано, подумайте ещё.');
+				return;
+			}
 
 			$('.js-answer-text').removeClass('hidden');
 
