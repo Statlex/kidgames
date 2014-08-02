@@ -536,3 +536,30 @@ body {
 	margin: 0 auto;
 	background-color: #fff;
 }
+
+.pay-pal-button {
+	display: block;
+	width: 125px;
+	height: 65px;
+	background-image: url(../img/i/pay-pal-donate.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	margin-left: -62px;
+}
+
+@media screen and (min-height: 700px) {
+	.pay-pal-button {
+		width: 250px;
+		height: 130px;
+		margin-left: -125px;
+	}
+}
+
+
+
+
+
