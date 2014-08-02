@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, location */
-	/*global bingo, $, Backbone, APP */
+	/*global bingo, $, Backbone, APP, info */
 
 	win.APP = win.APP || {};
 
@@ -21,6 +21,8 @@
 
 			var obj = this.copyObject(bingo[this.name]);
 
+			obj = this.shuffleWords(obj);
+
 			this.$el = $('<div class="bingo js-bingo"/>').html(this.tmpl.bingo(obj));
 
 			this.$endGameAlert = this.$el.find('.js-end-game-alert-wrapper');
@@ -33,24 +35,36 @@
 
 			this.setCellSize();
 
+			var util = $();
+			util.setBodyScroll(false);
+
 		},
 		setCellSize: function() {
-			var $cells = this.$el.find('.js-table-cell-word'),
-				$table = this.$el.find('.js-words-tablet'),
-				docElem = win.document.documentElement,
-				size = Math.min(docElem.clientHeight, docElem.clientWidth);
 
-			$table.css({
-				width: size + 'px',
-				height: size + 'px'
-			});
+			function setCellSize() {
+				var $cells = this.$el.find('.js-table-cell-word'),
+					$table = this.$el.find('.js-words-tablet'),
+					docElem = win.document.documentElement,
+					size = Math.min(docElem.clientHeight, docElem.clientWidth);
 
-			size /= 5;
+				size -= 30;
 
-			$cells.each(function(){
-				this.style.width = size + 'px';
-				this.style.height = size + 'px';
-			});
+				$table.css({
+					width: size + 'px',
+					height: size + 'px'
+				});
+
+				size = Math.floor(size / 5);
+
+				$cells.each(function(){
+					this.style.width = size + 'px';
+					this.style.height = size + 'px';
+				});
+			}
+
+			setCellSize.call(this);
+
+			setTimeout(setCellSize.bind(this), 200);
 
 		},
 		copyObject: function(obj) {
@@ -74,15 +88,19 @@
 		bingoTest: function() {
 			var i, diagonal_1 = [], diagonal_2 = [], $nodes, isBingo, $row, $column, diagonalNode;
 
+			isBingo = false;
+
 			for (i = 1; i <= 5; i += 1) {
 
 				// get diagonal data
-				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ') .table-cell:nth-child(' + i + ') [data-checked="true"]');
+				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ')').find('.table-cell:nth-child(' + i + ')');
+				diagonalNode = diagonalNode.find('[data-checked="true"]');
 				if (!diagonalNode.isEmpty()) {
 					diagonal_1.push(diagonalNode);
 				}
 
-				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ') .table-cell:nth-child(' + (6 - i) + ') [data-checked="true"]');
+				diagonalNode = this.$el.find('.js-words-tablet .table-row:nth-child(' + i + ')').find('.table-cell:nth-child(' + (6 - i) + ')');
+				diagonalNode = diagonalNode.find('[data-checked="true"]');
 				if (!diagonalNode.isEmpty()) {
 					diagonal_2.push(diagonalNode);
 				}
@@ -122,6 +140,21 @@
 				APP.router.navigate('info');
 			}
 
+		},
+
+		shuffleWords: function(obj) {
+
+			var words = obj.words[info.lang],
+				util = $(),
+				centerWord = words[12],
+				i = 0;
+
+			do {
+				words = util.shuffle(words);
+				i += 1;
+			} while (i < 1000 && centerWord !== words[12]);
+
+			return obj;
 
 		}
 

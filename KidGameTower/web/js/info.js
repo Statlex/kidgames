@@ -12,8 +12,8 @@
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		availableLangs: ['en'],
-		saveItem: 'tower-v-1',
-		isAdsFree: false,
+		saveItem: 'tower',
+		isAdsFree: true,
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: '-webkit-',

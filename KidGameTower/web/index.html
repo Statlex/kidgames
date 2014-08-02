@@ -40,13 +40,18 @@
 
 	<div class="rotate-screen"></div>
 
-	<a href="http://google.ru" target="_blank" class="js-can-free hidden ads-free"></a>
+	<a href="https://play.google.com/store/apps/details?id=com.statlex.tower" target="_blank" class="js-can-free hidden ads-free"></a>
 
 	<script class="js-alert-template" type="text/x-handlebars">
 
 		<div class="alert-wrapper js-alert-wrapper">
 
+			<% if (isNewRecord) { %>
+			<h3 class="alert-header"><%= lang[info.lang].newRecord %></h3>
+			<% }; %>
+
 			<h3 class="alert-header"><%= msg %></h3>
+			<h3 class="alert-header"><%= hiScore %></h3>
 
 			<div class="reload-button" onclick="window.location.reload();"></div>
 

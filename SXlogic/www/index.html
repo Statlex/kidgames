@@ -14,9 +14,11 @@
 	<!-- styles -->
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/rate-us.css"/>
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
+	<script src="js/lang/ru.js" type="text/javascript"></script>
 
 	<!-- libs -->
 	<script src="js/lib/bro.js" type="text/javascript"></script>
@@ -25,15 +27,28 @@
 
 	<!-- views -->
 	<script src="js/object/main-view.js" type="text/javascript"></script>
-	<script src="js/object/title/title-view.js" type="text/javascript"></script>
+	<script src="js/object/title-view.js" type="text/javascript"></script>
+	<script src="js/object/section-view.js" type="text/javascript"></script>
+	<script src="js/object/question-view.js" type="text/javascript"></script>
+
+	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
 
 	<!-- services -->
 	<script src="js/service/info.js" type="text/javascript"></script>
 	<script src="js/service/lang.js" type="text/javascript"></script>
 	<script src="js/service/template-master.js" type="text/javascript"></script>
+	<script src="js/service/image-saver.js" type="text/javascript"></script>
 
 	<!-- sections -->
-	<script src="js/question/section.js" type="text/javascript"></script>
+	<script src="js/question/sectionZagadkiSPodvohom.js" type="text/javascript"></script>
+	<script src="js/question/neStandartMysl.js" type="text/javascript"></script>
+	<script src="js/question/zabavhyeGolovolomki.js" type="text/javascript"></script>
+	<script src="js/question/zadachiPoKartinkam.js" type="text/javascript"></script>
+	<script src="js/question/vzveshivanieIPerelivanie.js" type="text/javascript"></script>
+	<script src="js/question/proVremya.js" type="text/javascript"></script>
+	<script src="js/question/starinnyyeISkazochnyyeGolovolomki.js" type="text/javascript"></script>
+	<script src="js/question/zadachiSoSpichkami.js" type="text/javascript"></script>
+	<script src="js/question/zadachiSoSlovami.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -41,7 +56,9 @@
 </head>
 <body>
 
-<div class="js-wrapper">
+<!--<div class="banner-ads-example"></div>-->
+
+<div class="js-wrapper wrapper">
 
 
 
@@ -50,13 +67,13 @@
 
 <script type="text/x-template" data-name="title">
 
-	<h1>title</h1>
+	<h1 class="header">Логика и Смекалка</h1>
 
-	<div>
+	<div class="list-wrapper">
 
 		<% for (var key in sections) { %>
 
-			<div class="js-go-to-section" data-section-name="<%= key %>"><%= sections[key].name %></div>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>"><%= sections[key].name %></div>
 
 		<% }; %>
 
@@ -66,19 +83,110 @@
 
 <script type="text/x-template" data-name="list">
 
-	<h1>list</h1>
+	<h1 class="header"><%= name %></h1>
 
-	<div>
+	<div class="list-wrapper">
 
-		<% for (var key in obj) { %>
+		<% questions.forEach(function(question, index){ %>
 
-			<div class="js-go-to-section" data-section-name="<%= key %>"><%= sections[key].name %></div>
 
+			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
+
+				<div class="js-question-item list-item question-was-done" data-number="<%= index %>"><%= question.title %></div>
+
+			<% } else { %>
+
+				<div class="js-question-item list-item" data-number="<%= index %>"><%= question.title %></div>
+
+			<% }; %>
+
+
+		<% }); %>
+
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+
+</script>
+
+
+
+<script type="text/x-template" data-name="question">
+
+	<h1 class="header"><%= title %></h1>
+
+	<div class="list-wrapper">
+
+		<%= templateMaster.createText(text) %>
+
+		<% if (obj.image) { %>
+			<%= templateMaster.createText(image) %>
 		<% }; %>
+
+		<% if (obj.hint) { %>
+			<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
+			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
+		<% }; %>
+
+		<p class="question-paragraph button-wrapper"><span class="js-answer-button button">ответ</span></p>
+
+		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
+
+	</div>
+
+	<div class="navigation-buttons-wrapper clear-fix">
+		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
+		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+
+</script>
+
+<script type="text/x-template" data-name="rate-us">
+
+	<div class="rate-us-wrapper js-rate-us-wrapper">
+
+		<div class="rate-us-form js-rate-us-form">
+
+			<h3 class="rate-us-header"><%= lang.rateUs.pleaseRateUs %></h3>
+
+			<div class="stars-wrapper clear-fix">
+
+				<% [1, 2, 3, 4, 5].forEach(function(value){ %>
+
+				<div class="rate-us-star js-rate-us-star" data-value="<%= value %>" data-word="<%= lang.rateUs.stars[value] %>"></div>
+
+				<% }); %>
+
+			</div>
+
+			<h3 class="rate-us-header js-rate-by-star"><%= lang.rateUs.stillNotRated %></h3>
+
+
+
+			<div class="rate-us-send-feedback hidden js-rate-us-send-feedback">
+
+				<textarea class="rate-us-send-textarea js-rate-us-send-textarea" cols="30" rows="10" placeholder="<%= lang.rateUs.writeFeedBackHere %>"></textarea>
+
+				<span class="rate-us-send-button js-rate-us-send-button button-is-disabled"><%= lang.rateUs.sendFeedback %></span>
+
+			</div>
+
+			<span class="rate-us-send-button js-rate-us-on-google-play hidden"><%= lang.rateUs.rateUsOnGooglePlay %></span>
+
+			<span class="rate-us-send-button js-not-now"><%= lang.rateUs.notNow %></span>
+
+		</div>
+
+		<div class="rate-us-fade js-rate-us-fade"></div>
 
 	</div>
 
 </script>
+
+
+
 
 
 </body>

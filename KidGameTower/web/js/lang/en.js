@@ -6,7 +6,9 @@
 	win.lang = win.lang || {};
 
 	win.lang.en = {
-		yourScoreIs: 'Your score is'
+		yourScoreIs: 'Your score is',
+		yourHiScoreIs: 'Your max score is',
+		newRecord: 'New Max Score!'
 	};
 
 }(window));

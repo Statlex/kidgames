@@ -9,7 +9,10 @@
 	win.APP.TitleView = win.APP.MainView.extend({
 		templates: ['title'],
 		events: {
-			'click .js-bingo-preview': 'startBingo'
+			'click .js-bingo-preview': 'startBingo',
+			'click .js-send-your-bingo': 'sendMail',
+			'click .js-remove-ads': 'removeAds'
+
 		},
 		init: function() {
 
@@ -21,6 +24,9 @@
 
 			this.$wrapper.append(this.$el);
 
+			var util = $();
+			util.setBodyScroll(true);
+
 		},
 
 		startBingo: function(e) {
@@ -30,10 +36,20 @@
 
 			win.APP.router.navigate(name);
 
-			new win.APP.BingoView({
+			win.APP.bingoView = new win.APP.BingoView({
 				name: name
 			});
 
+		},
+
+		sendMail: function() {
+//			win.APP.router.navigate('send-mail');
+			//win.open('https://play.google.com/store/apps/details?id=com.statlex.bingo');
+//			win.APP.sendMailView = new win.APP.SendMailView();
+		},
+
+		removeAds: function() {
+			win.open('https://play.google.com/store/apps/details?id=com.statlex.bingo');
 		}
 
 

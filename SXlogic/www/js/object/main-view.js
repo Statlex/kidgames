@@ -12,6 +12,18 @@
 		events: {},
 		initialize: function(data) {
 
+			data = data || {};
+
+			// detect current state
+			data.forceDraw = data.forceDraw || this.forceDraw;
+			if (!data.forceDraw) {
+				if  (win.APP.viewState === this.templates) {
+					return data.currentView;
+				}
+			}
+
+			win.APP.viewState = this.templates;
+
 			var events = this.events,
 				key, event, selector, arr;
 
@@ -26,7 +38,7 @@
 			}, this);
 
 			if (this.init) {
-				this.init();
+				this.init(data);
 			}
 
 			for (key in events) {
@@ -40,13 +52,29 @@
 
 			this.bindBackButton();
 
+			this.setStyles();
+
 		},
+
 		bindBackButton: function() {
 			this.$el.find('.js-back').on('click', function(){
 				if (Backbone.history.fragment) {
 					Backbone.history.history.back();
 				}
 			});
+		},
+
+		setStyles: function() {
+
+			function topPadding() {
+				var header = $('.header'),
+					wrapper = $('.list-wrapper');
+				wrapper.css('padding-top', header.prop('clientHeight') + 'px');
+			}
+
+			topPadding();
+			setTimeout(topPadding, 200);
+
 		}
 
 

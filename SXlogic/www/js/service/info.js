@@ -11,8 +11,8 @@
 	info = {
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['en'],
-		saveItem: '-----APP-NAME-----',
+		availableLangs: ['ru'],
+		saveItem: 'zaggadki',
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: '-webkit-',

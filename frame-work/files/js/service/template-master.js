@@ -27,7 +27,7 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.dataset.name,
-					text = tmplNode.textContent;
+					text = tmplNode.textContent.trim();
 
 				this.tmplText[name] = text;
 				this.tmplFn[name] = this.createTemplateFunction(text);

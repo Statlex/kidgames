@@ -27,7 +27,7 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.dataset.name,
-					text = tmplNode.textContent;
+					text = tmplNode.textContent.trim();
 
 				this.tmplText[name] = text;
 				this.tmplFn[name] = this.createTemplateFunction(text);
@@ -35,6 +35,38 @@
 				tmplNode.parentNode.removeChild(tmplNode);
 
 			}, this);
+
+		},
+
+		// create template for question
+		createText: function(text, addedClass) {
+
+			if (addedClass) {
+				addedClass = ' ' + addedClass;
+			} else {
+				addedClass = '';
+			}
+
+			var arrStr = text.split(/\s*_!_\s*/gi);
+
+			arrStr.forEach(function(str, index, arr){
+
+				str = str.trim();
+				var lastChar = str[str.length-1];
+
+				if (str.indexOf('http:') !== -1) {
+					str = 'image/' + str.split('/').pop(); // it is works
+					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
+				} else {
+					if ( ['.', '?'].indexOf(lastChar) === -1 ) {
+						str += '.';
+					}
+					arr[index] = '<p class="question-paragraph' + addedClass + '">' + str + '</p>';
+				}
+
+			}, this);
+
+			return arrStr.join('');
 
 		}
 
