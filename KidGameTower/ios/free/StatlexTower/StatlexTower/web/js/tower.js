@@ -363,7 +363,7 @@
 
 		function setGameStyles() {
 
-			var h = info.screen.getHeight() - (info.isAdsFree ? 0 : 80) - 80,
+			var h = info.screen.getHeight() - (info.isAdsFree ? 0 : 30) - 80,
 				w = h / 2,
 				wrapper = $('.js-main-field'),
 				blockSize;
@@ -376,14 +376,27 @@
 			blockSize = h / gameInfo.h;
 			gameInfo.squareSize = blockSize;
 
-			$('<style type="text/css">.block {width: ' + blockSize + 'px; height: ' + blockSize + 'px;}</style>').appendTo('body');
+			$('<style type="text/css">.block { width: ' + blockSize + 'px; height: ' + blockSize + 'px; } </style>').appendTo('body');
 
 		}
 
 		setGameStyles();
 
 		// begin - show n set tutor screen
-		$('.js-tutor-screen').on('click', function(){
+
+		var tutorScreen = $('.js-tutor-screen'),
+			adsBlocks = $('.js-can-free');
+
+		if (!info.isAdsFree) {
+			tutorScreen.css({
+				height: info.screen.getHeight() - 50 + 'px',
+				paddingBottom: 50 + 'px'
+			});
+
+			adsBlocks.removeClass('hidden');
+		}
+
+		tutorScreen.on('click', function(){
 
 			this.style.display = 'none';
 
@@ -396,6 +409,16 @@
 
 		});
 		// end - show n set tutor screen
+
+		// set external link
+		if (info.isAndroid) {
+			$('a').forEach(function(a){
+				a.addEventListener('click', function(e){
+					e.preventDefault();
+					window.open(this.getAttribute('href'));
+				}, false);
+			});
+		}
 
 	}
 

@@ -170,3 +170,22 @@ body,
 	}
 
 }
+
+.ads-free {
+	position: fixed;
+	z-index: 0;
+	top: 5px;
+	right: 5px;
+	background-image: url(../img/ads-free.svg);
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: center center;
+	width: 60px;
+	height: 30px;
+	background-repeat: no-repeat;
+}
+
+
+
+
+
