@@ -221,3 +221,8 @@ body {
 	}
 
 }
+
+#wrapper,
+#wrapper-for-transition {
+	/*padding-bottom: 45px;*/
+}

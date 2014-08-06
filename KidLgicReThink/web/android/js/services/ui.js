@@ -29,7 +29,9 @@
 		},
 		hide: function() {
 			$.removeClass(this.wrapper, 'active');
-			this.wrapper.onclick();
+			if (this.wrapper.onclick) {
+				this.wrapper.onclick();
+			}
 			this.wrapper.onclick = function() {};
 		}
 	};
@@ -84,6 +86,7 @@
 
 	win.ui.externalLinkHandler = {
 		setLinks: function(links) {
+			return;
 			var that = this;
 			links.forEach(function(link){
 				link.setAttribute('can-use', 'no');

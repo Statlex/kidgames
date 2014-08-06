@@ -31,4 +31,16 @@
 
 	win.addEventListener('load', main, false);
 
+	win.onBackButton = function() {
+
+		var btn = document.querySelector('.js-status-bar .js-back');
+
+		if (btn.style.display === 'none'){
+			return;
+		}
+
+		btn.onclick();
+
+	};
+
 }(window));
