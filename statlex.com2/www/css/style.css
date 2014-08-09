@@ -150,3 +150,15 @@ a {
 	border-bottom: 1px solid #00c;
 }
 
+.half {
+	float: left;
+	width: 50%;
+}
+
+.halt-left {
+	padding-right: 10px;
+}
+
+.halt-right {
+	padding-left: 10px;
+}
