@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert */
+	/*global window, document, console, alert */
 
 	function footerToBottom() {
 
@@ -12,14 +12,17 @@
 				re = /(\s|^)fix-footer(\s|$)/gi,
 				className = footer.className;
 
-			if (bodyH < wholeH) {
-				className +=' fix-footer';
+			if ( bodyH < wholeH ) {
+
+				if ( !re.test(className) ) {
+					className += ' fix-footer';
+				}
+
 			} else {
 				className = className.replace(re, '');
 			}
 
 			footer.className = className;
-
 
 		}
 
