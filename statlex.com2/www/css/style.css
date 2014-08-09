@@ -124,9 +124,14 @@ a {
 }
 
 .section li {
-	text-indent: 0;
-	list-style: square outside;
-	margin-left: 28px;
+	list-style-type: circle;
+	list-style-position: inside;
+	margin-left: 0px;
+	text-indent: 10px;
+}
+
+.section ol li {
+	list-style-type: decimal;
 }
 
 .footer {
@@ -164,7 +169,95 @@ a {
 	width: 100%;
 }
 
+.all-app-wrapper {
+	background-color: #fff;
+}
+
+.all-app-list-wrapper {
+	float: left;
+	width: 160px;
+	height: 500px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	overflow-y: scroll;
+}
+
+.all-app-info-wrapper {
+	margin-left: 160px;
+}
+
+.app-info-wrapper h4 {
+	text-align: center;
+}
+
+.list-app-item {
+	padding: 5px;
+}
+
+.list-app-icon {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.app-info-icon {
+	float: left;
+	width: 30%;
+	margin: 5px 10px 5px 0;
+}
+
+.app-info-wrapper {
+	padding: 5px 5px 5px 15px;
+	overflow-x: hidden;
+}
+
+.market-buttons-wrapper {
+	text-align: center;
+	font-size: 0;
+	line-height: 0;
+	padding-top: 25px;
+	clear: both;
+}
+
+.market-button {
+	width: 140px;
+	display: inline-block;
+	margin: 5px 50px;
+	position: relative;
+}
+
+.market-button-image {
+	width: 100%;
+	height: auto;
+}
+
+.free-tick {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 40px;
+	height: 40px;
+	background-image: url(../i/free.png);
+
+	-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	-ms-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;
+
+}
+
 @media only screen and (max-width: 980px) {
+
+	.all-app-list-wrapper {
+		width: 100px;
+	}
+
+	.all-app-info-wrapper {
+		margin-left: 100px;
+	}
+
 	.company-promo-name {
 		font-size: 150px;
 		line-height: 150px;
@@ -176,9 +269,9 @@ a {
 		margin-top: -25px;
 	}
 
-    .company-promo {
-	    padding: 60px 0;
-    }
+	.company-promo {
+		padding: 60px 0;
+	}
 
 }
 
@@ -218,6 +311,10 @@ a {
 
 	.company-promo {
 		padding: 60px 0 35px;
+	}
+
+	.market-button {
+		margin: 5px 20px;
 	}
 
 }
@@ -267,14 +364,32 @@ a {
 		line-height: 20px;
 	}
 
-    .half {
-	    float: none;
-	    width: auto;
-    }
+	.half {
+		float: none;
+		width: auto;
+	}
 
 	.halt-left,
-	.halt-right{
+	.halt-right {
 		padding: 0;
+	}
+
+	.app-info-icon {
+		float: none;
+		width: 100%;
+		margin: 0 0 10px;
+	}
+
+	.market-button {
+		margin: 5px 10px;
+	}
+
+	.all-app-list-wrapper {
+		width: 50px;
+	}
+
+	.all-app-info-wrapper {
+		margin-left: 50px;
 	}
 
 }
