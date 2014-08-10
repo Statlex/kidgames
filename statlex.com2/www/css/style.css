@@ -171,6 +171,7 @@ a {
 
 .all-app-wrapper {
 	background-color: #fff;
+	height: 500px;
 }
 
 .all-app-list-wrapper {
@@ -179,7 +180,7 @@ a {
 	height: 500px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .all-app-info-wrapper {
@@ -209,6 +210,10 @@ a {
 .app-info-wrapper {
 	padding: 5px 5px 5px 15px;
 	overflow-x: hidden;
+}
+
+.app-info-wrapper {
+	display: none;
 }
 
 .market-buttons-wrapper {
@@ -320,6 +325,12 @@ a {
 }
 
 @media only screen and (max-width: 480px) {
+
+	.section {
+		padding-top: 16px;
+		padding-bottom: 15px;
+	}
+
 	.logo-link {
 		float: none;
 		text-align: center;
