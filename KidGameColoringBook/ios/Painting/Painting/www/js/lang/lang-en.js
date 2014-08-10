@@ -22,6 +22,6 @@
 		doYouWantToSaveProgress: 'Do you want to save progress?', //disc with '?'
 		progressIsSaved: 'Progress was saved.' // disk with 'V'
 
-	}
+	};
 
 }(window));

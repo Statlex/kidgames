@@ -61,6 +61,7 @@
 				that.wrapper.style.opacity = 1;
 			}, 20);
 			this.okBtn.onclick = action;
+			setTimeout(this.hide.bind(this), 900);
 		},
 		hide: function () {
 			var that = this;
@@ -181,7 +182,11 @@
 				if (parseInt(answer) === c) {
 					answer = true;
 					link.setAttribute('can-use', 'yes');
-					link.click();
+					if (info.isAndroid) {
+						navigator.app.loadUrl(link.getAttribute('href'), {openExternal: true});
+					} else {
+						link.click();
+					}
 				} else {
 					answer = false;
 					a = Math.round(Math.random() * 40);
