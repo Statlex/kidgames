@@ -32,6 +32,8 @@
 			this.transition2ndPart(); // only for decoration
 			this.isBack = false; // only for decoration
 
+			this.bindExternalLinks();
+
 		},
 		back: function() {
 			this.isBack = true;
@@ -77,6 +79,10 @@
 					.split("}}").join("p.push('")
 					.split("\r").join("\\'") + "');} return p.join('');");
 
+		},
+		bindExternalLinks: function() {
+			var links = $$('.external-link', main.wrapper);
+			ui.externalLinkHandler.setLinks(links);
 		}
 
 	};
