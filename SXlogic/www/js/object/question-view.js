@@ -13,7 +13,7 @@
 			'click .js-hint-button': 'showHint',
 			'click .js-answer-button': 'showAnswer'
 		},
-		hideAnswerButtonPeriod: 30 * 1000,
+//		hideAnswerButtonPeriod: 15 * 1000, // see css transition
 		forceDraw: true,
 		init: function() {
 
@@ -37,12 +37,14 @@
 
 			win.scrollTo(0, 0);
 
-			clearTimeout(APP.showAnswerButtonTimeOut);
+//			clearTimeout(APP.showAnswerButtonTimeOut);
+//
+//			APP.showAnswerButtonTimeOut = setTimeout((function(){
+//				this.$el.find('.js-answer-button').removeClass('button-is-disabled');
+//				this.canShowAnswer = true;
+//			}.bind(this)), this.hideAnswerButtonPeriod);
 
-			APP.showAnswerButtonTimeOut = setTimeout((function(){
-				this.$el.find('.js-answer-button').removeClass('button-is-disabled');
-				this.canShowAnswer = true;
-			}.bind(this)), this.hideAnswerButtonPeriod);
+			this.$el.find('.button-progress').addClass('button-progress-to-0');
 
 		},
 
@@ -71,8 +73,11 @@
 		},
 		showAnswer: function() {
 
-			if (!this.canShowAnswer) {
-				alert('Слишком рано, подумайте ещё.');
+			var $progress = this.$el.find('.button-progress'),
+				progress = !!$progress.prop('clientWidth');
+
+			if (progress) {
+				win.alert('Слишком рано, подумайте ещё.');
 				return;
 			}
 
