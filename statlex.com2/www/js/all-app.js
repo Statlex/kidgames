@@ -1,75 +1,45 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global window, document, console, alert */
+	/*global window, document, console, alert, $ */
 
 	var allApp = {
 		init: function() {
 
-			this.listNode = doc.getElementsByClassName('all-app-list-wrapper')[0];
-			this.infoNode = doc.getElementsByClassName('all-app-list-wrapper')[0];
-			this.headerNode = doc.getElementsByClassName('header')[0];
-			this.footerNode = doc.getElementsByClassName('footer')[0];
-			this.promoNode = doc.getElementsByClassName('company-promo')[0];
+			this.items = $('.list-app-item');
+			this.infoBlocks = $('.app-info-wrapper');
 
-			this.setSizes();
+			this.addEventListeners();
 
-			win.addEventListener('scroll', allApp.onScroll.bind(allApp), false);
+			this.showInfo(this.items[0]);
 
 		},
 
-		setSizes: function() {
+		addEventListeners: function() {
 
-			this.headerH = this.headerNode.clientHeight;
-			this.promoH = this.promoNode.clientHeight;
-			this.topPoint = this.promoH - this.headerH;
-
-		},
-
-		onScroll: function() {
-
-			var body = doc.body,
-				top = body.scrollTop;
-
-			if (top > this.topPoint) {
-				this.toFixed();
-			} else {
-				this.toStatic();
-			}
+			this.items.forEach(function(node){
+				var item = $(node);
+				item.on('click', this.showInfo.bind(this));
+			}, this);
 
 		},
+		showInfo: function(e) {
+			var item = $(e.currentTarget || e),
+				selector = item.data('app-name'); // event or node
 
-		toFixed: function() {
-			if (this.position === 'fixed') {
-				return;
-			}
+			this.items.removeClass('active');
+			item.addClass('active');
 
-			var list = this.listNode;
+			this.infoBlocks.each(function(){
+				var $block = $(this);
+				if ($block.data('app-name') === selector) {
+					$block.removeClass('hidden');
+				} else {
+					$block.addClass('hidden');
+				}
+			});
 
-			list.style.position = 'fixed';
-			list.style.top = this.headerH + 'px';
-
-
-			this.position = 'fixed';
-			console.log('fixed');
-		},
-
-		toStatic: function() {
-			if (this.position === 'static') {
-				return;
-			}
-
-			var list = this.listNode;
-			list.style.position = '';
-			list.style.top = '';
-
-
-			this.position = 'static';
-			console.log('static');
 		}
-
-
-
 
 	};
 

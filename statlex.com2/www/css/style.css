@@ -183,21 +183,16 @@ a {
 }
 
 .all-app-wrapper {
-	background-color: #fff;
-	height: 500px;
+
+
 }
 
 .all-app-list-wrapper {
-	float: left;
-	width: 160px;
-	height: 500px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	overflow-y: auto;
+
 }
 
 .all-app-info-wrapper {
-	margin-left: 160px;
+	padding-top: 20px;
 }
 
 .app-info-wrapper h4 {
@@ -205,28 +200,40 @@ a {
 }
 
 .list-app-item {
+	float: left;
+	width: 16.6666%;
+	opacity: 0.7;
+	cursor: pointer;
+
+	-webkit-transition: opacity linear 0.3s;
+	-moz-transition: opacity linear 0.3s;
+	-ms-transition: opacity linear 0.3s;
+	-o-transition: opacity linear 0.3s;
+	transition: opacity linear 0.3s;
+}
+
+.list-app-item:hover,
+.list-app-item.active {
+	opacity: 1;
+}
+
+.add-padding-image {
 	padding: 5px;
 }
 
 .list-app-icon {
 	display: block;
-	max-width: 100%;
-	height: auto;
+	width: 100%;
 }
 
 .app-info-icon {
 	float: left;
 	width: 30%;
-	margin: 5px 10px 5px 0;
+	margin: 0 10px 10px 0;
 }
 
 .app-info-wrapper {
-	padding: 5px 5px 5px 15px;
-	overflow-x: hidden;
-}
-
-.app-info-wrapper {
-	display: none;
+	
 }
 
 .market-buttons-wrapper {
@@ -267,14 +274,6 @@ a {
 }
 
 @media only screen and (max-width: 980px) {
-
-	.all-app-list-wrapper {
-		width: 100px;
-	}
-
-	.all-app-info-wrapper {
-		margin-left: 100px;
-	}
 
 	.company-promo-name {
 		font-size: 150px;
@@ -420,16 +419,12 @@ a {
 		margin: 5px 10px;
 	}
 
-	.all-app-list-wrapper {
-		width: 50px;
-	}
-
-	.all-app-info-wrapper {
-		margin-left: 50px;
-	}
-
 	.company-promo-name {
 		padding-top: 5px;
+	}
+
+	.list-app-item {
+		width: 33.3333%;
 	}
 
 }
@@ -438,10 +433,9 @@ a {
 
 }
 
-.main-wrapper {
-	height: 2000px;
+.hidden {
+	display: none;
 }
-
 
 
 
