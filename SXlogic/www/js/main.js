@@ -45,7 +45,7 @@
 	}
 
 	function resize() {
-		APP.titleView.setStyles();
+		return APP.titleView && APP.titleView.setStyles();
 	}
 
 	win.addEventListener('load', main, false);

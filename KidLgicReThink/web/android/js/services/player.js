@@ -12,6 +12,14 @@
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
+			src = 'www/sound/' + src;
+
+			AndAud.playAudio(src);
+
+			//alert(src);
+
+			return;
+
 //			console.log(src);
 //			return;
 
