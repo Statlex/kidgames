@@ -293,6 +293,18 @@ a {
 
 }
 
+.all-app-on-store-wrapper {
+	text-align: center;
+}
+
+.section .market-button-description {
+	padding: 4px 4px 0;
+	margin-bottom: 10px;
+	display: inline-block;
+	border-bottom: 1px solid #212121;
+	text-indent: 0;
+}
+
 @media only screen and (max-width: 980px) {
 
 	.company-promo-name {
