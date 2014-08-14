@@ -37,6 +37,8 @@
 
 			this.setEventListenersBro();
 
+			this.bindExternalLinks();
+
 		},
 		setEventListenersBro: function(){
 			var items = bro('#wrapper .js-onclick-handler');
@@ -112,6 +114,10 @@
 			var arr = $.shuffle([0, 1, 1, 1, 2, 3]);
 			var body = $('body');
 			body.style.backgroundImage = 'url("img/i/bg-' + arr[1] + '.jpg")';
+		},
+		bindExternalLinks: function() {
+			var links = $$('.external-link', main.wrapper);
+			ui.externalLinkHandler.setLinks(links);
 		}
 
 	};

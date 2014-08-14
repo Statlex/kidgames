@@ -8,8 +8,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController (){
+    BOOL _bannerIsVisible;
+    ADBannerView *_adBanner;
+}
 @end
 
 @implementation ViewController
@@ -40,63 +42,19 @@
     _webView.scalesPageToFit = YES;
     _webView.autoresizesSubviews = YES;
     _webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
-    
-    
-    _bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    CGRect adFrame = _bannerView.frame;
-    adFrame.origin.y = self.view.frame.size.height-_bannerView.frame.size.height;
-    _bannerView.frame = adFrame;
-    _bannerView.delegate = self;
+ 
     [self loadGame];
     _webView.userInteractionEnabled = YES;
     [self.view addSubview:_webView];
     _webView.delegate = (id)self;
 }
 
-- (void)layoutAnimated:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    // As of iOS 6.0, the banner will automatically resize itself based on its width.
-    // To support iOS 5.0 however, we continue to set the currentContentSizeIdentifier appropriately.
-    CGRect contentFrame = self.view.bounds;
-    if (contentFrame.size.width < contentFrame.size.height) {
-        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    } else {
-        _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-    }
-    
-    CGRect bannerFrame = _bannerView.frame;
-    if (_bannerView.bannerLoaded) {
-        contentFrame.size.height -= _bannerView.frame.size.height;
-        bannerFrame.origin.y = contentFrame.size.height;
-    } else {
-        bannerFrame.origin.y = contentFrame.size.height;
-    }
-    
-    [UIView animateWithDuration:animated ? 0.25 : 0.0 animations:^{
-        _bannerView.frame = bannerFrame;
-    }];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [self layoutAnimated:[UIView areAnimationsEnabled]];
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    [self.view addSubview:_bannerView];
-    [self layoutAnimated:YES];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    [self layoutAnimated:YES];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
-{
-    
-    return YES;
+    [super viewDidAppear:animated];
+    _adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 320, 50)];
+    _adBanner.delegate = self;
+    [_adBanner setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin];
 }
 
 
@@ -105,5 +63,45 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if (!_bannerIsVisible)
+    {
+        // If banner isn't part of view hierarchy, add it
+        if (_adBanner.superview == nil)
+        {
+            [self.view addSubview:_adBanner];
+        }
+        
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        
+        // Assumes the banner view is just off the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
+        
+        [UIView commitAnimations];
+        
+        _bannerIsVisible = YES;
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"Failed to retrieve ad");
+    
+    if (_bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        
+        // Assumes the banner view is placed at the bottom of the screen.
+        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
+        
+        [UIView commitAnimations];
+        
+        _bannerIsVisible = NO;
+    }
+}
+
+
 
 @end

@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@interface ViewController : UIViewController
-<ADBannerViewDelegate>
+@interface ViewController : UIViewController<ADBannerViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
-@property (strong, nonatomic) ADBannerView *bannerView;
 @end
