@@ -202,7 +202,7 @@ a {
 .list-app-item {
 	float: left;
 	width: 16.6666%;
-	opacity: 0.7;
+	opacity: 0.6;
 	cursor: pointer;
 
 	-webkit-transition: opacity linear 0.3s;
@@ -224,6 +224,26 @@ a {
 .list-app-icon {
 	display: block;
 	width: 100%;
+	-webkit-transition: transform linear 0.3s;
+	-moz-transition: transform linear 0.3s;
+	-ms-transition: transform linear 0.3s;
+	-o-transition: transform linear 0.3s;
+	transition: transform linear 0.3s;
+
+	-webkit-transform: scale(0.9);
+	-moz-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	-o-transform: scale(0.9);
+	transform: scale(0.9);
+}
+
+.list-app-item:hover .list-app-icon,
+.list-app-item.active .list-app-icon {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
 }
 
 .app-info-icon {
@@ -271,6 +291,18 @@ a {
 	-o-background-size: 100%;
 	background-size: 100%;
 
+}
+
+.all-app-on-store-wrapper {
+	text-align: center;
+}
+
+.section .market-button-description {
+	padding: 4px 4px 0;
+	margin-bottom: 10px;
+	display: inline-block;
+	border-bottom: 1px solid #212121;
+	text-indent: 0;
 }
 
 @media only screen and (max-width: 980px) {
