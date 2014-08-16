@@ -30,3 +30,13 @@ KdGameTangram/ios/tangramNative/Tangram/Tangram.xcodeproj/xcuserdata/sychypav.xc
 *.xcuserstate
 
 *.xcuserstate
+
+KidGame/resources/sound/alphabets/de/ö.mp3
+
+KidGame/resources/sound/alphabets/de/ü.mp3
+
+KidGame/resources/sound/alphabets/es/ñ.mp3
+
+KidGame/resources/sound/alphabets/ru/ё.mp3
+
+KidGame/resources/sound/alphabets/ru/й.mp3
