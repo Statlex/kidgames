@@ -11,6 +11,8 @@
 		toSoundPrefix: (navigator.userAgent.toLowerCase().indexOf("android") === -1) ? 'sound/' : '/android_asset/www/sound/',
 		play: function (src) {
 
+
+
 			if (this.currentMediaStatus <= 2) {
 				return;
 			}
