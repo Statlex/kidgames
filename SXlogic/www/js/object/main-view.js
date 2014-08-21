@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster */
+	/*global window, Backbone, $, templateMaster, setTimeout */
 
 	win.APP = win.APP || {};
 
@@ -74,6 +74,9 @@
 
 			topPadding();
 			setTimeout(topPadding, 200);
+
+		},
+		bindSettingsButton: function() {
 
 		}
 
