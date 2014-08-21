@@ -30,6 +30,7 @@
 	<script src="js/object/title-view.js" type="text/javascript"></script>
 	<script src="js/object/section-view.js" type="text/javascript"></script>
 	<script src="js/object/question-view.js" type="text/javascript"></script>
+	<script src="js/object/settings-view.js" type="text/javascript"></script>
 
 	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
 
@@ -189,7 +190,52 @@
 </script>
 
 
+<script type="text/x-template" data-name="settings">
 
+	<h1 class="header">Настройки</h1>
+
+
+	<div class="list-wrapper">
+
+
+		<div class="data-wrapper">
+
+			<div class="list-item">Тема</div>
+
+			<div class="theme-items-list-wrapper">
+
+				<% themes.forEach(function(theme){ %>
+
+					<div class="theme-item-wrapper">
+						<img src="<%= imagePathPrefix %>/<%= theme.img %>" alt=""/>
+						<span class="theme-item-name"><%= theme.name %></span>
+					</div>
+
+				<% }); %>
+
+			</div>
+
+		</div>
+
+		<div class="data-wrapper">
+
+			<div class="list-item">Шрифт</div>
+
+			<div> - </div>
+			<div> A </div>
+			<div> + </div>
+
+		</div>
+
+		<div class="data-wrapper">
+
+			<div class="list-item">Сброс настроек</div>
+
+		</div>
+
+	</div>
+
+</script>
 
 
 </body>
