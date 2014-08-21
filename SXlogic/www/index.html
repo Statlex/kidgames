@@ -38,6 +38,7 @@
 	<script src="js/service/lang.js" type="text/javascript"></script>
 	<script src="js/service/template-master.js" type="text/javascript"></script>
 	<script src="js/service/image-saver.js" type="text/javascript"></script>
+	<script src="js/service/util.js" type="text/javascript"></script>
 
 	<!-- sections -->
 	<script src="js/question/algorithms.js" type="text/javascript"></script>
@@ -74,7 +75,7 @@
 
 		<% for (var key in sections) { %>
 
-			<div class="js-go-to-section list-item" data-section-name="<%= key %>"><%= sections[key].name %></div>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>"> <%= sections[key].name %> <!-- (<%= util.getProgress(key) %>) --> </div>
 
 		<% }; %>
 
