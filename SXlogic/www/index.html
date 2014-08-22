@@ -204,13 +204,13 @@
 
 			<div class="list-item">Тема</div>
 
-			<div class="theme-items-list-wrapper">
+			<div class="theme-items-list-wrapper clear-fix">
 
 				<% themes.forEach(function(theme){ %>
 
 					<div class="theme-item-wrapper">
-						<img src="<%= imagePathPrefix %>/<%= theme.img %>" alt=""/>
-						<span class="theme-item-name"><%= theme.name %></span>
+						<img class="square-block with-theme-bg <%= theme.title %>-theme-bg" src="i/spacer.png" alt=""/>
+						<span class="list-item" style="display: none;"><%= theme.name %></span>
 					</div>
 
 				<% }); %>

@@ -23,21 +23,27 @@
 
 		},
 		tmplData: {
-			imagePathPrefix: 'pathToImageFolder',
 			themes: [
 				{
-					name: 'классик',
-					img: 'classic.jpg'
+					title: 'standard',
+					name: 'стандартная'
 				},
 				{
-					name: 'классик2',
-					img: 'classic.jpg'
+					title: 'white',
+					name: 'классик2'
 				},
 				{
-					name: 'классик3',
-					img: 'classic.jpg'
+					title: 'black',
+					name: 'классик3'
+				},
+				{
+					title: 'white-simple',
+					name: 'классик4'
+				},
+				{
+					title: 'black-simple',
+					name: 'классик5'
 				}
-
 			]
 		}
 
