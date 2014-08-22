@@ -535,7 +535,7 @@
 		var args = this.toArray(arguments);
 		this.forEach(function (node) {
 			args.forEach(function (className) { // this workaround only for old android and io6
-				node.classList.add(className);
+				return className && node.classList.add(className);
 			});
 			//node.classList.add.apply(node.classList, args); // todo: uncommet this in future
 		});

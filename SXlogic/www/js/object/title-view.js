@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window */
-	/*global bingo, $ */
+	/*global bingo, $, info, APP */
 
 	win.APP = win.APP || {};
 
@@ -19,6 +19,8 @@
 
 			this.$wrapper.html('');
 
+			this.setTheme();
+
 			this.$wrapper.append(this.$el);
 
 		},
@@ -29,6 +31,11 @@
 
 			APP.router.navigate('section/' + sectionName, {trigger: true});
 
+		},
+
+		setTheme: function() {
+			var themeName = info.get('theme-name');
+			return themeName &&	this.$wrapper.addClass(themeName);
 		}
 
 

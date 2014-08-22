@@ -208,7 +208,7 @@
 
 				<% themes.forEach(function(theme){ %>
 
-					<div class="theme-item-wrapper">
+					<div class="theme-item-wrapper js-theme-item-wrapper" data-theme-name="<%= theme.title %>">
 						<img class="square-block with-theme-bg <%= theme.title %>-theme-bg" src="i/spacer.png" alt=""/>
 						<span class="list-item" style="display: none;"><%= theme.name %></span>
 					</div>
