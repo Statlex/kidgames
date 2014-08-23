@@ -16,6 +16,10 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/rate-us.css"/>
 
+	<!-- themes -->
+	<link rel="stylesheet" href="css/themes/white.css"/>
+
+
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
 	<script src="js/lang/ru.js" type="text/javascript"></script>
@@ -72,7 +76,7 @@
 
 	<h1 class="header">Логика и Смекалка</h1>
 
-	<div class="settings-button js-settings-button">+</div>
+	<div class="settings-button js-settings-button"></div>
 
 	<div class="list-wrapper">
 
@@ -92,7 +96,7 @@
 
 	<h1 class="header"><%= name %></h1>
 
-	<div class="settings-button js-settings-button">+</div>
+	<div class="settings-button js-settings-button"></div>
 
 	<div class="list-wrapper">
 
@@ -123,15 +127,11 @@
 
 	<h1 class="header"><%= title %></h1>
 
-	<div class="settings-button js-settings-button">+</div>
+	<div class="settings-button js-settings-button"></div>
 
 	<div class="list-wrapper">
 
 		<%= templateMaster.createText(text) %>
-
-		<% if (obj.image) { %>
-			<%= templateMaster.createText(image) %>
-		<% }; %>
 
 		<% if (obj.hint) { %>
 			<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
@@ -139,12 +139,11 @@
 		<% }; %>
 
 		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
-
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 	</div>
 
-	<div class="navigation-buttons-wrapper clear-fix">
+	<div class="navigation-buttons-wrapper">
 		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
 		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
 	</div>

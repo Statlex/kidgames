@@ -56,17 +56,19 @@
 
 				if (str.indexOf('http:') !== -1) {
 					str = 'image/' + str.split('/').pop(); // it is works
-					arr[index] = '<img class="image' + addedClass + '" src="' + str + '" alt=""/>';
+					arr[index] = '<img class="image" src="' + str + '" alt=""/>';
 				} else {
-					if ( ['.', '?'].indexOf(lastChar) === -1 ) {
+					if ( ['.', '?', '!', ':'].indexOf(lastChar) === -1 ) {
 						str += '.';
 					}
-					arr[index] = '<p class="question-paragraph' + addedClass + '">' + str + '</p>';
+					arr[index] = '<p class="question-paragraph">' + str + '</p>';
 				}
 
 			}, this);
 
-			return arrStr.join('');
+			arrStr = '<div class="text-block-wrapper ' + addedClass + '">' + arrStr.join('') + '</div>';
+
+			return  arrStr;
 
 		}
 

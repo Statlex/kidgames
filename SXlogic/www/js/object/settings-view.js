@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
+	/*global window, document */
 	/*global bingo, $, info, Backbone, APP */
 
 	win.APP = win.APP || {};
@@ -21,6 +21,8 @@
 
 			this.$wrapper.append(this.$el);
 
+			this.$body = $(document.body);
+
 		},
 
 		setTheme: function(e) {
@@ -32,17 +34,19 @@
 
 			$this.addClass('active');
 
-			this.$wrapper.addClass(themeName);
+			this.$body.addClass(themeName);
 
 			info.set('theme-name', themeName, true);
 
 		},
 
 		removeAllThemes: function() {
+
+
 			this.$wrapper.find('.js-theme-item-wrapper.active').removeClass('active');
 
 			this.tmplData.themes.forEach(function(obj){
-				this.$wrapper.removeClass(obj.title);
+				this.$body.removeClass(obj.title);
 			}, this);
 
 		},

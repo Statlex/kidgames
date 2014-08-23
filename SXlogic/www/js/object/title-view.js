@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
+	/*global window, document */
 	/*global bingo, $, info, APP */
 
 	win.APP = win.APP || {};
@@ -35,7 +35,7 @@
 
 		setTheme: function() {
 			var themeName = info.get('theme-name');
-			return themeName &&	this.$wrapper.addClass(themeName);
+			return themeName &&	$(document.body).addClass(themeName);
 		}
 
 
