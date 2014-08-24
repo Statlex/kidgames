@@ -11,7 +11,8 @@
 	win.APP.SettingsView = win.APP.MainView.extend({
 		templates: ['settings'],
 		events: {
-			'click .js-theme-item-wrapper': 'setTheme'
+			'click .js-theme-item-wrapper': 'setTheme',
+			'click .js-rate-us-button': 'showRateUsForm'
 		},
 		init: function() {
 
@@ -57,6 +58,12 @@
 		selectActiveTheme: function() {
 			var activeTheme = info.get('theme-name') || APP.defaultThemeTitle;
 			this.setTheme(this.$el.find('[data-theme-name="' + activeTheme + '"]'));
+		},
+
+		showRateUsForm: function() {
+
+			APP.rateUsView = new APP.RateUsView();
+
 		},
 
 		tmplData: {
