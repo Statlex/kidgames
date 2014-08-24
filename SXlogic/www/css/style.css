@@ -169,6 +169,7 @@ html, body {
 	border: 1px solid #868686;
 	border-left: none;
 	border-radius: 0 9px 9px 0;
+	opacity: 0.75;
 }
 
 .navigation-button-wrapper-right {
