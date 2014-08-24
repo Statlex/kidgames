@@ -121,7 +121,7 @@
 					y: NaN
 				}
 			},
-			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe'] : ['hold', 'swipe'],
+			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'] : ['hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'],
 			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
@@ -160,6 +160,12 @@
 					evt.direction = direction;
 					evt.initEvent('$swipe$', true, true);      // todo: future use evt = new Event(type);
 					node.dispatchEvent(evt);
+
+					evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+					evt.direction = direction;
+					evt.initEvent('$swipe-' + direction + '$', true, true);      // todo: future use evt = new Event(type);
+					node.dispatchEvent(evt);
+
 				}
 				// detect swipe - end
 
