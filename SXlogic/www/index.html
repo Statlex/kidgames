@@ -88,7 +88,10 @@
 
 		<% for (var key in sections) { %>
 
-			<div class="js-go-to-section list-item" data-section-name="<%= key %>"> <%= sections[key].name %> <!-- (<%= util.getProgress(key) %>) --> </div>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>">
+				<span class="section-progress"><%= util.getProgress(key) %></span>
+				<%= sections[key].name %>
+			</div>
 
 		<% }; %>
 

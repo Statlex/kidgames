@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert */
+	/*global console, alert, info, window, document */
 
 	win.util = {
 		getProgress: function(name) {
@@ -14,6 +14,6 @@
 			return keys.length + '/' + section.questions.length;
 
 		}
-	}
+	};
 
 }(window, document, document.documentElement));
