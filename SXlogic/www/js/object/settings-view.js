@@ -42,7 +42,6 @@
 
 		removeAllThemes: function() {
 
-
 			this.$wrapper.find('.js-theme-item-wrapper.active').removeClass('active');
 
 			this.tmplData.themes.forEach(function(obj){
@@ -59,19 +58,11 @@
 				},
 				{
 					title: 'white',
-					name: 'классик2'
+					name: 'всетлая'
 				},
 				{
 					title: 'black',
-					name: 'классик3'
-				},
-				{
-					title: 'white-simple',
-					name: 'классик4'
-				},
-				{
-					title: 'black-simple',
-					name: 'классик5'
+					name: 'тёмная'
 				}
 			]
 		}
