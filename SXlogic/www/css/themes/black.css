@@ -94,6 +94,8 @@ body.black:after {
 	font-size: 15px;
 	line-height: 17px;
 	font-weight: bold;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .black .list-item:active {

@@ -36,6 +36,7 @@ html, body {
 	font-size: 17px;
 	line-height: 20px;
 	padding: 8px 11px;
+	position: relative;
 }
 
 .list-wrapper {
@@ -291,12 +292,12 @@ html, body {
 }
 
 .section-progress {
-	float: right;
-	font-size: 10px;
+	font-size: 9px;
 	font-weight: normal;
-	line-height: 10px;
-	margin: -1px -4px 0 0;
-	padding-left: 4px;
+	line-height: 9px;
+	position: absolute;
+	right: 4px;
+	top: 4px;
 }
 
 
