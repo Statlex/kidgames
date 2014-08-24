@@ -259,6 +259,18 @@ html, body {
 	background-repeat: no-repeat;
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
+	border-radius: 5px;
+	border: 1px solid #808080;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	opacity: 0.5;
+	-webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.active .with-theme-bg {
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	opacity: 1;
 }
 
 .standard-theme-bg {
@@ -266,22 +278,16 @@ html, body {
 }
 
 .white-theme-bg {
-	background-position: 25% 0;
-}
-
-.black-theme-bg {
 	background-position: 50% 0;
 }
 
-.white-simple-theme-bg {
-	background-position: 75% 0;
-}
-
-.black-simple-theme-bg {
+.black-theme-bg {
 	background-position: 100% 0;
 }
 
-
+.data-wrapper {
+	padding-bottom: 20px;
+}
 
 
 

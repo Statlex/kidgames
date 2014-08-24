@@ -6,6 +6,8 @@
 
 	win.APP = win.APP || {};
 
+	APP.defaultThemeTitle = 'white';
+
 	win.APP.SettingsView = win.APP.MainView.extend({
 		templates: ['settings'],
 		events: {
@@ -23,13 +25,15 @@
 
 			this.$body = $(document.body);
 
+			this.selectActiveTheme();
+
 		},
 
 		setTheme: function(e) {
 
 			this.removeAllThemes();
 
-			var $this = $(e.currentTarget),
+			var $this = $(e.currentTarget || e),
 				themeName = $this.data('theme-name');
 
 			$this.addClass('active');
@@ -48,6 +52,11 @@
 				this.$body.removeClass(obj.title);
 			}, this);
 
+		},
+
+		selectActiveTheme: function() {
+			var activeTheme = info.get('theme-name') || APP.defaultThemeTitle;
+			this.setTheme(this.$el.find('[data-theme-name="' + activeTheme + '"]'));
 		},
 
 		tmplData: {

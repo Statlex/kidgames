@@ -34,7 +34,7 @@
 		},
 
 		setTheme: function() {
-			var themeName = info.get('theme-name');
+			var themeName = info.get('theme-name') || APP.defaultThemeTitle;
 			return themeName &&	$(document.body).addClass(themeName);
 		}
 
