@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document, $, Listener */
+	/*global console, alert, window, document, $, Listener, Owl */
 
 	$(function(){
 
@@ -12,7 +12,8 @@
 		listener.pushNode($body);
 		listener.setEventList(list);
 		listener.setFunction(function(){
-			console.log('Konami Code was Executed!');
+			var owl = new Owl();
+			owl.show();
 		});
 
 	});
