@@ -173,6 +173,19 @@ html, body {
 	opacity: 0.75;
 }
 
+.navigation-button-wrapper-left:after,
+.navigation-button-wrapper-right:after {
+	content: '';
+	display: block;
+	position: absolute;
+	/*background-color: #CBA7A7;*/
+	width: 64px;
+	height: 64px;
+	z-index: -1;
+	top: -16px;
+	left: -16px;
+}
+
 .navigation-button-wrapper-right {
 	float: right;
 	right: 0;
