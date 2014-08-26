@@ -131,7 +131,7 @@
 			},
 			isActive: false,
 			isClick: function () {
-				return Math.max(this.maxDistance.x, this.maxDistance.y) < 5;
+				return Math.max(this.maxDistance.x, this.maxDistance.y) < 10;
 			},
 			dispatchEvent: function (node) {
 
