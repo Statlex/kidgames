@@ -7,7 +7,7 @@
 
 		var $body = $(doc.body),
 			listener = new Listener(),
-			list = ['swipe-up', 'swipe-up', 'swipe-down', 'swipe-down', 'swipe-left', 'swipe-right', 'swipe-left', 'swipe-right', 'dblclick'];
+			list = ['swipe-up', 'swipe-up', 'swipe-down', 'swipe-down', 'swipe-left', 'swipe-right', 'swipe-left', 'swipe-right'];
 
 		listener.pushNode($body);
 		listener.setEventList(list);
