@@ -17,7 +17,7 @@
 			'blur .js-rate-us-send-textarea': 'onBlurTextarea',
 			'focus .js-rate-us-send-textarea': 'onFocusTextarea'
 		},
-		toMarketLink: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit',
+		toMarketLink: info.isAndroid ? 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit' : 'https://itunes.apple.com/us/app/logika-i-smekalka/id908979726?ls=1&mt=8',
 		parent: '.js-wrapper',
 		init: function (data) {
 

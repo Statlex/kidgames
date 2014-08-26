@@ -16,7 +16,8 @@
 			stillNotRated: 'Пока нет оценки',
 			writeFeedBackHere: 'Написать отзыв...',
 			sendFeedback: 'Оценить',
-			rateUsOnGooglePlay: 'Перейти на Google Play',
+			rateUsOnGooglePlay: 'Оценить на Google Play',
+			rateUsOnAppStore: 'Оценить на App Store',
 			notNow: 'Не сейчас'
 		},
 
