@@ -115,6 +115,7 @@ body {
 	transition: background-color 0.2s ease-out;
 	background-color: #83E983;
 }
+
 .hide-arrow.wrong-dir,
 .wrong-dir {
 	-webkit-animation-name: error-arrow;
@@ -134,7 +135,6 @@ body {
 	animation-play-state: forward;
 	animation-fill-mode: forwards;
 }
-
 
 @-webkit-keyframes error-arrow {
 	0% {
@@ -235,8 +235,8 @@ body {
 
 .show-alert {
 
-	-webkit-transform: translate(0px, -100%) scale(1);
-	transform: translate(0px, -100%) scale(1);
+	-webkit-transform: translate(0px, -600%) scale(1);
+	transform: translate(0px, -600%) scale(1);
 }
 
 /* alert end */
@@ -283,7 +283,7 @@ body {
 .reload-button {
 	width: 50px;
 	height: 50px;
-	background-image: url('../img/sprite.svg');
+	background-image: url(../img/sprite.svg);
 	background-repeat: no-repeat;
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
