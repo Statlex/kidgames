@@ -37,13 +37,6 @@
 
 			win.scrollTo(0, 0);
 
-//			clearTimeout(APP.showAnswerButtonTimeOut);
-//
-//			APP.showAnswerButtonTimeOut = setTimeout((function(){
-//				this.$el.find('.js-answer-button').removeClass('button-is-disabled');
-//				this.canShowAnswer = true;
-//			}.bind(this)), this.hideAnswerButtonPeriod);
-
 			this.$el.find('.button-progress').addClass('button-progress-to-0');
 
 		},
@@ -94,10 +87,6 @@
 			info.set('sections', sections, true);
 
 		}
-
-
-
-
 
 
 	});

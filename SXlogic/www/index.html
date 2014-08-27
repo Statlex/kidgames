@@ -16,6 +16,10 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/rate-us.css"/>
 
+	<!-- themes -->
+	<link rel="stylesheet" href="css/themes/white.css"/>
+	<link rel="stylesheet" href="css/themes/black.css"/>
+
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
 	<script src="js/lang/ru.js" type="text/javascript"></script>
@@ -25,19 +29,20 @@
 	<script src="js/lib/underscore.js" type="text/javascript"></script>
 	<script src="js/lib/backbone.js" type="text/javascript"></script>
 
-	<!-- views -->
-	<script src="js/object/main-view.js" type="text/javascript"></script>
-	<script src="js/object/title-view.js" type="text/javascript"></script>
-	<script src="js/object/section-view.js" type="text/javascript"></script>
-	<script src="js/object/question-view.js" type="text/javascript"></script>
-
-	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
-
 	<!-- services -->
 	<script src="js/service/info.js" type="text/javascript"></script>
 	<script src="js/service/lang.js" type="text/javascript"></script>
 	<script src="js/service/template-master.js" type="text/javascript"></script>
 	<script src="js/service/image-saver.js" type="text/javascript"></script>
+	<script src="js/service/util.js" type="text/javascript"></script>
+
+	<!-- views -->
+	<script src="js/object/main-view.js" type="text/javascript"></script>
+	<script src="js/object/title-view.js" type="text/javascript"></script>
+	<script src="js/object/section-view.js" type="text/javascript"></script>
+	<script src="js/object/question-view.js" type="text/javascript"></script>
+	<script src="js/object/settings-view.js" type="text/javascript"></script>
+	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
 
 	<!-- sections -->
 	<script src="js/question/algorithms.js" type="text/javascript"></script>
@@ -50,9 +55,20 @@
 	<script src="js/question/starinnyyeISkazochnyyeGolovolomki.js" type="text/javascript"></script>
 	<script src="js/question/zadachiSoSpichkami.js" type="text/javascript"></script>
 	<script src="js/question/zadachiSoSlovami.js" type="text/javascript"></script>
+	<script src="js/question/veroyatnosty.js" type="text/javascript"></script>
+	<script src="js/question/geometriya.js" type="text/javascript"></script>
+	<script src="js/question/vychisleniya.js" type="text/javascript"></script>
+	<script src="js/question/kombinatorika.js" type="text/javascript"></script>
+	<script src="js/question/logikaIRassuzhdeniya.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
+
+	<!-- other -->
+	<script src="js/lib/listEventListener.js" type="text/javascript"></script>
+	<script src="js/other/konami-code.js" type="text/javascript"></script>
+	<script src="js/other/owl.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/other/owl.css"/>
 
 </head>
 <body>
@@ -70,11 +86,16 @@
 
 	<h1 class="header">Логика и Смекалка</h1>
 
+	<div class="settings-button js-settings-button"></div>
+
 	<div class="list-wrapper">
 
 		<% for (var key in sections) { %>
 
-			<div class="js-go-to-section list-item" data-section-name="<%= key %>"><%= sections[key].name %></div>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>">
+				<span class="section-progress"><%= util.getProgress(key) %></span>
+				<%= sections[key].name %>
+			</div>
 
 		<% }; %>
 
@@ -87,6 +108,8 @@
 <script type="text/x-template" data-name="list">
 
 	<h1 class="header"><%= name %></h1>
+
+	<div class="settings-button js-settings-button"></div>
 
 	<div class="list-wrapper">
 
@@ -117,13 +140,11 @@
 
 	<h1 class="header"><%= title %></h1>
 
+	<div class="settings-button js-settings-button"></div>
+
 	<div class="list-wrapper">
 
 		<%= templateMaster.createText(text) %>
-
-		<% if (obj.image) { %>
-			<%= templateMaster.createText(image) %>
-		<% }; %>
 
 		<% if (obj.hint) { %>
 			<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
@@ -131,12 +152,11 @@
 		<% }; %>
 
 		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
-
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 	</div>
 
-	<div class="navigation-buttons-wrapper clear-fix">
+	<div class="navigation-buttons-wrapper">
 		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
 		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
 	</div>
@@ -165,17 +185,15 @@
 
 			<h3 class="rate-us-header js-rate-by-star"><%= lang.rateUs.stillNotRated %></h3>
 
-
-
 			<div class="rate-us-send-feedback hidden js-rate-us-send-feedback">
 
 				<textarea class="rate-us-send-textarea js-rate-us-send-textarea" cols="30" rows="10" placeholder="<%= lang.rateUs.writeFeedBackHere %>"></textarea>
 
-				<span class="rate-us-send-button js-rate-us-send-button button-is-disabled"><%= lang.rateUs.sendFeedback %></span>
+				<span class="rate-us-send-button js-rate-us-send-button"><%= lang.rateUs.sendFeedback %></span>
 
 			</div>
 
-			<span class="rate-us-send-button js-rate-us-on-google-play hidden"><%= lang.rateUs.rateUsOnGooglePlay %></span>
+			<span class="rate-us-send-button js-rate-us-on-google-play hidden"><%= info.isAndroid ? lang.rateUs.rateUsOnGooglePlay : lang.rateUs.rateUsOnAppStore %></span>
 
 			<span class="rate-us-send-button js-not-now"><%= lang.rateUs.notNow %></span>
 
@@ -188,7 +206,62 @@
 </script>
 
 
+<script type="text/x-template" data-name="settings">
 
+	<h1 class="header">Настройки</h1>
+
+	<div class="list-wrapper">
+
+		<div class="data-wrapper">
+
+			<div class="list-item">Тема</div>
+
+			<div class="theme-items-list-wrapper clear-fix">
+
+				<% themes.forEach(function(theme){ %>
+
+					<div class="theme-item-wrapper js-theme-item-wrapper" data-theme-name="<%= theme.title %>">
+						<img class="square-block with-theme-bg <%= theme.title %>-theme-bg" src="i/spacer.png" alt=""/>
+						<span class="list-item" style="display: none;"><%= theme.name %></span>
+					</div>
+
+				<% }); %>
+
+			</div>
+
+		</div>
+
+		<div class="data-wrapper">
+
+			<div class="list-item js-rate-us-button">Оценить приложение</div>
+
+		</div>
+
+
+
+<!--
+		<div class="data-wrapper">
+
+			<div class="list-item">Шрифт</div>
+
+			<div> - </div>
+			<div> A </div>
+			<div> + </div>
+
+		</div>
+
+		<div class="data-wrapper">
+
+			<div class="list-item">Сброс настроек</div>
+
+		</div>
+-->
+
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+
+</script>
 
 
 </body>

@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster */
+	/*global window, Backbone, $, templateMaster, setTimeout, APP */
 
 	win.APP = win.APP || {};
 
@@ -52,6 +52,8 @@
 
 			this.bindBackButton();
 
+			this.bindSettingsButton();
+
 			this.setStyles();
 
 		},
@@ -75,6 +77,12 @@
 			topPadding();
 			setTimeout(topPadding, 200);
 
+		},
+		bindSettingsButton: function() {
+			var btn = this.$el.find('.js-settings-button');
+			btn.on('click', function(){
+				APP.router.navigate('settings', {trigger: true});
+			});
 		}
 
 

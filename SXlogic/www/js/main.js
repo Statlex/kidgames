@@ -14,7 +14,8 @@
 		routes: {
 			'': 'title',
 			'section/:id': 'section',
-			'question': 'question'
+			'question': 'question',
+			'settings': 'settings'
 		},
 		title: function () {
 			APP.titleView = new win.APP.TitleView();
@@ -24,7 +25,11 @@
 		},
 		question: function () {
 			APP.questionView = new win.APP.QuestionView();
+		},
+		settings: function () {
+			APP.settingsView = new win.APP.SettingsView();
 		}
+
 	});
 
 	APP.router = new Router();
