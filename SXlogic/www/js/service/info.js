@@ -22,7 +22,7 @@
 
 		isAdsFree: false,
 		adsFreeLinks: { // NO - ADs in app
-			googlePlay: '',
+			googlePlay: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwitpro',
 			appStore: ''
 		},
 
