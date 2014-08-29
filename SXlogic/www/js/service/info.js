@@ -20,6 +20,17 @@
 		isAndroid: (/android/i).test(win.navigator.userAgent),
 		canScroll: false,
 
+		isAdsFree: false,
+		adsFreeLinks: { // NO - ADs in app
+			googlePlay: '',
+			appStore: ''
+		},
+
+		adsNonFreeLinks: { // YES - ADs in app
+			googlePlay: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit',
+			appStore: 'https://itunes.apple.com/us/app/logika-i-smekalka/id908979726?ls=1&mt=8'
+		},
+
 		getData: function () {
 			var data = ls.getItem(this.saveItem) || '{}';
 			return JSON.parse(data);

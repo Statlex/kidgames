@@ -103,6 +103,10 @@
 
 	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
 
+	<% if ( !info.isAdsFree ) { %>
+		<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon"></div></div>
+	<% }; %>
+
 </script>
 
 <script type="text/x-template" data-name="list">
@@ -115,7 +119,6 @@
 
 		<% questions.forEach(function(question, index){ %>
 
-
 			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
 
 				<div class="js-question-item list-item question-was-done" data-number="<%= index %>"><%= question.title %></div>
@@ -125,7 +128,6 @@
 				<div class="js-question-item list-item" data-number="<%= index %>"><%= question.title %></div>
 
 			<% }; %>
-
 
 		<% }); %>
 
@@ -237,25 +239,15 @@
 
 		</div>
 
-
-
-<!--
 		<div class="data-wrapper">
 
-			<div class="list-item">Шрифт</div>
-
-			<div> - </div>
-			<div> A </div>
-			<div> + </div>
-
-		</div>
-
-		<div class="data-wrapper">
-
-			<div class="list-item">Сброс настроек</div>
+			<% if ( !info.isAdsFree ) { %>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">Помочь разработчикам</div>
+			<% } else { %>
+				<div class="list-item">Спасибо что приобрели платную версию.</div>
+			<% }; %>
 
 		</div>
--->
 
 	</div>
 

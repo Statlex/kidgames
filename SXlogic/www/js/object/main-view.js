@@ -54,6 +54,8 @@
 
 			this.bindSettingsButton();
 
+			this.bindExternalLinks();
+
 			this.setStyles();
 
 		},
@@ -64,6 +66,14 @@
 					Backbone.history.history.back();
 				}
 			});
+		},
+
+		bindExternalLinks: function() {
+
+			this.$el.find('[data-external-link]').on('click', function(e){
+				win.open(this.dataset.externalLink);
+			});
+
 		},
 
 		setStyles: function() {
