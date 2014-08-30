@@ -2,7 +2,9 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global */
+	/*global APP */
+
+	var type = APP.map.terrainTypes;
 
 	win.testMap = {
 		size: {
@@ -12,18 +14,24 @@
 		units: [
 			{
 				constructorName: 'Soldier',
-				x: 13,
-				y: 4,
-				owner: 1
+				x: 1,
+				y: 1,
+				playerId: 1
 			},
 			{
 				constructorName: 'Soldier',
 				x: 16,
 				y: 4,
-				owner: 2
+				playerId: 2
 			}
-
-		]
+		],
+		terrain: {
+			x1y2: type[1],
+			x1y3: type[1],
+			x1y4: type[1],
+			x1y5: type[1],
+			x1y6: type[1]
+		}
 
 	};
 

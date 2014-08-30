@@ -8,13 +8,25 @@
 
 	APP.units.BaseUnit = function(data) {
 
-
+		// set defaults
+		this.speed = 7;
 
 	};
 
 	APP.units.BaseUnit.prototype = {
 		baseInit: function(data) {
 			util.extend(this, data);
+		},
+		getAvailablePath: function(map) {
+
+			var pathFinder = new util.PathFinder({
+				map: map,
+				speed: this.speed,
+				x: this.x,
+				y: this.y
+			});
+
+			return pathFinder.getAvailablePath();
 
 		}
 	};

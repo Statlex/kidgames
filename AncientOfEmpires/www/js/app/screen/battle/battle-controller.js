@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global APP */
+	/*global APP, util */
 
 	win.APP = win.APP || {};
 
@@ -13,24 +13,29 @@
 		this.map = {};
 		this.view = {};
 		////////////////
-		APP.owners = [
+		this.players = [
 			{
 				id: 1,
-				name: 'Vasya'
+				name: 'Vasya',
+				type: 'human'
 			},
 			{
 				id: 2,
-				name: 'Petya'
+				name: 'Petya',
+				type: 'cpu'
 			}
 		];
 
+		this.activePlayer = null;
 
 	}
 
 	BattleController.prototype = {
+
 		setMap: function(map) {
-			this.map = map;
+			this.map = util.createCopy(map);
 		},
+
 		setView: function(view) {
 			this.view = view;
 		},
@@ -63,12 +68,60 @@
 		},
 		onClick: function(coordinates) {
 
-			console.log(coordinates);
+			var units = this.getUnitsByCoordinates(coordinates);
+
+			var unit = units[0],
+				availablePth = unit.getAvailablePath(this.map);
+
+			this.view.highlightPath(availablePth);
 
 		},
+
+		getUnitsByCoordinates: function(coordinates) {
+			var key,
+				units = [],
+				allUnits = this.units,
+				unitForTest;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+
+					unitForTest = allUnits[key];
+
+					if (unitForTest.x === coordinates.x && unitForTest.y === coordinates.y) {
+						units.push(unitForTest);
+					}
+
+				}
+			}
+
+			return units;
+
+		},
+
 		startBattle: function() {
+			this.step();
+			this.step();
+			this.step();
+			this.step();
+			this.step();
+		},
+		step: function() {
+
+			// set active player
+			var index,
+				players = this.players;
+			if ( this.activePlayer ) {
+				index = players.indexOf(this.activePlayer);
+				this.activePlayer = players[index + 1] || players[0];
+			} else {
+				this.activePlayer = players[0];
+			}
+
+			console.log(this.activePlayer);
 
 		}
+
 
 
 	};

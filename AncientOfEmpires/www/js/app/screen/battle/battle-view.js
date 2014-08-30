@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global bingo, $, info, APP, debug */
+	/*global bingo, $, info, APP, debug, util */
 
 	win.APP = win.APP || {};
 
@@ -15,7 +15,7 @@
 		init: function() {
 
 			// set map to this view
-			this.setMap(win.testMap);
+			this.setMap(util.createCopy(win.testMap));
 			// show draft map
 			this.$el = $(this.tmpl.battle(this.map));
 			this.$unitLayer = this.$el.find('.js-units-layer');
@@ -32,6 +32,8 @@
 			this.$wrapper.append(this.$el);
 
 			this.controller.startBattle();
+
+			this.squares = this.$el.find('.js-square');
 
 		},
 		onClickSquare: function(e) {
@@ -50,6 +52,18 @@
 
 			this.$unitLayer.append($unit);
 
+		},
+		highlightPath: function(data) {
+			console.log('/////');
+			console.log(data);
+
+			data.forEach(function(xy){
+				var $square = this.$el.find('[data-xy="' + ['x', xy.x, 'y', xy.y].join('') + '"]');
+				$square.css('background-color', 'rgba(0, 0, 0, 0.5)');
+
+			}, this);
+
+			console.log(this.squares);
 		}
 
 	});
