@@ -15,7 +15,7 @@
 
 			this.$el = $(this.tmpl.title());
 
-			console.log(this.$el.html());
+			debug(this.$el.html());
 
 			this.$wrapper = $('.js-wrapper');
 
@@ -26,7 +26,7 @@
 		},
 		goToBattle: function() {
 
-			console.log('////////////');
+			debug('////////////');
 
 			APP.router.navigate('battle', { trigger: true });
 		}

@@ -7,7 +7,11 @@
 
 	win.langs.en = {
 		language: 'language',
-		languageName: 'english'
+		languageName: 'english',
+		units: {
+			soldier: 'soldier'
+
+		}
 	};
 
 }(window));
