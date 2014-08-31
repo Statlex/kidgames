@@ -11,7 +11,7 @@
 .event-handler,
 .units-layer,
 .objects-layer,
-.available-layer,
+.available-path-layer,
 .background-layer {
 	position: fixed;
 	width: 100%;
@@ -33,7 +33,7 @@
 	z-index: 2;
 }
 
-.available-layer {
+.available-path-layer {
 	z-index: 1;
 }
 
@@ -60,3 +60,12 @@
 	position: absolute;
 }
 
+.available-path-square {
+	background-color: #ff7f7f;
+}
+
+
+/* TEMP */
+.unit {
+	-webkit-transition: all ease-out 1s;
+}

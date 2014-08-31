@@ -28,6 +28,32 @@
 
 			return pathFinder.getAvailablePath();
 
+		},
+		moveTo: function(coordinates, map) {
+			var availablePath = this.getAvailablePath(map),
+				canMove = false,
+				x = coordinates.x,
+				y = coordinates.y;
+
+			availablePath.every(function(xy){
+
+				if (xy.x === x && xy.y === y) {
+					canMove = true;
+					return false;
+				}
+
+				return true;
+
+			});
+
+			if (canMove) {
+				this.x = coordinates.x;
+				this.y = coordinates.y;
+				return this;
+			}
+
+			return false;
+
 		}
 	};
 

@@ -68,12 +68,52 @@
 		},
 		onClick: function(coordinates) {
 
-			var units = this.getUnitsByCoordinates(coordinates);
+			this.view.hideAvailablePath();
 
-			var unit = units[0],
+			var units = this.getUnitsByCoordinates(coordinates),
+				// we use LIST of units cause in future many units can stay on one place
+				unit = units[0],
+				availablePth;
+
+			// click to unit
+			if (unit) {
+
+				// show available path
 				availablePth = unit.getAvailablePath(this.map);
+				this.view.highlightPath(availablePth);
 
-			this.view.highlightPath(availablePth);
+				// my or enemy user
+				if (unit.playerId === this.activePlayer.id) {
+					// my unit
+					this.activeSelectedUnit = unit;
+				} else {
+					// enemy unit
+					this.activeSelectedUnit = false;
+
+				}
+
+			} else {
+
+				if (this.activeSelectedUnit) {
+					// try to move
+					var moveUnit = this.activeSelectedUnit.moveTo(coordinates, this.map);
+					this.view.moveUnit(moveUnit);
+					this.activeSelectedUnit = false;
+				} else {
+					// ???
+
+				}
+
+
+
+
+
+
+
+
+
+
+			}
 
 		},
 
@@ -100,14 +140,13 @@
 		},
 
 		startBattle: function() {
-			this.step();
-			this.step();
-			this.step();
-			this.step();
+			this.activeSelectedUnit = false;
 			this.step();
 		},
 		step: function() {
-
+			this.setActivePlayer();
+		},
+		setActivePlayer: function() {
 			// set active player
 			var index,
 				players = this.players;
@@ -118,7 +157,7 @@
 				this.activePlayer = players[0];
 			}
 
-			console.log(this.activePlayer);
+			console.log('Active player - ', this.activePlayer);
 
 		}
 

@@ -77,7 +77,7 @@
 			<% for (var i = 0, lenI = size.height; i < lenI; i+= 1) { %>
 				<div class="square-line">
 				<% for (var j = 0, lenJ = size.width; j < lenJ; j+= 1) { %>
-					<div class="square js-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+					<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
 				<% }; %>
 				</div>
 			<% }; %>
@@ -92,8 +92,14 @@
 
 		</div>
 
-		<div class="available-layer">
-
+		<div class="available-path-layer js-available-path-layer">
+			<% for (var i = 0, lenI = size.height; i < lenI; i+= 1) { %>
+			<div class="square-line">
+				<% for (var j = 0, lenJ = size.width; j < lenJ; j+= 1) { %>
+				<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+				<% }; %>
+			</div>
+			<% }; %>
 		</div>
 
 		<div class="background-layer">

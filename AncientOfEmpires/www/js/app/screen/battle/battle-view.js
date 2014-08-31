@@ -9,7 +9,7 @@
 	APP.BattleView = APP.BaseView.extend({
 		templates: ['battle', 'unit'],
 		events: {
-			'click .js-square': 'onClickSquare'
+			'click .js-event-handler-square': 'onClickSquare'
 		},
 		squareSize: 20,
 		init: function() {
@@ -27,13 +27,14 @@
 			this.controller.setMapForView();
 
 			this.$wrapper = $('.js-wrapper');
+			this.$availablePathWrapper = this.$el.find('.js-available-path-layer');
+			this.$availablePathSquares = this.$el.find('.js-available-path-square');
+
 
 			this.$wrapper.html('');
 			this.$wrapper.append(this.$el);
 
 			this.controller.startBattle();
-
-			this.squares = this.$el.find('.js-square');
 
 		},
 		onClickSquare: function(e) {
@@ -54,16 +55,24 @@
 
 		},
 		highlightPath: function(data) {
-			console.log('/////');
-			console.log(data);
+
+			this.hideAvailablePath();
 
 			data.forEach(function(xy){
-				var $square = this.$el.find('[data-xy="' + ['x', xy.x, 'y', xy.y].join('') + '"]');
-				$square.css('background-color', 'rgba(0, 0, 0, 0.5)');
-
+				var $square = this.$availablePathWrapper.find('[data-xy="' + ['x', xy.x, 'y', xy.y].join('') + '"]');
+				$square.addClass('available-path-square');
 			}, this);
 
-			console.log(this.squares);
+		},
+		hideAvailablePath: function() {
+			this.$availablePathSquares.removeClass('available-path-square');
+		},
+		moveUnit: function(moveUnit) {
+			var $unit = this.$unitLayer.find('[data-id="' + moveUnit.id + '"]');
+			$unit.css({
+				left: moveUnit.x * this.squareSize + 'px',
+				top: moveUnit.y * this.squareSize + 'px'
+			});
 		}
 
 	});
