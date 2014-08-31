@@ -26,11 +26,11 @@
 			}
 		],
 		terrain: {
+			x1y1: type[1],
 			x1y2: type[1],
 			x1y3: type[1],
 			x1y4: type[1],
-			x1y5: type[1],
-			x1y6: type[1]
+			x1y5: type[1]
 		}
 
 	};

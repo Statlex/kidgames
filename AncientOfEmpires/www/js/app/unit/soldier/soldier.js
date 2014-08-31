@@ -6,7 +6,7 @@
 
 	var soldier = APP.units.Soldier = function(data) {
 		this.baseInit(data);
-		this.speed = 8;
+		this.speed = 5;
 	};
 
 	soldier.prototype = new APP.units.BaseUnit();

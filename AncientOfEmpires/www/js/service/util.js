@@ -58,8 +58,6 @@
 		this.run();
 	}
 
-	var count = 0;
-
 	PathFinderPoint.prototype = {
 
 		run: function() {
@@ -76,12 +74,6 @@
 
 			// add current coordinates to parent
 			this.parent.addCoordinatesToAvailablePath({x: x, y: y});
-
-			count += 1;
-			if (count > 1000) {
-				console.log('//');
-				return;
-			}
 
 			this.tryGoToSquare({x: x + 1, y: y});
 			this.tryGoToSquare({x: x - 1, y: y});
@@ -163,7 +155,7 @@
 
 			this.donePathPoints.every(function(point){
 
-				if (point.x === x && point.y === y && speed < point.speed) {
+				if (point.x === x && point.y === y && speed <= point.speed) {
 					isInDonePoints = true;
 					return false;
 				}
