@@ -73,6 +73,20 @@
 				left: moveUnit.x * this.squareSize + 'px',
 				top: moveUnit.y * this.squareSize + 'px'
 			});
+		},
+		showUnitsUnderAttack: function(units) {
+			units.forEach(function(unit){
+
+				var x = unit.x,
+					y = unit.y,
+					$block = this.$el.find('.js-event-handler [data-xy="' + 'x' + x + 'y' + y + '"]');
+
+				$block.css('background-color', '#c00');
+
+			}, this);
+		},
+		hideUnitsUnderAttack: function() {
+			console.log('hideUnitsUnderAttack');
 		}
 
 	});

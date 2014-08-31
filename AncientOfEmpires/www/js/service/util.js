@@ -90,10 +90,12 @@
 				pathResistance = 1,
 				point;
 
-			// get square bu coordinates
-			square = APP.map.getSquareByXY(this.parent.map, x, y);
-			if (square) {
-				pathResistance = APP.map[square].pathResistance;
+			if (this.parent.relativeTypeSpace) {
+				// get square bu coordinates
+				square = APP.map.getSquareByXY(this.parent.map, x, y);
+				if (square) {
+					pathResistance = APP.map[square].pathResistance;
+				}
 			}
 
 			if (this.speed >= pathResistance) {
