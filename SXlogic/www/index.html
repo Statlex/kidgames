@@ -156,6 +156,10 @@
 		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
+		<div data-external-link="http://down3.ucweb.com/ucbrowser/en/v2/?pub=wubin%40logicandwit&version=2" class="text-block-wrapper partner-banner-wrapper">
+			<img class="image" src="other/uc-browser/uc-browser-banner.png" alt=""/>
+		</div>
+
 	</div>
 
 	<div class="navigation-buttons-wrapper">
@@ -235,14 +239,16 @@
 
 		<div class="data-wrapper">
 
-			<div class="list-item js-rate-us-button">Оценить приложение</div>
+			<div class="list-item js-rate-us-button"><span class="underline">Оценить приложение</span></div>
 
 		</div>
 
 		<div class="data-wrapper">
 
 			<% if ( !info.isAdsFree ) { %>
-				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">Помочь разработчикам</div>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
+					<span class="underline">Помочь разработчикам</span>
+				</div>
 			<% } else { %>
 				<div class="list-item">Спасибо что приобрели платную версию.</div>
 			<% }; %>

@@ -322,6 +322,11 @@ html, body {
 	background-size: 39px auto;
 }
 
+.underline {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
 
-
-
+.partner-banner-wrapper {
+	margin-top: 20px;
+}
