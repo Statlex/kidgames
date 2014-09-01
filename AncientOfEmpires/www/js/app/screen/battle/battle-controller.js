@@ -110,8 +110,8 @@
 
 				if (this.activeSelectedUnit) {
 					// try to move
-					var moveUnit = this.activeSelectedUnit.moveTo(coordinates, this.map);
-					this.view.moveUnit(moveUnit);
+					this.activeSelectedUnit.moveTo(coordinates, this.map);
+					this.view.moveUnit(this.activeSelectedUnit);
 					this.getUnitsUnderAttack(this.activeSelectedUnit);
 
 					//this.activeSelectedUnit = false;
