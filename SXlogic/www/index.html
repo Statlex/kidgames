@@ -61,7 +61,7 @@
 	<script src="js/question/kombinatorika.js" type="text/javascript"></script>
 	<script src="js/question/logikaIRassuzhdeniya.js" type="text/javascript"></script>
 	<script src="js/question/dirichletPrinciple.js" type="text/javascript"></script>
-
+	<script src="js/question/compliance.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -158,9 +158,12 @@
 		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
-		<div data-external-link="http://down3.ucweb.com/ucbrowser/en/v2/?pub=wubin%40logicandwit&version=2" class="text-block-wrapper partner-banner-wrapper">
-			<img class="image" src="other/uc-browser/uc-browser-banner.png" alt=""/>
-		</div>
+		<% if ( Math.random() < 0.75 ) { %>
+			<div data-external-link="http://down3.ucweb.com/ucbrowser/en/v2/?pub=wubin%40logicandwit&version=2" class="text-block-wrapper partner-banner-wrapper">
+				<img class="image" src="other/uc-browser/uc-browser-banner.png" alt=""/>
+			</div>
+		<% }; %>
+
 
 	</div>
 
