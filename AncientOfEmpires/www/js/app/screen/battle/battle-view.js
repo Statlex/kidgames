@@ -86,6 +86,7 @@
 			}, this);
 		},
 		hideUnitsUnderAttack: function() {
+			this.$el.find('.js-event-handler-square').css('background-color', '');
 			console.log('hideUnitsUnderAttack');
 		}
 

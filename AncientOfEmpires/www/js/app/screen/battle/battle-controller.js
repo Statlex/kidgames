@@ -95,10 +95,13 @@
 					// enemy unit
 					//this.activeSelectedUnit = false;
 
-					if (this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
+					if (this.activeSelectedUnit && !this.activeSelectedUnit.wasAttack && this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
 						this.activeSelectedUnit.attackTo(unit);
+						this.view.hideUnitsUnderAttack();
 					} else {
-						if ( !unit.wasMoved ) {
+						if ( unit.wasMoved ) {
+							this.activeSelectedUnit = false;
+						} else {
 							availablePth = unit.getAvailablePath(this.map);
 							this.view.highlightPath(availablePth);
 						}
@@ -108,12 +111,17 @@
 
 			} else {
 
+//
+
 				if (this.activeSelectedUnit) {
 					// try to move
-					this.activeSelectedUnit.moveTo(coordinates, this.map);
+					var wasMove = this.activeSelectedUnit.moveTo(coordinates, this.map);
 					this.view.moveUnit(this.activeSelectedUnit);
 					this.getUnitsUnderAttack(this.activeSelectedUnit);
-
+					if ( !wasMove ) {
+						this.activeSelectedUnit = false;
+						this.view.hideUnitsUnderAttack();
+					}
 					//this.activeSelectedUnit = false;
 
 				} else {
