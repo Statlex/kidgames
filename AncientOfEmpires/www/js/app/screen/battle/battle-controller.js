@@ -82,19 +82,21 @@
 				if (unit.playerId === this.activePlayer.id) {
 					// my unit
 					this.activeSelectedUnit = unit;
-					this.getUnitsUnderAttack();
+
 					// show available path
 					if ( !unit.wasMoved ) {
 						availablePth = unit.getAvailablePath(this.map);
 						this.view.highlightPath(availablePth);
 					}
 
+					this.getUnitsUnderAttack(this.activeSelectedUnit);
+
 				} else {
 					// enemy unit
-					this.activeSelectedUnit = false;
+					//this.activeSelectedUnit = false;
 
 					if (this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
-						console.log(unit, ' -- was attacked -- ');
+						this.activeSelectedUnit.attackTo(unit);
 					} else {
 						if ( !unit.wasMoved ) {
 							availablePth = unit.getAvailablePath(this.map);
@@ -110,7 +112,7 @@
 					// try to move
 					var moveUnit = this.activeSelectedUnit.moveTo(coordinates, this.map);
 					this.view.moveUnit(moveUnit);
-					this.getUnitsUnderAttack();
+					this.getUnitsUnderAttack(this.activeSelectedUnit);
 
 					//this.activeSelectedUnit = false;
 
@@ -132,13 +134,16 @@
 
 		},
 
-		getUnitsUnderAttack: function() {
-			this.unitsIsAvailableToAttack = this.activeSelectedUnit.findUnitsUnderAttack(this.units);
+		getUnitsUnderAttack: function(unit) {
+			this.unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
 			if (this.unitsIsAvailableToAttack) {
 				this.view.showUnitsUnderAttack(this.unitsIsAvailableToAttack);
 			} else {
 				this.view.hideUnitsUnderAttack();
 			}
+
+			return this.unitsIsAvailableToAttack;
+
 		},
 
 		getUnitsByCoordinates: function(coordinates) {

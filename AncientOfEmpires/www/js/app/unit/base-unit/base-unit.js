@@ -102,8 +102,13 @@
 
 			return unitsUnderAttack;
 
-		}
+		},
 
+		attackTo: function(enemyUnit) {
+			console.log('unit attack !!!!!!');
+			console.log(this, enemyUnit);
+			this.wasAttack = true;
+		}
 
 	};
 
