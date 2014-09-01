@@ -10,10 +10,15 @@
 
 		// set defaults
 		this.speed = 10;
-		this.hasAttack = true;
 		this.attackRange = 3;
 		this.wasMoved = false;
 		this.wasAttack = false;
+
+		this.defList = {
+			wasMoved: false,
+			wasAttack: false
+		};
+
 	};
 
 	APP.units.BaseUnit.prototype = {
@@ -108,12 +113,10 @@
 			console.log('unit attack !!!!!!');
 			console.log(this, enemyUnit);
 
-
-
-
-
-
 			this.wasAttack = true;
+		},
+		setDefaultProperties: function() {
+			util.extend(this, this.defList);
 		}
 
 	};

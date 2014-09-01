@@ -64,6 +64,15 @@
 	background-color: #ff7f7f;
 }
 
+.end-turn {
+	width: 40px;
+	height: 40px;
+	background-color: #c00;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+}
 
 /* TEMP */
 .unit {

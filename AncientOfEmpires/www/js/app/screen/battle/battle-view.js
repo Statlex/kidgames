@@ -9,7 +9,9 @@
 	APP.BattleView = APP.BaseView.extend({
 		templates: ['battle', 'unit'],
 		events: {
-			'click .js-event-handler-square': 'onClickSquare'
+			'click .js-event-handler-square': 'onClickSquare',
+			'click .js-end-turn': 'endTurn'
+
 		},
 		squareSize: 20,
 		init: function() {
@@ -79,7 +81,7 @@
 
 				var x = unit.x,
 					y = unit.y,
-					$block = this.$el.find('.js-event-handler [data-xy="' + 'x' + x + 'y' + y + '"]');
+					$block = this.$el.find('.js-event-handler [data-xy="x' + x + 'y' + y + '"]');
 
 				$block.css('background-color', '#c00');
 
@@ -88,6 +90,11 @@
 		hideUnitsUnderAttack: function() {
 			this.$el.find('.js-event-handler-square').css('background-color', '');
 			console.log('hideUnitsUnderAttack');
+		},
+		endTurn: function() {
+			this.hideAvailablePath();
+			this.hideUnitsUnderAttack();
+			this.controller.endTurn();
 		}
 
 	});

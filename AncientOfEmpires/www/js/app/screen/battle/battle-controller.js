@@ -180,7 +180,7 @@
 		},
 
 		startBattle: function() {
-			this.activeSelectedUnit = false;
+//			this.endTurn();
 			this.step();
 		},
 		step: function() {
@@ -199,6 +199,26 @@
 
 			console.log('Active player - ', this.activePlayer);
 
+		},
+		endTurn: function() {
+
+			this.unitsIsAvailableToAttack = this.activeSelectedUnit = false;
+
+			// set default properties all units
+			var units = this.units,
+				unit,
+				key;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					unit.setDefaultProperties();
+				}
+			}
+
+			this.step();
+
+			console.log(this.units);
 		}
 
 
