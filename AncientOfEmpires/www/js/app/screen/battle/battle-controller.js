@@ -89,7 +89,10 @@
 						this.view.highlightPath(availablePth);
 					}
 
-					this.getUnitsUnderAttack(this.activeSelectedUnit);
+					if ( !this.activeSelectedUnit.wasAttack ) {
+						this.getUnitsUnderAttack(this.activeSelectedUnit);
+					}
+
 
 				} else {
 					// enemy unit
