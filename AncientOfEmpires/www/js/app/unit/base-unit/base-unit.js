@@ -19,6 +19,10 @@
 			wasAttack: false
 		};
 
+		this.damage = 50;
+		this.health = 100;
+		this.armor = 2;
+
 	};
 
 	APP.units.BaseUnit.prototype = {
@@ -113,6 +117,10 @@
 			console.log('unit attack !!!!!!');
 			console.log(this, enemyUnit);
 
+			enemyUnit.health = enemyUnit.health - this.damage + enemyUnit.armor;
+
+
+			this.wasMoved = true;
 			this.wasAttack = true;
 		},
 		setDefaultProperties: function() {

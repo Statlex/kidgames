@@ -95,6 +95,14 @@
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
 			this.controller.endTurn();
+		},
+		redrawHealthUnit: function(unit) {
+			var $unit = this.$unitLayer.find('[data-id="' + unit.id + '"]');
+			$unit.find('.js-health').html(unit.health);
+		},
+		drawRIP: function(unit) {
+			console.log('DRAW RIP from UNIT');
+			console.log(unit);
 		}
 
 	});

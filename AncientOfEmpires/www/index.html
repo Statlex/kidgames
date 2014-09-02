@@ -115,7 +115,8 @@
 <script type="text/x-template" data-name="unit">
 
 	<div class="unit" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="left: <%= unit.x * view.squareSize %>px; top: <%= unit.y * view.squareSize %>px;">
-
+		<%= unit.playerId %>/
+		<div class="js-health"><%= unit.health %></div>
 	</div>
 
 </script>

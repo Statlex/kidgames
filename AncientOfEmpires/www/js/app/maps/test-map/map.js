@@ -23,7 +23,32 @@
 				x: 16,
 				y: 4,
 				playerId: 2
+			},
+			{
+				constructorName: 'Soldier',
+				x: 3,
+				y: 1,
+				playerId: 1
+			},
+			{
+				constructorName: 'Soldier',
+				x: 13,
+				y: 4,
+				playerId: 2
+			},
+			{
+				constructorName: 'Soldier',
+				x: 5,
+				y: 1,
+				playerId: 1
+			},
+			{
+				constructorName: 'Soldier',
+				x: 10,
+				y: 4,
+				playerId: 2
 			}
+
 		],
 		terrain: {
 			x1y1: type[1],

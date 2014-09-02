@@ -89,7 +89,9 @@
 						this.view.highlightPath(availablePth);
 					}
 
-					if ( !this.activeSelectedUnit.wasAttack ) {
+					if ( this.activeSelectedUnit.wasAttack ) {
+						this.view.hideUnitsUnderAttack();
+					} else {
 						this.getUnitsUnderAttack(this.activeSelectedUnit);
 					}
 
@@ -99,7 +101,7 @@
 					//this.activeSelectedUnit = false;
 
 					if (this.activeSelectedUnit && !this.activeSelectedUnit.wasAttack && this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
-						this.activeSelectedUnit.attackTo(unit);
+						this.attackUnit(this.activeSelectedUnit, unit);
 						this.view.hideUnitsUnderAttack();
 					} else {
 						if ( unit.wasMoved ) {
@@ -144,6 +146,28 @@
 			}
 
 		},
+
+		attackUnit: function(active, passive) {
+			active.attackTo(passive);
+
+			if (passive.health <= 0) {
+				this.killUnit(passive);
+			}
+
+			if (active.health <= 0) {
+				this.killUnit(active);
+			}
+
+			this.view.redrawHealthUnit(active);
+			this.view.redrawHealthUnit(passive);
+
+		},
+
+		killUnit: function(unit) {
+			console.log('DEAD - ' + unit);
+			this.view.drawRIP(unit);
+		},
+
 
 		getUnitsUnderAttack: function(unit) {
 			this.unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
