@@ -8,6 +8,14 @@
 	win.langs.ru = {
 		language: 'язык',
 		languageName: 'Русский',
+
+		appName: 'Логика и Смекалка',
+		hint: 'подсказка',
+		answer: 'ответ',
+		settings: 'Настройки',
+		theme: 'Тема',
+		noAds: 'Версия без рекламы',
+		thanksForBuyProVersion: 'Спасибо что приобрели платную версию',
 		// <-- rate us
 		rateUs: {
 			rateUs: 'Оценить приложение',

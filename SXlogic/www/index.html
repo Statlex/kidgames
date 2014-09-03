@@ -86,7 +86,7 @@
 
 <script type="text/x-template" data-name="title">
 
-	<h1 class="header">Логика и Смекалка</h1>
+	<h1 class="header"><%= lang.appName %></h1>
 
 	<div class="settings-button js-settings-button"></div>
 
@@ -151,11 +151,11 @@
 		<%= templateMaster.createText(text) %>
 
 		<% if (obj.hint) { %>
-			<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
+			<p class="question-paragraph button-wrapper"><span class="js-hint-button button"><%= lang.hint %></span></p>
 			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
 		<% }; %>
 
-		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
+		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span><%= lang.answer %></span></p>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 		<% if ( Math.random() < 0.75 ) { %>
@@ -219,13 +219,13 @@
 
 <script type="text/x-template" data-name="settings">
 
-	<h1 class="header">Настройки</h1>
+	<h1 class="header"><%= lang.settings %></h1>
 
 	<div class="list-wrapper">
 
 		<div class="data-wrapper">
 
-			<div class="list-item">Тема</div>
+			<div class="list-item"><%= lang.theme %></div>
 
 			<div class="theme-items-list-wrapper clear-fix">
 
@@ -244,7 +244,7 @@
 
 		<div class="data-wrapper">
 
-			<div class="list-item js-rate-us-button"><span class="underline">Оценить приложение</span></div>
+			<div class="list-item js-rate-us-button"><span class="underline"><%= lang.rateUs.rateUs %></span></div>
 
 		</div>
 
@@ -252,10 +252,10 @@
 
 			<% if ( !info.isAdsFree ) { %>
 				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
-					<span class="underline">Версия без рекламы</span>
+					<span class="underline"><%= lang.noAds %></span>
 				</div>
 			<% } else { %>
-				<div class="list-item">Спасибо что приобрели платную версию.</div>
+				<div class="list-item"><%= lang.thanksForBuyProVersion %>.</div>
 			<% }; %>
 
 		</div>
