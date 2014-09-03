@@ -6,8 +6,8 @@
 	win.langs = win.langs || {};
 
 	win.langs.ru = {
-		language: 'language',
-		languageName: 'english',
+		language: 'язык',
+		languageName: 'Русский',
 		// <-- rate us
 		rateUs: {
 			rateUs: 'Оценить приложение',
