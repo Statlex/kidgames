@@ -70,7 +70,7 @@
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 		moveUnit: function(moveUnit) {
-			var $unit = this.$unitLayer.find('[data-id="' + moveUnit.id + '"]');
+			var $unit = this.getUnitById(moveUnit.id);
 			$unit.css({
 				left: moveUnit.x * this.squareSize + 'px',
 				top: moveUnit.y * this.squareSize + 'px'
@@ -97,12 +97,16 @@
 			this.controller.endTurn();
 		},
 		redrawHealthUnit: function(unit) {
-			var $unit = this.$unitLayer.find('[data-id="' + unit.id + '"]');
+			var $unit = this.getUnitById(unit.id);
 			$unit.find('.js-health').html(unit.health);
 		},
 		drawRIP: function(unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.remove(); // TODO: not remove, just add cssClass
 			console.log('DRAW RIP from UNIT');
-			console.log(unit);
+		},
+		getUnitById: function(id) {
+			return this.$unitLayer.find('[data-id="' + id + '"]');
 		}
 
 	});

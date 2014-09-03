@@ -10,6 +10,7 @@
 
 		this.unitCounter = 0;
 		this.units = {};
+		this.unitsRIP = {};
 		this.map = {};
 		this.view = {};
 		////////////////
@@ -165,9 +166,32 @@
 
 		killUnit: function(unit) {
 			console.log('DEAD - ' + unit);
+			this.appendRIP(unit);
 			this.view.drawRIP(unit);
+
+			delete this.units[unit.id];
+			console.log(this.units);
 		},
 
+		appendRIP: function(unit) {
+			unit.lifeAfterDeadLength = 0;
+			this.unitsRIP[unit.id] = unit;
+			return unit;
+
+		},
+
+		updateRIPs: function() {
+			var RIPs = this.unitsRIP,
+				key, unit;
+			for (key in RIPs) {
+				if (RIPs.hasOwnProperty(key)) {
+					unit = RIPs[key];
+					unit.lifeAfterDeadLength += 1;
+					console.log(unit);
+					console.log('lifeAfterDeadLength - ' + unit.lifeAfterDeadLength);
+				}
+			}
+		},
 
 		getUnitsUnderAttack: function(unit) {
 			this.unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
@@ -209,6 +233,7 @@
 		},
 		step: function() {
 			this.setActivePlayer();
+			this.updateRIPs();
 		},
 		setActivePlayer: function() {
 			// set active player
