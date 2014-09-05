@@ -9,9 +9,9 @@
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	info = {
-		lang: 'en', // current language
+		lang: 'ru', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['ru', 'en'],
+		availableLangs: ['ru'],
 		saveItem: 'zaggadki',
 		isPhone: false,
 		isTouch: isTouch,
