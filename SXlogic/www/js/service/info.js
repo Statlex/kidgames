@@ -9,9 +9,9 @@
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	info = {
-		lang: 'ru', // current language
+		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['ru'],
+		availableLangs: ['ru', 'en'],
 		saveItem: 'zaggadki',
 		isPhone: false,
 		isTouch: isTouch,
@@ -78,8 +78,7 @@
 			}
 		},
 		getIsPhone: function () {
-			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
-			this.isPhone = maxSize < 700;
+			this.isPhone = Math.max(docElem.clientHeight, docElem.clientWidth) < 700;
 			return this.isPhone;
 		}
 

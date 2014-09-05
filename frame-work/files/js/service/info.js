@@ -66,8 +66,7 @@
 			}
 		},
 		getIsPhone: function () {
-			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
-			this.isPhone = maxSize < 700;
+			this.isPhone = Math.max(docElem.clientHeight, docElem.clientWidth) < 700;
 			return this.isPhone;
 		}
 

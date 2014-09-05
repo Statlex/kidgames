@@ -16,6 +16,7 @@
 		theme: 'Тема',
 		noAds: 'Версия без рекламы',
 		thanksForBuyProVersion: 'Спасибо что приобрели платную версию',
+
 		// <-- rate us
 		rateUs: {
 			rateUs: 'Оценить приложение',

@@ -4,8 +4,6 @@
 	/*global window */
 	/*global templateMaster, lang, Backbone, APP, info */
 
-	lang.push('ru');
-
 	window.APP = window.APP || {};
 
 	var Router;
@@ -36,6 +34,9 @@
 
 	// start of app here
 	function main() {
+
+		lang.push(info.lang);
+
 		templateMaster.init();
 		Backbone.history.start();
 
