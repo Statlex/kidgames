@@ -69,6 +69,7 @@
 		},
 		onClick: function(coordinates) {
 
+			this.view.hideUnitsUnderAttack();
 			this.view.hideAvailablePath();
 
 			var units = this.getUnitsByCoordinates(coordinates),
