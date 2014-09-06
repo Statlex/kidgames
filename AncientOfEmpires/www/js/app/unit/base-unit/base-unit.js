@@ -9,8 +9,8 @@
 	APP.units.BaseUnit = function(data) {
 
 		// set defaults
-		this.speed = 10;
-		this.attackRange = 3;
+		this.speed = 5;
+		this.attackRange = 1;
 		this.wasMoved = false;
 		this.wasAttack = false;
 

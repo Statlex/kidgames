@@ -13,7 +13,7 @@
 			'click .js-end-turn': 'endTurn'
 
 		},
-		squareSize: 20,
+		squareSize: 30,
 		init: function() {
 
 			// set map to this view

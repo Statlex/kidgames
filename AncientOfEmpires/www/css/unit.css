@@ -1,0 +1,46 @@
+/* TEMP */
+.unit {
+	-webkit-transition: all ease-out 0.2s;
+}
+
+.unit {
+	position: absolute;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	background-position: 0 0;
+}
+
+.unit-soldier {
+	background-image: url(../img/unit/soldier/sprite.png);
+}
+
+.unit-color-blue {
+	background-position: 0 50%;
+}
+
+.unit-color-red {
+	background-position: 0 100%;
+}
+
+.unit-health {
+	font-size: 15px;
+	line-height: 15px;
+	text-shadow: 0px 1px 0px #fff,0px -1px 1px #fff,-1px 0px 1px #fff,1px 0px 1px #fff;
+	font-weight: bold;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
