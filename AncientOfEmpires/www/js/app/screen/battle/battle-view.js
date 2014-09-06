@@ -26,6 +26,7 @@
 			this.$unitLayer = this.$el.find('.js-units-layer');
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
+			this.$bgLayer = this.$el.find('.js-background-layer');
 
 			// create and set controller
 			this.controller = new APP.BattleController();
@@ -43,6 +44,8 @@
 
 			this.controller.startBattle();
 
+			this.drawMap();
+
 		},
 		onClickSquare: function(e) {
 
@@ -53,6 +56,24 @@
 		},
 		setMap: function(map) {
 			this.map = map;
+		},
+		drawMap: function() {
+
+			this.$bgLayer.css('display', 'none');
+
+			var map = this.map,
+				data = map.terrain,
+				key,
+				wrapper = this.$bgLayer[0];
+
+			for (key in data) {
+				if (data.hasOwnProperty(key)) {
+					wrapper.querySelector('[data-xy="' + key + '"]').classList.add('terrain-' + data[key]);
+				}
+			}
+
+			this.$bgLayer.css('display', '');
+
 		},
 		appendUnit: function(unit) {
 
@@ -80,6 +101,7 @@
 				left: moveUnit.x * this.squareSize + 'px',
 				top: moveUnit.y * this.squareSize + 'px'
 			});
+			$unit.addClass('was-moved-unit');
 		},
 		showUnitsUnderAttack: function(units) {
 			units.forEach(function(unit){
@@ -98,7 +120,11 @@
 		endTurn: function() {
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
+			this.resetWasMovedState();
 			this.controller.endTurn();
+		},
+		resetWasMovedState: function() {
+			this.$unitLayer.find('.was-moved-unit').removeClass('was-moved-unit');
 		},
 		redrawHealthUnit: function(unit) {
 			var $unit = this.getUnitById(unit.id);
@@ -107,7 +133,6 @@
 		drawRIP: function(unit) {
 			var $unit = this.getUnitById(unit.id);
 			$unit.remove(); // TODO: not remove, just add cssClass
-			console.log('DRAW RIP from UNIT');
 		},
 		getUnitById: function(id) {
 			return this.$unitLayer.find('[data-id="' + id + '"]');

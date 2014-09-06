@@ -7,15 +7,30 @@
 	win.APP = win.APP || {};
 
 	APP.map = {
-		terrainTypes: ['gross', 'stone', 'road'],
-		road: {
-			pathResistance: 1
+		terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
+		forest: {
+			pathResistance: 1,
+			className: 'forest'
 		},
-		gross: {
-			pathResistance: 2
+		green: {
+			pathResistance: 2,
+			className: 'green'
+		},
+		hill: {
+			pathResistance: 1,
+			className: 'hill'
+		},
+		road: {
+			pathResistance: 1,
+			className: 'road'
 		},
 		stone: {
-			pathResistance: 3
+			pathResistance: 3,
+			className: 'stone'
+		},
+		water: {
+			pathResistance: 3,
+			className: 'water'
 		},
 		getSquareByXY: function(map, x, y) {
 			return map.terrain['x' + x + 'y'+ y];

@@ -56,12 +56,14 @@
 			}
 
 		],
+		// terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
 		terrain: {
-			x1y1: type[1],
+			x1y1: type[0],
 			x1y2: type[1],
-			x1y3: type[1],
-			x1y4: type[1],
-			x1y5: type[1]
+			x1y3: type[2],
+			x1y4: type[3],
+			x1y5: type[4],
+			x2y5: type[5]
 		}
 
 	};

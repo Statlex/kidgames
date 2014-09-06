@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/unit.css"/>
+	<link rel="stylesheet" href="css/terrain.css"/>
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
@@ -103,8 +104,14 @@
 			<% }, size.height); %>
 		</div>
 
-		<div class="background-layer">
-
+		<div class="js-background-layer background-layer">
+			<% util.fromTo(function(i){ %>
+			<div class="square-line">
+				<% util.fromTo(function(j){ %>
+				<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+				<% }, size.width); %>
+			</div>
+			<% }, size.height); %>
 		</div>
 
 		<div class="end-turn js-end-turn">end-turn</div>
