@@ -1,7 +1,7 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, document, navigator, console */
+	/*global window, document, navigator */
 
 	var docElem, ls, isTouch, info;
 	docElem = doc.documentElement;
@@ -19,7 +19,6 @@
 		preJS: 'webkit',
 		isAndroid: (/android/i).test(win.navigator.userAgent),
 		canScroll: false,
-		debugEnable: true,
 
 		getData: function () {
 			var data = ls.getItem(this.saveItem) || '{}';
@@ -56,9 +55,6 @@
 			var lang = this.get('lang') || (navigator.language || navigator.userLanguage);
 			lang = lang.split('-')[0];
 			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.lang : lang;
-
-			// add debugger
-			return this.debugEnable ? win.debug = console.log.bind(console) : win.debug = function(){};
 
 		},
 		setDataFromLS: function () {

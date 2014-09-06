@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global bingo, $, info, APP, debug, util */
+	/*global bingo, $, info, APP, util */
 
 	win.APP = win.APP || {};
 

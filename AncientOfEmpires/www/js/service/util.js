@@ -1,11 +1,11 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document */
+	/*global window, document */
 	/*global util, APP */
 
 	win.util = {
-		extend: function(main, plused) {
+		extend: function (main, plused) {
 			var key;
 			for (key in plused) {
 				if (plused.hasOwnProperty(key)) {
@@ -15,11 +15,11 @@
 
 			return main;
 		},
-		findBy: function(list, key, value) {
+		findBy: function (list, key, value) {
 
 			var result = null;
 
-			list.every(function(item, index){
+			list.every(function (item, index) {
 
 				if (item[key] === value) {
 					result = {
@@ -36,16 +36,28 @@
 			return result;
 
 		},
-		createCopy: function(obj) {
+		createCopy: function (obj) {
 			return JSON.parse(JSON.stringify(obj));
 		},
-		isEqualsObject: function(obj1, obj2) {
+		isEqualsObject: function (obj1, obj2) {
 			return JSON.stringify(obj1) === JSON.stringify(obj2);
+		},
+		fromTo: function (func, start, end) {
+			if (end === undefined) {
+				end = start;
+				start = 0;
+			}
+
+			var i;
+			for (i = start; i < end; i += 1) {
+				func(i);
+			}
+
 		}
 
 	};
 
-	function PathFinder (data) {
+	function PathFinder(data) {
 		util.extend(this, data); // get from data - map, x, y, speed;
 		this.availablePath = [];
 		this.donePathPoints = [];
@@ -60,7 +72,7 @@
 
 	PathFinderPoint.prototype = {
 
-		run: function() {
+		run: function () {
 
 			var x = this.x,
 				y = this.y;
@@ -82,7 +94,7 @@
 
 		},
 
-		tryGoToSquare: function(coordinates) {
+		tryGoToSquare: function (coordinates) {
 
 			var x = coordinates.x,
 				y = coordinates.y,
@@ -115,7 +127,7 @@
 
 	PathFinder.prototype = {
 
-		getAvailablePath: function() {
+		getAvailablePath: function () {
 			var point = new PathFinderPoint({
 				parent: this,
 				speed: this.speed,
@@ -127,13 +139,13 @@
 
 		},
 
-		addCoordinatesToAvailablePath: function(data) {
+		addCoordinatesToAvailablePath: function (data) {
 
 			var isInPoints = false,
 				x = data.x,
 				y = data.y;
 
-			this.availablePath.every(function(point){
+			this.availablePath.every(function (point) {
 
 				if (point.x === x && point.y === y) {
 					isInPoints = true;
@@ -144,18 +156,18 @@
 
 			});
 
-			if ( !isInPoints ) {
+			if (!isInPoints) {
 				this.availablePath.push(data);
 			}
 
 
 		},
 
-		isInDonePoints: function(x, y, speed) {
+		isInDonePoints: function (x, y, speed) {
 
 			var isInDonePoints = false;
 
-			this.donePathPoints.every(function(point){
+			this.donePathPoints.every(function (point) {
 
 				if (point.x === x && point.y === y && speed <= point.speed) {
 					isInDonePoints = true;
@@ -170,7 +182,7 @@
 
 		},
 
-		addToDonePoints: function(x, y, speed) {
+		addToDonePoints: function (x, y, speed) {
 
 			if (this.isInDonePoints(x, y, speed)) {
 				return;
@@ -178,9 +190,7 @@
 
 			this.donePathPoints.push({ x: x, y: y, speed: speed });
 		}
-
 	};
-
 
 
 }(window, document, document.documentElement));

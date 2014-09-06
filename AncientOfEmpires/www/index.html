@@ -73,15 +73,13 @@
 	<div class="battle-screen">
 
 		<div class="event-handler js-event-handler">
-
-			<% for (var i = 0, lenI = size.height; i < lenI; i+= 1) { %>
-				<div class="square-line">
-				<% for (var j = 0, lenJ = size.width; j < lenJ; j+= 1) { %>
-					<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
-				<% }; %>
-				</div>
-			<% }; %>
-
+			<% util.fromTo(function(i){ %>
+			<div class="square-line">
+				<% util.fromTo(function(j){ %>
+				<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+				<% }, size.width); %>
+			</div>
+			<% }, size.height); %>
 		</div>
 
 		<div class="units-layer js-units-layer">
@@ -93,13 +91,13 @@
 		</div>
 
 		<div class="available-path-layer js-available-path-layer">
-			<% for (var i = 0, lenI = size.height; i < lenI; i+= 1) { %>
+			<% util.fromTo(function(i){ %>
 			<div class="square-line">
-				<% for (var j = 0, lenJ = size.width; j < lenJ; j+= 1) { %>
+				<% util.fromTo(function(j){ %>
 				<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
-				<% }; %>
+				<% }, size.width); %>
 			</div>
-			<% }; %>
+			<% }, size.height); %>
 		</div>
 
 		<div class="background-layer">

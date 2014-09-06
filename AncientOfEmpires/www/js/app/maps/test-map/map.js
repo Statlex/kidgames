@@ -1,7 +1,7 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document */
+	/*global window, document */
 	/*global APP */
 
 	var type = APP.map.terrainTypes;
