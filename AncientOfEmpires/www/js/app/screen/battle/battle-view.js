@@ -25,6 +25,8 @@
 			this.$el = $(this.tmpl.battle(this.map));
 			this.$unitLayer = this.$el.find('.js-units-layer');
 
+			this.$eventLayer = this.$el.find('.js-event-handler');
+
 			// create and set controller
 			this.controller = new APP.BattleController();
 			this.controller.setView(this);
@@ -84,15 +86,14 @@
 
 				var x = unit.x,
 					y = unit.y,
-					$block = this.$el.find('.js-event-handler [data-xy="x' + x + 'y' + y + '"]');
+					$block = this.$eventLayer.find('[data-xy="x' + x + 'y' + y + '"]');
 
-				$block.css('background-color', '#c00');
+				$block.addClass('unit-under-attack');
 
 			}, this);
 		},
 		hideUnitsUnderAttack: function() {
-			this.$el.find('.js-event-handler-square').css('background-color', '');
-			console.log('hideUnitsUnderAttack');
+			this.$eventLayer.find('.unit-under-attack').removeClass('unit-under-attack');
 		},
 		endTurn: function() {
 			this.hideAvailablePath();

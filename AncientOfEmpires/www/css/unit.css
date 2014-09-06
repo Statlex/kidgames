@@ -15,6 +15,14 @@
 	background-image: url(../img/unit/soldier/sprite.png);
 }
 
+.unit-archer {
+	background-image: url(../img/unit/archer/sprite.png);
+}
+
+.unit-knight {
+	background-image: url(../img/unit/knight/sprite.png);
+}
+
 .unit-color-blue {
 	background-position: 0 50%;
 }
@@ -29,8 +37,11 @@
 	text-shadow: 0px 1px 0px #fff,0px -1px 1px #fff,-1px 0px 1px #fff,1px 0px 1px #fff;
 	font-weight: bold;
 	position: absolute;
-	bottom: 0;
+	bottom: 2px;
 	left: 0;
+	font-family: Helvetica, sans-serif;
+	width: 100%;
+	text-align: center;
 }
 
 

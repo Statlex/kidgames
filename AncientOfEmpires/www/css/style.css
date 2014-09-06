@@ -58,6 +58,12 @@
 	border-top: none;
 }
 
+.unit-under-attack {
+	background-image: url(../img/action/attack.png);
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
 .available-path-square {
 	background-color: #ff7f7f;
 }

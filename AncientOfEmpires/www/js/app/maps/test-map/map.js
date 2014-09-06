@@ -27,28 +27,28 @@
 				color: 'red'
 			},
 			{
-				constructorName: 'Soldier',
+				constructorName: 'Archer',
 				x: 3,
 				y: 1,
 				playerId: 1,
 				color: 'blue'
 			},
 			{
-				constructorName: 'Soldier',
+				constructorName: 'Archer',
 				x: 13,
 				y: 4,
 				playerId: 2,
 				color: 'red'
 			},
 			{
-				constructorName: 'Soldier',
+				constructorName: 'Knight',
 				x: 5,
 				y: 1,
 				playerId: 1,
 				color: 'blue'
 			},
 			{
-				constructorName: 'Soldier',
+				constructorName: 'Knight',
 				x: 10,
 				y: 4,
 				playerId: 2,
