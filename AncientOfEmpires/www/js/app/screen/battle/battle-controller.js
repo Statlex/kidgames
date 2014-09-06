@@ -104,6 +104,7 @@
 
 					if (this.activeSelectedUnit && !this.activeSelectedUnit.wasAttack && this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
 						this.attackUnit(this.activeSelectedUnit, unit);
+						this.view.detectEndUnitTurn(this.activeSelectedUnit);
 						this.view.hideUnitsUnderAttack();
 					} else {
 						if ( unit.wasMoved ) {
@@ -166,12 +167,10 @@
 		},
 
 		killUnit: function(unit) {
-			console.log('DEAD - ' + unit);
 			this.appendRIP(unit);
 			this.view.drawRIP(unit);
 
 			delete this.units[unit.id];
-			console.log(this.units);
 		},
 
 		appendRIP: function(unit) {

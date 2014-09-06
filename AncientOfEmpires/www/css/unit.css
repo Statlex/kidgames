@@ -44,10 +44,19 @@
 	text-align: center;
 }
 
-.was-moved-unit {
+.grave .unit-health {
+	display: none;
+}
+
+.unit-end-turn {
 	opacity: 0.5;
 }
 
+.grave {
+	-webkit-transition: none;
+	background-position: 0 0;
+	background-image: url(../img/unit/grave.png);
+}
 
 
 

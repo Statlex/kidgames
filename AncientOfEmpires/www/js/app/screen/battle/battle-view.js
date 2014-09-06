@@ -101,7 +101,13 @@
 				left: moveUnit.x * this.squareSize + 'px',
 				top: moveUnit.y * this.squareSize + 'px'
 			});
-			$unit.addClass('was-moved-unit');
+		},
+		detectEndUnitTurn: function(unit) {
+
+			if (unit.wasAttack && unit.wasMoved) {
+				this.getUnitById(unit.id).addClass('unit-end-turn');
+			}
+
 		},
 		showUnitsUnderAttack: function(units) {
 			units.forEach(function(unit){
@@ -120,11 +126,11 @@
 		endTurn: function() {
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
-			this.resetWasMovedState();
+			this.resetEndTurnState();
 			this.controller.endTurn();
 		},
-		resetWasMovedState: function() {
-			this.$unitLayer.find('.was-moved-unit').removeClass('was-moved-unit');
+		resetEndTurnState: function() {
+			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');
 		},
 		redrawHealthUnit: function(unit) {
 			var $unit = this.getUnitById(unit.id);
@@ -132,7 +138,8 @@
 		},
 		drawRIP: function(unit) {
 			var $unit = this.getUnitById(unit.id);
-			$unit.remove(); // TODO: not remove, just add cssClass
+			$unit.addClass('grave');
+
 		},
 		getUnitById: function(id) {
 			return this.$unitLayer.find('[data-id="' + id + '"]');
