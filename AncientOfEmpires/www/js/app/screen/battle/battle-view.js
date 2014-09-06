@@ -14,7 +14,10 @@
 
 		},
 		squareSize: 30,
+		cssSelector: '.square, .unit',
 		init: function() {
+
+			this.setStyles();
 
 			// set map to this view
 			this.setMap(util.createCopy(win.testMap));
@@ -107,6 +110,27 @@
 		},
 		getUnitById: function(id) {
 			return this.$unitLayer.find('[data-id="' + id + '"]');
+		},
+		setStyles: function() {
+			var size = this.squareSize,
+				selector = this.cssSelector,
+				style = document.styleSheets[0],
+				cssRules = style.cssRules,
+				index,
+				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; }';
+
+			Array.prototype.forEach.call(cssRules, function(rule, i) {
+				if (rule.cssText.indexOf(selector) !== -1) {
+					index = i;
+				}
+			});
+
+			if (index !== undefined) {
+				style.removeRule(index);
+			}
+
+			style.insertRule(cssText, cssRules.length);
+
 		}
 
 	});
