@@ -9,9 +9,10 @@
 	isTouch = docElem.hasOwnProperty('ontouchstart');
 
 	info = {
-		lang: 'ru', // current language
+		lang: '',
+		defaultLang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['ru'],
+		availableLangs: ['ru', 'en'],
 		saveItem: 'zaggadki',
 		isPhone: false,
 		isTouch: isTouch,
@@ -63,9 +64,21 @@
 			this.setDataFromLS();
 
 			// try to get current language
-			var lang = this.get('lang') || (navigator.language || navigator.userLanguage);
+			this.setLang();
+
+		},
+		setLang: function() {
+
+			var lang = this.get('lang');
+
+			if (lang) {
+				return;
+			}
+
+			lang = navigator.language || navigator.userLanguage;
 			lang = lang.split('-')[0];
-			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.lang : lang;
+
+			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.defaultLang : lang;
 
 		},
 		setDataFromLS: function () {
