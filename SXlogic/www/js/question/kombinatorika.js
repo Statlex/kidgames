@@ -7,6 +7,7 @@
 
 	win.sections.kombinatorika = {
 		name: 'Комбинаторика',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Чайная комбинаторика',

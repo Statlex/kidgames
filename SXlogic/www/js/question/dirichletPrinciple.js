@@ -7,6 +7,7 @@
 
 	win.sections.dirichletPrinciple = {
 		name: 'Принцип Дирихле',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Футбольный турнир',

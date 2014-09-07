@@ -7,6 +7,7 @@
 
 	win.sections.logikaIRassuzhdeniya = {
 		name: 'Логика и рассуждения',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Как попасть в город?',

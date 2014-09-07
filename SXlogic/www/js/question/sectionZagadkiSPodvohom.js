@@ -7,6 +7,7 @@
 
 	win.sections.sectionZagadkiSPodvohom = {
 		name: 'Задачи с подвохом',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Переправа',

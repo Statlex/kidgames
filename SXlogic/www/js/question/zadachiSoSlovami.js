@@ -7,6 +7,7 @@
 
 	win.sections.zadachiSoSlovami = {
 		name: 'Задачи со словами',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Названия птиц',

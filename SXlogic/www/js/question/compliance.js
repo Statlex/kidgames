@@ -7,6 +7,7 @@
 
 	win.sections.compliance = {
 		name: 'Соответствия',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Задача Эйнштейна',

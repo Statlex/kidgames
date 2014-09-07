@@ -7,6 +7,7 @@
 
 	win.sections.algorithms = {
 		name: 'Алгоритмы',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Белки и кролики',

@@ -7,6 +7,7 @@
 
 	win.sections.starinnyyeISkazochnyyeGolovolomki = {
 		name: 'Старинные и сказочные головоломки',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Основание Карфагена',

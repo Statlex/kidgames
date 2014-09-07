@@ -7,6 +7,7 @@
 
 	win.sections.frivolousPuzzles = {
 		name: 'Несерьезные головоломки',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Что за надпись?',

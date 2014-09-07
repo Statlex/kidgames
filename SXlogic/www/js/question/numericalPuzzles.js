@@ -7,6 +7,7 @@
 
 	win.sections.numericalPuzzles = {
 		name: 'Числовые ребусы',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Чай',

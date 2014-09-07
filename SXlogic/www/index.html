@@ -96,10 +96,12 @@
 
 		<% for (var key in sections) { %>
 
+			<% if (sections[key].lang === info.lang) { %>
 			<div class="js-go-to-section list-item" data-section-name="<%= key %>">
 				<span class="section-progress"><%= util.getProgress(key) %></span>
 				<%= sections[key].name %>
 			</div>
+			<% }; %>
 
 		<% }; %>
 
