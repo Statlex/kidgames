@@ -13,6 +13,7 @@
 		this.unitsRIP = {};
 		this.map = {};
 		this.view = {};
+		this.lifeAfterDeadLimit = 3;
 		////////////////
 		this.players = [
 			{
@@ -187,10 +188,15 @@
 				if (RIPs.hasOwnProperty(key)) {
 					unit = RIPs[key];
 					unit.lifeAfterDeadLength += 1;
-					console.log(unit);
-					console.log('lifeAfterDeadLength - ' + unit.lifeAfterDeadLength);
+
+					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit) {
+						this.view.removeRIP(unit);
+						delete RIPs[key];
+					}
+
 				}
 			}
+
 		},
 
 		getUnitsUnderAttack: function(unit) {

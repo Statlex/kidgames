@@ -141,6 +141,9 @@
 			$unit.addClass('grave');
 
 		},
+		removeRIP: function(unit) {
+			this.$unitLayer.find('[data-id="' + unit.id + '"]').remove();
+		},
 		getUnitById: function(id) {
 			return this.$unitLayer.find('[data-id="' + id + '"]');
 		},

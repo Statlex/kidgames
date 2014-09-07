@@ -56,6 +56,7 @@
 	-webkit-transition: none;
 	background-position: 0 0;
 	background-image: url(../img/unit/grave.png);
+	z-index: -1;
 }
 
 
