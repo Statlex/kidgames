@@ -23,9 +23,9 @@
 			},
 			{
 				title: 'Three Guys at A Hotel Riddle',
-				text: 'Three guys rent a hotel room for the night. When they get to the hotel they pay the $30 fee, then go up to their room. Soon the bellhop brings up their bags and gives the lawyers back $5 because the hotel was having a special discount that weekend. So the three lawyers decide to each keep one of the $5 dollars and to give the bellhop a $2 tip. However, when they sat down to tally up their expenses for the weekend the could not explain the following details:<br><br>Each one of them had originally paid $10 (towards the initial $30), then each got back $1 which meant that they each paid $9. Then they gave the bellhop a $2 tip. HOWEVER, 3 вЂў $9 + $2 = $29<br><br>The guys couldn\'t figure out what happened to the other dollar. After all, the three paid out $30 but could only account for $29.<br><br>Can you determine what happened?',
+				text: 'Three guys rent a hotel room for the night. When they get to the hotel they pay the $30 fee, then go up to their room. Soon the bellhop brings up their bags and gives the lawyers back $5 because the hotel was having a special discount that weekend. So the three lawyers decide to each keep one of the $5 dollars and to give the bellhop a $2 tip. However, when they sat down to tally up their expenses for the weekend the could not explain the following details:<br><br>Each one of them had originally paid $10 (towards the initial $30), then each got back $1 which meant that they each paid $9. Then they gave the bellhop a $2 tip. HOWEVER, 3 * $9 + $2 = $29<br><br>The guys couldn\'t figure out what happened to the other dollar. After all, the three paid out $30 but could only account for $29.<br><br>Can you determine what happened?',
 				
-				answer: 'There are many ways of explaining/thinking about this truly brain bending riddle! It all boils down to the fact that the lawyers\'s math is incorrect.<br><br>They did NOT spend $9 вЂў 3 + $2. They spent exactly $27 dollars. $25 for the room and $2 for the tip. Remember they got exactly $3, in total back. Another way to think about the answer to this rР°iddle is to just pretend that the bellhop refunded $3 to the lawyers (rather than giving them $5 and receiving $2 back).If the lawyers get $3 back and each takes $1. They they spent exactly $27 dollars.'
+				answer: 'There are many ways of explaining/thinking about this truly brain bending riddle! It all boils down to the fact that the lawyers\'s math is incorrect.<br><br>They did NOT spend $9 * 3 + $2. They spent exactly $27 dollars. $25 for the room and $2 for the tip. Remember they got exactly $3, in total back. Another way to think about the answer to this rР°iddle is to just pretend that the bellhop refunded $3 to the lawyers (rather than giving them $5 and receiving $2 back).If the lawyers get $3 back and each takes $1. They they spent exactly $27 dollars.'
 			},
 			{
 				title: 'Foreign Country Riddle',
@@ -44,7 +44,7 @@
 				title: 'Odd number',
 				text: 'I am an odd number. Take away one letter and I become even. What number am I?',
 				
-				answer: 'Seven (take away the \'sв\' and it becomes \'even\').'
+				answer: 'Seven (take away the \'s\' and it becomes \'even\').'
 			},
 			{
 				title: 'Sally and her mother',
