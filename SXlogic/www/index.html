@@ -117,7 +117,7 @@
 
 	<h1 class="header"><%= name %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<!--<div class="settings-button js-settings-button"></div>-->
 
 	<div class="list-wrapper">
 
@@ -146,7 +146,7 @@
 
 	<h1 class="header"><%= title %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<!--<div class="settings-button js-settings-button"></div>-->
 
 	<div class="list-wrapper">
 
@@ -232,6 +232,21 @@
 					</div>
 
 				<% }); %>
+
+			</div>
+
+		</div>
+
+
+		<div class="data-wrapper">
+
+			<div class="list-item capitalize"><%= langs.en.language %> / <%= langs.ru.language %></div>
+
+			<div class="theme-items-list-wrapper">
+
+				<img data-lang="en" class="flag-block js-flag-block<%= info.lang === 'en' ? ' active' : '' %>" src="i/flag-en-us.svg" alt=""/>
+
+				<img data-lang="ru" class="flag-block js-flag-block<%= info.lang === 'ru' ? ' active' : '' %>" src="i/flag-ru.svg" alt=""/>
 
 			</div>
 

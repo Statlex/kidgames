@@ -246,6 +246,7 @@ html, body {
 	font-size: 0;
 	line-height: 0;
 	text-align: center;
+	margin-top: -4px;
 }
 
 .theme-item-wrapper {
@@ -300,7 +301,7 @@ html, body {
 }
 
 .data-wrapper {
-	padding-bottom: 20px;
+	padding-bottom: 25px;
 }
 
 .section-progress {
@@ -325,5 +326,23 @@ html, body {
 .underline {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.flag-block {
+	width: 32%;
+	max-width: 250px;
+	margin: 0 8px;
+	border-radius: 5px;
+	border: 1px solid #808080;
+	opacity: 0.5;
+}
+
+.flag-block.active {
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	opacity: 0.8;
 }
 

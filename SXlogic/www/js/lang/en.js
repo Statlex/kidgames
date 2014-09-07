@@ -9,12 +9,12 @@
 		language: 'language',
 		languageName: 'English',
 
-		appName: 'Логика и Смекалка',
-		hint: 'подсказка',
+		appName: 'Logic and Wit',
+		hint: 'hint',
 		answer: 'ответ',
-		settings: 'Настройки',
-		theme: 'Тема',
-		noAds: 'Версия без рекламы',
+		settings: 'Settings',
+		theme: 'Theme',
+		noAds: 'No Ads Version',
 		thanksForBuyProVersion: 'Спасибо что приобрели платную версию',
 
 		// <-- rate us
