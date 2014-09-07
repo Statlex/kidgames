@@ -8,6 +8,7 @@
 	win.sections.NAMENAMENAMENAMENAME = {
 		name: 'NAMENAMENAMENAMENAME',
 		lang: 'ru', // ru || en
+		//вЂ™
 		questions: [
 			{
 
