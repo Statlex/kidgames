@@ -80,7 +80,7 @@
 			<% util.fromTo(function(i){ %>
 			<div class="square-line">
 				<% util.fromTo(function(j){ %>
-				<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+				<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
 				<% }, size.width); %>
 			</div>
 			<% }, size.height); %>
@@ -98,7 +98,7 @@
 			<% util.fromTo(function(i){ %>
 			<div class="square-line">
 				<% util.fromTo(function(j){ %>
-				<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>"></div>
+				<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
 				<% }, size.width); %>
 			</div>
 			<% }, size.height); %>
@@ -123,6 +123,7 @@
 <script type="text/x-template" data-name="unit">
 
 	<div class="unit unit-<%= unit.constructorName.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="left: <%= unit.x * view.squareSize %>px; top: <%= unit.y * view.squareSize %>px;">
+		&nbsp;
 		<div class="js-health unit-health"><%= unit.health %></div>
 	</div>
 
