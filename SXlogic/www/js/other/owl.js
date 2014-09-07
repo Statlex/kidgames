@@ -8,7 +8,7 @@
 	}
 
 	Owl.prototype.init = function() {
-		this.$node = $('<div class="js-owl-node owl-node owl-animation"></div>');
+		this.$node = $('<div class="js-owl-node owl-node owl-animation">&nbsp;</div>');
 	};
 
 	Owl.prototype.show = function() {
