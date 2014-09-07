@@ -28,7 +28,7 @@ body.black:after {
 	padding-top: 13px;
 	padding-bottom: 13px;
 	background-color: #777986;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
 	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -62,7 +62,7 @@ body.black:after {
 
 .black .back-icon:before,
 .black .back-icon:after {
-	content: '';
+	content: '.';
 	position: absolute;
 	top: 10px;
 	left: 2px;
@@ -72,6 +72,7 @@ body.black:after {
 	border: 10px transparent solid;
 	border-right-color: #bdc47a;
 	border-right-width: 15px;
+	color: transparent;
 }
 
 .black .back-icon:after {
@@ -92,7 +93,7 @@ body.black:after {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border: 1px dashed #666a75;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	line-height: 17px;
 	font-weight: bold;
@@ -115,7 +116,7 @@ body.black:after {
 	background-color: #44495c;
 	border-radius: 5px;
 	border: 1px dashed #666a75;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	padding: 9px 9px 0;
 }
 
@@ -132,7 +133,7 @@ body.black:after {
 	text-shadow: none;
 	font-size: 15px;
 	line-height: 15px;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	color: #f2f3f7;
 	border: 1px solid #666a75;
 	background-color: #44495c;
@@ -180,7 +181,7 @@ body.black:after {
 
 .black .navigation-left:after,
 .black .navigation-left:before {
-	content: '';
+	content: '.';
 	position: absolute;
 	top: 6px;
 	left: -2px;
@@ -190,6 +191,7 @@ body.black:after {
 	border: 9px transparent solid;
 	border-right-color: #666a75;
 	border-right-width: 14px;
+	color: transparent;
 }
 
 .black .navigation-left:after {
@@ -199,7 +201,7 @@ body.black:after {
 
 .black .navigation-right:after,
 .black .navigation-right:before {
-	content: '';
+	content: '.';
 	position: absolute;
 	top: 6px;
 	left: 9px;
@@ -209,6 +211,7 @@ body.black:after {
 	border: 9px transparent solid;
 	border-left-color: #666a75;
 	border-left-width: 14px;
+	color: transparent;
 }
 
 .black .navigation-right:after {

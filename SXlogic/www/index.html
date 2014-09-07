@@ -97,7 +97,7 @@
 
 	<h1 class="header"><%= lang.appName %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<div class="settings-button js-settings-button">&nbsp;</div>
 
 	<div class="list-wrapper">
 
@@ -117,7 +117,7 @@
 	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
 
 	<% if ( !info.isAdsFree ) { %>
-		<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon"></div></div>
+		<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon">&nbsp;</div></div>
 	<% }; %>
 
 </script>
@@ -126,7 +126,7 @@
 
 	<h1 class="header"><%= name %></h1>
 
-	<!--<div class="settings-button js-settings-button"></div>-->
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
 
 	<div class="list-wrapper">
 
@@ -155,7 +155,7 @@
 
 	<h1 class="header"><%= title %></h1>
 
-	<!--<div class="settings-button js-settings-button"></div>-->
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
 
 	<div class="list-wrapper">
 
@@ -166,7 +166,7 @@
 			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
 		<% }; %>
 
-		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span><%= lang.answer %></span></p>
+		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress">&nbsp;</span><%= lang.answer %></span></p>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 	</div>
