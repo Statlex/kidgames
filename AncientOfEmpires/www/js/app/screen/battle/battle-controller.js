@@ -126,7 +126,13 @@
 					// try to move
 					var wasMove = this.activeSelectedUnit.moveTo(coordinates, this.map);
 					this.view.moveUnit(this.activeSelectedUnit);
-					this.getUnitsUnderAttack(this.activeSelectedUnit);
+
+					var unitsUnderAttack = this.getUnitsUnderAttack(this.activeSelectedUnit);
+
+					if (!unitsUnderAttack) {
+						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
+					}
+
 					if ( !wasMove ) {
 						this.activeSelectedUnit = false;
 						this.view.hideUnitsUnderAttack();

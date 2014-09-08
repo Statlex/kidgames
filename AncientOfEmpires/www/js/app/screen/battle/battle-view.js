@@ -102,9 +102,9 @@
 				top: moveUnit.y * this.squareSize + 'px'
 			});
 		},
-		detectEndUnitTurn: function(unit) {
+		detectEndUnitTurn: function(unit, toDisable) {
 
-			if (unit.wasAttack && unit.wasMoved) {
+			if ((unit.wasAttack && unit.wasMoved) || toDisable) {
 				this.getUnitById(unit.id).addClass('unit-end-turn');
 			}
 
