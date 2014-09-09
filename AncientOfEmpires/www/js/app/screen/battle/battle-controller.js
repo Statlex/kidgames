@@ -205,11 +205,10 @@
 
 			if (unit.canGetBuilding) {
 				this.view.showUnitCanGetBuilding(unit);
+				return build;
 			}
 
-			console.log('build : ', build);
-
-			return build;
+			return false;
 
 		},
 
@@ -346,6 +345,8 @@
 					unit.setDefaultProperties();
 				}
 			}
+
+			this.defaultStateToOccupied();
 
 			this.step();
 
