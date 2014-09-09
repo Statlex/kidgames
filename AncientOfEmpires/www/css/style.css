@@ -7,18 +7,25 @@
 	background-color: #ccc;
 }
 
-.battle-screen,
 .event-handler,
 .units-layer,
 .objects-layer,
 .available-path-layer,
 .background-layer {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
 	z-index: 0;
+}
+
+.layers-wrapper {
+	position: relative;
+}
+
+.battle-screen {
+	overflow: auto;
 }
 
 .event-handler {

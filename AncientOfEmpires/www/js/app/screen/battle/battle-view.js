@@ -13,7 +13,7 @@
 			'click .js-end-turn': 'endTurn'
 
 		},
-		squareSize: 30,
+		squareSize: 36,
 		cssSelector: '.square, .unit',
 		init: function() {
 
@@ -23,6 +23,8 @@
 			this.setMap(util.createCopy(win.testMap));
 			// show draft map
 			this.$el = $(this.tmpl.battle(this.map));
+			this.setFieldSize();
+
 			this.$unitLayer = this.$el.find('.js-units-layer');
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
@@ -46,6 +48,15 @@
 
 			this.drawMap();
 
+		},
+		setFieldSize: function() {
+			var size = this.squareSize,
+				sizes = this.map.size,
+				$node = this.$el.find('.js-layers-wrapper');
+			$node.css({
+				width: size * sizes.width + 'px',
+				height: size * sizes.height + 'px'
+			});
 		},
 		onClickSquare: function(e) {
 

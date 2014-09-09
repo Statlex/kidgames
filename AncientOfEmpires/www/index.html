@@ -42,7 +42,6 @@
 	<script src="js/main.js" type="text/javascript"></script>
 
 
-
 	<!-- maps -->
 	<script src="js/app/maps/base-map/base-map.js" type="text/javascript"></script>
 	<script src="js/app/maps/test-map/map.js" type="text/javascript"></script>
@@ -76,42 +75,46 @@
 
 	<div class="battle-screen">
 
-		<div class="event-handler js-event-handler">
-			<% util.fromTo(function(i){ %>
-			<div class="square-line">
-				<% util.fromTo(function(j){ %>
-				<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-				<% }, size.width); %>
+		<div class="js-layers-wrapper layers-wrapper clear-fix">
+
+			<div class="event-handler js-event-handler">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
 			</div>
-			<% }, size.height); %>
-		</div>
 
-		<div class="units-layer js-units-layer">
+			<div class="units-layer js-units-layer">
 
-		</div>
-
-		<div class="objects-layer">
-
-		</div>
-
-		<div class="available-path-layer js-available-path-layer">
-			<% util.fromTo(function(i){ %>
-			<div class="square-line">
-				<% util.fromTo(function(j){ %>
-				<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-				<% }, size.width); %>
 			</div>
-			<% }, size.height); %>
-		</div>
 
-		<div class="js-background-layer background-layer">
-			<% util.fromTo(function(i){ %>
-			<div class="square-line">
-				<% util.fromTo(function(j){ %>
-				<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-				<% }, size.width); %>
+			<div class="objects-layer">
+
 			</div>
-			<% }, size.height); %>
+
+			<div class="available-path-layer js-available-path-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+			<div class="js-background-layer background-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
 		</div>
 
 		<div class="end-turn js-end-turn">end-turn</div>
