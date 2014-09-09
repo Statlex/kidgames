@@ -7,14 +7,14 @@
 	win.APP = win.APP || {};
 
 	APP.BattleView = APP.BaseView.extend({
-		templates: ['battle', 'unit'],
+		templates: ['battle', 'unit', 'build'],
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
 			'click .js-end-turn': 'endTurn'
 
 		},
 		squareSize: 36,
-		cssSelector: '.square, .unit',
+		cssSelector: '.square, .unit, .build',
 		init: function() {
 
 			this.setStyles();
@@ -26,6 +26,7 @@
 			this.setFieldSize();
 
 			this.$unitLayer = this.$el.find('.js-units-layer');
+			this.$buildingsLayer = this.$el.find('.js-buildings-layer');
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
 			this.$bgLayer = this.$el.find('.js-background-layer');
@@ -91,6 +92,12 @@
 			var $unit = $(this.tmpl.unit( { unit: unit, view: this } ));
 
 			this.$unitLayer.append($unit);
+
+		},
+		appendBuilding: function(build) {
+
+			var $build = $(this.tmpl.build( { build: build, view: this } ));
+			this.$buildingsLayer.append($build);
 
 		},
 		highlightPath: function(data) {

@@ -10,6 +10,7 @@
 
 		this.unitCounter = 0;
 		this.units = {};
+		this.buildings = {};
 		this.unitsRIP = {};
 		this.map = {};
 		this.view = {};
@@ -44,6 +45,7 @@
 
 		setMapForView: function() {
 			this.addUnitsToControllerAndView();
+			this.addBuildingsToControllerAndView();
 		},
 		addUnitsToControllerAndView: function() {
 
@@ -53,6 +55,15 @@
 			units.forEach(function(unit){
 				var newUnit = this.appendUnit(unit); // to controller
 				this.view.appendUnit(newUnit);
+			}, this);
+
+		},
+		addBuildingsToControllerAndView: function() {
+			var buildings = this.map.buildings;
+
+			buildings.forEach(function(build){
+				var newBuild = this.appendBuilding(build); // to controller
+				this.view.appendBuilding(newBuild);
 			}, this);
 
 		},
@@ -67,6 +78,10 @@
 			this.unitCounter += 1;
 
 			return unit;
+		},
+		appendBuilding: function(build) {
+			this.buildings['x' + build.x + 'y' + build.y] = build;
+			return build;
 		},
 		onClick: function(coordinates) {
 

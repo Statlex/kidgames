@@ -8,6 +8,7 @@
 
 	APP.map = {
 		terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
+		buildingsTypes: ['farm', 'castle'],
 		forest: {
 			pathResistance: 1,
 			className: 'forest'

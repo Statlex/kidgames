@@ -4,13 +4,16 @@
 	/*global window, document */
 	/*global APP */
 
-	var type = APP.map.terrainTypes;
+	var terra = APP.map.terrainTypes,
+		build = APP.map.buildingsTypes;
 
 	win.testMap = {
+
 		size: {
 			width: 20,
 			height: 10
 		},
+
 		units: [
 			{
 				constructorName: 'Soldier',
@@ -54,16 +57,28 @@
 				playerId: 2,
 				color: 'red'
 			}
+		],
 
+		buildings: [
+			{
+				type: build[0],
+				x: 1,
+				y: 2
+			},
+			{
+				type: build[1],
+				x: 2,
+				y: 3
+			}
 		],
 		// terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
 		terrain: {
-			x1y1: type[0],
-			x1y2: type[1],
-			x1y3: type[2],
-			x1y4: type[3],
-			x1y5: type[4],
-			x2y5: type[5]
+			x1y1: terra[0],
+			x1y2: terra[1],
+			x1y3: terra[2],
+			x1y4: terra[3],
+			x1y5: terra[4],
+			x2y5: terra[5]
 		}
 
 	};

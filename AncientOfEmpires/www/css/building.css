@@ -1,0 +1,26 @@
+.build {
+	position: absolute;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	background-position: 0 0;
+}
+
+.build-farm {
+	background-image: url(../img/build/farm.png);
+}
+
+.build-castle {
+	background-image: url(../img/build/castle.png);
+}
+
+
+
+
+
+
+
+
+
+
+

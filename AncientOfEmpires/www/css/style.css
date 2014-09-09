@@ -11,7 +11,8 @@
 .units-layer,
 .objects-layer,
 .available-path-layer,
-.background-layer {
+.background-layer,
+.buildings-layer {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -29,18 +30,22 @@
 }
 
 .event-handler {
-	z-index: 4;
+	z-index: 6;
 }
 
 .units-layer {
-	z-index: 3;
+	z-index: 5;
 }
 
 .objects-layer {
-	z-index: 2;
+	z-index: 3;
 }
 
 .available-path-layer {
+	z-index: 2;
+}
+
+.buildings-layer {
 	z-index: 1;
 }
 
@@ -53,16 +58,13 @@
 	clear: both;
 }
 
-.square,
-.unit {
+.square {
 	box-sizing: border-box;
 	float: left;
 }
 
 .square {
-	border: 1px solid #999;
-	border-left: none;
-	border-top: none;
+
 }
 
 .unit-under-attack {
@@ -73,7 +75,7 @@
 
 .available-path-square {
 	background-color: rgba(255, 127, 127, 0.5);
-	-webkit-transform: scale(0.8);
+	-webkit-transform: scale(0.9);
 	border-radius: 7px;
 	border: none;
 }
