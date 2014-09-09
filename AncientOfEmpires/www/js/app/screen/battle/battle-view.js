@@ -122,7 +122,7 @@
 		},
 		detectEndUnitTurn: function(unit, toDisable) {
 
-			if ((unit.wasAttack && unit.wasMoved) || toDisable) {
+			if ( (unit.wasAttack && unit.wasMoved && !unit.canGetBuilding) || toDisable) {
 				this.getUnitById(unit.id).addClass('unit-end-turn');
 			}
 
@@ -185,6 +185,17 @@
 
 			style.insertRule(cssText, cssRules.length);
 
+		},
+		showUnitCanGetBuilding: function(unit) {
+			var x = unit.x,
+				y = unit.y,
+				$block = this.$eventLayer.find('[data-xy="x' + x + 'y' + y + '"]');
+
+			$block.addClass('can-get-building');
+
+		},
+		hideUnitCanGetBuilding: function() {
+			this.$el.find('.can-get-building').removeClass('can-get-building');
 		}
 
 	});

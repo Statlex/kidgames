@@ -16,12 +16,16 @@
 
 		this.defList = {
 			wasMoved: false,
-			wasAttack: false
+			wasAttack: false,
+			canGetBuilding: false,
+			isEndTurn: false
 		};
 
 		this.damage = 50;
 		this.health = 100;
 		this.armor = 2;
+
+		this.canBuildings = [];
 
 	};
 
@@ -114,17 +118,19 @@
 		},
 
 		attackTo: function(enemyUnit) {
-			console.log('unit attack !!!!!!');
-			console.log(this, enemyUnit);
 
 			enemyUnit.health = enemyUnit.health - this.damage + enemyUnit.armor;
 
-
-			this.wasMoved = true;
-			this.wasAttack = true;
+			this.endTurn();
 		},
 		setDefaultProperties: function() {
 			util.extend(this, this.defList);
+		},
+		endTurn: function() {
+			this.wasAttack = true;
+			this.wasMoved = true;
+			this.canGetBuilding = false;
+			this.isEndTurn = true;
 		}
 
 	};

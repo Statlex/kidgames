@@ -96,10 +96,26 @@
 			// click to unit
 			if (unit) {
 
+				if (unit.isEndTurn) {
+					return;
+				}
+
 				// my or enemy user
 				if (unit.playerId === this.activePlayer.id) {
+
 					// my unit
 					this.activeSelectedUnit = unit;
+
+					if (unit.canGetBuilding) {
+						console.log('i get building with coords - ' + unit.x + ' - ' + unit.y);
+						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
+						this.defaultStateToOccupied();
+						unit.endTurn();
+					} else {
+						this.defaultStateToOccupied();
+//						this.view.defaultStateToOccupied();
+						this.getBuildingToOccupied(this.activeSelectedUnit);
+					}
 
 					// show available path
 					if ( !unit.wasMoved ) {
@@ -117,6 +133,7 @@
 				} else {
 					// enemy unit
 					//this.activeSelectedUnit = false;
+					this.defaultStateToOccupied();
 
 					if (this.activeSelectedUnit && !this.activeSelectedUnit.wasAttack && this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
 						this.attackUnit(this.activeSelectedUnit, unit);
@@ -135,16 +152,20 @@
 
 			} else {
 
+				this.defaultStateToOccupied();
 //
 
 				if (this.activeSelectedUnit) {
 					// try to move
 					var wasMove = this.activeSelectedUnit.moveTo(coordinates, this.map);
-					this.view.moveUnit(this.activeSelectedUnit);
+					if (wasMove) {
+						this.view.moveUnit(this.activeSelectedUnit);
+					}
 
 					var unitsUnderAttack = this.getUnitsUnderAttack(this.activeSelectedUnit);
+					var building = this.getBuildingToOccupied(this.activeSelectedUnit);
 
-					if (!unitsUnderAttack) {
+					if (!unitsUnderAttack && !building) {
 						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
 					}
 
@@ -169,6 +190,40 @@
 
 
 			}
+
+		},
+
+		getBuildingToOccupied: function(unit) {
+
+
+			// detect my own building
+
+			var build = this.buildings['x' + unit.x + 'y' + unit.y];
+
+			unit.canGetBuilding = !!build && util.has(unit.canBuildings, build.type);
+
+
+			if (unit.canGetBuilding) {
+				this.view.showUnitCanGetBuilding(unit);
+			}
+
+			console.log('build : ', build);
+
+			return build;
+
+		},
+
+		defaultStateToOccupied: function() {
+			var allUnits = this.units,
+				key;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					allUnits[key].canGetBuilding = false;
+				}
+			}
+
+			this.view.hideUnitCanGetBuilding();
 
 		},
 

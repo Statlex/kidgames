@@ -8,6 +8,7 @@
 		this.baseInit(data);
 		this.speed = 5;
 		this.attackRange = 1;
+		this.canBuildings = ['farm'];
 	};
 
 	soldier.prototype = new APP.units.BaseUnit();

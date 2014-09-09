@@ -140,13 +140,13 @@
 <script type="text/x-template" data-name="build">
 
 	<% if (build.type === 'farm') { %>
-	<div class="build build-<%= build.type %>" style="left: <%= build.x * view.squareSize %>px; top: <%= build.y * view.squareSize %>px;">
+	<div class="build build-<%= build.type %>" data-xy="x<%= build.x %>y<%= build.y %>" data-x="<%= build.x %>" data-y="<%= build.y %>" style="left: <%= build.x * view.squareSize %>px; top: <%= build.y * view.squareSize %>px;">
 		&nbsp;
 	</div>
 	<% }; %>
 
 	<% if (build.type === 'castle') { %>
-	<div class="build build-<%= build.type %>" style="height: <%= view.squareSize * 2 %>px; left: <%= build.x * view.squareSize %>px; top: <%= (build.y - 1) * view.squareSize %>px;">
+	<div class="build build-<%= build.type %>" data-xy="x<%= build.x %>y<%= build.y %>" data-x="<%= build.x %>" data-y="<%= build.y %>" style="height: <%= view.squareSize * 2 %>px; left: <%= build.x * view.squareSize %>px; top: <%= (build.y - 1) * view.squareSize %>px;">
 		&nbsp;
 	</div>
 	<% }; %>

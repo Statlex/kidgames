@@ -23,6 +23,7 @@
 
 .layers-wrapper {
 	position: relative;
+	background-color: #fff;
 }
 
 .battle-screen {
@@ -78,6 +79,10 @@
 	-webkit-transform: scale(0.9);
 	border-radius: 7px;
 	border: none;
+}
+
+.can-get-building {
+	background-color: #00f;
 }
 
 .end-turn {
