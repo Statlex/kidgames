@@ -107,7 +107,7 @@
 					this.activeSelectedUnit = unit;
 
 					if (unit.canGetBuilding) {
-						console.log('i get building with coords - ' + unit.x + ' - ' + unit.y);
+						this.buildingChangeOwner(unit);
 						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
 						this.defaultStateToOccupied();
 						unit.endTurn();
@@ -195,13 +195,17 @@
 
 		getBuildingToOccupied: function(unit) {
 
-
-			// detect my own building
-
 			var build = this.buildings['x' + unit.x + 'y' + unit.y];
 
-			unit.canGetBuilding = !!build && util.has(unit.canBuildings, build.type);
+			if (!build) {
+				return false;
+			}
 
+			if (build.playerId === unit.playerId) {
+				return false;
+			}
+
+			unit.canGetBuilding = util.has(unit.canBuildings, build.type);
 
 			if (unit.canGetBuilding) {
 				this.view.showUnitCanGetBuilding(unit);
@@ -209,6 +213,15 @@
 			}
 
 			return false;
+
+		},
+
+		buildingChangeOwner: function(unit) {
+
+
+
+			console.log('i get building with coords - ' + unit.x + ' - ' + unit.y);
+
 
 		},
 
