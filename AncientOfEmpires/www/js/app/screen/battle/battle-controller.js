@@ -121,7 +121,7 @@
 					// show available path
 					if ( !unit.wasMoved ) {
 						availablePth = unit.getAvailablePath(this.map);
-						this.view.highlightPath(availablePth);
+						this.view.highlightPath({ path: availablePth, color: unit.color });
 					}
 
 					if ( this.activeSelectedUnit.wasAttack ) {
@@ -145,7 +145,7 @@
 							this.activeSelectedUnit = false;
 						} else {
 							availablePth = unit.getAvailablePath(this.map);
-							this.view.highlightPath(availablePth);
+							this.view.highlightPath({ path: availablePth, color: unit.color });
 						}
 					}
 
@@ -165,7 +165,7 @@
 					unitsUnderAttack = this.getUnitsUnderAttack(this.activeSelectedUnit);
 					building = this.getBuildingToOccupied(this.activeSelectedUnit);
 
-					if (!unitsUnderAttack && !building) {
+					if (!unitsUnderAttack && !building && wasMove) {
 						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
 					}
 

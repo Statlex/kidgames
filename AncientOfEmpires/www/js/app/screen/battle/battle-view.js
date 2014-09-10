@@ -104,9 +104,12 @@
 
 			this.hideAvailablePath();
 
-			data.forEach(function (xy) {
+			var color = data.color,
+				path = data.path;
+
+			path.forEach(function (xy) {
 				var $square = this.$availablePathWrapper.find('[data-xy="' + ['x', xy.x, 'y', xy.y].join('') + '"]');
-				$square.addClass('available-path-square');
+				$square.addClass('available-path-square').data('color', color);
 			}, this);
 
 		},
