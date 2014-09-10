@@ -91,7 +91,8 @@
 			var units = this.getUnitsByCoordinates(coordinates),
 				// we use LIST of units cause in future many units can stay on one place
 				unit = units[0],
-				availablePth;
+				availablePth,
+				wasMove, unitsUnderAttack, building;
 
 			// click to unit
 			if (unit) {
@@ -153,17 +154,16 @@
 			} else {
 
 				this.defaultStateToOccupied();
-//
 
 				if (this.activeSelectedUnit) {
 					// try to move
-					var wasMove = this.activeSelectedUnit.moveTo(coordinates, this.map);
+					wasMove = this.activeSelectedUnit.moveTo(coordinates, this.map);
 					if (wasMove) {
 						this.view.moveUnit(this.activeSelectedUnit);
 					}
 
-					var unitsUnderAttack = this.getUnitsUnderAttack(this.activeSelectedUnit);
-					var building = this.getBuildingToOccupied(this.activeSelectedUnit);
+					unitsUnderAttack = this.getUnitsUnderAttack(this.activeSelectedUnit);
+					building = this.getBuildingToOccupied(this.activeSelectedUnit);
 
 					if (!unitsUnderAttack && !building) {
 						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
@@ -172,6 +172,7 @@
 					if ( !wasMove ) {
 						this.activeSelectedUnit = false;
 						this.view.hideUnitsUnderAttack();
+						this.defaultStateToOccupied();
 					}
 					//this.activeSelectedUnit = false;
 
@@ -219,6 +220,7 @@
 		buildingChangeOwner: function(unit) {
 
 
+			console.log(unit);
 
 			console.log('i get building with coords - ' + unit.x + ' - ' + unit.y);
 

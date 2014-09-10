@@ -82,7 +82,42 @@
 }
 
 .can-get-building {
-	background-color: #00f;
+	position: relative;
+}
+
+.can-get-building:after {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 50%;
+	top: 25%;
+	left: 25%;
+	margin-top: -2px;
+	margin-left: -2px;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	border: 2px solid #FFF;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px #000;
+}
+
+[data-building-type="farm"]:after {
+	background-image: url(../img/build/farm.png);
+}
+
+[data-building-type="castle"]:after {
+	background-image: url(../img/build/castle.png);
+}
+
+[data-building-color="red"]:after {
+	background-position: 0 50%;
+}
+
+[data-building-color="blue"]:after {
+	background-position: 0 100%;
 }
 
 .end-turn {
