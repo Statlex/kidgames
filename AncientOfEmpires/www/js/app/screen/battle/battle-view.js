@@ -207,6 +207,15 @@
 				.data('building-color', '')
 				.data('building-type', '');
 
+		},
+		setBuildingColor: function(build) {
+			var x = build.x,
+				y = build.y,
+				color = build.color,
+				$build = this.$buildingsLayer.find('[data-xy="x' + x + 'y' + y + '"]');
+
+			$build.data('building-color', color);
+
 		}
 
 	});

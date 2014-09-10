@@ -219,11 +219,12 @@
 
 		buildingChangeOwner: function(unit) {
 
+			var build = this.buildings['x' + unit.x + 'y' + unit.y];
 
-			console.log(unit);
+			build.playerId = unit.playerId;
+			build.color = unit.color;
 
-			console.log('i get building with coords - ' + unit.x + ' - ' + unit.y);
-
+			this.view.setBuildingColor(build);
 
 		},
 

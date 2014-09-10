@@ -10,6 +10,15 @@
 	background-image: url(../img/build/farm.png);
 }
 
+.build-farm[data-building-color="red"] {
+	background-position: 0 50%;
+}
+
+.build-farm[data-building-color="blue"] {
+	background-position: 0 100%;
+}
+
+
 .build-castle {
 	background-image: url(../img/build/castle.png);
 }

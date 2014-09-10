@@ -104,19 +104,19 @@
 	box-shadow: 0 0 0 1px #000;
 }
 
-[data-building-type="farm"]:after {
+.can-get-building[data-building-type="farm"]:after {
 	background-image: url(../img/build/farm.png);
 }
 
-[data-building-type="castle"]:after {
+.can-get-building[data-building-type="castle"]:after {
 	background-image: url(../img/build/castle.png);
 }
 
-[data-building-color="red"]:after {
+.can-get-building[data-building-color="red"]:after {
 	background-position: 0 50%;
 }
 
-[data-building-color="blue"]:after {
+.can-get-building[data-building-color="blue"]:after {
 	background-position: 0 100%;
 }
 
