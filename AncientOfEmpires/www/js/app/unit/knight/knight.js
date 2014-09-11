@@ -10,7 +10,7 @@
 		this.atk = 6;
 		this.def = 2;
 		this.mov = 5;
-		this.cost = 250;
+		this.cost = 400;
 
 		this.canBuildings = ['farm', 'castle'];
 
