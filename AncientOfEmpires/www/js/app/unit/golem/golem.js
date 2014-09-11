@@ -4,18 +4,18 @@
 	/*global window, document */
 	/*global APP, util */
 
-	var archer = APP.units.Archer = function(data) {
+	var golem = APP.units.Golem = function(data) {
 		this.baseInit(data);
 
-		this.atk = 5;
-		this.def = 1;
+		this.atk = 6;
+		this.def = 4;
 		this.mov = 4;
-		this.cost = 250;
+		this.cost = 600;
 
-		this.attackRange = 2;
+		this.attackRange = 1;
 
 	};
 
-	archer.prototype = new APP.units.BaseUnit();
+	golem.prototype = new APP.units.BaseUnit();
 
 }(window, document, document.documentElement));

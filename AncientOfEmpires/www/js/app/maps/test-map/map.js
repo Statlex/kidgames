@@ -15,43 +15,116 @@
 		},
 
 		units: [
+
 			{
-				constructorName: 'Soldier',
+				type: 'Archer',
+				x: 0,
+				y: 0,
+				playerId: 1,
+				color: 'blue'
+			},
+
+			{
+				type: 'Catapult',
+				x: 0,
+				y: 1,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Golem',
+				x: 0,
+				y: 2,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Knight',
+				x: 0,
+				y: 3,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Lizard',
+				x: 0,
+				y: 4,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Soldier',
+				x: 0,
+				y: 5,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Spider',
+				x: 0,
+				y: 6,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Wisp',
+				x: 0,
+				y: 7,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Wizard',
+				x: 0,
+				y: 8,
+				playerId: 1,
+				color: 'blue'
+			},
+			{
+				type: 'Wyvern',
+				x: 0,
+				y: 9,
+				playerId: 1,
+				color: 'blue'
+			},
+
+			{
+				type: 'Soldier',
 				x: 1,
 				y: 1,
 				playerId: 1,
 				color: 'blue'
 			},
 			{
-				constructorName: 'Soldier',
+				type: 'Soldier',
 				x: 16,
 				y: 4,
 				playerId: 2,
 				color: 'red'
 			},
 			{
-				constructorName: 'Archer',
+				type: 'Archer',
 				x: 3,
 				y: 1,
 				playerId: 1,
 				color: 'blue'
 			},
 			{
-				constructorName: 'Archer',
+				type: 'Archer',
 				x: 13,
 				y: 4,
 				playerId: 2,
 				color: 'red'
 			},
 			{
-				constructorName: 'Knight',
+				type: 'Knight',
 				x: 5,
 				y: 1,
 				playerId: 1,
 				color: 'blue'
 			},
 			{
-				constructorName: 'Knight',
+				type: 'Knight',
 				x: 10,
 				y: 4,
 				playerId: 2,

@@ -11,16 +11,44 @@
 	background-position: 0 0;
 }
 
-.unit-soldier {
-	background-image: url(../img/unit/soldier/sprite.png);
-}
-
 .unit-archer {
 	background-image: url(../img/unit/archer/sprite.png);
 }
 
+.unit-catapult {
+	background-image: url(../img/unit/catapult/sprite.png);
+}
+
+.unit-golem {
+	background-image: url(../img/unit/golem/sprite.png);
+}
+
 .unit-knight {
 	background-image: url(../img/unit/knight/sprite.png);
+}
+
+.unit-lizard {
+	background-image: url(../img/unit/lizard/sprite.png);
+}
+
+.unit-soldier {
+	background-image: url(../img/unit/soldier/sprite.png);
+}
+
+.unit-spider {
+	background-image: url(../img/unit/spider/sprite.png);
+}
+
+.unit-wisp {
+	background-image: url(../img/unit/wisp/sprite.png);
+}
+
+.unit-wizard {
+	background-image: url(../img/unit/wizard/sprite.png);
+}
+
+.unit-wyvern {
+	background-image: url(../img/unit/wyvern/sprite.png);
 }
 
 .unit-color-blue {

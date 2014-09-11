@@ -68,7 +68,7 @@
 
 		},
 		appendUnit: function(data) {
-			var unit = new APP.units[data.constructorName](data),
+			var unit = new APP.units[data.type](data),
 				unitId = this.unitCounter;
 
 			unit.id = unitId;

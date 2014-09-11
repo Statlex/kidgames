@@ -4,18 +4,18 @@
 	/*global window, document */
 	/*global APP, util */
 
-	var archer = APP.units.Archer = function(data) {
+	var wizard = APP.units.Wizard = function(data) {
 		this.baseInit(data);
 
-		this.atk = 5;
+		this.atk = 4;
 		this.def = 1;
 		this.mov = 4;
-		this.cost = 250;
+		this.cost = 400;
 
-		this.attackRange = 2;
+		this.attackRange = 1;
 
 	};
 
-	archer.prototype = new APP.units.BaseUnit();
+	wizard.prototype = new APP.units.BaseUnit();
 
 }(window, document, document.documentElement));

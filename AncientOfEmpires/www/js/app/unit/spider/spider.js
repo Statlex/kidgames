@@ -4,18 +4,18 @@
 	/*global window, document */
 	/*global APP, util */
 
-	var archer = APP.units.Knight = function(data) {
+	var spider = APP.units.Spider = function(data) {
 		this.baseInit(data);
 
 		this.atk = 6;
 		this.def = 2;
 		this.mov = 5;
-		this.cost = 250;
+		this.cost = 600;
 
-		this.canBuildings = ['farm', 'castle'];
+		this.attackRange = 1;
 
 	};
 
-	archer.prototype = new APP.units.BaseUnit();
+	spider.prototype = new APP.units.BaseUnit();
 
 }(window, document, document.documentElement));

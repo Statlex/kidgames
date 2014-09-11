@@ -61,7 +61,7 @@
 	};
 
 	function PathFinder(data) {
-		util.extend(this, data); // get from data - map, x, y, speed;
+		util.extend(this, data); // get from data - map, x, y, mov;
 		this.availablePath = [];
 		this.donePathPoints = [];
 	}
@@ -81,11 +81,11 @@
 				y = this.y;
 
 			// this is in donePoints
-			if (this.parent.isInDonePoints(x, y, this.speed)) {
+			if (this.parent.isInDonePoints(x, y, this.mov)) {
 				return;
 			}
 
-			this.parent.addToDonePoints(x, y, this.speed);
+			this.parent.addToDonePoints(x, y, this.mov);
 
 			// add current coordinates to parent
 			this.parent.addCoordinatesToAvailablePath({x: x, y: y});
@@ -113,10 +113,10 @@
 				}
 			}
 
-			if (this.speed >= pathResistance) {
+			if (this.mov >= pathResistance) {
 				point = new PathFinderPoint({
 					parent: this.parent,
-					speed: this.speed - pathResistance,
+					mov: this.mov - pathResistance,
 					x: x,
 					y: y
 				});
@@ -133,7 +133,7 @@
 		getAvailablePath: function () {
 			var point = new PathFinderPoint({
 				parent: this,
-				speed: this.speed,
+				mov: this.mov,
 				x: this.x,
 				y: this.y
 			});
@@ -166,13 +166,13 @@
 
 		},
 
-		isInDonePoints: function (x, y, speed) {
+		isInDonePoints: function (x, y, mov) {
 
 			var isInDonePoints = false;
 
 			this.donePathPoints.every(function (point) {
 
-				if (point.x === x && point.y === y && speed <= point.speed) {
+				if (point.x === x && point.y === y && mov <= point.mov) {
 					isInDonePoints = true;
 					return false;
 				}
@@ -185,13 +185,13 @@
 
 		},
 
-		addToDonePoints: function (x, y, speed) {
+		addToDonePoints: function (x, y, mov) {
 
-			if (this.isInDonePoints(x, y, speed)) {
+			if (this.isInDonePoints(x, y, mov)) {
 				return;
 			}
 
-			this.donePathPoints.push({ x: x, y: y, speed: speed });
+			this.donePathPoints.push({ x: x, y: y, mov: mov });
 		}
 	};
 

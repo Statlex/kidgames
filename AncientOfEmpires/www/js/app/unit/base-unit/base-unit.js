@@ -9,8 +9,6 @@
 	APP.units.BaseUnit = function(data) {
 
 		// set defaults
-		this.speed = 5;
-		this.attackRange = 1;
 		this.wasMoved = false;
 		this.wasAttack = false;
 
@@ -21,10 +19,13 @@
 			isEndTurn: false
 		};
 
-		this.damage = 50;
-		this.health = 100;
-		this.armor = 2;
+		this.atk = 5;
+		this.def = 0;
+		this.mov = 4;
+		this.cost = 100;
 
+		this.health = 10;
+		this.attackRange = 1;
 		this.canBuildings = [];
 
 	};
@@ -37,7 +38,7 @@
 
 			var pathFinder = new util.PathFinder({
 				map: map,
-				speed: this.speed,
+				mov: this.mov,
 				x: this.x,
 				y: this.y,
 				relativeTypeSpace: true
@@ -82,7 +83,7 @@
 
 			var pathFinder = new util.PathFinder({
 //				map: map,
-				speed: this.attackRange,
+				mov: this.attackRange,
 				x: this.x,
 				y: this.y,
 				relativeTypeSpace: false
@@ -119,7 +120,7 @@
 
 		attackTo: function(enemyUnit) {
 
-			enemyUnit.health = enemyUnit.health - this.damage + enemyUnit.armor;
+			enemyUnit.health = enemyUnit.health - this.atk + enemyUnit.def;
 
 			this.endTurn();
 		},
