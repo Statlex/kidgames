@@ -117,11 +117,9 @@
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 		moveUnit: function (moveUnit) {
-			var $unit = this.getUnitById(moveUnit.id);
-			$unit.css({
-				left: moveUnit.x * this.squareSize + 'px',
-				top: moveUnit.y * this.squareSize + 'px'
-			});
+			var $unit = this.getUnitById(moveUnit.id),
+				size = this.squareSize;
+			$unit.css( info.preCSS + 'transform', 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)');
 		},
 		detectEndUnitTurn: function (unit, toDisable) {
 
