@@ -116,7 +116,7 @@
 }
 
 .can-get-building[data-building-type="castle"]:after {
-	background-image: url(../img/build/castle.png);
+	background-image: url(../img/build/castle-getting.png);
 }
 
 .can-get-building[data-building-color="red"]:after {

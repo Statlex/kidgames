@@ -69,6 +69,16 @@
 				type: build[1],
 				x: 2,
 				y: 3
+			},
+			{
+				type: build[0],
+				x: 11,
+				y: 9
+			},
+			{
+				type: build[1],
+				x: 10,
+				y: 4
 			}
 		],
 		// terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
