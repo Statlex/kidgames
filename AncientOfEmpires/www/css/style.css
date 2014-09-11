@@ -69,7 +69,7 @@
 }
 
 .unit-under-attack {
-	background-image: url(../img/action/attack.png);
+	background-image: url(../img/unit/attack.png);
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }

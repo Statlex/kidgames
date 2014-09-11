@@ -217,6 +217,18 @@
 
 			$build.data('building-color', color);
 
+		},
+		highlightUnit: function(unit) {
+
+			this.$unitLayer.find('.active-unit').removeClass('active-unit');
+
+			if (!unit) {
+				return;
+			}
+
+			this.$unitLayer.find('[data-id="' + unit.id + '"]').addClass('active-unit');
+
+
 		}
 
 	});

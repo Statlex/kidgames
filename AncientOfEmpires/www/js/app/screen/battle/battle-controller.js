@@ -97,24 +97,27 @@
 			// click to unit
 			if (unit) {
 
-				if (unit.isEndTurn) {
-					return;
-				}
-
 				// my or enemy user
 				if (unit.playerId === this.activePlayer.id) {
 
 					// my unit
+					this.view.highlightUnit(unit);
+
 					this.activeSelectedUnit = unit;
+
+					if (unit.isEndTurn) {
+						return;
+					}
 
 					if (unit.canGetBuilding) {
 						this.buildingChangeOwner(unit);
 						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
 						this.defaultStateToOccupied();
+						this.view.highlightUnit();
+
 						unit.endTurn();
 					} else {
 						this.defaultStateToOccupied();
-//						this.view.defaultStateToOccupied();
 						this.getBuildingToOccupied(this.activeSelectedUnit);
 					}
 
@@ -135,6 +138,7 @@
 					// enemy unit
 					//this.activeSelectedUnit = false;
 					this.defaultStateToOccupied();
+					this.view.highlightUnit();
 
 					if (this.activeSelectedUnit && !this.activeSelectedUnit.wasAttack && this.unitsIsAvailableToAttack && this.unitsIsAvailableToAttack.indexOf(unit) !== -1) {
 						this.attackUnit(this.activeSelectedUnit, unit);
@@ -173,6 +177,7 @@
 						this.activeSelectedUnit = false;
 						this.view.hideUnitsUnderAttack();
 						this.defaultStateToOccupied();
+						this.view.highlightUnit();
 					}
 					//this.activeSelectedUnit = false;
 
@@ -363,6 +368,7 @@
 			}
 
 			this.defaultStateToOccupied();
+			this.view.highlightUnit();
 
 			this.step();
 
