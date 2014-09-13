@@ -119,9 +119,12 @@
 
 	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
 
-	<% if ( !info.isAdsFree ) { %>
-		<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon">&nbsp;</div></div>
+	<% if ( !info.isIE ) { %>
+		<% if ( !info.isAdsFree ) { %>
+			<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon">&nbsp;</div></div>
+		<% }; %>
 	<% }; %>
+
 
 </script>
 
@@ -264,14 +267,12 @@
 
 		</div>
 
+		<% if ( !info.isIE ) { %>
 		<div class="data-wrapper">
-
 			<div class="list-item js-rate-us-button"><span class="underline"><%= lang.rateUs.rateUs %></span></div>
-
 		</div>
 
 		<div class="data-wrapper">
-
 			<% if ( !info.isAdsFree ) { %>
 				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
 					<span class="underline"><%= lang.noAds %></span>
@@ -279,8 +280,8 @@
 			<% } else { %>
 				<div class="list-item"><%= lang.thanksForBuyProVersion %>.</div>
 			<% }; %>
-
 		</div>
+		<% }; %>
 
 	</div>
 
