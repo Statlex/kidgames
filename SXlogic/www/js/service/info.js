@@ -1,12 +1,13 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, document, navigator */
+	/*global window, document, navigator, localStorage */
 
-	var docElem, ls, isTouch, info;
+	var docElem, ls, isTouch, info, ua;
 	docElem = doc.documentElement;
-	ls = win.localStorage;
+	ls = localStorage;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
+	ua = navigator.userAgent;
 
 	info = {
 		lang: '',
@@ -19,7 +20,8 @@
 		isTouch: isTouch,
 		preCSS: '-webkit-',
 		preJS: 'webkit',
-		isAndroid: (/android/i).test(win.navigator.userAgent),
+		isIE: /MSIE/.test(ua),
+		isAndroid: (/android/i).test(ua),
 		canScroll: false,
 
 		isAdsFree: false,
