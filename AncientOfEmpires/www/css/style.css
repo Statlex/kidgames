@@ -137,3 +137,46 @@
 	z-index: 10;
 }
 
+.status-bar {
+	height: 36px;
+	width: 100%;
+	background-color: #000;
+}
+
+.status-bar-gold,
+.status-bar-damage,
+.status-bar-armor {
+	background-repeat: no-repeat;
+	-webkit-background-size: auto 75%;
+	background-size: auto 75%;
+	height: 100%;
+	float: left;
+	padding-left: 36px;
+	color: #fff;
+	font-size: 25px;
+	line-height: 36px;
+	background-position: center left;
+	margin-right: 20px;
+}
+
+.status-bar-gold {
+	background-image: url(../img/status-bar/gold.png);
+}
+
+.status-bar-damage {
+	background-image: url(../img/status-bar/damage.png);
+}
+
+.status-bar-armor {
+	background-image: url(../img/status-bar/armor.png);
+}
+
+
+
+
+
+
+
+
+
+

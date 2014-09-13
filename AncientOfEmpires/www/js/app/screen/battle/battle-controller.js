@@ -92,7 +92,7 @@
 				// we use LIST of units cause in future many units can stay on one place
 				unit = units[0],
 				availablePth,
-				wasMove, unitsUnderAttack, building;
+				wasMove, unitsUnderAttack, building, unitForInfo;
 
 			// click to unit
 			if (unit) {
@@ -105,33 +105,32 @@
 
 					this.activeSelectedUnit = unit;
 
-					if (unit.isEndTurn) {
-						return;
+					if (!unit.isEndTurn) {
+						if (unit.canGetBuilding) {
+							this.buildingChangeOwner(unit);
+							this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
+							this.defaultStateToOccupied();
+							this.view.highlightUnit();
+
+							unit.endTurn();
+						} else {
+							this.defaultStateToOccupied();
+							this.getBuildingToOccupied(this.activeSelectedUnit);
+						}
+
+						// show available path
+						if ( !unit.wasMoved ) {
+							availablePth = unit.getAvailablePath(this.map);
+							this.view.highlightPath({ path: availablePth, color: unit.color });
+						}
+
+						if ( this.activeSelectedUnit.wasAttack ) {
+							this.view.hideUnitsUnderAttack();
+						} else {
+							this.getUnitsUnderAttack(this.activeSelectedUnit);
+						}
 					}
 
-					if (unit.canGetBuilding) {
-						this.buildingChangeOwner(unit);
-						this.view.detectEndUnitTurn(this.activeSelectedUnit, true);
-						this.defaultStateToOccupied();
-						this.view.highlightUnit();
-
-						unit.endTurn();
-					} else {
-						this.defaultStateToOccupied();
-						this.getBuildingToOccupied(this.activeSelectedUnit);
-					}
-
-					// show available path
-					if ( !unit.wasMoved ) {
-						availablePth = unit.getAvailablePath(this.map);
-						this.view.highlightPath({ path: availablePth, color: unit.color });
-					}
-
-					if ( this.activeSelectedUnit.wasAttack ) {
-						this.view.hideUnitsUnderAttack();
-					} else {
-						this.getUnitsUnderAttack(this.activeSelectedUnit);
-					}
 
 
 				} else {
@@ -181,20 +180,22 @@
 					}
 					//this.activeSelectedUnit = false;
 
-				} else {
-					// ???
-
 				}
+//				else {
+//					// ???
+//
+//				}
 
+			}
 
-
-
-
-
-
-
-
-
+			unitForInfo = unit || this.activeSelectedUnit;
+			if (unitForInfo) {
+				this.view.showUnitInfo(unitForInfo);
+			} else {
+				this.view.showPlaceInfo({
+					map: this.map,
+					coordinates: coordinates
+				});
 			}
 
 		},
@@ -372,7 +373,6 @@
 
 			this.step();
 
-			console.log(this.units);
 		}
 
 

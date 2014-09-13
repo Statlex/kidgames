@@ -30,6 +30,7 @@
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
 			this.$bgLayer = this.$el.find('.js-background-layer');
+			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
 			this.controller = new APP.BattleController();
@@ -228,7 +229,34 @@
 
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').addClass('active-unit');
 
+		},
+		showUnitInfo: function(unit) {
+			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
+			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
 
+		},
+		showPlaceInfo: function(data) {
+
+			var building,
+				x = data.coordinates.x,
+				y = data.coordinates.y;
+
+			data.map.buildings.every(function(build){
+				if (build.x === x && build.y === y) {
+					building = build;
+					return false;
+				}
+				return true;
+			});
+
+			if (building) {
+				console.log('show building', building);
+			} else {
+				console.log('show terrainn', data.map.terrain['x' + x + 'y' + y]);
+			}
+
+			this.$statusBar.find('.js-status-bar-armor').html('_');
+			this.$statusBar.find('.js-status-bar-damage').html('_');
 		}
 
 	});
