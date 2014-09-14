@@ -118,6 +118,7 @@
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 		moveUnit: function (moveUnit) {
+			this.hideAvailablePath();
 			var $unit = this.getUnitById(moveUnit.id),
 				size = this.squareSize;
 			$unit.css( info.preCSS + 'transform', 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)');
@@ -129,6 +130,11 @@
 			}
 
 		},
+
+		showEndUnitTurn: function(unit) {
+			this.getUnitById(unit.id).addClass('unit-end-turn');
+		},
+
 		showUnitsUnderAttack: function (units) {
 			units.forEach(function (unit) {
 

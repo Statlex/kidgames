@@ -15,8 +15,6 @@
 		this.map = {};
 		this.view = {};
 		this.lifeAfterDeadLimit = 3;
-		this.unitAvailableActions = {};
-
 		////////////////
 		this.players = [
 			{
@@ -85,172 +83,10 @@
 			this.buildings['x' + build.x + 'y' + build.y] = build;
 			return build;
 		},
-
-		createAvailableActions: function(unit) {
-
-			var map = this.map,
-				actions = {};
-
-			this.view.hideAvailablePath();
-			this.view.highlightUnit();
-			this.view.hideUnitsUnderAttack();
-
-			unit.availableActions.forEach(function(action){
-
-				var availablePath, availableAttack, unitX, unitY, units, key, itemUnit, itemAction;
-
-
-				switch (action) {
-
-					case 'move':
-
-						if (!unit.wasMove) {
-
-							availablePath = unit.getAvailablePath(this);
-							unitX = unit.x;
-							unitY = unit.y;
-							availablePath.forEach(function(xy){
-								actions['x' + xy.x + 'y' + xy.y] = 'move';
-							}, this);
-
-							// remove other units coords
-
-							units = this.units;
-
-							for (key in units) {
-								if (units.hasOwnProperty(key)) {
-									itemUnit = units[key];
-
-//									itemAction = actions[ itemUnit.x]
-
-//									delete
-
-								}
-							}
-
-							this.view.highlightPath({ path: availablePath, color: unit.color });
-
-						}
-
-
-						break;
-
-					case 'attack':
-
-						if (!unit.wasAttack) {
-
-							availableAttack = unit.findUnitsUnderAttack(this.units) || [];
-							availableAttack.forEach(function(xy){
-								actions['x' + xy.x + 'y' + xy.y] = 'attack';
-							}, this);
-
-							this.view.showUnitsUnderAttack(availableAttack);
-
-
-						}
-
-
-						break;
-
-
-
-
-				}
-
-
-			}, this);
-
-
-			return actions;
-
-		},
-
-		getUnitAction: function(x, y) {
-			return this.unitAvailableActions['x' + x + 'y' + y];
-		},
-
-		endAction: function() {
-
-			var x, y;
-			x = this.focusedUnit.x;
-			y = this.focusedUnit.y;
-			this.focusedUnit = false;
-			this.unitAvailableActions = {};
-			this.onClick({x: x, y: y});
-
-		},
-
 		onClick: function(coordinates) {
 
-			var units, unit, x, y, unitAction;
-
-			x = coordinates.x;
-			y = coordinates.y;
-
-			units = this.getUnitsByCoordinates(coordinates);
-			unit = units[0];
-
-			unitAction = this.getUnitAction(x, y);
-
-			if (unitAction) {
-
-				switch (unitAction) {
-					case 'move':
-						this.focusedUnit.moveTo(coordinates, this);
-						this.view.moveUnit(this.focusedUnit);
-
-						this.endAction();
-						break;
-
-					case 'attack':
-						this.attackUnit(this.focusedUnit, unit);
-						this.view.hideUnitsUnderAttack();
-
-						this.endAction();
-						break;
-
-				}
-
-
-			} else {
-
-				this.focusedUnit = false;
-				this.unitAvailableActions = {};
-
-				if (unit) {
-					this.focusedUnit = unit;
-					if (unit.playerId === this.activePlayer.id) {
-						this.unitAvailableActions = this.createAvailableActions(unit);
-						this.view.highlightUnit(unit);
-						// detect - no available action of unit
-						if (!Object.keys(this.unitAvailableActions).length) {
-							this.view.showEndUnitTurn(unit);
-						}
-					} else {
-						this.view.highlightPath({ path: unit.getAvailablePath(this), color: unit.color });
-						this.view.highlightUnit(unit);
-					}
-
-				} else {
-					this.focusedUnit = false;
-					this.unitAvailableActions = {};
-					this.view.hideAvailablePath();
-					this.view.highlightUnit();
-					this.view.hideUnitsUnderAttack();
-				}
-			}
-			
-
-
-
-
-			return;
-
-
-
-
-
-
+			this.view.hideUnitsUnderAttack();
+			this.view.hideAvailablePath();
 
 			var units = this.getUnitsByCoordinates(coordinates),
 				// we use LIST of units cause in future many units can stay on one place
@@ -283,7 +119,7 @@
 						}
 
 						// show available path
-						if ( !unit.wasMove ) {
+						if ( !unit.wasMoved ) {
 							availablePth = unit.getAvailablePath(this.map);
 							this.view.highlightPath({ path: availablePth, color: unit.color });
 						}
@@ -308,7 +144,7 @@
 						this.view.detectEndUnitTurn(this.activeSelectedUnit);
 						this.view.hideUnitsUnderAttack();
 					} else {
-						if ( unit.wasMove ) {
+						if ( unit.wasMoved ) {
 							this.activeSelectedUnit = false;
 						} else {
 							availablePth = unit.getAvailablePath(this.map);
@@ -461,14 +297,14 @@
 		},
 
 		getUnitsUnderAttack: function(unit) {
-			var  unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
-			if (unitsIsAvailableToAttack) {
-				this.view.showUnitsUnderAttack(unitsIsAvailableToAttack);
+			this.unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
+			if (this.unitsIsAvailableToAttack) {
+				this.view.showUnitsUnderAttack(this.unitsIsAvailableToAttack);
 			} else {
 				this.view.hideUnitsUnderAttack();
 			}
 
-			return unitsIsAvailableToAttack;
+			return this.unitsIsAvailableToAttack;
 
 		},
 
@@ -518,6 +354,8 @@
 		},
 		endTurn: function() {
 
+			this.unitsIsAvailableToAttack = this.activeSelectedUnit = false;
+
 			// set default properties all units
 			var units = this.units,
 				unit,
@@ -530,9 +368,7 @@
 				}
 			}
 
-			this.focusedUnit = false;
-			this.unitAvailableActions = {};
-
+			this.defaultStateToOccupied();
 			this.view.highlightUnit();
 
 			this.step();

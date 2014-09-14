@@ -8,17 +8,6 @@
 
 	APP.units.BaseUnit = function(data) {
 
-		// set defaults
-		this.wasMoved = false;
-		this.wasAttack = false;
-
-		this.defList = {
-			wasMoved: false,
-			wasAttack: false,
-			canGetBuilding: false,
-			isEndTurn: false
-		};
-
 		this.atk = 5;
 		this.def = 0;
 		this.mov = 4;
@@ -26,7 +15,17 @@
 
 		this.health = 10;
 		this.attackRange = 1;
-		this.canBuildings = [];
+
+		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
+
+
+		this.defaultList = {
+			wasMove: false,
+			wasAttack: false
+		};
+
+		this.wasMove = false;
+		this.wasAttack = false;
 
 	};
 
@@ -34,26 +33,55 @@
 		baseInit: function(data) {
 			util.extend(this, data);
 		},
-		getAvailablePath: function(map) {
+		getAvailablePath: function(controller) {
 
-			var pathFinder = new util.PathFinder({
-				map: map,
-				mov: this.mov,
-				x: this.x,
-				y: this.y,
-				relativeTypeSpace: true
-			});
+			var x = this.x,
+				y = this.y,
+				pathFinder = new util.PathFinder({
+					map: controller.map,
+					mov: this.mov,
+					x: x,
+					y: y,
+					relativeTypeSpace: true
+				}),
+				availablePath = pathFinder.getAvailablePath(),
+				removedIndex,
+				units = controller.units,
+				key, unit,
+				findRemovedIndex = function(xy, index){
+					if (xy.x === x && xy.y === y) {
+						removedIndex = index;
+						return false;
+					}
+					return true;
+				};
 
-			return pathFinder.getAvailablePath();
+			availablePath.every(findRemovedIndex);
+			availablePath.splice(removedIndex, 1);
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					removedIndex = undefined;
+					x = unit.x;
+					y = unit.y;
+					availablePath.every(findRemovedIndex);
+					if (removedIndex !== undefined) {
+						availablePath.splice(removedIndex, 1);
+					}
+				}
+			}
+
+			return availablePath;
 
 		},
-		moveTo: function(coordinates, map) {
+		moveTo: function(coordinates, controller) {
 
-			if (this.wasMoved) {
+			if (this.wasMove) {
 				return false;
 			}
 
-			var availablePath = this.getAvailablePath(map),
+			var availablePath = this.getAvailablePath(controller),
 				canMove = false,
 				x = coordinates.x,
 				y = coordinates.y;
@@ -70,7 +98,7 @@
 			});
 
 			if (canMove) {
-				this.wasMoved = true;
+				this.wasMove = true;
 				this.x = coordinates.x;
 				this.y = coordinates.y;
 				return this;
@@ -119,19 +147,23 @@
 		},
 
 		attackTo: function(enemyUnit) {
-
 			enemyUnit.health = enemyUnit.health - this.atk + enemyUnit.def;
-
-			this.endTurn();
+			this.setEndTurn();
 		},
 		setDefaultProperties: function() {
-			util.extend(this, this.defList);
+			util.extend(this, this.defaultList);
 		},
-		endTurn: function() {
-			this.wasAttack = true;
-			this.wasMoved = true;
-			this.canGetBuilding = false;
-			this.isEndTurn = true;
+		setEndTurn: function() {
+
+			var key,
+				list = this.defaultList;
+
+			for (key in list) {
+				if (list.hasOwnProperty(key)) {
+					this[key] = !list[key];
+				}
+			}
+
 		}
 
 	};

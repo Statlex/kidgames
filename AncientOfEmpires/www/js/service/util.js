@@ -130,7 +130,8 @@
 
 	PathFinder.prototype = {
 
-		getAvailablePath: function () {
+		getAvailablePath: function (data) {
+
 			var point = new PathFinderPoint({
 				parent: this,
 				mov: this.mov,
