@@ -30,7 +30,7 @@
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
 			this.$bgLayer = this.$el.find('.js-background-layer');
-			this.$statusBar = this.$el.find('.js-status-bar');
+//			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
 			this.controller = new APP.BattleController();
@@ -123,13 +123,13 @@
 				size = this.squareSize;
 			$unit.css( info.preCSS + 'transform', 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)');
 		},
-		detectEndUnitTurn: function (unit, toDisable) {
-
-			if ((unit.wasAttack && unit.wasMoved && !unit.canGetBuilding) || toDisable) {
-				this.getUnitById(unit.id).addClass('unit-end-turn');
-			}
-
-		},
+//		detectEndUnitTurn: function (unit, toDisable) {
+//
+//			if ((unit.wasAttack && unit.wasMoved && !unit.canGetBuilding) || toDisable) {
+//				this.getUnitById(unit.id).addClass('unit-end-turn');
+//			}
+//
+//		},
 
 		showEndUnitTurn: function(unit) {
 			this.getUnitById(unit.id).addClass('unit-end-turn');
@@ -194,28 +194,28 @@
 			style.insertRule(cssText, cssRules.length);
 
 		},
-		showUnitCanGetBuilding: function (unit) {
-
-			var x = unit.x,
-				y = unit.y,
-				build = this.controller.buildings['x' + x + 'y' + y];
-
-			this.$eventLayer
-				.find('[data-xy="x' + x + 'y' + y + '"]')
-				.addClass('can-get-building')
-				.data('building-color', unit.color)
-				.data('building-type', build.type);
-
-		},
-		hideUnitCanGetBuilding: function () {
-
-			this.$eventLayer
-				.find('.can-get-building')
-				.removeClass('can-get-building')
-				.data('building-color', '')
-				.data('building-type', '');
-
-		},
+//		showUnitCanGetBuilding: function (unit) {
+//
+//			var x = unit.x,
+//				y = unit.y,
+//				build = this.controller.buildings['x' + x + 'y' + y];
+//
+//			this.$eventLayer
+//				.find('[data-xy="x' + x + 'y' + y + '"]')
+//				.addClass('can-get-building')
+//				.data('building-color', unit.color)
+//				.data('building-type', build.type);
+//
+//		},
+//		hideUnitCanGetBuilding: function () {
+//
+//			this.$eventLayer
+//				.find('.can-get-building')
+//				.removeClass('can-get-building')
+//				.data('building-color', '')
+//				.data('building-type', '');
+//
+//		},
 		setBuildingColor: function(build) {
 			var x = build.x,
 				y = build.y,
@@ -236,34 +236,34 @@
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').addClass('active-unit');
 
 		},
-		showUnitInfo: function(unit) {
-			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
-			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
-
-		},
-		showPlaceInfo: function(data) {
-
-			var building,
-				x = data.coordinates.x,
-				y = data.coordinates.y;
-
-			data.map.buildings.every(function(build){
-				if (build.x === x && build.y === y) {
-					building = build;
-					return false;
-				}
-				return true;
-			});
-
-			if (building) {
-				console.log('show building', building);
-			} else {
-				console.log('show terrainn', data.map.terrain['x' + x + 'y' + y]);
-			}
-
-			this.$statusBar.find('.js-status-bar-armor').html('_');
-			this.$statusBar.find('.js-status-bar-damage').html('_');
-		},
+//		showUnitInfo: function(unit) {
+//			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
+//			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
+//
+//		},
+//		showPlaceInfo: function(data) {
+//
+//			var building,
+//				x = data.coordinates.x,
+//				y = data.coordinates.y;
+//
+//			data.map.buildings.every(function(build){
+//				if (build.x === x && build.y === y) {
+//					building = build;
+//					return false;
+//				}
+//				return true;
+//			});
+//
+//			if (building) {
+//				console.log('show building', building);
+//			} else {
+//				console.log('show terrainn', data.map.terrain['x' + x + 'y' + y]);
+//			}
+//
+//			this.$statusBar.find('.js-status-bar-armor').html('_');
+//			this.$statusBar.find('.js-status-bar-damage').html('_');
+//		},
 		hideGetBuilding: function(){
 			this.$eventLayer
 				.find('.can-get-building')
