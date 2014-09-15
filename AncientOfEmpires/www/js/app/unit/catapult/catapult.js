@@ -5,7 +5,6 @@
 	/*global APP, util */
 
 	var catapult = APP.units.Catapult = function(data) {
-		this.baseInit(data);
 
 		this.atk = 7;
 		this.def = 2;
@@ -13,6 +12,8 @@
 		this.cost = 700;
 
 		this.attackRange = 7;
+
+		this.baseInit(data);
 
 	};
 

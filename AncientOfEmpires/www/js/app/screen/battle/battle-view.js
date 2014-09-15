@@ -263,6 +263,26 @@
 
 			this.$statusBar.find('.js-status-bar-armor').html('_');
 			this.$statusBar.find('.js-status-bar-damage').html('_');
+		},
+		hideGetBuilding: function(){
+			this.$eventLayer
+				.find('.can-get-building')
+				.removeClass('can-get-building')
+				.data('building-color', '')
+				.data('building-type', '');
+
+		},
+		showGetBuilding: function(unit) {
+			var x = unit.x,
+				y = unit.y,
+				build = this.controller.buildings['x' + x + 'y' + y];
+
+			this.$eventLayer
+				.find('[data-xy="x' + x + 'y' + y + '"]')
+				.addClass('can-get-building')
+				.data('building-color', unit.color)
+				.data('building-type', build.type);
+
 		}
 
 	});

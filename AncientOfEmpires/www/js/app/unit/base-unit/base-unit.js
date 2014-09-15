@@ -16,22 +16,37 @@
 		this.health = 10;
 		this.attackRange = 1;
 
-		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
-
+//		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
+		this.availableActionsDefault = ['move', 'attack'];
+		this.availableActions = [];
 
 		this.defaultList = {
 			wasMove: false,
 			wasAttack: false
 		};
 
-		this.wasMove = false;
-		this.wasAttack = false;
+//		this.wasMove = false;
+//		this.wasAttack = false;
 
 	};
 
 	APP.units.BaseUnit.prototype = {
 		baseInit: function(data) {
+
+			// set actions list
+			var defList = this.defaultList,
+				key;
+			for (key in defList) {
+				if (defList.hasOwnProperty(key)) {
+					this[key] = defList[key];
+				}
+			}
+
+			// create full action list
+			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
+
 			util.extend(this, data);
+
 		},
 		getAvailablePath: function(controller) {
 
@@ -163,6 +178,17 @@
 					this[key] = !list[key];
 				}
 			}
+
+		},
+		getBuilding: function(controller) {
+			var build = controller.buildings['x' + this.x + 'y' + this.y];
+
+			build.playerId = this.playerId;
+			build.color = this.color;
+
+			controller.view.setBuildingColor(build);
+
+			this.setEndTurn();
 
 		}
 

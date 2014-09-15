@@ -5,7 +5,6 @@
 	/*global APP, util */
 
 	var wyvern = APP.units.Wyvern = function(data) {
-		this.baseInit(data);
 
 		this.atk = 8;
 		this.def = 3;
@@ -13,6 +12,8 @@
 		this.cost = 1000;
 
 		this.attackRange = 1;
+
+		this.baseInit(data);
 
 	};
 
