@@ -257,10 +257,18 @@
 						this.view.highlightUnit(unit);
 					}
 
+					this.view.showUnitInfo(unit);
+
 				} else {
 					this.focusedUnit = false;
 					this.unitAvailableActions = {};
 					this.hideAllActions();
+
+					this.view.showPlaceInfo({
+						map: this.map,
+						coordinates: coordinates
+					});
+
 				}
 			}
 			
@@ -273,10 +281,6 @@
 //			if (unitForInfo) {
 //				this.view.showUnitInfo(unitForInfo);
 //			} else {
-//				this.view.showPlaceInfo({
-//					map: this.map,
-//					coordinates: coordinates
-//				});
 //			}
 
 		},
