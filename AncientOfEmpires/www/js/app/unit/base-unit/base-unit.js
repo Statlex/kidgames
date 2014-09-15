@@ -57,7 +57,7 @@
 					mov: this.mov,
 					x: x,
 					y: y,
-					relativeTypeSpace: true
+					relativeTypeSpace: !this.isFly
 				}),
 				availablePath = pathFinder.getAvailablePath(),
 				removedIndex,

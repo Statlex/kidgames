@@ -13,6 +13,8 @@
 
 		this.attackRange = 1;
 
+		this.isFly = true;
+
 		this.baseInit(data);
 
 	};
