@@ -86,14 +86,18 @@
 			return build;
 		},
 
+		hideAllActions: function() {
+			this.view.hideAvailablePath();
+			this.view.highlightUnit();
+			this.view.hideUnitsUnderAttack();
+		},
+
 		createAvailableActions: function(unit) {
 
 			var map = this.map,
 				actions = {};
 
-			this.view.hideAvailablePath();
-			this.view.highlightUnit();
-			this.view.hideUnitsUnderAttack();
+			this.hideAllActions();
 
 			unit.availableActions.forEach(function(action){
 
@@ -234,9 +238,7 @@
 				} else {
 					this.focusedUnit = false;
 					this.unitAvailableActions = {};
-					this.view.hideAvailablePath();
-					this.view.highlightUnit();
-					this.view.hideUnitsUnderAttack();
+					this.hideAllActions();
 				}
 			}
 			
