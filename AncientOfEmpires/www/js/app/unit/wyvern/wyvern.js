@@ -13,7 +13,7 @@
 
 		this.attackRange = 1;
 
-		this.isFly = true;
+		this.runType = 'fly';
 
 		this.baseInit(data);
 

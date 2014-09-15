@@ -16,6 +16,8 @@
 		this.health = 10;
 		this.attackRange = 1;
 
+		this.runType = 'walk';
+
 //		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
 		this.availableActionsDefault = ['move', 'attack'];
 		this.availableActions = [];
@@ -57,9 +59,9 @@
 					mov: this.mov,
 					x: x,
 					y: y,
-					relativeTypeSpace: !this.isFly
+					relativeTypeSpace: true
 				}),
-				availablePath = pathFinder.getAvailablePath(),
+				availablePath = pathFinder.getAvailablePath({unit: this}),
 				removedIndex,
 				units = controller.units,
 				key, unit,
@@ -132,7 +134,7 @@
 				relativeTypeSpace: false
 			}),
 
-			availableSquare = pathFinder.getAvailablePath(),
+			availableSquare = pathFinder.getAvailablePath({unit: this}),
 			unitsUnderAttack = [],
 			playerId = this.playerId;
 

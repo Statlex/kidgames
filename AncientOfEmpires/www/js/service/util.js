@@ -61,7 +61,7 @@
 	};
 
 	function PathFinder(data) {
-		util.extend(this, data); // get from data - map, x, y, mov;
+		util.extend(this, data); // get from data - map, x, y, mov, relativeTypeSpace;
 		this.availablePath = [];
 		this.donePathPoints = [];
 	}
@@ -103,13 +103,33 @@
 				y = coordinates.y,
 				square,
 				pathResistance = 1,
-				point;
+				point,
+				unitType = this.unit.runType;
 
 			if (this.parent.relativeTypeSpace) {
 				// get square bu coordinates
 				square = APP.map.getSquareByXY(this.parent.map, x, y);
 				if (square) {
-					pathResistance = APP.map[square].pathResistance;
+
+					switch (unitType) {
+						case 'fly':
+							pathResistance = 1;
+							break;
+
+						case 'flow':
+
+							if (square === 'water') {
+								pathResistance = 0.5;
+							}
+
+							break;
+						default :
+							pathResistance = APP.map[square].pathResistance;
+
+					}
+
+
+
 				}
 			}
 
@@ -118,7 +138,8 @@
 					parent: this.parent,
 					mov: this.mov - pathResistance,
 					x: x,
-					y: y
+					y: y,
+					unit: this.unit
 				});
 
 			}
@@ -136,7 +157,8 @@
 				parent: this,
 				mov: this.mov,
 				x: this.x,
-				y: this.y
+				y: this.y,
+				unit: data.unit
 			});
 
 			return this.availablePath;
