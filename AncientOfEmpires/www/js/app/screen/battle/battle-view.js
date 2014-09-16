@@ -231,11 +231,17 @@
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').addClass('active-unit');
 
 		},
+
 		showUnitInfo: function(unit) {
 			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
 			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
-
 		},
+
+		showPlayerInfo: function(player) {
+			player = player || this.controller.activePlayer;
+			this.$statusBar.find('.status-bar-gold').html(player.gold);
+		},
+
 		showPlaceInfo: function(data) {
 
 			var building,

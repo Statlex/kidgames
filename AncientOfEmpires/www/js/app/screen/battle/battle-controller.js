@@ -22,12 +22,14 @@
 			{
 				id: 1,
 				name: 'Vasya',
-				type: 'human'
+				type: 'human',
+				gold: 700
 			},
 			{
 				id: 2,
 				name: 'Petya',
-				type: 'cpu'
+				type: 'cpu',
+				gold: 1000
 			}
 		];
 
@@ -434,7 +436,9 @@
 				this.activePlayer = players[0];
 			}
 
-			//console.log('Active player - ', this.activePlayer);
+
+			this.view.showPlayerInfo(this.activePlayer);
+
 
 		},
 		endTurn: function() {
