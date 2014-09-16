@@ -14,15 +14,18 @@
 
 		routes: {
 			'': 'title',
-			'battle': 'battle'
+			'battle': 'battle',
+			'store': 'store'
 		},
 
 		title: function () {
-			APP.titleView = new APP.TitleView();
+			APP.titleView = new APP.TitleView({ currentView: APP.titleView });
 		},
 		battle: function () {
-			APP.battleView = new APP.BattleView();
-
+			APP.battleView = new APP.BattleView({ currentView: APP.battleView });
+		},
+		store: function () {
+			APP.storeView = new APP.StoreView({ currentView: APP.storeView }); // todo: test this for NO create new view
 		}
 
 	});
