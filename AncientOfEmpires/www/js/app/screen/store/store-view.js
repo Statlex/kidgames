@@ -7,20 +7,19 @@
 	win.APP = win.APP || {};
 
 	APP.StoreView = APP.BaseView.extend({
-		templates: [''],
+		templates: ['store'],
 		events: {
+
 		},
-		init: function() {
+		init: function () {
 
-//			this.$el = $(this.tmpl.title());
+			this.$el = $(this.tmpl.store());
 
-//			this.$wrapper = $('.js-wrapper');
-
-//			this.$wrapper.html('');
-
-//			this.$wrapper.append(this.$el);
+			this.$wrapper = $('.js-wrapper');
+			this.$wrapper.append(this.$el);
 
 		}
+
 
 	});
 

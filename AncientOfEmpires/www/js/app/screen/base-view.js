@@ -14,20 +14,6 @@
 
 			data = data || {};
 
-			// if forceDraw is undefined -> set default forceDraw
-			if (!data.hasOwnProperty('forceDraw')) {
-				data.forceDraw = this.forceDraw;
-			}
-
-			// detect current state
-			if (!data.forceDraw) {
-				if  (win.APP.viewState === this.templates) {
-					return data.currentView;
-				}
-			}
-
-			win.APP.viewState = this.templates;
-
 			var events = this.events,
 				key, event, selector, arr;
 

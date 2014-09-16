@@ -423,7 +423,29 @@
 		},
 		step: function() {
 			this.setActivePlayer();
+			this.setMoneyForActivePlayer();
 			this.updateRIPs();
+		},
+		setMoneyForActivePlayer: function() {
+
+			var buildings = this.buildings,
+				key,
+				building,
+				player = this.activePlayer,
+				playerId = player.id,
+				moneyFrom = APP.map.moneyFrom;
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.playerId === playerId) {
+						player.gold += moneyFrom[building.type];
+					}
+				}
+			}
+
+			this.view.showPlayerInfo(player);
+
 		},
 		setActivePlayer: function() {
 			// set active player

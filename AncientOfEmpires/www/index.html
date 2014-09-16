@@ -79,10 +79,10 @@
 
 <script type="text/x-template" data-name="battle">
 
-	<div class="battle-screen">
+	<div class="battle-screen js-battle-screen">
 
 		<div class="status-bar js-status-bar clear-fix">
-			<div class="status-bar-buy">buy</div>
+			<div class="status-bar-store js-go-to-store">store</div>
 			<div class="status-bar-gold">0</div>
 			<div class="status-bar-damage js-status-bar-damage">0</div>
 			<div class="status-bar-armor js-status-bar-armor">0</div>
@@ -164,7 +164,14 @@
 	</div>
 	<% }; %>
 
+</script>
 
+<script type="text/x-template" data-name="store">
+
+	<div class="store-wrapper js-store-wrapper">
+		<h1>store</h1>
+		<div class="js-back">close X</div>
+	</div>
 
 </script>
 

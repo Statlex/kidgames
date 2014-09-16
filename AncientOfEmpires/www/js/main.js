@@ -1,8 +1,8 @@
-(function (win) {
+(function (win, doc) {
 
 	"use strict";
-	/*global window */
-	/*global templateMaster, lang, Backbone, APP, info, history, setTimeout */
+	/*global window, document */
+	/*global templateMaster, lang, Backbone, APP, info, history, setTimeout, $ */
 
 	lang.push('en');
 
@@ -22,15 +22,27 @@
 			APP.titleView = new APP.TitleView({ currentView: APP.titleView });
 		},
 		battle: function () {
-			APP.battleView = new APP.BattleView({ currentView: APP.battleView });
+
+			APP.removeExtraView();
+
+			if ( doc.querySelector('.js-battle-screen') ) {
+				return;
+			}
+
+			APP.battleView = new APP.BattleView();
+
 		},
 		store: function () {
-			APP.storeView = new APP.StoreView({ currentView: APP.storeView }); // todo: test this for NO create new view
+			APP.storeView = new APP.StoreView();
 		}
 
 	});
 
 	APP.router = new Router();
+
+	APP.removeExtraView = function() {
+		$('.js-store-wrapper').remove();
+	};
 
 	// start of app here
 	function main() {
@@ -51,4 +63,4 @@
 
 	// other data here
 
-}(window));
+}(window, document));

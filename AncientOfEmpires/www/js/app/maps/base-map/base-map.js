@@ -33,6 +33,10 @@
 			pathResistance: 3,
 			className: 'water'
 		},
+		moneyFrom: {
+			farm: 20,
+			castle: 40
+		},
 		getSquareByXY: function(map, x, y) {
 			return map.terrain['x' + x + 'y'+ y];
 		}

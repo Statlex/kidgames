@@ -10,8 +10,8 @@
 		templates: ['battle', 'unit', 'build'],
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
-			'click .js-end-turn': 'endTurn'
-
+			'click .js-end-turn': 'endTurn',
+			'click .js-go-to-store': 'goToStore'
 		},
 		squareSize: 36,
 		cssSelector: '.square, .unit, .build',
@@ -51,6 +51,11 @@
 			this.drawMap();
 
 		},
+
+		goToStore: function() {
+			APP.router.navigate('store', {trigger: true});
+		},
+
 		setFieldSize: function () {
 			var size = this.squareSize,
 				sizes = this.map.size,
