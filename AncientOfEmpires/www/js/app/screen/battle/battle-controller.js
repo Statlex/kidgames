@@ -23,13 +23,15 @@
 				id: 1,
 				name: 'Vasya',
 				type: 'human',
-				gold: 700
+				gold: 700,
+				color: 'blue' // see unit color
 			},
 			{
 				id: 2,
 				name: 'Petya',
 				type: 'cpu',
-				gold: 1000
+				gold: 1000,
+				color: 'red' // see unit color
 			}
 		];
 
