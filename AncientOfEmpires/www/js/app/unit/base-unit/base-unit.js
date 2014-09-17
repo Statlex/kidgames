@@ -22,10 +22,10 @@
 		this.availableActionsDefault = ['move', 'attack'];
 		this.availableActions = [];
 
-		this.defaultList = {
-			wasMove: false,
-			wasAttack: false
-		};
+//		this.defaultList = {
+//			wasMove: false,
+//			wasAttack: false
+//		};
 
 //		this.wasMove = false;
 //		this.wasAttack = false;
@@ -33,21 +33,23 @@
 	};
 
 	APP.units.BaseUnit.prototype = {
+		defaultList: {
+			wasMove: false,
+			wasAttack: false
+		},
 		baseInit: function(data) {
 
-			// set actions list
-			var defList = this.defaultList,
-				key;
-			for (key in defList) {
-				if (defList.hasOwnProperty(key)) {
-					this[key] = defList[key];
-				}
-			}
+			var unitInfo = APP.units.info[data.type.toLowerCase()];
+
+			this.defaultList = util.createCopy(this.defaultList);
+			util.extend(this.defaultList, unitInfo.unitDefaultList);
+			util.extend(this, unitInfo);
+			util.extend(this, data);
+
+			//debugger;
 
 			// create full action list
 			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
-
-			util.extend(this, data);
 
 		},
 		getAvailablePath: function(controller) {

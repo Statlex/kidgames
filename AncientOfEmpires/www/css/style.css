@@ -127,16 +127,6 @@
 	background-position: 0 100%;
 }
 
-.end-turn {
-	width: 40px;
-	height: 40px;
-	background-color: #c00;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	z-index: 10;
-}
-
 .status-bar {
 	height: 36px;
 	width: 100%;

@@ -6,13 +6,6 @@
 
 	var archer = APP.units.Archer = function(data) {
 
-		this.atk = 5;
-		this.def = 1;
-		this.mov = 4;
-		this.cost = 250;
-
-		this.attackRange = 2;
-
 		this.baseInit(data);
 
 	};

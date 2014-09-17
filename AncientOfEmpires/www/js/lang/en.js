@@ -9,8 +9,16 @@
 		language: 'language',
 		languageName: 'english',
 		units: {
-			soldier: 'soldier'
-
+			archer: 'archer',
+			catapult: 'catapult',
+			golem: 'golem',
+			knight: 'knight',
+			lizard: 'lizard',
+			soldier: 'soldier',
+			spider: 'spider',
+			wisp: 'wisp',
+			wizard: 'wizard',
+			wyvern: 'wyvern'
 		}
 	};
 

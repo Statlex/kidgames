@@ -13,7 +13,11 @@
 		},
 		init: function () {
 
-			this.$el = $(this.tmpl.store());
+			var data = {};
+
+			data.unitList = APP.units.info.unitList;
+
+			this.$el = $(this.tmpl.store(data));
 
 			this.$wrapper = $('.js-wrapper');
 			this.$wrapper.append(this.$el);

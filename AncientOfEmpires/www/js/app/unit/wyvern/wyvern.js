@@ -6,15 +6,6 @@
 
 	var wyvern = APP.units.Wyvern = function(data) {
 
-		this.atk = 8;
-		this.def = 3;
-		this.mov = 7;
-		this.cost = 1000;
-
-		this.attackRange = 1;
-
-		this.runType = 'fly';
-
 		this.baseInit(data);
 
 	};

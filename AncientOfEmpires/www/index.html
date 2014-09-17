@@ -86,7 +86,7 @@
 			<div class="status-bar-gold">0</div>
 			<div class="status-bar-damage js-status-bar-damage">0</div>
 			<div class="status-bar-armor js-status-bar-armor">0</div>
-			<div class="status-bar-end-turn">end turn</div>
+			<div class="status-bar-end-turn js-end-turn">end turn</div>
 		</div>
 
 		<div class="js-layers-wrapper layers-wrapper clear-fix">
@@ -135,8 +135,6 @@
 
 		</div>
 
-		<div class="end-turn js-end-turn">end-turn</div>
-
 	</div>
 
 </script>
@@ -170,6 +168,23 @@
 
 	<div class="store-wrapper js-store-wrapper">
 		<h1>store</h1>
+
+		<div class="store-units-wrapper">
+			<% unitList.forEach(function(name){ %>
+			<div class="unit-card js-unit-card"><%= lang.units[name] %></div>
+			<% }); %>
+		</div>
+
+		<div class="unit-info">
+
+			<div class="buy-unit">buy</div>
+
+			<div>
+				selected unit info
+			</div>
+
+		</div>
+
 		<div class="js-back">close X</div>
 	</div>
 

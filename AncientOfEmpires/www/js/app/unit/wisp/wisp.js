@@ -6,13 +6,6 @@
 
 	var wisp = APP.units.Wisp = function(data) {
 
-		this.atk = 3;
-		this.def = 2;
-		this.mov = 4;
-		this.cost = 500;
-
-		this.attackRange = 1;
-
 		this.baseInit(data);
 
 	};

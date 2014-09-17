@@ -6,13 +6,6 @@
 
 	var spider = APP.units.Spider = function(data) {
 
-		this.atk = 6;
-		this.def = 2;
-		this.mov = 5;
-		this.cost = 600;
-
-		this.attackRange = 1;
-
 		this.baseInit(data);
 
 	};

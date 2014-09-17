@@ -6,13 +6,6 @@
 
 	var wizard = APP.units.Wizard = function(data) {
 
-		this.atk = 4;
-		this.def = 1;
-		this.mov = 4;
-		this.cost = 400;
-
-		this.attackRange = 1;
-
 		this.baseInit(data);
 
 	};

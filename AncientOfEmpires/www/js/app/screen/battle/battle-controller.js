@@ -252,6 +252,7 @@
 						this.view.highlightUnit(unit);
 						// detect - no available action of unit
 						if (!Object.keys(this.unitAvailableActions).length) {
+							this.focusedUnit.setEndTurn();
 							this.view.showEndUnitTurn(unit);
 						}
 					} else {
@@ -273,67 +274,8 @@
 
 				}
 			}
-			
-
-
-
-			//return;
-
-//			var unitForInfo = unit || this.activeSelectedUnit;
-//			if (unitForInfo) {
-//				this.view.showUnitInfo(unitForInfo);
-//			} else {
-//			}
 
 		},
-
-//		getBuildingToOccupied: function(unit) {
-//
-//			var build = this.buildings['x' + unit.x + 'y' + unit.y];
-//
-//			if (!build) {
-//				return false;
-//			}
-//
-//			if (build.playerId === unit.playerId) {
-//				return false;
-//			}
-//
-//			unit.canGetBuilding = util.has(unit.canBuildings, build.type);
-//
-//			if (unit.canGetBuilding) {
-//				this.view.showUnitCanGetBuilding(unit);
-//				return build;
-//			}
-//
-//			return false;
-//
-//		},
-
-//		buildingChangeOwner: function(unit) {
-//
-//			var build = this.buildings['x' + unit.x + 'y' + unit.y];
-//
-//			build.playerId = unit.playerId;
-//			build.color = unit.color;
-//
-//			this.view.setBuildingColor(build);
-//
-//		},
-//
-//		defaultStateToOccupied: function() {
-//			var allUnits = this.units,
-//				key;
-//
-//			for (key in allUnits) {
-//				if (allUnits.hasOwnProperty(key)) {
-//					allUnits[key].canGetBuilding = false;
-//				}
-//			}
-//
-//			this.view.hideUnitCanGetBuilding();
-//
-//		},
 
 		attackUnit: function(active, passive) {
 			active.attackTo(passive);
@@ -382,18 +324,6 @@
 			}
 
 		},
-
-//		getUnitsUnderAttack: function(unit) {
-//			var  unitsIsAvailableToAttack = unit.findUnitsUnderAttack(this.units);
-//			if (unitsIsAvailableToAttack) {
-//				this.view.showUnitsUnderAttack(unitsIsAvailableToAttack);
-//			} else {
-//				this.view.hideUnitsUnderAttack();
-//			}
-//
-//			return unitsIsAvailableToAttack;
-//
-//		},
 
 		getUnitsByCoordinates: function(coordinates) {
 			var key,

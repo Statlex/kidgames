@@ -6,13 +6,6 @@
 
 	var catapult = APP.units.Catapult = function(data) {
 
-		this.atk = 7;
-		this.def = 2;
-		this.mov = 3;
-		this.cost = 700;
-
-		this.attackRange = 7;
-
 		this.baseInit(data);
 
 	};
