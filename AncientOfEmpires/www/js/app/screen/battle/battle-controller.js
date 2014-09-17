@@ -385,7 +385,7 @@
 		},
 		setStoreButtonStateForActivePlayer: function() {
 
-			this.view.setStoreButtonState( this.hasPlayerCastle() );
+			this.view.setStoreButtonState( this.getPlayerCastle() );
 
 		},
 		setActivePlayer: function() {
@@ -426,7 +426,7 @@
 			this.step();
 
 		},
-		hasPlayerCastle: function(player) {
+		getPlayerCastle: function(player) {
 
 			player = player || this.activePlayer;
 
@@ -439,7 +439,7 @@
 				if (buildings.hasOwnProperty(key)) {
 					building = buildings[key];
 					if (building.playerId === playerId && building.type === 'castle') {
-						return true;
+						return building;
 					}
 				}
 			}

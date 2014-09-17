@@ -15,6 +15,9 @@
 
 			return main;
 		},
+		capitalise: function(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+		},
 		findBy: function (list, key, value) {
 
 			var result = null;

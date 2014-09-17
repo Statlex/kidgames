@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="css/unit.css"/>
 	<link rel="stylesheet" href="css/terrain.css"/>
 	<link rel="stylesheet" href="css/building.css"/>
+	<link rel="stylesheet" href="css/store.css"/>
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
@@ -172,14 +173,21 @@
 		<h1>balance <span><%= gold %></span></h1>
 
 		<div class="store-units-wrapper">
-			<% unitList.forEach(function(name){ %>
-			<div class="unit-card js-unit-card"><%= lang.units[name] %></div>
+			<% unitInfo.unitList.forEach(function(name){ %>
+			<div class="unit-card js-unit-card" data-name="<%= name %>">
+				<%= unitInfo[name].unitName %>
+				<br>atkIcon:<%= unitInfo[name].atk %>
+				<br>defIcon:<%= unitInfo[name].def %>
+				<br>moveIcon:<%= unitInfo[name].mov %>
+				<br>costIcon:<%= unitInfo[name].cost %>
+				<br>------
+			</div>
 			<% }); %>
 		</div>
 
 		<div class="unit-info">
 
-			<div class="buy-unit">buy</div>
+			<div class="buy-unit ">buy</div>
 
 			<div>
 				selected unit info

@@ -55,7 +55,7 @@
 		goToStore: function() {
 
 			// to open store user must have the castle
-			if (!this.controller.hasPlayerCastle()) {
+			if (!this.controller.getPlayerCastle()) {
 				win.alert('to BUY unit you have to has the castle');
 				return;
 			}

@@ -1,0 +1,12 @@
+.unit-card {
+	float: left;
+}
+
+.unit-card[data-can-buy="enable"] {
+	background-color: #fff;
+}
+
+.unit-card[data-can-buy="disable"] {
+	background-color: #c00;
+}
+
