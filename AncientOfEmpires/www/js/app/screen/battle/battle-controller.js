@@ -234,7 +234,9 @@
 						this.focusedUnit.getBuilding(this);
 
 						this.view.hideGetBuilding();
+
 						this.endAction();
+						this.setStoreButtonStateForActivePlayer();
 						break;
 
 				}
@@ -353,8 +355,12 @@
 		},
 		step: function() {
 			this.setActivePlayer();
-			this.setMoneyForActivePlayer();
+			this.setStatusBarForActivePlayer();
 			this.updateRIPs();
+		},
+		setStatusBarForActivePlayer: function() {
+			this.setMoneyForActivePlayer();
+			this.setStoreButtonStateForActivePlayer();
 		},
 		setMoneyForActivePlayer: function() {
 
@@ -375,6 +381,11 @@
 			}
 
 			this.view.showPlayerInfo(player);
+
+		},
+		setStoreButtonStateForActivePlayer: function() {
+
+			this.view.setStoreButtonState( this.hasPlayerCastle() );
 
 		},
 		setActivePlayer: function() {
@@ -413,6 +424,27 @@
 			this.hideAllActions();
 
 			this.step();
+
+		},
+		hasPlayerCastle: function(player) {
+
+			player = player || this.activePlayer;
+
+			var buildings = this.buildings,
+				building,
+				playerId = player.id,
+				key;
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.playerId === playerId && building.type === 'castle') {
+						return true;
+					}
+				}
+			}
+
+			return false;
 
 		}
 

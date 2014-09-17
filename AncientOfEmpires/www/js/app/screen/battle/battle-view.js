@@ -55,31 +55,13 @@
 		goToStore: function() {
 
 			// to open store user must have the castle
-			var controller = this.controller,
-				buildings = controller.buildings,
-				player = controller.activePlayer,
-				building,
-				playerId = player.id,
-				hasPlayerTheCastle = false,
-				key;
-
-
-			for (key in buildings) {
-				if (buildings.hasOwnProperty(key)) {
-					building = buildings[key];
-					if (building.playerId === playerId && building.type === 'castle') {
-						hasPlayerTheCastle = true;
-					}
-				}
-			}
-
-			if (!hasPlayerTheCastle) {
+			if (!this.controller.hasPlayerCastle()) {
 				win.alert('to BUY unit you have to has the castle');
 				return;
 			}
 
-
 			APP.router.navigate('store', {trigger: true});
+
 		},
 
 		setFieldSize: function () {
@@ -315,6 +297,9 @@
 				.data('building-color', unit.color)
 				.data('building-type', build.type);
 
+		},
+		setStoreButtonState: function(isEnable) {
+			this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
 		}
 
 	});

@@ -151,6 +151,14 @@
 	margin-right: 20px;
 }
 
+.status-bar-store {
+	opacity: 0.5;
+}
+
+.status-bar-store[data-state='enable'] {
+	opacity: 1;
+}
+
 .status-bar-gold {
 	background-image: url(../img/status-bar/gold.png);
 }
