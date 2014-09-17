@@ -53,6 +53,32 @@
 		},
 
 		goToStore: function() {
+
+			// to open store user must have the castle
+			var controller = this.controller,
+				buildings = controller.buildings,
+				player = controller.activePlayer,
+				building,
+				playerId = player.id,
+				hasPlayerTheCastle = false,
+				key;
+
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.playerId === playerId && building.type === 'castle') {
+						hasPlayerTheCastle = true;
+					}
+				}
+			}
+
+			if (!hasPlayerTheCastle) {
+				win.alert('to BUY unit you have to has the castle');
+				return;
+			}
+
+
 			APP.router.navigate('store', {trigger: true});
 		},
 
