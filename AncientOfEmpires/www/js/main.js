@@ -33,7 +33,8 @@
 
 		},
 		store: function () {
-			APP.storeView = new APP.StoreView();
+			// go here from battle view
+//			APP.storeView = new APP.StoreView();
 		}
 
 	});

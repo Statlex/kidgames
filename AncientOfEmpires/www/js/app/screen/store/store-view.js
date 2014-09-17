@@ -11,11 +11,13 @@
 		events: {
 
 		},
-		init: function () {
+		init: function (args) {
 
-			var data = {};
+			var data = {},
+				player = args.controller.activePlayer;
 
 			data.unitList = APP.units.info.unitList;
+			data.gold = player.gold;
 
 			this.$el = $(this.tmpl.store(data));
 
