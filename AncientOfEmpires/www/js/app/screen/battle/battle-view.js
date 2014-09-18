@@ -164,6 +164,12 @@
 			this.hideUnitsUnderAttack();
 			this.resetEndTurnState();
 			this.controller.endTurn();
+			this.goFromStore();
+		},
+		goFromStore: function() {
+			if (Backbone.history.fragment !== 'battle') {
+				history.back();
+			}
 		},
 		resetEndTurnState: function () {
 			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');

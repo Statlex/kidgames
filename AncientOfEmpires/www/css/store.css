@@ -1,12 +1,29 @@
+.store-wrapper {
+	position: fixed;
+	top: 35px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ccc;
+	z-index: 1;
+}
+
 .unit-card {
 	float: left;
 }
 
-.unit-card[data-can-buy="enable"] {
+.buy-unit {
+	background-color: #c00;
+}
+
+.buy-unit.active {
 	background-color: #fff;
 }
 
-.unit-card[data-can-buy="disable"] {
-	background-color: #c00;
-}
+
+
+
+
+
+
 

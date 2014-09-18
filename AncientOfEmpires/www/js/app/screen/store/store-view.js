@@ -9,9 +9,11 @@
 	APP.StoreView = APP.BaseView.extend({
 		templates: ['store'],
 		events: {
-			'click .js-unit-card': 'selectUnit'
+			'click .js-buy-unit': 'buyUnit'
 		},
 		init: function (args) {
+
+
 
 			var data = {},
 				player = args.controller.activePlayer;
@@ -24,36 +26,41 @@
 
 			this.$el = $(this.tmpl.store(data));
 
+			this.$buyButtons = this.$el.find('.js-buy-unit');
+
 			this.$wrapper = $('.js-wrapper');
+			this.$wrapper.find('.js-store-wrapper').remove();
 			this.$wrapper.append(this.$el);
 
-		},
-		selectUnit: function(e) {
-
-			var $node = $(e.currentTarget || e),
-				unitName = $node.data('name'),
-				unitInfo = APP.units.info,
-				unitCost = unitInfo[unitName].cost;
-
-			if ( $node.data('can-buy') ) {
-				if ($node.data('can-buy') === 'enable') {
-					this.buyUnit(unitName);
-				} else {
-					win.alert('not enough money to buy the ' + unitName);
-				}
-			} else {
-				this.$el.find('.js-unit-card').data('can-buy', '');
-				if (unitCost <= this.player.gold) {
-					$node.data('can-buy', 'enable');
-				} else {
-					$node.data('can-buy', 'disable');
-				}
-			}
+			$('.js-wrapper .js-status-bar').data('state', 'store');
 
 		},
-		buyUnit: function(unitName) {
+		setBuyButtonState: function() {
 
 			var unitInfo = APP.units.info,
+				gold = this.player.gold;
+
+			this.$buyButtons.forEach(function(button){
+
+				var unitName = button.dataset.name,
+					cost = unitInfo[unitName].cost;
+
+				if ( gold >= cost ) {
+					button.classList.add('active');
+				} else {
+					button.classList.remove('active');
+				}
+
+
+			});
+
+		},
+
+		buyUnit: function(e) {
+
+			var $button = $(e.currentTarget || e),
+				unitName = $button.data('name'),
+				unitInfo = APP.units.info,
 				unitCost = unitInfo[unitName].cost,
 				newUnit, unit,
 				controller = this.controller,
@@ -61,13 +68,13 @@
 				player = this.player;
 
 			if ( unitCost > this.player.gold ) {
+				alert('not enough money');
 				return;
 			}
 
 			player.gold -= unitCost;
 
 			controller.view.showPlayerInfo();
-			this.$el.find('.js-unit-card').data('can-buy', '');
 
 			castle = controller.getPlayerCastle();
 
@@ -83,6 +90,7 @@
 			newUnit = controller.appendUnit(unit); // to controller
 			controller.view.appendUnit(newUnit);
 
+			this.setBuyButtonState();
 
 		}
 

@@ -23,6 +23,7 @@
 		},
 		battle: function () {
 
+			$('.js-wrapper .js-status-bar').data('state', 'battle');
 			APP.removeExtraView();
 
 			if ( doc.querySelector('.js-battle-screen') ) {

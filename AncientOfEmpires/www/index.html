@@ -82,8 +82,9 @@
 
 	<div class="battle-screen js-battle-screen">
 
-		<div class="status-bar js-status-bar clear-fix">
+		<div class="status-bar js-status-bar clear-fix" data-state="battle">
 			<div class="status-bar-store js-go-to-store">store</div>
+			<div class="status-bar-battle js-back">battle</div>
 			<div class="status-bar-gold">0</div>
 			<div class="status-bar-damage js-status-bar-damage">0</div>
 			<div class="status-bar-armor js-status-bar-armor">0</div>
@@ -168,9 +169,6 @@
 <script type="text/x-template" data-name="store">
 
 	<div class="store-wrapper js-store-wrapper">
-		<h1>store</h1>
-
-		<h1>balance <span><%= gold %></span></h1>
 
 		<div class="store-units-wrapper">
 			<% unitInfo.unitList.forEach(function(name){ %>
@@ -179,23 +177,12 @@
 				<br>atkIcon:<%= unitInfo[name].atk %>
 				<br>defIcon:<%= unitInfo[name].def %>
 				<br>moveIcon:<%= unitInfo[name].mov %>
-				<br>costIcon:<%= unitInfo[name].cost %>
-				<br>------
+				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</div>
+				<div data-name="<%= name %>" class="js-get-unit-info">unit info</div>
 			</div>
 			<% }); %>
 		</div>
 
-		<div class="unit-info">
-
-			<div class="buy-unit ">buy</div>
-
-			<div>
-				selected unit info
-			</div>
-
-		</div>
-
-		<div class="js-back">close X</div>
 	</div>
 
 </script>

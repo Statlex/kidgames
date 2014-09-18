@@ -234,7 +234,8 @@
 			y = coordinates.y;
 
 			units = this.getUnitsByCoordinates(coordinates);
-			unit = units[0];
+
+			unit = units[units.length - 1]; // get las unit // workaround for store
 
 			unitAction = this.getUnitAction(x, y);
 

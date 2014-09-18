@@ -28,6 +28,8 @@
 
 .battle-screen {
 	overflow: auto;
+	z-index: 0;
+	position: relative;
 }
 
 .event-handler {
@@ -136,6 +138,7 @@
 .status-bar-gold,
 .status-bar-damage,
 .status-bar-store,
+.status-bar-battle,
 .status-bar-end-turn,
 .status-bar-armor {
 	background-repeat: no-repeat;
@@ -149,6 +152,19 @@
 	line-height: 36px;
 	background-position: center left;
 	margin-right: 20px;
+}
+
+.status-bar-store,
+.status-bar-battle {
+	display: none;
+}
+
+[data-state='store'] .status-bar-battle {
+	display: block;
+}
+
+[data-state='battle'] .status-bar-store {
+	display: block;
 }
 
 .status-bar-store {
