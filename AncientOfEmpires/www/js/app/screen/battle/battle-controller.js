@@ -59,9 +59,33 @@
 			var units = this.map.units;
 
 			units.forEach(function(unit){
-				var newUnit = this.appendUnit(unit); // to controller
-				this.view.appendUnit(newUnit);
+
+				var player = this.getPlayerById(unit.playerId),
+					newUnit;
+
+				unit.color = player.color;
+
+				newUnit = this.appendUnit(unit); // to controller
+
+				this.view.appendUnit(newUnit); // and view
+
 			}, this);
+
+		},
+		getPlayerById: function(id) {
+
+			var playerById = null;
+
+			this.players.every(function(player){
+				if (player.id === id) {
+					playerById = player;
+					return false;
+				}
+				return true;
+			});
+
+			return playerById;
+
 
 		},
 		addBuildingsToControllerAndView: function() {

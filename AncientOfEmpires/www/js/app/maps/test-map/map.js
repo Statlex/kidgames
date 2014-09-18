@@ -20,115 +20,99 @@
 				type: 'Archer',
 				x: 0,
 				y: 0,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 
 			{
 				type: 'Catapult',
 				x: 0,
 				y: 1,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Golem',
 				x: 0,
 				y: 2,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Knight',
 				x: 0,
 				y: 3,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Lizard',
 				x: 0,
 				y: 4,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Soldier',
 				x: 0,
 				y: 5,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Spider',
 				x: 0,
 				y: 6,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Wisp',
 				x: 0,
 				y: 7,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Wizard',
 				x: 0,
 				y: 8,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Wyvern',
 				x: 0,
 				y: 9,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 
 			{
 				type: 'Soldier',
 				x: 1,
 				y: 1,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Soldier',
 				x: 16,
 				y: 4,
-				playerId: 2,
-				color: 'red'
+				playerId: 2
 			},
 			{
 				type: 'Archer',
 				x: 3,
 				y: 1,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Archer',
 				x: 13,
 				y: 4,
-				playerId: 2,
-				color: 'red'
+				playerId: 2
 			},
 			{
 				type: 'Knight',
 				x: 5,
 				y: 1,
-				playerId: 1,
-				color: 'blue'
+				playerId: 1
 			},
 			{
 				type: 'Knight',
 				x: 10,
 				y: 4,
-				playerId: 2,
-				color: 'red'
+				playerId: 2
 			}
 		],
 
