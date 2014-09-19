@@ -14,8 +14,9 @@
 
 		routes: {
 			'': 'title',
-			'battle': 'battle',
-			'store': 'store'
+			battle: 'battle',
+			store: 'store',
+			maps: 'maps'
 		},
 
 		title: function () {
@@ -36,6 +37,9 @@
 		store: function () {
 			// go here from battle view
 //			APP.storeView = new APP.StoreView();
+		},
+		maps: function() {
+			APP.mapsView = new APP.MapsView();
 		}
 
 	});

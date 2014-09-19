@@ -9,7 +9,7 @@
 	APP.TitleView = APP.BaseView.extend({
 		templates: ['title'],
 		events: {
-			'click .js-go-to-battle': 'goToBattle'
+			'click .js-go-to-select-map': 'goToSelectMap'
 		},
 		init: function() {
 
@@ -22,9 +22,9 @@
 			this.$wrapper.append(this.$el);
 
 		},
-		goToBattle: function() {
+		goToSelectMap: function() {
 
-			APP.router.navigate('battle', { trigger: true });
+			APP.router.navigate('maps', { trigger: true });
 		}
 
 	});

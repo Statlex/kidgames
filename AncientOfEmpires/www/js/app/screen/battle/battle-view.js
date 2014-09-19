@@ -19,8 +19,13 @@
 
 			this.setStyles();
 
+			if (!APP.battleMap) {
+				history.back();
+				return;
+			}
+
 			// set map to this view
-			this.setMap(util.createCopy(win.testMap));
+			this.setMap(util.createCopy(APP.battleMap));
 			// show draft map
 			this.$el = $(this.tmpl.battle(this.map));
 			this.setFieldSize();

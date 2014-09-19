@@ -7,7 +7,12 @@
 	var terra = APP.map.terrainTypes,
 		build = APP.map.buildingsTypes;
 
-	win.testMap = {
+	APP.maps = APP.maps || {};
+
+	APP.maps.testMap = {
+
+		name: 'test map',
+		jsName: 'testMap',
 
 		size: {
 			width: 20,
