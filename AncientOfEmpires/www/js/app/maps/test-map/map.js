@@ -93,7 +93,7 @@
 				type: 'Soldier',
 				x: 16,
 				y: 4,
-				playerId: 2
+				playerId: 0
 			},
 			{
 				type: 'Archer',
@@ -105,7 +105,7 @@
 				type: 'Archer',
 				x: 13,
 				y: 4,
-				playerId: 2
+				playerId: 0
 			},
 			{
 				type: 'Knight',
@@ -117,7 +117,7 @@
 				type: 'Knight',
 				x: 10,
 				y: 4,
-				playerId: 2
+				playerId: 0
 			}
 		],
 

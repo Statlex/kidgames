@@ -24,17 +24,59 @@
 
 			$('.js-wrapper .js-status-bar').data('state', 'store');
 
+			APP.battleControllerData = {};
+
 		},
 		goToBattle: function() {
 
-			APP.router.navigate('battle', { trigger: true });
+			this.createBattleControllerData();
+
+			if (this.checkBattleControllerData()) {
+				APP.router.navigate('battle', { trigger: true });
+			}
+
 		},
+
+		checkBattleControllerData: function() {
+
+			if (!APP.battleControllerData.map) {
+				return false;
+			}
+
+			return true;
+
+		},
+
+		createBattleControllerData: function() {
+
+			var forms = this.$el.find('.js-player-form');
+
+			APP.battleControllerData.players = [];
+
+			forms.forEach(function(form, index){
+				var $form = $(form),
+					player = {
+						id: index,
+						gold: APP.map.default.gold
+					},
+					selects = $form.find('select');
+				selects.forEach(function(select){
+					var type = select.dataset.type;
+					player[type] = select.value;
+				});
+
+				APP.battleControllerData.players.push(player);
+
+			});
+
+		},
+
 		selectMap: function(e) {
 
 			var $node = $(e.currentTarget || e),
 				mapName = $node.data('js-name');
 
-			APP.battleMap = APP.maps[mapName];
+			APP.battleControllerData.map = APP.maps[mapName];
 
 		},
 		getMapsArray: function() {

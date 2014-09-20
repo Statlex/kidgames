@@ -19,13 +19,13 @@
 
 			this.setStyles();
 
-			if (!APP.battleMap) {
+			if (!APP.battleControllerData || !APP.battleControllerData.map) {
 				history.back();
 				return;
 			}
 
 			// set map to this view
-			this.setMap(util.createCopy(APP.battleMap));
+			this.setMap(util.createCopy(APP.battleControllerData.map));
 			// show draft map
 			this.$el = $(this.tmpl.battle(this.map));
 			this.setFieldSize();
@@ -38,7 +38,7 @@
 			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
-			this.controller = new APP.BattleController();
+			this.controller = new APP.BattleController(APP.battleControllerData);
 			this.controller.setView(this);
 			this.controller.setMap(this.map);
 			this.controller.setMapForView();

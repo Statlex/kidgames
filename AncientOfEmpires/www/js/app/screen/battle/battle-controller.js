@@ -6,7 +6,7 @@
 
 	win.APP = win.APP || {};
 
-	function BattleController() {
+	function BattleController(data) {
 
 		this.unitCounter = 0;
 		this.units = {};
@@ -17,25 +17,9 @@
 		this.lifeAfterDeadLimit = 3;
 		this.unitAvailableActions = {};
 
-		////////////////
-		this.players = [
-			{
-				id: 1,
-				name: 'Vasya',
-				type: 'human',
-				gold: 700,
-				color: 'blue' // see unit color
-			},
-			{
-				id: 2,
-				name: 'Petya',
-				type: 'cpu',
-				gold: 1000,
-				color: 'red' // see unit color
-			}
-		];
-
 		this.activePlayer = null;
+
+		util.extend(this, data);
 
 	}
 

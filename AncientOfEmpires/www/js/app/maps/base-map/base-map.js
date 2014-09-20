@@ -37,6 +37,9 @@
 			farm: 20,
 			castle: 40
 		},
+		default: {
+			gold: 1000
+		},
 		getSquareByXY: function(map, x, y) {
 			return map.terrain['x' + x + 'y'+ y];
 		}
