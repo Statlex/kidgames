@@ -40,6 +40,7 @@
 	<script src="js/app/screen/battle/battle-controller.js" type="text/javascript"></script>
 	<script src="js/app/screen/store/store-view.js" type="text/javascript"></script>
 	<script src="js/app/screen/maps/maps-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/create-map/create-map.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -231,6 +232,51 @@
 			</div>
 			<% }); %>
 		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="create-map">
+
+	<div class="create-map js-create-map">
+
+
+		<div class="js-layers-wrapper layers-wrapper clear-fix">
+
+			<div class="units-layer js-units-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-unit-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+			<div class="buildings-layer js-buildings-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-building-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+			<div class="js-background-layer background-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+		</div>
+
+
 
 	</div>
 

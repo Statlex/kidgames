@@ -14,27 +14,41 @@
 
 		routes: {
 			'': 'title',
-			battle: 'battle',
-			store: 'store',
-			maps: 'maps'
+			'battle': 'battle',
+			'store': 'store',
+			'maps': 'maps',
+			'create-map': 'createMap'
 		},
 
 		title: function () {
+
 			APP.titleView = new APP.TitleView({ currentView: APP.titleView });
+
 		},
+
 		battle: function () {
 
 			$('.js-wrapper .js-status-bar').data('state', 'battle');
 			APP.removeExtraView();
 
 		},
+
 		store: function () {
 
 			$('.js-wrapper .js-status-bar').data('state', 'store');
 
 		},
+
 		maps: function() {
+
 			APP.mapsView = new APP.MapsView();
+
+		},
+
+		createMap: function() {
+
+			new APP.CreateMapView();
+
 		}
 
 	});
