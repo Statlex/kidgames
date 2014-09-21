@@ -726,7 +726,7 @@
 
 	Bro.prototype.css = function (css, value) {
 
-		if (typeof value === "string") { /// display , block
+		if (value !== undefined) { /// display , block -- z-index - 0
 			this.forEach(function (node) {
 				node.style[css] = value;
 			});

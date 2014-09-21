@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/terrain.css"/>
 	<link rel="stylesheet" href="css/building.css"/>
 	<link rel="stylesheet" href="css/store.css"/>
+	<link rel="stylesheet" href="css/create-map.css"/>
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
@@ -241,7 +242,6 @@
 
 	<div class="create-map js-create-map">
 
-
 		<div class="js-layers-wrapper layers-wrapper clear-fix">
 
 			<div class="units-layer js-units-layer">
@@ -268,11 +268,36 @@
 				<% util.fromTo(function(i){ %>
 				<div class="square-line">
 					<% util.fromTo(function(j){ %>
-					<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<div class="square js-map-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
 					<% }, size.width); %>
 				</div>
 				<% }, size.height); %>
 			</div>
+
+		</div>
+
+		<div class="buttons-wrapper">
+
+			<div class="js-create-map-from-html">create map</div>
+			<div class="js-eraser">erase</div>
+
+			<hr class="clear"/>
+
+			<% APP.map.buildingsTypes.forEach(function(building){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="buildings" data-layer-type="build" data-type="<%= building %>"><%= building %></div>
+			<% }); %>
+
+			<hr class="clear"/>
+
+			<% APP.units.info.unitList.forEach(function(unit){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="units" data-layer-type="unit" data-type="<%= unit %>"><%= unit %></div>
+			<% }); %>
+
+			<hr class="clear"/>
+
+			<% APP.map.terrainTypes.forEach(function(terrain){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="background" data-layer-type="terrain" data-type="<%= terrain %>"><%= terrain %></div>
+			<% }); %>
 
 		</div>
 

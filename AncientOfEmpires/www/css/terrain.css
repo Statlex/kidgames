@@ -3,7 +3,9 @@
 .terrain-hill,
 .terrain-road,
 .terrain-stone,
-.terrain-water {
+.terrain-water,
+.terrain-bridge-horizontal,
+.terrain-bridge-vertical {
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
@@ -30,4 +32,12 @@
 
 .terrain-water {
 	background-image: url(../img/terrain/water.png);
+}
+
+.terrain-bridge-horizontal {
+	background-image: url(../img/terrain/bridge-horizontal.png);
+}
+
+.terrain-bridge-vertical {
+	background-image: url(../img/terrain/bridge-vertical.png);
 }

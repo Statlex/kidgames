@@ -7,7 +7,7 @@
 	win.APP = win.APP || {};
 
 	APP.map = {
-		terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water'],
+		terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water', 'bridge-vertical', 'bridge-horizontal'],
 		buildingsTypes: ['farm', 'castle'],
 		forest: {
 			pathResistance: 1,
@@ -32,6 +32,14 @@
 		water: {
 			pathResistance: 3,
 			className: 'water'
+		},
+		bridgeVertical: {
+			pathResistance: 1,
+			className: 'bridge-vertical'
+		},
+		bridgeHorizontal: {
+			pathResistance: 1,
+			className: 'bridge-horizontal'
 		},
 		moneyFrom: {
 			farm: 20,
