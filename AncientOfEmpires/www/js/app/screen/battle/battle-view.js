@@ -15,17 +15,12 @@
 		},
 		squareSize: 36,
 		cssSelector: '.square, .unit, .build',
-		init: function () {
+		init: function (data) {
 
 			this.setStyles();
 
-			if (!APP.battleControllerData || !APP.battleControllerData.map) {
-				history.back();
-				return;
-			}
-
 			// set map to this view
-			this.setMap(util.createCopy(APP.battleControllerData.map));
+			this.setMap(util.createCopy(data.map));
 			// show draft map
 			this.$el = $(this.tmpl.battle(this.map));
 			this.setFieldSize();
@@ -38,7 +33,7 @@
 			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
-			this.controller = new APP.BattleController(APP.battleControllerData);
+			this.controller = new APP.BattleController(data);
 			this.controller.setView(this);
 			this.controller.setMap(this.map);
 			this.controller.setMapForView();

@@ -23,7 +23,6 @@
 
 		},
 		goToSelectMap: function() {
-
 			APP.router.navigate('maps', { trigger: true });
 		}
 

@@ -32,8 +32,6 @@
 			this.$wrapper.find('.js-store-wrapper').remove();
 			this.$wrapper.append(this.$el);
 
-			$('.js-wrapper .js-status-bar').data('state', 'store');
-
 		},
 		setBuyButtonState: function() {
 

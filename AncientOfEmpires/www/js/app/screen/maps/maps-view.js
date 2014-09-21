@@ -22,24 +22,24 @@
 			this.$wrapper.html('');
 			this.$wrapper.append(this.$el);
 
-			$('.js-wrapper .js-status-bar').data('state', 'store');
-
-			APP.battleControllerData = {};
-
 		},
 		goToBattle: function() {
 
-			this.createBattleControllerData();
+			var data = this.createBattleControllerData();
 
-			if (this.checkBattleControllerData()) {
+			console.log('map kostyl');
+			data.map = APP.maps.testMap;
+
+			if (this.checkBattleControllerData(data)) {
+				new APP.BattleView(data);
 				APP.router.navigate('battle', { trigger: true });
 			}
 
 		},
 
-		checkBattleControllerData: function() {
+		checkBattleControllerData: function(data) {
 
-			if (!APP.battleControllerData.map) {
+			if (!data.map){
 				return false;
 			}
 
@@ -51,7 +51,9 @@
 
 			var forms = this.$el.find('.js-player-form');
 
-			APP.battleControllerData.players = [];
+			var data = {
+				players: []
+			};
 
 			forms.forEach(function(form, index){
 				var $form = $(form),
@@ -60,14 +62,17 @@
 						gold: APP.map.default.gold
 					},
 					selects = $form.find('select');
+
 				selects.forEach(function(select){
 					var type = select.dataset.type;
 					player[type] = select.value;
 				});
 
-				APP.battleControllerData.players.push(player);
+				data.players.push(player);
 
 			});
+
+			return data;
 
 		},
 

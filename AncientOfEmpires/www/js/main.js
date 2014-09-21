@@ -27,16 +27,11 @@
 			$('.js-wrapper .js-status-bar').data('state', 'battle');
 			APP.removeExtraView();
 
-			if ( doc.querySelector('.js-battle-screen') ) {
-				return;
-			}
-
-			APP.battleView = new APP.BattleView();
-
 		},
 		store: function () {
-			// go here from battle view
-//			APP.storeView = new APP.StoreView();
+
+			$('.js-wrapper .js-status-bar').data('state', 'store');
+
 		},
 		maps: function() {
 			APP.mapsView = new APP.MapsView();
