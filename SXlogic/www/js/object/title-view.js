@@ -13,15 +13,10 @@
 		},
 		init: function() {
 
-			this.$el = $('<div class="title js-title"/>').html(this.tmpl.title({}));
-
-			this.$wrapper = $('.js-wrapper');
-
-			this.$wrapper.html('');
+			this.$el = $('<div class="title js-title view-wrapper js-view-wrapper"/>').html(this.tmpl.title({}));
+			this.baseShow();
 
 			this.setTheme();
-
-			this.$wrapper.append(this.$el);
 
 		},
 		showSection: function(e) {

@@ -13,6 +13,7 @@ html, body {
 	height: 100%;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	/*position: relative;*/
 }
 
 .header {
@@ -39,7 +40,7 @@ html, body {
 }
 
 .list-wrapper {
-	padding: 50px 0 100px;
+	padding: 48px 0 100px;
 }
 
 .back {
@@ -148,6 +149,7 @@ html, body {
 
 .button-progress.button-progress-to-0 {
 	width: 0;
+	display: none;
 }
 
 .navigation-buttons-wrapper {
@@ -346,3 +348,12 @@ html, body {
 	opacity: 0.8;
 }
 
+.view-wrapper {
+	opacity: 0;
+	-webkit-transition: opacity linear 350ms;
+	transition: opacity linear 350ms;
+}
+
+.view-wrapper.show {
+	opacity: 1;
+}

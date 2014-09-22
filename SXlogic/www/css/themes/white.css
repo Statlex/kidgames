@@ -153,6 +153,7 @@ body.white:after {
 	right: -1px;
 	border: 1px solid #39415f;
 	border-right: none;
+	display: none;
 }
 
 .white .navigation-button-wrapper-left,

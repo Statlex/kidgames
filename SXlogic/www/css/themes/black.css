@@ -155,6 +155,7 @@ body.black:after {
 	right: -1px;
 	border: 1px solid #666a75;
 	border-right: none;
+	display: none;
 }
 
 .black .navigation-button-wrapper-left,

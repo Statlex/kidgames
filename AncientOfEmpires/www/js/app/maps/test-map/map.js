@@ -20,12 +20,14 @@
 		},
 
 		units: [
+
 			{
 				type: 'Archer',
 				x: 0,
 				y: 0,
 				playerId: 1
 			},
+
 			{
 				type: 'Catapult',
 				x: 0,

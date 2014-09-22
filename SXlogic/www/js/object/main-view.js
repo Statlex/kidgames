@@ -10,6 +10,10 @@
 		templates: [],
 		tmpl: {},
 		events: {},
+		transition: {
+			time: 350,
+			smallStep: 10
+		},
 		initialize: function(data) {
 
 			data = data || {};
@@ -24,8 +28,7 @@
 
 			win.APP.viewState = this.templates;
 
-			var events = this.events,
-				key, event, selector, arr;
+			var key;
 
 			for (key in data) {
 				if (data.hasOwnProperty(key)) {
@@ -41,6 +44,17 @@
 				this.init(data);
 			}
 
+			setTimeout(this.bindEventListeners.bind(this), this.transition.time + this.transition.smallStep * 3);
+
+			this.setStyles();
+
+		},
+
+		bindViewEvents: function() {
+
+			var events = this.events,
+				key, event, selector, arr;
+
 			for (key in events) {
 				if (events.hasOwnProperty(key)) {
 					arr = key.replace(/,/gi, ' ').replace(/\s+/gi, ' ').match(/[\S]+/g);
@@ -50,10 +64,13 @@
 				}
 			}
 
+		},
+
+		bindEventListeners: function() {
+
+			this.bindViewEvents();
 			this.bindBackButton();
-
 			this.bindSettingsButton();
-
 			this.bindExternalLinks();
 
 			this.setStyles();
@@ -88,15 +105,47 @@
 			setTimeout(topPadding, 200);
 
 		},
+
 		bindSettingsButton: function() {
 			var btn = this.$el.find('.js-settings-button');
 			btn.on('click', function(){
 				APP.router.navigate('settings', {trigger: true});
 			});
+		},
+
+		baseShow: function() {
+
+			this.$el.css('opacity', '0');
+
+			this.$wrapper = $('.js-wrapper');
+			var $oldNodes = this.$wrapper.find('.js-view-wrapper');
+
+			$oldNodes.removeClass('show');
+			$oldNodes.css('opacity', '0');
+
+			setTimeout((function(){
+
+				$oldNodes.remove();
+				this.$wrapper.html('');
+
+				setTimeout((function(){
+
+					this.$wrapper.append(this.$el);
+
+					setTimeout((function(){
+
+						this.$el.addClass('show');
+						this.$el.css('opacity', '1');
+
+					}.bind(this)), this.transition.smallStep);
+
+				}.bind(this)), this.transition.smallStep);
+
+			}.bind(this)), this.transition.time);
+
+
+
 		}
-
-
-
 
 	});
 
