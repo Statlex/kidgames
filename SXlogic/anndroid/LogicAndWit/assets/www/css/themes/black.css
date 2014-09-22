@@ -131,14 +131,14 @@ body.black:after {
 	box-shadow: none;
 	background-image: none;
 	text-shadow: none;
-	font-size: 15px;
-	line-height: 15px;
+	font-size: 16px;
+	line-height: 16px;
 	font-family: Helvetica, Arial, sans-serif;
 	color: #f2f3f7;
 	border: 1px solid #666a75;
 	background-color: #44495c;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
 
 .black .button:active {
@@ -155,6 +155,7 @@ body.black:after {
 	right: -1px;
 	border: 1px solid #666a75;
 	border-right: none;
+	display: none;
 }
 
 .black .navigation-button-wrapper-left,
@@ -192,11 +193,13 @@ body.black:after {
 	border-right-color: #666a75;
 	border-right-width: 14px;
 	color: transparent;
+	font-size: 0;
 }
 
 .black .navigation-left:after {
 	border-right-color: #44495c;
 	left: 0;
+	font-size: 0;
 }
 
 .black .navigation-right:after,
@@ -212,6 +215,7 @@ body.black:after {
 	border-left-color: #666a75;
 	border-left-width: 14px;
 	color: transparent;
+	font-size: 0;
 }
 
 .black .navigation-right:after {

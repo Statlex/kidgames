@@ -17,15 +17,14 @@
 
 			info.set('currentSectionName', data.id);
 
-			this.$el = $('<div class="list js-list"/>').html(this.tmpl.list(win.sections[data.id]));
+			this.$el = $('<div class="list js-list view-wrapper js-view-wrapper"/>').html(this.tmpl.list(win.sections[data.id]));
 
-			this.$wrapper = $('.js-wrapper');
-
-			this.$wrapper.html('');
-
-			this.$wrapper.append(this.$el);
-
-			win.scrollTo(0, 0);
+//			this.$wrapper = $('.js-wrapper');
+//
+//			this.$wrapper.html('');
+//
+//			this.$wrapper.append(this.$el);
+			this.baseShow();
 
 		},
 		showQuestion: function(e) {

@@ -17,16 +17,10 @@
 		},
 		init: function() {
 
-			this.$el = $('<div class="settings js-settings"/>').html(this.tmpl.settings(this.tmplData));
-
-			this.$wrapper = $('.js-wrapper');
-
-			this.$wrapper.html('');
-
-			this.$wrapper.append(this.$el);
+			this.$el = $('<div class="settings js-settings view-wrapper js-view-wrapper"/>').html(this.tmpl.settings(this.tmplData));
+			this.baseShow();
 
 			this.$body = $(document.body);
-
 			this.selectActiveTheme();
 
 		},
