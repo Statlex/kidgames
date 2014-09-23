@@ -29,7 +29,7 @@
 				answer: 'Very large hands.'
 			},
 			{
-				title: 'Fwo men',
+				title: 'Two men',
 				text: 'Two men are facing each other alone in a large room. There is a clock on the wall. One man, who thinks of himself as a prophet, says to the other, "In five minutes you\'ll be stabbed in the back." The other man is very distraught and stares at the clock. After five minutes he is stabbed in the back. What happened?',
 				
 				answer: 'After five minutes the man turned around to make sure no one was there and his friend, the prophet, stabbed him in the back.'

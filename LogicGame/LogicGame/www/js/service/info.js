@@ -13,8 +13,7 @@
 		lang: '',
 		defaultLang: 'ru', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['ru'],
-//		availableLangs: ['ru', 'en'],
+		availableLangs: ['ru', 'en'],
 		saveItem: 'zaggadki',
 		isPhone: false,
 		isTouch: isTouch,
