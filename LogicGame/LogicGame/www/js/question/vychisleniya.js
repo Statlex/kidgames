@@ -7,6 +7,7 @@
 
 	win.sections.vychisleniya = {
 		name: 'Вычисления',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Обезьяны и бананы',

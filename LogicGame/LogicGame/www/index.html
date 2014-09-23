@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>game</title>
+	<title>Logic and Wit</title>
 
 	<!-- mobile device -->
 	<meta charset="UTF-8" />
@@ -25,6 +25,7 @@
 	<script src="js/lang/ru.js" type="text/javascript"></script>
 
 	<!-- libs -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
 	<script src="js/lib/bro.js" type="text/javascript"></script>
 	<script src="js/lib/underscore.js" type="text/javascript"></script>
 	<script src="js/lib/backbone.js" type="text/javascript"></script>
@@ -44,7 +45,7 @@
 	<script src="js/object/settings-view.js" type="text/javascript"></script>
 	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
 
-	<!-- sections -->
+	<!-- ru sections -->
 	<script src="js/question/algorithms.js" type="text/javascript"></script>
 	<script src="js/question/sectionZagadkiSPodvohom.js" type="text/javascript"></script>
 	<script src="js/question/neStandartMysl.js" type="text/javascript"></script>
@@ -60,6 +61,26 @@
 	<script src="js/question/vychisleniya.js" type="text/javascript"></script>
 	<script src="js/question/kombinatorika.js" type="text/javascript"></script>
 	<script src="js/question/logikaIRassuzhdeniya.js" type="text/javascript"></script>
+	<script src="js/question/dirichletPrinciple.js" type="text/javascript"></script>
+	<script src="js/question/compliance.js" type="text/javascript"></script>
+	<script src="js/question/numericalPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/frivolousPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/physicalProblems.js" type="text/javascript"></script>
+	<script src="js/question/logicalTricksAndParadoxes.js" type="text/javascript"></script>
+
+	<!-- en sections -->
+	<script src="js/question/detectiveTeasers.js" type="text/javascript"></script>
+	<script src="js/question/logicPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/matchstickPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/mathematics.js" type="text/javascript"></script>
+	<script src="js/question/whatAmIQuestions.js" type="text/javascript"></script>
+	<script src="js/question/amazonInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/googleInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/microsoftInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/yahooInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/mysteryRiddles.js" type="text/javascript"></script>
+	<script src="js/question/pictureRiddles.js" type="text/javascript"></script>
+	<script src="js/question/funnyTeasers.js" type="text/javascript"></script>
 
 	<!-- main -->
 	<script src="js/main.js" type="text/javascript"></script>
@@ -84,18 +105,20 @@
 
 <script type="text/x-template" data-name="title">
 
-	<h1 class="header">Логика и Смекалка</h1>
+	<h1 class="header"><%= lang.appName %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<div class="settings-button js-settings-button">&nbsp;</div>
 
 	<div class="list-wrapper">
 
 		<% for (var key in sections) { %>
 
+			<% if (sections[key].lang === info.lang) { %>
 			<div class="js-go-to-section list-item" data-section-name="<%= key %>">
 				<span class="section-progress"><%= util.getProgress(key) %></span>
 				<%= sections[key].name %>
 			</div>
+			<% }; %>
 
 		<% }; %>
 
@@ -103,18 +126,24 @@
 
 	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
 
+	<% if ( !info.isIE ) { %>
+		<% if ( !info.isAdsFree ) { %>
+			<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon">&nbsp;</div></div>
+		<% }; %>
+	<% }; %>
+
+
 </script>
 
 <script type="text/x-template" data-name="list">
 
 	<h1 class="header"><%= name %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
 
 	<div class="list-wrapper">
 
 		<% questions.forEach(function(question, index){ %>
-
 
 			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
 
@@ -125,7 +154,6 @@
 				<div class="js-question-item list-item" data-number="<%= index %>"><%= question.title %></div>
 
 			<% }; %>
-
 
 		<% }); %>
 
@@ -140,18 +168,18 @@
 
 	<h1 class="header"><%= title %></h1>
 
-	<div class="settings-button js-settings-button"></div>
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
 
 	<div class="list-wrapper">
 
 		<%= templateMaster.createText(text) %>
 
 		<% if (obj.hint) { %>
-			<p class="question-paragraph button-wrapper"><span class="js-hint-button button">подсказка</span></p>
+			<p class="question-paragraph button-wrapper"><span class="js-hint-button button"><%= lang.hint %></span></p>
 			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
 		<% }; %>
 
-		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress"></span>ответ</span></p>
+		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress">&nbsp;</span><%= lang.answer %></span></p>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 	</div>
@@ -208,13 +236,13 @@
 
 <script type="text/x-template" data-name="settings">
 
-	<h1 class="header">Настройки</h1>
+	<h1 class="header"><%= lang.settings %></h1>
 
 	<div class="list-wrapper">
 
 		<div class="data-wrapper">
 
-			<div class="list-item">Тема</div>
+			<div class="list-item"><%= lang.theme %></div>
 
 			<div class="theme-items-list-wrapper clear-fix">
 
@@ -231,31 +259,36 @@
 
 		</div>
 
-		<div class="data-wrapper">
-
-			<div class="list-item js-rate-us-button">Оценить приложение</div>
-
-		</div>
-
-
-
-<!--
-		<div class="data-wrapper">
-
-			<div class="list-item">Шрифт</div>
-
-			<div> - </div>
-			<div> A </div>
-			<div> + </div>
-
-		</div>
 
 		<div class="data-wrapper">
 
-			<div class="list-item">Сброс настроек</div>
+			<div class="list-item capitalize"><%= langs.en.language %> / <%= langs.ru.language %></div>
+
+			<div class="theme-items-list-wrapper">
+
+				<img data-lang="en" class="flag-block js-flag-block<%= info.lang === 'en' ? ' active' : '' %>" src="i/flag-en-us.svg" alt=""/>
+
+				<img data-lang="ru" class="flag-block js-flag-block<%= info.lang === 'ru' ? ' active' : '' %>" src="i/flag-ru.svg" alt=""/>
+
+			</div>
 
 		</div>
--->
+
+		<% if ( !info.isIE ) { %>
+		<div class="data-wrapper">
+			<div class="list-item js-rate-us-button"><span class="underline"><%= lang.rateUs.rateUs %></span></div>
+		</div>
+
+		<div class="data-wrapper">
+			<% if ( !info.isAdsFree ) { %>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
+					<span class="underline"><%= lang.noAds %></span>
+				</div>
+			<% } else { %>
+				<div class="list-item"><%= lang.thanksForBuyProVersion %>.</div>
+			<% }; %>
+		</div>
+		<% }; %>
 
 	</div>
 

@@ -7,6 +7,7 @@
 
 	win.sections.zabavhyeGolovolomki = {
 		name: 'Забавные головоломки',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Лихие казаки',

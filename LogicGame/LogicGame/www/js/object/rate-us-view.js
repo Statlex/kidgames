@@ -17,7 +17,6 @@
 			'blur .js-rate-us-send-textarea': 'onBlurTextarea',
 			'focus .js-rate-us-send-textarea': 'onFocusTextarea'
 		},
-		toMarketLink: info.isAndroid ? 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit' : 'https://itunes.apple.com/us/app/logika-i-smekalka/id908979726?ls=1&mt=8',
 		parent: '.js-wrapper',
 		init: function (data) {
 
@@ -74,7 +73,17 @@
 		},
 		toMarket: function() {
 			this.remove();
-			window.open(this.toMarketLink);
+
+			var url = '';
+
+			if (info.isAdsFree) {
+				url = info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore;
+			} else {
+				url = info.isAndroid ? info.adsNonFreeLinks.googlePlay : info.adsNonFreeLinks.appStore;
+			}
+
+			win.open(url);
+
 		},
 		sendFeedback: function(e) {
 			var $textArea = this.$el.find('.js-rate-us-send-textarea'),

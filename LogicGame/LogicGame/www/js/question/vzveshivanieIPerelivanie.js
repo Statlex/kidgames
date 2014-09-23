@@ -7,6 +7,7 @@
 
 	win.sections.vzveshivanieIPerelivanie = {
 		name: 'Задачи на взвешивание и переливание',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Где фальшивые монеты?',

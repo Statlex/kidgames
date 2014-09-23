@@ -7,6 +7,7 @@
 
 	win.sections.veroyatnosty = {
 		name: 'Вероятности',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Триэль',

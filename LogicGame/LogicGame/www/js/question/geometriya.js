@@ -7,6 +7,7 @@
 
 	win.sections.geometriya = {
 		name: 'Геометрия',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Лестница вокруг башни',
