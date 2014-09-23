@@ -201,8 +201,8 @@ a {
 
 .list-app-item {
 	float: left;
-	width: 12.5%;
-	opacity: 0.6;
+	width: 11.111%;
+	opacity: 0.4;
 	cursor: pointer;
 
 	-webkit-transition: opacity linear 0.3s;
@@ -372,6 +372,18 @@ a {
 
 	.logo-link {
 		display: none;
+	}
+
+	.all-app-list-wrapper {
+		text-align: center;
+		font-size: 0;
+		line-height: 0;
+	}
+
+	.list-app-item {
+		display: inline-block;
+		float: none;
+		width: 22.5%;
 	}
 
 }

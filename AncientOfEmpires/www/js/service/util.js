@@ -1,0 +1,225 @@
+(function (win, doc, docElem) {
+
+	"use strict";
+	/*global window, document */
+	/*global util, APP */
+
+	win.util = {
+		extend: function (main, plused) {
+			var key;
+			for (key in plused) {
+				if (plused.hasOwnProperty(key)) {
+					main[key] = plused[key];
+				}
+			}
+
+			return main;
+		},
+		capitalise: function(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+		},
+		findBy: function (list, key, value) {
+
+			var result = null;
+
+			list.every(function (item, index) {
+
+				if (item[key] === value) {
+					result = {
+						item: item,
+						index: index
+					};
+					return false; // stop loop
+				}
+
+				return true; // continue loop
+
+			});
+
+			return result;
+
+		},
+		createCopy: function (obj) {
+			return JSON.parse(JSON.stringify(obj));
+		},
+		isEqualsObject: function (obj1, obj2) {
+			return JSON.stringify(obj1) === JSON.stringify(obj2);
+		},
+		fromTo: function (func, start, end) {
+			if (end === undefined) {
+				end = start;
+				start = 0;
+			}
+
+			var i;
+			for (i = start; i < end; i += 1) {
+				func(i);
+			}
+
+		},
+		has: function(arr, item) {
+			return arr.indexOf(item) !== -1;
+		}
+
+	};
+
+	function PathFinder(data) {
+		util.extend(this, data); // get from data - map, x, y, mov, relativeTypeSpace;
+		this.availablePath = [];
+		this.donePathPoints = [];
+	}
+
+	util.PathFinder = PathFinder;
+
+	function PathFinderPoint(data) {
+		util.extend(this, data);
+		this.run();
+	}
+
+	PathFinderPoint.prototype = {
+
+		run: function () {
+
+			var x = this.x,
+				y = this.y;
+
+			// this is in donePoints
+			if (this.parent.isInDonePoints(x, y, this.mov)) {
+				return;
+			}
+
+			this.parent.addToDonePoints(x, y, this.mov);
+
+			// add current coordinates to parent
+			this.parent.addCoordinatesToAvailablePath({x: x, y: y});
+
+			this.tryGoToSquare({x: x + 1, y: y});
+			this.tryGoToSquare({x: x - 1, y: y});
+			this.tryGoToSquare({x: x, y: y + 1});
+			this.tryGoToSquare({x: x, y: y - 1});
+
+		},
+
+		tryGoToSquare: function (coordinates) {
+
+			var x = coordinates.x,
+				y = coordinates.y,
+				square,
+				pathResistance = 1,
+				point,
+				unitType = this.unit.runType;
+
+			if (this.parent.relativeTypeSpace) {
+				// get square bu coordinates
+				square = APP.map.getSquareByXY(this.parent.map, x, y);
+				if (square) {
+
+					switch (unitType) {
+						case 'fly':
+							pathResistance = 1;
+							break;
+
+						case 'flow':
+
+							if (square === 'water') {
+								pathResistance = 0.5;
+							}
+
+							break;
+						default :
+							pathResistance = APP.map[square].pathResistance;
+
+					}
+
+
+
+				}
+			}
+
+			if (this.mov >= pathResistance) {
+				point = new PathFinderPoint({
+					parent: this.parent,
+					mov: this.mov - pathResistance,
+					x: x,
+					y: y,
+					unit: this.unit
+				});
+
+			}
+
+
+		}
+
+	};
+
+	PathFinder.prototype = {
+
+		getAvailablePath: function (data) {
+
+			var point = new PathFinderPoint({
+				parent: this,
+				mov: this.mov,
+				x: this.x,
+				y: this.y,
+				unit: data.unit
+			});
+
+			return this.availablePath;
+
+		},
+
+		addCoordinatesToAvailablePath: function (data) {
+
+			var isInPoints = false,
+				x = data.x,
+				y = data.y;
+
+			this.availablePath.every(function (point) {
+
+				if (point.x === x && point.y === y) {
+					isInPoints = true;
+					return false;
+				}
+
+				return true;
+
+			});
+
+			if (!isInPoints) {
+				this.availablePath.push(data);
+			}
+
+
+		},
+
+		isInDonePoints: function (x, y, mov) {
+
+			var isInDonePoints = false;
+
+			this.donePathPoints.every(function (point) {
+
+				if (point.x === x && point.y === y && mov <= point.mov) {
+					isInDonePoints = true;
+					return false;
+				}
+
+				return true;
+
+			});
+
+			return isInDonePoints;
+
+		},
+
+		addToDonePoints: function (x, y, mov) {
+
+			if (this.isInDonePoints(x, y, mov)) {
+				return;
+			}
+
+			this.donePathPoints.push({ x: x, y: y, mov: mov });
+		}
+	};
+
+
+}(window, document, document.documentElement));

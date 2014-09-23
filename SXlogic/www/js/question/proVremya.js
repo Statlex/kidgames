@@ -7,6 +7,7 @@
 
 	win.sections.proVremya = {
 		name: 'Загадки про время',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Когда наступит этот день?',

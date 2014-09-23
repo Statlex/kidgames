@@ -7,6 +7,7 @@
 
 	win.sections.zadachiSoSpichkami = {
 		name: 'Задачи со спичками',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Верное равенство',

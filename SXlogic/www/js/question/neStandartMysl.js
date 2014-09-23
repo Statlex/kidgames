@@ -7,6 +7,7 @@
 
 	win.sections.neStandartMysl = {
 		name: 'Задачи для нестандартно мыслящих',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Средство от бессонницы',

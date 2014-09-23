@@ -7,6 +7,7 @@
 
 	win.sections.zadachiPoKartinkam = {
 		name: 'Задачи по картинкам',
+		lang: 'ru',
 		questions: [
 			{
 				title: 'Окружности',

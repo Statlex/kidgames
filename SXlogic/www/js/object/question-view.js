@@ -15,19 +15,41 @@
 		},
 //		hideAnswerButtonPeriod: 15 * 1000, // see css transition
 		forceDraw: true,
+//		init: function() {
+//
+//			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
+//
+//				var question = win.sections[info.currentSectionName].questions[info.currentQuestionNumber];
+//
+//				this.$el = $('<div class="question js-question view-wrapper js-view-wrapper"/>').html(this.tmpl.question(question));
+//
+//				this.$wrapper = $('.js-wrapper');
+//
+//				this.$wrapper.html('');
+//
+//				this.$wrapper.append(this.$el);
+//
+//			} else {
+//
+//				Backbone.history.history.back();
+//
+//			}
+//
+//			win.scrollTo(0, 0);
+//
+//			this.$el.find('.button-progress').addClass('button-progress-to-0');
+//
+//		},
+
 		init: function() {
+
 
 			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
 
 				var question = win.sections[info.currentSectionName].questions[info.currentQuestionNumber];
 
-				this.$el = $('<div class="question js-question"/>').html(this.tmpl.question(question));
-
-				this.$wrapper = $('.js-wrapper');
-
-				this.$wrapper.html('');
-
-				this.$wrapper.append(this.$el);
+				this.$el = $('<div class="question js-question view-wrapper js-view-wrapper"/>').html(this.tmpl.question(question));
+				this.baseShow();
 
 			} else {
 
@@ -35,9 +57,7 @@
 
 			}
 
-			win.scrollTo(0, 0);
-
-			this.$el.find('.button-progress').addClass('button-progress-to-0');
+//			this.$el.find('.button-progress').addClass('button-progress-to-0');
 
 		},
 
@@ -66,13 +86,13 @@
 		},
 		showAnswer: function() {
 
-			var $progress = this.$el.find('.button-progress'),
-				progress = !!$progress.prop('clientWidth');
+//			var $progress = this.$el.find('.button-progress'),
+//				progress = !!$progress.prop('clientWidth');
 
-			if (progress) {
-				win.alert('Слишком рано, подумайте ещё.');
-				return;
-			}
+//			if (progress) {
+//				win.alert('Слишком рано, подумайте ещё.');
+//				return;
+//			}
 
 			$('.js-answer-text').removeClass('hidden');
 

@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global bingo, $, info, Backbone, APP */
+	/*global bingo, $, info, Backbone, APP, lang */
 
 	win.APP = win.APP || {};
 
@@ -12,20 +12,15 @@
 		templates: ['settings'],
 		events: {
 			'click .js-theme-item-wrapper': 'setTheme',
-			'click .js-rate-us-button': 'showRateUsForm'
+			'click .js-rate-us-button': 'showRateUsForm',
+			'click .js-flag-block': 'setLang'
 		},
 		init: function() {
 
-			this.$el = $('<div class="settings js-settings"/>').html(this.tmpl.settings(this.tmplData));
-
-			this.$wrapper = $('.js-wrapper');
-
-			this.$wrapper.html('');
-
-			this.$wrapper.append(this.$el);
+			this.$el = $('<div class="settings js-settings view-wrapper js-view-wrapper"/>').html(this.tmpl.settings(this.tmplData));
+			this.baseShow();
 
 			this.$body = $(document.body);
-
 			this.selectActiveTheme();
 
 		},
@@ -63,6 +58,18 @@
 		showRateUsForm: function() {
 
 			APP.rateUsView = new APP.RateUsView();
+
+		},
+
+		setLang: function(e) {
+			var $flag = $(e.currentTarget),
+				newLang = $flag.data('lang');
+
+			info.set('lang', newLang, true);
+
+			lang.push(newLang);
+
+			APP.settingsView = new win.APP.SettingsView({forceDraw: true});
 
 		},
 
