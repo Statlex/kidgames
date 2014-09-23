@@ -24,6 +24,7 @@
 .layers-wrapper {
 	position: relative;
 	background-color: #fff;
+	overflow: hidden;
 }
 
 .battle-screen {

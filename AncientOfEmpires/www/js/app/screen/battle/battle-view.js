@@ -175,8 +175,11 @@
 			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');
 		},
 		redrawHealthUnit: function (unit) {
-			var $unit = this.getUnitById(unit.id);
-			$unit.find('.js-health').html(unit.health);
+			var $unit = this.getUnitById(unit.id),
+				health = Math.max(Math.round(unit.health), 1);
+
+			$unit.find('.js-health').html(health);
+
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);

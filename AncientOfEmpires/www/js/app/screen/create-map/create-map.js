@@ -11,13 +11,14 @@
 		events: {
 
 			'click .js-set-active-paint': 'setActivePaint',
+			'dblclick .js-set-active-paint': 'fillByActivePaint',
 			'click .js-create-map-from-html': 'createMap',
 			'click .js-eraser': 'eraserOn'
 
 		},
 		size: {
-			width: 20,
-			height: 20
+			width: 10,
+			height: 10
 		},
 		init: function () {
 
@@ -71,6 +72,13 @@
 
 			$layers.css('z-index', 0);
 			$layer.css('z-index', 1);
+
+			this.activeLayer = $layer;
+
+		},
+		fillByActivePaint: function(e) {
+
+			this.activeLayer.find('.square').on('click');
 
 		},
 		createMap: function() {
@@ -140,7 +148,9 @@
 
 			});
 
-			console.log(JSON.stringify(map));
+
+
+			console.log(JSON.stringify(map).replace(/\"(\d+ )\"/gi, '$1'));
 
 			return map;
 

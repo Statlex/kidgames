@@ -14,6 +14,7 @@
 		this.cost = 100;
 
 		this.health = 10;
+		this.defaultHealth = 10;
 		this.attackRange = 1;
 
 		this.runType = 'walk';
@@ -45,8 +46,6 @@
 			util.extend(this.defaultList, unitInfo.unitDefaultList);
 			util.extend(this, unitInfo);
 			util.extend(this, data);
-
-			//debugger;
 
 			// create full action list
 			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
@@ -165,8 +164,28 @@
 
 		},
 
-		attackTo: function(enemyUnit) {
-			enemyUnit.health = enemyUnit.health - this.atk + enemyUnit.def;
+		attackTo: function(enemyUnit, controller) {
+
+			if (this.health <= 0) {
+				this.setEndTurn();
+				return;
+			}
+
+			var defByBuilding = controller.getDefByBuilding(enemyUnit),
+				defByTerrain = controller.getDefByTerrain(enemyUnit),
+				unitQ = (this.health / this.defaultHealth),
+				attackValue = this.atk;
+
+			if (defByBuilding > 0) {
+				defByTerrain = 0
+			}
+
+			attackValue = (attackValue - (enemyUnit.def + defByBuilding + defByTerrain)) * unitQ;
+
+			attackValue = Math.max(attackValue, unitQ);
+
+			enemyUnit.health = enemyUnit.health - attackValue;
+
 			this.setEndTurn();
 		},
 		setDefaultProperties: function() {

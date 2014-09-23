@@ -291,7 +291,8 @@
 		},
 
 		attackUnit: function(active, passive) {
-			active.attackTo(passive);
+			active.attackTo(passive, this);
+			passive.attackTo(active, this);
 
 			if (passive.health <= 0) {
 				this.killUnit(passive);
@@ -456,6 +457,40 @@
 			}
 
 			return false;
+
+		},
+
+		getDefByBuilding: function(unit) {
+
+			var unitX = unit.x,
+				unitY = unit.y,
+				building = this.buildings['x' + unitX + 'y' + unitY]
+
+			if (!building) {
+				return 0;
+			}
+
+			return APP.map.defence[building.type];
+
+		},
+
+		getDefByTerrain: function(unit) {
+
+			var unitX = unit.x,
+				unitY = unit.y,
+				terrain = this.map.terrain['x' + unitX + 'y' + unitY]
+
+			if (!terrain) {
+				return 0;
+			}
+
+			// lizard only
+			if (unit.runType === 'flow' && terrain === 'water') {
+				return APP.map[terrain].specialDefence;
+			}
+
+			return APP.map[terrain].defence;
+
 
 		}
 

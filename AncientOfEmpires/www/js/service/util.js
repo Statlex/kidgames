@@ -122,7 +122,7 @@
 						case 'flow':
 
 							if (square === 'water') {
-								pathResistance = 0.5;
+								pathResistance = APP.map.water.specialPathResistance;
 							}
 
 							break;
