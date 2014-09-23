@@ -11,11 +11,11 @@
 
 		appName: 'Logic and Wit',
 		hint: 'hint',
-		answer: 'ответ',
+		answer: 'answer',
 		settings: 'Settings',
 		theme: 'Theme',
 		noAds: 'No Ads Version',
-		thanksForBuyProVersion: 'Спасибо что приобрели платную версию',
+		thanksForBuyProVersion: 'Thank you purchased the paid version',
 
 		// <-- rate us
 		rateUs: {
@@ -30,8 +30,8 @@
 			notNow: 'Not now'
 		},
 
-		mailSendingIsSuccessful: 'Спасибо за Ваш отзыв!',
-		mailSendingIsFailed: 'Письмо НЕ было отпралено,\nпроверьте соединение с интернетом.'
+		mailSendingIsSuccessful: 'Thank you for your review!',
+		mailSendingIsFailed: 'The letter was not sent, check your \ninternet connection.'
 		// /--> rate us
 	};
 
