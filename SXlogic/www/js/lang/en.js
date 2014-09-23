@@ -15,13 +15,13 @@
 		settings: 'Settings',
 		theme: 'Theme',
 		noAds: 'No Ads Version',
-		thanksForBuyProVersion: 'Thank you purchased the paid version',
+		thanksForBuyProVersion: 'Thank you for purchasing paid version',
 
 		// <-- rate us
 		rateUs: {
 			rateUs: 'Rate Us',
 			pleaseRateUs: 'Please, Rate Us :)',
-			stars: ['none', 'Hated it', 'Disliked it', 'it\'s OK', 'Liked it', 'Loved it'],
+			stars: ['none', 'Hate it', 'Dislike it', 'it\'s OK', 'Like it', 'Love it'],
 			stillNotRated: 'Still not rated',
 			writeFeedBackHere: 'Write feedback...',
 			sendFeedback: 'Send feedback to developers',
