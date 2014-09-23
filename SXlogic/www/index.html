@@ -128,7 +128,11 @@
 
 	<% if ( !info.isIE ) { %>
 		<% if ( !info.isAdsFree ) { %>
-			<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back"><div class="ads-free-icon">&nbsp;</div></div>
+			<% if ( info.isAndroid ) { %>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back">
+					<div class="ads-free-icon">&nbsp;</div>
+				</div>
+			<% }; %>
 		<% }; %>
 	<% }; %>
 
@@ -281,9 +285,11 @@
 
 		<div class="data-wrapper">
 			<% if ( !info.isAdsFree ) { %>
+				<% if ( info.isAndroid ) { %>
 				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
 					<span class="underline"><%= lang.noAds %></span>
 				</div>
+				<% }; %>
 			<% } else { %>
 				<div class="list-item"><%= lang.thanksForBuyProVersion %>.</div>
 			<% }; %>
