@@ -121,7 +121,7 @@
 					y: NaN
 				}
 			},
-			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe'] : ['hold', 'swipe'],
+			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'] : ['hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'],
 			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
@@ -131,7 +131,7 @@
 			},
 			isActive: false,
 			isClick: function () {
-				return Math.max(this.maxDistance.x, this.maxDistance.y) < 5;
+				return Math.max(this.maxDistance.x, this.maxDistance.y) < 10;
 			},
 			dispatchEvent: function (node) {
 
@@ -160,6 +160,12 @@
 					evt.direction = direction;
 					evt.initEvent('$swipe$', true, true);      // todo: future use evt = new Event(type);
 					node.dispatchEvent(evt);
+
+					evt = doc.createEvent('Event');   // todo: future use evt = new Event(type);
+					evt.direction = direction;
+					evt.initEvent('$swipe-' + direction + '$', true, true);      // todo: future use evt = new Event(type);
+					node.dispatchEvent(evt);
+
 				}
 				// detect swipe - end
 
@@ -535,7 +541,7 @@
 		var args = this.toArray(arguments);
 		this.forEach(function (node) {
 			args.forEach(function (className) { // this workaround only for old android and io6
-				node.classList.add(className);
+				return className && node.classList.add(className);
 			});
 			//node.classList.add.apply(node.classList, args); // todo: uncommet this in future
 		});
