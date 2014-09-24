@@ -242,7 +242,11 @@
 
 		showPlayerInfo: function(player) {
 			player = player || this.controller.activePlayer;
+			this.$statusBar.find('.js-status-bar-color')
+				.html(player.color)
+				.css('color', player.color);
 			this.$statusBar.find('.status-bar-gold').html(player.gold);
+
 		},
 
 		showPlaceInfo: function(data) {
