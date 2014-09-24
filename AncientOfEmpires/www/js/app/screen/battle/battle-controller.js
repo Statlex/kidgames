@@ -292,14 +292,20 @@
 
 		attackUnit: function(active, passive) {
 			active.attackTo(passive, this);
-			passive.attackTo(active, this);
 
 			if (passive.health <= 0) {
 				this.killUnit(passive);
-			}
+			} else {
+				// detect - can passive attack active
+				if (passive.canAttackUnit(active, this)) {
 
-			if (active.health <= 0) {
-				this.killUnit(active);
+					passive.attackTo(active, this);
+
+					if (active.health <= 0) {
+						this.killUnit(active);
+					}
+
+				}
 			}
 
 			this.view.redrawHealthUnit(active);

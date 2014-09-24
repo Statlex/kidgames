@@ -213,6 +213,17 @@
 
 			this.setEndTurn();
 
+		},
+		canAttackUnit: function(enemy, controller) {
+			var units = this.findUnitsUnderAttack(controller.units);
+
+			// if no any units under attack - return false
+			if (!units){
+				return false;
+			}
+
+			// if has units under attack - search enemy in available units
+			return units.indexOf(enemy) !== -1;
 		}
 
 	};
