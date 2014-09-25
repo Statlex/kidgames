@@ -15,6 +15,10 @@
 	background-image: url(../img/unit/archer/sprite.png);
 }
 
+.unit-bones {
+	background-image: url(../img/unit/bones/sprite.png);
+}
+
 .unit-catapult {
 	background-image: url(../img/unit/catapult/sprite.png);
 }

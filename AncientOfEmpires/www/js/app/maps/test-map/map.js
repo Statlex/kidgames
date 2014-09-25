@@ -29,6 +29,13 @@
 			},
 
 			{
+				type: 'Bones',
+				x: 3,
+				y: 3,
+				playerId: 1
+			},
+
+			{
 				type: 'Catapult',
 				x: 0,
 				y: 1,

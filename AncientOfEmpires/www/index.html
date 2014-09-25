@@ -55,6 +55,7 @@
 	<script src="js/app/unit/units-info.js" type="text/javascript"></script>
 	<script src="js/app/unit/base-unit/base-unit.js" type="text/javascript"></script>
 	<script src="js/app/unit/archer/archer.js" type="text/javascript"></script>
+	<script src="js/app/unit/bones/bones.js" type="text/javascript"></script>
 	<script src="js/app/unit/catapult/catapult.js" type="text/javascript"></script>
 	<script src="js/app/unit/golem/golem.js" type="text/javascript"></script>
 	<script src="js/app/unit/knight/knight.js" type="text/javascript"></script>
@@ -226,6 +227,11 @@
 
 		<div class="store-units-wrapper">
 			<% unitInfo.unitList.forEach(function(name){ %>
+
+			<% if (unitInfo[name].notInStore) { %>
+				<% return; %>
+			<% }; %>
+
 			<div class="unit-card js-unit-card" data-name="<%= name %>">
 				<%= unitInfo[name].unitName %>
 				<br>atkIcon:<%= unitInfo[name].atk %>

@@ -8,7 +8,7 @@
 	APP.units = APP.units || {};
 
 	APP.units.info = {
-		unitList: ['archer', 'catapult', 'golem', 'knight', 'lizard', 'soldier', 'spider', 'wisp', 'wizard', 'wyvern'],
+		unitList: ['archer', 'bones', 'catapult', 'golem', 'knight', 'lizard', 'soldier', 'spider', 'wisp', 'wizard', 'wyvern'],
 		archer: {
 			unitName: lang.units.archer,
 			atk: 5,
@@ -16,6 +16,15 @@
 			mov: 4,
 			cost: 250,
 			attackRange: 2
+		},
+		bones: {
+			unitName: lang.units.bones,
+			atk: 4,
+			def: 0,
+			mov: 4,
+			cost: 0,
+			attackRange: 1,
+			notInStore: true
 		},
 		catapult: {
 			unitName: lang.units.catapult,
