@@ -143,7 +143,6 @@
 
 						}
 
-
 						break;
 
 					case 'attack':
@@ -157,9 +156,7 @@
 
 							this.view.showUnitsUnderAttack(availableAttack);
 
-
 						}
-
 
 						break;
 
@@ -181,9 +178,6 @@
 						}
 
 						break;
-
-
-
 
 				}
 
@@ -375,6 +369,63 @@
 			this.setActivePlayer();
 			this.setStatusBarForActivePlayer();
 			this.updateRIPs();
+			this.updateUnitsOnBuilding();
+		},
+		updateUnitsOnBuilding: function() {
+			var player = this.activePlayer,
+				playerId = player.id,
+				units = this.units,
+				buildings = this.buildings,
+				key,
+				that = this;;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+
+					(function (unit) {
+
+						// filter only for active unit
+						if (unit.playerId !== playerId) {
+							return;
+						}
+
+						var x = unit.x,
+							y = unit.y,
+							building = buildings['x' + x + 'y' + y],
+							addedHealth,
+							endHealth;
+
+						// detect building
+						if (!building) {
+							return;
+						}
+
+						// detect only building for active player
+						if (building.playerId !== playerId) {
+							return;
+						}
+
+						addedHealth = APP.map.healthFrom[building.type];
+						endHealth = addedHealth + unit.health;
+
+
+						if ( endHealth > unit.defaultHealth ) {
+							addedHealth = unit.defaultHealth - unit.health;
+							unit.health = unit.defaultHealth;
+						} else {
+							unit.health += addedHealth;
+						}
+						that.view.addHealthToUnit({
+							endHealth: unit.health,
+							addedHealth: addedHealth,
+							unit: unit
+						});
+
+					}(units[key]));
+
+				}
+			}
+
 		},
 		setStatusBarForActivePlayer: function() {
 			this.setMoneyForActivePlayer();

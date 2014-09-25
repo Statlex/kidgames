@@ -55,6 +55,10 @@
 			farm: 20,
 			castle: 40
 		},
+		healthFrom: {
+			farm: 2,
+			castle: 3
+		},
 		default: {
 			gold: 1000
 		},

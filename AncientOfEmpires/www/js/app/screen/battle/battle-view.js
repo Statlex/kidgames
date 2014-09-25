@@ -294,6 +294,15 @@
 		},
 		setStoreButtonState: function(isEnable) {
 			this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
+		},
+		addHealthToUnit: function(data) {
+			var unit = data.unit,
+				endHealth = data.endHealth,
+				addedHealth = data.addedHealth,
+				$unit = this.getUnitById(unit.id);
+
+			this.redrawHealthUnit(unit);
+
 		}
 
 	});
