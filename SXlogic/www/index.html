@@ -183,15 +183,27 @@
 			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
 		<% }; %>
 
-		<p class="question-paragraph button-wrapper"><span class="js-answer-button button"><span class="button-progress">&nbsp;</span><%= lang.answer %></span></p>
+		<div class="question-paragraph button-wrapper">
+
+			<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
+			<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
+
+			<span class="js-answer-button button">
+				<!--<span class="button-progress">&nbsp;</span>-->
+				<%= lang.answer %>
+			</span>
+
+		</div>
 		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
 
 	</div>
 
+<!--
 	<div class="navigation-buttons-wrapper">
 		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
 		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
 	</div>
+-->
 
 	<div class="js-back back"><div class="back-icon"></div></div>
 
