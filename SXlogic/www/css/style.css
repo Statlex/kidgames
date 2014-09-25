@@ -350,8 +350,8 @@ html, body {
 
 .view-wrapper {
 	opacity: 0;
-	-webkit-transition: opacity linear 350ms;
-	transition: opacity linear 350ms;
+	-webkit-transition: opacity linear 140ms;
+	transition: opacity linear 140ms;
 }
 
 .view-wrapper.show {

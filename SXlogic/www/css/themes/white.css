@@ -191,11 +191,13 @@ body.white:after {
 	border-right-color: #39415f;
 	border-right-width: 14px;
 	color: transparent;
+	font-size: 0;
 }
 
 .white .navigation-left:after {
 	border-right-color: #d7e0e3;
 	left: 0;
+	font-size: 0;
 }
 
 .white .navigation-right:after,
@@ -211,6 +213,7 @@ body.white:after {
 	border-left-color: #39415f;
 	border-left-width: 14px;
 	color: transparent;
+	font-size: 0;
 }
 
 .white .navigation-right:after {
