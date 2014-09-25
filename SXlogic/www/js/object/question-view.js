@@ -51,6 +51,8 @@
 				this.$el = $('<div class="question js-question view-wrapper js-view-wrapper"/>').html(this.tmpl.question(question));
 				this.baseShow();
 
+				this.bindSwipeEvents();
+
 			} else {
 
 				Backbone.history.history.back();
@@ -63,10 +65,18 @@
 
 		setQuestion: function(e) {
 
-			var $this = $(e.currentTarget),
-				direction = +$this.data('direction'),
-				length = win.sections[info.currentSectionName].questions.length,
-				currentQuestion = +info.currentQuestionNumber + direction;
+			var $this, direction, length, currentQuestion;
+
+			if (typeof e === 'number') {
+				direction = e;
+			} else {
+				$this = $(e.currentTarget);
+				direction = +$this.data('direction');
+			}
+
+			length = win.sections[info.currentSectionName].questions.length;
+			currentQuestion = +info.currentQuestionNumber + direction;
+
 
 			if (currentQuestion < 0) {
 				currentQuestion = length - 1;
@@ -81,6 +91,33 @@
 			APP.questionView = new win.APP.QuestionView();
 
 		},
+
+		bindSwipeEvents: function() {
+
+			var view = this;
+
+			this.$el.on('swipe', function(e){
+
+				var direction;
+
+				switch (e.direction) {
+
+					case 'right':
+						direction = 1;
+						break;
+
+					case 'left':
+						direction = -1;
+						break;
+
+				}
+
+				return direction && view.setQuestion(direction);
+
+			});
+
+		},
+
 		showHint: function() {
 			$('.js-hint-text').removeClass('hidden');
 		},
