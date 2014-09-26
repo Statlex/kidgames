@@ -160,10 +160,11 @@
 			this.$eventLayer.find('.unit-under-attack').removeClass('unit-under-attack');
 		},
 		endTurn: function () {
+			this.controller.endTurn();
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
 			this.resetEndTurnState();
-			this.controller.endTurn();
+			this.drawUnitCurrentState();
 			this.goFromStore();
 		},
 		goFromStore: function() {
@@ -173,7 +174,31 @@
 		},
 		resetEndTurnState: function () {
 			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');
-			this.$unitLayer.find('.unit-poisoned').removeClass('unit-poisoned');
+		},
+		drawUnitCurrentState: function() {
+
+			var controller = this.controller,
+				units = controller.units,
+				graves = controller.unitsRIP;
+
+			this.$unitLayer.find('[data-id]').forEach(function(node){
+
+				var $unit = $(node),
+					id = +$unit.data('id'),
+					unit = units[id] || graves[id];
+
+				if (!unit) {
+					return;
+				}
+
+				if (unit.wasPoisoned) {
+					$unit.addClass('unit-poisoned');
+				} else {
+					$unit.removeClass('unit-poisoned');
+				}
+
+			});
+
 		},
 		redrawHealthUnit: function (unit) {
 
