@@ -285,6 +285,7 @@
 		},
 
 		attackUnit: function(active, passive) {
+
 			active.attackTo(passive, this);
 
 			if (passive.health <= 0) {
@@ -308,10 +309,16 @@
 		},
 
 		killUnit: function(unit) {
-			this.appendRIP(unit);
-			this.view.drawRIP(unit);
+
+			if ( unit.notCreateGrave ) {
+				this.view.removeRIP(unit); // hack - use removeRIP instead removeUnit (removeUnit is not implemented)
+			} else {
+				this.appendRIP(unit);
+				this.view.drawRIP(unit);
+			}
 
 			delete this.units[unit.id];
+
 		},
 
 		appendRIP: function(unit) {

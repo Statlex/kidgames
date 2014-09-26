@@ -24,7 +24,8 @@
 			mov: 4,
 			cost: 0,
 			attackRange: 1,
-			notInStore: true
+			notInStore: true,
+			notCreateGrave: true
 		},
 		catapult: {
 			unitName: lang.units.catapult,
