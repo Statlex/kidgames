@@ -34,6 +34,9 @@
 	};
 
 	APP.units.BaseUnit.prototype = {
+		underAbilityList: {
+			wasPoisoned: false
+		},
 		defaultList: {
 			wasMove: false,
 			wasAttack: false
@@ -171,25 +174,39 @@
 				return;
 			}
 
+			if (this.canPoison && !enemyUnit.canNotBePoisoned) {
+				enemyUnit.wasPoisoned = true;
+			}
+
 			var defByBuilding = controller.getDefByBuilding(enemyUnit),
 				defByTerrain = controller.getDefByTerrain(enemyUnit),
-				unitQ = (this.health / this.defaultHealth),
-				attackValue = this.atk;
+				unitQ = this.health / this.defaultHealth,
+				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
+				attackValue = this.atk,
+				enemyDef = enemyUnit.def,
+				reduceDefBy = APP.units.info.poison.reduce.def;
+
+			if (enemyUnit.wasPoisoned) {
+				enemyDef -= reduceDefBy;
+				enemyDef = Math.max(enemyDef, 0);
+			}
 
 			if (defByBuilding > 0) {
 				defByTerrain = 0
 			}
 
-			attackValue = (attackValue - (enemyUnit.def + defByBuilding + defByTerrain)) * unitQ;
+			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * enemyUnitQ;
 
 			attackValue = Math.max(attackValue, unitQ);
 
 			enemyUnit.health = enemyUnit.health - attackValue;
 
 			this.setEndTurn();
+
 		},
 		setDefaultProperties: function() {
 			util.extend(this, this.defaultList);
+			util.extend(this, this.underAbilityList);
 		},
 		setEndTurn: function() {
 

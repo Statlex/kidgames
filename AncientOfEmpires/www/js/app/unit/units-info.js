@@ -25,7 +25,8 @@
 			cost: 0,
 			attackRange: 1,
 			notInStore: true,
-			notCreateGrave: true
+			notCreateGrave: true,
+			canNotBePoisoned: true
 		},
 		catapult: {
 			unitName: lang.units.catapult,
@@ -41,7 +42,8 @@
 			def: 4,
 			mov: 4,
 			cost: 600,
-			attackRange: 1
+			attackRange: 1,
+			canNotBePoisoned: true
 		},
 		knight: {
 			unitName: lang.units.knight,
@@ -82,9 +84,12 @@
 			unitName: lang.units.spider,
 			atk: 6,
 			def: 2,
-			mov: 5,
+//			mov: 5,
+			mov: 10,
 			cost: 600,
-			attackRange: 1
+			attackRange: 1,
+			canNotBePoisoned: true,
+			canPoison: true
 		},
 		wisp: {
 			unitName: lang.units.wisp,
@@ -110,6 +115,11 @@
 			cost: 1000,
 			attackRange: 1,
 			runType: 'fly'
+		},
+		poison: {
+			reduce: {
+				def: 2
+			}
 		}
 
 	};

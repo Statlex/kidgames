@@ -77,6 +77,10 @@
 	color: #fff;
 }
 
+.unit-poisoned .unit-health {
+	color: #ff6600;
+}
+
 .grave .unit-health {
 	display: none;
 }

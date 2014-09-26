@@ -173,18 +173,26 @@
 		},
 		resetEndTurnState: function () {
 			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');
+			this.$unitLayer.find('.unit-poisoned').removeClass('unit-poisoned');
 		},
 		redrawHealthUnit: function (unit) {
+
 			var $unit = this.getUnitById(unit.id),
 				health = Math.max(Math.round(unit.health), 1);
 
 			$unit.find('.js-health').html(health);
 
+			if (unit.wasPoisoned) {
+				this.drawPoisoned($unit);
+			}
+
+		},
+		drawPoisoned: function(unitNode) {
+			unitNode.addClass('unit-poisoned');
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);
 			$unit.addClass('grave');
-
 		},
 		removeRIP: function (unit) {
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').remove();
