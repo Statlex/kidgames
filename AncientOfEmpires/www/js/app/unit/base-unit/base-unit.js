@@ -167,6 +167,44 @@
 
 		},
 
+		findGravesForUp: function(graves, units) {
+
+			var pathFinder = new util.PathFinder({
+					mov: this.upBonesRange,
+					x: this.x,
+					y: this.y,
+					relativeTypeSpace: false
+				}),
+
+				availableSquare = pathFinder.getAvailablePath({unit: this}),
+				gravesForUp = [],
+				unitsCoordinates = util.xyUnitsMap(units);
+
+			availableSquare.forEach(function(square){
+
+				var x = square.x,
+					y = square.y,
+					key, grave;
+
+				for (key in graves) {
+					if (graves.hasOwnProperty(key)) {
+						grave = graves[key];
+						if (grave.x === x && grave.y === y && !unitsCoordinates['x' + x + 'y' + y]) {
+							gravesForUp.push(grave);
+						}
+					}
+				}
+
+			});
+
+			if ( !gravesForUp.length ) {
+				return false;
+			}
+
+			return gravesForUp;
+
+		},
+
 		attackTo: function(enemyUnit, controller) {
 
 			if (this.health <= 0) {

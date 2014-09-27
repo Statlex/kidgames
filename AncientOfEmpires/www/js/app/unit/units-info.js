@@ -104,7 +104,12 @@
 			def: 1,
 			mov: 4,
 			cost: 400,
-			attackRange: 1
+			attackRange: 1,
+			unitDefaultList: {
+				wasUpBones: false
+			},
+			availableActions: ['upBones'],
+			upBonesRange: 1
 		},
 		wyvern: {
 			unitName: lang.units.wyvern,

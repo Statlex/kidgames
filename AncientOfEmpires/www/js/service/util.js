@@ -59,6 +59,20 @@
 		},
 		has: function(arr, item) {
 			return arr.indexOf(item) !== -1;
+		},
+		xyUnitsMap: function(units) {
+			var data = {},
+				key, unit;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					data['x' + unit.x + 'y' + unit.y] = unit;
+				}
+			}
+
+			return data;
+
 		}
 
 	};

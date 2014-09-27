@@ -119,7 +119,7 @@
 		highlightPath: function (data) {
 
 			this.hideAvailablePath();
-
+			this.hideGravesForUp();
 			var color = data.color,
 				path = data.path;
 
@@ -131,6 +131,7 @@
 		},
 
 		hideAvailablePath: function () {
+			this.hideGravesForUp();
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 
@@ -159,6 +160,25 @@
 		hideUnitsUnderAttack: function () {
 			this.$eventLayer.find('.unit-under-attack').removeClass('unit-under-attack');
 		},
+
+		showGravesForUp: function(graves) {
+
+			graves.forEach(function (grave) {
+
+				var x = grave.x,
+					y = grave.y,
+					$block = this.$eventLayer.find('[data-xy="x' + x + 'y' + y + '"]');
+
+				$block.addClass('unit-for-grave-up');
+
+			}, this);
+
+		},
+
+		hideGravesForUp: function() {
+			this.$eventLayer.find('.unit-for-grave-up').removeClass('unit-for-grave-up');
+		},
+
 		endTurn: function () {
 			this.controller.endTurn();
 			this.hideAvailablePath();

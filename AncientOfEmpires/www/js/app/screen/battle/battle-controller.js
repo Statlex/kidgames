@@ -179,6 +179,22 @@
 
 						break;
 
+					case 'upBones':
+
+						if (!unit.wasUpBones) {
+
+							var graves = unit.findGravesForUp(this.unitsRIP, this.units) || [];
+
+							graves.forEach(function(xy){
+								actions['x' + xy.x + 'y' + xy.y] = 'upBones';
+							}, this);
+
+							this.view.showGravesForUp(graves);
+
+						}
+
+						break;
+
 				}
 
 
@@ -244,6 +260,15 @@
 						this.setStoreButtonStateForActivePlayer();
 						break;
 
+					case 'upBones':
+
+						this.upBonesFromGrave(this.focusedUnit, coordinates)
+
+						this.endAction();
+
+						break;
+
+
 				}
 
 
@@ -308,6 +333,57 @@
 
 		},
 
+		upBonesFromGrave: function(active, coordinates) {
+			active.setEndTurn();
+			this.createUnitByCoordinates(coordinates, 'Bones', active.playerId);
+			this.removeGraveByCoordinates(coordinates);
+		},
+
+		createUnitByCoordinates: function(xy, type, id) {
+
+			var unit = {
+				type: type,
+				x: xy.x,
+				y: xy.y,
+				playerId: id
+			},
+				player = this.getPlayerById(unit.playerId),
+				newUnit;
+
+			unit.color = player.color;
+
+			newUnit = this.appendUnit(unit);
+
+			this.view.appendUnit(newUnit);
+
+			newUnit.setEndTurn();
+			this.view.showEndUnitTurn(newUnit);
+
+		},
+
+		removeGraveByCoordinates: function(coordinates) {
+			var graves = this.unitsRIP,
+				x = coordinates.x,
+				y = coordinates.y,
+				key,
+				grave, graveX, graveY;
+
+			for (key in graves) {
+				if (graves.hasOwnProperty(key)) {
+					grave = graves[key];
+					graveX = grave.x;
+					graveY = grave.y;
+					if (graveX === x && graveY === y) {
+						// remove grave
+						this.view.removeRIP(grave);
+						delete graves[key];
+					}
+
+				}
+			}
+
+		},
+
 		killUnit: function(unit) {
 
 			if ( unit.notCreateGrave ) {
@@ -336,7 +412,7 @@
 					unit = RIPs[key];
 					unit.lifeAfterDeadLength += 1;
 
-					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit) {
+					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit + 1000) {
 						this.view.removeRIP(unit);
 						delete RIPs[key];
 					}
@@ -384,7 +460,7 @@
 				units = this.units,
 				buildings = this.buildings,
 				key,
-				that = this;;
+				that = this;
 
 			for (key in units) {
 				if (units.hasOwnProperty(key)) {
