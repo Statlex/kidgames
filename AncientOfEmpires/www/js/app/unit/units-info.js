@@ -61,8 +61,8 @@
 		lizard: {
 			unitName: lang.units.lizard,
 			atk: 5,
-			def: 2,
-			mov: 4,
+			def: 0,
+			mov: 3,
 			cost: 300,
 			attackRange: 1,
 			runType: 'flow'

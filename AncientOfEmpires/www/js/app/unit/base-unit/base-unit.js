@@ -219,7 +219,7 @@
 			var defByBuilding = controller.getDefByBuilding(enemyUnit),
 				defByTerrain = controller.getDefByTerrain(enemyUnit),
 				unitQ = this.health / this.defaultHealth,
-				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
+//				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
 				attackValue = this.atk,
 				enemyDef = enemyUnit.def,
 				reduceDefBy = APP.units.info.poison.reduce.def;
@@ -233,7 +233,7 @@
 				defByTerrain = 0
 			}
 
-			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * enemyUnitQ;
+			attackValue = attackValue - enemyDef - (defByBuilding + defByTerrain) * 0.5;
 
 			attackValue = Math.max(attackValue, unitQ);
 

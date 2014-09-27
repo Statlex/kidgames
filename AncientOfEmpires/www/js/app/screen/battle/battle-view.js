@@ -108,6 +108,7 @@
 			var $unit = $(this.tmpl.unit({ unit: unit, view: this }));
 
 			this.$unitLayer.append($unit);
+			this.redrawHealthUnit(unit);
 
 		},
 		appendBuilding: function (build) {
@@ -224,7 +225,9 @@
 		redrawHealthUnit: function (unit) {
 
 			var $unit = this.getUnitById(unit.id),
-				health = Math.max(Math.round(unit.health), 1);
+				health = Math.max(unit.health, 0.1);
+
+			health = health.toFixed(1);
 
 			$unit.find('.js-health').html(health);
 

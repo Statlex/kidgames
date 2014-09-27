@@ -35,7 +35,7 @@
 			className: 'stone'
 		},
 		water: {
-			pathResistance: 2.5,
+			pathResistance: 2,
 			defence: 0,
 			specialPathResistance: 0.5,
 			specialDefence: 2,
@@ -53,7 +53,7 @@
 		},
 		moneyFrom: {
 			farm: 20,
-			castle: 40
+			castle: 30
 		},
 		healthFrom: {
 			farm: 2,

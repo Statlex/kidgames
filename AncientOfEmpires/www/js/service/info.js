@@ -3,10 +3,51 @@
 	"use strict";
 	/*global window, document, navigator */
 
-	var docElem, ls, isTouch, info;
+	function getPrefix() {
+
+		var ua = navigator.userAgent,
+			data = {
+				js: '',
+				css: ''
+			};
+
+		if (ua.indexOf("Mozilla") > 0 ) {
+			data = {
+				js: 'moz',
+				css: '-moz-'
+			}
+		}
+
+		if (ua.indexOf("MSIE") > 0 ) {
+			data = {
+				js: 'ms',
+				css: '-ms-'
+			}
+		}
+
+		if (ua.indexOf("Chrome") > 0 ) {
+			data = {
+				js: 'webkit',
+				css: '-webkit-'
+			}
+		}
+
+		if (ua.indexOf("Opera") > 0 ) {
+			data = {
+				js: 'O',
+				css: '-o-'
+			}
+		}
+
+		return data;
+
+	}
+
+	var docElem, ls, isTouch, info, pre;
 	docElem = doc.documentElement;
 	ls = win.localStorage;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
+	pre = getPrefix();
 
 	info = {
 		lang: 'en', // current language
@@ -15,8 +56,8 @@
 		saveItem: '-----APP-NAME-----',
 		isPhone: false,
 		isTouch: isTouch,
-		preCSS: '-webkit-',
-		preJS: 'webkit',
+		preCSS: pre.css,
+		preJS: pre.js,
 		isAndroid: (/android/i).test(win.navigator.userAgent),
 		canScroll: false,
 
