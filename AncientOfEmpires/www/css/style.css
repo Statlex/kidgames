@@ -79,6 +79,7 @@
 
 .available-path-square {
 	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
 	border-radius: 7px;
 	border: none;
 }

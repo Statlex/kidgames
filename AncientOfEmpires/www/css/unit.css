@@ -1,6 +1,8 @@
 /* TEMP */
 .unit {
 	-webkit-transition: all ease-out 0.2s;
+	-moz-transition: all ease-out 0.2s;
+	transition: all ease-out 0.2s;
 }
 
 .unit {
