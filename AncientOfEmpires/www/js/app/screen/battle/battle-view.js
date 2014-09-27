@@ -132,6 +132,7 @@
 
 		hideAvailablePath: function () {
 			this.hideGravesForUp();
+			this.hideUnitsUnderAttack();
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 
