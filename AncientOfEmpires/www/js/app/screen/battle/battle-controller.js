@@ -453,6 +453,7 @@
 			this.setStatusBarForActivePlayer();
 			this.updateRIPs();
 			this.updateUnitsOnBuilding();
+
 		},
 		updateUnitsOnBuilding: function() {
 			var player = this.activePlayer,

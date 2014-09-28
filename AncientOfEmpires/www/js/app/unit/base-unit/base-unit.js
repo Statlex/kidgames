@@ -233,7 +233,7 @@
 				defByTerrain = 0
 			}
 
-			attackValue = attackValue - enemyDef - (defByBuilding + defByTerrain) * 0.5;
+			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
 
 			attackValue = Math.max(attackValue, unitQ);
 

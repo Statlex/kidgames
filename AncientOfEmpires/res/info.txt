@@ -210,6 +210,8 @@ Wisp      3     2     4      500G   These mystical beings of pure light
                                     they are especially deadly against
                                     skeletons.
 
+Эти мифические существа из чистого света излучают ауру, которая добавляет очков атаки дружественным юнитам. В ближнем бою они особенно смертельны против скелетов.
+
 Spider    6     2     5      600G   Spiders are dangerous creatures whose
                                     natural habitat spans the unforgiving dark
                                     forests of the west. In addition to being
