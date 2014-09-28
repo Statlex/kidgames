@@ -252,6 +252,14 @@
 
 			attackValue = Math.max(attackValue, unitQ);
 
+			if (this.underWispAura) {
+				attackValue += APP.units.info.aura.wisp.attack;
+			}
+
+			if (this.type === 'Wisp' && enemyUnit.type === 'Bones') {
+				attackValue += this.bonesAttackBonus;
+			}
+
 			enemyUnit.health = enemyUnit.health - attackValue;
 
 			this.setEndTurn();

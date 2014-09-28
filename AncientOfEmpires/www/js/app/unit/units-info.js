@@ -100,7 +100,8 @@
 			cost: 500,
 			attackRange: 1,
 			auraRange: 2,
-			canNotBeUnderWispAura: true
+			canNotBeUnderWispAura: true,
+			bonesAttackBonus: 5
 		},
 		wizard: {
 			unitName: lang.units.wizard,
@@ -127,6 +128,11 @@
 		poison: {
 			reduce: {
 				def: 2
+			}
+		},
+		aura: {
+			wisp: {
+				attack: 1
 			}
 		}
 
