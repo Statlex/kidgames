@@ -279,9 +279,12 @@
 		</div>
 
 		<% if ( !info.isIE ) { %>
+
+		<% if ( info.isAndroid ) { %>
 		<div class="data-wrapper">
 			<div class="list-item js-rate-us-button"><span class="underline"><%= lang.rateUs.rateUs %></span></div>
 		</div>
+		<% }; %>
 
 		<div class="data-wrapper">
 			<% if ( !info.isAdsFree ) { %>

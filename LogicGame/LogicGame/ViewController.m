@@ -49,6 +49,8 @@
     _webView.userInteractionEnabled = YES;
     [self.view addSubview:_webView];
     _webView.delegate = (id)self;
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
