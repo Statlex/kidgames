@@ -8,7 +8,7 @@
 	APP.units = APP.units || {};
 
 	APP.units.info = {
-		unitList: ['archer', 'catapult', 'golem', 'knight', 'lizard', 'soldier', 'spider', 'wisp', 'wizard', 'wyvern'],
+		unitList: ['archer', 'bones', 'catapult', 'golem', 'knight', 'lizard', 'soldier', 'spider', 'wisp', 'wizard', 'wyvern'],
 		archer: {
 			unitName: lang.units.archer,
 			atk: 5,
@@ -16,6 +16,18 @@
 			mov: 4,
 			cost: 250,
 			attackRange: 2
+		},
+		bones: {
+			unitName: lang.units.bones,
+			atk: 4,
+			def: 0,
+			mov: 4,
+			cost: 0,
+			attackRange: 1,
+			notInStore: true,
+			notCreateGrave: true,
+			canNotBePoisoned: true,
+			canNotBeUnderWispAura: true
 		},
 		catapult: {
 			unitName: lang.units.catapult,
@@ -31,7 +43,9 @@
 			def: 4,
 			mov: 4,
 			cost: 600,
-			attackRange: 1
+			attackRange: 1,
+			canNotBePoisoned: true,
+			canNotBeUnderWispAura: true
 		},
 		knight: {
 			unitName: lang.units.knight,
@@ -49,8 +63,8 @@
 		lizard: {
 			unitName: lang.units.lizard,
 			atk: 5,
-			def: 2,
-			mov: 4,
+			def: 0,
+			mov: 3,
 			cost: 300,
 			attackRange: 1,
 			runType: 'flow'
@@ -74,7 +88,9 @@
 			def: 2,
 			mov: 5,
 			cost: 600,
-			attackRange: 1
+			attackRange: 1,
+			canNotBePoisoned: true,
+			canPoison: true
 		},
 		wisp: {
 			unitName: lang.units.wisp,
@@ -82,7 +98,10 @@
 			def: 2,
 			mov: 4,
 			cost: 500,
-			attackRange: 1
+			attackRange: 1,
+			auraRange: 2,
+			canNotBeUnderWispAura: true,
+			bonesAttackBonus: 5
 		},
 		wizard: {
 			unitName: lang.units.wizard,
@@ -90,7 +109,12 @@
 			def: 1,
 			mov: 4,
 			cost: 400,
-			attackRange: 1
+			attackRange: 1,
+			unitDefaultList: {
+				wasUpBones: false
+			},
+			availableActions: ['upBones'],
+			upBonesRange: 1
 		},
 		wyvern: {
 			unitName: lang.units.wyvern,
@@ -100,6 +124,16 @@
 			cost: 1000,
 			attackRange: 1,
 			runType: 'fly'
+		},
+		poison: {
+			reduce: {
+				def: 2
+			}
+		},
+		aura: {
+			wisp: {
+				attack: 1
+			}
 		}
 
 	};

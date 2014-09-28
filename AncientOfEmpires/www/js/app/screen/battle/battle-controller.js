@@ -143,7 +143,6 @@
 
 						}
 
-
 						break;
 
 					case 'attack':
@@ -157,9 +156,7 @@
 
 							this.view.showUnitsUnderAttack(availableAttack);
 
-
 						}
-
 
 						break;
 
@@ -182,8 +179,21 @@
 
 						break;
 
+					case 'upBones':
 
+						if (!unit.wasUpBones) {
 
+							var graves = unit.findGravesForUp(this.unitsRIP, this.units) || [];
+
+							graves.forEach(function(xy){
+								actions['x' + xy.x + 'y' + xy.y] = 'upBones';
+							}, this);
+
+							this.view.showGravesForUp(graves);
+
+						}
+
+						break;
 
 				}
 
@@ -231,6 +241,7 @@
 						this.view.moveUnit(this.focusedUnit);
 
 						this.endAction();
+						this.wispAction();
 						break;
 
 					case 'attack':
@@ -238,6 +249,7 @@
 						this.view.hideUnitsUnderAttack();
 
 						this.endAction();
+						this.wispAction();
 						break;
 
 					case 'getBuilding':
@@ -249,6 +261,15 @@
 						this.endAction();
 						this.setStoreButtonStateForActivePlayer();
 						break;
+
+					case 'upBones':
+
+						this.upBonesFromGrave(this.focusedUnit, coordinates)
+
+						this.endAction();
+
+						break;
+
 
 				}
 
@@ -291,14 +312,22 @@
 		},
 
 		attackUnit: function(active, passive) {
-			active.attackTo(passive);
+
+			active.attackTo(passive, this);
 
 			if (passive.health <= 0) {
 				this.killUnit(passive);
-			}
+			} else {
+				// detect - can passive attack active
+				if (passive.canAttackUnit(active, this)) {
 
-			if (active.health <= 0) {
-				this.killUnit(active);
+					passive.attackTo(active, this);
+
+					if (active.health <= 0) {
+						this.killUnit(active);
+					}
+
+				}
 			}
 
 			this.view.redrawHealthUnit(active);
@@ -306,11 +335,68 @@
 
 		},
 
+		upBonesFromGrave: function(active, coordinates) {
+			active.setEndTurn();
+			this.createUnitByCoordinates(coordinates, 'Bones', active.playerId);
+			this.removeGraveByCoordinates(coordinates);
+		},
+
+		createUnitByCoordinates: function(xy, type, id) {
+
+			var unit = {
+				type: type,
+				x: xy.x,
+				y: xy.y,
+				playerId: id
+			},
+				player = this.getPlayerById(unit.playerId),
+				newUnit;
+
+			unit.color = player.color;
+
+			newUnit = this.appendUnit(unit);
+
+			this.view.appendUnit(newUnit);
+
+			newUnit.setEndTurn();
+			this.view.showEndUnitTurn(newUnit);
+
+		},
+
+		removeGraveByCoordinates: function(coordinates) {
+			var graves = this.unitsRIP,
+				x = coordinates.x,
+				y = coordinates.y,
+				key,
+				grave, graveX, graveY;
+
+			for (key in graves) {
+				if (graves.hasOwnProperty(key)) {
+					grave = graves[key];
+					graveX = grave.x;
+					graveY = grave.y;
+					if (graveX === x && graveY === y) {
+						// remove grave
+						this.view.removeRIP(grave);
+						delete graves[key];
+					}
+
+				}
+			}
+
+		},
+
 		killUnit: function(unit) {
-			this.appendRIP(unit);
-			this.view.drawRIP(unit);
+
+			if ( unit.notCreateGrave ) {
+				this.view.removeRIP(unit); // hack - use removeRIP instead removeUnit (removeUnit is not implemented)
+			} else {
+				this.appendRIP(unit);
+				this.view.drawRIP(unit);
+			}
 
 			delete this.units[unit.id];
+
 		},
 
 		appendRIP: function(unit) {
@@ -328,7 +414,7 @@
 					unit = RIPs[key];
 					unit.lifeAfterDeadLength += 1;
 
-					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit) {
+					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit + 1000) {
 						this.view.removeRIP(unit);
 						delete RIPs[key];
 					}
@@ -368,6 +454,161 @@
 			this.setActivePlayer();
 			this.setStatusBarForActivePlayer();
 			this.updateRIPs();
+			this.updateUnitsOnBuilding();
+			this.wispAction();
+		},
+		wispAction: function(argsPlayer) {
+
+			// 0 - get players
+			// 1 - get wisps
+			// 2 - create active map
+			// 3 - get all units
+			// 4 - set state for each units
+
+			var ctrl = this,
+				players = ctrl.players,
+				view = ctrl.view;
+
+			players.forEach(function(player){
+
+				var allUnits = ctrl.getUnitByPlayer(player),
+					wisps = ctrl.getUnitByPlayerAndType(player, 'Wisp'),
+					auraMap = ctrl.createAuraMap(wisps);
+
+				// apply aura to needed units
+				allUnits.forEach(function(unit){
+
+					var x = unit.x,
+						y = unit.y;
+
+					if ( auraMap['x' + x + 'y' + y] ) {
+
+						if (unit.underWispAura || unit.canNotBeUnderWispAura) {
+							// do nothing, unit is OK
+						} else {
+							unit.underWispAura = true;
+							view.showWispAura(unit);
+						}
+
+					} else {
+
+						view.hideWispAura(unit);
+						unit.underWispAura = false;
+
+					}
+
+				})
+
+			});
+
+			view.removeWispAuraFromGraves();
+
+		},
+		getUnitByPlayer: function(player) {
+			var unitsByPlayer = [],
+				allUnits = this.units,
+				key, unit,
+				playerId = player.id;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					unit = allUnits[key];
+					if (unit.playerId === playerId) {
+						unitsByPlayer.push(unit);
+					}
+				}
+			}
+
+			return unitsByPlayer;
+
+		},
+		getUnitByPlayerAndType: function(player, type) {
+
+			var allUnits = this.getUnitByPlayer(player),
+				neededUnits = [];
+
+			allUnits.forEach(function(unit){
+				if (unit.type === type) {
+					neededUnits.push(unit);
+				}
+			});
+
+			return neededUnits;
+
+		},
+		createAuraMap: function(units) {
+
+			var map = {};
+
+			units.forEach(function(unit){
+
+				var unitMap = unit.getAuraMap();
+
+				unitMap.forEach(function(xy){
+					map['x' + xy.x + 'y' + xy.y] = xy;
+				});
+
+			});
+
+			return map;
+
+		},
+
+		updateUnitsOnBuilding: function() {
+			var player = this.activePlayer,
+				playerId = player.id,
+				units = this.units,
+				buildings = this.buildings,
+				key,
+				that = this;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+
+					(function (unit) {
+
+						// filter only for active unit
+						if (unit.playerId !== playerId) {
+							return;
+						}
+
+						var x = unit.x,
+							y = unit.y,
+							building = buildings['x' + x + 'y' + y],
+							addedHealth,
+							endHealth;
+
+						// detect building
+						if (!building) {
+							return;
+						}
+
+						// detect only building for active player
+						if (building.playerId !== playerId) {
+							return;
+						}
+
+						addedHealth = APP.map.healthFrom[building.type];
+						endHealth = addedHealth + unit.health;
+
+
+						if ( endHealth > unit.defaultHealth ) {
+							addedHealth = unit.defaultHealth - unit.health;
+							unit.health = unit.defaultHealth;
+						} else {
+							unit.health += addedHealth;
+						}
+						that.view.addHealthToUnit({
+							endHealth: unit.health,
+							addedHealth: addedHealth,
+							unit: unit
+						});
+
+					}(units[key]));
+
+				}
+			}
+
 		},
 		setStatusBarForActivePlayer: function() {
 			this.setMoneyForActivePlayer();
@@ -456,6 +697,40 @@
 			}
 
 			return false;
+
+		},
+
+		getDefByBuilding: function(unit) {
+
+			var unitX = unit.x,
+				unitY = unit.y,
+				building = this.buildings['x' + unitX + 'y' + unitY]
+
+			if (!building) {
+				return 0;
+			}
+
+			return APP.map.defence[building.type];
+
+		},
+
+		getDefByTerrain: function(unit) {
+
+			var unitX = unit.x,
+				unitY = unit.y,
+				terrain = this.map.terrain['x' + unitX + 'y' + unitY]
+
+			if (!terrain) {
+				return 0;
+			}
+
+			// lizard only
+			if (unit.runType === 'flow' && terrain === 'water') {
+				return APP.map[terrain].specialDefence;
+			}
+
+			return APP.map[terrain].defence;
+
 
 		}
 

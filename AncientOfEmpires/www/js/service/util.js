@@ -59,6 +59,20 @@
 		},
 		has: function(arr, item) {
 			return arr.indexOf(item) !== -1;
+		},
+		xyUnitsMap: function(units) {
+			var data = {},
+				key, unit;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					data['x' + unit.x + 'y' + unit.y] = unit;
+				}
+			}
+
+			return data;
+
 		}
 
 	};
@@ -122,7 +136,7 @@
 						case 'flow':
 
 							if (square === 'water') {
-								pathResistance = 0.5;
+								pathResistance = APP.map.water.specialPathResistance;
 							}
 
 							break;

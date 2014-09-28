@@ -14,6 +14,7 @@
 		this.cost = 100;
 
 		this.health = 10;
+		this.defaultHealth = 10;
 		this.attackRange = 1;
 
 		this.runType = 'walk';
@@ -33,6 +34,10 @@
 	};
 
 	APP.units.BaseUnit.prototype = {
+		underAbilityList: {
+			wasPoisoned: false,
+			underWispAura: false
+		},
 		defaultList: {
 			wasMove: false,
 			wasAttack: false
@@ -45,8 +50,6 @@
 			util.extend(this.defaultList, unitInfo.unitDefaultList);
 			util.extend(this, unitInfo);
 			util.extend(this, data);
-
-			//debugger;
 
 			// create full action list
 			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
@@ -165,12 +168,106 @@
 
 		},
 
-		attackTo: function(enemyUnit) {
-			enemyUnit.health = enemyUnit.health - this.atk + enemyUnit.def;
+		getAuraMap: function() {
+
+			var pathFinder = new util.PathFinder({
+					mov: this.auraRange,
+					x: this.x,
+					y: this.y,
+					relativeTypeSpace: false
+				}),
+				availableSquare = pathFinder.getAvailablePath({unit: this});
+
+			return availableSquare;
+
+		},
+
+		findGravesForUp: function(graves, units) {
+
+			var pathFinder = new util.PathFinder({
+					mov: this.upBonesRange,
+					x: this.x,
+					y: this.y,
+					relativeTypeSpace: false
+				}),
+
+				availableSquare = pathFinder.getAvailablePath({unit: this}),
+				gravesForUp = [],
+				unitsCoordinates = util.xyUnitsMap(units);
+
+			availableSquare.forEach(function(square){
+
+				var x = square.x,
+					y = square.y,
+					key, grave;
+
+				for (key in graves) {
+					if (graves.hasOwnProperty(key)) {
+						grave = graves[key];
+						if (grave.x === x && grave.y === y && !unitsCoordinates['x' + x + 'y' + y]) {
+							gravesForUp.push(grave);
+						}
+					}
+				}
+
+			});
+
+			if ( !gravesForUp.length ) {
+				return false;
+			}
+
+			return gravesForUp;
+
+		},
+
+		attackTo: function(enemyUnit, controller) {
+
+			if (this.health <= 0) {
+				this.setEndTurn();
+				return;
+			}
+
+			if (this.canPoison && !enemyUnit.canNotBePoisoned) {
+				enemyUnit.wasPoisoned = true;
+			}
+
+			var defByBuilding = controller.getDefByBuilding(enemyUnit),
+				defByTerrain = controller.getDefByTerrain(enemyUnit),
+				unitQ = this.health / this.defaultHealth,
+//				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
+				attackValue = this.atk,
+				enemyDef = enemyUnit.def,
+				reduceDefBy = APP.units.info.poison.reduce.def;
+
+			if (enemyUnit.wasPoisoned) {
+				enemyDef -= reduceDefBy;
+				enemyDef = Math.max(enemyDef, 0);
+			}
+
+			if (defByBuilding > 0) {
+				defByTerrain = 0
+			}
+
+			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
+
+			attackValue = Math.max(attackValue, unitQ);
+
+			if (this.underWispAura) {
+				attackValue += APP.units.info.aura.wisp.attack;
+			}
+
+			if (this.type === 'Wisp' && enemyUnit.type === 'Bones') {
+				attackValue += this.bonesAttackBonus;
+			}
+
+			enemyUnit.health = enemyUnit.health - attackValue;
+
 			this.setEndTurn();
+
 		},
 		setDefaultProperties: function() {
 			util.extend(this, this.defaultList);
+			util.extend(this, this.underAbilityList);
 		},
 		setEndTurn: function() {
 
@@ -194,6 +291,17 @@
 
 			this.setEndTurn();
 
+		},
+		canAttackUnit: function(enemy, controller) {
+			var units = this.findUnitsUnderAttack(controller.units);
+
+			// if no any units under attack - return false
+			if (!units){
+				return false;
+			}
+
+			// if has units under attack - search enemy in available units
+			return units.indexOf(enemy) !== -1;
 		}
 
 	};

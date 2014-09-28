@@ -82,13 +82,14 @@
 				y: castle.y,
 				playerId: player.id,
 				color: player.color
-
 			};
 
 			newUnit = controller.appendUnit(unit); // to controller
 			controller.view.appendUnit(newUnit);
 
 			this.setBuyButtonState();
+
+			alert('you did buy the ' + unitName);
 
 		}
 

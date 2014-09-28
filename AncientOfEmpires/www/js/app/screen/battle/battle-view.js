@@ -108,6 +108,7 @@
 			var $unit = $(this.tmpl.unit({ unit: unit, view: this }));
 
 			this.$unitLayer.append($unit);
+			this.redrawHealthUnit(unit);
 
 		},
 		appendBuilding: function (build) {
@@ -119,7 +120,7 @@
 		highlightPath: function (data) {
 
 			this.hideAvailablePath();
-
+			this.hideGravesForUp();
 			var color = data.color,
 				path = data.path;
 
@@ -131,6 +132,8 @@
 		},
 
 		hideAvailablePath: function () {
+			this.hideGravesForUp();
+			this.hideUnitsUnderAttack();
 			this.$availablePathSquares.removeClass('available-path-square');
 		},
 
@@ -138,7 +141,8 @@
 			this.hideAvailablePath();
 			var $unit = this.getUnitById(moveUnit.id),
 				size = this.squareSize;
-			$unit.css( info.preCSS + 'transform', 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)');
+			$unit[0].style[info.preJS + 'Transform'] = 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)';
+			//$unit.css( info.preCSS + 'transform', 'translate(' +  moveUnit.x * size + 'px, ' + moveUnit.y * size + 'px)');
 		},
 
 		showEndUnitTurn: function(unit) {
@@ -159,11 +163,31 @@
 		hideUnitsUnderAttack: function () {
 			this.$eventLayer.find('.unit-under-attack').removeClass('unit-under-attack');
 		},
+
+		showGravesForUp: function(graves) {
+
+			graves.forEach(function (grave) {
+
+				var x = grave.x,
+					y = grave.y,
+					$block = this.$eventLayer.find('[data-xy="x' + x + 'y' + y + '"]');
+
+				$block.addClass('unit-for-grave-up');
+
+			}, this);
+
+		},
+
+		hideGravesForUp: function() {
+			this.$eventLayer.find('.unit-for-grave-up').removeClass('unit-for-grave-up');
+		},
+
 		endTurn: function () {
+			this.controller.endTurn();
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
 			this.resetEndTurnState();
-			this.controller.endTurn();
+			this.drawUnitCurrentState();
 			this.goFromStore();
 		},
 		goFromStore: function() {
@@ -174,14 +198,51 @@
 		resetEndTurnState: function () {
 			this.$unitLayer.find('.unit-end-turn').removeClass('unit-end-turn');
 		},
+		drawUnitCurrentState: function() {
+
+			var controller = this.controller,
+				units = controller.units,
+				graves = controller.unitsRIP;
+
+			this.$unitLayer.find('[data-id]').forEach(function(node){
+
+				var $unit = $(node),
+					id = +$unit.data('id'),
+					unit = units[id] || graves[id];
+
+				if (!unit) {
+					return;
+				}
+
+				if (unit.wasPoisoned) {
+					$unit.addClass('unit-poisoned');
+				} else {
+					$unit.removeClass('unit-poisoned');
+				}
+
+			});
+
+		},
 		redrawHealthUnit: function (unit) {
-			var $unit = this.getUnitById(unit.id);
-			$unit.find('.js-health').html(unit.health);
+
+			var $unit = this.getUnitById(unit.id),
+				health = Math.max(unit.health, 0.1);
+
+			health = health.toFixed(1);
+
+			$unit.find('.js-health').html(health);
+
+			if (unit.wasPoisoned) {
+				this.drawPoisoned($unit);
+			}
+
+		},
+		drawPoisoned: function(unitNode) {
+			unitNode.addClass('unit-poisoned');
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);
 			$unit.addClass('grave');
-
 		},
 		removeRIP: function (unit) {
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').remove();
@@ -239,7 +300,11 @@
 
 		showPlayerInfo: function(player) {
 			player = player || this.controller.activePlayer;
+			this.$statusBar.find('.js-status-bar-color')
+				.html(player.color)
+				.css('color', player.color);
 			this.$statusBar.find('.status-bar-gold').html(player.gold);
+
 		},
 
 		showPlaceInfo: function(data) {
@@ -287,6 +352,26 @@
 		},
 		setStoreButtonState: function(isEnable) {
 			this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
+		},
+		addHealthToUnit: function(data) {
+			var unit = data.unit,
+				endHealth = data.endHealth,
+				addedHealth = data.addedHealth,
+				$unit = this.getUnitById(unit.id);
+
+			this.redrawHealthUnit(unit);
+
+		},
+		showWispAura: function(unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.addClass('under-wisp-aura');
+		},
+		hideWispAura: function(unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.removeClass('under-wisp-aura');
+		},
+		removeWispAuraFromGraves: function() {
+			this.$unitLayer.find('.grave').removeClass('under-wisp-aura');
 		}
 
 	});

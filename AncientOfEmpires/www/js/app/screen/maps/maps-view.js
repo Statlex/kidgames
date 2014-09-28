@@ -27,8 +27,7 @@
 
 			var data = this.createBattleControllerData();
 
-			console.log('map kostyl');
-			data.map = APP.maps.testMap;
+			data.map = this.selectedMap;
 
 			if (this.checkBattleControllerData(data)) {
 				new APP.BattleView(data);
@@ -81,7 +80,7 @@
 			var $node = $(e.currentTarget || e),
 				mapName = $node.data('js-name');
 
-			APP.battleControllerData.map = APP.maps[mapName];
+			this.selectedMap = APP.maps[mapName];
 
 		},
 		getMapsArray: function() {

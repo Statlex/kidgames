@@ -11,7 +11,7 @@
 		tmpl: {},
 		events: {},
 		transition: {
-			time: 350,
+			time: 150,
 			smallStep: 10
 		},
 		initialize: function(data) {

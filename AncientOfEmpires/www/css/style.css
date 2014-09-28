@@ -24,6 +24,7 @@
 .layers-wrapper {
 	position: relative;
 	background-color: #fff;
+	overflow: hidden;
 }
 
 .battle-screen {
@@ -78,6 +79,7 @@
 
 .available-path-square {
 	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
 	border-radius: 7px;
 	border: none;
 }
@@ -140,7 +142,8 @@
 .status-bar-store,
 .status-bar-battle,
 .status-bar-end-turn,
-.status-bar-armor {
+.status-bar-armor,
+.status-bar-color {
 	background-repeat: no-repeat;
 	-webkit-background-size: auto 75%;
 	background-size: auto 75%;

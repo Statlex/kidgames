@@ -40,7 +40,7 @@ html, body {
 }
 
 .list-wrapper {
-	padding: 48px 0 100px;
+	padding: 48px 0 200px;
 }
 
 .back {
@@ -165,7 +165,7 @@ html, body {
 	width: 52px;
 	height: 32px;
 	float: left;
-	position: fixed;
+	/*position: fixed;*/
 	top: 50%;
 	background-color: #f7f0ea;
 	border: 1px solid #868686;
@@ -350,8 +350,8 @@ html, body {
 
 .view-wrapper {
 	opacity: 0;
-	-webkit-transition: opacity linear 350ms;
-	transition: opacity linear 350ms;
+	-webkit-transition: opacity linear 140ms;
+	transition: opacity linear 140ms;
 }
 
 .view-wrapper.show {

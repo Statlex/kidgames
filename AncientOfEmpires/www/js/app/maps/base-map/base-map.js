@@ -10,43 +10,61 @@
 		terrainTypes: ['forest', 'green', 'hill', 'road', 'stone', 'water', 'bridge-vertical', 'bridge-horizontal'],
 		buildingsTypes: ['farm', 'castle'],
 		forest: {
-			pathResistance: 1,
+			pathResistance: 2,
+			defence: 2,
 			className: 'forest'
 		},
 		green: {
-			pathResistance: 2,
+			pathResistance: 1,
+			defence: 1,
 			className: 'green'
 		},
 		hill: {
-			pathResistance: 1,
+			pathResistance: 2,
+			defence: 2,
 			className: 'hill'
 		},
 		road: {
-			pathResistance: 1,
+			pathResistance: 0.8,
+			defence: 0,
 			className: 'road'
 		},
 		stone: {
 			pathResistance: 3,
+			defence: 3,
 			className: 'stone'
 		},
 		water: {
-			pathResistance: 3,
+			pathResistance: 2,
+			defence: 0,
+			specialPathResistance: 0.5,
+			specialDefence: 2,
 			className: 'water'
 		},
-		bridgeVertical: {
+		'bridge-vertical': {
 			pathResistance: 1,
+			defence: 0,
 			className: 'bridge-vertical'
 		},
-		bridgeHorizontal: {
+		'bridge-horizontal': {
 			pathResistance: 1,
+			defence: 0,
 			className: 'bridge-horizontal'
 		},
 		moneyFrom: {
 			farm: 20,
-			castle: 40
+			castle: 30
+		},
+		healthFrom: {
+			farm: 2,
+			castle: 3
 		},
 		default: {
 			gold: 1000
+		},
+		defence: {
+			farm: 3,
+			castle: 4
 		},
 		getSquareByXY: function(map, x, y) {
 			return map.terrain['x' + x + 'y'+ y];

@@ -10,6 +10,7 @@
 		languageName: 'english',
 		units: {
 			archer: 'archer',
+			bones: 'bones',
 			catapult: 'catapult',
 			golem: 'golem',
 			knight: 'knight',
