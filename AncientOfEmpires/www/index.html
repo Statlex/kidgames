@@ -224,7 +224,7 @@
 
 <script type="text/x-template" data-name="store">
 
-	<div class="store-wrapper js-store-wrapper">
+	<div class="store-wrapper js-store-wrapper clear-fix">
 
 		<div class="store-units-wrapper">
 			<% unitInfo.unitList.forEach(function(name){ %>
@@ -234,15 +234,22 @@
 			<% }; %>
 
 			<div class="unit-card js-unit-card" data-name="<%= name %>">
-				<%= unitInfo[name].unitName %>
-				<br>atkIcon:<%= unitInfo[name].atk %>
-				<br>defIcon:<%= unitInfo[name].def %>
-				<br>moveIcon:<%= unitInfo[name].mov %>
-				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</div>
-				<div data-name="<%= name %>" class="js-get-unit-info">unit info</div>
+				<%= unitInfo[name].info.name %>
+				<button data-name="<%= name %>" class="js-get-unit-info">unit info</button>
+				<div data-name="<%= name %>" class="unit-description js-unit-description hidden">
+					<%= unitInfo[name].info.description %>
+				</div>
+				<br>atk: <%= unitInfo[name].atk %>
+				<br>def: <%= unitInfo[name].def %>
+				<br>move: <%= unitInfo[name].mov %>
+				<button data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</button>
 			</div>
 			<% }); %>
+
+			<div class="clear"></div>
+
 		</div>
+		<div class="clear"></div>
 
 	</div>
 

@@ -8,9 +8,9 @@
 	APP.units = APP.units || {};
 
 	APP.units.info = {
-		unitList: ['archer', 'bones', 'catapult', 'golem', 'knight', 'lizard', 'soldier', 'spider', 'wisp', 'wizard', 'wyvern'],
+		unitList: ['soldier', 'archer', 'lizard', 'wizard', 'knight', 'wisp', 'golem', 'spider', 'catapult', 'wyvern', 'bones'],
 		archer: {
-			unitName: lang.units.archer,
+			info: lang.units.archer,
 			atk: 5,
 			def: 1,
 			mov: 4,
@@ -18,7 +18,7 @@
 			attackRange: 2
 		},
 		bones: {
-			unitName: lang.units.bones,
+			info: lang.units.bones,
 			atk: 4,
 			def: 0,
 			mov: 4,
@@ -30,7 +30,7 @@
 			canNotBeUnderWispAura: true
 		},
 		catapult: {
-			unitName: lang.units.catapult,
+			info: lang.units.catapult,
 			atk: 7,
 			def: 2,
 			mov: 3,
@@ -38,7 +38,7 @@
 			attackRange: 7
 		},
 		golem: {
-			unitName: lang.units.golem,
+			info: lang.units.golem,
 			atk: 6,
 			def: 4,
 			mov: 4,
@@ -48,7 +48,7 @@
 			canNotBeUnderWispAura: true
 		},
 		knight: {
-			unitName: lang.units.knight,
+			info: lang.units.knight,
 			atk: 6,
 			def: 2,
 			mov: 5,
@@ -61,7 +61,7 @@
 			availableBuildingsType: ['farm', 'castle']
 		},
 		lizard: {
-			unitName: lang.units.lizard,
+			info: lang.units.lizard,
 			atk: 5,
 			def: 0,
 			mov: 3,
@@ -70,7 +70,7 @@
 			runType: 'flow'
 		},
 		soldier: {
-			unitName: lang.units.soldier,
+			info: lang.units.soldier,
 			atk: 5,
 			def: 1,
 			mov: 4,
@@ -83,7 +83,7 @@
 			availableBuildingsType: ['farm']
 		},
 		spider: {
-			unitName: lang.units.spider,
+			info: lang.units.spider,
 			atk: 6,
 			def: 2,
 			mov: 5,
@@ -93,7 +93,7 @@
 			canPoison: true
 		},
 		wisp: {
-			unitName: lang.units.wisp,
+			info: lang.units.wisp,
 			atk: 3,
 			def: 2,
 			mov: 4,
@@ -104,7 +104,7 @@
 			bonesAttackBonus: 5
 		},
 		wizard: {
-			unitName: lang.units.wizard,
+			info: lang.units.wizard,
 			atk: 4,
 			def: 1,
 			mov: 4,
@@ -117,7 +117,7 @@
 			upBonesRange: 1
 		},
 		wyvern: {
-			unitName: lang.units.wyvern,
+			info: lang.units.wyvern,
 			atk: 8,
 			def: 3,
 			mov: 7,

@@ -6,10 +6,12 @@
 	height: 100%;
 	background-color: #ccc;
 	z-index: 1;
+	overflow-y: scroll;
 }
 
 .unit-card {
 	float: left;
+	padding: 3px;
 }
 
 .buy-unit {
@@ -20,10 +22,7 @@
 	background-color: #fff;
 }
 
-
-
-
-
-
-
+.store-wrapper button {
+	padding: 3px;
+}
 
