@@ -35,7 +35,8 @@
 
 	APP.units.BaseUnit.prototype = {
 		underAbilityList: {
-			wasPoisoned: false
+			wasPoisoned: false,
+			underWispAura: false
 		},
 		defaultList: {
 			wasMove: false,
@@ -164,6 +165,20 @@
 			}
 
 			return unitsUnderAttack;
+
+		},
+
+		getAuraMap: function() {
+
+			var pathFinder = new util.PathFinder({
+					mov: this.auraRange,
+					x: this.x,
+					y: this.y,
+					relativeTypeSpace: false
+				}),
+				availableSquare = pathFinder.getAvailablePath({unit: this});
+
+			return availableSquare;
 
 		},
 

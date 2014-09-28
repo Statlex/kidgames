@@ -26,7 +26,8 @@
 			attackRange: 1,
 			notInStore: true,
 			notCreateGrave: true,
-			canNotBePoisoned: true
+			canNotBePoisoned: true,
+			canNotBeUnderWispAura: true
 		},
 		catapult: {
 			unitName: lang.units.catapult,
@@ -43,7 +44,8 @@
 			mov: 4,
 			cost: 600,
 			attackRange: 1,
-			canNotBePoisoned: true
+			canNotBePoisoned: true,
+			canNotBeUnderWispAura: true
 		},
 		knight: {
 			unitName: lang.units.knight,
@@ -96,7 +98,9 @@
 			def: 2,
 			mov: 4,
 			cost: 500,
-			attackRange: 1
+			attackRange: 1,
+			auraRange: 2,
+			canNotBeUnderWispAura: true
 		},
 		wizard: {
 			unitName: lang.units.wizard,

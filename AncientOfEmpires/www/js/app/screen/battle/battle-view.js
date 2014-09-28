@@ -361,6 +361,17 @@
 
 			this.redrawHealthUnit(unit);
 
+		},
+		showWispAura: function(unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.addClass('under-wisp-aura');
+		},
+		hideWispAura: function(unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.removeClass('under-wisp-aura');
+		},
+		removeWispAuraFromGraves: function() {
+			this.$unitLayer.find('.grave').removeClass('under-wisp-aura');
 		}
 
 	});

@@ -241,6 +241,7 @@
 						this.view.moveUnit(this.focusedUnit);
 
 						this.endAction();
+						this.wispAction();
 						break;
 
 					case 'attack':
@@ -248,6 +249,7 @@
 						this.view.hideUnitsUnderAttack();
 
 						this.endAction();
+						this.wispAction();
 						break;
 
 					case 'getBuilding':
@@ -453,8 +455,105 @@
 			this.setStatusBarForActivePlayer();
 			this.updateRIPs();
 			this.updateUnitsOnBuilding();
+			this.wispAction();
+		},
+		wispAction: function(argsPlayer) {
+
+			// 0 - get players
+			// 1 - get wisps
+			// 2 - create active map
+			// 3 - get all units
+			// 4 - set state for each units
+
+			var ctrl = this,
+				players = ctrl.players,
+				view = ctrl.view;
+
+			players.forEach(function(player){
+
+				var allUnits = ctrl.getUnitByPlayer(player),
+					wisps = ctrl.getUnitByPlayerAndType(player, 'Wisp'),
+					auraMap = ctrl.createAuraMap(wisps);
+
+				// apply aura to needed units
+				allUnits.forEach(function(unit){
+
+					var x = unit.x,
+						y = unit.y;
+
+					if ( auraMap['x' + x + 'y' + y] ) {
+
+						if (unit.underWispAura || unit.canNotBeUnderWispAura) {
+							// do nothing, unit is OK
+						} else {
+							unit.underWispAura = true;
+							view.showWispAura(unit);
+						}
+
+					} else {
+
+						view.hideWispAura(unit);
+						unit.underWispAura = false;
+
+					}
+
+				})
+
+			});
+
+			view.removeWispAuraFromGraves();
 
 		},
+		getUnitByPlayer: function(player) {
+			var unitsByPlayer = [],
+				allUnits = this.units,
+				key, unit,
+				playerId = player.id;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					unit = allUnits[key];
+					if (unit.playerId === playerId) {
+						unitsByPlayer.push(unit);
+					}
+				}
+			}
+
+			return unitsByPlayer;
+
+		},
+		getUnitByPlayerAndType: function(player, type) {
+
+			var allUnits = this.getUnitByPlayer(player),
+				neededUnits = [];
+
+			allUnits.forEach(function(unit){
+				if (unit.type === type) {
+					neededUnits.push(unit);
+				}
+			});
+
+			return neededUnits;
+
+		},
+		createAuraMap: function(units) {
+
+			var map = {};
+
+			units.forEach(function(unit){
+
+				var unitMap = unit.getAuraMap();
+
+				unitMap.forEach(function(xy){
+					map['x' + xy.x + 'y' + xy.y] = xy;
+				});
+
+			});
+
+			return map;
+
+		},
+
 		updateUnitsOnBuilding: function() {
 			var player = this.activePlayer,
 				playerId = player.id,

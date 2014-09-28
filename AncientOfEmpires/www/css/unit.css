@@ -134,7 +134,20 @@
 	background-size: 100% 100%;
 }
 
+.wisp-aura {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 255, 207, 0.64);
+	display: none;
+}
 
+.under-wisp-aura .wisp-aura {
+	display: block;
+}
 
-
-
+.grave .wisp-aura {
+	display: none;
+}
