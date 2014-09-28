@@ -140,8 +140,11 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 255, 207, 0.64);
 	display: none;
+	background-image: url(../img/unit/wisp-aura.png);
+	background-repeat: no-repeat;
+	background-size: 50% 50%;
+	background-position: top right;
 }
 
 .under-wisp-aura .wisp-aura {
