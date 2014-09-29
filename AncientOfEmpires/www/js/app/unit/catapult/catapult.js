@@ -26,7 +26,7 @@
 
 	catapult.prototype.findUnitsUnderAttack = function() {
 
-		var units = proto.findUnitsUnderAttack.apply(this, arguments),
+		var units = proto.findUnitsUnderAttack.apply(this, arguments) || [],
 			x = this.x,
 			y = this.y,
 			filteredUnits;
