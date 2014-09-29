@@ -414,7 +414,7 @@
 					unit = RIPs[key];
 					unit.lifeAfterDeadLength += 1;
 
-					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit + 1000) {
+					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit) {
 						this.view.removeRIP(unit);
 						delete RIPs[key];
 					}
