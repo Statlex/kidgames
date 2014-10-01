@@ -198,8 +198,9 @@
 
 <script type="text/x-template" data-name="unit">
 
-	<div class="unit unit-<%= unit.type.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="<%= info.preCSS %>transform: translate(<%= unit.x * view.squareSize %>px, <%= unit.y * view.squareSize %>px);">
+	<div data-level="<%= unit.level %>" class="unit unit-<%= unit.type.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="<%= info.preCSS %>transform: translate(<%= unit.x * view.squareSize %>px, <%= unit.y * view.squareSize %>px);">
 		&nbsp;
+		<div class="level-bar">&nbsp;</div>
 		<div class="wisp-aura">&nbsp;</div>
 		<div class="js-health unit-health"><%= unit.health %></div>
 	</div>

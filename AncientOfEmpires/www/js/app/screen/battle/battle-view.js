@@ -237,6 +237,12 @@
 			}
 
 		},
+
+		redrawLevelUnit: function (unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.data('level', unit.level);
+		},
+
 		drawPoisoned: function(unitNode) {
 			unitNode.addClass('unit-poisoned');
 		},

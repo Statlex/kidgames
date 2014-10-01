@@ -331,7 +331,9 @@
 			}
 
 			this.view.redrawHealthUnit(active);
+			this.view.redrawLevelUnit(active);
 			this.view.redrawHealthUnit(passive);
+			this.view.redrawLevelUnit(passive);
 
 		},
 

@@ -41,9 +41,10 @@
 	};
 
 	APP.units.BaseUnit.prototype = {
-		level: {
-			max: 3,   // === level.upList.length
-			upList: [10, 25, 45],
+		levelInfo: {
+			max: 3,   // === levelInfo.upList.length
+			upList: [3, 6, 9],
+//			upList: [10, 25, 45],
 			attackBonus: 1
 		},
 		underAbilityList: {
@@ -259,7 +260,7 @@
 			}
 
 			if (defByBuilding > 0) {
-				defByTerrain = 0
+				defByTerrain = 0;
 			}
 
 			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
@@ -285,13 +286,22 @@
 		},
 		setLevel: function() {
 
-			var attackCount = this.damage.given / this.atk;
+			var attackCount = this.damage.given / this.atk,
+				level = 0;
 
-			this.level.upList.every(function(point){
+			this.levelInfo.upList.every(function(point, index){
 
-				// attackCount > point
+				if (point > attackCount) {
+					return false;
+				}
+
+				level = index + 1;
+
+				return true;
 
 			});
+
+			this.level = level;
 
 
 		},
