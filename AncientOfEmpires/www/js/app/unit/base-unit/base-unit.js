@@ -19,6 +19,13 @@
 
 		this.runType = 'walk';
 
+		this.damage = {
+			given: 0,
+			received: 0
+		};
+
+		this.level = 0;
+
 //		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
 		this.availableActionsDefault = ['move', 'attack'];
 		this.availableActions = [];
@@ -34,6 +41,11 @@
 	};
 
 	APP.units.BaseUnit.prototype = {
+		level: {
+			max: 3,   // === level.upList.length
+			upList: [10, 25, 45],
+			attackBonus: 1
+		},
 		underAbilityList: {
 			wasPoisoned: false,
 			underWispAura: false
@@ -239,6 +251,8 @@
 				enemyDef = enemyUnit.def,
 				reduceDefBy = APP.units.info.poison.reduce.def;
 
+			this.damage.given += attackValue * unitQ;
+
 			if (enemyUnit.wasPoisoned) {
 				enemyDef -= reduceDefBy;
 				enemyDef = Math.max(enemyDef, 0);
@@ -260,9 +274,25 @@
 				attackValue += this.bonesAttackBonus;
 			}
 
+			enemyUnit.damage.received += attackValue;
+
 			enemyUnit.health = enemyUnit.health - attackValue;
 
+			this.setLevel();
+
 			this.setEndTurn();
+
+		},
+		setLevel: function() {
+
+			var attackCount = this.damage.given / this.atk;
+
+			this.level.upList.every(function(point){
+
+				// attackCount > point
+
+			});
+
 
 		},
 		setDefaultProperties: function() {
