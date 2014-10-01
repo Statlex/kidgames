@@ -42,10 +42,8 @@
 
 	APP.units.BaseUnit.prototype = {
 		levelInfo: {
-			max: 3,   // === levelInfo.upList.length
-			upList: [3, 6, 9],
-//			upList: [10, 25, 45],
-			attackBonus: 1
+			upList: [4, 9, 15], // max level is (upList.length + 1)
+			attackBonus: 10 // 10% to attack for each unit's level
 		},
 		underAbilityList: {
 			wasPoisoned: false,
@@ -247,8 +245,8 @@
 			var defByBuilding = controller.getDefByBuilding(enemyUnit),
 				defByTerrain = controller.getDefByTerrain(enemyUnit),
 				unitQ = this.health / this.defaultHealth,
-//				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
 				attackValue = this.atk,
+				attackBonusByLevel = this.atk * (this.level * this.levelInfo.attackBonus) / 100,
 				enemyDef = enemyUnit.def,
 				reduceDefBy = APP.units.info.poison.reduce.def;
 
@@ -263,7 +261,7 @@
 				defByTerrain = 0;
 			}
 
-			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
+			attackValue = (attackBonusByLevel + attackValue) * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
 
 			attackValue = Math.max(attackValue, unitQ);
 
