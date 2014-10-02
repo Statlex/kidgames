@@ -390,6 +390,8 @@
 
 		killUnit: function(unit) {
 
+			unit.level = 0;
+
 			if ( unit.notCreateGrave ) {
 				this.view.removeRIP(unit); // hack - use removeRIP instead removeUnit (removeUnit is not implemented)
 			} else {

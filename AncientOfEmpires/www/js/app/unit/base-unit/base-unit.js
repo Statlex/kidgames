@@ -26,17 +26,8 @@
 
 		this.level = 0;
 
-//		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
 		this.availableActionsDefault = ['move', 'attack'];
 		this.availableActions = [];
-
-//		this.defaultList = {
-//			wasMove: false,
-//			wasAttack: false
-//		};
-
-//		this.wasMove = false;
-//		this.wasAttack = false;
 
 	};
 
@@ -58,12 +49,15 @@
 			var unitInfo = APP.units.info[data.type.toLowerCase()];
 
 			this.defaultList = util.createCopy(this.defaultList);
+			this.damage = util.createCopy(this.damage);
 			util.extend(this.defaultList, unitInfo.unitDefaultList);
 			util.extend(this, unitInfo);
 			util.extend(this, data);
 
 			// create full action list
 			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
+
+			console.log(this);
 
 		},
 		getAvailablePath: function(controller) {
