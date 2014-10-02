@@ -1,8 +1,8 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
-	/*global bingo, $, info, APP, util */
+	/*global window, document, history */
+	/*global bingo, $, info, APP, util, Backbone */
 
 	win.APP = win.APP || {};
 
@@ -248,7 +248,7 @@
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);
-			$unit.addClass('grave')
+			$unit.addClass('grave');
 			this.redrawLevelUnit(unit);
 		},
 		removeRIP: function (unit) {

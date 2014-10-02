@@ -264,7 +264,7 @@
 
 					case 'upBones':
 
-						this.upBonesFromGrave(this.focusedUnit, coordinates)
+						this.upBonesFromGrave(this.focusedUnit, coordinates);
 
 						this.endAction();
 

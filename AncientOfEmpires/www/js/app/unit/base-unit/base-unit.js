@@ -57,8 +57,6 @@
 			// create full action list
 			this.availableActions = this.availableActionsDefault.concat(this.availableActions);
 
-			console.log(this);
-
 		},
 		getAvailablePath: function(controller) {
 
