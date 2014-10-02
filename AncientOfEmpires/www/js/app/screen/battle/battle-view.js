@@ -248,9 +248,8 @@
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);
-			$unit
-				.addClass('grave')
-				.data('level', unit.level);
+			$unit.addClass('grave')
+			this.redrawLevelUnit(unit);
 		},
 		removeRIP: function (unit) {
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').remove();
