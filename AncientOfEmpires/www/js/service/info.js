@@ -5,25 +5,28 @@
 
 	function getPrefix() {
 
-		var ua = navigator.userAgent,
+		var data = {
+				js: '',
+				css: ''
+			},
+			tempStyle = doc.createElement('div').style,
+			vendors = ['t','webkitT','MozT','msT','OT'];
+
+		// find vendors by css transform property
+		vendors.forEach(function(vendor){
+			var transform = vendor + 'ransform';
+			if (!tempStyle.hasOwnProperty(transform)) {
+				return;
+			}
+
+			vendor = vendor.replace(/t$/i, ''); // remove 't' from vendor
+
 			data = {
-				js: 'webkit',
-				css: '-webkit-'
+				js: vendor,
+				css: '-' + vendor.toLocaleLowerCase() + '-'
 			};
 
-//			var vendors = 't,webkitT,MozT,msT,OT'.split(','),
-//				t,
-//				i = 0,
-//				l = vendors.length;
-//
-//			for (; i < l; i++) {
-//				t = vendors[i] + 'ransform';
-//				if (t in dummyStyle) {
-//					return vendors[i].substr(0, vendors[i].length - 1);
-//				}
-//			}
-//
-//			return false;
+		});
 
 		return data;
 

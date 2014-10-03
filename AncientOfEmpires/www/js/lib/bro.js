@@ -971,11 +971,35 @@
 		info.canScroll = canScroll;
 	};
 
-	Bro.prototype.vendorPrefix = function () {
-		return {
-			css: '-webkit-',
-			js: 'webkit'
-		};
+	Bro.prototype.getVendorPrefix = function () {
+
+		var data = {
+				js: '',
+				css: ''
+			},
+			tempStyle = doc.createElement('div').style,
+			vendors = ['t','webkitT','MozT','msT','OT'];
+
+		// find vendors by css transform property
+		vendors.forEach(function(vendor){
+
+			var transform = vendor + 'ransform';
+
+			if (!tempStyle.hasOwnProperty(transform)) {
+				return;
+			}
+
+			vendor = vendor.replace(/t$/i, ''); // remove 't' from vendor
+
+			data = {
+				js: vendor,
+				css: '-' + vendor.toLocaleLowerCase() + '-'
+			};
+
+		});
+
+		return data;
+
 	};
 
 	Bro.prototype.ajax = function (data) {
