@@ -11,33 +11,19 @@
 				css: '-webkit-'
 			};
 
-//		if (ua.indexOf("Mozilla") !== -1 ) {
-//			data = {
-//				js: 'Moz',
-//				css: '-moz-'
-//			}
-//		}
+//			var vendors = 't,webkitT,MozT,msT,OT'.split(','),
+//				t,
+//				i = 0,
+//				l = vendors.length;
 //
-//		if (ua.indexOf("MSIE") !== -1 ) {
-//			data = {
-//				js: 'ms',
-//				css: '-ms-'
+//			for (; i < l; i++) {
+//				t = vendors[i] + 'ransform';
+//				if (t in dummyStyle) {
+//					return vendors[i].substr(0, vendors[i].length - 1);
+//				}
 //			}
-//		}
 //
-//		if (ua.indexOf("Chrome") !== -1 ) {
-//			data = {
-//				js: 'webkit',
-//				css: '-webkit-'
-//			}
-//		}
-//
-//		if (ua.indexOf("Opera") !== -1 ) {
-//			data = {
-//				js: 'O',
-//				css: '-o-'
-//			}
-//		}
+//			return false;
 
 		return data;
 
