@@ -35,7 +35,7 @@
 			var $container = this.$el.container.$el,
 				containerNode = $container[0];
 
-			$container[0].style[this.vendor.js + 'Transform'] = 'translate(-10px, -10px)';
+			$container[0].style[this.vendor.js + 'Transform'] = 'translate(10px, 10px)';
 
 		},
 
@@ -56,8 +56,8 @@
 
 			var wrapper = this.$el.wrapper.$el;
 
-			wrapper.on('mousedown', this.detectStartPosition.bind(this), true);
-			wrapper.on('mousemove', this.moveTo.bind(this), true);
+			wrapper.on('mousedown', this.detectStartPosition.bind(this));
+			wrapper.on('mousemove', this.moveTo.bind(this));
 
 		},
 		detectStartPosition: function() {
