@@ -122,12 +122,11 @@
 				}
 			},
 			extraTypes: isTouch ? ['click', 'dblclick', 'hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'] : ['hold', 'swipe', 'swipe-up', 'swipe-down', 'swipe-left', 'swipe-right'],
-			touchTypes: ['mousedown', 'mousemove', 'mouseup', 'mouseout'],
+			touchTypes: ['mousedown', 'mousemove', 'mouseup'],
 			touchMouseMap: {
 				mousedown: 'touchstart',
 				mousemove: 'touchmove',
-				mouseup: 'touchend',
-				mouseout: 'touchcancel'
+				mouseup: 'touchend'
 			},
 			isActive: false,
 			isClick: function () {
@@ -307,11 +306,6 @@
 			}
 
 			body.addEventListener(this.evt.up, function () {
-				that.evt.current.up.time = Date.now();
-				that.evt.isActive = false;
-			}, true);
-
-			body.addEventListener(this.evt.out, function () {
 				that.evt.current.up.time = Date.now();
 				that.evt.isActive = false;
 			}, true);

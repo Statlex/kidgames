@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document, history */
-	/*global bingo, $, info, APP, util, Backbone */
+	/*global bingo, $, info, APP, util, Backbone, MoveArea */
 
 	win.APP = win.APP || {};
 
@@ -49,6 +49,8 @@
 			this.controller.startBattle();
 
 			this.drawMap();
+
+			this.setMoveArea();
 
 		},
 
@@ -379,6 +381,13 @@
 		},
 		removeWispAuraFromGraves: function() {
 			this.$unitLayer.find('.grave').removeClass('under-wisp-aura');
+		},
+		setMoveArea: function() {
+			var $el = this.$el;
+			this.moveArea = new MoveArea({
+				$wrapper: $el.find('.js-layers-moving-wrapper'),
+				$container: $el.find('.js-layers-wrapper')
+			});
 		}
 
 	});
