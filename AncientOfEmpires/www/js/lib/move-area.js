@@ -2,7 +2,15 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global $ */
+	/*global $, util */
+
+	var instances = [];
+
+	win.addEventListener('resize', function() {
+		instances.forEach(function(instance){
+			instance.onResize();
+		});
+	}, false);
 
 	function MoveArea (data) {
 
@@ -29,9 +37,32 @@
 		this.setEdgePosition();
 		this.bindEventListeners();
 
+		instances.push(this);
+
 	}
 
 	MoveArea.prototype = {
+
+		remove: function() {
+
+			instances = util.removeFromArray(instances, this);
+
+			var key;
+
+			for (key in this) {
+				if (this.hasOwnProperty(key)) {
+					delete this[key];
+				}
+			}
+
+		},
+
+		onResize: function() {
+
+			this.centeringContainer();
+			this.setEdgePosition();
+
+		},
 
 		centeringContainer: function() {
 
