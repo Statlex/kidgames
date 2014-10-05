@@ -16,15 +16,21 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	top: 0;
-	left: 0;
+	top: 50px; /* see next styles */
+	left: 50px; /* see next styles */
 	z-index: 0;
 }
 
 .layers-wrapper {
 	position: relative;
-	background-color: #fff;
+	background-image: url(../i/bg-map.jpg);
 	overflow: hidden;
+	padding: 50px; /* see previous styles */
+}
+
+.layers-moving-wrapper {
+	overflow: hidden;
+	background-color: #060;
 }
 
 .battle-screen {
@@ -132,7 +138,7 @@
 }
 
 .status-bar {
-	height: 36px;
+	/*height: 36px;*/
 	width: 100%;
 	background-color: #000;
 }
@@ -188,10 +194,6 @@
 
 .status-bar-armor {
 	background-image: url(../img/status-bar/armor.png);
-}
-
-.layers-moving-wrapper {
-	overflow: hidden;
 }
 
 

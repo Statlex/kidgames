@@ -29,6 +29,9 @@
 		json: /(^|\s+)\{[\s\S]*\}($|\s+)/,
 		xToX: function (str) {
 			return str.replace(/-\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase)).replace(/-/gi, '');
+		},
+		capitalize: function (str) {
+			return str.replace(/(^|\s)\w/gi, Function.prototype.call.bind(String.prototype.toUpperCase));
 		}
 	};
 
@@ -878,6 +881,47 @@
 
 	};
 
+	Bro.prototype.getSize = function (prop) { // width or height
+
+		var size = 0;
+
+		this.every(function(node){
+			size = node['client' + this.capitalize(prop)];
+			return false;
+		}, this);
+
+		return size;
+
+	};
+
+	Bro.prototype.setSize = function (prop, value) { // width or height
+
+		this.css(prop, value);
+
+	};
+
+	Bro.prototype.height = function(height) {
+
+		if (height === undefined) {
+			return this.getSize('height');
+		}
+
+		this.setSize('height', height);
+		return this;
+
+	};
+
+	Bro.prototype.width = function(width) {
+
+		if (width === undefined) {
+			return this.getSize('width');
+		}
+
+		this.setSize('width', width);
+		return this;
+
+	};
+
 	// util section
 	Bro.prototype.template = function (str) {
 		return new Function("obj",
@@ -890,6 +934,11 @@
 				.split("%>").join("p.push('")
 				.split("\r").join("\\'") + "');} return p.join('');");
 	};
+
+	Bro.prototype.capitalize = function(str) {
+		return re.capitalize(str);
+	};
+
 
 	Bro.prototype.toArray = function (arr) {
 		return Array.prototype.slice.call(arr);
