@@ -128,7 +128,11 @@
 				$oldNodes.remove();
 				this.$wrapper.html('');
 
+				win.scrollTo(0, 0);
+
 				setTimeout((function(){
+
+					win.scrollTo(0, 0);
 
 					this.$wrapper.append(this.$el);
 
