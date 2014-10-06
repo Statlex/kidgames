@@ -160,7 +160,9 @@
 			this.setLastAvailable(coordinates);
 
 		},
-		moveTo: function() {
+		moveTo: function(e) {
+
+			e.preventDefault();
 
 			if (!this.evt.isActive) {
 				return;
