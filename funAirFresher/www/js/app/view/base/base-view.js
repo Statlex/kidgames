@@ -24,7 +24,7 @@
 			var $this = $(e.currentTarget),
 				route = $this.data('route');
 
-			this.navigate(route, {trigger: true});
+			this.navigate(route, true);
 
 		}
 
