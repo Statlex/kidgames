@@ -7,8 +7,25 @@
 
 	APP.BaseView = Backbone.View.extend({
 
+		events: {
+			'click [data-route]': 'routeTo'
+		},
+
 		baseInitialize: function() {
-			console.log('//');
+			APP.$wrapper.empty();
+		},
+
+		navigate: function() { //url, options
+			APP.router.navigate.apply(APP.route, arguments);
+		},
+
+		routeTo: function(e) {
+
+			var $this = $(e.currentTarget),
+				route = $this.data('route');
+
+			this.navigate(route, {trigger: true});
+
 		}
 
 

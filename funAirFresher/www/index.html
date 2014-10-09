@@ -24,6 +24,9 @@
 	<!-- views -->
 	<script src="js/app/view/base/base-view.js" type="text/javascript"></script>
 	<script src="js/app/view/title/title-view.js" type="text/javascript"></script>
+	<script src="js/app/view/air-fresh/air-fresh-view.js" type="text/javascript"></script>
+	<script src="js/app/view/how-it-works/how-it-works.js" type="text/javascript"></script>
+	<script src="js/app/view/privacy-policy/privacy-policy.js" type="text/javascript"></script>
 
 
 	<script src="js/app/main.js" type="text/javascript"></script>
@@ -33,15 +36,42 @@
 
 <div class="js-wrapper wrapper">
 
-	<h1>wrapper</h1>
-
 </div>
 
 <script type="text/x-template" data-name="title">
 
-	<h1>title   <span>click</span></h1>
+	<div class="js-title">
+		<div data-route="air-fresh"><%= APP.langMaster.freshAir %> <span>000</span> </div>
+		<div data-route="how-it-works"><%= APP.langMaster.howItWorks %></div>
+		<div data-route="privacy-policy"><%= APP.langMaster.privacyPolicy %></div>
+	</div>
 
 </script>
+
+<script type="text/x-template" data-name="air-fresh">
+
+	<div class="js-air-fresh">
+		<h1>airFresh</h1>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="how-it-works">
+
+	<div class="js-how-it-works">
+		<h1>js-how-it-works</h1>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="privacy-policy">
+
+	<div class="js-privacy-policy">
+		<h1>js-privacy-policy</h1>
+	</div>
+
+</script>
+
 
 
 </body>

@@ -9,12 +9,49 @@
 	APP.Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'title'
+			'': 'title',
+			'air-fresh': 'airFresh',
+			'how-it-works': 'howItWorks',
+			'privacy-policy': 'privacyPolicy'
 		},
 
 		title: function () {
+
+			if ( APP.$wrapper.find('.js-title').length ) {
+				return;
+			}
+
 			APP.titleView = new APP.TitleView({el: $(APP.templateMaster.tmplFn.title())});
-			console.log('route title');
+
+		},
+
+		airFresh: function() {
+
+			if ( APP.$wrapper.find('.js-air-fresh').length ) {
+				return;
+			}
+
+			APP.airFreshView = new APP.AirFreshView({el: $(APP.templateMaster.tmplFn['air-fresh']())});
+
+		},
+
+		howItWorks: function() {
+
+			if ( APP.$wrapper.find('.js-how-it-works').length ) {
+				return;
+			}
+
+			APP.howItWorks = new APP.HowItWorksView({el: $(APP.templateMaster.tmplFn['how-it-works']())});
+
+		},
+
+		privacyPolicy: function() {
+
+			if ( APP.$wrapper.find('.js-privacy-policy').length ) {
+				return;
+			}
+
+			APP.privacyPolicy = new APP.PrivacyPolicyView({el: $(APP.templateMaster.tmplFn['privacy-policy']())});
 
 		}
 
@@ -32,8 +69,9 @@
 		Backbone.history.start();
 
 		function back() {
-			if (win.location.hash) {
-				history.back();
+
+			if (Backbone.history.fragment) {
+				Backbone.history.history.back();
 				setTimeout(back, 200);
 			}
 		}

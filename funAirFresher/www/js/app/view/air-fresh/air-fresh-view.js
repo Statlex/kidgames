@@ -4,13 +4,13 @@
 	/*global console, alert, window, document */
 	/*global APP, _ */
 
-	APP.TitleView = APP.BaseView.extend({
+	APP.AirFreshView = APP.BaseView.extend({
 
 		events: {
 			'click span': 'alert'
 		},
 
-		constructor: function(){
+		constructor: function() {
 			var proto = APP.BaseView.prototype;
 			this.events = _.extend( {}, proto.events, this.events );
 			proto.constructor.apply( this, arguments );

@@ -13,8 +13,6 @@
 		fullName: 'English',
 		language: 'language',
 
-		appName: 'Air Fresher',
-
 		thanksForBuyProVersion: 'Thank you for purchasing paid version',
 
 		// <-- rate us
@@ -31,8 +29,14 @@
 		},
 
 		mailSendingIsSuccessful: 'Thank you for your review!',
-		mailSendingIsFailed: 'The letter was not sent, check your \ninternet connection.'
+		mailSendingIsFailed: 'The letter was not sent, check your \ninternet connection.',
 		// /--> rate us
+
+		appName: 'Air Fresher',
+		freshAir: 'Fresh Air',
+		howItWorks: 'How it Works',
+		privacyPolicy: 'Privacy Policy'
+
 	};
 
 }(window));

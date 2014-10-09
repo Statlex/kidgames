@@ -97,22 +97,12 @@
 			// set all fields from ls to info
 			this.setDataFromLS();
 
-			// try to get current language
-			this.setLang();
-
 		},
-		setLang: function() {
+		getAvailableLang: function() {
 
-			var lang = this.get('lang');
+			var lang = (navigator.language || navigator.userLanguage).split('-')[0];
 
-			if (lang) {
-				return;
-			}
-
-			lang = navigator.language || navigator.userLanguage;
-			lang = lang.split('-')[0];
-
-			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.defaultLang : lang;
+			return (this.availableLangs.indexOf(lang) === -1) ? this.defaultLang : lang;
 
 		},
 		setDataFromLS: function () {
