@@ -1,0 +1,4 @@
+/* fix jQ mobile "loading" */
+.ui-loader {
+	display: none;
+}

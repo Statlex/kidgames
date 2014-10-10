@@ -11,6 +11,31 @@
 			'click [data-route]': 'routeTo'
 		},
 
+		baseConstructor: function() {
+
+			var proto = APP.BaseView.prototype,
+				events = _.extend( {}, proto.events, this.events );
+
+			if (APP.info.isTouch) {
+				$.each( events, function( key, value ) {
+
+					var newKey = key.replace(/^click(?=\s+)/i, 'tap');
+
+					if (newKey !== key) {
+						delete events[key];
+						events[newKey] = value;
+					}
+
+				});
+
+			}
+
+			this.events = events;
+
+			proto.constructor.apply(this, arguments);
+
+		},
+
 		baseInitialize: function() {
 			APP.$wrapper.empty();
 		},

@@ -11,9 +11,7 @@
 		},
 
 		constructor: function() {
-			var proto = APP.BaseView.prototype;
-			this.events = _.extend( {}, proto.events, this.events );
-			proto.constructor.apply( this, arguments );
+			this.baseConstructor.apply(this, arguments);
 		},
 
 		initialize: function() {

@@ -79,6 +79,6 @@
 		back();
 	}
 
-	win.addEventListener('load', main, false);
+	$(main);
 
 }(window, document));
