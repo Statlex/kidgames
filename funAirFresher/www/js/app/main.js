@@ -81,4 +81,11 @@
 
 	$(main);
 
+	window.addEventListener('hashchange', function(e){
+		console.log(e);
+
+		// detect new and old url
+		// and add to page wrappers needed css classes
+	}, false);
+
 }(window, document));

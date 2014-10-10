@@ -8,7 +8,8 @@
 	APP.BaseView = Backbone.View.extend({
 
 		events: {
-			'click [data-route]': 'routeTo'
+			'click [data-route]': 'routeTo',
+			'click .js-back': 'routeBack'
 		},
 
 		baseConstructor: function() {
@@ -38,6 +39,8 @@
 
 		baseInitialize: function() {
 			APP.$wrapper.empty();
+			console.log(arguments);
+			this.$el.addClass('js-page-wrapper page-wrapper');
 		},
 
 		navigate: function() { //url, options
@@ -50,6 +53,14 @@
 				route = $this.data('route');
 
 			this.navigate(route, true);
+
+		},
+
+		routeBack: function() {
+
+			if (Backbone.history.fragment) {
+				Backbone.history.history.back();
+			}
 
 		}
 
