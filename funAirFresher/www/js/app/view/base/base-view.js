@@ -12,6 +12,11 @@
 			'click .js-back': 'routeBack'
 		},
 
+		direction: {
+			forward: 'forward',
+			back: 'back'
+		},
+
 		baseConstructor: function() {
 
 			var proto = APP.BaseView.prototype,
@@ -38,13 +43,87 @@
 		},
 
 		baseInitialize: function() {
-			APP.$wrapper.empty();
-			console.log(arguments);
+			this.initialize();
+		},
+
+		initialize: function() {
+
 			this.$el.addClass('js-page-wrapper page-wrapper');
+
+			APP.$wrapper.append(this.$el);
+
+			this.showDirectionAnimation();
+
+		},
+
+		showDirectionAnimation: function() {
+
+			this.detectDirection();
+
+			var $wrappers = APP.$wrapper.find('.js-page-wrapper'),
+				$prev = $wrappers.eq(0),
+				$next = $wrappers.eq(1);
+
+			if ($wrappers.length === 1) {
+				$wrappers.removeClass('left-position center-position right-position transition hidden').addClass('static');
+				return;
+			}
+
+			if (APP.router.direction === this.direction.forward) {
+				$next.addClass('right-position');
+				$wrappers.addClass('transition');
+
+				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
+					this.parentNode.removeChild(this);
+				});
+
+				$next.on(APP.info.preJS + 'TransitionEnd', function(){
+					$(this).removeClass('left-position center-position right-position transition').addClass('static');
+				});
+
+				setTimeout(function(){
+					$next.addClass('center-position');
+					$prev.addClass('left-position');
+				}, 100);
+
+			}
+
+			if (APP.router.direction === this.direction.back) {
+				$next.addClass('left-position');
+				$prev.removeClass('static');
+				$wrappers.addClass('transition');
+
+				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
+					this.parentNode.removeChild(this);
+				});
+
+				$next.on(APP.info.preJS + 'TransitionEnd', function(){
+					$(this).removeClass('left-position center-position right-position transition').addClass('static');
+				});
+
+				setTimeout(function(){
+					$next.removeClass('left-position').addClass('center-position');
+					$prev.addClass('right-position');
+				}, 100);
+
+			}
+
+		},
+
+		detectDirection: function() {
+
+			var router = APP.router,
+				prevUrl = router.prevUrl,
+				curUrl = Backbone.history.fragment;
+
+			router.direction = curUrl.indexOf(prevUrl) ? this.direction.back : this.direction.forward;
+
+			router.prevUrl = curUrl;
+
 		},
 
 		navigate: function() { //url, options
-			APP.router.navigate.apply(APP.route, arguments);
+			APP.router.navigate.apply(APP.router, arguments);
 		},
 
 		routeTo: function(e) {
@@ -63,52 +142,6 @@
 			}
 
 		}
-
-
-//
-//		tmpl: {},
-//		events: {},
-//		initialize: function(data) {
-//
-//			data = data || {};
-//
-//			var events = this.events,
-//				key, event, selector, arr;
-//
-//			for (key in data) {
-//				if (data.hasOwnProperty(key)) {
-//					this[key] = data[key];
-//				}
-//			}
-//
-//			this.templates.forEach(function(name){
-//				this.tmpl[name] = templateMaster.tmplFn[name];
-//			}, this);
-//
-//			if (this.init) {
-//				this.init(data);
-//			}
-//
-//			for (key in events) {
-//				if (events.hasOwnProperty(key)) {
-//					arr = key.replace(/,/gi, ' ').replace(/\s+/gi, ' ').match(/[\S]+/g);
-//					event = arr.shift();
-//					selector = arr.join(', ');
-//					this.$el.find(selector).on(event, this[events[key]].bind(this));
-//				}
-//			}
-//
-//			this.bindBackButton();
-//
-//		},
-//
-//		bindBackButton: function() {
-//			this.$el.find('.js-back').on('click', function(){
-//				if (Backbone.history.fragment) {
-//					history.back();
-//				}
-//			});
-//		}
 
 	});
 

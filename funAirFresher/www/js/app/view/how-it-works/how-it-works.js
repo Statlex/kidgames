@@ -14,13 +14,6 @@
 			this.baseConstructor.apply(this, arguments);
 		},
 
-		initialize: function() {
-
-			this.baseInitialize();
-
-			APP.$wrapper.append(this.$el);
-		},
-
 		alert: function() {
 			console.log('alert');
 		}
