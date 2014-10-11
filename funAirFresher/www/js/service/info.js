@@ -97,6 +97,9 @@
 			// set all fields from ls to info
 			this.setDataFromLS();
 
+			// set lang
+			this.lang = this.lang || this.getAvailableLang();
+
 		},
 		getAvailableLang: function() {
 
@@ -105,6 +108,7 @@
 			return (this.availableLangs.indexOf(lang) === -1) ? this.defaultLang : lang;
 
 		},
+
 		setDataFromLS: function () {
 			var data = this.getData(),
 				key;
@@ -148,7 +152,7 @@
 		}
 	};
 
-	// default language
-	APP.langMaster.push(APP.info.defaultLang);
+	// set language
+	APP.langMaster.push(APP.info.lang);
 
 }(window));

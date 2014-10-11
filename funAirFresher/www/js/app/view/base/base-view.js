@@ -20,7 +20,7 @@
 		baseConstructor: function() {
 
 			var proto = APP.BaseView.prototype,
-				events = _.extend( {}, proto.events, this.events );
+				events = $.extend( {}, proto.events, this.events );
 
 			if (APP.info.isTouch) {
 				$.each( events, function( key, value ) {
@@ -58,18 +58,18 @@
 
 		showDirectionAnimation: function() {
 
-			this.detectDirection();
-
-			var $wrappers = APP.$wrapper.find('.js-page-wrapper'),
+			var direction = this.detectDirection(),
+				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
 				$prev = $wrappers.eq(0),
-				$next = $wrappers.eq(1);
+				$next = $wrappers.eq(1),
+				fullClassList = 'left-position center-position right-position transition';
 
 			if ($wrappers.length === 1) {
-				$wrappers.removeClass('left-position center-position right-position transition hidden').addClass('static');
+				$wrappers.removeClass(fullClassList).addClass('static');
 				return;
 			}
 
-			if (APP.router.direction === this.direction.forward) {
+			if (direction === this.direction.forward) {
 				$next.addClass('right-position');
 				$wrappers.addClass('transition');
 
@@ -78,17 +78,17 @@
 				});
 
 				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-					$(this).removeClass('left-position center-position right-position transition').addClass('static');
+					$(this).removeClass(fullClassList).addClass('static');
 				});
 
 				setTimeout(function(){
-					$next.addClass('center-position');
-					$prev.addClass('left-position');
-				}, 100);
+					$next.removeClass('right-position').addClass('center-position');
+					$prev.removeClass('center-position').addClass('left-position');
+				}, 50);
 
 			}
 
-			if (APP.router.direction === this.direction.back) {
+			if (direction === this.direction.back) {
 				$next.addClass('left-position');
 				$prev.removeClass('static');
 				$wrappers.addClass('transition');
@@ -98,13 +98,13 @@
 				});
 
 				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-					$(this).removeClass('left-position center-position right-position transition').addClass('static');
+					$(this).removeClass(fullClassList).addClass('static');
 				});
 
 				setTimeout(function(){
 					$next.removeClass('left-position').addClass('center-position');
-					$prev.addClass('right-position');
-				}, 100);
+					$prev.removeClass('center-position').addClass('right-position');
+				}, 50);
 
 			}
 
@@ -114,11 +114,14 @@
 
 			var router = APP.router,
 				prevUrl = router.prevUrl,
-				curUrl = Backbone.history.fragment;
+				curUrl = Backbone.history.fragment,
+				direction;
 
-			router.direction = curUrl.indexOf(prevUrl) ? this.direction.back : this.direction.forward;
+			direction = curUrl.indexOf(prevUrl) !== 0 ? this.direction.back : this.direction.forward;
 
 			router.prevUrl = curUrl;
+
+			return direction;
 
 		},
 
@@ -145,4 +148,4 @@
 
 	});
 
-}(window));
+}(window, _));

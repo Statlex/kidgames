@@ -20,6 +20,7 @@
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
+	<script src="js/lang/ru.js" type="text/javascript"></script>
 
 	<!-- services -->
 	<script src="js/service/info.js" type="text/javascript"></script>
@@ -46,6 +47,21 @@
 <script type="text/x-template" data-name="title">
 
 	<div class="js-title">
+
+		<div>
+
+			<% APP.info.availableLangs.forEach(function(lang){ %>
+
+			<% if (lang === APP.info.lang) { %>
+				<div class="js-set-lang active" data-lang="<%= lang %>"><%= lang %></div>
+			<% } else { %>
+				<div class="js-set-lang" data-lang="<%= lang %>"><%= lang %></div>
+			<% }; %>
+
+			<% }); %>
+
+		</div>
+
 		<div data-route="air-fresh"><%= APP.langMaster.freshAir %> <span>000</span> </div>
 		<div data-route="how-it-works"><%= APP.langMaster.howItWorks %></div>
 		<div data-route="privacy-policy"><%= APP.langMaster.privacyPolicy %></div>
