@@ -65,6 +65,9 @@
 		APP.$wrapper = $('.js-wrapper');
 		APP.wrapper = doc.querySelector('.js-wrapper');
 
+		// set font size
+		APP.util.setWrapperStyle(APP.$wrapper);
+
 		APP.templateMaster.init();
 		Backbone.history.start();
 
@@ -77,6 +80,7 @@
 		}
 
 		back();
+
 	}
 
 	$(main);
