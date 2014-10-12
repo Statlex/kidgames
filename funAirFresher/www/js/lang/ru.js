@@ -36,7 +36,7 @@
 		freshAir: 'Освежить Воздух',
 		howItWorks: 'Как это работает',
 		privacyPolicy: 'Политика Конфиден&shy;циальности',
-		dataCollection: 'Сбор Данных'
+		dataCollection: 'Сбор<br>Данных'
 
 	};
 

@@ -94,12 +94,23 @@
 .getting-data-word {
 	color: #0068f5;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 45px;
 	font-size: 16px;
 	line-height: 16px;
+	letter-spacing: 2px;
 }
 
-
+.back-button {
+	background-image: url(../i/buttons/back.svg);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.3em;
+	left: 0;
+	width: 2em;
+	height: 2em;
+}
 
 
 

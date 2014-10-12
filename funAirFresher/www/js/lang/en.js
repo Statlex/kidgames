@@ -36,7 +36,7 @@
 		freshAir: 'Fresh Air',
 		howItWorks: 'How it Works',
 		privacyPolicy: 'Privacy Policy',
-		dataCollection: 'Data Collection'
+		dataCollection: 'Data<br>Collection'
 
 	};
 
