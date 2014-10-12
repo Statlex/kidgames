@@ -73,18 +73,23 @@
 				$next.addClass('right-position');
 				$wrappers.addClass('transition');
 
-				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
-					this.parentNode.removeChild(this);
-				});
+				setTimeout(function($prev, $next){
+					$prev.remove();
+					$next.removeClass(fullClassList).addClass('static');
+				}.bind(null, $prev, $next), 300);
 
-				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-					$(this).removeClass(fullClassList).addClass('static');
-				});
+//				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
+//					this.parentNode.removeChild(this);
+//				});
+
+//				$next.on(APP.info.preJS + 'TransitionEnd', function(){
+//					$(this).removeClass(fullClassList).addClass('static');
+//				});
 
 				setTimeout(function(){
 					$next.removeClass('right-position').addClass('center-position');
 					$prev.removeClass('center-position').addClass('left-position');
-				}, 50);
+				}, 100);
 
 			}
 
@@ -93,18 +98,24 @@
 				$prev.removeClass('static');
 				$wrappers.addClass('transition');
 
-				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
-					this.parentNode.removeChild(this);
-				});
+				setTimeout(function($prev, $next){
+					$prev.remove();
+					$next.removeClass(fullClassList).addClass('static');
+				}.bind(null, $prev, $next), 300);
 
-				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-					$(this).removeClass(fullClassList).addClass('static');
-				});
+
+//				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
+//					this.parentNode.removeChild(this);
+//				});
+//
+//				$next.on(APP.info.preJS + 'TransitionEnd', function(){
+//					$(this).removeClass(fullClassList).addClass('static');
+//				});
 
 				setTimeout(function(){
 					$next.removeClass('left-position').addClass('center-position');
 					$prev.removeClass('center-position').addClass('right-position');
-				}, 50);
+				}, 100);
 
 			}
 
@@ -131,6 +142,10 @@
 
 		routeTo: function(e) {
 
+			if ( !this.isAvailableState() ) {
+				return;
+			}
+
 			var $this = $(e.currentTarget),
 				route = $this.data('route');
 
@@ -140,12 +155,22 @@
 
 		routeBack: function() {
 
+			if ( !this.isAvailableState() ) {
+				return;
+			}
+
 			if (Backbone.history.fragment) {
 				Backbone.history.history.back();
 			}
+
+		},
+
+		isAvailableState: function() {
+
+			return !APP.$wrapper.find('.transition').length;
 
 		}
 
 	});
 
-}(window, _));
+}(window));

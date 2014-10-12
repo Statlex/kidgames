@@ -35,7 +35,8 @@
 		appName: 'Освежитель Воздуха',
 		freshAir: 'Освежить Воздух',
 		howItWorks: 'Как это работает',
-		privacyPolicy: 'Политика Конфиден&shy;циальности'
+		privacyPolicy: 'Политика Конфиден&shy;циальности',
+		dataCollection: 'Сбор Данных'
 
 	};
 

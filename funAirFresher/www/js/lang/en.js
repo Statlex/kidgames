@@ -35,7 +35,8 @@
 		appName: 'Air Fresher',
 		freshAir: 'Fresh Air',
 		howItWorks: 'How it Works',
-		privacyPolicy: 'Privacy Policy'
+		privacyPolicy: 'Privacy Policy',
+		dataCollection: 'Data Collection'
 
 	};
 

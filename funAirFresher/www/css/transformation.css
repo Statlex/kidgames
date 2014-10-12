@@ -17,18 +17,22 @@
 }
 
 .right-position {
+	-webkit-transform: translate(100%, 0);
 	transform: translate(100%, 0);
 }
 
 .center-position {
+	-webkit-transform: translate(0, 0);
 	transform: translate(0, 0);
 }
 
 .left-position {
+	-webkit-transform: translate(-100%, 0);
 	transform: translate(-100%, 0);
 }
 
 .transition {
+	-webkit-transition: 0.2s transform linear;
 	transition: 0.2s transform linear;
 }
 

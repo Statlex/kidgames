@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/transformation.css"/>
+	<link rel="stylesheet" href="css/loadinig.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
 	<!-- libs -->
@@ -53,9 +54,9 @@
 			<% APP.info.availableLangs.forEach(function(lang){ %>
 
 			<% if (lang === APP.info.lang) { %>
-				<div class="js-set-lang active flag flag-<%= lang %>" data-lang="<%= lang %>"></div>
+				<div class="js-set-lang active flag flag-<%= lang %>" data-lang="<%= lang %>">&nbsp;</div>
 			<% } else { %>
-				<div class="js-set-lang disable flag flag-<%= lang %>" data-lang="<%= lang %>"></div>
+				<div class="js-set-lang disable flag flag-<%= lang %>" data-lang="<%= lang %>">&nbsp;</div>
 			<% }; %>
 
 			<% }); %>
@@ -80,9 +81,42 @@
 
 <script type="text/x-template" data-name="air-fresh">
 
-	<div class="js-air-fresh">
-		<h1>airFresh</h1>
-		<div class="js-back">back</div>
+	<div class="js-air-fresh air-fresh-view">
+
+		<div class="windows8 getting-air-data">
+			<div class="wBall" id="wBall_1">
+				<div class="wInnerBall">
+					&nbsp;
+				</div>
+			</div>
+			<div class="wBall" id="wBall_2">
+				<div class="wInnerBall">
+					&nbsp;
+				</div>
+			</div>
+			<div class="wBall" id="wBall_3">
+				<div class="wInnerBall">
+					&nbsp;
+				</div>
+			</div>
+			<div class="wBall" id="wBall_4">
+				<div class="wInnerBall">
+					&nbsp;
+				</div>
+			</div>
+			<div class="wBall" id="wBall_5">
+				<div class="wInnerBall">
+					&nbsp;
+				</div>
+			</div>
+
+			<div class="getting-data-word"><%= APP.langMaster.dataCollection %></div>
+
+		</div>
+
+		<div class="back-button js-back">back</div>
+
+
 	</div>
 
 </script>
