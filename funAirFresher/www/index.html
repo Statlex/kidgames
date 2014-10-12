@@ -48,23 +48,32 @@
 
 	<div class="js-title title-view">
 
-		<div>
+		<div class="flags-wrapper">
 
 			<% APP.info.availableLangs.forEach(function(lang){ %>
 
 			<% if (lang === APP.info.lang) { %>
-				<div class="js-set-lang active" data-lang="<%= lang %>"><%= lang %></div>
+				<div class="js-set-lang active flag flag-<%= lang %>" data-lang="<%= lang %>"></div>
 			<% } else { %>
-				<div class="js-set-lang" data-lang="<%= lang %>"><%= lang %></div>
+				<div class="js-set-lang disable flag flag-<%= lang %>" data-lang="<%= lang %>"></div>
 			<% }; %>
 
 			<% }); %>
 
 		</div>
 
-		<div data-route="air-fresh"><%= APP.langMaster.freshAir %> <span>000</span> </div>
-		<div data-route="how-it-works"><%= APP.langMaster.howItWorks %></div>
-		<div data-route="privacy-policy"><%= APP.langMaster.privacyPolicy %></div>
+		<div class="table table-button-wrapper">
+			<div class="table-row">
+				<div class="table-cell">
+					<div class="main-button" data-route="air-fresh"><%= APP.langMaster.freshAir %></div>
+					<div class="main-button" data-route="how-it-works"><%= APP.langMaster.howItWorks %></div>
+					<div class="main-button" data-route="privacy-policy"><%= APP.langMaster.privacyPolicy %></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="copyright">&copy; statlex.com 2014 </div>
+
 	</div>
 
 </script>

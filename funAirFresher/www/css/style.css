@@ -13,6 +13,7 @@
 	font-size: 16px;
 	line-height: 115%;
 	color: #333;
+	letter-spacing: 1px;
 }
 
 .title-view {
@@ -22,3 +23,68 @@
 	width: 100%;
 	height: 100%;
 }
+
+.flags-wrapper {
+	float: right;
+	padding: 0.3em 0.3em 0 0;
+	position: relative;
+	z-index: 1;
+}
+
+.flag {
+	float: left;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 1.9em;
+	height: 1em;
+	background-origin: content-box;
+	background-repeat: no-repeat;
+	border: 1px solid #888;
+	margin-left: 0.3em;
+}
+
+.flag-ru {
+	background-image: url(../i/flag/flag-ru.svg);
+}
+
+.flag-en{
+	background-image: url(../i/flag/flag-en-us.svg);
+}
+
+.table-button-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.main-button {
+	border: 1px solid #007aff;
+	padding: 0.5em;
+	margin: 1em auto;
+	text-align: center;
+	border-radius: 0.4em;
+	font-size: 1em;
+	color: #007aff;
+	transition: 0.2s background linear, 0.2s color linear;
+	width: 70%;
+	max-width: 20em;
+}
+
+.main-button:active {
+	color: #fff;
+	background-color: #007aff;
+}
+
+.copyright {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 0.5em;
+	padding-bottom: 0.2em;
+}
+
+
