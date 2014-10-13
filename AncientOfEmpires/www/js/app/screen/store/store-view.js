@@ -9,11 +9,10 @@
 	APP.StoreView = APP.BaseView.extend({
 		templates: ['store'],
 		events: {
-			'click .js-buy-unit': 'buyUnit'
+			'click .js-buy-unit': 'buyUnit',
+			'click .js-get-unit-info': 'showUnitInfo'
 		},
 		init: function (args) {
-
-
 
 			var data = {},
 				player = args.controller.activePlayer;
@@ -90,6 +89,16 @@
 			this.setBuyButtonState();
 
 			alert('you did buy the ' + unitName);
+
+		},
+		showUnitInfo: function(e) {
+
+			var $this = $(e.currentTarget),
+				unitName = $this.data('name'),
+				$description = this.$el.find('.js-unit-description[data-name="'+ unitName +'"]'),
+				description = $description.html().trim();
+
+			alert(description);
 
 		}
 

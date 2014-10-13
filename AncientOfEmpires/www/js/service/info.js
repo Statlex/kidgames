@@ -5,39 +5,28 @@
 
 	function getPrefix() {
 
-		var ua = navigator.userAgent,
+		var data = {
+				js: '',
+				css: ''
+			},
+			tempStyle = doc.createElement('div').style,
+			vendors = ['t','webkitT','MozT','msT','OT'];
+
+		// find vendors by css transform property
+		vendors.forEach(function(vendor){
+			var transform = vendor + 'ransform';
+			if (!tempStyle.hasOwnProperty(transform)) {
+				return;
+			}
+
+			vendor = vendor.replace(/t$/i, ''); // remove 't' from vendor
+
 			data = {
-				js: 'webkit',
-				css: '-webkit-'
+				js: vendor,
+				css: '-' + vendor.toLocaleLowerCase() + '-'
 			};
 
-//		if (ua.indexOf("Mozilla") !== -1 ) {
-//			data = {
-//				js: 'Moz',
-//				css: '-moz-'
-//			}
-//		}
-//
-//		if (ua.indexOf("MSIE") !== -1 ) {
-//			data = {
-//				js: 'ms',
-//				css: '-ms-'
-//			}
-//		}
-//
-//		if (ua.indexOf("Chrome") !== -1 ) {
-//			data = {
-//				js: 'webkit',
-//				css: '-webkit-'
-//			}
-//		}
-//
-//		if (ua.indexOf("Opera") !== -1 ) {
-//			data = {
-//				js: 'O',
-//				css: '-o-'
-//			}
-//		}
+		});
 
 		return data;
 

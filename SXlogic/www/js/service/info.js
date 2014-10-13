@@ -21,7 +21,7 @@
 		preJS: 'webkit',
 		isIE: /MSIE/.test(ua),
 		isAndroid: (/android/i).test(ua),
-		canScroll: false,
+		canScroll: true,
 
 		isAdsFree: false,
 		adsFreeLinks: { // NO - ADs in app

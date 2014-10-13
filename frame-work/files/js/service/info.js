@@ -3,24 +3,50 @@
 	"use strict";
 	/*global window, document, navigator, localStorage */
 
-	var docElem, ls, isTouch, info, ua;
+	function getPrefix() {
+
+		var data = {
+				js: '',
+				css: ''
+			},
+			tempStyle = doc.createElement('div').style,
+			vendors = ['t','webkitT','MozT','msT','OT'];
+
+		// find vendors by css transform property
+		vendors.forEach(function(vendor){
+			var transform = vendor + 'ransform';
+			if (!tempStyle.hasOwnProperty(transform)) {
+				return;
+			}
+
+			vendor = vendor.replace(/t$/i, ''); // remove 't' from vendor
+
+			data = {
+				js: vendor,
+				css: '-' + vendor.toLocaleLowerCase() + '-'
+			};
+
+		});
+
+		return data;
+
+	}
+
+	var docElem, ls, isTouch, info, pre;
 	docElem = doc.documentElement;
-	ls = localStorage;
+	ls = win.localStorage;
 	isTouch = docElem.hasOwnProperty('ontouchstart');
-	ua = navigator.userAgent;
+	pre = getPrefix();
 
 	info = {
-		lang: '',
-		defaultLang: 'en', // current language
+		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['ru', 'en'],
-		saveItem: '----- APP NAME -----',
+		availableLangs: ['en'],
+		saveItem: '-----APP-NAME-----',
 		isPhone: false,
 		isTouch: isTouch,
-		preCSS: '-webkit-',
-		preJS: 'webkit',
-		isIE: /MSIE/.test(ua),
-		isAndroid: (/android/i).test(ua),
+		preCSS: pre.css,
+		preJS: pre.js,
 		canScroll: false,
 
 		isAdsFree: false,

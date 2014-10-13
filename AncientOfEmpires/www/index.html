@@ -24,9 +24,11 @@
 	<script src="js/lang/en.js" type="text/javascript"></script>
 
 	<!-- libs -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
 	<script src="js/lib/bro.js" type="text/javascript"></script>
 	<script src="js/lib/underscore.js" type="text/javascript"></script>
 	<script src="js/lib/backbone.js" type="text/javascript"></script>
+	<script src="js/lib/move-area.js" type="text/javascript"></script>
 
 	<!-- services -->
 	<script src="js/service/info.js" type="text/javascript"></script>
@@ -93,34 +95,34 @@
 		<h1>select map</h1>
 		<hr/>
 		<% maps.forEach(function(map){ %>
-			<div data-js-name="<%= map.jsName %>" class="js-map-to-create-game">
-				<h2><%= map.name %></h2>
-			</div>
+		<div data-js-name="<%= map.jsName %>" class="js-map-to-create-game">
+			<h2><%= map.name %></h2>
+		</div>
 		<hr/>
 		<% }); %>
 
 		<hr/>
-			<div class="js-player-form">
-				<select data-type="type">
-					<option value="human">man</option>
-					<option value="cpu">cpu</option>
-				</select>
-				<select data-type="color">
-					<option value="red">red</option>
-					<option value="blue">blue</option>
-				</select>
-			</div>
+		<div class="js-player-form">
+			<select data-type="type">
+				<option value="human">man</option>
+				<option value="cpu">cpu</option>
+			</select>
+			<select data-type="color">
+				<option value="red">red</option>
+				<option value="blue">blue</option>
+			</select>
+		</div>
 		<hr/>
-			<div class="js-player-form">
-				<select data-type="type">
-					<option value="human">man</option>
-					<option value="cpu">cpu</option>
-				</select>
-				<select data-type="color">
-					<option value="blue">blue</option>
-					<option value="red">red</option>
-				</select>
-			</div>
+		<div class="js-player-form">
+			<select data-type="type">
+				<option value="human">man</option>
+				<option value="cpu">cpu</option>
+			</select>
+			<select data-type="color">
+				<option value="blue">blue</option>
+				<option value="red">red</option>
+			</select>
+		</div>
 		<hr/>
 
 		<button class="js-go-to-battle">js-go-to-battle</button>
@@ -140,54 +142,60 @@
 			<div class="status-bar-store js-go-to-store">store</div>
 			<div class="status-bar-battle js-back">battle</div>
 			<div class="status-bar-gold">0</div>
-			<div class="status-bar-damage js-status-bar-damage">0</div>
-			<div class="status-bar-armor js-status-bar-armor">0</div>
+			<div class="status-bar-damage js-status-bar-damage hidden">0</div>
+			<div class="status-bar-armor js-status-bar-armor hidden">0</div>
 			<div class="status-bar-color js-status-bar-color"></div>
-			<div class="status-bar-end-turn js-end-turn">end turn</div>
+			<div class="status-bar-end-turn js-end-turn">&nbsp;</div>
+			<div class="scale-button js-scale-button" data-type="+">+</div>
+			<div class="scale-button scale-button-second js-scale-button" data-type="-">&ndash;</div>
 		</div>
 
-		<div class="js-layers-wrapper layers-wrapper clear-fix">
+		<div class="js-layers-moving-wrapper layers-moving-wrapper">
 
-			<div class="event-handler js-event-handler">
-				<% util.fromTo(function(i){ %>
-				<div class="square-line">
-					<% util.fromTo(function(j){ %>
-					<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-					<% }, size.width); %>
+			<div class="js-layers-wrapper layers-wrapper clear-fix">
+
+				<div class="event-handler js-event-handler">
+					<% util.fromTo(function(i){ %>
+					<div class="square-line">
+						<% util.fromTo(function(j){ %>
+						<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+						<% }, size.width); %>
+					</div>
+					<% }, size.height); %>
 				</div>
-				<% }, size.height); %>
-			</div>
 
-			<div class="units-layer js-units-layer">
+				<div class="units-layer js-units-layer">
 
-			</div>
-
-			<div class="objects-layer">
-
-			</div>
-
-			<div class="available-path-layer js-available-path-layer">
-				<% util.fromTo(function(i){ %>
-				<div class="square-line">
-					<% util.fromTo(function(j){ %>
-					<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-					<% }, size.width); %>
 				</div>
-				<% }, size.height); %>
-			</div>
 
-			<div class="buildings-layer js-buildings-layer">
+				<div class="objects-layer">
 
-			</div>
-
-			<div class="js-background-layer background-layer">
-				<% util.fromTo(function(i){ %>
-				<div class="square-line">
-					<% util.fromTo(function(j){ %>
-					<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-					<% }, size.width); %>
 				</div>
-				<% }, size.height); %>
+
+				<div class="available-path-layer js-available-path-layer">
+					<% util.fromTo(function(i){ %>
+					<div class="square-line">
+						<% util.fromTo(function(j){ %>
+						<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+						<% }, size.width); %>
+					</div>
+					<% }, size.height); %>
+				</div>
+
+				<div class="buildings-layer js-buildings-layer">
+
+				</div>
+
+				<div class="js-background-layer background-layer">
+					<% util.fromTo(function(i){ %>
+					<div class="square-line">
+						<% util.fromTo(function(j){ %>
+						<div class="square js-map-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+						<% }, size.width); %>
+					</div>
+					<% }, size.height); %>
+				</div>
+
 			</div>
 
 		</div>
@@ -198,8 +206,9 @@
 
 <script type="text/x-template" data-name="unit">
 
-	<div class="unit unit-<%= unit.type.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="<%= info.preCSS %>transform: translate(<%= unit.x * view.squareSize %>px, <%= unit.y * view.squareSize %>px);">
+	<div data-level="<%= unit.level %>" class="unit unit-<%= unit.type.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="<%= info.preCSS %>transform: translate(<%= unit.x * view.squareSize %>px, <%= unit.y * view.squareSize %>px);">
 		&nbsp;
+		<div class="level-bar">&nbsp;</div>
 		<div class="wisp-aura">&nbsp;</div>
 		<div class="js-health unit-health"><%= unit.health %></div>
 	</div>
@@ -224,25 +233,32 @@
 
 <script type="text/x-template" data-name="store">
 
-	<div class="store-wrapper js-store-wrapper">
+	<div class="store-wrapper js-store-wrapper clear-fix">
 
 		<div class="store-units-wrapper">
 			<% unitInfo.unitList.forEach(function(name){ %>
 
 			<% if (unitInfo[name].notInStore) { %>
-				<% return; %>
+			<% return; %>
 			<% }; %>
 
 			<div class="unit-card js-unit-card" data-name="<%= name %>">
-				<%= unitInfo[name].unitName %>
-				<br>atkIcon:<%= unitInfo[name].atk %>
-				<br>defIcon:<%= unitInfo[name].def %>
-				<br>moveIcon:<%= unitInfo[name].mov %>
-				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</div>
-				<div data-name="<%= name %>" class="js-get-unit-info">unit info</div>
+				<%= unitInfo[name].info.name %>
+				<button data-name="<%= name %>" class="js-get-unit-info">unit info</button>
+				<div data-name="<%= name %>" class="unit-description js-unit-description hidden">
+					<%= unitInfo[name].info.description %>
+				</div>
+				<br>atk: <%= unitInfo[name].atk %>
+				<br>def: <%= unitInfo[name].def %>
+				<br>move: <%= unitInfo[name].mov %>
+				<button data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</button>
 			</div>
 			<% }); %>
+
+			<div class="clear"></div>
+
 		</div>
+		<div class="clear"></div>
 
 	</div>
 
@@ -311,13 +327,9 @@
 
 		</div>
 
-
-
 	</div>
 
 </script>
-
-
 
 </body>
 </html>

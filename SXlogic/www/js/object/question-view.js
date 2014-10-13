@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window */
-	/*global bingo, $, info, Backbone, APP */
+	/*global bingo, $, info, Backbone, APP, Android */
 
 	win.APP = win.APP || {};
 
@@ -13,36 +13,9 @@
 			'click .js-hint-button': 'showHint',
 			'click .js-answer-button': 'showAnswer'
 		},
-//		hideAnswerButtonPeriod: 15 * 1000, // see css transition
 		forceDraw: true,
-//		init: function() {
-//
-//			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
-//
-//				var question = win.sections[info.currentSectionName].questions[info.currentQuestionNumber];
-//
-//				this.$el = $('<div class="question js-question view-wrapper js-view-wrapper"/>').html(this.tmpl.question(question));
-//
-//				this.$wrapper = $('.js-wrapper');
-//
-//				this.$wrapper.html('');
-//
-//				this.$wrapper.append(this.$el);
-//
-//			} else {
-//
-//				Backbone.history.history.back();
-//
-//			}
-//
-//			win.scrollTo(0, 0);
-//
-//			this.$el.find('.button-progress').addClass('button-progress-to-0');
-//
-//		},
 
 		init: function() {
-
 
 			if (info.hasOwnProperty('currentSectionName')  && info.hasOwnProperty('currentQuestionNumber')) {
 
@@ -64,6 +37,8 @@
 		},
 
 		setQuestion: function(e) {
+
+			this.displayInterstitial();
 
 			var $this, direction, length, currentQuestion;
 
@@ -89,6 +64,23 @@
 			info.set('currentQuestionNumber', currentQuestion);
 
 			APP.questionView = new win.APP.QuestionView();
+
+		},
+
+		displayInterstitial: function() {
+
+			if (win.info.isAdsFree) {
+				return false;
+			}
+
+			APP.adsCounter = APP.adsCounter || {};
+			APP.adsCounter.value = APP.adsCounter.value || 1;
+
+			if ( APP.adsCounter.value % 8 === 0 ) {
+				Android.displayInterstitial();
+			}
+
+			APP.adsCounter.value += 1;
 
 		},
 

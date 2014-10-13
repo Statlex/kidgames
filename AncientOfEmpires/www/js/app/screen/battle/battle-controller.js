@@ -264,7 +264,7 @@
 
 					case 'upBones':
 
-						this.upBonesFromGrave(this.focusedUnit, coordinates)
+						this.upBonesFromGrave(this.focusedUnit, coordinates);
 
 						this.endAction();
 
@@ -331,7 +331,9 @@
 			}
 
 			this.view.redrawHealthUnit(active);
+			this.view.redrawLevelUnit(active);
 			this.view.redrawHealthUnit(passive);
+			this.view.redrawLevelUnit(passive);
 
 		},
 
@@ -388,6 +390,8 @@
 
 		killUnit: function(unit) {
 
+			unit.level = 0;
+
 			if ( unit.notCreateGrave ) {
 				this.view.removeRIP(unit); // hack - use removeRIP instead removeUnit (removeUnit is not implemented)
 			} else {
@@ -414,7 +418,7 @@
 					unit = RIPs[key];
 					unit.lifeAfterDeadLength += 1;
 
-					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit + 1000) {
+					if (unit.lifeAfterDeadLength >= this.lifeAfterDeadLimit) {
 						this.view.removeRIP(unit);
 						delete RIPs[key];
 					}

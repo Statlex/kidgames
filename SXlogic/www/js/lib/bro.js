@@ -318,9 +318,9 @@
 
 		},
 		bindBodyScroll: function () {
-			doc.body.addEventListener('touchmove', function (e) {
-				return !this.canScroll && e.preventDefault();
-			}.bind(this), false);
+//			doc.body.addEventListener('touchmove', function (e) {
+//				return !this.canScroll && e.preventDefault();
+//			}.bind(this), false);
 		}
 
 	};

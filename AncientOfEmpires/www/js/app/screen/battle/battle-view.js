@@ -1,8 +1,8 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
-	/*global bingo, $, info, APP, util */
+	/*global window, document, history */
+	/*global bingo, $, info, APP, util, Backbone, MoveArea */
 
 	win.APP = win.APP || {};
 
@@ -11,9 +11,13 @@
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
 			'click .js-end-turn': 'endTurn',
-			'click .js-go-to-store': 'goToStore'
+			'click .js-go-to-store': 'goToStore',
+			'click .js-scale-button': 'scale'
 		},
 		squareSize: 36,
+		maxSquareSize: 100,
+		minSquareSize: 6,
+		scaleStep: 10,
 		cssSelector: '.square, .unit, .build',
 		init: function (data) {
 
@@ -49,6 +53,83 @@
 			this.controller.startBattle();
 
 			this.drawMap();
+
+			this.setMoveArea();
+
+		},
+
+		scale: function(e) {
+
+			var $node = $(e.currentTarget),
+				isIncrease = $node.data('type') === '+' ? 1 : -1,
+				newSize = this.squareSize + isIncrease * this.scaleStep;
+
+			if (newSize > this.maxSquareSize || newSize < this.minSquareSize) {
+				return;
+			}
+
+			this.squareSize = newSize;
+
+			this.setStyles();
+			this.setFieldSize();
+
+			this.setBuildingPosition();
+
+			this.setUnitsPosition();
+
+			this.moveArea.onResize();
+
+		},
+
+		setBuildingPosition: function() {
+
+			var squareSize = this.squareSize;
+
+			this.$buildingsLayer.find('.build').forEach(function(build){
+				var $build = $(build),
+					x = parseInt($build.data('x'), 10),
+					y = parseInt($build.data('y'), 10);
+
+				if ($build.hasClass('build-castle')) {
+					$build.css({
+						left: squareSize * x + 'px',
+						top: squareSize * (y - 1) + 'px',
+						height: squareSize * 2 + 'px'
+					});
+				} else {
+					$build.css({
+						left: squareSize * x + 'px',
+						top: squareSize * y + 'px'
+					});
+				}
+
+			});
+
+		},
+
+		setUnitsPosition: function() {
+			var squareSize = this.squareSize,
+				units = this.controller.units,
+				graves = this.controller.unitsRIP,
+				prefix = info.preJS,
+				key, unit, $unit;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					$unit = this.getUnitById(unit.id);
+					$unit.css(prefix+'Transform','translate(' + unit.x * squareSize + 'px, ' + unit.y * squareSize + 'px)');
+				}
+			}
+
+			for (key in graves) {
+				if (graves.hasOwnProperty(key)) {
+					unit = graves[key];
+					$unit = this.getUnitById(unit.id);
+					$unit.css(prefix+'Transform','translate(' + unit.x * squareSize + 'px, ' + unit.y * squareSize + 'px)');
+				}
+			}
+
 
 		},
 
@@ -237,12 +318,19 @@
 			}
 
 		},
+
+		redrawLevelUnit: function (unit) {
+			var $unit = this.getUnitById(unit.id);
+			$unit.data('level', unit.level);
+		},
+
 		drawPoisoned: function(unitNode) {
 			unitNode.addClass('unit-poisoned');
 		},
 		drawRIP: function (unit) {
 			var $unit = this.getUnitById(unit.id);
 			$unit.addClass('grave');
+			this.redrawLevelUnit(unit);
 		},
 		removeRIP: function (unit) {
 			this.$unitLayer.find('[data-id="' + unit.id + '"]').remove();
@@ -372,6 +460,13 @@
 		},
 		removeWispAuraFromGraves: function() {
 			this.$unitLayer.find('.grave').removeClass('under-wisp-aura');
+		},
+		setMoveArea: function() {
+			var $el = this.$el;
+			this.moveArea = new MoveArea({
+				$wrapper: $el.find('.js-layers-moving-wrapper'),
+				$container: $el.find('.js-layers-wrapper')
+			});
 		}
 
 	});

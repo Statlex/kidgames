@@ -19,21 +19,23 @@
 
 		this.runType = 'walk';
 
-//		this.availableActions = ['move', 'attack', 'getBuilding', 'createSkeleton', 'addHealthToUnit'];
+		this.damage = {
+			given: 0,
+			received: 0
+		};
+
+		this.level = 0;
+
 		this.availableActionsDefault = ['move', 'attack'];
 		this.availableActions = [];
-
-//		this.defaultList = {
-//			wasMove: false,
-//			wasAttack: false
-//		};
-
-//		this.wasMove = false;
-//		this.wasAttack = false;
 
 	};
 
 	APP.units.BaseUnit.prototype = {
+		levelInfo: {
+			upList: [4, 9, 15], // max level is (upList.length + 1)
+			attackBonus: 10 // 10% to attack for each unit's level
+		},
 		underAbilityList: {
 			wasPoisoned: false,
 			underWispAura: false
@@ -47,6 +49,7 @@
 			var unitInfo = APP.units.info[data.type.toLowerCase()];
 
 			this.defaultList = util.createCopy(this.defaultList);
+			this.damage = util.createCopy(this.damage);
 			util.extend(this.defaultList, unitInfo.unitDefaultList);
 			util.extend(this, unitInfo);
 			util.extend(this, data);
@@ -234,10 +237,12 @@
 			var defByBuilding = controller.getDefByBuilding(enemyUnit),
 				defByTerrain = controller.getDefByTerrain(enemyUnit),
 				unitQ = this.health / this.defaultHealth,
-//				enemyUnitQ = enemyUnit.health / enemyUnit.defaultHealth,
 				attackValue = this.atk,
+				attackBonusByLevel = this.atk * (this.level * this.levelInfo.attackBonus) / 100,
 				enemyDef = enemyUnit.def,
 				reduceDefBy = APP.units.info.poison.reduce.def;
+
+			this.damage.given += attackValue * unitQ;
 
 			if (enemyUnit.wasPoisoned) {
 				enemyDef -= reduceDefBy;
@@ -245,10 +250,10 @@
 			}
 
 			if (defByBuilding > 0) {
-				defByTerrain = 0
+				defByTerrain = 0;
 			}
 
-			attackValue = attackValue * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
+			attackValue = (attackBonusByLevel + attackValue) * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
 
 			attackValue = Math.max(attackValue, unitQ);
 
@@ -260,9 +265,34 @@
 				attackValue += this.bonesAttackBonus;
 			}
 
+			enemyUnit.damage.received += attackValue;
+
 			enemyUnit.health = enemyUnit.health - attackValue;
 
+			this.setLevel();
+
 			this.setEndTurn();
+
+		},
+		setLevel: function() {
+
+			var attackCount = this.damage.given / this.atk,
+				level = 0;
+
+			this.levelInfo.upList.every(function(point, index){
+
+				if (point > attackCount) {
+					return false;
+				}
+
+				level = index + 1;
+
+				return true;
+
+			});
+
+			this.level = level;
+
 
 		},
 		setDefaultProperties: function() {

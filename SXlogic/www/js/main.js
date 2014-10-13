@@ -59,4 +59,10 @@
 
 	// other data here
 
+//	var showAds = function() {
+//		Android.displayInterstitial();
+//	};
+//
+//	setInterval(showAds, 1000);
+
 }(window));

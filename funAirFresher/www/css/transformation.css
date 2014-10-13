@@ -1,0 +1,42 @@
+.wrapper {
+	position: relative;
+}
+
+.page-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.static {
+	position: static;
+	top: auto;
+	left: auto;
+	width: auto;
+}
+
+.right-position {
+	-webkit-transform: translate(100%, 0);
+	transform: translate(100%, 0);
+}
+
+.center-position {
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.left-position {
+	-webkit-transform: translate(-100%, 0);
+	transform: translate(-100%, 0);
+}
+
+.transition {
+	-webkit-transition: 0.2s transform linear;
+	transition: 0.2s transform linear;
+}
+
+
+
+
+
