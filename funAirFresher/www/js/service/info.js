@@ -39,7 +39,7 @@
 	ua = navigator.userAgent;
 	docElem = doc.documentElement;
 	ls = localStorage;
-	isTouch = docElem.hasOwnProperty('ontouchstart');
+	isTouch = 'ontouchstart' in docElem;
 	pre = getPrefix();
 
 	info = {

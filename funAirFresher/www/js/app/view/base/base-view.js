@@ -17,6 +17,10 @@
 			back: 'back'
 		},
 
+		transition: {
+			duration: 500
+		},
+
 		baseConstructor: function() {
 
 			var proto = APP.BaseView.prototype,
@@ -25,7 +29,7 @@
 			if (APP.info.isTouch) {
 				$.each( events, function( key, value ) {
 
-					var newKey = key.replace(/^click(?=\s+)/i, 'tap');
+					var newKey = key.replace(/^click(?=\s+)/i, 'vclick');
 
 					if (newKey !== key) {
 						delete events[key];
@@ -62,7 +66,9 @@
 				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
 				$prev = $wrappers.eq(0),
 				$next = $wrappers.eq(1),
-				fullClassList = 'left-position center-position right-position transition';
+				fullClassList = 'left-position center-position right-position transition',
+				transitionTime = this.transition.duration,
+				smallStep = 100;
 
 			if ($wrappers.length === 1) {
 				$wrappers.removeClass(fullClassList).addClass('static');
@@ -76,20 +82,12 @@
 				setTimeout(function($prev, $next){
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
-				}.bind(null, $prev, $next), 300);
-
-//				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
-//					this.parentNode.removeChild(this);
-//				});
-
-//				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-//					$(this).removeClass(fullClassList).addClass('static');
-//				});
+				}.bind(null, $prev, $next), transitionTime + smallStep);
 
 				setTimeout(function(){
 					$next.removeClass('right-position').addClass('center-position');
 					$prev.removeClass('center-position').addClass('left-position');
-				}, 100);
+				}, smallStep);
 
 			}
 
@@ -101,21 +99,12 @@
 				setTimeout(function($prev, $next){
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
-				}.bind(null, $prev, $next), 300);
-
-
-//				$prev.on(APP.info.preJS + 'TransitionEnd', function(){
-//					this.parentNode.removeChild(this);
-//				});
-//
-//				$next.on(APP.info.preJS + 'TransitionEnd', function(){
-//					$(this).removeClass(fullClassList).addClass('static');
-//				});
+				}.bind(null, $prev, $next), transitionTime + smallStep);
 
 				setTimeout(function(){
 					$next.removeClass('left-position').addClass('center-position');
 					$prev.removeClass('center-position').addClass('right-position');
-				}, 100);
+				}, smallStep);
 
 			}
 

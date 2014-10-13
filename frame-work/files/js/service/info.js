@@ -35,7 +35,7 @@
 	var docElem, ls, isTouch, info, pre;
 	docElem = doc.documentElement;
 	ls = win.localStorage;
-	isTouch = docElem.hasOwnProperty('ontouchstart');
+	isTouch = 'ontouchstart' in docElem;
 	pre = getPrefix();
 
 	info = {
