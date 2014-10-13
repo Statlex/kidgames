@@ -40,3 +40,40 @@ KidGame/resources/sound/alphabets/es/ñ.mp3
 KidGame/resources/sound/alphabets/ru/ё.mp3
 
 KidGame/resources/sound/alphabets/ru/й.mp3
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Mac files #
+.DS_store
+
+# Android files #
+
+*.apk
+*.dex
+*.ap_
+gen/
+
+# Database files #
+*.bak
+
+# Eclipse/Idea files #
+.project
+.metadata/
+.classpath
+.settings/
+target/
+bin/
+test-output/
+*.ldb
+.idea/
+*.iml
+*.ipr
+*.ids
+*.iws
+*.svn/
+*.log

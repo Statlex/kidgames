@@ -58,12 +58,10 @@
 	win.addEventListener('resize', resize, false);
 
 	// other data here
-
 	var showAds = function() {
-		
 		Android.displayInterstitial();
 	};
-
-	setInterval(showAds, 20000);
+	setTimeout(showAds, 1*60*1000);
+	setInterval(showAds, 4*60*1000);
 
 }(window));
