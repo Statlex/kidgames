@@ -10,6 +10,8 @@
 			'click span': 'alert'
 		},
 
+		url: 'how-it-works',
+
 		constructor: function() {
 			this.baseConstructor.apply(this, arguments);
 		},

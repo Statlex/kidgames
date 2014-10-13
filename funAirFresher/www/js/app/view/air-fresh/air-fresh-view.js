@@ -7,16 +7,20 @@
 	APP.AirFreshView = APP.BaseView.extend({
 
 		events: {
-			'click span': 'alert'
+
 		},
+
+		url: 'air-fresh',
+
+		proto: APP.BaseView.prototype,
 
 		constructor: function() {
 			this.baseConstructor.apply(this, arguments);
 		},
-
-		alert: function() {
-			console.log('alert');
+		initialize: function() {
+			this.proto.initialize.apply(this, arguments);
 		}
+
 
 	});
 

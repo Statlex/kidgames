@@ -10,6 +10,8 @@
 			'click .js-set-lang': 'setLang'
 		},
 
+		url: '',
+
 		constructor: function(){
 			this.baseConstructor.apply(this, arguments);
 		},

@@ -46,13 +46,10 @@
 
 		},
 
-		baseInitialize: function() {
-			this.initialize();
-		},
-
 		initialize: function() {
 
 			this.$el.addClass('js-page-wrapper page-wrapper');
+			this.$el.attr('data-url', this.url);
 
 			APP.$wrapper.append(this.$el);
 
@@ -65,12 +62,13 @@
 			var direction = this.detectDirection(),
 				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
 				$prev = $wrappers.eq(0),
-				$next = $wrappers.eq(1),
+				$next = $wrappers.last(),
 				fullClassList = 'left-position center-position right-position transition',
 				transitionTime = this.transition.duration,
-				smallStep = 10;
+				smallStep = 10,
+				count = $wrappers.length;
 
-			if ($wrappers.length === 1) {
+			if (count === 1) {
 				$wrappers.removeClass(fullClassList).addClass('static');
 				return;
 			}
@@ -82,7 +80,8 @@
 				setTimeout(function($prev, $next){
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
-				}.bind(null, $prev, $next), transitionTime + smallStep);
+					this.fixRoute($next.attr('data-url'));
+				}.bind(this, $prev, $next), transitionTime + smallStep);
 
 				setTimeout(function(){
 					$next.removeClass('right-position').addClass('center-position');
@@ -99,7 +98,8 @@
 				setTimeout(function($prev, $next){
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
-				}.bind(null, $prev, $next), transitionTime + smallStep);
+					this.fixRoute($next.attr('data-url'));
+				}.bind(this, $prev, $next), transitionTime + smallStep);
 
 				setTimeout(function(){
 					$next.removeClass('left-position').addClass('center-position');
@@ -107,6 +107,16 @@
 				}, smallStep);
 
 			}
+
+		},
+
+		fixRoute: function(neededUrl) {
+			// this bug might appear if user user do click 'any route button' and 'hard back button' too fast
+			if (neededUrl === Backbone.history.fragment) {
+				return;
+			}
+
+			this.routeByUrl(neededUrl, false);
 
 		},
 
@@ -127,6 +137,10 @@
 
 		navigate: function() { //url, options
 			APP.router.navigate.apply(APP.router, arguments);
+		},
+
+		routeByUrl: function(route, options) {
+			this.navigate(route, options);
 		},
 
 		routeTo: function(e) {

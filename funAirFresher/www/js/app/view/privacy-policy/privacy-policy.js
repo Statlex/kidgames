@@ -10,6 +10,8 @@
 			'click span': 'alert'
 		},
 
+		url: 'privacy-policy',
+
 		constructor: function() {
 			this.baseConstructor.apply(this, arguments);
 		},
