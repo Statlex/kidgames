@@ -18,7 +18,7 @@
 		},
 
 		transition: {
-			duration: 500
+			duration: 100
 		},
 
 		baseConstructor: function() {
@@ -68,7 +68,7 @@
 				$next = $wrappers.eq(1),
 				fullClassList = 'left-position center-position right-position transition',
 				transitionTime = this.transition.duration,
-				smallStep = 100;
+				smallStep = 10;
 
 			if ($wrappers.length === 1) {
 				$wrappers.removeClass(fullClassList).addClass('static');
