@@ -112,11 +112,34 @@
 	height: 2em;
 }
 
+.clearing-line-wrapper {
+	position: relative;
+	width: 80%;
+	height: 1em;
+	border: 1px solid #007aff;
+	margin: -1em auto 0;
+	top: 50%;
+}
 
+.clearing-line {
+	background-color: #007aff;
+	width: 0%;
+	font-size: 0.8em;
+	line-height: 1.45em;
+	height: 100%;
+	-webkit-transition: 0.7s width linear;
+	transition: 0.7s width linear;
+	color: #fff;
+	text-align: center;
+}
 
-
-
-
+.clearing-word {
+	text-align: center;
+	font-size: 1em;
+	color: #0068f5;
+	font-weight: bold;
+	padding-top: 0.2em;
+}
 
 
 

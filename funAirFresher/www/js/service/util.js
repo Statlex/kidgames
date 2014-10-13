@@ -16,6 +16,16 @@
 				'font-size': fontSize + 'px'
 			});
 
+		},
+
+		getRandom: function(start, end) {
+
+			end = end || start;
+
+			start = start === end ? 0 : start;
+
+			return Math.round(Math.random() * (end - start) + start);
+
 		}
 	};
 

@@ -36,7 +36,9 @@
 		freshAir: 'Fresh Air',
 		howItWorks: 'How it Works',
 		privacyPolicy: 'Privacy Policy',
-		dataCollection: 'Data<br>Collection'
+		dataCollection: 'Data<br>Collection',
+		clearing: 'Air cleaning...',
+		airHasBeenClean: 'Air Has Been Clean.'
 
 	};
 
