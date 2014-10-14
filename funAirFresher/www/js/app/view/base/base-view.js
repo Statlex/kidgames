@@ -67,7 +67,9 @@
 
 		showDirectionAnimation: function(data) {
 
-			var direction = (data && data.direction) || this.detectDirection(),
+			data = data || {};
+
+			var direction = data.direction || this.detectDirection(),
 				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
 				$prev = $wrappers.eq(0),
 				$next = $wrappers.last(),
