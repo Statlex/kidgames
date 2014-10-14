@@ -54,6 +54,10 @@
 	border-style: solid;
 	border-radius: 4px;
 	background-color: #fff;
+	font-size: 1em;
+	line-height: 1em;
+	overflow: hidden;
+	background-repeat: no-repeat;
 }
 
 .popup-text {

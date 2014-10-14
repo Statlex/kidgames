@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global console, alert, window, document, setTimeout, clearTimeout */
-	/*global APP, $*/
+	/*global APP, $, Backbone*/
 
 	APP.AirFreshView = APP.BaseView.extend({
 
@@ -22,7 +22,7 @@
 
 			this.setTimers();
 
-			this.clearFullTime = APP.util.getRandom(2 * 6, 4 * 6) * 1000;
+			this.clearFullTime = APP.util.getRandom(1 * 6, 2 * 6) * 1000;
 
 			this.firstStepTime = APP.util.getRandom(1, 3) * 1000;
 
@@ -55,8 +55,6 @@
 
 		setTimeOuts: function() {
 
-			// todo before any actions check url
-
 			this.timeoutIds = {};
 
 			this.timeoutIds.hideDataCollection = setTimeout(function() {
@@ -71,9 +69,15 @@
 
 			}, this);
 
-			this.timeoutIds.clearFullTime = setTimeout(function(){
-				alert(APP.langMaster.airHasBeenClean);
-			}, this.clearFullTime + this.firstStepTime + this.transitionTime); // see css
+			this.timeoutIds.clearFullTime = setTimeout((function(){
+
+				if (Backbone.history.fragment !== this.url) {
+					return;
+				}
+
+				this.showPopup({text: APP.langMaster.airHasBeenClean});
+
+			}.bind(this)), this.clearFullTime + this.firstStepTime + this.transitionTime); // see css
 
 		},
 

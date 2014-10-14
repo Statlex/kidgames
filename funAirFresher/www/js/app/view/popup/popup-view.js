@@ -7,8 +7,7 @@
 	APP.PopUpView = APP.BaseView.extend({
 
 		events: {
-			'click .js-popup-container': 'stopPropagation'
-//			'click .js-popup-wrapper': 'routeBack',
+			'click .js-popup-container': 'stopEvent'
 		},
 
 		proto: APP.BaseView.prototype,

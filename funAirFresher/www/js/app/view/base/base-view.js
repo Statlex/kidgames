@@ -191,7 +191,9 @@
 
 		},
 
-		routeBack: function() {
+		routeBack: function(e) {
+
+			this.stopEvent(e);
 
 			if ( !this.isAvailableState() ) {
 				return;
@@ -215,8 +217,13 @@
 
 		},
 
-		stopPropagation: function(e) {
-			e.stopPropagation();
+		stopEvent: function(e) {
+
+			if (e && e.preventDefault) {
+				e.preventDefault();
+				e.stopPropagation();
+			}
+
 		}
 
 
