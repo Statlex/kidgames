@@ -153,9 +153,10 @@
 			// detect popup
 			if ( (prevUrl + curUrl).indexOf(this.popupUrl) !== -1 ) {
 				direction = curUrl.indexOf(this.popupUrl) !== -1 ? this.direction.showPopup : this.direction.hidePopup;
+			} else {
+				// do not track popup urls
+				router.prevUrl = curUrl;
 			}
-
-			router.prevUrl = curUrl;
 
 			return direction;
 
