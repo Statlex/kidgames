@@ -74,8 +74,9 @@
 				if (Backbone.history.fragment !== this.url) {
 					return;
 				}
-
 				this.showPopup({text: APP.langMaster.airHasBeenClean});
+
+				// todo - clearAirAgain = refresh icon
 
 			}.bind(this)), this.clearFullTime + this.firstStepTime + this.transitionTime); // see css
 

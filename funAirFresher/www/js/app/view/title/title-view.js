@@ -27,16 +27,6 @@
 
 			APP.titleView = new APP.TitleView({el: $(APP.templateMaster.tmplFn.title())});
 
-			// show popup - todo - remove this - only for test
-
-
-			e.preventDefault();
-			e.stopPropagation();
-
-			this.showPopup( { text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' } );
-
-
-
 		}
 
 	});

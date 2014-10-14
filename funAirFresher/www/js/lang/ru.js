@@ -38,7 +38,9 @@
 		privacyPolicy: 'Политика Конфиден&shy;циальности',
 		dataCollection: 'Сбор<br>Данных',
 		clearing: 'Очистка воздуха...',
-		airHasBeenClean: 'Воздух очещен.'
+		airHasBeenClean: 'Воздух очищен.',
+		clearAirAgain: 'Очистить воздух ещё раз.'
+
 
 	};
 

@@ -38,7 +38,8 @@
 		privacyPolicy: 'Privacy Policy',
 		dataCollection: 'Data<br>Collection',
 		clearing: 'Air cleaning...',
-		airHasBeenClean: 'Air Has Been Cleaned.'
+		airHasBeenClean: 'Air Has Been Cleaned.',
+		clearAirAgain: 'Clear Air Again'
 
 	};
 
