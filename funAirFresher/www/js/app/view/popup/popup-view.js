@@ -7,7 +7,8 @@
 	APP.PopUpView = APP.BaseView.extend({
 
 		events: {
-
+			'click .js-popup-container': 'stopPropagation'
+//			'click .js-popup-wrapper': 'routeBack',
 		},
 
 		proto: APP.BaseView.prototype,
@@ -22,7 +23,7 @@
 
 			this.routeByUrl(Backbone.history.fragment + '?' + this.popupUrl);
 
-			this.$el = $(APP.templateMaster.tmplFn.popup());
+			this.$el = $(APP.templateMaster.tmplFn.popup(data));
 
 			this.proto.initialize.apply(this, arguments);
 

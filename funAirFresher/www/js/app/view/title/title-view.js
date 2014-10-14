@@ -30,7 +30,10 @@
 			// show popup - todo - remove this - only for test
 
 
-			this.showPopup( { data: 'pizdata' } );
+			e.preventDefault();
+			e.stopPropagation();
+
+			this.showPopup( { text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' } );
 
 
 

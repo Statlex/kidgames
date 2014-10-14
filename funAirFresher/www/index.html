@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/transformation.css"/>
 	<link rel="stylesheet" href="css/loadinig.css"/>
+	<link rel="stylesheet" href="css/popup.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
 	<!-- libs -->
@@ -145,11 +146,30 @@
 
 </script>
 
+
+
 <script type="text/x-template" data-name="popup">
 
-	<div class="js-popup-wrapper">
-		<h1>popup</h1>
-		<div class="js-back">back</div>
+	<div class="js-popup-wrapper popup-wrapper">
+
+		<div class="table popup-wrapper-table js-back">
+
+			<div class="table-row">
+				<div class="table-cell">
+
+					<div class="popup-container js-popup-container">
+
+						<div class="popup-text"><%= text %></div>
+						<div class="js-back popup-close">&nbsp;</div>
+						<div class="js-back popup-button">ok</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
 
 	</div>
 

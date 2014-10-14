@@ -32,8 +32,8 @@
 }
 
 .transition {
-	-webkit-transition: 0.1s transform linear;
-	transition: 0.1s transform linear;
+	-webkit-transition: 0.2s -webkit-transform linear;
+	transition: 0.2s transform linear;
 }
 
 

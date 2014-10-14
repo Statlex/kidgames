@@ -22,7 +22,7 @@
 		popupUrl: 'popup=true',
 
 		transition: {
-			duration: 100
+			duration: 200
 		},
 
 		selectors: {
@@ -80,12 +80,20 @@
 
 
 			if (direction === this.direction.hidePopup) {
-				console.log('hide popup');
-				$(this.selectors.wrapper + ' .js-popup-wrapper').remove();
+				setTimeout((function(){
+					$(this.selectors.wrapper + ' .js-popup-wrapper').removeClass('show');
+					setTimeout((function(){
+						$(this.selectors.wrapper + ' .js-popup-wrapper').remove();
+					}.bind(this)), transitionTime + smallStep);
+				}.bind(this)), smallStep);
 			}
 
 			if (direction === this.direction.showPopup) {
-				console.log('show popup');
+
+				setTimeout((function(){
+					this.$el.addClass('show');
+				}.bind(this)), smallStep);
+
 			}
 
 			if (count === 1) {
@@ -205,7 +213,12 @@
 
 			APP.popUp = new APP.PopUpView(data);
 
+		},
+
+		stopPropagation: function(e) {
+			e.stopPropagation();
 		}
+
 
 
 	});
