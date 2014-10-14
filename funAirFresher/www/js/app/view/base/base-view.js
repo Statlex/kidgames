@@ -14,11 +14,19 @@
 
 		direction: {
 			forward: 'forward',
-			back: 'back'
+			back: 'back',
+			showPopup: 'showPopup',
+			hidePopup: 'hidePopup'
 		},
+
+		popupUrl: 'popup=true',
 
 		transition: {
 			duration: 100
+		},
+
+		selectors: {
+			wrapper: '.js-wrapper'
 		},
 
 		baseConstructor: function() {
@@ -57,9 +65,9 @@
 
 		},
 
-		showDirectionAnimation: function() {
+		showDirectionAnimation: function(data) {
 
-			var direction = this.detectDirection(),
+			var direction = (data && data.direction) || this.detectDirection(),
 				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
 				$prev = $wrappers.eq(0),
 				$next = $wrappers.last(),
@@ -67,6 +75,16 @@
 				transitionTime = this.transition.duration,
 				smallStep = 10,
 				count = $wrappers.length;
+
+
+			if (direction === this.direction.hidePopup) {
+				console.log('hide popup');
+				$(this.selectors.wrapper + ' .js-popup-wrapper').remove();
+			}
+
+			if (direction === this.direction.showPopup) {
+				console.log('show popup');
+			}
 
 			if (count === 1) {
 				$wrappers.removeClass(fullClassList).addClass('static');
@@ -127,7 +145,13 @@
 				curUrl = Backbone.history.fragment,
 				direction;
 
+			// detect new page
 			direction = curUrl.indexOf(prevUrl) !== 0 ? this.direction.back : this.direction.forward;
+
+			// detect popup
+			if ( (prevUrl + curUrl).indexOf(this.popupUrl) !== -1 ) {
+				direction = curUrl.indexOf(this.popupUrl) !== -1 ? this.direction.showPopup : this.direction.hidePopup;
+			}
 
 			router.prevUrl = curUrl;
 
@@ -172,7 +196,14 @@
 
 			return !APP.$wrapper.find('.transition').length;
 
+		},
+
+		showPopup: function(data) {
+
+			APP.popUp = new APP.PopUpView(data);
+
 		}
+
 
 	});
 
