@@ -55,6 +55,8 @@
 
 		setTimeOuts: function() {
 
+			// todo before any actions check url
+
 			this.timeoutIds = {};
 
 			this.timeoutIds.hideDataCollection = setTimeout(function() {
