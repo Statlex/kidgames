@@ -25,6 +25,11 @@
 	height: 100%;
 }
 
+.air-fresh-view {
+	background: -webkit-linear-gradient(rgba(64, 174, 216, 0.37), rgba(42, 122, 209, 0.46));
+	background: linear-gradient(rgba(64, 174, 216, 0.37), rgba(42, 122, 209, 0.46));
+}
+
 .flags-wrapper {
 	float: right;
 	padding: 0.3em 0.3em 0 0;
@@ -170,8 +175,6 @@
 	font-weight: bold;
 	padding-top: 0.5em;
 }
-
-
 
 
 

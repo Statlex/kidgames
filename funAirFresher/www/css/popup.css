@@ -4,13 +4,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0);
-	-webkit-transition: 0.4s background linear;
-	transition: 0.4s background linear;
-}
-
-.popup-wrapper.show {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 .popup-wrapper-table {
@@ -56,7 +50,6 @@
 	background-color: #fff;
 	font-size: 1em;
 	line-height: 1em;
-	overflow: hidden;
 	background-repeat: no-repeat;
 }
 
