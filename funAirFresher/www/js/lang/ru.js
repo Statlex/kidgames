@@ -39,8 +39,7 @@
 		dataCollection: 'Сбор<br>Данных',
 		clearing: 'Очистка воздуха...',
 		airHasBeenClean: 'Воздух очищен.',
-		clearAirAgain: 'Очистить воздух ещё раз.'
-
+		clearAirAgain: 'Очистить воздух ещё раз?'
 
 	};
 

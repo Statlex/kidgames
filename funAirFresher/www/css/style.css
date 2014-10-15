@@ -141,11 +141,35 @@
 	padding-top: 0.2em;
 }
 
+.refresh-wrapper {
+	position: fixed;
+	width: 50%;
+	left: 25%;
+	top: 50%;
+	margin-top: -3em;
+}
 
+.refresh-button {
+	background-image: url(../i/buttons/refresh.svg);
+	background-repeat: no-repeat;
+	height: 2em;
+	width: 2em;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	margin: 0 auto;
+	border: 1px solid #007aff;
+	border-radius: 4px;
+	padding: 0.4em;
+	background-origin: content-box;
+}
 
-
-
-
+.refresh-text {
+	text-align: center;
+	font-size: 1em;
+	color: #0068f5;
+	font-weight: bold;
+	padding-top: 0.5em;
+}
 
 
 

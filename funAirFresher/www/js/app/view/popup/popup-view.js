@@ -18,8 +18,6 @@
 
 		initialize: function(data) {
 
-			console.log(data);
-
 			this.routeByUrl(Backbone.history.fragment + '?' + this.popupUrl);
 
 			this.$el = $(APP.templateMaster.tmplFn.popup(data));
@@ -27,7 +25,6 @@
 			this.proto.initialize.apply(this, arguments);
 
 		}
-
 
 	});
 

@@ -7,7 +7,7 @@
 	APP.AirFreshView = APP.BaseView.extend({
 
 		events: {
-
+			'click .js-refresh-view': 'refreshView'
 		},
 
 		url: 'air-fresh',
@@ -64,7 +64,7 @@
 
 			this.timers.clearingLine.forEach(function(value){
 				this.timeoutIds[value] = setTimeout(function(width){
-					APP.$wrapper.find('.js-clearing-line').html(width + '%').css('width', width + '%');
+					this.$el.find('.js-clearing-line').html(width + '%').css('width', width + '%');
 				}.bind(this, value), value * this.clearFullTime / 100 + this.firstStepTime);
 
 			}, this);
@@ -76,9 +76,10 @@
 				}
 				this.showPopup({text: APP.langMaster.airHasBeenClean});
 
-				// todo - clearAirAgain = refresh icon
+				this.$el.find('.js-clearing-line-wrapper').addClass('hidden');
+				this.$el.find('.js-refresh-wrapper').removeClass('hidden');
 
-			}.bind(this)), this.clearFullTime + this.firstStepTime + this.transitionTime); // see css
+			}.bind(this)), this.clearFullTime + this.firstStepTime + this.transitionTime); // see css - .clearing-line {
 
 		},
 
@@ -86,6 +87,14 @@
 			$.each(this.timeoutIds, function(key, value) {
 				clearTimeout(value);
 			});
+		},
+
+		refreshView: function() {
+
+			APP.$wrapper.empty();
+
+			APP.airFreshView = new APP.AirFreshView({el: $(APP.templateMaster.tmplFn['air-fresh']())});
+
 		}
 
 
