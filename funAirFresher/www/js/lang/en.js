@@ -35,7 +35,7 @@
 		appName: 'Air Fresher',
 		freshAir: 'Fresh Air',
 		howItWorks: 'How it Works',
-		privacyPolicy: 'Privacy Policy',
+		privacyPolicy: 'Privacy policy',
 		dataCollection: 'Data<br>Collection',
 		clearing: 'Air cleaning...',
 		airHasBeenClean: 'Air Has Been Cleaned.',
