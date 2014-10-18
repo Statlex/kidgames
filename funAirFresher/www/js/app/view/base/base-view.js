@@ -9,7 +9,8 @@
 
 		events: {
 			'click [data-route]': 'routeTo',
-			'click .js-back': 'routeBack'
+			'click .js-back': 'routeBack',
+			'click .js-external-link': 'toExternalLink'
 		},
 
 		direction: {
@@ -223,6 +224,17 @@
 				e.preventDefault();
 				e.stopPropagation();
 			}
+
+		},
+
+		toExternalLink: function(e) {
+
+			this.stopEvent(e);
+
+			var $this = $(e.target),
+				url = $this.attr('href');
+
+			win.open(url);
 
 		}
 
