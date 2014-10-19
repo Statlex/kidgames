@@ -27,6 +27,13 @@
 
 			APP.titleView = new APP.TitleView({el: $(APP.templateMaster.tmplFn.title())});
 
+		},
+
+		initialize: function() {
+
+			APP.BaseView.prototype.initialize.apply(this, arguments);
+
+			this.addBackgroundParallax();
 		}
 
 	});

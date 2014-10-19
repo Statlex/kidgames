@@ -66,6 +66,64 @@
 			appStore: ''
 		},
 
+		screen: {
+			strings: {
+				landscape: 'landscape',
+				portrait: 'portrait',
+				max: 'max',
+				min: 'min',
+				height: 'height',
+				width: 'width'
+			},
+			getOrientation: function() {
+				return docElem.clientHeight > docElem.clientWidth ? this.strings.portrait : this.strings.landscape;
+			},
+			get: function(select) {
+
+				var data,
+					str = this.strings;
+
+				switch (select) {
+
+					case str.max:
+
+						data = Math.max(docElem.clientHeight, docElem.clientWidth);
+
+						break;
+
+					case str.min:
+
+						data = Math.min(docElem.clientHeight, docElem.clientWidth);
+
+						break;
+
+					case str.height:
+
+						return docElem.clientHeight;
+
+						break;
+
+					case str.width:
+
+						return docElem.clientWidth;
+
+						break;
+
+
+					default : {
+						data = {
+							width: docElem.clientWidth,
+							height: docElem.clientHeight
+						}
+					}
+
+				}
+
+				return data;
+
+			}
+		},
+
 		getData: function () {
 			var data = ls.getItem(this.saveItem) || '{}';
 			return JSON.parse(data);
@@ -101,6 +159,7 @@
 			this.lang = this.lang || this.getAvailableLang();
 
 		},
+
 		getAvailableLang: function() {
 
 			var lang = (navigator.language || navigator.userLanguage).split('-')[0];

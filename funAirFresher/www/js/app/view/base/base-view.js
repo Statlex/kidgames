@@ -236,9 +236,82 @@
 
 			win.open(url);
 
+		},
+
+		addBackgroundParallax: function() {
+
+			var q = 1.1;
+
+			this.setBackgroundSize(q);
+			this.setBackgroundPosition({ x: 0, y: 0, z: 0, q: q });
+
+//			$(win).unbind('deviceorientation');
+//			$(win).bind('deviceorientation', function(e){
+//
+//				console.log(e);
+//				var origEvent = e.originalEvent,
+//					data = {
+//						a: origEvent.alpha,
+//						b: origEvent.beta,
+//						g: origEvent.gamma,
+//						q: q
+//					};
+//
+//				console.log(data);
+//
+//				this.setBackgroundPosition(data);
+//			}.bind(this));
+
+
+			window.addEventListener('eviceorientation', function(e){
+					var data = {
+						a: e.alpha,
+						b: e.beta,
+						g: e.gamma,
+						q: q
+					};
+				alert('//');
+				//this.setBackgroundPosition(data);
+			}, false);
+
+		},
+
+		setBackgroundSize: function(q) {
+
+			var info = APP.info,
+				preCSS = info.preCSS,
+				maxSize = info.screen.get('max'),
+				bgSize = Math.round(maxSize * q),
+				styles = {};
+
+			styles[preCSS + 'background-size'] = bgSize + 'px';
+
+			this.$el.css(styles);
+
+		},
+
+		setBackgroundPosition: function(data) {
+
+			var top,
+				topOffset,
+				leftOffset,
+				left,
+				info = APP.info,
+				maxSize = info.screen.get('max'),
+				bgSize = Math.round(maxSize * data.q),
+				screenHeight = info.screen.get('height'),
+				screenWidth = info.screen.get('width');
+
+			topOffset = (1 - data.b / 90) || 1;
+			leftOffset = (1 - data.g / 90) || 1;
+
+			top = -Math.round((bgSize - screenHeight) / 2 * topOffset);
+			console.log(top);
+			left = -Math.round((bgSize - screenWidth) / 2 * leftOffset);
+
+			this.$el.css('background-position', [left, 'px ', top, 'px'].join(''));
+
 		}
-
-
 
 	});
 
