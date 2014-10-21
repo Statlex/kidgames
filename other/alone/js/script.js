@@ -5,7 +5,7 @@
 
 	var darkLight = 10,
 		lastAudio = Date.now(),
-		minPeriod = 6 * 1000,
+		minPeriod = 3 * 1000,
 		audio1 = new Audio(),
 		audio2 = new Audio(),
 		clearTimeoutId;
