@@ -30,7 +30,7 @@
 
 		clearTimeoutId = setTimeout(function(){
 			return Math.random() > 0.5 ? audio1.play() : audio2.play();
-		}, Math.random() * 2000 + 4000)
+		}, 2500);
 
 	});
 
