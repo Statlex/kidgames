@@ -31,6 +31,10 @@
 	background-position: center center;
 	-webkit-background-size: cover;
 	background-size: cover;
+
+	-webkit-transition: 0.35s background-position linear;
+	transition: 0.35s background-position linear;
+
 }
 
 .air-fresh-view {

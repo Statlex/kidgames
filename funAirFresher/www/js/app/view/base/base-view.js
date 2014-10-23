@@ -1,9 +1,13 @@
-(function (win) {
+(function (win, doc) {
 
 	"use strict";
 	/*global window, Backbone, $, templateMaster, setTimeout, APP, history */
 
 	win.APP = win.APP || {};
+
+	var handlers = {
+		devicemotion: function(){}
+	};
 
 	APP.BaseView = Backbone.View.extend({
 
@@ -27,7 +31,8 @@
 		},
 
 		selectors: {
-			wrapper: '.js-wrapper'
+			wrapper: '.js-wrapper',
+			title: '.js-title'
 		},
 
 		baseConstructor: function() {
@@ -245,34 +250,20 @@
 			this.setBackgroundSize(q);
 			this.setBackgroundPosition({ x: 0, y: 0, z: 0, q: q });
 
-//			$(win).unbind('deviceorientation');
-//			$(win).bind('deviceorientation', function(e){
-//
-//				console.log(e);
-//				var origEvent = e.originalEvent,
-//					data = {
-//						a: origEvent.alpha,
-//						b: origEvent.beta,
-//						g: origEvent.gamma,
-//						q: q
-//					};
-//
-//				console.log(data);
-//
-//				this.setBackgroundPosition(data);
-//			}.bind(this));
+			win.removeEventListener('devicemotion', handlers.devicemotion, false);
 
+			handlers.devicemotion = this.onMotionChange.bind(this);
 
-			window.addEventListener('eviceorientation', function(e){
-					var data = {
-						a: e.alpha,
-						b: e.beta,
-						g: e.gamma,
-						q: q
-					};
-				alert('//');
-				//this.setBackgroundPosition(data);
-			}, false);
+			win.addEventListener('devicemotion', handlers.devicemotion, false);
+
+		},
+
+		onMotionChange: function(e) {
+
+			var evt = e.accelerationIncludingGravity,
+				q = 1.1;
+
+			this.setBackgroundPosition({ x: evt.x, y: evt.y, z: evt.z, q: q });
 
 		},
 
@@ -302,17 +293,19 @@
 				screenHeight = info.screen.get('height'),
 				screenWidth = info.screen.get('width');
 
-			topOffset = (1 - data.b / 90) || 1;
-			leftOffset = (1 - data.g / 90) || 1;
+			topOffset = (1 - data.y / 80) || 1;
+			leftOffset = (1 - data.x / 80) || 1;
 
 			top = -Math.round((bgSize - screenHeight) / 2 * topOffset);
-			console.log(top);
 			left = -Math.round((bgSize - screenWidth) / 2 * leftOffset);
 
-			this.$el.css('background-position', [left, 'px ', top, 'px'].join(''));
+			this.$el.css('background-position', left + 'px ' + top + 'px');
+
+//			APP.wrapper.querySelector(this.selectors.title).style.backgroundPosition = ;
+
 
 		}
 
 	});
 
-}(window));
+}(window, document));
