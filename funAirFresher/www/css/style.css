@@ -147,14 +147,19 @@
 	background-size: 100% 100%;
 	position: absolute;
 	top: 0.3em;
-	left: 0.15em;
-	width: 2em;
+	width: 2.3em;
 	height: 2em;
 	z-index: 1;
 }
 
 .text-wrapper {
-	padding: 3.6em 1em 4em;
+	padding: 2.6em 1em 5em;
+}
+
+.text-wrapper:after {
+	content: '';
+	clear: both;
+	display: block;
 }
 
 .text-wrapper h4,
@@ -171,6 +176,7 @@
 	line-height: 1.2em;
 	text-transform: capitalize;
 	padding-bottom: 0.3em;
+	clear: both;
 }
 
 .text-wrapper p,
@@ -188,6 +194,29 @@
 
 .text-wrapper .link {
 	text-decoration: underline;
+}
+
+.text-wrapper .illustration {
+	float: left;
+	width: 5em;
+	margin: 0.2em 1em 0 0;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.banner-full {
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.banner-66 {
+	display: block;
+	width: 66%;
+	clear: both;
+	margin: 0 auto;
 }
 
 .clearing-line-wrapper {

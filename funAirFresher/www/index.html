@@ -140,8 +140,44 @@
 <script type="text/x-template" data-name="how-it-works">
 
 	<div class="js-how-it-works">
-		<h1>js-how-it-works</h1>
-		<div class="js-back">back</div>
+		<%= APP.templateMaster.tmplFn.header({ title: APP.langMaster.howItWorks }) %>
+		<div class="text-wrapper">
+
+			<% if ( APP.info.lang === 'en' || APP.info.lang === null) { %>
+
+			<img class="banner-full" src="img/how-it-works-1.png" alt=""/>
+			<h4>Phase 1</h4>
+			<img class="illustration" src="img/phase-1.png" alt=""/>
+			<p>Collecting data on the composition of the ambient air and malodorous substances.</p>
+			<h4>Phase 2</h4>
+			<img class="illustration" src="img/phase-2.png" alt=""/>
+			<p>Wave special frequency is collecting and archiving malodorous substances.</p>
+			<h4>Phase 3</h4>
+			<img class="illustration" src="img/phase-3.png" alt=""/>
+			<p>Sending the collected materials to the server via Wi-Fi.</p>
+			<img class="banner-66" src="img/how-it-works-2.svg" alt=""/>
+			<h4 class="center-text">Your Air is Cleaned!</h4>
+
+			<% }; %>
+
+			<% if ( APP.info.lang === 'ru') { %>
+
+			<img class="banner-full" src="img/how-it-works-1.png" alt=""/>
+			<h4>Фаза 1</h4>
+			<img class="illustration" src="img/phase-1.png" alt=""/>
+			<p>Сбор данных об окружающем воздухе и составе дурнопахнущих веществах.</p>
+			<h4>Фаза 2</h4>
+			<img class="illustration" src="img/phase-2.png" alt=""/>
+			<p>Волной специальной частоты происходит сбор и архивация дурнопахнущих веществ.</p>
+			<h4>Фаза 3</h4>
+			<img class="illustration" src="img/phase-3.png" alt=""/>
+			<p>Отправка собранных веществ на сервер через Wi-Fi.</p>
+			<img class="banner-66" src="img/how-it-works-2.svg" alt=""/>
+			<h4 class="center-text">Ваш воздух очищен!</h4>
+
+			<% }; %>
+
+		</div>
 	</div>
 
 </script>
