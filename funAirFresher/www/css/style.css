@@ -32,8 +32,8 @@
 	-webkit-background-size: cover;
 	background-size: cover;
 
-	-webkit-transition: 0.35s background-position linear;
-	transition: 0.35s background-position linear;
+	-webkit-transition: inherit, 0.35s background-position linear;
+	transition: inherit, 0.35s background-position linear;
 
 }
 
