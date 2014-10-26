@@ -5,20 +5,29 @@
 
 
 	var util = require('./util/util.js').util,
-		mainConfig = require('./cfg/main.js').config,
+		mainConfig = require('./cfg/main.js').config,// see main config -> main.js
+		pathToConfig = mainConfig.const.pathToConfig,
+		pathToTest = mainConfig.const.pathToTest,
 		args = util.getArguments();
 
-	console.log(args);
+	var tests = args.cfg ? require(pathToConfig + args.cfg).config : require(pathToConfig + 'all.js').config,
+		testList = args.testList;
 
-	var testConfig = args.cfg ? require(mainConfig.const.pathToConfig + args.cfg).config : require(mainConfig.const.pathToConfig + 'all.js').config;
+	if (testList) {
+		tests = {
+			tests: testList.split(',')
+		}
+	}
 
-	testConfig.tests.forEach(function(testName){
+	tests.tests.forEach(function(testName){
 
-		var driver = util.createWebDriverClient(args),
+		var driver, test;
 
-			test = require(mainConfig.const.pathToTest + testName).test;
+		driver = util.createWebDriverClient(args);
 
-		test({ driver: driver });
+		test = require(pathToTest + testName).test;
+
+		test({ driver: driver, args: args });
 
 		driver.quit();
 

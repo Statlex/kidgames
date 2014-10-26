@@ -8,19 +8,9 @@
 
 		var driver = args.driver;
 
-
 		driver.get("http://statlex.com/game/air/");
 
-		driver.sleep(10000);
-
-
-		driver.quit();
-
-
-
-
-
-
+		driver.sleep(1000);
 
 	}
 
