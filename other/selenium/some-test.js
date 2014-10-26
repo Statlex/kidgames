@@ -28,7 +28,7 @@
 
 		console.log(assert);
 		var driver = new webdriver.Builder().
-//		usingServer(SELENIUM_HOST).
+		usingServer(SELENIUM_HOST).
 			withCapabilities({ browserName: 'chrome' }).
 			build();
 
