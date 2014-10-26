@@ -31,7 +31,6 @@
 				APP.airFreshView.clearTimeOuts();
 			}
 
-
 			if ( APP.$wrapper.find('.js-air-fresh').length ) {
 				return;
 			}

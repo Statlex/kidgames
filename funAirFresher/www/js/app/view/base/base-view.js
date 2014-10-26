@@ -35,6 +35,10 @@
 			title: '.js-title'
 		},
 
+		bg: {
+			q: 1.1
+		},
+
 		baseConstructor: function() {
 
 			var proto = APP.BaseView.prototype,
@@ -74,6 +78,8 @@
 		showDirectionAnimation: function(data) {
 
 			data = data || {};
+
+			debugger;
 
 			var direction = data.direction || this.detectDirection(),
 				$wrappers = APP.$wrapper.find('.js-page-wrapper'),
@@ -245,7 +251,7 @@
 
 		addBackgroundParallax: function() {
 
-			var q = 1.1;
+			var q = this.bg.q;
 
 			this.setBackgroundSize(q);
 			this.setBackgroundPosition({ x: 0, y: 0, z: 0, q: q });
@@ -260,10 +266,9 @@
 
 		onMotionChange: function(e) {
 
-			var evt = e.accelerationIncludingGravity,
-				q = 1.1;
+			var evt = e.accelerationIncludingGravity;
 
-			this.setBackgroundPosition({ x: evt.x, y: evt.y, z: evt.z, q: q });
+			this.setBackgroundPosition({ x: evt.x, y: evt.y, z: evt.z, q: this.bg.q });
 
 		},
 
@@ -300,9 +305,6 @@
 			left = -Math.round((bgSize - screenWidth) / 2 * leftOffset);
 
 			this.$el.css('background-position', left + 'px ' + top + 'px');
-
-//			APP.wrapper.querySelector(this.selectors.title).style.backgroundPosition = ;
-
 
 		}
 
