@@ -32,9 +32,6 @@
 	-webkit-background-size: cover;
 	background-size: cover;
 
-	-webkit-transition: inherit, 0.35s background-position linear;
-	transition: inherit, 0.35s background-position linear;
-
 }
 
 .air-fresh-view {
