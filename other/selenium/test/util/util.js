@@ -13,11 +13,15 @@
 
 			args = args || {};
 
-			return new webDriver.
-				Builder().
-				usingServer(args.isMobile ? seleniumHost : '').
-				withCapabilities({ browserName: "chrome" }).
-				build();
+			var driver = new webDriver
+				.Builder()
+				.usingServer(args.isMobile ? seleniumHost : '')
+				.withCapabilities({ browserName: "chrome" })
+				.build();
+
+			driver.manage().window().setSize(320, 480);
+
+			return driver;
 
 		},
 		scrollTo: function(data) {
@@ -28,7 +32,6 @@
 
 													// scroll to element			                // scroll by vertical offset
 			driver.executeScript("document.querySelector('" + selector + "').scrollIntoView(true); window.scrollBy(0, " + dY + ");");
-
 
 		},
 		getArguments: function () {
@@ -44,7 +47,7 @@
 			return util.keyList.indexOf(field) !== -1;
 		}
 
-	}
+	};
 
 	exports.util = util;
 

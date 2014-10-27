@@ -20,20 +20,23 @@
 
 	tests.tests.forEach(function(testName){
 
-		var driver, test;
+		var driver, test, chai, chaiWebdriver;
 
 		driver = util.createWebDriverClient(args);
 
+		chai = require('chai');
+		chaiWebdriver = require('chai-webdriver');
+		chai.use(chaiWebdriver(driver));
+
 		test = require(pathToTest + testName).test;
 
-		test({ driver: driver, args: args });
+		test({ driver: driver, chai: chai, args: args });
 
 		driver.quit().then(function(){
 			console.log(driver);
 		});
 
 	});
-
 
 
 }());
