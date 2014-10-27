@@ -11,6 +11,8 @@
 
 		driver.sleep(5000);
 
+		driver['args'] = args;
+
 		console.log('test - load-test.js is done');
 
 	}

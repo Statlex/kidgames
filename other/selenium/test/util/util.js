@@ -16,7 +16,7 @@
 			return new webDriver.
 				Builder().
 				usingServer(args.isMobile ? seleniumHost : '').
-				withCapabilities(webDriver.Capabilities.chrome()).
+				withCapabilities({ browserName: "chrome" }).
 				build();
 
 		},
