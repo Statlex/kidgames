@@ -7,7 +7,7 @@
 		mainConfig = require('./main.js').config;
 
 	function getFileList() {
-		return fs.readdirSync(mainConfig.const.pathToTest);
+		return fs.readdirSync(mainConfig.const.path.test);
 	}
 
 	exports.config = {

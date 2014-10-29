@@ -3,14 +3,25 @@
 	"use strict";
 	/*global console, alert */
 
+	exports.info = {
+		name: '11111111'
+	};
+
 	exports.test = function(args) {
 
 		var driver = args.driver,
-			chai = args.chai;
+			chai = args.chai,
+			reportItem = args.reportItem;
+
+		console.log(reportItem);
+
+		reportItem.addText('text test');
 
 		driver.get("http://statlex.com/game/air/");
 
 		driver.sleep(5000);
+
+		reportItem.takeScreenShot({ label: 'label text' });
 
 		chai.expect('.js-wrapper').dom.to.not.visible().then(function(){
 			console.log(1);
