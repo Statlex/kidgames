@@ -9,7 +9,8 @@
 			path: {
 				test: './test/',
 				config: './cfg/',
-				report: './report/'
+				report: './report/',
+				util: './util/'
 			}
 		}
 	};

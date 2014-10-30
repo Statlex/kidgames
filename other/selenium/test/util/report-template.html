@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>report</title>
+</head>
+<body>
+
+<h1>date: <%= data.timeStamp %></h1>
+<h1>args: <%= data.args %></h1>
+
+<ul>
+
+	<% items.forEach(function(test){ %>
+
+		<li>
+			<%= test.data.testFileName %> - status: <%= test.data.result %> - time: <%= test.data.timeStamp %>
+			<hr/>
+			<%= test.data.testInfo.name %>
+			<%= test.data.testInfo.description %>
+			<ul>
+
+				<% test.items.forEach(function(item){ %>
+
+					<li>
+
+						<% if ( item.type === 'text' ) { %>
+							<p><%= item.text %></p>
+						<% }; %>
+
+						<% if ( item.type === 'image' ) { %>
+
+							<img src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
+
+							<% if (item.label) { %>
+								<p><%= item.label %></p>
+							<% }; %>
+
+						<% }; %>
+
+					</li>
+
+
+				<% }); %>
+
+
+			</ul>
+
+		</li>
+
+	<% }); %>
+
+
+</ul>
+
+</body>
+</html>

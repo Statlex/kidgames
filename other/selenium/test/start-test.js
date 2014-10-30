@@ -6,7 +6,7 @@
 	var util = require('./util/util.js').util,
 		Reporter = require('./util/reporter.js').Reporter,
 		reporter = new Reporter(),
-		mainConfig = require('./cfg/main.js').config,// see main config -> main.js
+		mainConfig = require('./cfg/main.js').config, // see main config -> main.js
 		args = util.getArguments(),
 		tests;
 
@@ -18,24 +18,26 @@
 		tests = require(mainConfig.const.path.config + (args.cfg || 'all.js') ).config;
 	}
 
-	tests.tests.forEach(function(testName, index, arr){
+	tests.tests.forEach(function(testFileName, index, arr){
 
 		var driver, test, chai, chaiWebdriver;
 
 		// detect last item
 		driver = util.createWebDriverClient(args);
 
+		driver.manage().timeouts().implicitlyWait(1000);
+
 		chai = require('chai');
 		chaiWebdriver = require('chai-webdriver');
 		chai.use(chaiWebdriver(driver));
 
-		test = require(mainConfig.const.path.test  + testName).test;
+		test = require(mainConfig.const.path.test  + testFileName).test;
 
 		test({
 			driver: driver,
 			chai: chai,
 			args: args,
-			reportItem: reporter.newItem({testName: testName, driver: driver})
+			reportItem: reporter.newItem({testFileName: testFileName, driver: driver})
 		});
 
 		driver.quit().then(function(){

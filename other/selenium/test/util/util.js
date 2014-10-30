@@ -3,8 +3,7 @@
 	"use strict";
 	/*global console, alert */
 
-	var webDriver = require('selenium-webdriver'),
-		mainConfig = require('./../cfg/main.js').config,
+	var mainConfig = require('./../cfg/main.js').config,
 		seleniumHost = mainConfig.const.seleniumHost;
 
 	var util = {
@@ -13,7 +12,8 @@
 
 			args = args || {};
 
-			var driver = new webDriver
+			var webDriver = require('selenium-webdriver'),
+				driver = new webDriver
 				.Builder()
 				.usingServer(args.isMobile ? seleniumHost : '')
 				.withCapabilities({ browserName: "chrome" })
