@@ -54,8 +54,8 @@
 				date.getDate(),
 				date.getHours(),
 				date.getMinutes(),
-				date.getSeconds()].join('-').replace(/(^|-)(\d)(-|$)/gi, function (match, p1, p2, p3) {
-					return [p1, '0' + p2, p3].join('');
+				date.getSeconds()].join('-').replace(/(-)(\d)(?!\d)/gi, function (match, p1, p2) {
+					return p1 + '0' + p2;
 				});
 
 			fs.mkdirSync(mainConfig.const.path.report + this.dirName);
