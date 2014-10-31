@@ -10,7 +10,7 @@
 
 		this.data = {
 			args: null,
-			timeStamp: Date.now()
+			timeStart: new Date()
 		};
 
 		this.init();
@@ -86,7 +86,8 @@
 	function ReportItem(data) {
 
 		this.data = {
-			timeStamp: Date.now(),
+			timeStart: new Date(),
+			timeEnd: null,
 			testFileName: data.testFileName,
 			testInfo: require('./.' + mainConfig.const.path.test + data.testFileName).info || {},
 			result: this.results.fail
@@ -104,7 +105,7 @@
 			passed: 'passed'
 		},
 		setResult: function(result) {
-
+			this.data.timeEnd = new Date();
 			this.data.result = result;
 		},
 		addText: function (text) {
@@ -112,7 +113,7 @@
 			this.items.push({
 				type: 'text',
 				text: text,
-				timeStamp: Date.now()
+				timeStamp: new Date()
 			});
 
 			return this;
@@ -120,20 +121,18 @@
 		},
 		takeScreenShot: function (data) {
 
-			var timeStamp = Date.now(),
+			var timeStamp = new Date(),
 				item = {
 					type: 'image',
 					label: data.label || '',
 					timeStamp: timeStamp,
-					src: 'screenshot/screenshot-' + timeStamp + '.png',
-					screenShotSrc: mainConfig.const.path.report + this.reporter.dirName + '/screenshot/screenshot-' + timeStamp + '.png'
+					src: 'screenshot/screenshot-' + timeStamp.getTime() + '.png',
+					screenShotSrc: mainConfig.const.path.report + this.reporter.dirName + '/screenshot/screenshot-' + timeStamp.getTime() + '.png'
 				};
 
 			this.driver.takeScreenshot().then(function (image, err) {
 
-				fs.writeFile(item.screenShotSrc, image, 'base64', function (err) {
-//					console.log(err);
-				});
+				fs.writeFile(item.screenShotSrc, image, 'base64');
 
 			});
 
