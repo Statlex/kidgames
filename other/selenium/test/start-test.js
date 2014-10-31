@@ -3,10 +3,10 @@
 	"use strict";
 	/*global console, alert, require */
 
-	var util = require('./util/util.js').util,
-		Reporter = require('./util/reporter.js').Reporter,
+	var mainConfig = require('./cfg/main.js').config, // see main config -> main.js
+		util = require(mainConfig.const.path.util + 'util.js').util,
+		Reporter = require(mainConfig.const.path.util + 'reporter.js').Reporter,
 		reporter = new Reporter(),
-		mainConfig = require('./cfg/main.js').config, // see main config -> main.js
 		args = util.getArguments(),
 		tests;
 

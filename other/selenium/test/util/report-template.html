@@ -2,12 +2,29 @@
 <html>
 <head lang="en">
 	<meta charset="UTF-8">
-	<title>report</title>
+	<title>Test report</title>
+
+	<link rel="stylesheet" href="http://reset5.googlecode.com/hg/reset.min.css"/>
+
+	<style type="text/css">
+
+
+
+	</style>
+
 </head>
 <body>
 
-<h1>date: <%= data.timeStart %></h1>
-<h1>args: <%= data.args %></h1>
+<div class="wrapper">
+
+	<h1>Test report from <%= data.timeStart %></h1>
+	<p>args: <%= data.args.join(', ') %></p>
+
+
+
+</div>
+
+
 
 <ul>
 

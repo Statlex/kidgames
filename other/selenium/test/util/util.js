@@ -45,7 +45,8 @@
 		},
 		inKeyList: function(field) {
 			return util.keyList.indexOf(field) !== -1;
-		}
+		},
+
 
 	};
 

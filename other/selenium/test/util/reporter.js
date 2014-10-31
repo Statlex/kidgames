@@ -42,7 +42,7 @@
 		},
 		init: function () {
 
-			this.data.args = process.argv; // get string with arguments
+			this.data.args = JSON.parse(JSON.stringify(process.argv)); // get string with arguments
 
 			// create folders
 
@@ -58,8 +58,8 @@
 					return p1 + '0' + p2;
 				});
 
-			fs.mkdirSync(mainConfig.const.path.report + this.dirName);
-			fs.mkdirSync(mainConfig.const.path.report + this.dirName + '/screenshot');
+			fs.mkdir(mainConfig.const.path.report + this.dirName);
+			fs.mkdir(mainConfig.const.path.report + this.dirName + '/screenshot');
 			fs.readFile(mainConfig.const.path.util + 'report-template.html', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
