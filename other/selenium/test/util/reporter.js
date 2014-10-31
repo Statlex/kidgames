@@ -88,11 +88,11 @@
 	function ReportItem(data) {
 
 		this.data = {
-			timeStart: new Date(),
+			timeStart: 0,
 			timeEnd: null,
 			testFileName: data.testFileName,
 			testInfo: require('./.' + mainConfig.const.path.test + data.testFileName).info || {},
-			result: this.results.fail
+			result: this.results.failed
 		};
 
 		this.reporter = data.reporter;
@@ -103,15 +103,17 @@
 
 	ReportItem.prototype = {
 		results: {
-			fail: 'fail',
+			failed: 'failed',
 			passed: 'passed'
 		},
 		setResult: function(result) {
 			this.data.timeEnd = new Date();
 			this.data.result = result;
 		},
+		markStartTime: function() {
+			this.data.timeStart = new Date();
+		},
 		addText: function (text) {
-
 			this.items.push({
 				type: 'text',
 				text: text,

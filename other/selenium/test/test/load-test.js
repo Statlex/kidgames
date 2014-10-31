@@ -14,9 +14,12 @@
 			chai = args.chai,
 			reportItem = args.reportItem;
 
-		driver.get("http://statlex.com/game/air/");
+		driver.get("http://statlex.com/game/air/").then(function(){
+			reportItem.markStartTime();
+			reportItem.addText('test started');
+		});
 
-		reportItem.addText('test started');
+		driver.sleep(1000);
 
 		driver.wait(function() {
 			return driver.findElement({css: '.js-wrapper'});
@@ -24,7 +27,7 @@
 			reportItem.takeScreenShot({ label: 'screen at load' });
 			reportItem.setResult(reportItem.results.passed);
 		}, function(){
-			reportItem.setResult(reportItem.results.fail);
+			reportItem.setResult(reportItem.results.failed);
 		});
 
 

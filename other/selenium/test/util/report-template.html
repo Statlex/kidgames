@@ -4,56 +4,75 @@
 	<meta charset="UTF-8">
 	<title>Test report</title>
 
-	<link rel="stylesheet" href="http://reset5.googlecode.com/hg/reset.min.css"/>
-
-	<style type="text/css">
-
-
-	</style>
+	<link rel="stylesheet" href="./../../util/report.css"/>
 
 </head>
 <body>
 
 <div class="wrapper">
 
-	<h1>Test report from <%= data.timeStart %></h1>
+	<h1 class="main-header">Test report: <%= data.timeStart.toLocaleDateString() %> [<%= data.timeStart.toLocaleTimeString() %>]</h1>
 
-	<p>args: <%= data.args.join(', ') %></p>
+	<p class="paragraph">args: <%= data.args.join(', ') %></p>
 
-	<table>
+	<table class="main-table">
 
 		<thead>
 
-			<tr>
-				<th>name</th>
-				<th>status</th>
-				<th>time</th>
-				<th>log</th>
-			</tr>
+		<tr class="tr-head">
+			<th><p class="paragraph bold center">name</p></th>
+			<th><p class="paragraph bold center">status</p></th>
+			<th><p class="paragraph bold center">time</p></th>
+			<th><p class="paragraph bold center">log</p></th>
+		</tr>
 
 		</thead>
 
 		<tbody>
 		<% items.forEach(function(test){ %>
-		<tr>
+		<tr class="tr-body">
 
 			<!-- test item info -->
 			<td>
-				<%= test.data.testInfo.name %>
-				<hr/>
-				<%= test.data.testFileName %>
-				<%= test.data.testInfo.description %>
+
+				<p class="paragraph">
+					<%= test.data.testInfo.name %><br/>
+					<%= test.data.testFileName %><br/>
+					<%= test.data.testInfo.description %>
+				</p>
 			</td>
 
 			<!-- test item status -->
 			<td>
-				<%= test.data.result %>
+				<p class="paragraph">
+				<% if ( test.data.result === test.results.passed ) { %>
+					<span class="result-label result-label-green">Passed</span>
+				<% }; %>
+
+				<% if ( test.data.result === test.results.failed ) { %>
+					<span class="result-label result-label-red">Failed</span>
+				<% }; %>
+				</p>
 			</td>
 
 			<!-- test item time -->
 			<td>
-				begin: <%= test.data.timeStart %> <br/>
-				end: <%= test.data.timeEnd %>
+				<% if (test.data.timeStart) { %>
+				<div class="with-50">
+					<p class="paragraph">
+						begin:<br/>
+						end:<br/>
+						duration:&nbsp;
+					</p>
+				</div>
+				<div class="with-50">
+					<p class="paragraph">
+						<%= test.data.timeStart.toLocaleTimeString() %><br/>
+						<%= test.data.timeEnd.toLocaleTimeString() %><br/>
+						<%= new Date( test.data.timeEnd.getTime() - test.data.timeStart.getTime() + test.data.timeStart.getTimezoneOffset() * 60 * 1000 ).toLocaleTimeString() %>
+					</p>
+				</div>
+				<% }; %>
 			</td>
 
 			<!-- test item log -->
@@ -61,15 +80,15 @@
 				<% test.items.forEach(function(item){ %>
 
 				<% if ( item.type === 'text' ) { %>
-				<p><%= item.text %></p>
+				<p class="paragraph"><%= item.text %></p>
 				<% }; %>
 
 				<% if ( item.type === 'image' ) { %>
 
-				<img src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
+				<img class="image" src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
 
 				<% if (item.label) { %>
-				<p><%= item.label %></p>
+				<p class="paragraph"><%= item.label %></p>
 				<% }; %>
 
 				<% }; %>
@@ -77,7 +96,6 @@
 				<% }); %>
 
 			</td>
-
 
 
 		</tr>
