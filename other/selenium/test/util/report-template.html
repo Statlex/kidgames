@@ -9,7 +9,6 @@
 	<style type="text/css">
 
 
-
 	</style>
 
 </head>
@@ -18,57 +17,79 @@
 <div class="wrapper">
 
 	<h1>Test report from <%= data.timeStart %></h1>
+
 	<p>args: <%= data.args.join(', ') %></p>
 
+	<table>
 
+		<thead>
 
-</div>
+			<tr>
+				<th>name</th>
+				<th>status</th>
+				<th>time</th>
+				<th>log</th>
+			</tr>
 
+		</thead>
 
+		<tbody>
+		<% items.forEach(function(test){ %>
+		<tr>
 
-<ul>
+			<!-- test item info -->
+			<td>
+				<%= test.data.testInfo.name %>
+				<hr/>
+				<%= test.data.testFileName %>
+				<%= test.data.testInfo.description %>
+			</td>
 
-	<% items.forEach(function(test){ %>
+			<!-- test item status -->
+			<td>
+				<%= test.data.result %>
+			</td>
 
-		<li>
-			<%= test.data.testFileName %> - status: <%= test.data.result %> - time: <%= test.data.timeStamp %>
-			<hr/>
-			<%= test.data.testInfo.name %>
-			<%= test.data.testInfo.description %>
-			<ul>
+			<!-- test item time -->
+			<td>
+				begin: <%= test.data.timeStart %> <br/>
+				end: <%= test.data.timeEnd %>
+			</td>
 
+			<!-- test item log -->
+			<td>
 				<% test.items.forEach(function(item){ %>
 
-					<li>
+				<% if ( item.type === 'text' ) { %>
+				<p><%= item.text %></p>
+				<% }; %>
 
-						<% if ( item.type === 'text' ) { %>
-							<p><%= item.text %></p>
-						<% }; %>
+				<% if ( item.type === 'image' ) { %>
 
-						<% if ( item.type === 'image' ) { %>
+				<img src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
 
-							<img src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
+				<% if (item.label) { %>
+				<p><%= item.label %></p>
+				<% }; %>
 
-							<% if (item.label) { %>
-								<p><%= item.label %></p>
-							<% }; %>
-
-						<% }; %>
-
-					</li>
-
+				<% }; %>
 
 				<% }); %>
 
-
-			</ul>
-
-		</li>
-
-	<% }); %>
+			</td>
 
 
-</ul>
+
+		</tr>
+
+		<% }); %>
+
+		</tbody>
+
+
+	</table>
+
+</div>
 
 </body>
 </html>

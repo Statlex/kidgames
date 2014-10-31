@@ -4,6 +4,7 @@
 	/*global console, alert, require, exports, process */
 
 	var mainConfig = require('./../cfg/main.js').config, // see main config -> main.js
+		openHtml = require('open'),
 		fs = require('fs');
 
 	function Reporter() {
@@ -34,6 +35,7 @@
 					console.log(err);
 				} else {
 					console.log("The report was saved in " + pathToReport);
+					openHtml(pathToReport);
 				}
 			});
 

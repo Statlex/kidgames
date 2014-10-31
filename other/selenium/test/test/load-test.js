@@ -21,7 +21,7 @@
 		driver.wait(function() {
 			return driver.findElement({css: '.js-wrapper'});
 		}, 10000).then(function(){
-			reportItem.takeScreenShot({ label: 'test started' });
+			reportItem.takeScreenShot({ label: 'screen at load' });
 			reportItem.setResult(reportItem.results.passed);
 		}, function(){
 			reportItem.setResult(reportItem.results.fail);
