@@ -5,7 +5,8 @@
 
 	var mainConfig = require('./../../cfg/main.js').config, // see main config -> main.js
 		openHtml = require('open'),
-		fs = require('fs');
+		fs = require('fs'),
+		EasyZip = require('easy-zip').EasyZip;
 
 	function Reporter() {
 
@@ -28,13 +29,20 @@
 		},
 		compile: function () {
 
-			var pathToReport = mainConfig.const.path.report + this.dirName + '/' + this.dirName + '.html';
+			var dirName = this.dirName,
+				pathToFolder = mainConfig.const.path.report + dirName,
+				pathToReport = pathToFolder + '/' + dirName + '.html';
 
 			fs.writeFile(pathToReport, this.template(this.reportTemplate)(this), function (err) {
+				var zip5;
 				if (err) {
 					console.log(err);
 				} else {
 					console.log("The report was saved in " + pathToReport);
+					zip5 = new EasyZip();
+					zip5.zipFolder(pathToFolder, function(){
+						zip5.writeToFile(pathToFolder + '/../' + dirName + '.zip');
+					});
 					openHtml(pathToReport);
 				}
 			});
