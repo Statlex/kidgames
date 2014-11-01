@@ -31,9 +31,10 @@
 
 			var dirName = this.dirName,
 				pathToFolder = mainConfig.const.path.report + dirName,
-				pathToReport = pathToFolder + '/' + dirName + '.html';
+				pathToReport = pathToFolder + '/' + dirName + '.html',
+				html = this.template(this.reportTemplate)(this).replace('{{script}}', '<script type="text/javascript">' + this.reportJs + '	</script>');
 
-			fs.writeFile(pathToReport, this.template(this.reportTemplate)(this), function (err) {
+			fs.writeFile(pathToReport, html, function (err) {
 				var zip5;
 				if (err) {
 					console.log(err);
@@ -91,6 +92,12 @@
 					return console.log(err);
 				}
 				this.reportCss += data;
+			}.bind(this)));
+			fs.readFile(mainConfig.const.path.util + 'report/js/script.js', "utf8", (function (err, data) {
+				if (err) {
+					return console.log(err);
+				}
+				this.reportJs += data;
 			}.bind(this)));
 
 		},

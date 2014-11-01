@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Test report</title>
 
-	<style type="text/css"><%= reportCss %></style>
+	<style type="text/css">
+	<%= reportCss %>
+	</style>
+
+	{{script}}
 
 </head>
 <body>
@@ -106,10 +110,12 @@
 					<% }; %>
 
 					<% if ( item.type === 'image' ) { %>
-						<img class="image" src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
-						<% if (item.label) { %>
+						<div class="image-wrapper">
+							<img class="image" onerror="onErrorImage(this)" src="<%= item.src %>" alt="<%= item.label %>" title="<%= item.label %>"/>
+							<% if (item.label) { %>
 							<p class="paragraph"><%= item.label %></p>
-						<% }; %>
+							<% }; %>
+						</div>
 					<% }; %>
 
 					<% }); %>

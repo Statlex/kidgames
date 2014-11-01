@@ -29,14 +29,19 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	padding-bottom: 11px;
 }
 
-.paragraph {
+.paragraph,
+.image-wrapper.no-image:before {
 	font-size: 16px;
 	padding-bottom: 16px;
 }
 
+.image-wrapper.no-image .image {
+	display: none;
+}
+
 .image {
 	display: block;
-	padding-bottom: 16px;
+	padding-bottom: 8px;
 	max-width: 100%;
 	height: auto;
 }
@@ -79,7 +84,8 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	width: 170px;
 }
 
-.result-label {
+.result-label,
+.image-wrapper.no-image:before {
 	padding: 8px 14px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	border: 1px solid transparent;
@@ -95,10 +101,19 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	border-color: #d6e9c6;
 }
 
-.result-label-red {
+.result-label-red,
+.image-wrapper.no-image:before {
 	color: #b94a48;
 	background-color: #f2dede;
 	border-color: #eed3d7;
+}
+
+.image-wrapper.no-image:before {
+	content: 'NO image \00000a UnZip report to see image';
+	display: block;
+	padding-bottom: 8px;
+	width: 230px;
+	white-space: pre;
 }
 
 .dib {
@@ -155,5 +170,3 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 .hidden-checkbox:checked ~ div .hidden-data {
 	display: block;
 }
-
-
