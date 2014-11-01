@@ -3,11 +3,10 @@
 	"use strict";
 	/*global console, alert */
 
-	var fs = require('fs'),
-		mainConfig = require('./main.js').config;
+	var fs = require('fs');
 
 	function getFileList() {
-		return fs.readdirSync(mainConfig.const.path.test);
+		return fs.readdirSync('./test/');
 	}
 
 	exports.config = {

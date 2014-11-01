@@ -1,12 +1,10 @@
 (function () {
 
 	"use strict";
-	/*global console, alert */
+	/*global console, alert, mainConfig */
 
-	var mainConfig = require('./../cfg/main.js').config,
-		seleniumHost = mainConfig.const.seleniumHost;
-
-	var util = {
+	var seleniumHost = mainConfig.host.mobile,
+		util = {
 		keyList: ['isMobile', 'sendMail'],
 		createWebDriverClient: function(args) {
 

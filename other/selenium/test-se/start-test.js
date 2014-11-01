@@ -3,19 +3,23 @@
 	"use strict";
 	/*global console, alert, require */
 
-	var mainConfig = require('./cfg/main.js').config, // see main config -> main.js
-		util = require(mainConfig.const.path.util + 'util.js').util,
-		Reporter = require(mainConfig.const.path.util + 'report/reporter.js').Reporter,
+	global.mainConfig = require('./cfg/main.js'); // see main config -> main.js
+
+	var pathHere = __dirname,
+		util = require(mainConfig.getPath('util', pathHere) + 'util.js').util,
+		Reporter = require(mainConfig.getPath('util', pathHere) + 'reporter/reporter.js').Reporter,
 		reporter = new Reporter(),
 		args = util.getArguments(),
 		tests;
+
 
 	if (args.testList) {
 		tests = {
 			tests: args.testList.split(',')
 		};
 	} else {
-		tests = require(mainConfig.const.path.config + (args.cfg || 'all.js') ).config;
+		tests = require(mainConfig.getPath('config', pathHere) + (args.cfg || 'all.js')).config;
+		console.log(tests);
 	}
 
 	tests.tests.forEach(function(testFileName, index, arr){
@@ -31,7 +35,7 @@
 		chaiWebdriver = require('chai-webdriver');
 		chai.use(chaiWebdriver(driver));
 
-		test = require(mainConfig.const.path.test  + testFileName).test;
+		test = require(mainConfig.getPath('test', pathHere) + testFileName).test;
 
 		test({
 			driver: driver,

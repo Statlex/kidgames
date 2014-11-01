@@ -1,13 +1,13 @@
 (function () {
 
 	"use strict";
-	/*global console, alert, require, exports, process */
+	/*global console, alert, require, exports, process, mainConfig */
 
-	var mainConfig = require('./../../cfg/main.js').config, // see main config -> main.js
+	var pathHere = __dirname,
 		openHtml = require('open'),
 		fs = require('fs'),
 		EasyZip = require('easy-zip').EasyZip,
-		util = require(mainConfig.const.path.util + '../../'+ 'util.js').util;
+		util = require(mainConfig.getPath('util', pathHere) + 'util.js').util;
 
 	function Reporter() {
 
@@ -33,7 +33,7 @@
 
 			var that = this,
 				dirName = this.dirName,
-				pathToFolder = mainConfig.const.path.report + dirName,
+				pathToFolder = mainConfig.getPath('report', pathHere, 2) + dirName,
 				pathToReport = pathToFolder + '/' + dirName + '.html',
 				pathToZipReport = pathToFolder + '/../' + dirName + '.zip',
 				html = this.template(this.reportTemplate)(this).replace('{{script}}', '<script type="text/javascript">' + this.reportJs + '	</script>');
@@ -81,9 +81,9 @@
 			this.dirName = 'Report-' + this.date;
 
 			// create folders
-			fs.mkdir(mainConfig.const.path.report + this.dirName);
-			fs.mkdir(mainConfig.const.path.report + this.dirName + '/screenshot');
-			fs.readFile(mainConfig.const.path.util + 'report/html/report-template.html', "utf8", (function (err, data) {
+			fs.mkdir(mainConfig.getPath('report', pathHere, 2) + this.dirName);
+			fs.mkdir(mainConfig.getPath('report', pathHere, 2) + this.dirName + '/screenshot');
+			fs.readFile(mainConfig.getPath('util', pathHere, 2) + 'reporter/html/report-template.html', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
 				}
@@ -92,24 +92,24 @@
 
 			this.reportCss = '';
 
-			fs.readFile(mainConfig.const.path.util + 'report/css/reset.css', "utf8", (function (err, data) {
+			fs.readFile(mainConfig.getPath('util', pathHere, 2) + 'reporter/css/reset.css', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
 				}
 				this.reportCss += data;
 			}.bind(this)));
 
-			fs.readFile(mainConfig.const.path.util + 'report/css/report.css', "utf8", (function (err, data) {
+			fs.readFile(mainConfig.getPath('util', pathHere, 2) + 'reporter/css/report.css', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
 				}
 				this.reportCss += data;
 			}.bind(this)));
-			fs.readFile(mainConfig.const.path.util + 'report/js/script.js', "utf8", (function (err, data) {
+			fs.readFile(mainConfig.getPath('util', pathHere, 2) + 'reporter/js/script.js', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
 				}
-				this.reportJs += data;
+				this.reportJs = data;
 			}.bind(this)));
 
 		},
@@ -163,7 +163,7 @@
 			timeStart: 0,
 			timeEnd: null,
 			testFileName: data.testFileName,
-			testInfo: require('./../.' + mainConfig.const.path.test + data.testFileName).info || {},
+			testInfo: require(mainConfig.getPath('test', pathHere) + data.testFileName).info || {},
 			result: this.results.failed
 		};
 
@@ -203,7 +203,7 @@
 					label: data.label || '',
 					timeStamp: timeStamp,
 					src: 'screenshot/screenshot-' + timeStamp.getTime() + '.png',
-					screenShotSrc: mainConfig.const.path.report + this.reporter.dirName + '/screenshot/screenshot-' + timeStamp.getTime() + '.png'
+					screenShotSrc: mainConfig.getPath('report', pathHere, 2) + this.reporter.dirName + '/screenshot/screenshot-' + timeStamp.getTime() + '.png'
 				};
 
 			this.driver.takeScreenshot().then(function (image, err) {
