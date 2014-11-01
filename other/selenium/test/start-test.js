@@ -5,7 +5,7 @@
 
 	var mainConfig = require('./cfg/main.js').config, // see main config -> main.js
 		util = require(mainConfig.const.path.util + 'util.js').util,
-		Reporter = require(mainConfig.const.path.util + 'reporter.js').Reporter,
+		Reporter = require(mainConfig.const.path.util + 'report/reporter.js').Reporter,
 		reporter = new Reporter(),
 		args = util.getArguments(),
 		tests;

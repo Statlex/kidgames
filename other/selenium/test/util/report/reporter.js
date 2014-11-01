@@ -3,7 +3,7 @@
 	"use strict";
 	/*global console, alert, require, exports, process */
 
-	var mainConfig = require('./../cfg/main.js').config, // see main config -> main.js
+	var mainConfig = require('./../../cfg/main.js').config, // see main config -> main.js
 		openHtml = require('open'),
 		fs = require('fs');
 
@@ -62,13 +62,28 @@
 
 			fs.mkdir(mainConfig.const.path.report + this.dirName);
 			fs.mkdir(mainConfig.const.path.report + this.dirName + '/screenshot');
-			fs.readFile(mainConfig.const.path.util + 'report-template.html', "utf8", (function (err, data) {
+			fs.readFile(mainConfig.const.path.util + 'report/html/report-template.html', "utf8", (function (err, data) {
 				if (err) {
 					return console.log(err);
 				}
 				this.reportTemplate = data;
 			}.bind(this)));
 
+			this.reportCss = '';
+
+			fs.readFile(mainConfig.const.path.util + 'report/css/reset.css', "utf8", (function (err, data) {
+				if (err) {
+					return console.log(err);
+				}
+				this.reportCss += data;
+			}.bind(this)));
+
+			fs.readFile(mainConfig.const.path.util + 'report/css/report.css', "utf8", (function (err, data) {
+				if (err) {
+					return console.log(err);
+				}
+				this.reportCss += data;
+			}.bind(this)));
 
 		},
 		template:  function (str) {
@@ -91,7 +106,7 @@
 			timeStart: 0,
 			timeEnd: null,
 			testFileName: data.testFileName,
-			testInfo: require('./.' + mainConfig.const.path.test + data.testFileName).info || {},
+			testInfo: require('./../.' + mainConfig.const.path.test + data.testFileName).info || {},
 			result: this.results.failed
 		};
 
