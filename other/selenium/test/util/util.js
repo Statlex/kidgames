@@ -7,7 +7,7 @@
 		seleniumHost = mainConfig.const.seleniumHost;
 
 	var util = {
-		keyList: ['isMobile'],
+		keyList: ['isMobile', 'sendMail'],
 		createWebDriverClient: function(args) {
 
 			args = args || {};
@@ -36,7 +36,7 @@
 		},
 		getArguments: function () {
 			var data = {};
-			process.argv.splice(2).forEach(function (val) {
+			process.argv.forEach(function (val) {
 				var arr = val.split('=');
 				data[arr[0]] = arr[1] || util.inKeyList(arr[0]);
 			});
@@ -45,7 +45,7 @@
 		},
 		inKeyList: function(field) {
 			return util.keyList.indexOf(field) !== -1;
-		},
+		}
 
 
 	};

@@ -6,12 +6,14 @@
 	var mainConfig = require('./../../cfg/main.js').config, // see main config -> main.js
 		openHtml = require('open'),
 		fs = require('fs'),
-		EasyZip = require('easy-zip').EasyZip;
+		EasyZip = require('easy-zip').EasyZip,
+		util = require(mainConfig.const.path.util + '../../'+ 'util.js').util;
 
 	function Reporter() {
 
 		this.data = {
 			args: null,
+			argsHash: null,
 			timeStart: new Date()
 		};
 
@@ -29,9 +31,11 @@
 		},
 		compile: function () {
 
-			var dirName = this.dirName,
+			var that = this,
+				dirName = this.dirName,
 				pathToFolder = mainConfig.const.path.report + dirName,
 				pathToReport = pathToFolder + '/' + dirName + '.html',
+				pathToZipReport = pathToFolder + '/../' + dirName + '.zip',
 				html = this.template(this.reportTemplate)(this).replace('{{script}}', '<script type="text/javascript">' + this.reportJs + '	</script>');
 
 			fs.writeFile(pathToReport, html, function (err) {
@@ -42,7 +46,13 @@
 					console.log("The report was saved in " + pathToReport);
 					zip5 = new EasyZip();
 					zip5.zipFolder(pathToFolder, function(){
-						zip5.writeToFile(pathToFolder + '/../' + dirName + '.zip');
+						zip5.writeToFile(pathToZipReport, function(){
+
+							if (that.data.argsHash.sendMail) {
+								that.sendMail(pathToZipReport);
+							}
+
+						});
 					});
 					openHtml(pathToReport);
 				}
@@ -54,14 +64,13 @@
 		init: function () {
 
 			this.data.args = JSON.parse(JSON.stringify(process.argv)); // get string with arguments
-
-			// create folders
+			this.data.argsHash = util.getArguments();
 
 			var date = new Date();
 
-			this.dirName = ['report',
+			this.date = [
 				date.getFullYear(),
-					date.getMonth() + 1,
+				date.getMonth() + 1,
 				date.getDate(),
 				date.getHours(),
 				date.getMinutes(),
@@ -69,6 +78,9 @@
 					return p1 + '0' + p2;
 				});
 
+			this.dirName = 'Report-' + this.date;
+
+			// create folders
 			fs.mkdir(mainConfig.const.path.report + this.dirName);
 			fs.mkdir(mainConfig.const.path.report + this.dirName + '/screenshot');
 			fs.readFile(mainConfig.const.path.util + 'report/html/report-template.html', "utf8", (function (err, data) {
@@ -111,6 +123,36 @@
 					.split("\t").join("');")
 					.split("%>").join("p.push('")
 					.split("\r").join("\\'") + "');} return p.join('');");
+		},
+		sendMail: function(path) {
+			var nodemailer = require('nodemailer'),
+				transporter, mailOptions;
+
+			transporter = nodemailer.createTransport({
+				service: 'Gmail',
+				auth: {
+					user: 'web.best.master@gmail.com',
+					pass: 'colos_inc.'
+				}
+			});
+
+			mailOptions = {
+				from: 'node.js', // sender address
+				to: 'dmitry.turovtsov@gmail.com', // list of receivers
+				subject: 'Test report - ' + this.date, // Subject line
+				text: 'Test report - ' + this.date, // plaintext body
+				html: 'Test report - ' + this.date, // html body
+				attachments: [
+					{
+						path: path
+					}
+				]
+			};
+
+			transporter.sendMail(mailOptions, function(error, info){
+				return error ? console.log(error) : console.log('Message sent: ' + info.response);
+			});
+
 		}
 	};
 
@@ -175,7 +217,6 @@
 
 		}
 	};
-
 
 	exports.Reporter = Reporter;
 
