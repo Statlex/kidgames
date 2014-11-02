@@ -29,7 +29,7 @@
 		// detect last item
 		driver = util.createWebDriverClient(args);
 
-		driver.manage().timeouts().implicitlyWait(1000);
+//		driver.manage().timeouts().implicitlyWait(1000);
 
 		chai = require('chai');
 		chaiWebdriver = require('chai-webdriver');

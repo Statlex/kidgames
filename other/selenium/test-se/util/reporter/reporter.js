@@ -182,6 +182,9 @@
 			this.data.timeEnd = new Date();
 			this.data.result = result;
 		},
+		getResult: function(){
+			return this.data.result;
+		},
 		markStartTime: function() {
 			this.data.timeStart = new Date();
 		},
