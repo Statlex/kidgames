@@ -50,6 +50,14 @@
 						<%= test.data.testFileName %><br/>
 						<%= test.data.testInfo.description %>
 					</p>
+						<% if (test.data.testInfo.steps) { %>
+						<p class="paragraph">steps:</p>
+						<ul>
+						<% test.data.testInfo.steps.forEach(function(step){ %>
+							<li class="list-item"><%= step %></li>
+						<% }); %>
+						</ul>
+						<% }; %>
 				</div>
 
 			</td>

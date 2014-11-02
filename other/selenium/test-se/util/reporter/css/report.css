@@ -30,7 +30,8 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 }
 
 .paragraph,
-.image-wrapper.no-image:before {
+.image-wrapper.no-image:before,
+.list-item {
 	font-size: 16px;
 	padding-bottom: 16px;
 }
@@ -169,4 +170,11 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 .hidden-checkbox:checked ~ .hidden-data,
 .hidden-checkbox:checked ~ div .hidden-data {
 	display: block;
+}
+
+.list-item {
+	list-style-type: circle;
+	list-style-position: inside;
+	margin-left: 0;
+	padding-bottom: 8px;
 }
