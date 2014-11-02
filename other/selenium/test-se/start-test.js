@@ -6,8 +6,8 @@
 	global.mainConfig = require('./cfg/main.js'); // see main config -> main.js
 
 	var pathHere = __dirname,
-		util = require(mainConfig.getPath('util', pathHere) + 'util.js').util,
-		Reporter = require(mainConfig.getPath('util', pathHere) + 'reporter/reporter.js').Reporter,
+		util = require(mainConfig.getPath('util', pathHere) + 'util.js'),
+		Reporter = require(mainConfig.getPath('util', pathHere) + 'reporter/reporter.js'),
 		reporter = new Reporter(),
 		args = util.getArguments(),
 		tests;

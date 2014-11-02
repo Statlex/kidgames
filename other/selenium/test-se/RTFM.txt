@@ -13,3 +13,4 @@ node <test-name>.js can get the parameters
 cfg // cfg=<config-name.js> from cfg folder
 isMobile // isMobile | isMobile=<not false> -> run test on mobile
 testList // testList=<singleTestName.js> | testList=<singleTestName.js>,<singleTestName.js>,<singleTestName.js> -> run test from test list
+sendMail // after test send e-mail see Reporter.sendMail

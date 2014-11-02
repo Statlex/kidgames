@@ -1,10 +1,9 @@
 (function () {
 
 	"use strict";
-	/*global console, alert, mainConfig */
+	/*global console, alert, mainConfig, module, process */
 
-	var seleniumHost = mainConfig.host.mobile,
-		util = {
+	module.exports = {
 		keyList: ['isMobile', 'sendMail'],
 		createWebDriverClient: function(args) {
 
@@ -13,11 +12,11 @@
 			var webDriver = require('selenium-webdriver'),
 				driver = new webDriver
 				.Builder()
-				.usingServer(args.isMobile ? seleniumHost : '')
-				.withCapabilities({ browserName: "chrome" })
+				.usingServer(args.isMobile ? mainConfig.host.mobile : '')
+				.withCapabilities({ browserName: mainConfig.browserName })
 				.build();
 
-			driver.manage().window().setSize(320, 480);
+			driver.manage().window().setSize(mainConfig.screen.width, mainConfig.screen.height);
 
 			return driver;
 
@@ -36,18 +35,16 @@
 			var data = {};
 			process.argv.forEach(function (val) {
 				var arr = val.split('=');
-				data[arr[0]] = arr[1] || util.inKeyList(arr[0]);
-			});
+				data[arr[0]] = arr[1] || this.inKeyList(arr[0]);
+			}, this);
 
 			return data;
 		},
 		inKeyList: function(field) {
-			return util.keyList.indexOf(field) !== -1;
+			return this.keyList.indexOf(field) !== -1;
 		}
 
 
 	};
-
-	exports.util = util;
 
 }());

@@ -16,20 +16,14 @@
 		getPath: function(to, dirName, q) {
 
 			var restPath = dirName.replace(this.path.root, ''),
-				restPathArray,
-				upPath;
+				restPathArray;
 
-			console.log('from');
-			console.log(this.path.root);
-			console.log(to, dirName);
 			restPathArray = encodeURIComponent(restPath).split(pathDivider);
 
 			restPathArray = restPathArray.filter(function(str){
 				return !!str;
 			});
 
-			console.log(restPathArray);
-			console.log('./' + new Array(restPathArray.length + 1).join('../') + this.path[to]);
 			return './' + new Array(restPathArray.length + 1 - (q || 0)).join('../') + this.path[to];
 
 		},
@@ -43,6 +37,11 @@
 		},
 		host: {
 			mobile: 'http://localhost:8080/wd/hub'
+		},
+		browserName: 'chrome',
+		screen: {
+			width: 320,
+			height: 480
 		}
 
 	};

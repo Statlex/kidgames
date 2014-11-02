@@ -1,13 +1,13 @@
 (function () {
 
 	"use strict";
-	/*global console, alert, require, exports, process, mainConfig */
+	/*global console, alert, require, exports, process, mainConfig, module */
 
 	var pathHere = __dirname,
 		openHtml = require('open'),
 		fs = require('fs'),
 		EasyZip = require('easy-zip').EasyZip,
-		util = require(mainConfig.getPath('util', pathHere) + 'util.js').util;
+		util = require(mainConfig.getPath('util', pathHere) + 'util.js');
 
 	function Reporter() {
 
@@ -218,6 +218,6 @@
 		}
 	};
 
-	exports.Reporter = Reporter;
+	module.exports = Reporter;
 
 }());
