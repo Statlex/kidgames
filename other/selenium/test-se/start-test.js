@@ -5,8 +5,7 @@
 
 	global.mainConfig = require('./cfg/main.js'); // see main config -> main.js
 
-	var pathHere = __dirname,
-		util = require('user/util/util.js'),
+	var util = require('user/util/util.js'),
 		Reporter = require('user/reporter/reporter.js'),
 		reporter = new Reporter(),
 		args = util.getArguments(),
@@ -23,27 +22,20 @@
 		};
 	}
 
-	console.log(tests);
-
 	tests.tests.forEach(function(testFileName, index, arr){
 
-		var driver, test, chai, chaiWebdriver;
+		var driver, test;
 
 		// detect last item
 		driver = util.createWebDriverClient(args);
 
 //		driver.manage().timeouts().implicitlyWait(1000);
 
-		chai = require('chai');
-		chaiWebdriver = require('chai-webdriver');
-		chai.use(chaiWebdriver(driver));
-
 		test = require(path.resolve('test', testFileName)).test;
 		console.log(testFileName);
 
 		test({
 			driver: driver,
-			chai: chai,
 			args: args,
 			reportItem: reporter.newItem({testFileName: testFileName, driver: driver})
 		});

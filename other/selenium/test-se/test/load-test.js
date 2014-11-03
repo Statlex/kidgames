@@ -11,7 +11,6 @@
 	exports.test = function(args) {
 
 		var driver = args.driver,
-			chai = args.chai,
 			reportItem = args.reportItem;
 
 		driver.get("http://statlex.com/game/air/").then(function(){
