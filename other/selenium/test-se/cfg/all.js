@@ -3,13 +3,11 @@
 	"use strict";
 	/*global console, alert */
 
-	var fs = require('fs'),
-		pathHere = __dirname;
+	var fs = require('fs');
 
 	function getFileList() {
-		return fs.readdirSync(mainConfig.getPath('test', pathHere, 1));
+		return fs.readdirSync('./test');
 	}
-
 
 	exports.tests = getFileList();
 
