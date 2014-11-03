@@ -6,21 +6,24 @@
 	global.mainConfig = require('./cfg/main.js'); // see main config -> main.js
 
 	var pathHere = __dirname,
-		util = require(mainConfig.getPath('util', pathHere) + 'util.js'),
-		Reporter = require(mainConfig.getPath('util', pathHere) + 'reporter/reporter.js'),
+		util = require('user/util/util.js'),
+		Reporter = require('user/reporter/reporter.js'),
 		reporter = new Reporter(),
 		args = util.getArguments(),
+		path = require('path'),
 		tests;
-
 
 	if (args.testList) {
 		tests = {
 			tests: args.testList.split(',')
 		};
 	} else {
-		tests = require(mainConfig.getPath('config', pathHere) + (args.cfg || 'all.js')).config;
-		console.log(tests);
+		tests = {
+			tests: require(path.resolve('cfg', args.cfg || 'all.js')).tests
+		};
 	}
+
+	console.log(tests);
 
 	tests.tests.forEach(function(testFileName, index, arr){
 
@@ -35,7 +38,8 @@
 		chaiWebdriver = require('chai-webdriver');
 		chai.use(chaiWebdriver(driver));
 
-		test = require(mainConfig.getPath('test', pathHere) + testFileName).test;
+		test = require(path.resolve('test', testFileName)).test;
+		console.log(testFileName);
 
 		test({
 			driver: driver,

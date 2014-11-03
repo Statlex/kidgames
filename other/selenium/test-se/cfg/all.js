@@ -10,8 +10,7 @@
 		return fs.readdirSync(mainConfig.getPath('test', pathHere, 1));
 	}
 
-	exports.config = {
-		tests: getFileList()
-	};
+
+	exports.tests = getFileList();
 
 }());
