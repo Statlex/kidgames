@@ -36,32 +36,14 @@
 	transform: scale(1);
 }
 
-.popup-close {
-	background-image: url(../i/buttons/close.svg);
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-	position: absolute;
-	top: -0.5em;
-	right: -0.5em;
-	width: 1.4em;
-	height: 1.4em;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 4px;
-	background-color: #fff;
-	font-size: 1em;
-	line-height: 1em;
-	background-repeat: no-repeat;
-	-webkit-box-shadow: 0.2em -0.2em 1em rgba(0, 0, 0, 0.3);
-	box-shadow: 0.2em -0.2em 1em rgba(0, 0, 0, 0.3);
-}
-
-.popup-text {
-	font-size: 1em;
+.popup-text{
+	font-size: 0.9em;
 	line-height: 1em;
 }
 
 .popup-button {
+	font-size: 0.9em;
+	line-height: inherit;
 	width: 3em;
 	border-width: 1px;
 	border-style: solid;
