@@ -32,7 +32,6 @@
 //		driver.manage().timeouts().implicitlyWait(1000);
 
 		test = require(path.resolve('test', testFileName)).test;
-		console.log(testFileName);
 
 		test({
 			driver: driver,

@@ -12,7 +12,8 @@
 			'check content',
 			'click back button',
 			'check title page'
-		]
+		],
+		expectedResult: 'All point in check list must be passed'
 	};
 
 	exports.test = function(args) {
