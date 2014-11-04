@@ -43,6 +43,7 @@
 	pre = getPrefix();
 
 	info = {
+		extraData: {},
 		lang: null,
 		defaultLang: 'en',
 		availableLangs: ['ru', 'en'],
@@ -75,51 +76,39 @@
 				height: 'height',
 				width: 'width'
 			},
+			width: null,
+			height: null,
 			getOrientation: function() {
 				return docElem.clientHeight > docElem.clientWidth ? this.strings.portrait : this.strings.landscape;
 			},
 			get: function(select) {
 
-				var data,
-					str = this.strings;
+				var str = this.strings;
 
 				switch (select) {
 
 					case str.max:
 
-						data = Math.max(docElem.clientHeight, docElem.clientWidth);
-
-						break;
+						return Math.max(docElem.clientHeight, docElem.clientWidth);
 
 					case str.min:
 
-						data = Math.min(docElem.clientHeight, docElem.clientWidth);
-
-						break;
+						return Math.min(docElem.clientHeight, docElem.clientWidth);
 
 					case str.height:
 
 						return docElem.clientHeight;
 
-						break;
-
 					case str.width:
 
 						return docElem.clientWidth;
 
-						break;
-
-
-					default : {
-						data = {
-							width: docElem.clientWidth,
-							height: docElem.clientHeight
-						}
-					}
-
 				}
 
-				return data;
+				return {
+					width: docElem.clientWidth,
+					height: docElem.clientHeight
+				};
 
 			}
 		},
@@ -158,6 +147,18 @@
 			// set lang
 			this.lang = this.lang || this.getAvailableLang();
 
+			this.setDetectData();
+			win.addEventListener('load', this.runDetector.bind(this), false);
+
+		},
+
+		runDetector: function() {
+			win.addEventListener('resize', this.setDetectData.bind(this), false);
+		},
+
+		setDetectData: function() {
+			this.screen.width = docElem.clientWidth;
+			this.screen.height = docElem.clientHeight;
 		},
 
 		getAvailableLang: function() {

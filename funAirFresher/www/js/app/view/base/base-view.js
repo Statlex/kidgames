@@ -69,9 +69,31 @@
 			this.$el.addClass('js-page-wrapper page-wrapper');
 			this.$el.attr('data-url', this.url);
 
+			// workaround for io8 and swipe by finger
+			this.$el.on('touchmove', function(e){
+				var data = {
+					x: e.originalEvent.touches[0].clientX,
+					time: Date.now()
+				};
+				APP.info.set('lastTouchMoveX', data);
+			});
+
 			APP.$wrapper.append(this.$el);
 
 			this.showDirectionAnimation();
+
+		},
+
+		isNeedAnimation: function() {
+
+			var data = APP.info.get('lastTouchMoveX') || {},
+				noAnimationField = 50,
+				x = data.x || noAnimationField * 2,
+				time = data.time || 0,
+				now = Date.now(),
+				screenWidth = APP.info.screen.width;
+
+			return x > noAnimationField && x < (screenWidth - noAnimationField) && (now - time) > 1000;
 
 		},
 
@@ -86,8 +108,8 @@
 				fullClassList = 'left-position center-position right-position transition',
 				transitionTime = this.transition.duration,
 				smallStep = 10,
-				count = $wrappers.length;
-
+				count = $wrappers.length,
+				needAnimation = this.isNeedAnimation(); // workaround for io8 and swipe by finger
 
 			if (direction === this.direction.hidePopup) {
 				setTimeout((function(){
@@ -112,39 +134,58 @@
 			}
 
 			if (direction === this.direction.forward) {
-				$next.addClass('right-position');
-				$wrappers.addClass('transition');
 
-				setTimeout(function($prev, $next){
+				if ( needAnimation ) {
+					$next.addClass('right-position');
+					$wrappers.addClass('transition');
+
+					setTimeout(function($prev, $next){
+						$prev.remove();
+						$next.removeClass(fullClassList).addClass('static');
+						this.fixRoute($next.attr('data-url'));
+					}.bind(this, $prev, $next), transitionTime + smallStep);
+
+					setTimeout(function(){
+						$next.removeClass('right-position').addClass('center-position');
+						$prev.removeClass('center-position').addClass('left-position');
+					}, smallStep);
+
+				} else {
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
 					this.fixRoute($next.attr('data-url'));
-				}.bind(this, $prev, $next), transitionTime + smallStep);
-
-				setTimeout(function(){
-					$next.removeClass('right-position').addClass('center-position');
-					$prev.removeClass('center-position').addClass('left-position');
-				}, smallStep);
+				}
 
 			}
 
 			if (direction === this.direction.back) {
-				$next.addClass('left-position');
-				$prev.removeClass('static');
-				$wrappers.addClass('transition');
 
-				setTimeout(function($prev, $next){
+				if ( needAnimation ) {
+					$next.addClass('left-position');
+					$prev.removeClass('static');
+					$wrappers.addClass('transition');
+
+					setTimeout(function($prev, $next){
+						$prev.remove();
+						$next.removeClass(fullClassList).addClass('static');
+						this.fixRoute($next.attr('data-url'));
+					}.bind(this, $prev, $next), transitionTime + smallStep);
+
+					setTimeout(function(){
+						$next.removeClass('left-position').addClass('center-position');
+						$prev.removeClass('center-position').addClass('right-position');
+					}, smallStep);
+
+				} else {
 					$prev.remove();
 					$next.removeClass(fullClassList).addClass('static');
 					this.fixRoute($next.attr('data-url'));
-				}.bind(this, $prev, $next), transitionTime + smallStep);
-
-				setTimeout(function(){
-					$next.removeClass('left-position').addClass('center-position');
-					$prev.removeClass('center-position').addClass('right-position');
-				}, smallStep);
+				}
 
 			}
+
+			// workaround for io8 and swipe by finger
+			APP.info.set('lastTouchMoveX', {});
 
 		},
 
