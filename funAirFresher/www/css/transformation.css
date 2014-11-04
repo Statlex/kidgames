@@ -36,6 +36,16 @@
 	transition: 0.2s transform linear;
 }
 
+.transition.title-view {
+	-webkit-transition: 0.2s -webkit-transform linear, 0.3s background-position linear;
+	transition: 0.2s transform linear, 0.3s background-position linear;
+}
+
+.title-view {
+	-webkit-transition: 0.3s background-position linear;
+	transition: 0.3s background-position linear;
+}
+
 .circle-wrapper {
 	position: absolute;
 	width: 336px;

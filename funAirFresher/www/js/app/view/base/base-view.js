@@ -337,8 +337,8 @@
 				screenHeight = info.screen.get('height'),
 				screenWidth = info.screen.get('width');
 
-			topOffset = (1 - data.y / 80) || 1;
-			leftOffset = (1 - data.x / 80) || 1;
+			topOffset = (1 - data.y / 40) || 1;
+			leftOffset = (1 - data.x / 40) || 1;
 
 			top = -Math.round((bgSize - screenHeight) / 2 * topOffset);
 			left = -Math.round((bgSize - screenWidth) / 2 * leftOffset);
