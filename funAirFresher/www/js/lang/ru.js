@@ -35,7 +35,6 @@
 		appName: 'Освежитель Воздуха',
 		freshAir: 'Освежить Воздух',
 		howItWorks: 'Как это работает',
-		privacyPolicy: 'Политика Конфиден&shy;циальности',
 		dataCollection: 'Сбор<br>Данных',
 		clearing: 'Очистка воздуха...',
 		airHasBeenClean: 'Воздух очищен.',

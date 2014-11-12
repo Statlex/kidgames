@@ -22,7 +22,7 @@
 
 			this.setTimers();
 
-			this.clearFullTime = APP.util.getRandom(2, 3) * 60 * 1000;
+			this.clearFullTime = APP.util.getRandom(1, 2) * 60 * 1000;
 
 			this.firstStepTime = APP.util.getRandom(5, 15) * 1000;
 
@@ -34,7 +34,7 @@
 
 		setTimers: function() {
 			var timers = {
-					hideDataCollection: APP.util.getRandom(20, 40) * 1000,
+					hideDataCollection: APP.util.getRandom(10, 20) * 1000,
 					clearingLine: []
 				},
 				i,

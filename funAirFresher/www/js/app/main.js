@@ -11,8 +11,7 @@
 		routes: {
 			'': 'title',
 			'air-fresh': 'airFresh',
-			'how-it-works': 'howItWorks',
-			'privacy-policy': 'privacyPolicy'
+			'how-it-works': 'howItWorks'
 		},
 
 		title: function () {
@@ -46,16 +45,6 @@
 			}
 
 			APP.howItWorks = new APP.HowItWorksView({el: $(APP.templateMaster.tmplFn['how-it-works']())});
-
-		},
-
-		privacyPolicy: function() {
-
-			if ( APP.$wrapper.find('.js-privacy-policy').length ) {
-				return;
-			}
-
-			APP.privacyPolicy = new APP.PrivacyPolicyView({el: $(APP.templateMaster.tmplFn['privacy-policy']())});
 
 		}
 
