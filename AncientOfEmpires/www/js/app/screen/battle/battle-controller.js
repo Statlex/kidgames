@@ -460,7 +460,29 @@
 			this.updateRIPs();
 			this.updateUnitsOnBuilding();
 			this.wispAction();
+
+			this.runCpu();
+
 		},
+
+		runCpu: function() {
+
+			if (this.activePlayer.type !== 'cpu') {
+				return;
+			}
+
+			console.log(this.activePlayer);
+
+			var cpu = new APP.Cpu({
+				view: this.view,
+				controller: this,
+				player: this.activePlayer
+			});
+
+			cpu.run();
+
+		},
+
 		wispAction: function(argsPlayer) {
 
 			// 0 - get players

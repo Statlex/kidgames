@@ -37,13 +37,7 @@
 		},
 
 		checkBattleControllerData: function(data) {
-
-			if (!data.map){
-				return false;
-			}
-
-			return true;
-
+			return !!data.map;
 		},
 
 		createBattleControllerData: function() {
