@@ -18,6 +18,19 @@
 		capitalise: function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 		},
+		objForEach: function(obj, func, context) {
+
+			var key;
+
+			context = context || obj;
+
+			for (key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					func.call(context, obj[key], key);
+				}
+			}
+
+		},
 		findBy: function (list, key, value) {
 
 			var result = null;
@@ -77,6 +90,13 @@
 		removeFromArray: function(arr, item) {
 			arr.splice(arr.indexOf(item), 1);
 			return arr;
+		},
+		getPathLength: function(p1, p2) {
+
+			return Math.pow(
+				Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2),
+				0.5);
+
 		}
 
 	};
