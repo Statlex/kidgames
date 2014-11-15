@@ -21,10 +21,7 @@
 			// 2
 			// get all no player's farm
 			// 3
-			// get soldiers and kings which nearest to farm
-			// 4
-			// all units go to farm
-			// if unit can attack -> try to get safe position to attack
+			// detect action for every unit
 
 			var controller = this.controller,
 				player = this.player,
@@ -54,23 +51,32 @@
 			});
 
 			// 3
-			// get soldiers and kings which nearest to farm
-			playerUnits
-				.filter(function(unit) {
-					return ~unit.availableActions.indexOf('getBuilding');
-				})
-				.forEach(function(unit) {
+			// detect action for every unit
+			playerUnits.forEach(function(unit) {
 
-					var pathLength = Infinity;
+				// get available coordinate
+				var availablePath = unit.getAvailablePath(controller)
+						// add current coordinates
+						.splice(0, 0, { x: unit.x, y: unit.y }),
+					scenarios = [];
 
-					noPlayerBuildings.forEach(function(build) {
-						var newPathLength = util.getPathLength(util, build);
-						pathLength = Math.min(newPathLength, pathLength);
-					});
+				// move to every availablePath
+				availablePath.forEach(function(xy) {
+
+					// main concept -> what to do on this xy
+
+					// 1 move to
+					// 2 get available action
+					// 3.1 execute available action
+					// 3.2 NO execute available action
+					// 4 rate result
 
 				});
 
+			});
+
 		}
+
 	};
 
 	APP.Cpu = Cpu;
