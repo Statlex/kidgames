@@ -11,6 +11,10 @@
 		this.view = data.view;
 	}
 
+	function Scenario(data) {
+		this.xy = data.xy || {};
+	}
+
 	Cpu.prototype = {
 		run: function () {
 
@@ -54,26 +58,93 @@
 			// detect action for every unit
 			playerUnits.forEach(function(unit) {
 
-				// get available coordinate
-				var availablePath = unit.getAvailablePath(controller)
-						// add current coordinates
-						.splice(0, 0, { x: unit.x, y: unit.y }),
-					scenarios = [];
+				var startCoordinates = { x: unit.x, y: unit.y},
+					// get available coordinate
+					availablePath = unit.getAvailablePath(controller),
+					// array for all scenarios
+					scenarios = [],
+					// available actions list
+					availableActions = ['none'].concat(unit.availableActions);
+
+				// add current coordinates
+				availablePath.push(startCoordinates);
 
 				// move to every availablePath
 				availablePath.forEach(function(xy) {
 
 					// main concept -> what to do on this xy
 
-					// 1 move to
-					// 2 get available action
-					// 3.1 execute available action
-					// 3.2 NO execute available action
-					// 4 rate result
+					availableActions.forEach(function(action) {
+
+						unit.x = xy.x;
+						unit.y = xy.y;
+
+						// count probably received damage, consider in last of order
+						var probablyReceivedDamage = 0;
+
+						// count armor ty terrain type, consider in last of order
+						var addedArmor = 0;
+
+						switch (action) {
+
+							case 'none':
+
+								scenarios.push(new Scenario({ xy: xy }));
+								break;
+
+							case 'attack':
+
+								var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
+
+								canAttackedUnits.forEach(function(enemyUnit) {
+
+									var scenario = new Scenario({ xy: xy });
+
+									// use findUnitsUnderAttack for enemy unit
+
+									// get given and received damage
+
+								});
+
+
+								console.log(canAttackedUnits);
+
+
+								break;
+
+							case 'getBuilding':
+
+
+
+
+								break;
+
+							case 'upBones':
+
+
+
+
+								break;
+
+						}
+
+
+
+					});
 
 				});
 
+				// set start state
+				unit.x = startCoordinates.x;
+				unit.y = startCoordinates.y;
+
+
+				// rate better scenarios
+
+
+
 			});
+
 
 		}
 
