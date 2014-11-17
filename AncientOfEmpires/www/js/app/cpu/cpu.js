@@ -79,10 +79,10 @@
 						unit.x = xy.x;
 						unit.y = xy.y;
 
-						// count probably received damage, consider in last of order
+						// count probably received damage
 						var probablyReceivedDamage = 0;
 
-						// count armor ty terrain type, consider in last of order
+						// count armor ty terrain type
 						var terrainArmor = 0;
 
 						switch (action) {
