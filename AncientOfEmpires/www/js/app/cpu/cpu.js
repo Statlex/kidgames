@@ -12,7 +12,9 @@
 	}
 
 	function Scenario(data) {
-		this.xy = data.xy || {};
+		this.xy = data.xy;
+		this.type = data.type;
+		this.availableReceiveDamage = data.availableReceiveDamage;
 	}
 
 	Cpu.prototype = {
@@ -76,39 +78,50 @@
 
 					availableActions.forEach(function(action) {
 
+						// do not use used places
+						if ( controller.getUnitsByCoordinates(xy).length ) {
+							return;
+						}
+
 						unit.x = xy.x;
 						unit.y = xy.y;
 
 						// count probably received damage
-						var probablyReceivedDamage = 0;
+						var availableReceiveDamage = 0; // done
 
-						// count armor ty terrain type
-						var terrainArmor = 0;
+						// count armor by place type - include terrain type and building
+						var placeArmor = 0, // not done
+							withBuilding = false; // not done
 
 						switch (action) {
 
 							case 'none':
 
 								// xy = xy
-								// action = none
-
-
-
-								//scenarios.push(new Scenario({ xy: xy }));
+								// type = none
+								// availableReceiveDamage
 
 								// get unit who can attack and count damage received by every units
-								var availableReceivedDamage = 0;
-								enemyUnits.filter(function (enemyUnit) {
+								availableReceiveDamage = 0;
+								enemyUnits
+									.filter(function (enemyUnit) {
 										// get units who can attack
 										return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
 									})
 									.forEach(function(enemyUnit){
-										availableReceivedDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
+										availableReceiveDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
 									});
 
+								console.log(availableReceiveDamage);
 
-
-
+								scenarios.push(new Scenario({
+									xy: {
+										x: xy.x,
+										y: xy.y
+									},
+									type: action,
+									availableReceiveDamage: availableReceiveDamage
+								}));
 
 								break;
 

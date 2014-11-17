@@ -274,22 +274,24 @@
 			this.setEndTurn();
 
 		},
-		getAvailableGivenDamage: function(enemyUnit, controller) {
+		getAvailableGivenDamage: function(enemyUnit, controller, reduceHealth) {
 
-			if (this.health <= 0) {
+			var defByBuilding, defByTerrain, unitQ, attackValue, attackBonusByLevel, enemyDef, reduceDefBy,
+				health = this.health - (reduceHealth || 0);
+
+			if (health <= 0) {
 				return 0;
 			}
 
-			var wasPoisoned = this.canPoison && !enemyUnit.canNotBePoisoned,
-				defByBuilding = controller.getDefByBuilding(enemyUnit),
-				defByTerrain = controller.getDefByTerrain(enemyUnit),
-				unitQ = this.health / this.defaultHealth,
-				attackValue = this.atk,
-				attackBonusByLevel = this.atk * (this.level * this.levelInfo.attackBonus) / 100,
-				enemyDef = enemyUnit.def,
-				reduceDefBy = APP.units.info.poison.reduce.def;
+			defByBuilding = controller.getDefByBuilding(enemyUnit);
+			defByTerrain = controller.getDefByTerrain(enemyUnit);
+			unitQ = health / this.defaultHealth;
+			attackValue = this.atk;
+			attackBonusByLevel = this.atk * (this.level * this.levelInfo.attackBonus) / 100;
+			enemyDef = enemyUnit.def;
+			reduceDefBy = APP.units.info.poison.reduce.def;
 
-			if (wasPoisoned) {
+			if (this.canPoison && !enemyUnit.canNotBePoisoned) {
 				enemyDef -= reduceDefBy;
 				enemyDef = Math.max(enemyDef, 0);
 			}
