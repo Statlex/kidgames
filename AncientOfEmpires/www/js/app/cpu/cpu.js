@@ -89,7 +89,27 @@
 
 							case 'none':
 
-								scenarios.push(new Scenario({ xy: xy }));
+								// xy = xy
+								// action = none
+
+
+
+								//scenarios.push(new Scenario({ xy: xy }));
+
+								// get unit who can attack and count damage received by every units
+								var availableReceivedDamage = 0;
+								enemyUnits.filter(function (enemyUnit) {
+										// get units who can attack
+										return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
+									})
+									.forEach(function(enemyUnit){
+										availableReceivedDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
+									});
+
+
+
+
+
 								break;
 
 							case 'attack':
@@ -107,7 +127,7 @@
 								});
 
 
-								console.log(canAttackedUnits);
+								//console.log(canAttackedUnits);
 
 
 								break;

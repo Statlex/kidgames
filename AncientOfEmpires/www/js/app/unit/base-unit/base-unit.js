@@ -274,6 +274,45 @@
 			this.setEndTurn();
 
 		},
+		getAvailableGivenDamage: function(enemyUnit, controller) {
+
+			if (this.health <= 0) {
+				return 0;
+			}
+
+			var wasPoisoned = this.canPoison && !enemyUnit.canNotBePoisoned,
+				defByBuilding = controller.getDefByBuilding(enemyUnit),
+				defByTerrain = controller.getDefByTerrain(enemyUnit),
+				unitQ = this.health / this.defaultHealth,
+				attackValue = this.atk,
+				attackBonusByLevel = this.atk * (this.level * this.levelInfo.attackBonus) / 100,
+				enemyDef = enemyUnit.def,
+				reduceDefBy = APP.units.info.poison.reduce.def;
+
+			if (wasPoisoned) {
+				enemyDef -= reduceDefBy;
+				enemyDef = Math.max(enemyDef, 0);
+			}
+
+			if (defByBuilding > 0) {
+				defByTerrain = 0;
+			}
+
+			attackValue = (attackBonusByLevel + attackValue) * unitQ - (enemyDef + defByBuilding + defByTerrain) * 0.5;
+
+			attackValue = Math.max(attackValue, unitQ);
+
+			if (this.underWispAura) {
+				attackValue += APP.units.info.aura.wisp.attack;
+			}
+
+			if (this.type === 'Wisp' && enemyUnit.type === 'Bones') {
+				attackValue += this.bonesAttackBonus;
+			}
+
+			return attackValue;
+
+		},
 		setLevel: function() {
 
 			var attackCount = this.damage.given / this.atk,
