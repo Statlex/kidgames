@@ -83,7 +83,7 @@
 						var probablyReceivedDamage = 0;
 
 						// count armor ty terrain type, consider in last of order
-						var addedArmor = 0;
+						var terrainArmor = 0;
 
 						switch (action) {
 
