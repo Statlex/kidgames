@@ -60,40 +60,39 @@
 		},
 		getAvailablePath: function(controller) {
 
-			var x = this.x,
-				y = this.y,
+			var x,
+				y,
+				maxX = controller.map.size.width,
+				maxY = controller.map.size.height,
 				pathFinder = new util.PathFinder({
 					map: controller.map,
 					mov: this.mov,
-					x: x,
-					y: y,
+					x: this.x,
+					y: this.y,
 					relativeTypeSpace: true
 				}),
 				availablePath = pathFinder.getAvailablePath({unit: this}),
-				removedIndex,
 				units = controller.units,
 				key, unit,
-				findRemovedIndex = function(xy, index){
-					if (xy.x === x && xy.y === y) {
-						removedIndex = index;
+				findToRemove = function(xy){
+
+					var pathX = xy.x,
+						pathY = xy.y;
+
+					if (pathX === x && pathY === y) {
 						return false;
 					}
-					return true;
-				};
 
-			availablePath.every(findRemovedIndex);
-			availablePath.splice(removedIndex, 1);
+					return !(pathX >= maxX || pathX < 0 || pathY >= maxY || pathY < 0);
+
+				};
 
 			for (key in units) {
 				if (units.hasOwnProperty(key)) {
 					unit = units[key];
-					removedIndex = undefined;
 					x = unit.x;
 					y = unit.y;
-					availablePath.every(findRemovedIndex);
-					if (removedIndex !== undefined) {
-						availablePath.splice(removedIndex, 1);
-					}
+					availablePath = availablePath.filter(findToRemove);
 				}
 			}
 

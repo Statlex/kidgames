@@ -36,6 +36,33 @@
 
 		get: function (key) {
 			return this.attr[key];
+		},
+
+		execute: function (unit, controller) {
+
+			// move to xy
+			var endX = this.get('x'),
+				endY = this.get('y');
+
+			if (unit.x !== endX || unit.y !== endY) {
+				console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
+				unit
+					.moveTo({
+						x: endX, y: endY
+					}, controller);
+
+				controller.view.moveUnit(unit);
+			}
+
+			if (this.get('type') === 'none') {
+
+				unit.setEndTurn();
+				controller.wispAction();
+				controller.view.showEndUnitTurn(unit);
+				return;
+			}
+
+
 		}
 
 	};
@@ -186,6 +213,20 @@
 				// set start state
 				unit.x = startCoordinates.x;
 				unit.y = startCoordinates.y;
+
+
+				// only for test - begin
+				scenarios = scenarios.sort(function (a, b) {
+					return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
+				});
+
+				var endScenario = scenarios[0];
+
+				endScenario.execute(unit, controller);
+
+				// only for test - end
+
+
 
 				// rate better scenarios
 
