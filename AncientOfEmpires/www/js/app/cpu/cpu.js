@@ -78,11 +78,6 @@
 
 					availableActions.forEach(function(action) {
 
-						// do not use used places
-						if ( controller.getUnitsByCoordinates(xy).length ) {
-							return;
-						}
-
 						unit.x = xy.x;
 						unit.y = xy.y;
 
