@@ -12,10 +12,34 @@
 	}
 
 	function Scenario(data) {
-		this.xy = data.xy;
-		this.type = data.type;
-		this.availableReceiveDamage = data.availableReceiveDamage;
+		this.attr = {};
+		this.extendSelf(data);
 	}
+
+	Scenario.prototype = {
+		extendSelf: function (data) {
+			var key;
+			for (key in data) {
+				if (data.hasOwnProperty(key)) {
+					this.attr[key] = data[key];
+				}
+			}
+
+			return this;
+
+		},
+
+		set: function (key, value) {
+			this.attr[key] = value;
+			return this;
+		},
+
+		get: function (key) {
+			return this.attr[key];
+		}
+
+	};
+
 
 	Cpu.prototype = {
 		run: function () {
@@ -81,20 +105,18 @@
 						unit.x = xy.x;
 						unit.y = xy.y;
 
-						// count probably received damage
-						var availableReceiveDamage = 0; // done
-
-						// count armor by place type - include terrain type and building
-						var placeArmor = 0, // not done
-							withBuilding = false; // not done
+						var
+							// count probably received damage
+							availableReceiveDamage = 0,
+							// is unit stay on build
+							withBuilding = controller.getDefByBuilding(unit),
+							// count armor by place type - include terrain type and building
+							placeArmor = withBuilding || controller.getDefByTerrain(unit),
+							nearestNoPlayerBuilding = unit.getNearestNoPlayerBuilding(controller);
 
 						switch (action) {
 
 							case 'none':
-
-								// xy = xy
-								// type = none
-								// availableReceiveDamage
 
 								// get unit who can attack and count damage received by every units
 								availableReceiveDamage = 0;
@@ -103,37 +125,36 @@
 										// get units who can attack
 										return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
 									})
-									.forEach(function(enemyUnit){
+									.forEach(function (enemyUnit) {
 										availableReceiveDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
 									});
 
-								console.log(availableReceiveDamage);
-
 								scenarios.push(new Scenario({
-									xy: {
-										x: xy.x,
-										y: xy.y
-									},
+									x: xy.x,
+									y: xy.y,
 									type: action,
-									availableReceiveDamage: availableReceiveDamage
+									availableReceiveDamage: availableReceiveDamage,
+									withBuilding: withBuilding,
+									placeArmor: placeArmor,
+									nearestNoPlayerBuilding: nearestNoPlayerBuilding
 								}));
 
 								break;
 
 							case 'attack':
 
-								var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
-
-								canAttackedUnits.forEach(function(enemyUnit) {
-
-									var scenario = new Scenario({ xy: xy });
-
-									// use findUnitsUnderAttack for enemy unit
-
-									// get given and received damage
-
-								});
-
+								//var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
+								//
+								//canAttackedUnits.forEach(function(enemyUnit) {
+								//
+								//	var scenario = new Scenario({ xy: xy });
+								//
+								//	// use findUnitsUnderAttack for enemy unit
+								//
+								//	// get given and received damage
+								//
+								//});
+								//
 
 								//console.log(canAttackedUnits);
 
@@ -166,10 +187,7 @@
 				unit.x = startCoordinates.x;
 				unit.y = startCoordinates.y;
 
-
 				// rate better scenarios
-
-
 
 			});
 

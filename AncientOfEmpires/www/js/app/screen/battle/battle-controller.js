@@ -730,7 +730,7 @@
 
 			var unitX = unit.x,
 				unitY = unit.y,
-				building = this.buildings['x' + unitX + 'y' + unitY]
+				building = this.buildings['x' + unitX + 'y' + unitY];
 
 			if (!building) {
 				return 0;
@@ -744,7 +744,7 @@
 
 			var unitX = unit.x,
 				unitY = unit.y,
-				terrain = this.map.terrain['x' + unitX + 'y' + unitY]
+				terrain = this.map.terrain['x' + unitX + 'y' + unitY];
 
 			if (!terrain) {
 				return 0;

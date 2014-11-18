@@ -373,6 +373,40 @@
 
 			// if has units under attack - search enemy in available units
 			return units.indexOf(enemy) !== -1;
+		},
+		getNearestNoPlayerBuilding: function(controller) {
+			var buildings = controller.buildings,
+				building,
+				pathLength,
+				key,
+				unit = this,
+				playerId = this.playerId,
+				noPlayerBuildings = [];
+
+			function getLength(xy1, xy2) {
+				return Math.pow(xy1.x - xy2.x, 2) + Math.pow(xy1.y - xy2.y, 2);
+			}
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.playerId !== playerId) {
+						noPlayerBuildings.push(building);
+					}
+				}
+			}
+
+			building = noPlayerBuildings.sort(function(b1, b2) {
+				return getLength(b1, unit) - getLength(b2, unit);
+			})[0];
+
+			pathLength = Math.pow(getLength(building, unit), 0.5);
+
+			return {
+				building: building,
+				pathLength: pathLength
+			};
+
 		}
 
 	};
