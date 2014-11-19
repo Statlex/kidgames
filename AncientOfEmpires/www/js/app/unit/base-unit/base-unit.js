@@ -273,10 +273,10 @@
 			this.setEndTurn();
 
 		},
-		getAvailableGivenDamage: function(enemyUnit, controller, reduceHealth) {
+		getAvailableGivenDamage: function(enemyUnit, controller, reduceByHealth) {
 
 			var defByBuilding, defByTerrain, unitQ, attackValue, attackBonusByLevel, enemyDef, reduceDefBy,
-				health = this.health - (reduceHealth || 0);
+				health = this.health - (reduceByHealth || 0);
 
 			if (health <= 0) {
 				return 0;

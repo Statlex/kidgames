@@ -562,6 +562,20 @@
 			return neededUnits;
 
 		},
+		getUnitBy: function(data) {
+			var playerId = data.playerId,
+				unitId = data.unitId,
+				foundUnit;
+
+			win.util.objForEach(this.units, function(unit) {
+				if ( unit.playerId === playerId && unit.id === unitId ) {
+					foundUnit = unit;
+				}
+			});
+
+			return foundUnit;
+
+		},
 		createAuraMap: function(units) {
 
 			var map = {};

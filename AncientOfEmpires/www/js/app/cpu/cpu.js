@@ -54,12 +54,37 @@
 				controller.view.moveUnit(unit);
 			}
 
-			if (this.get('type') === 'none') {
+			switch ( this.get('type') ) {
 
-				unit.setEndTurn();
-				controller.wispAction();
-				controller.view.showEndUnitTurn(unit);
-				return;
+				case 'none':
+
+					unit.setEndTurn();
+
+					controller.wispAction();
+					controller.view.showEndUnitTurn(unit);
+
+					break;
+
+				case 'attack':
+
+					controller.attackUnit(unit, controller.getUnitBy({
+						unitId: this.get('enemyUnitId'),
+						playerId: this.get('enemyPlayerId')
+					}));
+
+					controller.view.hideUnitsUnderAttack();
+
+					controller.wispAction();
+					controller.view.showEndUnitTurn(unit);
+
+					break;
+
+				case 'getBuilding':
+					break;
+
+				case 'upBones':
+					break;
+
 			}
 
 
@@ -83,35 +108,37 @@
 			var controller = this.controller,
 				player = this.player,
 				playerId = player.id,
-				util = win.util;
-
-			// 1
-			// get all units
-			var	playerUnits = [],
-				enemyUnits = [];
+				util = win.util,
+				playerUnits = [];
 
 			util.objForEach(controller.units, function(unit) {
-				return unit.playerId === playerId ?
-					playerUnits.push(unit) :
-					enemyUnits.push(unit);
-			});
-
-			// 2
-			// get all no player's farm
-			var playerBuildings = [],
-				noPlayerBuildings = [];
-
-			util.objForEach(controller.buildings, function(build) {
-				return build.playerId === playerId ?
-					playerBuildings.push(build) :
-					noPlayerBuildings.push(build);
+				return unit.playerId === playerId && playerUnits.push(unit);
 			});
 
 			// 3
 			// detect action for every unit
 			playerUnits.forEach(function(unit) {
 
-				var startCoordinates = { x: unit.x, y: unit.y},
+				// collect enemy units
+				var enemyUnits = [];
+				util.objForEach(controller.units, function(unit) {
+					return unit.playerId !== playerId && enemyUnits.push(unit);
+				});
+
+				// collect building
+				var playerBuildings = [],
+					noPlayerBuildings = [];
+				util.objForEach(controller.buildings, function(build) {
+					return build.playerId === playerId ?
+						playerBuildings.push(build) :
+						noPlayerBuildings.push(build);
+				});
+
+
+
+
+
+				var startCoordinates = { x: unit.x, y: unit.y },
 					// get available coordinate
 					availablePath = unit.getAvailablePath(controller),
 					// array for all scenarios
@@ -135,32 +162,37 @@
 						var
 							// count probably received damage
 							availableReceiveDamage = 0,
+							// count probably given damage
+							availableGivenDamage = 0,
+							// count probably response damage from enemy attacked unit
+							availableResponseDamage = 0,
 							// is unit stay on build
 							withBuilding = controller.getDefByBuilding(unit),
 							// count armor by place type - include terrain type and building
 							placeArmor = withBuilding || controller.getDefByTerrain(unit),
 							nearestNoPlayerBuilding = unit.getNearestNoPlayerBuilding(controller);
 
+						// get unit who can attack and count damage received by every units
+						enemyUnits
+							.filter(function (enemyUnit) {
+								// get units who can attack
+								return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
+							})
+							.forEach(function (enemyUnit) {
+								availableReceiveDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
+							});
+
 						switch (action) {
 
 							case 'none':
-
-								// get unit who can attack and count damage received by every units
-								availableReceiveDamage = 0;
-								enemyUnits
-									.filter(function (enemyUnit) {
-										// get units who can attack
-										return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
-									})
-									.forEach(function (enemyUnit) {
-										availableReceiveDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
-									});
 
 								scenarios.push(new Scenario({
 									x: xy.x,
 									y: xy.y,
 									type: action,
 									availableReceiveDamage: availableReceiveDamage,
+									availableGivenDamage: availableGivenDamage,
+									availableResponseDamage: availableResponseDamage,
 									withBuilding: withBuilding,
 									placeArmor: placeArmor,
 									nearestNoPlayerBuilding: nearestNoPlayerBuilding
@@ -170,17 +202,35 @@
 
 							case 'attack':
 
-								//var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
-								//
-								//canAttackedUnits.forEach(function(enemyUnit) {
-								//
-								//	var scenario = new Scenario({ xy: xy });
-								//
-								//	// use findUnitsUnderAttack for enemy unit
-								//
-								//	// get given and received damage
-								//
-								//});
+
+								var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
+
+								canAttackedUnits.forEach(function(enemyUnit) {
+
+									availableGivenDamage = unit.getAvailableGivenDamage(enemyUnit, controller);
+
+									if ( (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1 ) {
+										availableResponseDamage = enemyUnit.getAvailableGivenDamage(unit, controller, availableGivenDamage);
+									}
+
+									scenarios.push(new Scenario({
+										x: xy.x,
+										y: xy.y,
+										enemyUnitId: enemyUnit.id,
+										enemyPlayerId: enemyUnit.playerId,
+										type: action,
+										availableReceiveDamage: availableReceiveDamage,
+										availableGivenDamage: availableGivenDamage,
+										availableResponseDamage: availableResponseDamage,
+										withBuilding: withBuilding,
+										placeArmor: placeArmor,
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding
+									}));
+
+
+
+
+								});
 								//
 
 								//console.log(canAttackedUnits);
@@ -216,14 +266,14 @@
 
 
 				// only for test - begin
+				//scenarios = scenarios.sort(function (a, b) {
+				//	return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
+				//});
 				scenarios = scenarios.sort(function (a, b) {
-					return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
+					return b.get('availableGivenDamage') - a.get('availableGivenDamage');
 				});
 
-				var endScenario = scenarios[0];
-
-				endScenario.execute(unit, controller);
-
+				scenarios[0].execute(unit, controller);
 				// only for test - end
 
 
