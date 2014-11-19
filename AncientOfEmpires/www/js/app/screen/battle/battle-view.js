@@ -264,12 +264,12 @@
 		},
 
 		endTurn: function () {
-			this.controller.endTurn();
 			this.hideAvailablePath();
 			this.hideUnitsUnderAttack();
 			this.resetEndTurnState();
 			this.drawUnitCurrentState();
 			this.goFromStore();
+			this.controller.endTurn();
 		},
 		goFromStore: function() {
 			if (Backbone.history.fragment !== 'battle') {
