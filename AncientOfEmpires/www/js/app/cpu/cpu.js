@@ -45,7 +45,7 @@
 				endY = this.get('y');
 
 			if (unit.x !== endX || unit.y !== endY) {
-				console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
+				//console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
 				unit
 					.moveTo({
 						x: endX, y: endY
@@ -80,9 +80,27 @@
 					break;
 
 				case 'getBuilding':
+
+					console.log(unit, 'getBuilding');
+
+					unit.getBuilding(controller);
+
+					controller.view.hideGetBuilding();
+
+					controller.wispAction();
+					controller.setStoreButtonStateForActivePlayer();
+					unit.setEndTurn();
+
 					break;
 
 				case 'upBones':
+
+
+
+
+
+
+
 					break;
 
 			}
@@ -135,9 +153,6 @@
 				});
 
 
-
-
-
 				var startCoordinates = { x: unit.x, y: unit.y },
 					// get available coordinate
 					availablePath = unit.getAvailablePath(controller),
@@ -160,6 +175,8 @@
 						unit.y = xy.y;
 
 						var
+							// building which can be owned
+							building,
 							// count probably received damage
 							availableReceiveDamage = 0,
 							// count probably given damage
@@ -201,10 +218,7 @@
 
 							case 'attack':
 
-
-								var canAttackedUnits = unit.findUnitsUnderAttack(controller.units) || [];
-
-								canAttackedUnits.forEach(function(enemyUnit) {
+								(unit.findUnitsUnderAttack(controller.units) || []).forEach(function(enemyUnit) {
 
 									availableGivenDamage = unit.getAvailableGivenDamage(enemyUnit, controller);
 
@@ -226,9 +240,6 @@
 										nearestNoPlayerBuilding: nearestNoPlayerBuilding
 									}));
 
-
-
-
 								});
 								//
 
@@ -239,8 +250,25 @@
 
 							case 'getBuilding':
 
+								// get building by XY
+								building = controller.buildings['x' + xy.x + 'y' + xy.y];
 
+								if ( building && building.playerId !== unit.playerId && util.has(unit.availableBuildingsType, building.type) ) {
 
+									scenarios.push(new Scenario({
+										x: xy.x,
+										y: xy.y,
+										type: action,
+										getBuilding: building.type,
+										availableReceiveDamage: availableReceiveDamage,
+										availableGivenDamage: availableGivenDamage,
+										availableResponseDamage: availableResponseDamage,
+										withBuilding: withBuilding,
+										placeArmor: placeArmor,
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding
+									}));
+
+								}
 
 								break;
 
@@ -263,32 +291,24 @@
 				unit.x = startCoordinates.x;
 				unit.y = startCoordinates.y;
 
-
 				// only for test - begin
 				//scenarios = scenarios.sort(function (a, b) {
 				//	return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
 				//});
+
+				// damage test
 				scenarios = scenarios.sort(function (a, b) {
-
-					var aValue = a.get('availableGivenDamage'),
-						bValue = b.get('availableGivenDamage');
-
-					if ( aValue > bValue ) {
-						return -1;
-					}
-
-					if (aValue < bValue) {
-						return 1;
-					}
-
-					return 0;
-
+					return a.get('availableGivenDamage') - b.get('availableGivenDamage');
 				});
+
+				if (unit.availableActions.indexOf("getBuilding") !== -1) {
+					scenarios = scenarios.sort(function (a, b) {
+						return (a.get('getBuilding') || '~').charCodeAt(0) - (b.get('getBuilding')|| '~').charCodeAt(0);
+					});
+				}
 
 				scenarios[0].execute(unit, controller);
 				// only for test - end
-
-
 
 				// rate better scenarios
 
