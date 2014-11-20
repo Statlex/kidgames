@@ -269,7 +269,20 @@
 				//	return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
 				//});
 				scenarios = scenarios.sort(function (a, b) {
-					return a.get('availableGivenDamage') > b.get('availableGivenDamage') ? -1 : 1;
+
+					var aValue = a.get('availableGivenDamage'),
+						bValue = b.get('availableGivenDamage');
+
+					if ( aValue > bValue ) {
+						return -1;
+					}
+
+					if (aValue < bValue) {
+						return 1;
+					}
+
+					return 0;
+
 				});
 
 				scenarios[0].execute(unit, controller);
