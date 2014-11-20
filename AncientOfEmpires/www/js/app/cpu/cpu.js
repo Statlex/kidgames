@@ -174,11 +174,10 @@
 
 						// get unit who can attack and count damage received by every units
 						enemyUnits
-							.filter(function (enemyUnit) {
-								// get units who can attack
-								return (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1;
-							})
 							.forEach(function (enemyUnit) {
+								if ( (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) === -1 ) {
+									return;
+								}
 								availableReceiveDamage += enemyUnit.getAvailableGivenDamage(unit, controller);
 							});
 
