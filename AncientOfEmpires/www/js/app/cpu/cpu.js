@@ -106,6 +106,14 @@
 			}
 
 
+		},
+		buildingTypeValue: {
+			default: 0,
+			farm: 5,
+			castle: 10
+		},
+		getBuildingSortValue: function (buildingType) {
+			return this.buildingTypeValue[buildingType] || 0; // see this this.buildingTypeValue.default
 		}
 
 	};
@@ -332,9 +340,8 @@
 
 					if (needSort) {
 						scenarios = scenarios.sort(function (a, b) {
-							return (a.get('getBuilding') || 'qqqqqqqqqqqqq').length - (b.get('getBuilding') || 'qqqqqqqqqqqqq').length;
+							return b.getBuildingSortValue(b.get('getBuilding')) - a.getBuildingSortValue(a.get('getBuilding'));
 						});
-						console.log(scenarios);
 					}
 
 				}
