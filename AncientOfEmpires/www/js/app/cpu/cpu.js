@@ -95,11 +95,11 @@
 
 				case 'upBones':
 
+					controller.upBonesFromGrave(unit, this.get('grave'));
 
-
-
-
-
+					controller.wispAction();
+					unit.setEndTurn();
+					controller.view.showEndUnitTurn(unit);
 
 					break;
 
@@ -205,6 +205,7 @@
 								scenarios.push(new Scenario({
 									x: xy.x,
 									y: xy.y,
+
 									type: action,
 									availableReceiveDamage: availableReceiveDamage,
 									availableGivenDamage: availableGivenDamage,
@@ -227,10 +228,11 @@
 									}
 
 									scenarios.push(new Scenario({
-										x: xy.x,
-										y: xy.y,
 										enemyUnitId: enemyUnit.id,
 										enemyPlayerId: enemyUnit.playerId,
+
+										x: xy.x,
+										y: xy.y,
 										type: action,
 										availableReceiveDamage: availableReceiveDamage,
 										availableGivenDamage: availableGivenDamage,
@@ -256,10 +258,11 @@
 								if ( building && building.playerId !== unit.playerId && util.has(unit.availableBuildingsType, building.type) ) {
 
 									scenarios.push(new Scenario({
+										getBuilding: building.type,
+
 										x: xy.x,
 										y: xy.y,
 										type: action,
-										getBuilding: building.type,
 										availableReceiveDamage: availableReceiveDamage,
 										availableGivenDamage: availableGivenDamage,
 										availableResponseDamage: availableResponseDamage,
@@ -274,8 +277,26 @@
 
 							case 'upBones':
 
+								(unit.findGravesForUp(controller.unitsRIP, controller.units) || []).forEach(function (grave) {
 
+									scenarios.push(new Scenario({
+										grave: {
+											x: grave.x,
+											y: grave.y,
+											lifeAfterDeadLength: grave.lifeAfterDeadLength
+										},
+										x: xy.x,
+										y: xy.y,
+										type: action,
+										availableReceiveDamage: availableReceiveDamage,
+										availableGivenDamage: availableGivenDamage,
+										availableResponseDamage: availableResponseDamage,
+										withBuilding: withBuilding,
+										placeArmor: placeArmor,
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding
+									}));
 
+								});
 
 								break;
 
@@ -296,15 +317,40 @@
 				//	return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
 				//});
 
+				var needSort;
+
 				// damage test
 				scenarios = scenarios.sort(function (a, b) {
-					return a.get('availableGivenDamage') - b.get('availableGivenDamage');
+					return b.get('availableGivenDamage') - a.get('availableGivenDamage');
 				});
 
 				if (unit.availableActions.indexOf("getBuilding") !== -1) {
-					scenarios = scenarios.sort(function (a, b) {
-						return (a.get('getBuilding') || '~').charCodeAt(0) - (b.get('getBuilding')|| '~').charCodeAt(0);
-					});
+
+					needSort = scenarios.filter(function(scenario){
+						return scenario.get('getBuilding');
+					}).length;
+
+					if (needSort) {
+						scenarios = scenarios.sort(function (a, b) {
+							return (a.get('getBuilding') || 'qqqqqqqqqqqqq').length - (b.get('getBuilding') || 'qqqqqqqqqqqqq').length;
+						});
+						console.log(scenarios);
+					}
+
+				}
+
+				if (unit.availableActions.indexOf("upBones") !== -1) {
+
+					needSort = scenarios.filter(function(scenario){
+						return scenario.get('grave');
+					}).length;
+
+					if (needSort) {
+						scenarios = scenarios.sort(function (a, b) {
+							return Number( !!b.get('grave') ) - Number( !!a.get('grave') );
+						});
+					}
+
 				}
 
 				scenarios[0].execute(unit, controller);
