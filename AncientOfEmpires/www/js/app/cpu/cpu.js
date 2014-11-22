@@ -5,7 +5,6 @@
 	/*global APP*/
 
 	function Cpu(data) {
-
 		this.player = data.player;
 		this.controller = data.controller;
 		this.view = data.view;
@@ -322,45 +321,31 @@
 				unit.x = startCoordinates.x;
 				unit.y = startCoordinates.y;
 
-				// only for test - begin
-				//scenarios = scenarios.sort(function (a, b) {
-				//	return a.get('nearestNoPlayerBuilding').pathLength - b.get('nearestNoPlayerBuilding').pathLength;
-				//});
 
-				var needSort;
+				// ok
+				// оценить каждый сцейнарий
+				// к примеру, за захват здания давать 10 очков
+				// поднять скилета - тоже 10 очков
+				// также давать очки за то что ходит по защищённым клеткам
+				// за наносимый дамаг - столько очков сколько дамага, тоже самое и для получаемого дамага
+				// так же давайть очки за продвижение к не занятому зданию
+				// так же очки за то что стал на здание
 
-				// damage test
-				scenarios = scenarios.sort(function (a, b) {
-					return b.get('availableGivenDamage') - a.get('availableGivenDamage');
-				});
+				// доп правила
+				// 1 - если есть солдат который может занять сдание, и текущий воин НЕ может занят дание, то уйти со здания или не занимать здание +
+				// если рядом есть враг (рацарь или солдат) который может захватить сдание, не уходить со здания
 
-				if (unit.availableActions.indexOf("getBuilding") !== -1) {
 
-					needSort = scenarios.filter(function(scenario){
-						return scenario.get('getBuilding');
-					}).length;
 
-					if (needSort) {
-						scenarios = scenarios.sort(function (a, b) {
-							return b.getBuildingSortValue(b.get('getBuilding')) - a.getBuildingSortValue(a.get('getBuilding'));
-						});
-					}
 
-				}
 
-				if (unit.availableActions.indexOf("upBones") !== -1) {
 
-					needSort = scenarios.filter(function(scenario){
-						return scenario.get('grave');
-					}).length;
 
-					if (needSort) {
-						scenarios = scenarios.sort(function (a, b) {
-							return Number( !!b.get('grave') ) - Number( !!a.get('grave') );
-						});
-					}
 
-				}
+
+
+
+
 
 				scenarios[0].execute(unit, controller);
 				// only for test - end

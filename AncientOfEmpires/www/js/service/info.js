@@ -48,6 +48,8 @@
 		preCSS: pre.css,
 		preJS: pre.js,
 		isAndroid: (/android/i).test(win.navigator.userAgent),
+		isIOS: /iPad|iPhone|iPod/.test(win.navigator.userAgent),
+
 		canScroll: false,
 
 		getData: function () {
