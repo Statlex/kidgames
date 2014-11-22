@@ -89,7 +89,9 @@
 
 					controller.wispAction();
 					controller.setStoreButtonStateForActivePlayer();
+
 					unit.setEndTurn();
+					controller.view.showEndUnitTurn(unit);
 
 					break;
 
