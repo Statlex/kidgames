@@ -218,7 +218,13 @@
 				player = this.player,
 				playerId = player.id,
 				util = win.util,
-				playerUnits = [];
+				playerUnits = [],
+				availableGetBuilding = this.getAvailableGetBuilding({
+					player: player,
+					controller: controller
+				}); // {x5y6: true, x2y10: true}
+
+			console.log(availableGetBuilding);
 
 			util.objForEach(controller.units, function(unit) {
 				return unit.playerId === playerId && playerUnits.push(unit);
@@ -436,6 +442,61 @@
 
 			});
 
+
+		},
+		getAvailableGetBuilding: function (data) {
+
+			var player = data.player,
+				playerId = player.id,
+				controller = data.controller,
+				allUnits = controller.units,
+				playerUnits = [],
+				canGetBuildingUnits = [],
+				canNotGetBuildingUnits = [],
+				availableGetBuilding = {},
+				key, unit,
+				util = win.util;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					unit = allUnits[key];
+					if (unit.playerId === playerId) {
+						playerUnits.push(unit);
+					}
+				}
+			}
+
+			playerUnits.forEach(function (unit) {
+				return unit.availableBuildingsType ? canGetBuildingUnits.push(unit) : canNotGetBuildingUnits.push(unit);
+			});
+
+			// 'remove' extra units from map
+			canNotGetBuildingUnits.forEach(function (unit) {
+				unit.cpuData = unit.cpuData || {};
+				unit.cpuData.x = unit.x;
+				unit.cpuData.y = unit.y;
+				unit.x = -Infinity;
+				unit.y = -Infinity;
+			});
+
+			canGetBuildingUnits.forEach(function (unit) {
+
+				unit.getAvailablePath(controller).forEach(function (xy) {
+					var buildingXY = 'x' + xy.x + 'y' + xy.y,
+						building = controller.buildings[buildingXY];
+					if ( building && building.playerId !== unit.playerId && util.has(unit.availableBuildingsType, building.type) ) {
+						availableGetBuilding[buildingXY] = true;
+					}
+				});
+
+			});
+
+			canNotGetBuildingUnits.forEach(function (unit) {
+				unit.x = unit.cpuData.x;
+				unit.y = unit.cpuData.y;
+			});
+
+			return availableGetBuilding;
 
 		}
 
