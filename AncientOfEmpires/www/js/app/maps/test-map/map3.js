@@ -23,7 +23,7 @@
 
 			{"type": "Knight", "x": 1, "y": 8, playerId: 1},
 			{"type": "Soldier", "x": 2, "y": 8, playerId: 1},
-			{"type": "Bones", "x": 2, "y": 7, playerId: 0},
+			{"type": "Bones", "x": 2, "y": 7, playerId: 1},
 			{"type": "Spider", "x": 2, "y": 9, playerId: 1},
 			{"type": "Wizard", "x": 3, "y": 7, playerId: 1},
 			{"type": "Wisp", "x": 3, "y": 8, playerId: 1}

@@ -53,7 +53,8 @@
 				key,
 				value,
 				data = this.get(),
-				rateCost = this.rateCost;
+				rateCost = this.rateCost,
+				deniedPlacesForGetBuilding = this.get('deniedPlacesForGetBuilding');
 
 			for (key in data) {
 				if (data.hasOwnProperty(key)) {
@@ -102,11 +103,10 @@
 				}
 			}
 
-
-
-
-
-
+			// check for deniedPlacesForGetBuilding
+			if (deniedPlacesForGetBuilding['x' + data.x + 'y' + data.y]) {
+				rate = -Infinity;
+			}
 
 			this.set('rate', rate);
 
@@ -224,15 +224,22 @@
 					controller: controller
 				}); // {x5y6: true, x2y10: true}
 
-			console.log(availableGetBuilding);
-
 			util.objForEach(controller.units, function(unit) {
 				return unit.playerId === playerId && playerUnits.push(unit);
 			});
 
+			if ( Object.keys(availableGetBuilding) ) {
+				// unit who can get building - step in last order
+				playerUnits.sort(function (a) {
+					return a.availableBuildingsType ? Infinity : -Infinity;
+				});
+			}
+
 			// 3
 			// detect action for every unit
 			playerUnits.forEach(function(unit) {
+
+				var deniedPlacesForGetBuilding = unit.availableBuildingsType ? {} : availableGetBuilding;
 
 				// collect enemy units
 				var enemyUnits = [];
@@ -248,6 +255,7 @@
 						playerBuildings.push(build) :
 						noPlayerBuildings.push(build);
 				});
+
 
 
 				var startCoordinates = { x: unit.x, y: unit.y },
@@ -309,7 +317,8 @@
 									availableResponseDamage: availableResponseDamage,
 									withBuilding: withBuilding,
 									placeArmor: placeArmor,
-									nearestNoPlayerBuilding: nearestNoPlayerBuilding
+									nearestNoPlayerBuilding: nearestNoPlayerBuilding,
+									deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
 								}));
 
 								break;
@@ -336,7 +345,8 @@
 										availableResponseDamage: availableResponseDamage,
 										withBuilding: withBuilding,
 										placeArmor: placeArmor,
-										nearestNoPlayerBuilding: nearestNoPlayerBuilding
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
+										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
 									}));
 
 								});
@@ -365,8 +375,9 @@
 										availableResponseDamage: availableResponseDamage,
 										withBuilding: withBuilding,
 										placeArmor: placeArmor,
-										nearestNoPlayerBuilding: nearestNoPlayerBuilding
-									}));
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
+										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+								}));
 
 								}
 
@@ -391,7 +402,8 @@
 										availableResponseDamage: availableResponseDamage,
 										withBuilding: withBuilding,
 										placeArmor: placeArmor,
-										nearestNoPlayerBuilding: nearestNoPlayerBuilding
+										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
+										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
 									}));
 
 								});
@@ -420,12 +432,19 @@
 				// так же давайть очки за продвижение к не занятому зданию
 				// так же очки за то что стал на здание
 
-				// доп правила
+				// доп правила - сделано getAvailableGetBuilding
 				// 1 - если есть солдат который может занять сдание, и текущий воин НЕ может занят дание, то уйти со здания или не занимать здание;
 				// засетить этому сценарию минус инфинити
 
+				// 1.1 - тоже самое сделать с магилами, если есть магила, то маг ходит первым что бы поднять скилетов
+
 				// 2 - если рядом есть враг (рацарь или солдат) который может захватить сдание, не уходить со здания
 				// рассматривать только те сценарии где юнит не менят позицию
+
+				// 3 и 4 - придумать как будут ходить висп и катапульта
+
+				// 5 продумать оборону замка - ибо не очень сложно прорваться через абарону и захватить замок
+				// или же поменять правила, выйгрышь не по захвату замка, а по захвату всех-всех зданий
 
 				// при принятии конечного решения, проверить, не противоречит сценарий какому либо из правил
 				// если противоречит - то занизить рейтиг сценнария до нуля
@@ -437,8 +456,6 @@
 
 				scenarios[0].execute(unit, controller);
 				// only for test - end
-
-				// rate better scenarios
 
 			});
 
