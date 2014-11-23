@@ -13,6 +13,7 @@
 	function Scenario(data) {
 		this.attr = {};
 		this.extendSelf(data);
+		this.rate();
 	}
 
 	Scenario.prototype = {
@@ -28,13 +29,96 @@
 
 		},
 
+		rateCost: {
+
+			getBuilding: {
+				farm: 10,
+				castle: 15
+			},
+			upBones: 9,
+			q: {
+				availableReceiveDamage: -0.5,
+				availableGivenDamage: 1.5,
+				availableResponseDamage: -0.5,
+				placeArmor: 0.5,
+				nearestNoPlayerBuilding: -1.5
+			},
+			withBuilding: 3
+
+		},
+
+		rate: function() {
+
+			var rate = 0,
+				key,
+				value,
+				data = this.get(),
+				rateCost = this.rateCost;
+
+			for (key in data) {
+				if (data.hasOwnProperty(key)) {
+
+					value = data[key];
+
+					switch (key) {
+
+						case 'availableReceiveDamage':
+							rate += value * rateCost.q[key];
+							break;
+
+						case 'availableGivenDamage':
+							rate += value * rateCost.q[key];
+							break;
+
+						case 'availableResponseDamage':
+							rate += value * rateCost.q[key];
+							break;
+
+						case 'withBuilding':
+							rate += value ? rateCost[key] : 0;
+							break;
+
+						case 'placeArmor':
+							rate += value * rateCost.q[key];
+							break;
+
+						case 'nearestNoPlayerBuilding':
+							rate += value.pathLength * rateCost.q[key];
+							break;
+
+						case 'getBuilding':
+
+							rate += rateCost[key][value];
+
+							break;
+
+						case 'grave':
+							rate += rateCost.upBones;
+
+							break;
+
+					}
+
+				}
+			}
+
+
+
+
+
+
+
+			this.set('rate', rate);
+
+		},
+
 		set: function (key, value) {
 			this.attr[key] = value;
 			return this;
 		},
 
 		get: function (key) {
-			return this.attr[key];
+			return key !== undefined ? this.attr[key] : this.attr;
 		},
 
 		execute: function (unit, controller) {
@@ -79,8 +163,6 @@
 					break;
 
 				case 'getBuilding':
-
-					console.log(unit, 'getBuilding');
 
 					unit.getBuilding(controller);
 
@@ -212,9 +294,9 @@
 							case 'none':
 
 								scenarios.push(new Scenario({
+
 									x: xy.x,
 									y: xy.y,
-
 									type: action,
 									availableReceiveDamage: availableReceiveDamage,
 									availableGivenDamage: availableGivenDamage,
@@ -294,6 +376,7 @@
 											y: grave.y,
 											lifeAfterDeadLength: grave.lifeAfterDeadLength
 										},
+
 										x: xy.x,
 										y: xy.y,
 										type: action,
@@ -323,7 +406,7 @@
 
 
 				// ok
-				// оценить каждый сцейнарий
+				// оценить каждый сцейнарий - сценарий сам себе даёт оценку при илициализации
 				// к примеру, за захват здания давать 10 очков
 				// поднять скилета - тоже 10 очков
 				// также давать очки за то что ходит по защищённым клеткам
@@ -336,18 +419,12 @@
 				// если рядом есть враг (рацарь или солдат) который может захватить сдание, не уходить со здания
 
 				// при принятии конечного решения, проверить, не противоречит сценарий какому либо из правил
-				// если противоречит - то взять следующий лучший сценарий
+				// если противоречит - то занизить рейтиг сценнария до нуля
 
 
-
-
-
-
-
-
-
-
-
+				scenarios = scenarios.sort(function(a, b){
+					return b.get('rate') - a.get('rate');
+				});
 
 				scenarios[0].execute(unit, controller);
 				// only for test - end
