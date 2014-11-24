@@ -454,14 +454,58 @@
 //			this.endTurn();
 			this.step();
 		},
-		step: function() {
-			this.setActivePlayer();
-			this.setStatusBarForActivePlayer();
-			this.updateRIPs();
-			this.updateUnitsOnBuilding();
-			this.wispAction();
 
-			this.runCpu();
+		isEqualBy: function (obj) {
+
+			var key,
+				list = [],
+				item,
+				playerId,
+				checkForUndefined = true;
+
+			for (key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					item = obj[key];
+					playerId = item.playerId;
+					checkForUndefined = checkForUndefined && playerId !== undefined;
+					list.push(playerId);
+				}
+			}
+
+			if (!checkForUndefined) {
+				return false;
+			}
+
+			return Math.max.apply(null, list) === Math.min.apply(null, list);
+
+		},
+
+		isGameOver: function (controller) {
+
+
+			return this.isEqualBy(controller.buildings);
+
+		},
+		getResultOfGame: function () {
+			return 'End Game!!!';
+		},
+		step: function() {
+
+			if (this.isGameOver(this)) {
+
+				var result = this.getResultOfGame();
+				alert(result);
+
+			} else {
+				this.setActivePlayer();
+				this.setStatusBarForActivePlayer();
+				this.updateRIPs();
+				this.updateUnitsOnBuilding();
+				this.wispAction();
+
+				this.runCpu();
+
+			}
 
 		},
 
