@@ -471,8 +471,6 @@
 				return;
 			}
 
-			console.log(this.activePlayer);
-
 			var cpu = new APP.Cpu({
 				view: this.view,
 				controller: this,

@@ -35,15 +35,15 @@
 				farm: 10,
 				castle: 15
 			},
-			upBones: 9,
+			upBones: 10,
 			q: {
 				availableReceiveDamage: -0.5,
-				availableGivenDamage: 1.5,
+				availableGivenDamage: 2,
 				availableResponseDamage: -0.5,
 				placeArmor: 0.5,
 				nearestNoPlayerBuilding: -1.5
 			},
-			withBuilding: 3
+			withBuilding: 2
 
 		},
 
@@ -222,16 +222,26 @@
 				availableGetBuilding = this.getAvailableGetBuilding({
 					player: player,
 					controller: controller
-				}); // {x5y6: true, x2y10: true}
+				}),
+				availableGetGrave = this.getAvailableGetGrave({
+					player: player,
+					controller: controller
+				});
 
 			util.objForEach(controller.units, function(unit) {
 				return unit.playerId === playerId && playerUnits.push(unit);
 			});
 
-			if ( Object.keys(availableGetBuilding) ) {
+			if ( Object.keys(availableGetBuilding).length ) {
 				// unit who can get building - step in last order
 				playerUnits.sort(function (a) {
 					return a.availableBuildingsType ? Infinity : -Infinity;
+				});
+			}
+
+			if (availableGetGrave.length) {
+				playerUnits.sort(function (a) {
+					return a.availableActions.indexOf('upBones') !== -1 ? -Infinity : Infinity;
 				});
 			}
 
@@ -327,27 +337,31 @@
 
 								(unit.findUnitsUnderAttack(controller.units) || []).forEach(function(enemyUnit) {
 
-									availableGivenDamage = unit.getAvailableGivenDamage(enemyUnit, controller);
+									if ( (unit.type !== 'Catapult') || (unit.x === startCoordinates.x && unit.y === startCoordinates.y)) {
 
-									if ( (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1 ) {
-										availableResponseDamage = enemyUnit.getAvailableGivenDamage(unit, controller, availableGivenDamage);
+										availableGivenDamage = unit.getAvailableGivenDamage(enemyUnit, controller);
+
+										if ( (enemyUnit.findUnitsUnderAttack(controller.units) || []).indexOf(unit) !== -1 ) {
+											availableResponseDamage = enemyUnit.getAvailableGivenDamage(unit, controller, availableGivenDamage);
+										}
+
+										scenarios.push(new Scenario({
+											enemyUnitId: enemyUnit.id,
+											enemyPlayerId: enemyUnit.playerId,
+
+											x: xy.x,
+											y: xy.y,
+											type: action,
+											availableReceiveDamage: availableReceiveDamage,
+											availableGivenDamage: availableGivenDamage,
+											availableResponseDamage: availableResponseDamage,
+											withBuilding: withBuilding,
+											placeArmor: placeArmor,
+											nearestNoPlayerBuilding: nearestNoPlayerBuilding,
+											deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+										}));
+
 									}
-
-									scenarios.push(new Scenario({
-										enemyUnitId: enemyUnit.id,
-										enemyPlayerId: enemyUnit.playerId,
-
-										x: xy.x,
-										y: xy.y,
-										type: action,
-										availableReceiveDamage: availableReceiveDamage,
-										availableGivenDamage: availableGivenDamage,
-										availableResponseDamage: availableResponseDamage,
-										withBuilding: withBuilding,
-										placeArmor: placeArmor,
-										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
-										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
-									}));
 
 								});
 								//
@@ -436,12 +450,12 @@
 				// 1 - если есть солдат который может занять сдание, и текущий воин НЕ может занят дание, то уйти со здания или не занимать здание;
 				// засетить этому сценарию минус инфинити
 
-				// 1.1 - тоже самое сделать с магилами, если есть магила, то маг ходит первым что бы поднять скилетов
+				// 1.1 - in progress - тоже самое сделать с магилами, если есть магила, то маг ходит первым что бы поднять скилетов
 
-				// 2 - если рядом есть враг (рацарь или солдат) который может захватить сдание, не уходить со здания
+				// 2 - сделано вместе с п1 и п1.1 если рядом есть враг (рацарь или солдат) который может захватить сдание, не уходить со здания
 				// рассматривать только те сценарии где юнит не менят позицию
 
-				// 3 и 4 - придумать как будут ходить висп и катапульта
+				// 3 и 4 - придумать как будут ходить висп и катапульта - придумано
 
 				// 5 продумать оборону замка - ибо не очень сложно прорваться через абарону и захватить замок
 				// или же поменять правила, выйгрышь не по захвату замка, а по захвату всех-всех зданий
@@ -514,6 +528,61 @@
 			});
 
 			return availableGetBuilding;
+
+		},
+		getAvailableGetGrave: function (data) {
+
+			var player = data.player,
+				playerId = player.id,
+				controller = data.controller,
+				allUnits = controller.units,
+				playerUnits = [],
+				availableGetGrave = [],
+				canUpGraveUnits = [],
+				key, unit,
+				push = Array.prototype.push;
+
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					unit = allUnits[key];
+					if (unit.playerId === playerId) {
+						playerUnits.push(unit);
+					}
+				}
+			}
+
+			playerUnits.forEach(function (unit) {
+				return unit.availableActions.indexOf('upBones') !== -1 && canUpGraveUnits.push(unit);
+			});
+
+			canUpGraveUnits.forEach(function (unit) {
+
+				var startXY = {
+					x: unit.x,
+					y: unit.y
+				};
+
+				unit.getAvailablePath(controller)
+					.concat(startXY)
+					.every(function (xy) {
+
+						unit.x = xy.x;
+						unit.y = xy.y;
+
+						var graves = unit.findGravesForUp(controller.unitsRIP, controller.units);
+						if (graves) {
+							push.apply(availableGetGrave, graves);
+						}
+
+				});
+
+				unit.x = startXY.x;
+				unit.y = startXY.y;
+
+
+			});
+
+			return availableGetGrave;
 
 		}
 
