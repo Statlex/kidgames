@@ -10,8 +10,8 @@
 		},
 		browserName: 'chrome',
 		screen: {
-			width: 320,
-			height: 480
+			width: 1400,
+			height: 920
 		}
 
 	};
