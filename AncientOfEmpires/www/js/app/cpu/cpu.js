@@ -49,11 +49,14 @@
 
 		rate: function() {
 
-			var rate = 0,
+			var x, y,
+				xyStr,
+				rate = 0,
 				key,
 				value,
 				data = this.get(),
 				rateCost = this.rateCost,
+				enemyAvailableActions = this.get('enemyAvailableActions'),
 				deniedPlacesForGetBuilding = this.get('deniedPlacesForGetBuilding');
 
 			for (key in data) {
@@ -76,6 +79,17 @@
 							break;
 
 						case 'withBuilding':
+
+							xyStr = 'x' + data.x + 'y' + data.y;
+
+							if ( !enemyAvailableActions[xyStr] ) { // no enemy action on this place
+								value = 0;
+							} else {
+								if (!enemyAvailableActions[xyStr].building) {
+									value /=2;
+								}
+							}
+
 							rate += value ? rateCost[key] : 0;
 							break;
 
@@ -232,6 +246,8 @@
 					controller: controller
 				});
 
+			console.log(enemyAvailableActions);
+
 			util.objForEach(controller.units, function(unit) {
 				return unit.playerId === playerId && playerUnits.push(unit);
 			});
@@ -332,7 +348,8 @@
 									withBuilding: withBuilding,
 									placeArmor: placeArmor,
 									nearestNoPlayerBuilding: nearestNoPlayerBuilding,
-									deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+									deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
+									enemyAvailableActions: enemyAvailableActions
 								}));
 
 								break;
@@ -362,7 +379,8 @@
 											withBuilding: withBuilding,
 											placeArmor: placeArmor,
 											nearestNoPlayerBuilding: nearestNoPlayerBuilding,
-											deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+											deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
+											enemyAvailableActions: enemyAvailableActions
 										}));
 
 									}
@@ -394,7 +412,8 @@
 										withBuilding: withBuilding,
 										placeArmor: placeArmor,
 										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
-										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
+										enemyAvailableActions: enemyAvailableActions
 								}));
 
 								}
@@ -421,7 +440,8 @@
 										withBuilding: withBuilding,
 										placeArmor: placeArmor,
 										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
-										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding
+										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
+										enemyAvailableActions: enemyAvailableActions
 									}));
 
 								});
@@ -603,16 +623,38 @@
 				controller = data.controller,
 				allUnits = controller.units,
 				enemyUnits = [],
-				util = win.util;
+				enemyAvailablePath = {},
+				unit, key;
 
-			console.log(data);
+			for (key in allUnits) {
+				if (allUnits.hasOwnProperty(key)) {
+					unit = allUnits[key];
+					if (unit.playerId !== playerId) {
+						enemyUnits.push(unit);
+					}
+				}
+			}
 
+			enemyUnits.forEach(function (unit) {
+				unit.getAvailablePath(controller).forEach(function (xy) {
 
+					var xyStr = 'x' + xy.x + 'y' + xy.y,
+						building = controller.buildings[xyStr];
 
+					if (building && unit.availableBuildingsType && unit.availableBuildingsType.indexOf(building.type) !== -1) {
+						enemyAvailablePath[xyStr] = {
+							building: building
+						};
+					} else {
+						enemyAvailablePath[xyStr] = true;
+					}
 
+				});
+			});
+
+			return enemyAvailablePath;
 
 		}
-
 
 	};
 
