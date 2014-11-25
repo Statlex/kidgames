@@ -28,7 +28,7 @@
 		function getGmailName() {
 
 			driver.findElement({ css: '#GmailAddress' }).clear();
-			driver.findElement({ css: '#GmailAddress' }).sendKeys('webMaster' + i);
+			driver.findElement({ css: '#GmailAddress' }).sendKeys('restFullAppIsHere' + i);
 			driver.findElement({ css: 'body' }).click();
 
 
@@ -45,13 +45,35 @@
 
 		getGmailName();
 
+		driver.findElement({ css: '#password-label' }).click();
+		driver.findElement({ css: '#Passwd' }).sendKeys('asEr125ASd');
+		driver.findElement({ css: '#confirm-password-label' }).click();
+		driver.findElement({ css: '#PasswdAgain' }).sendKeys('asEr125ASd');
 
 
+		driver.findElement({ css: '#BirthDay' }).sendKeys(i);
+		driver.findElement({ css: '#BirthYear' }).sendKeys(1980 + i);
+
+
+		// set month
+		driver.findElement({ css: '#month-label' }).click();
+		driver.findElement({ css: '#month-label .goog-menuitem:nth-child(4)' }).click();
+
+		// set gender
+		driver.findElement({ css: '#gender-form-element' }).click();
+		driver.findElement({ css: '#gender-form-element .goog-menuitem:nth-child(1)' }).click();
+
+
+
+
+
+
+		driver.findElement({ css: '#TermsOfService' }).click();
 
 
 		driver.sleep(5000);
 
-		driver.quit();
+//		driver.quit();
 
 
 	});
