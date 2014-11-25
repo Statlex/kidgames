@@ -226,6 +226,10 @@
 				availableGetGrave = this.getAvailableGetGrave({
 					player: player,
 					controller: controller
+				}),
+				enemyAvailableActions = this.getEnemyAvailableActions({
+					player: player,
+					controller: controller
 				});
 
 			util.objForEach(controller.units, function(unit) {
@@ -463,6 +467,8 @@
 				// при принятии конечного решения, проверить, не противоречит сценарий какому либо из правил
 				// если противоречит - то занизить рейтиг сценнария до нуля
 
+				// 5.5 - не начислять очки за то что бот стоит на здании если его не может захватить или занять противник
+
 				// 6 - научить бота покупать войска
 				// 7 - при клике на замок при возможности переходить в магаз
 				// 8 - при покупке юнита ставить на наиболее близкое место к замку где была покупка
@@ -589,7 +595,24 @@
 
 			return availableGetGrave;
 
+		},
+		getEnemyAvailableActions: function (data) {
+			// detect building which enemy unit can placed or/and get
+			var player = data.player,
+				playerId = player.id,
+				controller = data.controller,
+				allUnits = controller.units,
+				enemyUnits = [],
+				util = win.util;
+
+			console.log(data);
+
+
+
+
+
 		}
+
 
 	};
 

@@ -19,9 +19,8 @@
 		minSquareSize: 6,
 		scaleStep: 10,
 		cssSelector: '.square, .unit, .build',
+		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
-
-			this.setStyles();
 
 			// set map to this view
 			this.setMap(util.createCopy(data.map));
@@ -55,6 +54,8 @@
 			this.drawMap();
 
 			this.setMoveArea();
+
+			this.setStyles();
 
 		},
 
@@ -340,27 +341,19 @@
 		},
 		setStyles: function () {
 
-			// create <style> with spec id
-			console.log('do it work from file:///...');
-
-			var size = this.squareSize,
+			var $wrapper = this.$wrapper,
+				tagSelector = this.styleTagSelector,
+				$style = $wrapper.find(tagSelector),
+				size = this.squareSize,
 				selector = this.cssSelector,
-				style = document.styleSheets[0],
-				cssRules = style.cssRules || [], // cssRules = style.cssRules
-				index,
 				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; }';
 
-			Array.prototype.forEach.call(cssRules, function (rule, i) {
-				if (rule.cssText.indexOf(selector) !== -1) {
-					index = i;
-				}
-			});
-
-			if (index !== undefined) {
-				style.removeRule(index);
+			if (!$style.length) {
+				$style = $('<style type="text/css" class="' + tagSelector.substr(1) + '"></style>');
+				$wrapper.append($style);
 			}
 
-			style.insertRule(cssText, cssRules.length);
+			$style.html(cssText);
 
 		},
 
