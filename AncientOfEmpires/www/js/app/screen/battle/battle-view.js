@@ -339,10 +339,14 @@
 			return this.$unitLayer.find('[data-id="' + id + '"]');
 		},
 		setStyles: function () {
+
+			// create <style> with spec id
+			console.log('do it work from file:///...');
+
 			var size = this.squareSize,
 				selector = this.cssSelector,
 				style = document.styleSheets[0],
-				cssRules = style.cssRules,
+				cssRules = style.cssRules || [], // cssRules = style.cssRules
 				index,
 				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; }';
 
