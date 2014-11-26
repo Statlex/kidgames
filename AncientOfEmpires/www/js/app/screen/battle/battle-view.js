@@ -11,7 +11,7 @@
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
 			'click .js-end-turn': 'endTurn',
-			'click .js-go-to-store': 'goToStore',
+			//'click .js-go-to-store': 'goToStore',
 			'click .js-scale-button': 'scale'
 		},
 		squareSize: 36,
@@ -134,7 +134,7 @@
 
 		},
 
-		goToStore: function() {
+		goToStore: function(data) {
 
 			// to open store user must have the castle
 			if (!this.controller.getPlayerCastle()) {
@@ -142,7 +142,7 @@
 				return;
 			}
 
-			APP.storeView = new APP.StoreView({controller: this.controller});
+			APP.storeView = new APP.StoreView(data);
 
 			APP.router.navigate('store', {trigger: true});
 
@@ -378,6 +378,34 @@
 
 		},
 
+		showGoToStore: function (xy) {
+
+			this.$eventLayer
+				.find('[data-xy="x' + xy.x + 'y' + xy.y + '"]')
+				.addClass('go-to-store-by-unit');
+
+		},
+
+		hideGoToStore: function () {
+
+			var $square = this.$eventLayer.find('.go-to-store-by-unit'),
+				xy;
+
+			if ($square.isEmpty()) {
+				return false;
+			}
+
+			xy = {
+				x: +$square.data('x'),
+				y: +$square.data('y')
+			};
+
+			$square.removeClass('go-to-store-by-unit');
+
+			return xy;
+
+		},
+
 		showUnitInfo: function(unit) {
 			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
 			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
@@ -435,9 +463,9 @@
 				.data('building-type', build.type);
 
 		},
-		setStoreButtonState: function(isEnable) {
-			this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
-		},
+		//setStoreButtonState: function(isEnable) {
+		//	this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
+		//},
 		addHealthToUnit: function(data) {
 			var unit = data.unit,
 				endHealth = data.endHealth,

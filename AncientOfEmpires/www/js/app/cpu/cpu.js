@@ -182,7 +182,7 @@
 					controller.view.hideGetBuilding();
 
 					controller.wispAction();
-					controller.setStoreButtonStateForActivePlayer();
+					//controller.setStoreButtonStateForActivePlayer();
 
 					unit.setEndTurn();
 					controller.view.showEndUnitTurn(unit);

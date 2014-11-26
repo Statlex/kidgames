@@ -216,11 +216,65 @@
 			y = this.focusedUnit.y;
 			this.focusedUnit = false;
 			this.unitAvailableActions = {};
-			this.onClick({x: x, y: y});
+			this.onClick({x: x, y: y, endAction: true});
+
+		},
+
+		detectGoToStore: function (xy, cssClassWasDeleteXY) {
+
+			var xyStr = 'x' + xy.x + 'y' + xy.y,
+				building = this.buildings[xyStr],
+				unit = this.getUnitsByCoordinates(xy)[0];
+
+			if (building && building.type === 'castle' && building.playerId === this.activePlayer.id) {
+
+				if (unit) {
+
+					if (unit.playerId === this.activePlayer.id) {
+
+						if (cssClassWasDeleteXY) {
+
+							if (cssClassWasDeleteXY.x === unit.x && cssClassWasDeleteXY.y === unit.y) {
+								this.view.goToStore({
+									x: xy.x,
+									y: xy.y,
+									controller: this
+								});
+							} else {
+								this.view.showGoToStore(unit);
+							}
+
+						} else {
+							this.view.showGoToStore(unit);
+						}
+
+					} else {
+						this.view.goToStore({
+							x: xy.x,
+							y: xy.y,
+							controller: this
+						});
+					}
+
+				} else {
+
+					this.view.goToStore({
+						x: xy.x,
+						y: xy.y,
+						controller: this
+					});
+
+				}
+
+			} else {
+				return false;
+			}
 
 		},
 
 		onClick: function(coordinates) {
+
+			var cssClassWasDeleteXY = this.view.hideGoToStore();
 
 			var units, unit, x, y, unitAction;
 
@@ -259,7 +313,7 @@
 						this.view.hideGetBuilding();
 
 						this.endAction();
-						this.setStoreButtonStateForActivePlayer();
+						//this.setStoreButtonStateForActivePlayer();
 						break;
 
 					case 'upBones':
@@ -269,7 +323,6 @@
 						this.endAction();
 
 						break;
-
 
 				}
 
@@ -307,6 +360,11 @@
 					});
 
 				}
+
+				if ( !coordinates.endAction ) {
+					this.detectGoToStore(coordinates, cssClassWasDeleteXY);
+				}
+
 			}
 
 		},
@@ -497,6 +555,7 @@
 				alert(result);
 
 			} else {
+				this.view.hideGoToStore();
 				this.setActivePlayer();
 				this.setStatusBarForActivePlayer();
 				this.updateRIPs();
@@ -694,7 +753,7 @@
 		},
 		setStatusBarForActivePlayer: function() {
 			this.setMoneyForActivePlayer();
-			this.setStoreButtonStateForActivePlayer();
+			//this.setStoreButtonStateForActivePlayer();
 		},
 		setMoneyForActivePlayer: function() {
 
@@ -717,11 +776,11 @@
 			this.view.showPlayerInfo(player);
 
 		},
-		setStoreButtonStateForActivePlayer: function() {
-
-			this.view.setStoreButtonState( this.getPlayerCastle() );
-
-		},
+		//setStoreButtonStateForActivePlayer: function() {
+		//
+		//	//this.view.setStoreButtonState( this.getPlayerCastle() );
+		//
+		//},
 		setActivePlayer: function() {
 			// set active player
 			var index,
