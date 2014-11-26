@@ -42,7 +42,7 @@
 //			'keypress', 'keyup', 'error', 'contextmenu']
 //	};
 
-	isTouch = docElem.hasOwnProperty('ontouchstart');
+	isTouch = 'ontouchstart' in docElem;
 
 	//=== info start ===//
 	info = {
@@ -925,7 +925,7 @@
 	// util section
 	Bro.prototype.template = function (str) {
 		return new Function("obj",
-				"var p=[]; with(obj){p.push('" + str
+			"var p=[]; with(obj){p.push('" + str
 				.replace(/[\r\t\n]/g, " ")
 				.split("<%").join("\t")
 				.replace(/((^|%>)[^\t]*)'/g, "$1\r")

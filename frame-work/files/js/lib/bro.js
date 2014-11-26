@@ -42,7 +42,7 @@
 //			'keypress', 'keyup', 'error', 'contextmenu']
 //	};
 
-	isTouch = docElem.hasOwnProperty('ontouchstart');
+	isTouch = 'ontouchstart' in docElem;
 
 	//=== info start ===//
 	info = {
