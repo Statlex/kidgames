@@ -83,6 +83,9 @@
 				color: player.color
 			};
 
+
+			this.setNewUnitXY(unit);
+
 			newUnit = controller.appendUnit(unit); // to controller
 			controller.view.appendUnit(newUnit);
 
@@ -100,6 +103,12 @@
 
 			alert(description);
 
+		},
+		setNewUnitXY: function (unit) {
+
+			console.log(this.controller);
+
+			console.log(this.x, this.y);
 		}
 
 
