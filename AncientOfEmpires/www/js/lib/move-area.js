@@ -14,27 +14,29 @@
 
 	function MoveArea (data) {
 
-		this.$el = {
+		this.node = {
 			wrapper:{
-				$el: data.$wrapper,
-				coordinates: {}
+				el: data.wrapper,
+				width: undefined,
+				height: undefined
 			},
 			container: {
-				$el: data.$container,
-				coordinates: {}
+				el: data.container,
+				width: undefined,
+				height: undefined
 			}
 		};
 
-		var bro = $();
-		this.bro = bro;
-		this.vendor = bro.getVendorPrefix();
-		this.info = bro.info();
-		this.evt = this.info.evt;
+		this.vendor = {
+			js: 'Webkit',
+			css: '-webkit-'
+		};
 
-		this.cssTransform = this.vendor.js + 'Transform';
+		this.jsTransform = this.vendor.js + 'Transform';
+		this.cssTransform = this.vendor.css + 'transform';
 
 		this.centeringContainer();
-		this.setEdgePosition();
+
 		this.bindEventListeners();
 
 		instances.push(this);
@@ -43,9 +45,16 @@
 
 	MoveArea.prototype = {
 
-		remove: function() {
+		remove: function(data) {
 
-			instances = util.removeFromArray(instances, this);
+			data = data || {};
+
+			if (data.all) {
+				instances = [];
+				return;
+			}
+
+			instances.splice(instances.indexOf(this), 1);
 
 			var key;
 
@@ -60,7 +69,6 @@
 		onResize: function() {
 
 			this.centeringContainer();
-			this.setEdgePosition();
 
 		},
 
@@ -68,149 +76,72 @@
 
 			this.setSizes();
 
-			var $el = this.$el,
-				wrapper = $el.wrapper,
-				container = $el.container,
-				$container = container.$el,
+			var node = this.node,
+				wrapper = node.wrapper,
+				container = node.container,
 				offset = {
 					x: Math.round((wrapper.width - container.width) / 2),
 					y: Math.round((wrapper.height - container.height) / 2)
-				};
+				},
+				cssX = 0,
+				cssY = 0;
 
-			$container[0].style[this.cssTransform] = 'translate(' + offset.x + 'px, ' + offset.y + 'px)';
+			if (offset.x > 0) {
+				cssX = offset.x;
+			} else {
+				wrapper.el.scrollLeft = -offset.x;
+			}
 
-			this.setLastAvailable(offset);
+			if (offset.y > 0) {
+				cssY = offset.y;
+			} else {
+				wrapper.el.scrollTop = -offset.y;
+			}
 
-		},
-
-		setLastAvailable: function(xy) {
-
-			this.lastAvailable = {
-				x: xy.x !== undefined ? xy.x : this.lastAvailable.x,
-				y: xy.y !== undefined ? xy.y : this.lastAvailable.y
-			};
+			container.el.style[this.jsTransform] = 'translate(' + cssX + 'px, ' + cssY + 'px)';
 
 		},
 
 		setSizes: function() {
 
-			var $el = this.$el,
-				wrapper = $el.wrapper,
-				$wrapper = wrapper.$el,
-				container = $el.container,
-				$container = container.$el;
+			var node = this.node,
+				wrapper = node.wrapper,
+				wrapperEl = wrapper.el,
+				container = node.container,
+				containerEl = container.el;
 
-			wrapper.width = $wrapper.width();
-			wrapper.height = $wrapper.height();
-			container.width = $container.width();
-			container.height = $container.height();
-
-		},
-
-		setEdgePosition: function() {
-
-			var $el = this.$el,
-				wrapper = $el.wrapper,
-				$wrapper = wrapper.$el,
-				container = $el.container,
-				$container = container.$el;
-
-			this.edge = {
-				x: {
-					max: 0,
-					min: $wrapper.width() - $container.width()
-				},
-				y: {
-					max: 0,
-					min: $wrapper.height() - $container.height()
-				}
-			};
+			wrapper.width = wrapperEl.clientWidth;
+			wrapper.height = wrapperEl.clientHeight;
+			container.width = containerEl.clientWidth;
+			container.height = containerEl.clientHeight;
 
 		},
 
-		getCoordinates: function($node) {
+		onTouchStart: function () {
 
-			var style = $node[0].style[this.cssTransform],
-				coordinates = style.match(/-?\d+/gi);
+			var wrapperHeight = this.clientHeight,
+				//wrapperWidth = this.clientWidth,
+				scrollTop = this.scrollTop;
+				//scrollLeft = this.scrollLeft,
 
-			coordinates = {
-				x: parseInt(coordinates[0], 10),
-				y: parseInt(coordinates[1], 10)
-			};
+			if (wrapperHeight - scrollTop <= wrapperHeight) {
+				this.scrollTop -= 1;
+			}
 
-			return coordinates;
+			if (scrollTop <= 0) {
+				this.scrollTop = 1;
+			}
 
 		},
+
 		bindEventListeners: function() {
 
-			var wrapper = this.$el.wrapper.$el;
-
-			wrapper.on('mousedown', this.detectStartPosition.bind(this));
-			wrapper.on('mousemove', this.moveTo.bind(this));
-
-		},
-		detectStartPosition: function() {
-
-			var container = this.$el.container,
-				$container = container.$el,
-				coordinates = this.getCoordinates($container);
-
-			container.coordinates.start = coordinates;
-
-			this.setLastAvailable(coordinates);
-
-		},
-		moveTo: function(e) {
-
-			e.preventDefault();
-
-			if (!this.evt.isActive) {
-				return;
-			}
-
-			var evt = this.evt,
-				start = evt.touchStart,
-				move = evt.touchMove,
-				delta = {
-					x: start.x - move.x,
-					y: start.y - move.y
-				},
-				container = this.$el.container,
-				$container = container.$el,
-				endCoordinates = {
-					x: container.coordinates.start.x - delta.x,
-					y: container.coordinates.start.y - delta.y
-				},
-				testResult = this.testForAvailableMove(endCoordinates);
-
-			if ( Math.abs(delta.x) + Math.abs(delta.y) < 5 ) {
-				return;
-			}
-
-			endCoordinates.x = Math.round(testResult.x ? endCoordinates.x : this.lastAvailable.x);
-			endCoordinates.y = Math.round(testResult.y ? endCoordinates.y : this.lastAvailable.y);
-
-			this.setLastAvailable(endCoordinates);
-
-			$container[0].style[this.cssTransform] = 'translate(' + endCoordinates.x + 'px, ' + endCoordinates.y + 'px)';
-
-		},
-		testForAvailableMove: function(xy) {
-
-			var result = {
-					x: true,
-					y: true
-				},
-				edge = this.edge;
-
-			result.x = result.x && xy.x >= edge.x.min;
-			result.x = result.x && xy.x <= edge.x.max;
-			result.y = result.y && xy.y >= edge.y.min;
-			result.y = result.y && xy.y <= edge.y.max;
-
-			return result;
+			this.node.wrapper.el.addEventListener('touchstart', this.onTouchStart, false);
 
 		}
+
+
+
 	};
 
 	win.MoveArea = MoveArea;

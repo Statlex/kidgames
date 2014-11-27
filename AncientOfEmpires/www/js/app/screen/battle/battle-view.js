@@ -489,8 +489,8 @@
 		setMoveArea: function() {
 			var $el = this.$el;
 			this.moveArea = new MoveArea({
-				$wrapper: $el.find('.js-layers-moving-wrapper'),
-				$container: $el.find('.js-layers-wrapper')
+				wrapper: $el.find('.js-layers-moving-wrapper')[0],
+				container: $el.find('.js-layers-wrapper')[0]
 			});
 		}
 

@@ -29,7 +29,7 @@
 }
 
 .layers-moving-wrapper {
-	overflow: hidden;
+	overflow: scroll;
 	background-color: #060;
 	position: fixed;
 	height: 100%;
