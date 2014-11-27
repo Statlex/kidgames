@@ -202,14 +202,6 @@
 			}
 
 
-		},
-		buildingTypeValue: {
-			default: 0,
-			farm: 5,
-			castle: 10
-		},
-		getBuildingSortValue: function (buildingType) {
-			return this.buildingTypeValue[buildingType] || 0; // see this this.buildingTypeValue.default
 		}
 
 	};
@@ -245,17 +237,38 @@
 					controller: controller
 				});
 
-			console.log(enemyAvailableActions);
-
 			util.objForEach(controller.units, function(unit) {
 				return unit.playerId === playerId && playerUnits.push(unit);
 			});
 
 			if ( Object.keys(availableGetBuilding).length ) {
-				// unit who can get building - step in last order
-				playerUnits.sort(function (a) {
-					return a.availableBuildingsType ? Infinity : -Infinity;
+
+				var sortOther = [],
+					sortSoldier = [],
+					sortKnight = [];
+
+				playerUnits.forEach(function (unit) {
+
+					switch (unit.type) {
+
+						case 'Knight':
+							sortKnight.push(unit);
+							break;
+
+						case 'Soldier':
+							sortSoldier.push(unit);
+							break;
+
+						default :
+							sortOther.push(unit);
+							break;
+
+					}
+
 				});
+
+				playerUnits = sortOther.concat(sortSoldier, sortKnight);
+
 			}
 
 			if (availableGetGrave.length) {
@@ -268,7 +281,15 @@
 			// detect action for every unit
 			playerUnits.forEach(function(unit) {
 
-				var deniedPlacesForGetBuilding = unit.availableBuildingsType ? {} : availableGetBuilding;
+				var deniedPlacesForGetBuilding = {},
+					key,
+					availableBuildingsType = unit.availableBuildingsType || [];
+
+				for (key in availableGetBuilding) {
+					if (availableGetBuilding.hasOwnProperty(key)) {
+						deniedPlacesForGetBuilding[key] = availableBuildingsType.indexOf(controller.buildings[key].type) === -1;
+					}
+				}
 
 				// collect enemy units
 				var enemyUnits = [];
@@ -284,8 +305,6 @@
 						playerBuildings.push(build) :
 						noPlayerBuildings.push(build);
 				});
-
-
 
 				var startCoordinates = { x: unit.x, y: unit.y },
 					// get available coordinate
@@ -528,12 +547,14 @@
 				}
 			}
 
+
+
 			playerUnits.forEach(function (unit) {
 				return unit.availableBuildingsType ? canGetBuildingUnits.push(unit) : canNotGetBuildingUnits.push(unit);
 			});
 
 			// 'remove' extra units from map
-			canNotGetBuildingUnits.forEach(function (unit) {
+			playerUnits.forEach(function (unit) {
 				unit.cpuData = unit.cpuData || {};
 				unit.cpuData.x = unit.x;
 				unit.cpuData.y = unit.y;
@@ -541,7 +562,14 @@
 				unit.y = -Infinity;
 			});
 
+			canGetBuildingUnits.sort(function (a) {
+				return a.availableBuildingsType.length;
+			});
+
 			canGetBuildingUnits.forEach(function (unit) {
+
+				unit.x = unit.cpuData.x;
+				unit.y = unit.cpuData.y;
 
 				unit.getAvailablePath(controller).forEach(function (xy) {
 					var buildingXY = 'x' + xy.x + 'y' + xy.y,
@@ -553,7 +581,7 @@
 
 			});
 
-			canNotGetBuildingUnits.forEach(function (unit) {
+			playerUnits.forEach(function (unit) {
 				unit.x = unit.cpuData.x;
 				unit.y = unit.cpuData.y;
 			});
