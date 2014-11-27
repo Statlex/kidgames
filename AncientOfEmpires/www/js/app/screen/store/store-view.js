@@ -106,11 +106,38 @@
 		},
 		setNewUnitXY: function (unit) {
 
-			console.log(this.controller);
+			var xy = {
+					x: this.x,
+					y: this.y
+				},
+				controller = this.controller,
+				width = controller.map.size.width,
+				height = controller.map.size.height,
+				places = [],
+				i, j;
 
-			console.log(this.x, this.y);
+			for (i = 0; i < width; i += 1) { // x
+				for (j = 0; j < height; j += 1) { // y
+					if ( !controller.getUnitsByCoordinates({x: i, y: j })[0] ) { // detect no unit on XY
+						places.push({x: i, y: j });
+					}
+				}
+			}
+
+			function getLength(xy1, xy2) {
+				return Math.pow(xy1.x - xy2.x, 2) + Math.pow(xy1.y - xy2.y, 2);
+			}
+
+			places.sort(function() {
+				return Math.random() - 0.5;
+			}).sort(function(xy1, xy2) {
+				return getLength(xy1, xy) - getLength(xy2, xy);
+			});
+
+			unit.x = places[0].x;
+			unit.y = places[0].y;
+
 		}
-
 
 	});
 
