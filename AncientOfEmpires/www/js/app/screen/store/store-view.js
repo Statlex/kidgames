@@ -84,7 +84,12 @@
 			};
 
 
-			this.setNewUnitXY(unit);
+			this.setNewUnitXY({
+				unit: unit,
+				controller: controller,
+				x: this.x,
+				y: this.y
+			});
 
 			newUnit = controller.appendUnit(unit); // to controller
 			controller.view.appendUnit(newUnit);
@@ -92,6 +97,45 @@
 			this.setBuyButtonState();
 
 			alert('you did buy the ' + unitName);
+
+		},
+		buyUnitCpu: function(data) {
+
+			var unitName = data.unitName,
+				unitInfo = APP.units.info,
+				unitCost = unitInfo[unitName].cost,
+				newUnit, unit,
+				controller = data.controller,
+				player = data.player;
+
+			if ( unitCost > player.gold ) {
+				return false;
+			}
+
+			player.gold -= unitCost;
+
+			controller.view.showPlayerInfo();
+
+			unit = {
+				type: util.capitalise(unitName),
+				x: data.x,
+				y: data.y,
+				playerId: player.id,
+				color: player.color
+			};
+
+
+			this.setNewUnitXY({
+				unit: unit,
+				controller: controller,
+				x: data.x,
+				y: data.y
+			});
+
+			newUnit = controller.appendUnit(unit); // to controller
+			controller.view.appendUnit(newUnit);
+
+			return true;
 
 		},
 		showUnitInfo: function(e) {
@@ -104,13 +148,14 @@
 			alert(description);
 
 		},
-		setNewUnitXY: function (unit) {
+		setNewUnitXY: function (data) {
 
 			var xy = {
-					x: this.x,
-					y: this.y
+					x: data.x,
+					y: data.y
 				},
-				controller = this.controller,
+				unit = data.unit,
+				controller = data.controller,
 				width = controller.map.size.width,
 				height = controller.map.size.height,
 				places = [],

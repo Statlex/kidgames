@@ -224,6 +224,10 @@
 				playerId = player.id,
 				util = win.util,
 				playerUnits = [],
+				newUnits = this.buyUnits({
+					player: player,
+					controller: controller
+				}),
 				availableGetBuilding = this.getAvailableGetBuilding({
 					player: player,
 					controller: controller
@@ -681,6 +685,58 @@
 			});
 
 			return enemyAvailablePath;
+
+		},
+		buyUnits: function (data) {
+
+			var player = data.player,
+				playerId = player.id,
+				unitInfo = APP.units.info,
+				unitList = unitInfo.unitList.filter(function (unitName) {
+					return !APP.units.info[unitName].notInStore;
+				}),
+				storeProto = APP.StoreView.prototype,
+				controller = data.controller,
+				buildings = controller.buildings,
+				building,
+				castles = [],
+				castle,
+				key,
+				unit,
+				randomFn = function () {
+					return Math.random() - 0.5;
+				};
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle' && building.playerId === playerId) {
+						castles.push(building);
+					}
+				}
+			}
+
+			castle = castles.sort(function () {
+				return Math.random() - 0.5;
+			})[0];
+
+			if (!castle) {
+				return [];
+			}
+
+			// buy unit
+			unit = unitList.sort(randomFn)[0];
+
+			while (player.gold >= unitInfo[unit].cost) {
+				storeProto.buyUnitCpu.call(storeProto, {
+					unitName: unit,
+					controller: controller,
+					player: player,
+					x: castle.x,
+					y: castle.y
+				});
+				unit = unitList.sort(randomFn)[0];
+			}
 
 		}
 
