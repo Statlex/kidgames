@@ -82,6 +82,16 @@
 
 		},
 
+		activeButtons: function (isActive) {
+
+			if (isActive) {
+				this.$el.find('.js-cpu-running').addClass('hidden');
+			} else {
+				this.$el.find('.js-cpu-running').removeClass('hidden');
+			}
+
+		},
+
 		setBuildingPosition: function() {
 
 			var squareSize = this.squareSize;
@@ -270,6 +280,7 @@
 			this.resetEndTurnState();
 			this.drawUnitCurrentState();
 			this.goFromStore();
+			this.activeButtons(true);
 			this.controller.endTurn();
 		},
 		goFromStore: function() {

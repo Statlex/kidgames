@@ -549,6 +549,8 @@
 		},
 		step: function() {
 
+			this.view.activeButtons(true);
+
 			if (this.isGameOver(this)) {
 
 				var result = this.getResultOfGame();
@@ -573,6 +575,8 @@
 			if (this.activePlayer.type !== 'cpu') {
 				return;
 			}
+
+			this.view.activeButtons(false);
 
 			var cpu = new APP.Cpu({
 				view: this.view,

@@ -315,7 +315,7 @@
 
 				setTimeout(function () {
 
-					$('.js-end-turn').on('click');
+					controller.view.endTurn();
 
 				}, APP.units.info.timer.endTurn);
 

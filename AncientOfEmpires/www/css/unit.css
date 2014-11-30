@@ -189,6 +189,17 @@
 	margin-left: -45%;
 }
 
+.go-to-store-by-unit {
+	background-image: url(../img/unit/shop.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	background-color: #fff;
+}
+
 
 
 
