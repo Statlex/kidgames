@@ -142,7 +142,7 @@
 			action: 500,
 			endTurn: 1000,
 			showPath: 500,
-			attack: 250 // half of 'action'
+			attack: 230 // half of 'action'
 		}
 
 	};

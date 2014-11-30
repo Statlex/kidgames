@@ -242,7 +242,8 @@
 	margin-top: 10px;
 }
 
-.cpu-running-disable-buttons {
+.cpu-running-disable-buttons,
+.animation-running-disable-buttons {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -257,4 +258,8 @@
 	text-align: right;
 	box-sizing: border-box;
 	padding: 40px;
+}
+
+.animation-running-disable-buttons {
+	background-color: transparent;
 }

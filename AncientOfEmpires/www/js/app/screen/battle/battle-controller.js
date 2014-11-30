@@ -33,6 +33,24 @@
 			this.view = view;
 		},
 
+		setState: function (state) {
+
+			switch (state) {
+				case 'disable':
+
+					this.view.setDisableScreen(true);
+
+					break;
+
+				case 'enable':
+
+					this.view.setDisableScreen(false);
+
+
+			}
+
+		},
+
 		setMapForView: function() {
 			this.addUnitsToControllerAndView();
 			this.addBuildingsToControllerAndView();
@@ -302,8 +320,11 @@
 						this.attackUnit(this.focusedUnit, unit);
 						this.view.hideUnitsUnderAttack();
 
-						this.endAction();
-						this.wispAction();
+						setTimeout(function () {
+							this.endAction();
+							this.wispAction();
+						}.bind(this), APP.units.info.timer.attack);
+
 						break;
 
 					case 'getBuilding':
@@ -371,27 +392,55 @@
 
 		attackUnit: function(active, passive) {
 
-			active.attackTo(passive, this);
+			this.setState('disable');
 
-			if (passive.health <= 0) {
-				this.killUnit(passive);
-			} else {
-				// detect - can passive attack active
-				if (passive.canAttackUnit(active, this)) {
+			// show animation
+			console.log('show animation here animation ' + Date.now());
 
-					passive.attackTo(active, this);
+			setTimeout(function (active, passive) {
 
-					if (active.health <= 0) {
-						this.killUnit(active);
+				console.log('attack active to passive action ' + Date.now());
+
+				active.attackTo(passive, this);
+
+				this.view.redrawHealthUnit(passive);
+				this.view.redrawLevelUnit(passive);
+
+				this.setState('enable');
+
+				if (passive.health <= 0) {
+					this.killUnit(passive);
+				} else {
+					// detect - can passive attack active
+					if (passive.canAttackUnit(active, this)) {
+
+						this.setState('disable');
+
+						console.log('attack passive to active animation ' + Date.now());
+
+						setTimeout(function (active, passive) {
+
+							console.log('attack passive to active action ' + Date.now());
+
+							passive.attackTo(active, this);
+
+							if (active.health <= 0) {
+								this.killUnit(active);
+							}
+
+							this.view.redrawHealthUnit(active);
+							this.view.redrawLevelUnit(active);
+
+							this.setState('enable');
+
+						}.bind(this, active, passive), APP.units.info.timer.attack);
+
 					}
-
 				}
-			}
 
-			this.view.redrawHealthUnit(active);
-			this.view.redrawLevelUnit(active);
-			this.view.redrawHealthUnit(passive);
-			this.view.redrawLevelUnit(passive);
+			}.bind(this, active, passive), APP.units.info.timer.attack);
+
+
 
 		},
 

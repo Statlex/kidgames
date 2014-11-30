@@ -503,6 +503,15 @@
 				wrapper: $el.find('.js-layers-moving-wrapper')[0],
 				container: $el.find('.js-layers-wrapper')[0]
 			});
+		},
+		setDisableScreen: function (isShow) {
+
+			if (isShow) {
+				this.$el.find('.js-disable-screen').removeClass('hidden');
+			} else {
+				this.$el.find('.js-disable-screen').addClass('hidden');
+			}
+
 		}
 
 	});
