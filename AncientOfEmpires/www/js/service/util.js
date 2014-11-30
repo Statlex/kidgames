@@ -257,7 +257,48 @@
 
 			this.donePathPoints.push({ x: x, y: y, mov: mov });
 		}
+
 	};
 
+	var waiterInstances = [];
+
+	function Waiter(data) {
+
+		this.condition = data.condition;
+		this.callback = data.callback;
+
+		waiterInstances.push(this);
+
+		this.intervalId = this.run();
+
+	}
+
+	Waiter.prototype = {
+
+		run: function () {
+
+			setInterval(function () {
+				if (this.condition()) {
+					this.callback();
+					this.stop();
+				}
+			}.bind(this), 100);
+
+		},
+
+		stop: function () {
+			clearInterval(this.intervalId);
+			waiterInstances.splice(waiterInstances.indexOf(this), 1);
+
+			delete this.condition;
+			delete this.callback;
+
+		}
+
+
+
+	};
+
+	//win.APP.Waiter = Waiter;
 
 }(window, document, document.documentElement));

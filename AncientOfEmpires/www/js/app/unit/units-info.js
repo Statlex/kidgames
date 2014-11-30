@@ -100,6 +100,8 @@
 			cost: 500,
 			attackRange: 1,
 			auraRange: 2,
+			notCreateGrave: true,
+			canNotBePoisoned: true,
 			canNotBeUnderWispAura: true,
 			bonesAttackBonus: 5
 		},
@@ -134,6 +136,13 @@
 			wisp: {
 				attack: 1
 			}
+		},
+		timer: {
+			move: 800,
+			action: 500,
+			endTurn: 1000,
+			showPath: 500,
+			attack: 250 // half of 'action'
 		}
 
 	};

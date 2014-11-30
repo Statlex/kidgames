@@ -134,72 +134,86 @@
 			return key !== undefined ? this.attr[key] : this.attr;
 		},
 
-		execute: function (unit, controller) {
+		execute: function (unit, controller, cpu) {
 
-			// move to xy
-			var endX = this.get('x'),
-				endY = this.get('y');
+			controller.view.highlightPath({ path: unit.getAvailablePath(controller), color: unit.color });
+			controller.view.highlightUnit(unit);
 
-			if (unit.x !== endX || unit.y !== endY) {
-				//console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
-				unit
-					.moveTo({
-						x: endX, y: endY
-					}, controller);
+			setTimeout(function () {
 
-				controller.view.moveUnit(unit);
-			}
+				var endX = this.get('x'),
+					endY = this.get('y'),
+					moveDelay = 0,
+					actionDelay = APP.units.info.timer.action;
 
-			switch ( this.get('type') ) {
+				if (unit.x !== endX || unit.y !== endY) {
+					//console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
+					unit.moveTo({
+							x: endX, y: endY
+						}, controller);
 
-				case 'none':
+					controller.view.moveUnit(unit);
+					moveDelay = APP.units.info.timer.move;
+				}
 
-					unit.setEndTurn();
+				setTimeout((function () {
 
-					controller.wispAction();
-					controller.view.showEndUnitTurn(unit);
+					switch ( this.get('type') ) {
 
-					break;
+						case 'none':
 
-				case 'attack':
+							unit.setEndTurn();
+							controller.wispAction();
+							controller.view.showEndUnitTurn(unit);
+							break;
 
-					controller.attackUnit(unit, controller.getUnitBy({
-						unitId: this.get('enemyUnitId'),
-						playerId: this.get('enemyPlayerId')
-					}));
+						case 'attack':
 
-					controller.view.hideUnitsUnderAttack();
+							controller.attackUnit(unit, controller.getUnitBy({
+								unitId: this.get('enemyUnitId'),
+								playerId: this.get('enemyPlayerId')
+							}));
 
-					controller.wispAction();
-					controller.view.showEndUnitTurn(unit);
+							controller.view.hideUnitsUnderAttack();
 
-					break;
+							unit.setEndTurn();
+							controller.wispAction();
+							controller.view.showEndUnitTurn(unit);
 
-				case 'getBuilding':
+							break;
 
-					unit.getBuilding(controller);
+						case 'getBuilding':
 
-					controller.view.hideGetBuilding();
+							unit.getBuilding(controller);
 
-					controller.wispAction();
-					//controller.setStoreButtonStateForActivePlayer();
+							controller.view.hideGetBuilding();
 
-					unit.setEndTurn();
-					controller.view.showEndUnitTurn(unit);
+							unit.setEndTurn();
+							controller.wispAction();
+							controller.view.showEndUnitTurn(unit);
 
-					break;
+							break;
 
-				case 'upBones':
+						case 'upBones':
 
-					controller.upBonesFromGrave(unit, this.get('grave'));
+							controller.upBonesFromGrave(unit, this.get('grave'));
 
-					controller.wispAction();
-					unit.setEndTurn();
-					controller.view.showEndUnitTurn(unit);
+							unit.setEndTurn();
+							controller.wispAction();
+							controller.view.showEndUnitTurn(unit);
 
-					break;
+							break;
 
-			}
+					}
+
+					setTimeout(function () {
+						cpu.run();
+					}, moveDelay + actionDelay);
+
+				}.bind(this)), moveDelay);
+
+
+			}.bind(this), APP.units.info.timer.showPath);
 
 
 		}
@@ -208,6 +222,15 @@
 
 
 	Cpu.prototype = {
+
+		time: {
+			fullStep: 1000
+			// move time
+			// action time
+			// fight time + response fight time
+
+		},
+
 		run: function () {
 
 			// 1
@@ -283,7 +306,25 @@
 
 			// 3
 			// detect action for every unit
-			playerUnits.forEach(function(unit) {
+
+			var activeUnit = playerUnits.filter(function (unit) {
+				return !unit.isEndTurn();
+			})[0];
+
+			if (!activeUnit) {
+
+				setTimeout(function () {
+
+					$('.js-end-turn').on('click');
+
+				}, APP.units.info.timer.endTurn);
+
+				return;
+
+			}
+
+			[activeUnit].forEach(function(unit) {
+
 
 				var deniedPlacesForGetBuilding = {},
 					key,
@@ -522,11 +563,10 @@
 					return b.get('rate') - a.get('rate');
 				});
 
-				scenarios[0].execute(unit, controller);
+				scenarios[0].execute(unit, controller, this);
 				// only for test - end
 
-			});
-
+			}, this);
 
 		},
 		getAvailableGetBuilding: function (data) {
@@ -559,11 +599,18 @@
 
 			// 'remove' extra units from map
 			playerUnits.forEach(function (unit) {
+
 				unit.cpuData = unit.cpuData || {};
 				unit.cpuData.x = unit.x;
 				unit.cpuData.y = unit.y;
-				unit.x = -Infinity;
-				unit.y = -Infinity;
+
+				if ( !unit.isEndTurn() ) { // move while active units
+
+					unit.x = -Infinity;
+					unit.y = -Infinity;
+
+				}
+
 			});
 
 			canGetBuildingUnits.sort(function (a) {
@@ -707,6 +754,8 @@
 					return Math.random() - 0.5;
 				};
 
+			unitList.push('soldier', 'soldier', 'soldier', 'soldier', 'archer', 'archer');
+
 			for (key in buildings) {
 				if (buildings.hasOwnProperty(key)) {
 					building = buildings[key];
@@ -728,8 +777,8 @@
 			unit = unitList.sort(randomFn)[0];
 
 			while (player.gold >= unitInfo[unit].cost) {
-				storeProto.buyUnitCpu.call(storeProto, {
-					unitName: unit,
+				storeProto.buyUnitCpu({
+					unitName: 'knight',
 					controller: controller,
 					player: player,
 					x: castle.x,

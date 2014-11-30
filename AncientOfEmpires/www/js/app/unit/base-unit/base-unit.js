@@ -351,6 +351,27 @@
 			}
 
 		},
+
+		isEndTurn: function () {
+
+			var isEndTurn = true,
+				key,
+				list = this.defaultList;
+
+			for (key in list) {
+				if (list.hasOwnProperty(key)) {
+
+					if (this[key] === list[key] || this[key] === undefined ) { // this[key] === undefined fix the first turn
+						isEndTurn = false;
+					}
+
+				}
+			}
+
+			return isEndTurn;
+
+		},
+
 		getBuilding: function(controller) {
 			var build = controller.buildings['x' + this.x + 'y' + this.y];
 
