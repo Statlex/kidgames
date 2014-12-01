@@ -319,11 +319,22 @@
 		redrawHealthUnit: function (unit) {
 
 			var $unit = this.getUnitById(unit.id),
-				health = Math.max(unit.health, 0.1);
+				health = Number(Math.max(unit.health, 0.1).toFixed(1)),
+				$health = $unit.find('.js-health'),
+				beforeHealth = parseFloat($health.html()),
+				deltaHealth = Number((health - beforeHealth).toFixed(1));
 
-			health = health.toFixed(1);
+			if (deltaHealth) {
 
-			$unit.find('.js-health').html(health);
+				if (deltaHealth > 0) {
+					console.log('%c' + deltaHealth, 'color: #0c0;');
+				} else {
+					console.log('%c' + deltaHealth, 'color: #c00;');
+				}
+
+			}
+
+			$health.html(health);
 
 			if (unit.wasPoisoned) {
 				this.drawPoisoned($unit);
@@ -478,13 +489,7 @@
 		//	this.$el.find('.js-go-to-store').data('state', isEnable ? 'enable' : 'disable');
 		//},
 		addHealthToUnit: function(data) {
-			var unit = data.unit,
-				endHealth = data.endHealth,
-				addedHealth = data.addedHealth,
-				$unit = this.getUnitById(unit.id);
-
-			this.redrawHealthUnit(unit);
-
+			this.redrawHealthUnit(data.unit);
 		},
 		showWispAura: function(unit) {
 			var $unit = this.getUnitById(unit.id);
