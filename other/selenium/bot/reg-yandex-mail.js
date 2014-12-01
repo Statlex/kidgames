@@ -9,9 +9,15 @@
 
 	var mainConfig = require('./cfg/main.js'),
 		util = require('user/util/util.js'),
+		bUtil = require('./util/index.js'),
 		args = util.getArguments(),
 		path = require('path');
 
+	//console.log(bUtil.getAllUserFIO());
+	console.log(bUtil.rusToLat('я тут'));
+	;
+
+	return;
 
 	[1].forEach(function (value) {
 
