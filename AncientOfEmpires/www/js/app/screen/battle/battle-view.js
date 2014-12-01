@@ -321,16 +321,25 @@
 			var $unit = this.getUnitById(unit.id),
 				health = Number(Math.max(unit.health, 0.1).toFixed(1)),
 				$health = $unit.find('.js-health'),
+				$deltaHealth = $unit.find('.js-delta-health'),
 				beforeHealth = parseFloat($health.html()),
 				deltaHealth = Number((health - beforeHealth).toFixed(1));
 
+			$deltaHealth.removeClass('delta-health-animation');
+
 			if (deltaHealth) {
 
+				$deltaHealth.html(deltaHealth);
+
 				if (deltaHealth > 0) {
-					console.log('%c' + deltaHealth, 'color: #0c0;');
+					$deltaHealth.addClass('color-green');
 				} else {
-					console.log('%c' + deltaHealth, 'color: #c00;');
+					$deltaHealth.addClass('color-red');
 				}
+
+				setTimeout(function () { // hack for redraw
+					$deltaHealth.addClass('delta-health-animation');
+				}, 50);
 
 			}
 

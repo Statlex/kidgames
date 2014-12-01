@@ -200,7 +200,43 @@
 	background-color: #fff;
 }
 
+.delta-health {
+	font-size: 16px;
+	line-height: 16px;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0;
+	opacity: 0;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #ffffff, 0 -1px 0 #ffffff, -1px 0 0 #ffffff, 1px 0 0 #ffffff;
+}
 
+.delta-health-animation {
+
+
+	-webkit-animation-name: delta-health;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+
+}
+
+@-webkit-keyframes delta-health {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+
+	25%, 80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -115%, 0);
+	}
+
+}
 
 
 

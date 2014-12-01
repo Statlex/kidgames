@@ -16,8 +16,6 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	top: 50px; /* see next styles */
-	left: 50px; /* see next styles */
 	z-index: 0;
 }
 
@@ -263,3 +261,19 @@
 .animation-running-disable-buttons {
 	background-color: transparent;
 }
+
+.color-green {
+	color: #00aa00;
+}
+
+.color-red {
+	color: #aa0000;
+}
+
+.inter-wrapper {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
