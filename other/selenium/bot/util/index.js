@@ -63,8 +63,8 @@
 		rusToLat: function (string) {
 
 			return Array.prototype.map.call(string, function (ch) {
-				return this.rusToLatMap[ch] || '';
-			}, this);
+				return this.rusToLatMap[ch] || ch;
+			}, this).join('');
 
 		}
 

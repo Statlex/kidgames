@@ -329,11 +329,16 @@
 
 			if (deltaHealth) {
 
-				$deltaHealth.html(deltaHealth);
+
+				$deltaHealth
+					.removeClass('color-green')
+					.removeClass('color-red');
 
 				if (deltaHealth > 0) {
+					$deltaHealth.html('+' + deltaHealth);
 					$deltaHealth.addClass('color-green');
 				} else {
+					$deltaHealth.html(deltaHealth);
 					$deltaHealth.addClass('color-red');
 				}
 
