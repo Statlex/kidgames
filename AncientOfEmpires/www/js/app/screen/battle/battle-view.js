@@ -18,7 +18,7 @@
 		maxSquareSize: 100,
 		minSquareSize: 6,
 		scaleStep: 10,
-		cssSelector: '.square, .unit, .build',
+		cssSelector: '.square, .unit, .build, .attack-animation-block ',
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
@@ -29,6 +29,7 @@
 			this.setFieldSize();
 
 			this.$unitLayer = this.$el.find('.js-units-layer');
+			this.$attackBlock = this.$el.find('.js-attack-animation-block');
 			this.$buildingsLayer = this.$el.find('.js-buildings-layer');
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
@@ -530,6 +531,41 @@
 			} else {
 				this.$el.find('.js-disable-screen').addClass('hidden');
 			}
+
+		},
+		showAttackAnimation: function (active, passive) {
+
+			var xy1 = {
+					x: active.x * this.squareSize,
+					y: active.y * this.squareSize
+				},
+				xy2 = {
+					x: passive.x * this.squareSize,
+					y: passive.y * this.squareSize
+				},
+				$node = this.$attackBlock,
+				animationTime = APP.units.info.timer.attack - 50;
+
+			$node.css({
+				'opacity': '0',
+				'-webkit-transform': 'translate(' + xy1.x + 'px, ' + xy1.y + 'px)',
+				'-webkit-transition': 'none'
+			});
+
+			setTimeout(function () {
+				$node.css('opacity', 1);
+			}, 10);
+
+			setTimeout(function () {
+				$node.css({
+					'-webkit-transition': '-webkit-transform ' + animationTime + 'ms ease-out',
+					'-webkit-transform': 'translate(' + xy2.x + 'px, ' + xy2.y + 'px)'
+				});
+			}, 20);
+
+			setTimeout(function () {
+				$node.css('opacity', '0');
+			}, animationTime - 10);
 
 		}
 

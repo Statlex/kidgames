@@ -238,9 +238,17 @@
 
 }
 
-
-
-
+.attack-animation-block {
+	display: block;
+	opacity: 0;
+	position: absolute;
+	background-image: url(../img/unit/skull.png);
+	-webkit-background-size: 75% 75%;
+	background-size: 75% 75%;
+	z-index: 10;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 
 
 

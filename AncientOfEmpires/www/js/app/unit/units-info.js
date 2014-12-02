@@ -139,10 +139,10 @@
 		},
 		timer: {
 			move: 800,
-			action: 500,
+			action: 1000,
 			endTurn: 1000,
 			showPath: 500,
-			attack: 230 // half of 'action'
+			attack: 490 // half of 'action'
 		}
 
 	};

@@ -394,6 +394,8 @@
 
 			this.setState('disable');
 
+			this.view.showAttackAnimation(active, passive);
+
 			// show animation
 			console.log('show animation here animation ' + Date.now());
 
@@ -417,6 +419,7 @@
 						this.setState('disable');
 
 						console.log('attack passive to active animation ' + Date.now());
+						this.view.showAttackAnimation(passive, active);
 
 						setTimeout(function (active, passive) {
 
