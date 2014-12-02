@@ -42,7 +42,7 @@
 				data = JSON.parse(fs.readFileSync(path.normalize(botDataPath) + fileName, 'utf-8')),
 				i = 10;
 
-			if (data.registered) {
+			if (data.isRegistered) {
 				console.log(data.name.join(' ') + 'is registered' );
 				driver.quit();
 				return;
@@ -124,7 +124,7 @@
 
 			driver.findElement({ css: '.b-popup__close.daria-action' }).click().then(function () {
 
-				data.registered = true;
+				data.isRegistered = true;
 
 				fs.writeFile(path.normalize(botDataPath + '/' + fileName), JSON.stringify(data), 'utf-8', function (err) {
 					return err && console.log(err);
