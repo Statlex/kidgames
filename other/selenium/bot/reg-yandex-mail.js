@@ -15,38 +15,43 @@
 		path = require('path'),
 		botDataPath = process.cwd() + '/bot-data/';
 
+	var fileList = fs.readdirSync(path.normalize(botDataPath)).map(function (pathToFile) {
+		return path.normalize(pathToFile);
+	});
+
+
 	bUtil.getAllUserFIO().forEach(function (user) {
 
 		var fullUserName = user.join(''),
-			pathToFile = path.normalize(botDataPath + fullUserName + '.txt'),
+			fileName = fullUserName + '.txt',
+			pathToFile = path.normalize(botDataPath + fileName),
 			data = {
 				name: user,
 				dob: Date.now(),
 				yandexMail: {}
 			};
 
-			fs.writeFile(pathToFile, JSON.stringify(data), 'utf-8', function (err) {
-				return err && console.log(err);
-			});
+			if ( fileList.indexOf(fileName) === -1 ) {
+				fs.writeFileSync(pathToFile, JSON.stringify(data), 'utf-8', function (err) {
+					return err && console.log(err);
+				});
 
-		//}
+			}
 
 	});
-
-	//return;
 
 	fs.readdir(path.normalize(botDataPath), function (err, fileList) {
 		fileList.forEach(function (fileName) {
 
-			var driver = util.createWebDriverClient(args),
-				data = JSON.parse(fs.readFileSync(path.normalize(botDataPath) + fileName, 'utf-8')),
-				i = 10;
+			var data = JSON.parse(fs.readFileSync(path.normalize(botDataPath) + fileName, 'utf-8'));
 
 			if (data.isRegistered) {
 				console.log(data.name.join(' ') + 'is registered' );
-				driver.quit();
 				return;
 			}
+
+			var driver = util.createWebDriverClient(args),
+				i = 0;
 
 			data.yandexMail = data.yandexMail || {};
 

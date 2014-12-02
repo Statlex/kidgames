@@ -18,9 +18,11 @@
 				.split(/\r?\n/gi);
 
 			return arr.map(function (FIO) {
-				return this.rusToLat(FIO).replace(/\s+/gi, ' ').split(' ');
+				return this.rusToLat(FIO).replace(/\s+/gi, ' ').split(' ').filter(function (value) {
+					return value.trim();
+				});
 			}, this).filter(function (value, index) {
-				return index < 10;
+				return 0 <= index && index < 10;
 			});
 
 
@@ -54,9 +56,9 @@
 			'Ч': 'Ch', 'ч': 'ch',
 			'Ш': 'Sh', 'ш': 'sh',
 			'Щ': 'Sch', 'щ': 'sch',
-			'Ъ': '"', 'ъ': '"',
+			'Ъ': 'b', 'ъ': 'b',
 			'Ы': 'Y', 'ы': 'y',
-			'Ь': "'", 'ь': "'",
+			'Ь': 'b', 'ь': 'b',
 			'Э': 'E', 'э': 'e',
 			'Ю': 'Yu', 'ю': 'yu',
 			'Я': 'Ya', 'я': 'ya'
