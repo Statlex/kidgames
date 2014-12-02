@@ -5,101 +5,140 @@
 
 	global.mainConfig = require('./cfg/main.js'); // see main config -> main.js
 
-	var mailUrl = 'https://passport.yandex.ru/registration/mail?mode=simplereg&require_hint=1&retpath=https%3A%2F%2Fmail.yandex.by%2F%3Forigin%3Dhome_by_nol&origin=home_by_nol';
+	var mailUrl = 'https://passport.yandex.ru/registration/mail?mode=simplereg';
 
 	var mainConfig = require('./cfg/main.js'),
 		util = require('user/util/util.js'),
 		bUtil = require('./util/index.js'),
 		args = util.getArguments(),
-		path = require('path');
+		fs = require('fs'),
+		path = require('path'),
+		botDataPath = process.cwd() + '/bot-data/';
 
-	//console.log(bUtil.getAllUserFIO());
-	console.log(bUtil.rusToLat('я тут'));
-	;
+	bUtil.getAllUserFIO().forEach(function (user) {
 
-	return;
+		var fullUserName = user.join(''),
+			pathToFile = path.normalize(botDataPath + fullUserName + '.txt'),
+			data = {
+				name: user,
+				dob: Date.now(),
+				yandexMail: {}
+			};
 
-	[1].forEach(function (value) {
-
-		var driver = util.createWebDriverClient(args);
-
-		driver.get(gmailUrl);
-
-		driver.findElement({ css: '#FirstName' }).sendKeys('dima');
-		driver.findElement({ css: '#LastName' }).sendKeys('dimchev');
-
-		var i = 1;
-
-		function getGmailName() {
-
-			driver.findElement({ css: '#GmailAddress' }).clear();
-			driver.findElement({ css: '#GmailAddress' }).sendKeys('restFullAppIsHereYoYes' + i);
-			driver.findElement({ css: 'body' }).click();
-
-
-			driver.sleep('1000');
-
-			driver.findElement({css: '#username-errormsg-and-suggestions'}).click().then(function () {
-				//getGmailName();
-			}, function(){
+			fs.writeFile(pathToFile, JSON.stringify(data), 'utf-8', function (err) {
+				return err && console.log(err);
 			});
 
-			i++;
-
-		}
-
-		getGmailName();
-
-		driver.findElement({ css: '#password-label' }).click();
-		driver.findElement({ css: '#Passwd' }).sendKeys('ZAQ!2wsxC');
-		driver.findElement({ css: 'body' }).click();
-		driver.sleep('1000');
-
-		driver.findElement({ css: '#confirm-password-label' }).click();
-		driver.findElement({ css: '#PasswdAgain' }).sendKeys('ZAQ!2wsxC');
-		driver.findElement({ css: 'body' }).click();
-		driver.sleep('1000');
-
-
-		driver.findElement({ css: '#BirthDay' }).sendKeys(i);
-		driver.findElement({ css: '#BirthYear' }).sendKeys(1980 + i);
-
-		driver.sleep('1000');
-
-		// set month
-		driver.findElement({ css: '#month-label' }).click();
-		driver.sleep('1000');
-
-		driver.findElement({ css: '#month-label .goog-menuitem:nth-child(4)' }).click();
-		driver.sleep('1000');
-
-		// set gender
-		driver.findElement({ css: '#gender-form-element' }).click();
-		driver.findElement({ css: '#gender-form-element .goog-menuitem:nth-child(1)' }).click();
-
-
-		driver.sleep('1000');
-
-		driver.findElement({ css: '#RecoveryPhoneNumber' }).sendKeys('7597576');
-
-		driver.sleep('1000');
-
-		driver.findElement({ css: '#TermsOfService' }).click();
-
-
-		driver.sleep(5000);
-
-//		driver.quit();
-
+		//}
 
 	});
 
+	//return;
 
+	fs.readdir(path.normalize(botDataPath), function (err, fileList) {
+		fileList.forEach(function (fileName) {
 
+			var driver = util.createWebDriverClient(args),
+				data = JSON.parse(fs.readFileSync(path.normalize(botDataPath) + fileName, 'utf-8')),
+				i = 10;
 
+			if (data.registered) {
+				console.log(data.name.join(' ') + 'is registered' );
+				driver.quit();
+				return;
+			}
 
+			data.yandexMail = data.yandexMail || {};
 
+			driver.get(mailUrl);
 
+			data.yandexMail.firstname = data.name[1];
+			driver.findElement({ css: '#firstname' }).sendKeys(data.name[1]);
+			data.yandexMail.lastname = data.name[0];
+			driver.findElement({ css: '#lastname' }).sendKeys(data.name[0]);
 
+			function createLogin() {
+
+				data.yandexMail.login = data.name[1]  + '.' + data.name[0] + (i || '');
+
+				driver.findElement({ css: '#login' }).clear();
+				driver.findElement({ css: '#login' }).sendKeys(data.yandexMail.login);
+				driver.findElement({ css: 'body' }).click();
+
+				driver.sleep('1000');
+
+				driver.findElement({css: '.control__error__login_notavailable'}).click().then(function () {
+					createLogin();
+				}, function(){});
+
+				i += 1;
+
+			}
+
+			createLogin();
+
+			data.yandexMail.pass = bUtil.generatePass();
+
+			driver.findElement({ css: '#password' }).sendKeys(data.yandexMail.pass);
+			driver.sleep(1000);
+
+			driver.findElement({ css: '#password_confirm' }).sendKeys(data.yandexMail.pass);
+			driver.sleep(1000);
+
+			driver.findElement({ css: '#hint_question_id' }).click();
+			driver.sleep(1000);
+
+			data.yandexMail.hintQuestion =  Math.round(Math.random() * 7) + 2;
+
+			driver.findElement({ css: 'ul li:nth-child(' + data.yandexMail.hintQuestion + ')' }).click();
+			driver.sleep(1000);
+
+			data.yandexMail.hintAnswer = data.name[1] + ' ' + data.name[0];
+
+			driver.findElement({ css: '#hint_answer' }).sendKeys(data.yandexMail.hintAnswer);
+			driver.sleep(1000);
+
+			driver.findElement({ css: '#answer' }).click();
+
+			driver.wait(function () {
+				return driver.getCurrentUrl().then(function (url) {
+
+					if (url.indexOf('https://passport.yandex.ru/passport') !== -1) {
+						driver.get('https://mail.yandex.by/');
+					}
+
+					return url.indexOf('https://mail.yandex.by/') !== -1;
+
+				});
+			}, 10000 * 1000);
+
+			driver.wait(function () {
+
+				return driver.findElement({ css: '.b-popup__close.daria-action' }).isDisplayed().then(function () {
+					return true;
+				}, function(){
+					return false;
+				});
+
+			}, 100 * 1000);
+
+			driver.findElement({ css: '.b-popup__close.daria-action' }).click().then(function () {
+
+				data.registered = true;
+
+				fs.writeFile(path.normalize(botDataPath + '/' + fileName), JSON.stringify(data), 'utf-8', function (err) {
+					return err && console.log(err);
+				});
+
+				driver.sleep(5000);
+				driver.quit();
+
+			},
+			function (err) {
+				console.log(err);
+			});
+
+		});
+	});
 
 }());
