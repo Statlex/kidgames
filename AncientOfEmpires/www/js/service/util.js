@@ -97,6 +97,10 @@
 				Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2),
 				0.5);
 
+		},
+		round: function (number, q) {
+			q = q && Math.pow(10, q);
+			return q ? Math.round(number * q) / q : Math.round(number);
 		}
 
 	};
@@ -259,46 +263,5 @@
 		}
 
 	};
-
-	var waiterInstances = [];
-
-	function Waiter(data) {
-
-		this.condition = data.condition;
-		this.callback = data.callback;
-
-		waiterInstances.push(this);
-
-		this.intervalId = this.run();
-
-	}
-
-	Waiter.prototype = {
-
-		run: function () {
-
-			setInterval(function () {
-				if (this.condition()) {
-					this.callback();
-					this.stop();
-				}
-			}.bind(this), 100);
-
-		},
-
-		stop: function () {
-			clearInterval(this.intervalId);
-			waiterInstances.splice(waiterInstances.indexOf(this), 1);
-
-			delete this.condition;
-			delete this.callback;
-
-		}
-
-
-
-	};
-
-	//win.APP.Waiter = Waiter;
 
 }(window, document, document.documentElement));

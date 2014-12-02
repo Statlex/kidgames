@@ -319,17 +319,18 @@
 		},
 		redrawHealthUnit: function (unit) {
 
-			var $unit = this.getUnitById(unit.id),
-				health = Number(Math.max(unit.health, 0.1).toFixed(1)),
+
+			var util = win.util,
+				$unit = this.getUnitById(unit.id),
 				$health = $unit.find('.js-health'),
 				$deltaHealth = $unit.find('.js-delta-health'),
 				beforeHealth = parseFloat($health.html()),
-				deltaHealth = Number((health - beforeHealth).toFixed(1));
+				health = unit.health > 0 ? util.round(Math.max(unit.health, 0.1), 1) : 0,
+				deltaHealth = util.round(health - beforeHealth, 1);
 
 			$deltaHealth.removeClass('delta-health-animation');
 
 			if (deltaHealth) {
-
 
 				$deltaHealth
 					.removeClass('color-green')
