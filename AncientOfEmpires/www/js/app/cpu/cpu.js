@@ -136,6 +136,10 @@
 
 		execute: function (unit, controller, cpu) {
 
+			if (controller.gameOverDetect()) {
+				return;
+			}
+
 			controller.view.highlightPath({ path: unit.getAvailablePath(controller), color: unit.color });
 			controller.view.highlightUnit(unit);
 

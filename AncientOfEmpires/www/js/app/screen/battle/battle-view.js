@@ -22,6 +22,11 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+			//data.gameOverFn = function () {
+			//	console.log(this);
+			//	return Math.random() > 0.8;
+			//};
+
 			// set map to this view
 			this.setMap(util.createCopy(data.map));
 			// show draft map

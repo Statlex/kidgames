@@ -593,13 +593,15 @@
 
 		},
 
+		defaultGameOverFn: function () {
+			return this.isEqualBy(this.buildings);
+		},
+
 		gameOverDetect: function () {
 
 			console.log('check game over');
 
-			// run function to check game over
-
-			var result = this.gameOverFn ? this.gameOverFn() : this.isEqualBy(this.buildings);
+			var result = this.gameOverFn ? this.gameOverFn() : this.defaultGameOverFn();
 
 			if (result) {
 				this.showEndGame();
