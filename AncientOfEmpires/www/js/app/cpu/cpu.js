@@ -758,9 +758,42 @@
 			return enemyAvailablePath;
 
 		},
+
+		buyUnitsHash: {
+			units: {
+				list: ['Soldier', 'Archer', 'Wizard', 'Catapult'], // order unit by priority
+				defaultUnit: 'Archer',
+				Soldier: {  // 7 is 3 + 2 + 1 + 1
+					percent: 3 / 7,
+					point: 0,
+					currentPercent: 0
+				},
+				Archer: {
+					percent: 2 / 7,
+					point: 0,
+					currentPercent: 0
+				},
+				Wizard: {
+					percent: 1 / 7,
+					point: 0,
+					currentPercent: 0
+				},
+				Catapult: {
+					percent: 1 / 7,
+					point: 0,
+					currentPercent: 0
+				},
+				allPoint: 0
+			}
+		},
+
 		buyUnits: function (data) {
 
-			var player = data.player,
+			var unitsHash = this.buyUnitsHash.units,
+				unitType,
+				currentUnitHash = JSON.parse(JSON.stringify(unitsHash)),
+				util = win.util,
+				player = data.player,
 				playerId = player.id,
 				unitInfo = APP.units.info,
 				unitList = unitInfo.unitList.filter(function (unitName) {
@@ -768,17 +801,49 @@
 				}),
 				storeProto = APP.StoreView.prototype,
 				controller = data.controller,
+				playerUnits = [],
+				enemyUnits = [],
 				buildings = controller.buildings,
 				building,
 				castles = [],
 				castle,
 				key,
-				unit,
 				randomFn = function () {
 					return Math.random() - 0.5;
 				};
 
-			unitList.push('soldier', 'soldier', 'soldier', 'soldier', 'archer', 'archer');
+			util.objForEach(controller.units, function(unit) {
+				return unit.playerId === playerId ? playerUnits.push(unit) : enemyUnits.push(unit);
+			});
+
+			/* select unit begin */
+
+			playerUnits.forEach(function (unit) {
+
+				var unitType = unit.type,
+					unitHealth = unit.health;
+
+				if (!currentUnitHash[unitType]) {
+					return;
+				}
+
+				currentUnitHash[unitType].point += unitHealth;
+				currentUnitHash.allPoint += unitHealth;
+
+			});
+
+			currentUnitHash.list.forEach(function (unitType) {
+				var unit = currentUnitHash[unitType];
+				unit.currentPercent = unit.point / currentUnitHash.allPoint;
+				unit.isEnougth = unit.currentPercent / unit.percent > 0.93;
+			});
+
+			unitType = currentUnitHash.list.filter(function (unitType) {
+				return !currentUnitHash[unitType].isEnougth;
+			})[0] || currentUnitHash.defaultUnit;
+
+			unitType = unitType.toLowerCase();
+			/* select unit end */
 
 			for (key in buildings) {
 				if (buildings.hasOwnProperty(key)) {
@@ -789,27 +854,28 @@
 				}
 			}
 
-			castle = castles.sort(function () {
-				return Math.random() - 0.5;
-			})[0];
+			castle = castles.sort(randomFn)[0];
 
 			if (!castle) {
 				return [];
 			}
 
-			// buy unit
-			unit = unitList.sort(randomFn)[0];
+			if (!enemyUnits.length) {
+				unitType = 'knight';
+			}
 
-			while (player.gold >= unitInfo[unit].cost) {
+			if (player.gold >= unitInfo[unitType].cost) {
 				storeProto.buyUnitCpu({
-					unitName: 'knight',
+					unitName: unitType,
 					controller: controller,
 					player: player,
 					x: castle.x,
 					y: castle.y
 				});
-				unit = unitList.sort(randomFn)[0];
 			}
+
+
+			// buy unit
 
 		}
 

@@ -14,19 +14,19 @@
 		"size": {"width": 10, "height": 10},
 
 		"units": [
-			{"type": "Soldier", "x": 7, "y": 1, playerId: 0},
+			//{"type": "Soldier", "x": 7, "y": 1, playerId: 0},
 			{"type": "Knight", "x": 8, "y": 1, playerId: 0},
-			{"type": "Bones", "x": 7, "y": 2, playerId: 0},
-			{"type": "Spider", "x": 7, "y": 0, playerId: 0},
-			{"type": "Wizard", "x": 6, "y": 2, playerId: 0},
-			{"type": "Wisp", "x": 6, "y": 1, playerId: 0},
+			//{"type": "Bones", "x": 7, "y": 2, playerId: 0},
+			//{"type": "Spider", "x": 7, "y": 0, playerId: 0},
+			//{"type": "Wizard", "x": 6, "y": 2, playerId: 0},
+			//{"type": "Wisp", "x": 6, "y": 1, playerId: 0},
 
-			{"type": "Knight", "x": 1, "y": 8, playerId: 1},
-			{"type": "Soldier", "x": 2, "y": 8, playerId: 1},
-			{"type": "Bones", "x": 2, "y": 7, playerId: 1},
-			{"type": "Spider", "x": 2, "y": 9, playerId: 1},
-			{"type": "Wizard", "x": 3, "y": 7, playerId: 1},
-			{"type": "Wisp", "x": 3, "y": 8, playerId: 1}
+			{"type": "Knight", "x": 1, "y": 8, playerId: 1}
+			//{"type": "Soldier", "x": 2, "y": 8, playerId: 1},
+			//{"type": "Bones", "x": 2, "y": 7, playerId: 1},
+			//{"type": "Spider", "x": 2, "y": 9, playerId: 1},
+			//{"type": "Wizard", "x": 3, "y": 7, playerId: 1},
+			//{"type": "Wisp", "x": 3, "y": 8, playerId: 1}
 		],
 
 		"buildings": [
