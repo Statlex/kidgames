@@ -599,8 +599,6 @@
 
 		gameOverDetect: function () {
 
-			console.log('check game over');
-
 			var result = this.gameOverFn ? this.gameOverFn() : this.defaultGameOverFn();
 
 			if (result) {

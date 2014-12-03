@@ -43,7 +43,8 @@
 				placeArmor: 0.5,
 				nearestNoPlayerBuilding: -1.5
 			},
-			withBuilding: 2
+			withBuilding: 2,
+			big: 100 // just big number
 
 		},
 
@@ -56,7 +57,9 @@
 				data = this.get(),
 				rateCost = this.rateCost,
 				enemyAvailableActions = this.get('enemyAvailableActions'),
-				deniedPlacesForGetBuilding = this.get('deniedPlacesForGetBuilding');
+				deniedPlacesForGetBuilding = this.get('deniedPlacesForGetBuilding'),
+				enemyUnits = this.get('enemyUnits'),
+				unit = this.get('unit');
 
 			for (key in data) {
 				if (data.hasOwnProperty(key)) {
@@ -97,7 +100,13 @@
 							break;
 
 						case 'nearestNoPlayerBuilding':
-							rate += value.pathLength * rateCost.q[key];
+
+							if ( !enemyUnits.length && (unit.availableBuildingsType || []).indexOf('castle') === -1 ) { // in enemy is no and unit can not get building
+								rate += -value.pathLength * rateCost.q[key] * rateCost.big; // go from enemy building
+							} else {
+								rate += value.pathLength * rateCost.q[key]; // go to enemy building
+							}
+
 							break;
 
 						case 'getBuilding':
@@ -151,7 +160,7 @@
 					actionDelay = APP.units.info.timer.action;
 
 				if (unit.x !== endX || unit.y !== endY) {
-					//console.log('move to', unit.type, unit.x, '->', endX, unit.y, '->', endY);
+
 					unit.moveTo({
 							x: endX, y: endY
 						}, controller);
@@ -329,6 +338,9 @@
 
 			[activeUnit].forEach(function(unit) {
 
+				if (controller.gameOverDetect()) {
+					return;
+				}
 
 				var deniedPlacesForGetBuilding = {},
 					key,
@@ -416,7 +428,9 @@
 									placeArmor: placeArmor,
 									nearestNoPlayerBuilding: nearestNoPlayerBuilding,
 									deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
-									enemyAvailableActions: enemyAvailableActions
+									enemyAvailableActions: enemyAvailableActions,
+									enemyUnits: enemyUnits,
+									unit: unit
 								}));
 
 								break;
@@ -447,7 +461,9 @@
 											placeArmor: placeArmor,
 											nearestNoPlayerBuilding: nearestNoPlayerBuilding,
 											deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
-											enemyAvailableActions: enemyAvailableActions
+											enemyAvailableActions: enemyAvailableActions,
+											enemyUnits: enemyUnits,
+											unit: unit
 										}));
 
 									}
@@ -480,7 +496,9 @@
 										placeArmor: placeArmor,
 										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
 										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
-										enemyAvailableActions: enemyAvailableActions
+										enemyAvailableActions: enemyAvailableActions,
+										enemyUnits: enemyUnits,
+										unit: unit
 								}));
 
 								}
@@ -508,7 +526,9 @@
 										placeArmor: placeArmor,
 										nearestNoPlayerBuilding: nearestNoPlayerBuilding,
 										deniedPlacesForGetBuilding: deniedPlacesForGetBuilding,
-										enemyAvailableActions: enemyAvailableActions
+										enemyAvailableActions: enemyAvailableActions,
+										enemyUnits: enemyUnits,
+										unit: unit
 									}));
 
 								});
