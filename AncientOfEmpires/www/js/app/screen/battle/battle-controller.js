@@ -6,7 +6,7 @@
 
 	win.APP = win.APP || {};
 
-	function BattleController(data) {
+	function BattleController(data) { // gameOverFn -> extra fn to check end game
 
 		this.unitCounter = 0;
 		this.units = {};
@@ -347,6 +347,9 @@
 
 				}
 
+				if ( this.gameOverDetect() ) {
+					return;
+				}
 
 			} else {
 
@@ -590,23 +593,30 @@
 
 		},
 
-		isGameOver: function (controller) {
+		gameOverDetect: function () {
 
+			console.log('check game over');
 
-			return this.isEqualBy(controller.buildings);
+			// run function to check game over
+
+			var result = this.gameOverFn ? this.gameOverFn() : this.isEqualBy(this.buildings);
+
+			if (result) {
+				this.showEndGame();
+			}
+
+			return result;
 
 		},
-		getResultOfGame: function () {
-			return 'End Game!!!';
+		showEndGame: function () {
+			alert('End Game!!!');
 		},
 		step: function() {
 
 			this.view.activeButtons(true);
 
-			if (this.isGameOver(this)) {
-
-				var result = this.getResultOfGame();
-				alert(result);
+			if (this.gameOverDetect()) {
+				return;
 
 			} else {
 				this.view.hideGoToStore();
