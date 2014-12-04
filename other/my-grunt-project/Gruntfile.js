@@ -18,6 +18,14 @@ module.exports = function(grunt) {
 				dest: 'build/js/production.js'
 			}
 		},
+		'uglify': {
+			my_target: {
+				files: {
+					'build/js/output.min.js': ['build/js/production.js']
+				}
+			}
+
+		},
 		'borschik': {
 
 			"styles": {
@@ -46,10 +54,11 @@ module.exports = function(grunt) {
 
 	// 3. Тут мы указываем Grunt, что хотим использовать этот плагин
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-borschik');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	// 4. Указываем, какие задачи выполняются, когда мы вводим «grunt» в терминале
-	grunt.registerTask('default', ['concat', 'borschik', 'copy']);
+	grunt.registerTask('default', ['concat', 'uglify', 'borschik', 'copy']);
 
 };
