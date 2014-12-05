@@ -135,7 +135,7 @@
 					return err && console.log(err);
 				});
 
-				driver.sleep(5000);
+				driver.sleep(1000);
 				driver.quit();
 
 			},

@@ -22,7 +22,7 @@
 					return value.trim();
 				});
 			}, this).filter(function (value, index) {
-				return 0 <= index && index < 10;
+				return 0 <= index && index < 100;
 			});
 
 
@@ -56,9 +56,9 @@
 			'Ч': 'Ch', 'ч': 'ch',
 			'Ш': 'Sh', 'ш': 'sh',
 			'Щ': 'Sch', 'щ': 'sch',
-			'Ъ': 'b', 'ъ': 'b',
+			'Ъ': '', 'ъ': '',
 			'Ы': 'Y', 'ы': 'y',
-			'Ь': 'b', 'ь': 'b',
+			'Ь': '', 'ь': '',
 			'Э': 'E', 'э': 'e',
 			'Ю': 'Yu', 'ю': 'yu',
 			'Я': 'Ya', 'я': 'ya'
@@ -67,7 +67,7 @@
 		rusToLat: function (string) {
 
 			return Array.prototype.map.call(string, function (ch) {
-				return this.rusToLatMap[ch] || ch;
+				return this.rusToLatMap.hasOwnProperty(ch) ? this.rusToLatMap[ch] : ch;
 			}, this).join('');
 
 		},
