@@ -26,7 +26,7 @@
 	position: relative;
 	background-image: url(../i/bg-map.jpg);
 	overflow: hidden;
-	padding: 50px; /* see previous styles */
+	padding: 50px;  /* see previous styles */
 }
 
 .layers-moving-wrapper {

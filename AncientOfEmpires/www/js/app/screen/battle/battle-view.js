@@ -100,6 +100,24 @@
 
 		},
 
+		goToXY: function (xy) {
+
+			var $layersWrapper = this.$el.find('.js-layers-wrapper'),
+				addedPadding = parseInt($layersWrapper.css('padding'), 10),
+				screenWidth = document.documentElement.clientWidth,
+				screenHeight = document.documentElement.clientHeight,
+				wrapper = this.$wrapper.find('.js-layers-moving-wrapper')[0],
+				squareSize = this.squareSize;
+
+
+			
+
+
+			wrapper.scrollLeft = xy.x * squareSize - screenWidth / 2 + squareSize / 2 + addedPadding;
+			wrapper.scrollTop = xy.y * squareSize - screenHeight / 2 + squareSize / 2 + addedPadding;
+
+		},
+
 		setBuildingPosition: function() {
 
 			var squareSize = this.squareSize;
@@ -209,7 +227,7 @@
 					terrainType = mapData[key];
 
 					if ( tiles[terrainType].onGreen ) {
-						tileImage.src = tiles['green'].src;
+						tileImage.src = tiles.green.src;
 						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
 					}
 

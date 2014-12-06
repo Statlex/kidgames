@@ -236,14 +236,6 @@
 
 	Cpu.prototype = {
 
-		time: {
-			fullStep: 1000
-			// move time
-			// action time
-			// fight time + response fight time
-
-		},
-
 		run: function () {
 
 			// 1
@@ -337,6 +329,8 @@
 			}
 
 			[activeUnit].forEach(function(unit) {
+
+				controller.view.goToXY(unit);
 
 				if (controller.gameOverDetect()) {
 					return;
