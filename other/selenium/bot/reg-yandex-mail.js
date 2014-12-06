@@ -40,13 +40,20 @@
 
 	});
 
+	global.i = 0;
+
 	fs.readdir(path.normalize(botDataPath), function (err, fileList) {
+
 		fileList.forEach(function (fileName) {
+
+
 
 			var data = JSON.parse(fs.readFileSync(path.normalize(botDataPath) + fileName, 'utf-8'));
 
 			if (data.isRegistered) {
-				console.log(data.name.join(' ') + 'is registered' );
+				global.i += 1;
+				console.log(data.name.join(' ') + ' is registered' );
+				console.log(global.i);
 				return;
 			}
 
