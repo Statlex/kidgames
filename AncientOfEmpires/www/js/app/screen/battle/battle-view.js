@@ -193,6 +193,7 @@
 				tiles = APP.map.tile,
 				tileImage = new Image(),
 				key, x, y, terrainType,
+				nearTerran,
 				xRe = /^x(\d+)y\d+$/i,
 				yRe = /^x\d+y(\d+)$/i,
 				canvas = win.document.createElement('canvas'),
@@ -203,13 +204,155 @@
 
 			for (key in mapData) {
 				if (mapData.hasOwnProperty(key)) {
-					x = parseInt(key.replace(xRe, '$1'), 10) * tileSize;
-					y = parseInt(key.replace(yRe, '$1'), 10) * tileSize;
+					x = parseInt(key.replace(xRe, '$1'), 10);
+					y = parseInt(key.replace(yRe, '$1'), 10);
 					terrainType = mapData[key];
-					tileImage.src = tiles[terrainType].src;
-					ctx.drawImage(tileImage, x, y);
+
+					if (terrainType === 'green') {
+						tileImage.src = tiles[terrainType].src;
+						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
+					}
+
+					// draw angle on green
+					if (tiles[terrainType].onGreen) {
+						nearTerran = [''];
+
+						nearTerran.push( mapData['x' + (x - 1) + 'y' + (y - 1)] );
+						nearTerran.push( mapData['x' + x + 'y' + (y - 1)] );
+						nearTerran.push( mapData['x' + (x + 1) + 'y' + (y - 1)] );
+
+						nearTerran.push( mapData['x' + (x - 1) + 'y' + y] );
+						nearTerran.push( mapData['x' + x + 'y' + y] );
+						nearTerran.push( mapData['x' + (x + 1) + 'y' + y] );
+
+						nearTerran.push( mapData['x' + (x - 1) + 'y' + (y + 1)] );
+						nearTerran.push( mapData['x' + x + 'y' + (y + 1)] );
+						nearTerran.push( mapData['x' + (x + 1) + 'y' + (y + 1)] );
+
+
+						[2, 4, 6, 8, 1, 3, 7, 9].forEach(function (placeNumber) {
+
+							var placeName = nearTerran[placeNumber],
+								placeNameUp = nearTerran[2],
+								placeNameDown = nearTerran[8],
+								placeNameLeft = nearTerran[4],
+								placeNameRight = nearTerran[6],
+								angleImg = new Image();
+
+							if ( !placeName ) {
+								return;
+							}
+
+							angleImg.src = tiles.angle[placeNumber.toString()];
+
+							switch (placeNumber) {
+
+								case 1:
+
+									if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+									}
+
+									break;
+
+								case 2:
+
+									if ( tiles[placeName].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+									}
+
+									break;
+
+								case 3:
+
+									if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize  + tileSize / 2, y * tileSize);
+									}
+
+									break;
+
+								case 4:
+
+									if ( tiles[placeName].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+									}
+
+									break;
+
+								case 6:
+
+									if ( tiles[placeName].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize);
+									}
+
+									break;
+
+								case 7:
+
+									if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
+									}
+
+									break;
+
+								case 8:
+
+									if ( tiles[placeName].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
+									}
+
+									break;
+
+								case 9:
+
+									if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
+										ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize + tileSize / 2);
+									}
+
+									break;
+
+
+							}
+
+						});
+
+
+					}
+
+					if (terrainType !== 'green') {
+						tileImage.src = tiles[terrainType].src;
+						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
+					}
+
 				}
 			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			tileImage.src = canvas.toDataURL("image/png");
 			tileImage.className = 'js-background-layer-canvas background-layer-canvas';
