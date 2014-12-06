@@ -189,8 +189,8 @@
 
 			var map = this.map,
 				mapData = map.terrain,
-				tileSize = APP.map.size.tile,
-				tiles = APP.map.base64,
+				tileSize = APP.map.tile.size,
+				tiles = APP.map.tile,
 				tileImage = new Image(),
 				key, x, y, terrainType,
 				xRe = /^x(\d+)y\d+$/i,
@@ -206,7 +206,7 @@
 					x = parseInt(key.replace(xRe, '$1'), 10) * tileSize;
 					y = parseInt(key.replace(yRe, '$1'), 10) * tileSize;
 					terrainType = mapData[key];
-					tileImage.src = tiles[terrainType];
+					tileImage.src = tiles[terrainType].src;
 					ctx.drawImage(tileImage, x, y);
 				}
 			}
@@ -214,9 +214,6 @@
 			tileImage.src = canvas.toDataURL("image/png");
 			tileImage.className = 'js-background-layer-canvas background-layer-canvas';
 			this.$bgLayer[0].appendChild(tileImage);
-
-			//canvas.className = 'js-background-layer-canvas background-layer-canvas';
-			//this.$bgLayer[0].appendChild(canvas);
 
 		},
 		appendUnit: function (unit) {
