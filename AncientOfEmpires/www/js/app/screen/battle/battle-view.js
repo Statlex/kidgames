@@ -208,8 +208,8 @@
 					y = parseInt(key.replace(yRe, '$1'), 10);
 					terrainType = mapData[key];
 
-					if (terrainType === 'green') {
-						tileImage.src = tiles[terrainType].src;
+					if ( tiles[terrainType].onGreen ) {
+						tileImage.src = tiles['green'].src;
 						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
 					}
 
