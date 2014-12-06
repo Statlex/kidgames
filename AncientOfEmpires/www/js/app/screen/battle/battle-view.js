@@ -103,18 +103,45 @@
 		goToXY: function (xy) {
 
 			var $layersWrapper = this.$el.find('.js-layers-wrapper'),
-				addedPadding = parseInt($layersWrapper.css('padding'), 10),
+				addedPadding = parseInt($layersWrapper.css('padding-top'), 10),
 				screenWidth = document.documentElement.clientWidth,
 				screenHeight = document.documentElement.clientHeight,
 				wrapper = this.$wrapper.find('.js-layers-moving-wrapper')[0],
-				squareSize = this.squareSize;
+				squareSize = this.squareSize,
+				beginLeft = wrapper.scrollLeft,
+				beginTop = wrapper.scrollTop,
+				endLeft = xy.x * squareSize - screenWidth / 2 + squareSize / 2 + addedPadding,
+				endTop = xy.y * squareSize - screenHeight / 2 + squareSize / 2 + addedPadding;
 
+			function animate(opts) {
 
-			
+				var start = Date.now();
 
+				setTimeout(animFn, 10);
 
-			wrapper.scrollLeft = xy.x * squareSize - screenWidth / 2 + squareSize / 2 + addedPadding;
-			wrapper.scrollTop = xy.y * squareSize - screenHeight / 2 + squareSize / 2 + addedPadding;
+				function animFn() {
+
+					// вычислить сколько времени прошло
+					var progress = (Date.now() - start) / opts.duration;
+					progress = progress >= 1 ? 1 : progress;
+					// отрисовать анимацию
+					opts.step(progress);
+
+					if (progress < 1) {
+						setTimeout(animFn, 20);
+					}
+
+				}
+
+			}
+
+			animate({
+				duration: APP.units.info.timer.showPath * 0.6,
+				step: function (progress) {
+					wrapper.scrollTop = beginTop + (endTop - beginTop) * progress;
+					wrapper.scrollLeft = beginLeft + (endLeft - beginLeft) * progress;
+				}
+			});
 
 		},
 
