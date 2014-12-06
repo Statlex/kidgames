@@ -136,7 +136,9 @@
 
 		bindEventListeners: function() {
 
-			this.node.wrapper.el.addEventListener('touchstart', this.onTouchStart, false);
+			if ( !win.info.isAndroid ) { // do not add listeners for android
+				this.node.wrapper.el.addEventListener('touchstart', this.onTouchStart, false);
+			}
 
 		}
 

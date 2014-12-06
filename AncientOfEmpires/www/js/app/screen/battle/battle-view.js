@@ -39,6 +39,8 @@
 
 			this.$eventLayer = this.$el.find('.js-event-handler');
 			this.$bgLayer = this.$el.find('.js-background-layer');
+			this.$bgCanvasLayer = this.$el.find('.js-background-layer-canvas');
+
 			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
@@ -185,20 +187,36 @@
 		},
 		drawMap: function () {
 
-			this.$bgLayer.css('display', 'none');
-
 			var map = this.map,
-				data = map.terrain,
-				key,
-				wrapper = this.$bgLayer[0];
+				mapData = map.terrain,
+				tileSize = APP.map.size.tile,
+				tiles = APP.map.base64,
+				tileImage = new Image(),
+				key, x, y, terrainType,
+				xRe = /^x(\d+)y\d+$/i,
+				yRe = /^x\d+y(\d+)$/i,
+				canvas = win.document.createElement('canvas'),
+				ctx = canvas.getContext('2d');
 
-			for (key in data) {
-				if (data.hasOwnProperty(key)) {
-					wrapper.querySelector('[data-xy="' + key + '"]').classList.add('terrain-' + data[key]);
+			canvas.width = map.size.width * tileSize;
+			canvas.height = map.size.height * tileSize;
+
+			for (key in mapData) {
+				if (mapData.hasOwnProperty(key)) {
+					x = parseInt(key.replace(xRe, '$1'), 10) * tileSize;
+					y = parseInt(key.replace(yRe, '$1'), 10) * tileSize;
+					terrainType = mapData[key];
+					tileImage.src = tiles[terrainType];
+					ctx.drawImage(tileImage, x, y);
 				}
 			}
 
-			this.$bgLayer.css('display', '');
+			tileImage.src = canvas.toDataURL("image/png");
+			tileImage.className = 'js-background-layer-canvas background-layer-canvas';
+			this.$bgLayer[0].appendChild(tileImage);
+
+			//canvas.className = 'js-background-layer-canvas background-layer-canvas';
+			//this.$bgLayer[0].appendChild(canvas);
 
 		},
 		appendUnit: function (unit) {

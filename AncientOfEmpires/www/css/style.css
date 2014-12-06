@@ -12,11 +12,14 @@
 .objects-layer,
 .available-path-layer,
 .background-layer,
-.buildings-layer {
+.buildings-layer,
+.background-layer-canvas {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	z-index: 0;
+	left: 0;
+	top: 0;
 }
 
 .layers-wrapper {
@@ -65,6 +68,10 @@
 
 .background-layer {
 	z-index: 0;
+}
+
+.background-layer-canvas {
+
 }
 
 .square-line {
