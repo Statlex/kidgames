@@ -168,7 +168,7 @@
 	background-size: auto 75%;
 	height: 100%;
 	float: left;
-	padding-left: 36px;
+	padding-left: 25px;
 	color: #fff;
 	font-size: 25px;
 	line-height: 36px;
@@ -228,7 +228,6 @@
 	font-size: 30px;
 	line-height: 26px;
 	font-weight: bold;
-	font-family: Tahoma, sans-serif;
 	position: fixed;
 	border: solid 1px #000;
 	-webkit-border-radius: 5px;

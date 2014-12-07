@@ -661,8 +661,12 @@
 		},
 
 		showUnitInfo: function(unit) {
-			this.$statusBar.find('.js-status-bar-armor').html(unit.def);
-			this.$statusBar.find('.js-status-bar-damage').html(unit.atk);
+			this.$statusBar
+				.find('.js-status-bar-armor')
+				.html(unit.def);
+			this.$statusBar
+				.find('.js-status-bar-damage')
+				.html(unit.atk);
 		},
 
 		showPlayerInfo: function(player) {
@@ -678,7 +682,8 @@
 
 			var building,
 				x = data.coordinates.x,
-				y = data.coordinates.y;
+				y = data.coordinates.y,
+				addedArmor = 0;
 
 			data.map.buildings.every(function(build){
 				if (build.x === x && build.y === y) {
@@ -688,15 +693,13 @@
 				return true;
 			});
 
-			if (building) {
-				console.log('show building', building);
-			} else {
-				console.log('show terrainn', data.map.terrain['x' + x + 'y' + y]);
-			}
+			addedArmor = building ? APP.map.defence[building.type] : APP.map[data.map.terrain['x' + x + 'y' + y]].defence;
 
-			this.$statusBar.find('.js-status-bar-armor').html('_');
-			this.$statusBar.find('.js-status-bar-damage').html('_');
+			this.$statusBar.find('.js-status-bar-armor').html(addedArmor);
+			this.$statusBar.find('.js-status-bar-damage').html('&nbsp;');
+
 		},
+
 		hideGetBuilding: function(){
 			this.$eventLayer
 				.find('.can-get-building')
