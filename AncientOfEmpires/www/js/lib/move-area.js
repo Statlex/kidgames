@@ -120,16 +120,22 @@
 		onTouchStart: function () {
 
 			var wrapperHeight = this.clientHeight,
+				container = this.querySelector('div'),
+				containerHeight = container.clientHeight,
 				//wrapperWidth = this.clientWidth,
 				scrollTop = this.scrollTop;
 				//scrollLeft = this.scrollLeft,
 
-			if (wrapperHeight - scrollTop <= wrapperHeight) {
-				this.scrollTop -= 1;
+			if (containerHeight <= wrapperHeight) {
+				return;
 			}
 
 			if (scrollTop <= 0) {
 				this.scrollTop = 1;
+			}
+
+			if (wrapperHeight + scrollTop >= containerHeight) {
+				this.scrollTop -= 1;
 			}
 
 		},
