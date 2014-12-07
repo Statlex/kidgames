@@ -22,6 +22,8 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+			this.squareSize = win.info.get('squareSize') || this.squareSize;
+
 			//data.gameOverFn = function () {
 			//	console.log(this);
 			//	return Math.random() > 0.8;
@@ -69,15 +71,20 @@
 
 		scale: function(e) {
 
+			this.setTransition(false);
+
 			var $node = $(e.currentTarget),
 				isIncrease = $node.data('type') === '+' ? 1 : -1,
 				newSize = this.squareSize + isIncrease * this.scaleStep;
 
 			if (newSize > this.maxSquareSize || newSize < this.minSquareSize) {
+				this.setTransition(true);
 				return;
 			}
 
 			this.squareSize = newSize;
+
+			win.info.set('squareSize', this.squareSize, true);
 
 			this.setStyles();
 			this.setFieldSize();
@@ -87,6 +94,8 @@
 			this.setUnitsPosition();
 
 			this.moveArea.onResize();
+
+			this.setTransition(true);
 
 		},
 
@@ -587,14 +596,15 @@
 		},
 		setStyles: function () {
 
-			this.setTransition(false);
+			this.squareSize = win.info.get('squareSize') || this.squareSize;
 
 			var $wrapper = this.$wrapper,
 				tagSelector = this.styleTagSelector,
 				$style = $wrapper.find(tagSelector),
 				size = this.squareSize,
+				fontSize = Math.round(this.squareSize / 3),
 				selector = this.cssSelector,
-				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; }';
+				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; } .delta-health, .unit-health { font-size: ' + fontSize + 'px; line-height: ' + fontSize + 'px; }';
 
 			if (!$style.length) {
 				$style = $('<style type="text/css" class="' + tagSelector.substr(1) + '"></style>');
@@ -603,7 +613,7 @@
 
 			$style.html(cssText);
 
-			this.setTransition(true);
+			win.info.set('squareSize', this.squareSize, true);
 
 		},
 
@@ -619,7 +629,7 @@
 				$wrapper.append($style);
 			}
 
-			$style.html(isEnable ? cssText : '');
+			$style.html(isEnable ? '' : cssText);
 
 		},
 
