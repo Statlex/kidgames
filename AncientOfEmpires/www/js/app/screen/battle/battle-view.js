@@ -587,6 +587,8 @@
 		},
 		setStyles: function () {
 
+			this.setTransition(false);
+
 			var $wrapper = this.$wrapper,
 				tagSelector = this.styleTagSelector,
 				$style = $wrapper.find(tagSelector),
@@ -600,6 +602,24 @@
 			}
 
 			$style.html(cssText);
+
+			this.setTransition(true);
+
+		},
+
+		setTransition: function (isEnable) {
+
+			var $wrapper = this.$wrapper,
+				tagSelector = '.js-set-transition',
+				$style = $wrapper.find(tagSelector),
+				cssText = 'div, p, span { -webkit-transition: none !important; transition: none !important; }';
+
+			if (!$style.length) {
+				$style = $('<style type="text/css" class="' + tagSelector.substr(1) + '"></style>');
+				$wrapper.append($style);
+			}
+
+			$style.html(isEnable ? cssText : '');
 
 		},
 
