@@ -46,10 +46,6 @@
 			this.$statusBar = this.$el.find('.js-status-bar');
 
 			// create and set controller
-			this.controller = new APP.BattleController(data);
-			this.controller.setView(this);
-			this.controller.setMap(this.map);
-			this.controller.setMapForView();
 
 			this.$wrapper = $('.js-wrapper');
 			this.$availablePathWrapper = this.$el.find('.js-available-path-layer');
@@ -59,13 +55,22 @@
 			this.$wrapper.html('');
 			this.$wrapper.append(this.$el);
 
+			this.controller = new APP.BattleController(data);
+			this.controller.setView(this);
+			this.controller.setMap(this.map);
+			this.controller.setMapForView();
 			this.controller.startBattle();
-
-			this.drawMap();
 
 			this.setMoveArea();
 
 			this.setStyles();
+
+			this.drawMap();
+			// fix, in first time map may not draw
+			setTimeout(function () {
+				this.drawMap();
+			}.bind(this), 1000);
+
 
 		},
 
@@ -380,33 +385,6 @@
 
 				}
 			}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 			tileImage.src = canvas.toDataURL("image/png");
 			tileImage.className = 'js-background-layer-canvas background-layer-canvas';
