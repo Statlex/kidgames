@@ -13,7 +13,8 @@
 		events: {
 			'click .js-go-to-select-map': 'goToSelectMap',
 			'click .js-create-map': 'goToCreateMap',
-			'click .js-go-to-companies': 'goToCompanies'
+			'click .js-go-to-companies': 'goToCompanies',
+			'click .js-go-to-settings': 'goToSetting'
 		},
 
 		init: function() {
@@ -38,6 +39,10 @@
 		goToCompanies: function () {
 
 			APP.router.navigate('companies', { trigger: true });
+
+		},
+		goToSetting: function () {
+			APP.router.navigate('setting', { trigger: true });
 
 		}
 

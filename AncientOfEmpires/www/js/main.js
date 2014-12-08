@@ -17,7 +17,9 @@
 			'battle': 'battle',
 			'store': 'store',
 			'maps': 'maps',
-			'create-map': 'createMap'
+			'create-map': 'createMap',
+			'companies': 'companies',
+			'setting': 'setting'
 		},
 
 		title: function () {
@@ -52,9 +54,11 @@
 		},
 		companies: function () {
 
-			console.log('//');
-
 			new APP.CompaniesView();
+
+		},
+		setting: function () {
+			new APP.SettingView();
 
 		}
 
