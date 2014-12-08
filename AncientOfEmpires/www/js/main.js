@@ -49,6 +49,13 @@
 
 			new APP.CreateMapView();
 
+		},
+		companies: function () {
+
+			console.log('//');
+
+			new APP.CompaniesView();
+
 		}
 
 	});
