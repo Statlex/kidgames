@@ -68,6 +68,7 @@
 
 	APP.removeExtraView = function() {
 		$('.js-store-wrapper').remove();
+		$('.js-battle-menu-wrapper').remove();
 	};
 
 	// start of app here

@@ -11,6 +11,7 @@
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
 			'click .js-end-turn': 'endTurn',
+			'click .js-menu-button': 'showBattleMenu',
 			//'click .js-go-to-store': 'goToStore',
 			'click .js-scale-button': 'scale'
 		},
@@ -223,6 +224,11 @@
 
 			APP.router.navigate('store', {trigger: true});
 
+		},
+
+		showBattleMenu: function () {
+			new APP.BattleMenuView();
+			APP.router.navigate('battle-menu', {trigger: true});
 		},
 
 		setFieldSize: function () {
