@@ -68,10 +68,9 @@
 
 			this.drawMap();
 			// fix, in first time map may not draw
-			setTimeout(function () {
-				this.drawMap();
-			}.bind(this), 1000);
-
+			//setTimeout(function () {
+			//	this.drawMap();
+			//}.bind(this), 1000);
 
 		},
 
@@ -274,7 +273,7 @@
 					terrainType = mapData[key];
 
 					if ( tiles[terrainType].onGreen ) {
-						tileImage.src = tiles.green.src;
+						tileImage = tiles.green.img;
 						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
 					}
 
@@ -308,7 +307,7 @@
 								return;
 							}
 
-							angleImg.src = tiles.angle[placeNumber.toString()];
+							angleImg = tiles.angle[placeNumber.toString()].img;
 
 							switch (placeNumber) {
 
@@ -385,7 +384,7 @@
 					}
 
 					if (terrainType !== 'green') {
-						tileImage.src = tiles[terrainType].src;
+						tileImage = tiles[terrainType].img;
 						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
 					}
 
