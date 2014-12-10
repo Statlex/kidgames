@@ -5,6 +5,18 @@
 	/*global util, APP */
 
 	win.util = {
+
+		setWrapperStyle: function(node) {
+
+			var screenSize = docElem.clientWidth * docElem.clientHeight,
+				fontSize = Math.round(16 * Math.pow(screenSize / 181760, 0.5) );
+
+			node.css({
+				'font-size': fontSize + 'px'
+			});
+
+		},
+
 		extend: function (main, plused) {
 			var key;
 			for (key in plused) {

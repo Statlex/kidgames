@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global templateMaster, lang, Backbone, APP, info, history, setTimeout, $ */
+	/*global templateMaster, lang, Backbone, APP, info, history, setTimeout, $, util */
 
 	lang.push('en');
 
@@ -89,6 +89,8 @@
 	function main() {
 		templateMaster.init();
 		Backbone.history.start();
+
+		util.setWrapperStyle($('body'));
 
 		function back() {
 			if (win.location.hash) {

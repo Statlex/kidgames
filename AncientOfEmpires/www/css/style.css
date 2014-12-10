@@ -4,7 +4,8 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	background-color: #ccc;
+	background-color: #000;
+	color: #f0f0f0;
 }
 
 .event-handler,
@@ -288,16 +289,47 @@
 	background-color: #fff;
 }
 
+.double-blocks-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
 
+.double-block-container {
+	height: 50%;
+}
 
+/*
+.title-game-logo {
+	background-image: url(../img/other/title-bg.jpg);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: center center;
+}
+*/
 
+.black-bg {
+	background-color: #000;
+}
 
+.title-game-logo {
+	background-image: url(../img/other/title-bg.jpg);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: center center;
+}
 
+.text-align-center {
+	text-align: center;
+}
 
-
-
-
-
+.inline-block {
+	display: inline-block;
+}
 
 
 
