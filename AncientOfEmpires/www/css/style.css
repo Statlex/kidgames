@@ -171,8 +171,6 @@
 	float: left;
 	padding-left: 25px;
 	color: #fff;
-	font-size: 25px;
-	line-height: 36px;
 	background-position: center left;
 	margin-right: 20px;
 }
@@ -226,9 +224,6 @@
 }
 
 .scale-button {
-	font-size: 30px;
-	line-height: 26px;
-	font-weight: bold;
 	position: fixed;
 	border: solid 1px #000;
 	-webkit-border-radius: 5px;
@@ -255,9 +250,7 @@
 	height: 100%;
 	z-index: 9;
 	background-color: rgba(255, 255, 255, 0.2);
-	font-size: 40px;
 	color: #fff;
-	line-height: 40px;
 	text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
 	text-align: right;
 	box-sizing: border-box;
