@@ -311,8 +311,30 @@
 }
 */
 
+.radio-button-wrapper {
+	display: block;
+}
+
 .black-bg {
 	background-color: #000;
+}
+
+.blue-bg {
+	background-color: #00a;
+}
+
+.red-bg {
+	background-color: #a00;
+}
+
+.square-wrapper {
+	display: block;
+	height: 100%;
+}
+
+.square {
+	display: block;
+	height: 100%;
 }
 
 .title-game-logo {
@@ -330,6 +352,67 @@
 .inline-block {
 	display: inline-block;
 }
+
+.header {
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1em;
+	padding: 1em;
+	border-bottom: 1px solid #f0f0f0;
+	text-align: center;
+}
+
+.item-wrapper {
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1em;
+	padding: 0 1em;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.item-wrapper > div,
+.item-wrapper > label {
+	padding: 1em 0;
+}
+
+.left {
+	float: left;
+}
+
+.custom-radio-button + .relative-opacity {
+	opacity: 0.5;
+}
+
+.custom-radio-button:checked + .relative-opacity {
+	opacity: 1;
+}
+
+.select-color-square {
+	height: 1em;
+	display: block;
+	padding: 0 0.5em;
+	border-width: 1px;
+	border-style: solid;
+	margin-top: -1px;
+}
+
+.color-block {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

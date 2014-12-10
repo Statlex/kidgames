@@ -16,3 +16,9 @@
 	text-align: left;
 	/*display: block;*/
 }
+
+.header {
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1em;
+}

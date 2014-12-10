@@ -153,6 +153,14 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	display: table-cell;
 	vertical-align: middle;
 }
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
 /* custom classes */
 
 

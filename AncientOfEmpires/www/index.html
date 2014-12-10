@@ -151,38 +151,91 @@
 
 	<div class="select-map-screen">
 
-		<h1>select map</h1>
-		<hr/>
+		<div class="header ellipsis">Create Game</div>
+
+		<div class="item-wrapper clear-fix">
+
+			<div class="left">P1</div>
+
+			<div class="left separator">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p1-type" value="human" checked="checked"/>
+				<span class="left relative-opacity">Human</span>
+			</label>
+			<div class="left">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p1-type" value="cpu"/>
+				<span class="left relative-opacity">CPU</span>
+			</label>
+			<div class="left separator">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p1-color" value="red" checked="checked"/>
+				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
+			</label>
+			<div class="left">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p1-color" value="blue"/>
+				<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
+			</label>
+
+		</div>
+
+		<div class="item-wrapper clear-fix">
+
+			<div class="left">P2</div>
+			<div class="left separator">&nbsp;</div>
+
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p2-type" value="human"/>
+				<span class="left relative-opacity">Human</span>
+			</label>
+			<div class="left">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p2-type" value="cpu" checked="checked"/>
+				<span class="left relative-opacity">CPU</span>
+			</label>
+			<div class="left separator">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p2-color" value="red" />
+				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
+			</label>
+			<div class="left">&nbsp;</div>
+			<label class="left radio-button-wrapper">
+				<input class="hidden custom-radio-button" type="radio" name="p2-color" value="blue" checked="checked"/>
+				<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
+			</label>
+
+		</div>
+
+
+		<div class="js-player-form">
+			<select data-type="type">
+				<option value="cpu">cpu</option>
+				<option value="human">man</option>
+			</select>
+			<select data-type="color">
+				<option value="red">red</option>
+				<option value="blue">blue</option>
+			</select>
+		</div>
+		<div class="js-player-form">
+			<select data-type="type">
+				<option value="human">man</option>
+				<option value="cpu">cpu</option>
+			</select>
+			<select data-type="color">
+				<option value="blue">blue</option>
+				<option value="red">red</option>
+			</select>
+		</div>
+
+
 		<% maps.forEach(function(map){ %>
 		<div data-js-name="<%= map.jsName %>" class="js-map-to-create-game">
 			<h2><%= map.name %></h2>
 		</div>
-		<hr/>
 		<% }); %>
 
-		<hr/>
-		<div class="js-player-form">
-			<select data-type="type">
-				<option value="cpu">cpu</option>
-				<option value="human">man</option>
-			</select>
-			<select data-type="color">
-				<option value="red">red</option>
-				<option value="blue">blue</option>
-			</select>
-		</div>
-		<hr/>
-		<div class="js-player-form">
-			<select data-type="type">
-				<option value="human">man</option>
-				<option value="cpu">cpu</option>
-			</select>
-			<select data-type="color">
-				<option value="blue">blue</option>
-				<option value="red">red</option>
-			</select>
-		</div>
-		<hr/>
 
 		<button class="js-go-to-battle">js-go-to-battle</button>
 
