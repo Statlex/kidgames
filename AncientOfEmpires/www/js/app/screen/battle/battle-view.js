@@ -266,6 +266,92 @@
 			canvas.width = map.size.width * tileSize;
 			canvas.height = map.size.height * tileSize;
 
+			function drawAngle (placeNumber) {
+
+					var placeName = nearTerran[placeNumber],
+						placeNameUp = nearTerran[2],
+						placeNameDown = nearTerran[8],
+						placeNameLeft = nearTerran[4],
+						placeNameRight = nearTerran[6],
+						//tiles = APP.map.tile,
+						angleImg;
+
+					if ( !placeName ) {
+						return;
+					}
+
+					angleImg = tiles.angle[placeNumber.toString()].img;
+
+					switch (placeNumber) {
+
+						case 1:
+
+							if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+							}
+
+							break;
+
+						case 2:
+
+							if ( tiles[placeName].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+							}
+
+							break;
+
+						case 3:
+
+							if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize  + tileSize / 2, y * tileSize);
+							}
+
+							break;
+
+						case 4:
+
+							if ( tiles[placeName].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize, y * tileSize);
+							}
+
+							break;
+
+						case 6:
+
+							if ( tiles[placeName].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize);
+							}
+
+							break;
+
+						case 7:
+
+							if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
+							}
+
+							break;
+
+						case 8:
+
+							if ( tiles[placeName].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
+							}
+
+							break;
+
+						case 9:
+
+							if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
+								ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize + tileSize / 2);
+							}
+
+							break;
+
+					}
+
+			}
+
 			for (key in mapData) {
 				if (mapData.hasOwnProperty(key)) {
 					x = parseInt(key.replace(xRe, '$1'), 10);
@@ -273,14 +359,12 @@
 					terrainType = mapData[key];
 
 					if ( tiles[terrainType].onGreen ) {
-						tileImage = tiles.green.img;
-						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
+						ctx.drawImage(tiles.green.img, x * tileSize, y * tileSize);
 					}
 
 					// draw angle on green
 					if (tiles[terrainType].onGreen) {
 						nearTerran = [''];
-
 						nearTerran.push( mapData['x' + (x - 1) + 'y' + (y - 1)] );
 						nearTerran.push( mapData['x' + x + 'y' + (y - 1)] );
 						nearTerran.push( mapData['x' + (x + 1) + 'y' + (y - 1)] );
@@ -293,107 +377,23 @@
 						nearTerran.push( mapData['x' + x + 'y' + (y + 1)] );
 						nearTerran.push( mapData['x' + (x + 1) + 'y' + (y + 1)] );
 
-
-						[2, 4, 6, 8, 1, 3, 7, 9].forEach(function (placeNumber) {
-
-							var placeName = nearTerran[placeNumber],
-								placeNameUp = nearTerran[2],
-								placeNameDown = nearTerran[8],
-								placeNameLeft = nearTerran[4],
-								placeNameRight = nearTerran[6],
-								angleImg = new Image();
-
-							if ( !placeName ) {
-								return;
-							}
-
-							angleImg = tiles.angle[placeNumber.toString()].img;
-
-							switch (placeNumber) {
-
-								case 1:
-
-									if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
-									}
-
-									break;
-
-								case 2:
-
-									if ( tiles[placeName].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
-									}
-
-									break;
-
-								case 3:
-
-									if ( tiles[placeNameUp].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize  + tileSize / 2, y * tileSize);
-									}
-
-									break;
-
-								case 4:
-
-									if ( tiles[placeName].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize, y * tileSize);
-									}
-
-									break;
-
-								case 6:
-
-									if ( tiles[placeName].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize);
-									}
-
-									break;
-
-								case 7:
-
-									if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameLeft].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
-									}
-
-									break;
-
-								case 8:
-
-									if ( tiles[placeName].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize, y * tileSize + tileSize / 2);
-									}
-
-									break;
-
-								case 9:
-
-									if ( tiles[placeNameDown].level < tiles[terrainType].level && tiles[placeNameRight].level < tiles[terrainType].level ) {
-										ctx.drawImage(angleImg, x * tileSize + tileSize / 2, y * tileSize + tileSize / 2);
-									}
-
-									break;
-
-
-							}
-
-						});
-
+						[2, 4, 6, 8, 1, 3, 7, 9].forEach(drawAngle);
 
 					}
 
 					if (terrainType !== 'green') {
-						tileImage = tiles[terrainType].img;
-						ctx.drawImage(tileImage, x * tileSize, y * tileSize);
+						ctx.drawImage(tiles[terrainType].img, x * tileSize, y * tileSize);
 					}
 
 				}
 			}
 
-			tileImage.src = canvas.toDataURL("image/png");
+			tileImage.addEventListener('load', (function () {
+				this.$bgLayer[0].appendChild(tileImage);
+			}.bind(this)), false);
+
 			tileImage.className = 'js-background-layer-canvas background-layer-canvas';
-			this.$bgLayer[0].appendChild(tileImage);
+			tileImage.src = canvas.toDataURL("image/png");
 
 		},
 		appendUnit: function (unit) {
