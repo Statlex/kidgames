@@ -22,6 +22,9 @@
 			this.$wrapper.html('');
 			this.$wrapper.append(this.$el);
 
+			// workaround for color selection
+			this.setColorSelectInputs();
+
 		},
 		goToBattle: function() {
 
@@ -90,6 +93,38 @@
 			}
 
 			return mapsArray;
+
+		},
+
+		setColorSelectInputs: function () {
+
+			// find inputs
+
+			var inputs = this.$el.find('[name=p1-color], [name=p2-color]');
+
+			// add event listeners to change inputs state
+			inputs.on('change', function () {
+
+				var curName = this.name,
+					value = this.value,
+					relativeName = curName.replace(/(\d)/, function (match, p1) {
+						return parseInt(p1) === 1 ? 2 : 1;
+					}),
+					relativeInputs = $('[name=' + relativeName + ']');
+
+				relativeInputs.forEach(function (node) {
+					node.removeAttribute('checked');
+					node.checked = false;
+				});
+
+				relativeInputs.forEach(function (node) {
+					if (node.value !== value) {
+						node.checked = true;
+					}
+				});
+
+			});
+
 
 		}
 
