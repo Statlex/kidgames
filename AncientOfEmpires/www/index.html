@@ -151,7 +151,15 @@
 
 	<div class="select-map-screen">
 
-		<div class="header ellipsis">Create Game</div>
+		<div class="header clear-fix">
+
+			<div class="js-back header-button left"><- Back</div>
+
+			<div class="js-go-to-battle header-button right">Fight -></div>
+
+		</div>
+
+		<p class="text-align-center with-padding-1">Players</p>
 
 		<div class="item-wrapper clear-fix js-player-form">
 
@@ -213,16 +221,31 @@
 
 		</div>
 
+		<p class="text-align-center with-padding-1">Maps</p>
 
-		<% maps.forEach(function(map){ %>
-		<div data-js-name="<%= map.jsName %>" class="js-map-to-create-game">
-			<h2><%= map.name %></h2>
+		<div class="maps-list-wrapper">
+
+			<div class="maps-list-container">
+				<div class="item-wrapper clear-fix js-player-form">
+
+			<% maps.forEach(function(map, index) { %>
+
+				<label class="radio-button-wrapper clear-fix">
+					<% if ( index === 0 ) { %>
+					<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked" />
+					<% } else { %>
+					<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" />
+					<% }; %>
+					<span class="left relative-opacity"><%= map.name %></span>
+				</label>
+
+			<% }); %>
+
+			</div>
+			</div>
+
 		</div>
-		<% }); %>
 
-		<button class="js-go-to-battle">js-go-to-battle</button>
-
-		<button class="js-back">js-back</button>
 
 	</div>
 

@@ -9,9 +9,7 @@
 	APP.MapsView = APP.BaseView.extend({
 		templates: ['select-map'],
 		events: {
-			'click .js-go-to-battle': 'goToBattle',
-			'click .js-map-to-create-game': 'selectMap'
-
+			'click .js-go-to-battle': 'goToBattle'
 		},
 		init: function () {
 
@@ -32,26 +30,19 @@
 
 			var data = this.createBattleControllerData();
 
-			data.map = this.selectedMap;
+			data.map = this.getMap();
 
-			if (this.checkBattleControllerData(data)) {
-				new APP.BattleView(data);
-				APP.router.navigate('battle', { trigger: true });
-			}
+			new APP.BattleView(data);
+			APP.router.navigate('battle', { trigger: true });
 
-		},
-
-		checkBattleControllerData: function(data) {
-			return !!data.map;
 		},
 
 		createBattleControllerData: function() {
 
-			var forms = this.$el.find('.js-player-form');
-
-			var data = {
-				players: []
-			};
+			var forms = this.$el.find('.js-player-form'),
+				data = {
+					players: []
+				};
 
 			forms.forEach(function(form, index){
 				var $form = $(form),
@@ -67,7 +58,6 @@
 						return;
 					}
 
-
 					var type = input.dataset.type;
 					player[type] = input.value;
 
@@ -77,18 +67,15 @@
 
 			});
 
-			//debugger;
-
 			return data;
 
 		},
 
-		selectMap: function(e) {
+		getMap: function() {
 
-			var $node = $(e.currentTarget || e),
-				mapName = $node.data('js-name');
+			var mapName = this.$el.find('.js-map-to-create-game:checked').data('js-name');
 
-			this.selectedMap = APP.maps[mapName];
+			return APP.maps[mapName];
 
 		},
 		getMapsArray: function() {
