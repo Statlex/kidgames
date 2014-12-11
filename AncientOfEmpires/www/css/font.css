@@ -4,8 +4,7 @@
 }
 
 .wrapper {
-	/*font-family: nes-1, "Courier New", Courier, monospace;*/
-	font-family: 'nes-1';
+	font-family: nes-1, "Courier New", Courier, monospace;
 }
 
 .main-button {
