@@ -153,80 +153,64 @@
 
 		<div class="header ellipsis">Create Game</div>
 
-		<div class="item-wrapper clear-fix">
+		<div class="item-wrapper clear-fix js-player-form">
 
 			<div class="left">P1</div>
 
-			<div class="left separator">&nbsp;</div>
+			<div class="left">&nbsp;</div>
+
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p1-type" value="human" checked="checked"/>
+				<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="human" checked="checked"/>
 				<span class="left relative-opacity">Human</span>
 			</label>
-			<div class="left">&nbsp;</div>
+			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p1-type" value="cpu"/>
+				<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="cpu"/>
 				<span class="left relative-opacity">CPU</span>
 			</label>
-			<div class="left separator">&nbsp;</div>
+
+			<div class="left">&nbsp;</div>
+
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p1-color" value="red" checked="checked"/>
+				<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="red" checked="checked"/>
 				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
 			</label>
-			<div class="left">&nbsp;</div>
+			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p1-color" value="blue"/>
+				<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="blue"/>
 				<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
 			</label>
 
 		</div>
 
-		<div class="item-wrapper clear-fix">
+		<div class="item-wrapper clear-fix js-player-form">
 
 			<div class="left">P2</div>
-			<div class="left separator">&nbsp;</div>
+
+			<div class="left">&nbsp;</div>
 
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p2-type" value="human"/>
+				<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="human"/>
 				<span class="left relative-opacity">Human</span>
 			</label>
-			<div class="left">&nbsp;</div>
+			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p2-type" value="cpu" checked="checked"/>
+				<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="cpu" checked="checked"/>
 				<span class="left relative-opacity">CPU</span>
 			</label>
-			<div class="left separator">&nbsp;</div>
+
+			<div class="left">&nbsp;</div>
+
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p2-color" value="red" />
+				<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="red" />
 				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
 			</label>
-			<div class="left">&nbsp;</div>
+			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p2-color" value="blue" checked="checked"/>
+				<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="blue" checked="checked"/>
 				<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
 			</label>
 
-		</div>
-
-
-		<div class="js-player-form">
-			<select data-type="type">
-				<option value="cpu">cpu</option>
-				<option value="human">man</option>
-			</select>
-			<select data-type="color">
-				<option value="red">red</option>
-				<option value="blue">blue</option>
-			</select>
-		</div>
-		<div class="js-player-form">
-			<select data-type="type">
-				<option value="human">man</option>
-				<option value="cpu">cpu</option>
-			</select>
-			<select data-type="color">
-				<option value="blue">blue</option>
-				<option value="red">red</option>
-			</select>
 		</div>
 
 
@@ -235,7 +219,6 @@
 			<h2><%= map.name %></h2>
 		</div>
 		<% }); %>
-
 
 		<button class="js-go-to-battle">js-go-to-battle</button>
 

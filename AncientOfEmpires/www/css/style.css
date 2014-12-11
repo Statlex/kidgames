@@ -320,11 +320,11 @@
 }
 
 .blue-bg {
-	background-color: #00a;
+	background-color: #00c;
 }
 
 .red-bg {
-	background-color: #a00;
+	background-color: #c00;
 }
 
 .square-wrapper {
@@ -379,8 +379,12 @@
 	float: left;
 }
 
+.small-separator {
+	font-size: 0.5em;
+}
+
 .custom-radio-button + .relative-opacity {
-	opacity: 0.5;
+	opacity: 0.3;
 }
 
 .custom-radio-button:checked + .relative-opacity {
@@ -391,8 +395,6 @@
 	height: 1em;
 	display: block;
 	padding: 0 0.5em;
-	border-width: 1px;
-	border-style: solid;
 	margin-top: -1px;
 }
 

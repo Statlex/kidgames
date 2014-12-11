@@ -113,6 +113,15 @@
 		round: function (number, q) {
 			q = q && Math.pow(10, q);
 			return q ? Math.round(number * q) / q : Math.round(number);
+		},
+		cleatTimeouts: function () {
+			var end = setTimeout(';'),
+				i;
+
+			for (i = end - 10000; i < end; i += 1) {
+				clearTimeout(i);
+			}
+
 		}
 
 	};

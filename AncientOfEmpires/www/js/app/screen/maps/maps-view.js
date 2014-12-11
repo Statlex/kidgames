@@ -15,6 +15,8 @@
 		},
 		init: function () {
 
+			util.cleatTimeouts();
+
 			this.$el = $(this.tmpl['select-map']({
 				maps: this.getMapsArray()
 			}));
@@ -57,16 +59,25 @@
 						id: index,
 						gold: APP.map.default.gold
 					},
-					selects = $form.find('select');
+					inputs = $form.find('input');
 
-				selects.forEach(function(select){
-					var type = select.dataset.type;
-					player[type] = select.value;
+				inputs.forEach(function(input){
+
+					if ( !input.checked ) {
+						return;
+					}
+
+
+					var type = input.dataset.type;
+					player[type] = input.value;
+
 				});
 
 				data.players.push(player);
 
 			});
+
+			//debugger;
 
 			return data;
 
