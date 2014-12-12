@@ -1,4 +1,4 @@
-(function (win, doc, docElem) {
+(function (win) {
 
 	"use strict";
 	/*global window, document, Image */
@@ -160,4 +160,4 @@
 
 	APP.map.initImages();
 
-}(window, document, document.documentElement));
+}(window));

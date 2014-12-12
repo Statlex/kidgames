@@ -4,16 +4,6 @@
 	/*global console, alert, window, document */
 	/*global */
 
-	/*
-	*
-	* data-size=' { port: { order: 1,  width: min/max/X%, height: min/max/X%, float: left/right/none   } , land: {                               } }'
-	*
-	*
-	*
-	*
-	* */
-
-
 	function blockFix () {
 
 		var selector = '.js-block-fix-wrapper',
@@ -21,18 +11,76 @@
 			restWidth = width,
 			height = docElem.clientHeight,
 			restHeight = height,
-			screenPosition = width > height ? 'land' : 'port',
+			screenPosition = width > height ? 'Land' : 'Port',
 			nodes = doc.querySelectorAll(selector);
 
 		nodes = Array.prototype.slice.call(nodes);
 
 		nodes = nodes.sort(function (a, b) {
-			return a.querySelector('div').clientHeight - b.querySelector('div').clientHeight;
+			return parseInt(a.dataset.sizeOrder, 10) -  parseInt(b.dataset.sizeOrder, 10);
 		});
 
-		console.log(nodes);
+		nodes.forEach(function (node) {
+
+			node.style.float = '';
+			node.style.width = '';
+			node.style.height = '';
+
+			var size = node.dataset['size' + screenPosition];
+
+			if (size === 'min') {
+				restHeight -= node.offsetHeight;
+			}
+
+		});
+
+		nodes.forEach(function (node) {
+
+			var size = node.dataset['size' + screenPosition];
+
+			if (size === 'min') {
+				return;
+			}
+
+			size = size.replace(/\s+/g, '').split(';');
+
+			size.forEach(function (pair) {
+
+				pair = pair.split(':');
+
+				var key = pair[0],
+					value = pair[1];
 
 
+				switch (key) {
+
+					case 'float':
+						this.style.float = value;
+						break;
+
+
+					case 'width':
+						this.style.width = value;
+						break;
+
+
+					case 'height':
+
+						if (height === 'max') {
+							this.style.height = restHeight + 'px';
+						} else {
+							height = value;
+						}
+
+						break;
+
+				}
+
+
+			}, node);
+
+
+		});
 
 
 	}

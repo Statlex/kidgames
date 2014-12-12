@@ -42,6 +42,14 @@
 
 			this.bindBackButton();
 
+			win.blockFix();
+
+			setTimeout(win.blockFix, 100);
+			setTimeout(win.blockFix, 200);
+			setTimeout(win.blockFix, 300);
+			setTimeout(win.blockFix, 400);
+			setTimeout(win.blockFix, 500);
+
 		},
 
 		bindBackButton: function() {
