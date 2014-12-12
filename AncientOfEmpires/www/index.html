@@ -171,6 +171,7 @@
 				<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="human" checked="checked"/>
 				<span class="left relative-opacity">Human</span>
 			</label>
+
 			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
 				<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="cpu"/>
@@ -183,6 +184,7 @@
 				<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="red" checked="checked"/>
 				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
 			</label>
+
 			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
 				<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="blue"/>
@@ -201,6 +203,7 @@
 				<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="human"/>
 				<span class="left relative-opacity">Human</span>
 			</label>
+
 			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
 				<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="cpu" checked="checked"/>
@@ -210,9 +213,10 @@
 			<div class="left">&nbsp;</div>
 
 			<label class="left radio-button-wrapper">
-				<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="red" />
+				<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="red"/>
 				<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
 			</label>
+
 			<div class="left small-separator">&nbsp;</div>
 			<label class="left radio-button-wrapper">
 				<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="blue" checked="checked"/>
@@ -228,20 +232,20 @@
 			<div class="maps-list-container">
 				<div class="item-wrapper clear-fix">
 
-			<% maps.forEach(function(map, index) { %>
+					<% maps.forEach(function(map, index) { %>
 
-				<label class="radio-button-wrapper clear-fix">
-					<% if ( index === 0 ) { %>
-					<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked" />
-					<% } else { %>
-					<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" />
-					<% }; %>
-					<span class="left relative-opacity"><%= map.name %></span>
-				</label>
+					<label class="radio-button-wrapper clear-fix">
+						<% if ( index === 0 ) { %>
+						<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+						<% } else { %>
+						<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+						<% }; %>
+						<span class="left relative-opacity"><%= map.name %></span>
+					</label>
 
-			<% }); %>
+					<% }); %>
 
-			</div>
+				</div>
 			</div>
 
 		</div>
@@ -281,41 +285,35 @@
 
 				<div class="inter-wrapper">
 
-				<div class="event-handler js-event-handler">
-					<% util.fromTo(function(i){ %>
-					<div class="square-line">
-						<% util.fromTo(function(j){ %>
-						<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-						<% }, size.width); %>
+					<div class="event-handler js-event-handler">
+						<% util.fromTo(function(i){ %>
+						<div class="square-line">
+							<% util.fromTo(function(j){ %>
+							<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+							<% }, size.width); %>
+						</div>
+						<% }, size.height); %>
 					</div>
-					<% }, size.height); %>
-				</div>
 
-				<div class="units-layer js-units-layer">
-					<div class="attack-animation-block js-attack-animation-block"> &nbsp; </div>
-
-				</div>
-
-				<div class="objects-layer">
-
-				</div>
-
-				<div class="available-path-layer js-available-path-layer">
-					<% util.fromTo(function(i){ %>
-					<div class="square-line">
-						<% util.fromTo(function(j){ %>
-						<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
-						<% }, size.width); %>
+					<div class="units-layer js-units-layer">
+						<div class="attack-animation-block js-attack-animation-block"> &nbsp; </div>
 					</div>
-					<% }, size.height); %>
-				</div>
 
-				<div class="buildings-layer js-buildings-layer">
+					<div class="objects-layer"></div>
 
-				</div>
+					<div class="available-path-layer js-available-path-layer">
+						<% util.fromTo(function(i){ %>
+						<div class="square-line">
+							<% util.fromTo(function(j){ %>
+							<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+							<% }, size.width); %>
+						</div>
+						<% }, size.height); %>
+					</div>
 
-				<div class="js-background-layer background-layer">
-				</div>
+					<div class="buildings-layer js-buildings-layer"></div>
+
+					<div class="js-background-layer background-layer"></div>
 
 				</div>
 			</div>
@@ -455,7 +453,6 @@
 </script>
 
 
-
 <script type="text/x-template" data-name="battle-menu">
 
 	<div class="battle-menu-wrapper js-battle-menu-wrapper">
@@ -473,8 +470,6 @@
 	</div>
 
 </script>
-
-
 
 
 </body>
