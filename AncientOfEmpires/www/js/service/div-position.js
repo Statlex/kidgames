@@ -1,10 +1,10 @@
 (function (win, doc, docElem) {
 
 	"use strict";
-	/*global console, alert, window, document */
+	/*global console, alert, window, document, setTimeout */
 	/*global */
 
-	function blockFix () {
+	function blockFixOnResize () {
 
 		var selector = '.js-block-fix-wrapper',
 			width = docElem.clientWidth,
@@ -82,6 +82,17 @@
 
 		});
 
+
+	}
+
+	function blockFix() {
+
+		blockFixOnResize();
+		setTimeout(blockFixOnResize, 0);
+		setTimeout(blockFixOnResize, 100);
+		setTimeout(blockFixOnResize, 200);
+		setTimeout(blockFixOnResize, 300);
+		setTimeout(blockFixOnResize, 400);
 
 	}
 
