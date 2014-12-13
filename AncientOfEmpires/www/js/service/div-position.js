@@ -4,12 +4,12 @@
 	/*global console, alert, window, document, setTimeout */
 	/*global */
 
-	function blockFixOnResize () {
+	function blockFixOnResize() {
 
 		var defaultProperties = ['float', 'width', 'height'],
 			selector = '.js-block-fix-wrapper',
 			width = docElem.clientWidth,
-			restWidth = width,
+		//restWidth = width,
 			height = docElem.clientHeight,
 			restHeight = height,
 			screenPosition = width > height ? 'Land' : 'Port',
@@ -18,7 +18,7 @@
 		nodes = Array.prototype.slice.call(nodes);
 
 		nodes = nodes.sort(function (a, b) {
-			return parseInt(a.dataset.sizeOrder, 10) -  parseInt(b.dataset.sizeOrder, 10);
+			return parseInt(a.dataset.sizeOrder, 10) - parseInt(b.dataset.sizeOrder, 10);
 		});
 
 		nodes.forEach(function (node) {
@@ -26,7 +26,6 @@
 				this[prop] = '';
 			}, node.style);
 		}, defaultProperties);
-
 
 
 		nodes.forEach(function (node) {
@@ -74,12 +73,9 @@
 
 				}
 
-
 			}, node);
 
-
 		});
-
 
 	}
 
@@ -98,11 +94,43 @@
 
 	win.blockFix = blockFix;
 
-	function blockFixWithScroll () {
 
+	function onTouchStart() {
 
+		var wrapperHeight = this.clientHeight,
+			container = this.querySelector('div'),
+			containerHeight = container.clientHeight,
+		//wrapperWidth = this.clientWidth,
+			scrollTop = this.scrollTop;
+		//scrollLeft = this.scrollLeft,
 
+		if (containerHeight <= wrapperHeight) {
+			return;
+		}
 
+		if (scrollTop <= 0) {
+			this.scrollTop = 1;
+			return;
+		}
+
+		if (wrapperHeight + scrollTop >= containerHeight) {
+			this.scrollTop -= 1;
+		}
+
+	}
+
+	function blockFixWithScroll() {
+
+		if (win.info.isAndroid) { // do not add listeners for android
+			return;
+		}
+
+		var nodes = doc.querySelectorAll('.js-fix-edge-scroll');
+		nodes = Array.prototype.slice.call(nodes);
+		nodes.forEach(function (node) {
+			node.removeEventListener('touchstart', onTouchStart, false);
+			node.addEventListener('touchstart', onTouchStart, false);
+		});
 
 	}
 
