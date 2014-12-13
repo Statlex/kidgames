@@ -439,6 +439,25 @@
 	z-index: 0;
 }
 
+.scroll-arrows-bg:before,
+.scroll-arrows-bg:after {
+	display: block;
+	position: absolute;
+	right: 1em;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.scroll-arrows-bg:after {
+	bottom: 1em;
+	content: '->';
+}
+
+.scroll-arrows-bg:before {
+	top: 4em;
+	content: '<-';
+}
+
 .maps-list-container {
 	padding-bottom: 3em;
 }
