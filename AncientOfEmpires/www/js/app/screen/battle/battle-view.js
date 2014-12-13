@@ -702,7 +702,7 @@
 			addedArmor = building ? APP.map.defence[building.type] : APP.map[data.map.terrain['x' + x + 'y' + y]].defence;
 
 			this.$statusBar.find('.js-status-bar-armor').html(addedArmor);
-			this.$statusBar.find('.js-status-bar-damage').html('&nbsp;');
+			this.$statusBar.find('.js-status-bar-damage').html('X');
 
 		},
 
