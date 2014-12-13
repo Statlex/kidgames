@@ -44,6 +44,9 @@
 
 			win.blockFix();
 
+			win.blockFixWithScroll();
+
+
 		},
 
 		bindBackButton: function() {

@@ -6,7 +6,8 @@
 
 	function blockFixOnResize () {
 
-		var selector = '.js-block-fix-wrapper',
+		var defaultProperties = ['float', 'width', 'height'],
+			selector = '.js-block-fix-wrapper',
 			width = docElem.clientWidth,
 			restWidth = width,
 			height = docElem.clientHeight,
@@ -21,17 +22,17 @@
 		});
 
 		nodes.forEach(function (node) {
+			this.forEach(function (prop) {
+				this[prop] = '';
+			}, node.style);
+		}, defaultProperties);
 
-			node.style.float = '';
-			node.style.width = '';
-			node.style.height = '';
 
-			var size = node.dataset['size' + screenPosition];
 
-			if (size === 'min') {
+		nodes.forEach(function (node) {
+			if (node.dataset['size' + screenPosition] === 'min') {
 				restHeight -= node.offsetHeight;
 			}
-
 		});
 
 		nodes.forEach(function (node) {
@@ -51,25 +52,22 @@
 				var key = pair[0],
 					value = pair[1];
 
-
 				switch (key) {
 
 					case 'float':
 						this.style.float = value;
 						break;
 
-
 					case 'width':
 						this.style.width = value;
 						break;
 
-
 					case 'height':
 
-						if (height === 'max') {
+						if (value === 'max') {
 							this.style.height = restHeight + 'px';
 						} else {
-							height = value;
+							this.style.height = value;
 						}
 
 						break;
@@ -99,5 +97,15 @@
 	win.addEventListener('resize', blockFix, false);
 
 	win.blockFix = blockFix;
+
+	function blockFixWithScroll () {
+
+
+
+
+
+	}
+
+	win.blockFixWithScroll = blockFixWithScroll;
 
 }(window, document, document.documentElement));

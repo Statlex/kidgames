@@ -172,9 +172,7 @@
 
 		</div>
 
-		<div class="js-block-fix-wrapper" data-size-land="float: left; width: 50%; height: max" data-size-port="float: none; width: auto; height: auto" data-size-order="2">
-
-			<div>
+		<div class="js-block-fix-wrapper" data-size-land="float: left; width: 50%; height: max" data-size-port="min" data-size-order="2">
 
 				<p class="text-align-center with-padding-1">Players</p>
 
@@ -250,22 +248,136 @@
 
 				</div>
 
-			</div>
-
 		</div>
 
-		<div class="js-block-fix-wrapper" data-size-land="float: left; width: 50%; height: max" data-size-port="float: none; width: auto; height: max" data-size-order="2">
+		<div class="js-block-fix-wrapper relative" data-size-land="float: left; width: 50%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="3">
 
-			<div>
 
-				<p class="text-align-center with-padding-1">Maps</p>
+				<p class="text-align-center with-padding-1 black-header">Maps</p>
 
-				<div class="maps-list-wrapper">
+				<div class="maps-list-wrapper js-block-fix-wrapper-with-scroll overflow-auto">
 
-					<div class="maps-list-container">
+					<div class="maps-list-container clear-fix">
 						<div class="item-wrapper clear-fix">
 
 							<% maps.forEach(function(map, index) { %>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
+
+							<label class="radio-button-wrapper clear-fix">
+								<% if ( index === 0 ) { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity"><%= map.name %></span>
+							</label>
 
 							<label class="radio-button-wrapper clear-fix">
 								<% if ( index === 0 ) { %>
@@ -283,7 +395,6 @@
 
 				</div>
 
-			</div>
 
 		</div>
 
