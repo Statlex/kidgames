@@ -2,9 +2,22 @@
 
 	"use strict";
 	/*global window, document */
-	/*global util, APP */
+	/*global util, APP, setTimeout */
 
 	win.util = {
+
+		forceReDraw: function (el) {
+
+			setTimeout(function () {
+				el.style.display = 'none';
+				el.offsetHeight; // no need to store this anywhere, the reference is enough
+			}, 0);
+
+			setTimeout(function () {
+				el.style.display = '';
+			}, 10);
+
+		},
 
 		setWrapperStyle: function(node) {
 

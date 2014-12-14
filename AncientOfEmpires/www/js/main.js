@@ -31,6 +31,7 @@
 		battle: function () {
 
 			$('.js-wrapper .js-status-bar').data('state', 'battle');
+			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
 			APP.removeExtraView();
 
 		},
@@ -38,13 +39,11 @@
 		store: function () {
 
 			$('.js-wrapper .js-status-bar').data('state', 'store');
+			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
 
 		},
 
 		maps: function() {
-
-
-
 
 			if ( /^[\s\S]+?#battle$/.test(event.oldURL) ) {
 
@@ -56,8 +55,6 @@
 			} else {
 				APP.mapsView = new APP.MapsView();
 			}
-
-
 
 		},
 
