@@ -119,6 +119,8 @@
 
 			win.setTimeout($unitCard.addClass.bind($unitCard, 'buying-animation'), 10);
 
+			controller.wispAction();
+
 		},
 		buyUnitCpu: function(data) {
 
@@ -155,6 +157,8 @@
 
 			newUnit = controller.appendUnit(unit); // to controller
 			controller.view.appendUnit(newUnit);
+
+			controller.wispAction();
 
 			return true;
 
