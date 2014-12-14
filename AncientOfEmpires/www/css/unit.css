@@ -73,6 +73,7 @@
 	left: 0;
 	text-align: center;
 	text-shadow: 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 0 0 #000;
+	white-space: nowrap;
 }
 
 .unit-health {
@@ -133,8 +134,16 @@
 	height: 200%;
 	left: -50%;
 	top: -50%;
-	background-image: url(../img/unit/active-unit.png);
+	background-image: url(../img/unit/active-unit.gif);
 	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+
+}
+
+
+.unit-under-attack {
+	background-image: url(../img/unit/attack.gif);
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 }
@@ -197,21 +206,15 @@
 .go-to-store-by-unit {
 	background-image: url(../img/unit/shop.png);
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-	-webkit-border-radius: 100%;
-	-moz-border-radius: 100%;
-	border-radius: 100%;
-	background-color: #fff;
+	-webkit-background-size: 80% 80%;
+	background-size: 80% 80%;
+	background-position: center center;
 }
 
 .delta-health-animation {
-
-
 	-webkit-animation-name: delta-health;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: 1;
-
 }
 
 @-webkit-keyframes delta-health {

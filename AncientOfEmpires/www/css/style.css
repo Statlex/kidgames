@@ -89,11 +89,6 @@
 
 }
 
-.unit-under-attack {
-	background-image: url(../img/unit/attack.png);
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-}
 
 .available-path-square {
 	-webkit-transform: scale(0.9);

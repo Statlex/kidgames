@@ -585,7 +585,7 @@
 				tagSelector = this.styleTagSelector,
 				$style = $wrapper.find(tagSelector),
 				size = this.squareSize,
-				fontSize = Math.round(this.squareSize / 3),
+				fontSize = Math.round(this.squareSize / 3.5),
 				selector = this.cssSelector,
 				cssText = selector + '{ width: ' + size + 'px; height: ' + size + 'px; } .delta-health, .unit-health { font-size: ' + fontSize + 'px; line-height: ' + fontSize + 'px; }';
 

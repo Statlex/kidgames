@@ -8,6 +8,8 @@
 
 		forceReDraw: function (el) {
 
+			el = el || doc.body;
+
 			el.style.display = 'none';
 			el.offsetHeight; // no need to store this anywhere, the reference is enough
 
