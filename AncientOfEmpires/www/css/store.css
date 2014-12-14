@@ -1,12 +1,12 @@
 .store-wrapper {
 	position: fixed;
-	top: 35px;
+	top: 2.4em;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: #ccc;
 	z-index: 1;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .unit-card {
@@ -26,3 +26,6 @@
 	padding: 3px;
 }
 
+.store-units-wrapper {
+	padding-bottom: 2.4em;
+}
