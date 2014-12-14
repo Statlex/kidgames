@@ -8,10 +8,8 @@
 
 		forceReDraw: function (el) {
 
-			setTimeout(function () {
-				el.style.display = 'none';
-				el.offsetHeight; // no need to store this anywhere, the reference is enough
-			}, 0);
+			el.style.display = 'none';
+			el.offsetHeight; // no need to store this anywhere, the reference is enough
 
 			setTimeout(function () {
 				el.style.display = '';

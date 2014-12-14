@@ -64,10 +64,14 @@
 				newUnit, unit,
 				controller = this.controller,
 				castle,
-				player = this.player;
+				player = this.player,
+				$count, count,
+				$unitCard = this.$el.find('[data-name="' + unitName + '"]');
+
+			$unitCard.removeClass('buying-animation');
 
 			if ( unitCost > this.player.gold ) {
-				alert('not enough money');
+				//alert('not enough money');
 				return;
 			}
 
@@ -98,7 +102,22 @@
 
 			this.setBuyButtonState();
 
-			alert('you did buy the ' + unitName);
+			$count = $unitCard.find('.js-count-buy-unit');
+			count = $count.html().trim();
+
+			if (count) {
+				count = parseInt(count, 10) + 1;
+			} else {
+				count = 1;
+			}
+
+			$count.html(count);
+
+			if (count === 1) {
+				util.forceReDraw($count[0]);
+			}
+
+			win.setTimeout($unitCard.addClass.bind($unitCard, 'buying-animation'), 10);
 
 		},
 		buyUnitCpu: function(data) {
