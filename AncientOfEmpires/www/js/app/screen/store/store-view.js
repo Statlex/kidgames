@@ -14,6 +14,7 @@
 		},
 		init: function (args) {
 
+
 			var data = {},
 				player = args.controller.activePlayer;
 
@@ -22,6 +23,7 @@
 
 			data.unitInfo = APP.units.info;
 			data.gold = player.gold;
+			data.color = player.color;
 
 			this.$el = $(this.tmpl.store(data));
 
@@ -142,10 +144,9 @@
 
 			var $this = $(e.currentTarget),
 				unitName = $this.data('name'),
-				$description = this.$el.find('.js-unit-description[data-name="'+ unitName +'"]'),
-				description = $description.html().trim();
+				$description = this.$el.find('.js-unit-description[data-name="'+ unitName +'"]');
 
-			alert(description);
+			return $description.hasClass('hidden') ? $description.removeClass('hidden') : $description.addClass('hidden');
 
 		},
 		setNewUnitXY: function (data) {

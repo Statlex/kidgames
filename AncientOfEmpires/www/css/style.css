@@ -212,7 +212,7 @@
 	text-transform: uppercase;
 }
 
-[data-state="store"] .battle-menu-button {
+.status-bar[data-state="store"] .battle-menu-button {
 	display: none;
 }
 
@@ -234,10 +234,10 @@
 .status-bar-end-turn {
 	position: absolute;
 	right: 0.1em;
-	top: 1.2em;
-	padding: 0.5em 0.4em 0 0;
+	top: 1.7em;
+	padding: 0 0.4em 0 0;
 	text-shadow: 0.075em 0.075em 0 #000;
-	/*text-shadow: 0.05em 0.05em 0 #000, 0.05em -0.05em 0 #000, -0.05em 0.05em 0 #000, -0.05em -0.05em 0 #000, 0 0.05em 0 #000, 0 -0.05em 0 #000, -0.05em 0 0 #000, 0.05em 0 0 #000;*/
+	/* text-shadow: 0.05em 0.05em 0 #000, 0.05em -0.05em 0 #000, -0.05em 0.05em 0 #000, -0.05em -0.05em 0 #000, 0 0.05em 0 #000, 0 -0.05em 0 #000, -0.05em 0 0 #000, 0.05em 0 0 #000; */
 	letter-spacing: -0.4em;
 	font-size: 2em;
 }
@@ -247,11 +247,11 @@
 	display: none;
 }
 
-[data-state='store'] .status-bar-battle {
+.status-bar[data-state='store'] .status-bar-battle {
 	display: block;
 }
 
-[data-state='battle'] .status-bar-store {
+.status-bar[data-state='battle'] .status-bar-store {
 	display: block;
 }
 

@@ -518,16 +518,25 @@
 			<% return; %>
 			<% }; %>
 
-			<div class="unit-card js-unit-card" data-name="<%= name %>">
-				<%= unitInfo[name].info.name %>
-				<button data-name="<%= name %>" class="js-get-unit-info">unit info</button>
+			<div class="unit-card js-unit-card clear-fix" data-name="<%= name %>">
+
+				<div class="unit-card-header"><%= unitInfo[name].info.name %></div>
+
+				<div class="store-unit-icon unit-color-<%= color %> unit-<%= name %>"></div>
+
+				<div class="store-unit-short-info">
+					atk: <%= unitInfo[name].atk %><br>
+					def: <%= unitInfo[name].def %><br>
+					mov: <%= unitInfo[name].mov %>
+				</div>
+
+				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">BUY<br><%= unitInfo[name].cost %></div>
+
+				<div data-name="<%= name %>" class="js-get-unit-info store-get-unit-info">[i]</div>
+				<div class="clear"></div>
 				<div data-name="<%= name %>" class="unit-description js-unit-description hidden">
 					<%= unitInfo[name].info.description %>
 				</div>
-				<br>atk: <%= unitInfo[name].atk %>
-				<br>def: <%= unitInfo[name].def %>
-				<br>move: <%= unitInfo[name].mov %>
-				<button data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">buy <%= unitInfo[name].cost %>$</button>
 			</div>
 			<% }); %>
 
