@@ -27,6 +27,8 @@
 
 			this.$el = $(this.tmpl.store(data));
 
+			this.bindScroll();
+
 			this.$buyButtons = this.$el.find('.js-buy-unit');
 
 			this.$wrapper = $('.js-wrapper');
@@ -205,6 +207,41 @@
 
 			unit.x = places[0].x;
 			unit.y = places[0].y;
+
+		},
+
+		bindScroll: function () {
+
+			if (win.info.isAndroid) { // do not add listeners for android
+				return;
+			}
+
+			//debugger;
+
+			this.$el[0].addEventListener('touchstart', function () {
+
+				var wrapperHeight = this.clientHeight,
+					container = this.querySelector('div'),
+					containerHeight = container.clientHeight,
+				//wrapperWidth = this.clientWidth,
+					scrollTop = this.scrollTop;
+				//scrollLeft = this.scrollLeft,
+
+				if (containerHeight <= wrapperHeight) {
+					return;
+				}
+
+				if (scrollTop <= 0) {
+					this.scrollTop = 1;
+					return;
+				}
+
+				if (wrapperHeight + scrollTop >= containerHeight) {
+					this.scrollTop -= 1;
+				}
+
+			}, false);
+
 
 		}
 

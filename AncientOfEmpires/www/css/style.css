@@ -486,6 +486,9 @@
 	padding-top: 3em;
 	box-sizing: border-box;
 	z-index: 0;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 }
 
 .scroll-arrows-bg:before,
