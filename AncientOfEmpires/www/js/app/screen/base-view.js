@@ -59,17 +59,6 @@
 			});
 		},
 
-		disableScroll: function (el) {
-
-			el = el || this.$el;
-
-			el.on('touchmove', function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-			});
-
-		},
-
 		disableScrollNodes: function () {
 
 			function noScroll(e) {
@@ -80,6 +69,11 @@
 			this.$el.find('.js-no-scroll').each(function () {
 				this.addEventListener('touchmove', noScroll, false);
 			});
+
+			if (this.$el.hasClass('js-no-scroll')) {
+				this.$el[0].addEventListener('touchmove', noScroll, false);
+			}
+
 
 		}
 
