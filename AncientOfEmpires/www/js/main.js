@@ -4,7 +4,7 @@
 	/*global window, document */
 	/*global templateMaster, lang, Backbone, APP, info, history, setTimeout, $, util */
 
-	lang.push('en');
+	win.lang.push('en');
 
 	window.APP = window.APP || {};
 
@@ -34,12 +34,16 @@
 			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
 			APP.removeExtraView();
 
+			$('.js-hide-for-store').css('display', '');
+
 		},
 
 		store: function () {
 
 			$('.js-wrapper .js-status-bar').data('state', 'store');
 			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
+
+			$('.js-hide-for-store').css('display', 'none');
 
 		},
 

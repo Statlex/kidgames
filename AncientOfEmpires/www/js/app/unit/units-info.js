@@ -7,6 +7,8 @@
 	win.APP = win.APP || {};
 	APP.units = APP.units || {};
 
+	var lang = win.lang;
+
 	APP.units.info = {
 		unitList: ['soldier', 'archer', 'lizard', 'wizard', 'knight', 'wisp', 'golem', 'spider', 'catapult', 'wyvern', 'bones'],
 		archer: {

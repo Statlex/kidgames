@@ -14,7 +14,6 @@
 		},
 		init: function (args) {
 
-
 			var data = {},
 				player = args.controller.activePlayer;
 
