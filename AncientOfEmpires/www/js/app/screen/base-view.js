@@ -42,6 +42,8 @@
 
 			this.bindBackButton();
 
+			this.disableScrollNodes();
+
 			win.blockFix();
 
 			win.blockFixWithScroll();
@@ -57,11 +59,26 @@
 			});
 		},
 
-		disableScroll: function () {
+		disableScroll: function (el) {
 
-			this.$el.on('touchmove', function (e) {
+			el = el || this.$el;
+
+			el.on('touchmove', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
+			});
+
+		},
+
+		disableScrollNodes: function () {
+
+			function noScroll(e) {
+				e.preventDefault();
+				e.stopPropagation();
+			}
+
+			this.$el.find('.js-no-scroll').each(function () {
+				this.addEventListener('touchmove', noScroll, false);
 			});
 
 		}

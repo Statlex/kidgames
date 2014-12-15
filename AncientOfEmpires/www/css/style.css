@@ -228,8 +228,8 @@
 
 .status-bar-end-turn {
 	position: absolute;
-	right: 0.3em;
-	top: 1.7em;
+	right: 0.5em;
+	top: 1.9em;
 	padding: 0.3em 0.2em 0.2em 0.1em;
 	letter-spacing: -0.4em;
 	font-size: 1.7em;
@@ -242,8 +242,8 @@
 }
 
 .status-bar-end-turn:active {
-	right: 0.2em;
-	top: 1.8em;
+	right: 0.4em;
+	top: 2.0em;
 	box-shadow: none;
 }
 
@@ -511,7 +511,7 @@
 }
 
 .scroll-arrows-bg:after {
-	bottom: 1em;
+	bottom: 1.5em;
 	content: '->';
 }
 

@@ -18,6 +18,6 @@
 	};
 
 	// default language
-	win.lang.push(info.lang);
+	win.lang.push(win.info.lang);
 
 }(window));
