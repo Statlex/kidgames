@@ -23,7 +23,7 @@
 
 .unit-card {
 	border-style: solid;
-	border-width: initial;
+	border-width: 0.2em;
 	margin-bottom: 1.1em;
 	padding: 0.5em;
 	position: relative;
