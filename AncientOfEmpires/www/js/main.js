@@ -34,7 +34,7 @@
 			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
 			APP.removeExtraView();
 
-			$('.js-hide-for-store').css('display', '');
+			$('.js-hide-for-store').removeClass('visibility-hidden');
 
 		},
 
@@ -43,7 +43,7 @@
 			$('.js-wrapper .js-status-bar').data('state', 'store');
 			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
 
-			$('.js-hide-for-store').css('display', 'none');
+			$('.js-hide-for-store').addClass('visibility-hidden');
 
 		},
 

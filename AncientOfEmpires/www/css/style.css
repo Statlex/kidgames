@@ -419,6 +419,10 @@
 	float: right;
 }
 
+.visibility-hidden {
+	visibility: hidden;
+}
+
 .small-separator {
 	font-size: 0.5em;
 }
