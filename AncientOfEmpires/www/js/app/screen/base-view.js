@@ -55,6 +55,15 @@
 					history.back();
 				}
 			});
+		},
+
+		disableScroll: function () {
+
+			this.$el.on('touchmove', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+			});
+
 		}
 
 	});

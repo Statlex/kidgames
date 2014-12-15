@@ -27,6 +27,8 @@
 
 			this.$wrapper.append(this.$el);
 
+			this.disableScroll();
+
 		},
 
 		goToSelectMap: function() {
