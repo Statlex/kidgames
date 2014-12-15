@@ -98,7 +98,7 @@
 				wrapper.el.scrollTop = -offset.y;
 			}
 
-			container.el.style[this.jsTransform] = 'translate(' + cssX + 'px, ' + cssY + 'px)';
+			container.el.style[this.jsTransform] = 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)';
 
 		},
 

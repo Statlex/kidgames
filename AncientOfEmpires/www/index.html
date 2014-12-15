@@ -255,10 +255,10 @@
 
 				<p class="text-align-center with-padding-1 black-header js-no-scroll">Maps</p>
 
-				<div class="maps-list-wrapper js-block-fix-wrapper-with-scroll overflow-auto js-fix-edge-scroll">
+				<div class="maps-list-wrapper js-block-fix-wrapper-with-scroll overflow-auto js-fix-edge-scroll transform-0">
 
-					<div class="maps-list-container clear-fix">
-						<div class="item-wrapper clear-fix">
+					<div class="maps-list-container clear-fix transform-0">
+						<div class="item-wrapper clear-fix transform-0">
 
 							<% maps.forEach(function(map, index) { %>
 
@@ -434,11 +434,11 @@
 
 		</div>
 
-		<div class="js-layers-moving-wrapper layers-moving-wrapper js-hide-for-store">
+		<div class="js-layers-moving-wrapper layers-moving-wrapper js-hide-for-store transform-0">
 
 			<div class="js-layers-wrapper layers-wrapper clear-fix">
 
-				<div class="inter-wrapper">
+				<div class="inter-wrapper transform-0">
 
 					<div class="event-handler js-event-handler">
 						<% util.fromTo(function(i){ %>
@@ -509,9 +509,9 @@
 
 <script type="text/x-template" data-name="store">
 
-	<div class="store-wrapper js-store-wrapper clear-fix">
+	<div class="store-wrapper js-store-wrapper clear-fix transform-0">
 
-		<div class="store-units-wrapper">
+		<div class="store-units-wrapper transform-0">
 			<% unitInfo.unitList.forEach(function(name){ %>
 
 			<% if (unitInfo[name].notInStore) { %>
