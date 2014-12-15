@@ -228,13 +228,11 @@
 
 .status-bar-end-turn {
 	position: absolute;
-	right: 0.1em;
+	right: 0.3em;
 	top: 1.7em;
-	padding: 0.2em 0.2em 0.1em 0.1em;
-	/* text-shadow: 0.075em 0.075em 0 #000; */
-	/* text-shadow: 0.05em 0.05em 0 #000, 0.05em -0.05em 0 #000, -0.05em 0.05em 0 #000, -0.05em -0.05em 0 #000, 0 0.05em 0 #000, 0 -0.05em 0 #000, -0.05em 0 0 #000, 0.05em 0 0 #000; */
+	padding: 0.3em 0.2em 0.2em 0.1em;
 	letter-spacing: -0.4em;
-	font-size: 2em;
+	font-size: 1.7em;
 	line-height: 1em;
 	background-color: #000;
 	border-width: 0.1em;
@@ -244,7 +242,7 @@
 }
 
 .status-bar-end-turn:active {
-	right: 0;
+	right: 0.2em;
 	top: 1.8em;
 	box-shadow: none;
 }
