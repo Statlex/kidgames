@@ -170,37 +170,26 @@
 }
 
 .level-bar {
-	display: none;
-	background-image: url(../img/unit/level-item.svg);
-	background-repeat: repeat-x;
+	background-repeat: no-repeat;
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
 	position: absolute;
-	height: 30%;
+	height: 25%;
+	width: 100%;
 	top: 0;
-	left: 50%;
 	z-index: 1;
 }
 
-[data-level="1"] .level-bar,
-[data-level="2"] .level-bar,
-[data-level="3"] .level-bar {
-	display: block;
-}
-
 [data-level="1"] .level-bar {
-	width: 30%;
-	margin-left: -15%;
+	background-image: url(../img/unit/level-item-1.png);
 }
 
 [data-level="2"] .level-bar {
-	width: 60%;
-	margin-left: -30%;
+	background-image: url(../img/unit/level-item-2.png);
 }
 
 [data-level="3"] .level-bar {
-	width: 90%;
-	margin-left: -45%;
+	background-image: url(../img/unit/level-item-3.png);
 }
 
 .go-to-store-by-unit {
