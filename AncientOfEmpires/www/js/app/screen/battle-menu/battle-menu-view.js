@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, setTimeout */
 	/*global bingo, $, info, APP, util */
 
 	win.APP = win.APP || {};
@@ -10,7 +10,8 @@
 		templates: ['battle-menu'],
 
 		events: {
-
+			'click .js-restart-mission': 'restartMission',
+			'click .js-quit-mission': 'quitMission'
 		},
 
 		init: function () {
@@ -20,6 +21,32 @@
 			this.$wrapper = $('.js-wrapper');
 			this.$wrapper.find('.js-battle-menu-wrapper').remove();
 			this.$wrapper.append(this.$el);
+
+		},
+
+		restartMission: function () {
+
+			console.log('restartMission');
+
+		},
+
+		quitMission: function () {
+
+			(function checkUrl() {
+
+				var location = win.location,
+					history = win.history;
+
+				if (location.hash.replace('#', '') === 'battle') {
+					setTimeout(history.back.bind(history), 200);
+				} else {
+					history.back();
+					setTimeout(checkUrl, 200);
+				}
+
+			}());
+
+
 
 		}
 
