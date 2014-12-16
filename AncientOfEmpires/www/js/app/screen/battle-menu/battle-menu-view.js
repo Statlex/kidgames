@@ -26,7 +26,13 @@
 
 		restartMission: function () {
 
-			console.log('restartMission');
+			this.$el.addClass('hidden');
+
+			win.history.back();
+
+			if ( confirm('are you sure to restart mission?') ) {
+				APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
+			}
 
 		},
 

@@ -4,6 +4,19 @@
 	/*global window, document */
 	/*global bingo, $, info, APP */
 
+	/*
+	* setting
+	* 1 - music off/on
+	* 2 - ask for switch turn
+	* 3 - animation speed
+	*
+	*
+	* */
+
+
+
+
+
 	win.APP = win.APP || {};
 
 	APP.SettingView = APP.BaseView.extend({

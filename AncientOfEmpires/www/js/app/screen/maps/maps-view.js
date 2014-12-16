@@ -32,7 +32,8 @@
 
 			data.map = this.getMap();
 
-			new APP.BattleView(data);
+			APP.battleView = new APP.BattleView(data);
+			console.log(APP.battleView);
 			APP.router.navigate('battle', { trigger: true });
 
 		},

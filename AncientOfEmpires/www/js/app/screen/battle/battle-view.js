@@ -23,6 +23,8 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+			this.startingData = util.createCopy(data);
+
 			this.squareSize = win.info.get('squareSize') || this.squareSize;
 
 			//data.gameOverFn = function () {
