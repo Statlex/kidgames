@@ -23,4 +23,12 @@
 	    float: left;
     }
 
+	.land-vertical-align-middle {
+		vertical-align: middle;
+	}
+
+    .cell-button-wrapper {
+	    padding-top: 0;
+    }
+
 }

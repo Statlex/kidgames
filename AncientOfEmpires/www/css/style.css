@@ -427,6 +427,10 @@
 	font-size: 0.5em;
 }
 
+.vertical-align-top {
+	vertical-align: top;
+}
+
 .custom-radio-button + .relative-opacity {
 	opacity: 0.3;
 }
@@ -520,4 +524,6 @@
 	z-index: 1;
 }
 
-
+.cell-button-wrapper {
+	padding-top: 1.5em;
+}
