@@ -30,32 +30,24 @@
 
 			win.history.back();
 
-			if ( confirm('are you sure to restart mission?') ) {
-				APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
-			}
+			setTimeout(function () {
+				if ( confirm('are you sure to restart mission?') ) {
+					APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
+				}
+			}, 100);
 
 		},
 
 		quitMission: function () {
 
-			(function checkUrl() {
+			this.$el.addClass('hidden');
 
-				var location = win.location,
-					history = win.history;
+			var history = win.history;
+			history.back();
 
-				if (location.hash.replace('#', '') === 'battle') {
-					setTimeout(history.back.bind(history), 200);
-				} else {
-					history.back();
-					setTimeout(checkUrl, 200);
-				}
-
-			}());
-
-
+			setTimeout(history.back.bind(history), 100);
 
 		}
-
 
 	});
 
