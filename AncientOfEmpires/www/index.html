@@ -626,16 +626,23 @@
 
 				<div class="table-cell">
 
-					<div class="menu-form-wrapper js-stop-click">
+					<div class="js-back battle-menu-fade"></div>
+
+					<div class="menu-form-wrapper">
 
 						<div class="js-back battle-menu-close">X</div>
 
-						<div>
-							<div>objective [+]</div>
-							<div>settings [+]</div>
-							<div>restart mission</div>
-							<div>quit mission</div>
+						<div class="battle-menu-item-button" data-show="objective">objective <span class="js-hidden-data-state">[+]</span></div>
+						<div class="battle-menu-added-data hidden" data-block="objective">
+							<p>Get all available buildings</p>
 						</div>
+
+						<div class="battle-menu-item-button" data-show="settings">settings <span class="js-hidden-data-state">[+]</span></div>
+						<div class="battle-menu-added-data hidden" data-block="settings">Settings is here :)</div>
+
+						<div class="battle-menu-item-button">restart mission</div>
+
+						<div class="battle-menu-item-button">quit mission</div>
 
 					</div>
 
@@ -643,6 +650,8 @@
 				</div>
 
 			</div>
+
+
 
 		</div>
 

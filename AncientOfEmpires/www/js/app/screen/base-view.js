@@ -46,6 +46,8 @@
 
 			this.bindStopClick();
 
+			this.bindShowHideBlock();
+
 			win.blockFix();
 
 			win.blockFixWithScroll();
@@ -93,6 +95,34 @@
 					this.addEventListener('mouseup', stopEvent, false);
 					this.addEventListener('click', stopEvent, false);
 				});
+
+
+		},
+
+		bindShowHideBlock: function () {
+
+			this.$el.find('[data-show]').each(function () {
+
+				$(this).on('click', function () {
+
+					var selector = this.dataset.show,
+						dataStateNode = this.querySelector('.js-hidden-data-state'),
+						$block = $(this.parentNode.querySelector('[data-block="' + selector + '"]'));
+
+					if ($block.hasClass('hidden')) {
+						$block.removeClass('hidden');
+						dataStateNode.innerHTML = '[-]';
+					} else {
+						$block.addClass('hidden');
+						dataStateNode.innerHTML = '[+]';
+					}
+
+
+
+				});
+
+			});
+
 
 
 		}
