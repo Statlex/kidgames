@@ -44,6 +44,8 @@
 
 			this.disableScrollNodes();
 
+			this.bindStopClick();
+
 			win.blockFix();
 
 			win.blockFixWithScroll();
@@ -75,7 +77,27 @@
 			}
 
 
+		},
+
+		bindStopClick: function () {
+
+			function stopEvent(e) {
+				e.stopPropagation();
+				e.preventDefault();
+			}
+
+			this.$el.find('.js-stop-click').each(function () {
+					this.addEventListener('touchstart', stopEvent, false);
+					this.addEventListener('mousedown', stopEvent, false);
+					this.addEventListener('touchend', stopEvent, false);
+					this.addEventListener('mouseup', stopEvent, false);
+					this.addEventListener('click', stopEvent, false);
+				});
+
+
 		}
+
+
 
 	});
 
