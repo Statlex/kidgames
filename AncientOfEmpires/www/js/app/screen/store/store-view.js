@@ -67,7 +67,7 @@
 				castle,
 				player = this.player,
 				$count, count,
-				$unitCard = this.$el.find('[data-name="' + unitName + '"]');
+				$unitCard = this.$el.find('.js-unit-card[data-name="' + unitName + '"]');
 
 			$unitCard.removeClass('buying-animation');
 
@@ -169,6 +169,8 @@
 			var $this = $(e.currentTarget),
 				unitName = $this.data('name'),
 				$description = this.$el.find('.js-unit-description[data-name="'+ unitName +'"]');
+
+			this.$el.find('.js-unit-card[data-name="' + unitName + '"]').removeClass('buying-animation');
 
 			return $description.hasClass('hidden') ? $description.removeClass('hidden') : $description.addClass('hidden');
 
