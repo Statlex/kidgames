@@ -30,8 +30,11 @@
 
 		battle: function () {
 
-			$('.js-wrapper .js-status-bar').data('state', 'battle');
-			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
+			var $block = $('.js-wrapper .js-status-bar');
+
+			$block.data('state', 'battle');
+			util.forceReDraw($block[0]);
+
 			APP.removeExtraView();
 
 			$('.js-hide-for-store').removeClass('visibility-hidden');
@@ -40,8 +43,10 @@
 
 		store: function () {
 
-			$('.js-wrapper .js-status-bar').data('state', 'store');
-			util.forceReDraw($('.js-wrapper .js-status-bar')[0]);
+			var $block = $('.js-wrapper .js-status-bar');
+
+			$block.data('state', 'store');
+			util.forceReDraw($block[0]);
 
 			$('.js-hide-for-store').addClass('visibility-hidden');
 
