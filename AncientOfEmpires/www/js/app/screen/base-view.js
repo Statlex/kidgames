@@ -107,16 +107,24 @@
 
 					var selector = this.dataset.show,
 						dataStateNode = this.querySelector('.js-hidden-data-state'),
-						$block = $(this.parentNode.querySelector('[data-block="' + selector + '"]'));
+						$block = $(this.parentNode.querySelector('[data-block="' + selector + '"]')),
+						needShow = $block.hasClass('hidden');
 
-					if ($block.hasClass('hidden')) {
+
+
+					$('.js-wrapper [data-show]').each(function () {
+						$(this.parentNode.querySelector('[data-block="' + this.dataset.show + '"]')).addClass('hidden');
+						this.querySelector('.js-hidden-data-state').innerHTML = '[+]';
+					});
+
+
+					if ( needShow ) {
+
 						$block.removeClass('hidden');
 						dataStateNode.innerHTML = '[-]';
-					} else {
-						$block.addClass('hidden');
-						dataStateNode.innerHTML = '[+]';
-					}
 
+
+					}
 
 
 				});
