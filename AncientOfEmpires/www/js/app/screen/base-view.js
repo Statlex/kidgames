@@ -101,6 +101,18 @@
 
 		bindShowHideBlock: function () {
 
+			this.$el.find('[data-hide-show]').each(function () {
+
+				$(this).on('click', function () {
+
+					var selector = this.dataset.hideShow;
+					$('.js-wrapper [data-block="' + selector + '"]').addClass('hidden');
+					$('.js-wrapper [data-show="' + selector + '"] .js-hidden-data-state').html('[+]');
+
+				});
+
+			});
+
 			this.$el.find('[data-show]').each(function () {
 
 				$(this).on('click', function () {
@@ -110,32 +122,21 @@
 						$block = $(this.parentNode.querySelector('[data-block="' + selector + '"]')),
 						needShow = $block.hasClass('hidden');
 
-
-
 					$('.js-wrapper [data-show]').each(function () {
 						$(this.parentNode.querySelector('[data-block="' + this.dataset.show + '"]')).addClass('hidden');
 						this.querySelector('.js-hidden-data-state').innerHTML = '[+]';
 					});
 
-
 					if ( needShow ) {
-
 						$block.removeClass('hidden');
 						dataStateNode.innerHTML = '[-]';
-
-
 					}
-
 
 				});
 
 			});
 
-
-
 		}
-
-
 
 	});
 

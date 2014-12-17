@@ -49,16 +49,17 @@
 
 		maps: function() {
 
-			if ( /^[\s\S]+?#battle$/.test(event.oldURL) ) {
+			if ( /^[\s\S]+?#battle$/.test(event.oldURL) && APP.battleView && !APP.battleView.doNotShowConfirm) {
 
 				if ( confirm('are you sure to leave mission?') ) {
 					APP.mapsView = new APP.MapsView();
 				} else {
 					history.forward();
 				}
-			} else {
-				APP.mapsView = new APP.MapsView();
+				return;
 			}
+
+			APP.mapsView = new APP.MapsView();
 
 		},
 

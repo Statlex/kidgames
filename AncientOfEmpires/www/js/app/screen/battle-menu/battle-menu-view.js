@@ -30,11 +30,7 @@
 
 			win.history.back();
 
-			setTimeout(function () {
-				if ( confirm('are you sure to restart mission?') ) {
-					APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
-				}
-			}, 100);
+			APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
 
 		},
 
@@ -44,6 +40,8 @@
 
 			var history = win.history;
 			history.back();
+
+			APP.battleView.doNotShowConfirm = true;
 
 			setTimeout(history.back.bind(history), 100);
 

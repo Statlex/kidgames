@@ -632,17 +632,39 @@
 
 						<div class="js-back battle-menu-close">X</div>
 
-						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state">[+]</span> objective</div>
+						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span>objective</div>
 						<div class="battle-menu-added-data hidden" data-block="objective">
 							<p>Get all available buildings</p>
 						</div>
 
-						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state">[+]</span> settings</div>
+						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
 						<div class="battle-menu-added-data hidden" data-block="settings">Settings is here :)</div>
 
-						<div class="battle-menu-item-button ellipsis js-restart-mission">restart mission</div>
+						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>restart</div>
+						<div class="battle-menu-added-data hidden" data-block="restart-mission">
 
-						<div class="battle-menu-item-button ellipsis js-quit-mission">quit mission</div>
+							<div class="confirm-wrapper">
+								<p class="confirm-message">Are you sure?</p>
+								<div class="confirm-buttons-wrapper clear-fix">
+									<div class="confirm-button js-restart-mission">yes</div>
+									<div class="confirm-button" data-hide-show="restart-mission">no</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="battle-menu-item-button" data-show="quit-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>quit</div>
+						<div class="battle-menu-added-data hidden" data-block="quit-mission">
+							<div class="confirm-wrapper">
+								<p class="confirm-message">Are you sure?</p>
+								<div class="confirm-buttons-wrapper clear-fix">
+									<div class="confirm-button js-quit-mission">yes</div>
+									<div class="confirm-button" data-hide-show="quit-mission">no</div>
+								</div>
+							</div>
+						</div>
+
+
 
 					</div>
 

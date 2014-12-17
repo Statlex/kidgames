@@ -532,7 +532,7 @@
 	border-width: 0.2em;
 	border-style: solid;
 	background-color: #000;
-	padding: 0.7em 1em;
+	padding: 0.5em 1em 0.5em 0.5em;
 	position: relative;
 	box-shadow: 0.4em 0.4em 0 #000;
 	z-index: 1;
@@ -542,7 +542,7 @@
 	height: 100%;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 1.5em;
+	padding: 1em 1em 1em 0.5em;
 }
 
 .battle-menu-close {
@@ -587,11 +587,35 @@
 	margin-bottom: 0.9em;
 }
 
+.hidden-data-state {
+	padding-right: 0.4em;
+}
 
+.confirm-wrapper {
 
+}
 
+.confirm-message {
 
+}
 
+.confirm-buttons-wrapper {
+	padding: 1em 0 0.2em;
+	text-align: center;
+}
+
+.confirm-button {
+	display: inline-block;
+	border-style: solid;
+	border-width: 0.2em;
+	border-color: inherit;
+	font-size: 1.5em;
+	padding: 0.5em;
+	text-align: center;
+	width: 3.5em;
+	text-transform: uppercase;
+	margin: 0 0.9em;
+}
 
 
 
