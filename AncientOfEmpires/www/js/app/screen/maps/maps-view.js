@@ -33,7 +33,6 @@
 			data.map = this.getMap();
 
 			APP.battleView = new APP.BattleView(data);
-			console.log(APP.battleView);
 			APP.router.navigate('battle', { trigger: true });
 
 		},

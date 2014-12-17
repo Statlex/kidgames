@@ -320,7 +320,7 @@
 
 				setTimeout(function () {
 
-					controller.view.endTurn();
+					controller.view.endTurn({ force: true });
 
 				}, APP.units.info.timer.endTurn);
 

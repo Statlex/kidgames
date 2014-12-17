@@ -477,14 +477,37 @@
 			this.$eventLayer.find('.unit-for-grave-up').removeClass('unit-for-grave-up');
 		},
 
-		endTurn: function () {
-			this.hideAvailablePath();
-			this.hideUnitsUnderAttack();
-			this.resetEndTurnState();
-			this.drawUnitCurrentState();
-			this.goFromStore();
-			this.activeButtons(true);
-			this.controller.endTurn();
+		endTurn: function (data) {
+
+			data = data || {};
+
+			win.clearTimeout(this.endTurnTimeoutId);
+
+			var $hiddenConfirm = this.$el.find('.js-status-bar-end-turn-hidden-confirm');
+
+			if ( data.force || !$hiddenConfirm.hasClass('hidden') ) {
+
+				$hiddenConfirm.addClass('hidden');
+
+				this.hideAvailablePath();
+				this.hideUnitsUnderAttack();
+				this.resetEndTurnState();
+				this.drawUnitCurrentState();
+				this.goFromStore();
+				this.activeButtons(true);
+				this.controller.endTurn();
+
+			} else {
+
+				$hiddenConfirm.removeClass('hidden');
+
+				this.endTurnTimeoutId = win.setTimeout(function () {
+					var $button = $('.js-wrapper .js-status-bar-end-turn-hidden-confirm');
+					return $button.length && $button.addClass('hidden');
+				}, 4000);
+
+			}
+
 		},
 		goFromStore: function() {
 			if (Backbone.history.fragment !== 'battle') {
