@@ -31,9 +31,11 @@
 		battle: function () {
 
 			var $block = $('.js-wrapper .js-status-bar');
-
 			$block.data('state', 'battle');
-			util.forceReDraw($block[0]);
+
+			if ( /^[\s\S]+?#store$/.test(event.oldURL) ) {
+				util.forceReDraw($block[0]);
+			}
 
 			APP.removeExtraView();
 
