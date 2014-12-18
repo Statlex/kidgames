@@ -13,7 +13,7 @@
 		},
 		init: function () {
 
-			util.cleatTimeouts();
+			util.clearTimeouts();
 
 			this.$el = $(this.tmpl['select-map']({
 				maps: this.getMapsArray()

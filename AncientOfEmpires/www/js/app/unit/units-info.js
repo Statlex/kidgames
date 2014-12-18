@@ -140,16 +140,16 @@
 			}
 		},
 		timer: {
-			//move: 400,
-			//action: 200,
-			//endTurn: 100,
-			//showPath: 100,
-			//attack: 70 // half of 'action'
-			move: 800,
-			action: 1000,
-			endTurn: 1000,
-			showPath: 500,
-			attack: 490 // half of 'action'
+			move: 400,
+			action: 200,
+			endTurn: 100,
+			showPath: 100,
+			attack: 70 // half of 'action'
+			//move: 800,
+			//action: 1000,
+			//endTurn: 1000,
+			//showPath: 500,
+			//attack: 490 // half of 'action'
 		}
 
 	};

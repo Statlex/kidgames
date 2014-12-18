@@ -404,6 +404,13 @@
 				noPlayerBuildings = [];
 
 			function getLength(xy1, xy2) {
+
+				if (!xy1 || !xy2) {
+					console.log('return 0');
+					return 0;
+				}
+
+
 				return Math.pow(xy1.x - xy2.x, 2) + Math.pow(xy1.y - xy2.y, 2);
 			}
 

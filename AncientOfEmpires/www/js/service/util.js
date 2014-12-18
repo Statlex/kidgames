@@ -15,7 +15,7 @@
 
 			setTimeout(function () {
 				el.style.display = '';
-			}, 10);
+			}, 5);
 
 		},
 
@@ -54,6 +54,21 @@
 					func.call(context, obj[key], key);
 				}
 			}
+
+		},
+		objToArray: function (obj) {
+			var arr = [],
+				key;
+			for (key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					arr.push({
+						key: key,
+						value: obj[key]
+					});
+				}
+			}
+
+			return arr;
 
 		},
 		findBy: function (list, key, value) {
@@ -127,7 +142,7 @@
 			q = q && Math.pow(10, q);
 			return q ? Math.round(number * q) / q : Math.round(number);
 		},
-		cleatTimeouts: function () {
+		clearTimeouts: function () {
 			var end = setTimeout(';'),
 				i;
 

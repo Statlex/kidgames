@@ -6,7 +6,7 @@
 
 	win.APP = win.APP || {};
 
-	function BattleController(data) { // gameOverFn -> extra fn to check end game
+	function BattleController(data) {
 
 		this.unitCounter = 0;
 		this.units = {};
@@ -593,31 +593,37 @@
 
 		},
 
-		defaultGameOverFn: function () {
-			return this.isEqualBy(this.buildings);
-		},
+		isGameOver: function () {
 
-		gameOverDetect: function () {
+			var result = {};
 
-			var result = this.gameOverFn ? this.gameOverFn() : this.defaultGameOverFn();
-
-			if (result) {
-				this.showEndGame();
-			}
+			result.isEnd = this.isEqualBy(this.buildings);
 
 			return result;
 
 		},
-		showEndGame: function () {
 
-			// detect winner player
-			// if man vs cpu - show 'you win' of 'defeat'
-			// if man vs man or cpu vs cpu - show 'blue\red win'
-			// click to alert window - back to maps
+		gameOverDetect: function () {
 
-			console.log('view.endGameAlert');
+			var result = this.isGameOver();
 
-			alert('End Game!!!');
+			if (result.isEnd) {
+				util.clearTimeouts();
+
+				// get winner player
+				result.winner = util.findBy(this.players, 'id', util.objToArray(this.buildings)[0].value.playerId).item;
+
+				this.showEndGame(result);
+
+			}
+
+			return result.isEnd;
+
+		},
+		showEndGame: function (result) {
+
+			this.view.endGameAlert(result);
+
 		},
 		step: function() {
 
@@ -698,7 +704,7 @@
 
 					}
 
-				})
+				});
 
 			});
 
