@@ -8,13 +8,20 @@
 	* setting
 	* 1 - music off/on
 	* 2 - ask for switch turn
-	* 3 - animation speed
+	* 3 - animation speed -                 slow - 1 2 [3] 4 5 - fast
 	*
 	*
 	* */
 
+	/*
 
+	[*] music
+	[*] end turn confirm
 
+	 animation speed
+	 slow - 1 2 [3] 4 5 - fast
+
+*/
 
 
 	win.APP = win.APP || {};

@@ -609,6 +609,14 @@
 
 		},
 		showEndGame: function () {
+
+			// detect winner player
+			// if man vs cpu - show 'you win' of 'defeat'
+			// if man vs man or cpu vs cpu - show 'blue\red win'
+			// click to alert window - back to maps
+
+			console.log('view.endGameAlert');
+
 			alert('End Game!!!');
 		},
 		step: function() {
