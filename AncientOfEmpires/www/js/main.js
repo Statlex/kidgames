@@ -31,11 +31,7 @@
 		battle: function () {
 
 			var $block = $('.js-wrapper .js-status-bar');
-			$block.data('state', 'battle');
-
-			if ( /^[\s\S]+?#store$/.test(event.oldURL) ) {
-				util.forceReDraw($block[0]);
-			}
+			$block.removeClass('in-store');
 
 			APP.removeExtraView();
 
@@ -47,8 +43,7 @@
 
 			var $block = $('.js-wrapper .js-status-bar');
 
-			$block.data('state', 'store');
-			util.forceReDraw($block[0]);
+			$block.addClass('in-store');
 
 			$('.js-hide-for-store').addClass('visibility-hidden');
 

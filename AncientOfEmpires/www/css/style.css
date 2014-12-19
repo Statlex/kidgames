@@ -166,7 +166,6 @@
 
 .status-bar-gold,
 .status-bar-damage,
-.status-bar-store,
 .status-bar-battle,
 .status-bar-end-turn,
 .status-bar-armor,
@@ -199,10 +198,6 @@
 	padding: 0.7em 0.7em 1em;
 	float: right;
 	text-transform: uppercase;
-}
-
-.status-bar[data-state="store"] .battle-menu-button {
-	display: none;
 }
 
 .status-bar-damage,
@@ -241,25 +236,20 @@
 	box-shadow: none;
 }
 
-.status-bar-store,
+.battle-menu-button {
+	display: block;
+}
+
+.status-bar.in-store .battle-menu-button {
+	display: none;
+}
+
 .status-bar-battle {
 	display: none;
 }
 
-.status-bar[data-state='store'] .status-bar-battle {
+.status-bar.in-store .status-bar-battle {
 	display: block;
-}
-
-.status-bar[data-state='battle'] .status-bar-store {
-	display: block;
-}
-
-.status-bar-store {
-	opacity: 0.5;
-}
-
-.status-bar-store[data-state='enable'] {
-	opacity: 1;
 }
 
 .status-bar-gold {
@@ -619,7 +609,7 @@
 }
 
 .status-bar-end-turn-hidden-confirm {
-	padding: 0 0.3em;
+	padding: 0 0.3em 0 0.7em;
 }
 
 .end-game-message-wrapper {
