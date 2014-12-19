@@ -406,9 +406,7 @@
 
 	<div class="battle-screen js-battle-screen">
 
-		<div class="js-cpu-running cpu-running-disable-buttons hidden">&nbsp;
-			bot is running
-		</div>
+		<div class="js-cpu-running cpu-running-disable-buttons hidden">bot is running</div>
 
 		<div class="js-disable-screen animation-running-disable-buttons hidden"></div>
 
@@ -678,6 +676,35 @@
 		</div>
 
 
+
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-game-message">
+
+	<div class="end-game-message-wrapper">
+
+		<div class="table end-game-message-table">
+
+			<div class="table-row">
+
+				<div class="table-cell">
+
+					<div class="menu-form-wrapper end-game-menu-form-wrapper">
+
+						<div class="end-game-message"><%= message %></div>
+						<div class="end-game-message-button js-end-game-restart">restart</div>
+						<div class="end-game-message-button js-end-game-quit">quit</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
 
 
 	</div>

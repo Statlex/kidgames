@@ -7,7 +7,7 @@
 	win.APP = win.APP || {};
 
 	APP.BattleView = APP.BaseView.extend({
-		templates: ['battle', 'unit', 'build'],
+		templates: ['battle', 'unit', 'build', 'end-game-message'],
 		events: {
 			'click .js-event-handler-square': 'onClickSquare',
 			'click .js-end-turn': 'endTurn',
@@ -821,18 +821,39 @@
 		},
 		endGameAlert: function (result) {
 
-			// detect winner player
-			console.log(result);
+			this.setDisableScreen(false);
 
+			this.activeButtons(true);
 
+			var players = this.controller.players,
+				player1 = players[0],
+				player2 = players[1],
+				message = '',
+				$node;
 
-			// if man vs cpu - show 'you win' of 'defeat'
-			// if man vs man or cpu vs cpu - show 'blue\red win'
-			// click to alert window - back to maps
+			if (player1.type === player2.type) {
+				message = result.winner.color + ' win!';
+			} else {
+				if (result.winner.type === 'human') {
+					message = 'you win';
+				} else {
+					message = 'you defeat';
+				}
+			}
 
+			$node = $(this.tmpl['end-game-message']({message: message}));
 
+			$node.find('.js-end-game-restart').on('click', function () {
+				APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
+			});
 
-			alert('End Game!!!');
+			$node.find('.js-end-game-quit').on('click', function () {
+				APP.battleView.doNotShowConfirm = true;
+				var history = win.history;
+				win.setTimeout(history.back.bind(history), 100);
+			});
+
+			this.$el.append($node);
 
 		}
 
