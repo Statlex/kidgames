@@ -8,12 +8,13 @@
 		trueFn = util.trueFn,
 		falseFn = util.falseFn,
 		cfg,
-		now = String(Date.now());
+		now = String(Date.now()),
+		exception = require('viaden-modules/exception');
 
 	cfg = {
 		eMail: 'viadenTest' + now.substr(-6) + '@gmail.com', // text
 		phoneNumber: '+' + now.substr(-9), // tel
-		userName: 'dima' + now.substr(-4), // text
+		userName: 'dima' + now.substr(-6), // text
 		password: 'qwerty', // text
 		confirmPassword: 'qwerty', // text
 		firstName: 'Dima', // text
@@ -44,7 +45,18 @@
 		reportItem.markStartTime();
 		reportItem.addText('Start registration test');
 
-		driver.get(args.url);
+		driver.get(args.url).then(function () {
+
+			exception.empty();
+
+			exception.extend({
+				url: args.url,
+				args: util.get('args'),
+				driver: driver,
+				reporter: args.reporter
+			});
+
+		});
 
 		driver
 			.wait(function () { // click to "join now" button until this is displayed

@@ -9,11 +9,14 @@
 		Reporter = require('viaden-modules/reporter/reporter.js'),
 		reporter = new Reporter(),
 		args = util.get('args'),
-		exception = require('viaden-modules/exception');
+		exception = require('viaden-modules/exception'),
+		testList = args.testList;
 
 	exception.startListener();
 
-	util.getTest().forEach(function(testFileName, index, arr){
+
+
+	util.getTest(testList).forEach(function(testFileName, index, arr){
 
 		var driver, test, reportItem, url;
 
@@ -25,19 +28,11 @@
 
 		url = (args.url || mainCfg.url.gb.default) + args.urlPostfix;
 
-		exception.empty();
-
-		exception.extend({
-			url: url,
-			args: args,
-			driver: driver,
-			reporter: reporter
-		});
-
 		test({
 			url: url,
 			driver: driver,
-			reportItem: reportItem
+			reportItem: reportItem,
+			reporter: reporter
 		});
 
 		if (index === arr.length - 1) { // check last item
