@@ -645,3 +645,47 @@
 	text-transform: uppercase;
 	padding: 0.6em 0;
 }
+
+.setting-item-wrapper {
+	display: block;
+	padding: 0.7em 0;
+}
+
+.show-after-show {
+	display: none;
+}
+
+.show-after-hide {
+	display: inline;
+}
+
+.show-after:checked ~ .show-after-show {
+	display: inline;
+}
+
+.show-after:checked ~ .show-after-hide {
+	display: none;
+}
+
+.setting-list-wrapper {
+	padding: 0.7em 1em;
+}
+
+.game-speed-input-wrapper {
+	display: inline-block;
+	padding: 0.7em 0.2em;
+}
+
+.game-speed-arrows-wrapper {
+	font-size: 0.7em;
+}
+
+.setting-item-small-header {
+	padding-bottom: 0.5em;
+}
+
+
+
+
+
+

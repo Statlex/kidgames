@@ -139,6 +139,8 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 
 .disable {
 	opacity: 0.15;
+	-webkit-pointer-events: none;
+	pointer-events: none;
 }
 
 .table {
