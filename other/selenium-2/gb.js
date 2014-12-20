@@ -12,7 +12,7 @@
 		exception = require('viaden-modules/exception'),
 		testList = args.testList;
 
-	//exception.startListener();
+	exception.startListener();
 
 	util.getTest(testList).forEach(function(testFileName, index, arr){
 
