@@ -14,26 +14,28 @@
 
 	exception.startListener();
 
-
-
 	util.getTest(testList).forEach(function(testFileName, index, arr){
 
-		var driver, test, reportItem, url;
+		var driver, test, Test, reportItem, url;
 
 		driver = util.createWebDriverClient();
 
-		test = require(path.resolve(util.getStartPath(), mainCfg.folder.test, testFileName)).test;
+		Test = require(path.resolve(util.getStartPath(), mainCfg.folder.test, testFileName));
 
-		reportItem = reporter.newItem({testFileName: testFileName, driver: driver});
+		test = new Test();
+
+		reportItem = reporter.newItem({ test: test, driver: driver });
 
 		url = (args.url || mainCfg.url.gb.default) + args.urlPostfix;
 
-		test({
+		test.extend('args', {
 			url: url,
 			driver: driver,
 			reportItem: reportItem,
 			reporter: reporter
 		});
+
+		test.run();
 
 		if (index === arr.length - 1) { // check last item
 			driver.quit().then(function(){
@@ -44,7 +46,6 @@
 		}
 
 	});
-
 
 
 }());
