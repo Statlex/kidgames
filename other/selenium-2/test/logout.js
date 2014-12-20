@@ -23,6 +23,7 @@
 		this.body = function () {
 
 			var dep = this.dep,
+				util = dep.util,
 				selector = dep.selector,
 				args = this.args,
 				driver = args.driver,
@@ -46,8 +47,23 @@
 			// click to logout link
 			driver
 				.wait(function () {
-					return driver.findElement({css: selector.logout.openLogout}).click().then(dep.trueFn, dep.falseFn);
-				}, 1000);
+					// test link is presented on page
+					return driver.findElement({css: selector.logout.openLogout}).isDisplayed().then(dep.trueFn, dep.falseFn);
+				}, 1000)
+				.then(function () {
+					// scroll to needed element
+
+					driver.findElement({css: selector.logout.openLogout}).click().then(function () {
+						// all is good
+					},
+					function () {
+						util.scrollTo(driver, selector.logout.openLogout).then(function () {
+							// click to needed element
+							driver.findElement({css: selector.logout.openLogout}).click();
+						});
+					});
+
+				});
 
 			// click to submit logout button
 			driver

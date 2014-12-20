@@ -31,6 +31,7 @@
 		this.body = function () {
 
 			var dep = this.dep,
+				util = dep.util,
 				selector = dep.selector,
 				args = this.args,
 				cfg = this.cfg,
@@ -81,7 +82,17 @@
 					return driver.findElement({ css: selector.regVisa.cardNumber }).isDisplayed().then(dep.trueFn, dep.falseFn);
 				}, timeout);
 
-			driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(cfg.cardNumber);
+
+			(function setCardNumber() {
+				driver.findElement({ css: selector.regVisa.cardNumber }).clear();
+				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber());
+				driver.findElement({ css: selector.regVisa.submitCard }).click();
+				driver.sleep(1000);
+				driver.findElement({ css: selector.regVisa.invalidCardLabel }).isDisplayed().then(setCardNumber, dep.falseFn);
+				return false;
+			}());
+
+
 			driver.findElement({ css: selector.regVisa.cardMonth }).click();
 			driver.findElement({ css: selector.regVisa.cardYear }).click();
 			driver.findElement({ css: selector.regVisa.submitCard }).click();
