@@ -23,7 +23,7 @@
 		};
 
 		this.cfg = {
-			cardNumber: '4716842641828'
+			cardNumber: this.dep.util.getCardNumber(13)
 		};
 
 		this.args = {};
@@ -43,8 +43,8 @@
 			loginStep = new loginStep();
 			loginStep.extend('args', this.args);
 			loginStep.extend('cfg', {
-				userName: 'galatst319', // text
-				password: 'qwerty123' // text
+				userName: 'govnokod', // text
+				password: 'qwerty' // text
 			});
 			loginStep.mode = 'step';
 			loginStep.run().then(function () {
@@ -98,7 +98,6 @@
 						});
 					driver.findElement({css: selector.modalClose}).click();
 				});
-
 
 			driver.sleep(1000);
 			driver.findElement({ css: '#contextAmount' }).click();
