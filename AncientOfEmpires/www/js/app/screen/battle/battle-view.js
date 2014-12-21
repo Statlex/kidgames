@@ -23,6 +23,8 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+			this.setSquareSize();
+
 			this.startingData = util.createCopy(data);
 
 			this.squareSize = win.info.get('squareSize') || this.squareSize;
@@ -73,6 +75,16 @@
 			//setTimeout(function () {
 			//	this.drawMap();
 			//}.bind(this), 1000);
+
+		},
+
+		setSquareSize: function () {
+			// squareSize
+			this.squareSize = Math.round(parseInt(document.body.style.fontSize, 10) * 1.5) * 2;
+			this.scaleStep = Math.round(this.squareSize / 6);
+
+			this.maxSquareSize = this.squareSize * 4;
+			this.minSquareSize = Math.round(this.squareSize / 4);
 
 		},
 
