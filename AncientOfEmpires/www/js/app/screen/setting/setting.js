@@ -97,6 +97,11 @@
 
 			// set game speed
 			$node = this.$el.find('.js-game-speed[value="' + setting.gameSpeed + '"]');
+
+			if (!$node.length) {
+				return;
+			}
+
 			$node.addClass('input-checked');
 
 			$node = this.$el.find('.js-game-speed');

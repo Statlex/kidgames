@@ -485,7 +485,7 @@
 
 			var $hiddenConfirm = this.$el.find('.js-status-bar-end-turn-hidden-confirm');
 
-			if ( data.force || !$hiddenConfirm.hasClass('hidden') ) {
+			if ( data.force || !$hiddenConfirm.hasClass('hidden') || !win.info.get('setting').endTurnConfirm ) {
 
 				$hiddenConfirm.addClass('hidden');
 

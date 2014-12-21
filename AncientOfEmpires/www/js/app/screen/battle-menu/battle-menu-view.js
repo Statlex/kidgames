@@ -20,6 +20,9 @@
 
 			this.$wrapper = $('.js-wrapper');
 			this.$wrapper.find('.js-battle-menu-wrapper').remove();
+
+			this.setSettingsState();
+
 			this.$wrapper.append(this.$el);
 
 		},
@@ -45,6 +48,9 @@
 
 			setTimeout(history.back.bind(history), 100);
 
+		},
+		setSettingsState: function () {
+			APP.SettingView.prototype.setSettingsState.call(this);
 		}
 
 	});
