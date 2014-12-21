@@ -27,6 +27,8 @@
 
 			this.$wrapper.append(this.$el);
 
+			this.setSettings();
+
 		},
 
 		goToSelectMap: function() {
@@ -44,14 +46,13 @@
 		goToSetting: function () {
 			APP.router.navigate('setting', { trigger: true });
 
+		},
+
+		setSettings: function () {
+			var setting =  win.info.get('setting');
+			// set game speed
+			APP.units.info.timer = APP.units.info.timersBySpeed[setting.gameSpeed];
 		}
-
-
-
-
-
-
-
 
 
 	});

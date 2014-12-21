@@ -114,6 +114,9 @@
 				setting.gameSpeed = this.value;
 				win.info.set('setting', setting, true);
 
+				// set game speed
+				APP.units.info.timer = APP.units.info.timersBySpeed[setting.gameSpeed];
+
 			});
 
 		}

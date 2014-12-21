@@ -139,17 +139,49 @@
 				attack: 1
 			}
 		},
-		timer: {
-			move: 400,
-			action: 200,
-			endTurn: 100,
-			showPath: 100,
-			attack: 70 // half of 'action'
-			//move: 800,
-			//action: 1000,
-			//endTurn: 1000,
-			//showPath: 500,
-			//attack: 490 // half of 'action'
+		timer: { // default speed is 3
+			move: 800,
+			action: 1000,
+			endTurn: 1000,
+			showPath: 500,
+			attack: 490 // half of 'action'
+		},
+		timersBySpeed: {
+			'5': {
+				move: 400,
+				action: 200,
+				endTurn: 100,
+				showPath: 100,
+				attack: 80 // half of 'action' - 20
+			},
+			'4': {
+				move: 600,
+				action: 500,
+				endTurn: 400,
+				showPath: 300,
+				attack: 230 // half of 'action' - 20
+			},
+			'3': {
+				move: 800,
+				action: 1000,
+				endTurn: 1000,
+				showPath: 500,
+				attack: 480 // half of 'action' - 20
+			},
+			'2': {
+				move: 1200,
+				action: 1600,
+				endTurn: 1000,
+				showPath: 700,
+				attack: 720 // half of 'action' - 20
+			},
+			'1': {
+				move: 1600,
+				action: 2000,
+				endTurn: 2000,
+				showPath: 1000,
+				attack: 980 // half of 'action' - 20
+			}
 		}
 
 	};
