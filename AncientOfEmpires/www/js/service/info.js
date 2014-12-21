@@ -102,6 +102,12 @@
 			var maxSize = (docElem.clientHeight > docElem.clientWidth) ? docElem.clientHeight : docElem.clientWidth;
 			this.isPhone = maxSize < 700;
 			return this.isPhone;
+		},
+
+		setting: {
+			endTurnConfirm: false,
+			music: true,
+			gameSpeed: 3
 		}
 
 	};

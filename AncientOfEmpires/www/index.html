@@ -159,8 +159,8 @@
 
 		<div class="js-block-fix-wrapper js-no-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
 			<div class="setting-list-wrapper">
-				<label class="setting-item-wrapper"><input class="show-after hidden" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] confirm turn</label>
-				<label class="setting-item-wrapper disable"><input class="show-after hidden" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] sound</label>
+				<label class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] confirm turn</label>
+				<label class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] sound</label>
 
 				<div class="setting-item-wrapper game-speed-wrapper">
 					<p class="setting-item-small-header">game speed</p>
@@ -169,7 +169,7 @@
 						<div class="right">fast -></div>
 					</div>
 					<div class="text-align-center">
-						<% window.util.fromTo(function(index){ %><label class="game-speed-input-wrapper"><input class="show-after hidden" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span><span class="show-after-hide">&nbsp;</span>]</label><% }, 1, 6); %>
+						<% window.util.fromTo(function(index){ %><label class="game-speed-input-wrapper"><input class="show-after hidden js-game-speed" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span><span class="show-after-hide">&nbsp;</span>]</label><% }, 1, 6); %>
 					</div>
 
 				</div>

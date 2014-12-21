@@ -30,7 +30,7 @@
 			});
 
 			filteredByLength.forEach(function (wordForTest, index) {
-				
+
 				var letters = rusLetterArr.join('');
 				wordForTest = wordForTest.split('');
 

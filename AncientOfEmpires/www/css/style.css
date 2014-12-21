@@ -659,11 +659,11 @@
 	display: inline;
 }
 
-.show-after:checked ~ .show-after-show {
+.show-after.input-checked ~ .show-after-show {
 	display: inline;
 }
 
-.show-after:checked ~ .show-after-hide {
+.show-after.input-checked ~ .show-after-hide {
 	display: none;
 }
 

@@ -30,6 +30,7 @@
 
 		templates: ['setting'],
 
+
 		events: {
 
 		},
@@ -42,7 +43,73 @@
 
 			this.$wrapper.html('');
 
+			this.setSettingsState();
+
 			this.$wrapper.append(this.$el);
+
+		},
+
+		setSettingsState: function () {
+
+			var $node, setting;
+
+			setting = win.info.get('setting');
+
+			// set end turn confirm
+			$node = this.$el.find('.js-confirm-end-turn-checkbox');
+			if ( setting.endTurnConfirm ) {
+				$node.addClass('input-checked');
+			} else {
+				$node.removeClass('input-checked');
+			}
+			$node.on('change', function () {
+				var setting =  win.info.get('setting'),
+					$this = $(this),
+					isChecked = this.checked;
+
+				setting.endTurnConfirm = this.checked;
+
+				win.info.set('setting', setting, true);
+
+				return isChecked ? $this.addClass('input-checked') : $this.removeClass('input-checked');
+
+			});
+
+			// set music
+			$node = this.$el.find('.js-music-checkbox');
+			if ( setting.music ) {
+				$node.addClass('input-checked');
+			} else {
+				$node.removeClass('input-checked');
+			}
+			$node.on('change', function () {
+				var setting =  win.info.get('setting'),
+					$this = $(this),
+					isChecked = this.checked;
+
+				setting.music = this.checked;
+
+				win.info.set('setting', setting, true);
+
+				return isChecked ? $this.addClass('input-checked') : $this.removeClass('input-checked');
+
+			});
+
+			// set game speed
+			$node = this.$el.find('.js-game-speed[value="' + setting.gameSpeed + '"]');
+			$node.addClass('input-checked');
+
+			$node = this.$el.find('.js-game-speed');
+			$node.on('change', function () {
+
+				$('.js-game-speed.input-checked').removeClass('input-checked');
+				$(this).addClass('input-checked');
+
+				var setting =  win.info.get('setting');
+				setting.gameSpeed = this.value;
+				win.info.set('setting', setting, true);
+
+			});
 
 		}
 
