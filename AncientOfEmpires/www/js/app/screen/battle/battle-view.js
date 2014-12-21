@@ -81,7 +81,7 @@
 		setSquareSize: function () {
 			// squareSize
 			this.squareSize = Math.round(parseInt(document.body.style.fontSize, 10) * 1.5) * 2;
-			this.scaleStep = Math.round(this.squareSize / 6);
+			this.scaleStep = Math.round(this.squareSize / 3);
 
 			this.maxSquareSize = this.squareSize * 4;
 			this.minSquareSize = Math.round(this.squareSize / 4);
