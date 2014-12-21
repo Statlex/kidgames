@@ -87,9 +87,15 @@
 				driver.findElement({ css: selector.regVisa.cardNumber }).clear();
 				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber());
 				driver.findElement({ css: selector.regVisa.submitCard }).click();
-				driver.sleep(1000);
-				driver.findElement({ css: selector.regVisa.invalidCardLabel }).isDisplayed().then(setCardNumber, dep.falseFn);
-				return false;
+
+				driver.findElement({ css: selector.regVisa.invalidCardLabel }).then(function (elem) {
+					elem.isDisplayed().then(function (isDisplayed) {
+						return isDisplayed && setCardNumber();
+					});
+				});
+
+				driver.sleep(500);
+
 			}());
 
 

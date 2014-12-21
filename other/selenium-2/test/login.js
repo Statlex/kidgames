@@ -1,7 +1,7 @@
 (function () {
 
 	"use strict";
-	/*global */
+	/*global module, require*/
 
 	var TestParent = require('viaden-modules/test-parent');
 
@@ -36,9 +36,12 @@
 
 			driver
 				.wait(function () { // click to "login" button until this is displayed
-					return driver.findElement({ css: selector.login.openLogin }).click().then(dep.trueFn, dep.falseFn);
+					return driver.findElement({ css: '#splash' }).isDisplayed().then(function (isDisplayed) {
+						return !isDisplayed;
+					});
 				}, 10000);
 
+			driver.findElement({ css: selector.login.openLogin }).click();
 			driver.findElement({ css: selector.login.userName }).sendKeys(cfg.userName);
 			driver.findElement({ css: selector.login.password }).sendKeys(cfg.password);
 
@@ -59,7 +62,7 @@
 				reportItem.takeScreenShot({label: 'Login successful'});
 			});
 
-		}
+		};
 
 	}
 
