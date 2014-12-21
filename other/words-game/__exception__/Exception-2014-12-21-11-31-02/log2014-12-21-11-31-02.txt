@@ -1,0 +1,8 @@
+http://vk.com
+{"node":"",
+"D:\\statlex\\kidgames\\other\\words-game\\game.js":"",
+"url":"http://vk.com",
+"urlPostfix":"",
+"browser":"chrome",
+"testList":false}
+{"webdriver_promise_error_":true}
