@@ -20,7 +20,9 @@
 		this.getWord = function (length, enLetterArr) {
 
 			var rusLetterArr = [],
-				filteredByLength = [];
+				filteredByLength = [],
+				filteredByLetter = [];
+
 			enLetterArr.forEach(function (letter) {
 				rusLetterArr.push(this.enToRus(letter));
 			}, this);
@@ -29,27 +31,33 @@
 				return word.length === length;
 			});
 
-			filteredByLength.forEach(function (wordForTest, index) {
+			filteredByLetter = filteredByLength.filter(function (wordForTest) {
 
-				var letters = rusLetterArr.join('');
+				var letters = rusLetterArr.join('').split('');
 				wordForTest = wordForTest.split('');
-
 				wordForTest.forEach(function (letter) {
-					var index = rusLetterArr.indexOf(letter.toUpperCase());
+					var index = letters.indexOf(letter.toUpperCase());
 					if (index === -1) {
 						return;
 					}
-					console.log(index);
-					//console.log(letters);
-					//letters.splice(index, 1);
-					//console.log(letters);
+					letters.splice(index, 1);
+
 				});
 
+				return letters.length + length === rusLetterArr.length;
 
 			});
 
 
-			return rusLetterArr;
+			filteredByLetter = filteredByLetter.map(function (word) {
+
+				return word.split('').map(function (letter) {
+					return this.rusToEn(letter);
+				}, this);
+
+			}, this);
+
+			return filteredByLetter;
 
 		};
 
@@ -65,6 +73,10 @@
 				}
 			}
 
+		};
+
+		this.rusToEn = function (ru) {
+			return this.letterMap[ru];
 		};
 
 		this.letterMap = {
@@ -144,11 +156,15 @@
 //http://vk.com/fox_mickey?mid=108351256
 			driver.get('http://vk.com/fox_mickey?mid=108351256');
 
-			var wordLength = 0,
-				lettersArr = [];
 
-			driver.switchTo().frame(driver.findElement({ css: '[webkitallowfullscreen="true"]' })).then(function () {
+			driver.switchTo().frame(driver.findElement({ css: '[webkitallowfullscreen="true"]' }));
 
+
+			(function run() {
+				var wordLength = 0,
+					lettersArr = [];
+
+			driver.sleep(1000).then((function () {
 				// get word length
 				(function getMax() {
 					driver.findElement({ css: '#field_' + wordLength }).then(function () {
@@ -157,19 +173,61 @@
 					}, dep.falseFn);
 				}());
 
-			})
-			.then(function () {
+			}));
+
+			driver.sleep(1000).then(function () {
 				for (var i = 0; i < 20; i += 1) {
 					driver.findElement({ css: '#letter_' + i }).getAttribute('class').then(function (className) {
-						return lettersArr.indexOf(className) === -1 && lettersArr.push(className);
+						return lettersArr.push(className);
 					});
 				}
-			})
-			.then(function () {
-				var rr = getWord(wordLength, lettersArr);
-				console.log(rr);
 			});
 
+			driver.sleep(1000).then(function () {
+				var wordArr = getWord(wordLength, lettersArr),
+					isDone = false;
+					console.log(wordArr);
+
+					(function setWord() {
+
+						var word = wordArr.sort().shift();
+
+						word.forEach(function (letter, index) {
+
+							var selector = '.letters.alphabet .' + letter + ':not(.blanc)';
+							if (index + 1 !== word.length) {
+								driver.findElement({ css: selector }).click().then(function () {
+									driver.sleep(10);
+								});
+
+							} else {
+								driver.findElement({ css: selector }).click().then(function () {
+									return driver.sleep(500).then(function () {
+
+										driver.findElement({ css: '#nextBtn' }).click().then(function () {
+
+											driver.sleep(5000).then(function () {
+												run();
+											});
+
+										},
+										function () {
+											setWord();
+										});
+
+									});
+								});
+							}
+
+						});
+
+					}());
+
+
+
+			});
+
+			}());
 
 			//driver.wait(function () {
 			//	return driver.findElement({ css: 'a[href="/apps"]' }).click().then(dep.trueFn, dep.falseFn);
