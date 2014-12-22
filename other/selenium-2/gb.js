@@ -10,7 +10,7 @@
 		reporter = new Reporter(),
 		args = util.get('args'),
 		exception = require('viaden-modules/exception'),
-		testList = args.testList;
+		testList = args.list;
 
 	//exception.startListener();
 

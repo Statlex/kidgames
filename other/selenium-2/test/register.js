@@ -12,7 +12,7 @@
 
 		this.cfg = {
 			eMail: 'viadenTest' + now.substr(-6) + '@gmail.com', // text
-			//eMail: 'test@playtech.com', // text
+			//eMail: this.dep.mainCfg.mail.regCardUser, // text
 			phoneNumber: '+' + now.substr(-9), // tel
 			userName: 'dima' + now.substr(-6), // text
 			password: 'qwerty', // text
@@ -125,13 +125,18 @@
 					driver.sleep(1000);
 				});
 
-			driver.findElement({ css: selector.modalClose }).click().then(function () {
+			driver.findElement({ css: selector.modalClose }).click();
+
+			driver.sleep(1000);
+
+			driver.findElement({ css: selector.closeFooter }).click().then(function () {
 				driver.sleep(1000).then(function () {
 					reportItem.setResult(reportItem.results.passed);
 					reportItem.takeScreenShot('after register');
 				});
 
 			});
+
 
 		};
 

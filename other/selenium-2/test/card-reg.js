@@ -39,18 +39,34 @@
 				reportItem = args.reportItem,
 				timeout = 15000;
 
-			// login
-			var loginStep = require(dep.path.resolve(dep.util.getStartPath(), dep.mainCfg.folder.test, 'login.js'));
-			loginStep = new loginStep();
-			loginStep.extend('args', this.args);
-			loginStep.extend('cfg', {
-				userName: 'govnokod', // text
-				password: 'qwerty' // text
+			// reg new user
+
+			var regUser = require(dep.path.resolve(dep.util.getStartPath(), dep.mainCfg.folder.test, 'register.js'));
+			regUser = new regUser();
+			regUser.extend('args', this.args);
+
+			regUser.extend('cfg', {
+				eMail: dep.mainCfg.mail.regCardUser
 			});
-			loginStep.mode = 'step';
-			loginStep.run().then(function () {
-				console.log('login step - end');
+
+			regUser.mode = 'step';
+			regUser.run().then(function () {
+				console.log('reg new user - end');
 			});
+
+			//
+			//// login
+			//var loginStep = require(dep.path.resolve(dep.util.getStartPath(), dep.mainCfg.folder.test, 'login.js'));
+			//loginStep = new loginStep();
+			//loginStep.extend('args', this.args);
+			//loginStep.extend('cfg', {
+			//	userName: 'govnokod', // text
+			//	password: 'qwerty' // text
+			//});
+			//loginStep.mode = 'step';
+			//loginStep.run().then(function () {
+			//	console.log('login step - end');
+			//});
 
 			// open footer
 			driver
