@@ -63,9 +63,7 @@
 				}, 3000);
 
 
-			driver.findElement({css: selector.register.eMail}).sendKeys(cfg.eMail).then(function () {
-				console.log(cfg.eMail);
-			});
+			driver.findElement({css: selector.register.eMail}).sendKeys(cfg.eMail);
 
 			// close modal window if needed
 			driver.findElement({css: 'body' }).click();
@@ -89,6 +87,7 @@
 
 			driver.findElement({css: selector.register.lastName}).sendKeys(cfg.lastName);
 
+			driver.findElement({css: selector.register.birthDate}).clear();
 			driver.findElement({css: selector.register.birthDate}).sendKeys(cfg.birthDate);
 
 			driver.findElement({css: selector.register.postcode}).sendKeys(cfg.postcode);
