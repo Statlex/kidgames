@@ -77,31 +77,30 @@
 
 			driver.switchTo().frame( selector.regVisa.visaCardIFrame.replace('#', '') );
 
+
+
 			driver
 				.wait(function () {
 					return driver.findElement({ css: selector.regVisa.cardNumber }).isDisplayed().then(dep.trueFn, dep.falseFn);
 				}, timeout);
 
+			driver.findElement({ css: selector.regVisa.cardMonth }).click();
+			driver.findElement({ css: selector.regVisa.cardYear }).click();
 
-			(function setCardNumber() {
+			(function enterCardNumber() {
 				driver.findElement({ css: selector.regVisa.cardNumber }).clear();
-				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber());
+				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber(13));
 				driver.findElement({ css: selector.regVisa.submitCard }).click();
+				driver.sleep(1000);
 
-				driver.findElement({ css: selector.regVisa.invalidCardLabel }).then(function (elem) {
-					elem.isDisplayed().then(function (isDisplayed) {
-						return isDisplayed && setCardNumber();
-					});
-				});
-
-				driver.sleep(500);
+				driver.findElement({ css: selector.regVisa.submitCard }).click().then(function () {
+					enterCardNumber();
+					return true;
+				}, dep.falseFn);
 
 			}());
 
-
-			driver.findElement({ css: selector.regVisa.cardMonth }).click();
-			driver.findElement({ css: selector.regVisa.cardYear }).click();
-			driver.findElement({ css: selector.regVisa.submitCard }).click();
+			//driver.findElement({ css: selector.regVisa.submitCard }).click();
 
 			driver.switchTo().defaultContent();
 			driver
