@@ -50,9 +50,7 @@
 			});
 
 			regUser.mode = 'step';
-			regUser.run().then(function () {
-				console.log('reg new user - end');
-			});
+			regUser.run();
 
 			//
 			//// login

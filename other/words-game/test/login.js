@@ -190,7 +190,7 @@
 
 					(function setWord() {
 
-						var word = wordArr.sort().shift();
+						var word = wordArr.pop();
 
 						word.forEach(function (letter, index) {
 

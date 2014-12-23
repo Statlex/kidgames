@@ -50,8 +50,6 @@
 				trueFn = dep.trueFn,
 				falseFn = dep.falseFn;
 
-			//console.log(cfg);
-
 			driver
 				.wait(function () { // click to "join now" button until this is displayed
 					return driver.findElement({css: selector.joinNow}).click().then(trueFn, falseFn);
@@ -87,8 +85,8 @@
 
 			driver.findElement({css: selector.register.lastName}).sendKeys(cfg.lastName);
 
-			driver.findElement({css: selector.register.birthDate}).clear();
-			driver.findElement({css: selector.register.birthDate}).sendKeys(cfg.birthDate);
+			//driver.findElement({css: selector.register.birthDate}).clear();
+			//driver.findElement({css: selector.register.birthDate}).sendKeys(cfg.birthDate);
 
 			driver.findElement({css: selector.register.postcode}).sendKeys(cfg.postcode);
 

@@ -9,17 +9,20 @@
 	function Test() {
 
 		this.cfg = {
-
+			selector: {
+				innerFooterLinks: ['/', '/gaming/all', '/promotions', /*'/info/rewards',*/ '/clubs', '/payment/deposit', '/transaction', /*'/info/bonusandpoints', '/info/rewards' ,*/ '/payment/withdraw', '/account/responsible', '/account/settings'],
+				dataWrapper: '.app.active'
+			},
+			relativeSelector: {
+				'.main-nav a[href="/"]': '#lobby',
+				'.main-nav a[href="/gaming/all"]': '#allgames',
+				'.main-nav a[href="/promotions"]': '#promoListView'
+			}
 		};
 
-		this.cfg.relativeSelector = {};
-
-		this.cfg.relativeSelector['.main-nav a[href="/"]'] = '#lobby';
-		this.cfg.relativeSelector['.main-nav a[href="/gaming/all"]'] = '#allgames';
-		this.cfg.relativeSelector['.main-nav a[href="/promotions"]'] = '#promoListView';
 
 		this.info = {
-			name: 'registration test',
+			name: 'footer links test and all game test',
 			description: 'test registration for user register',
 			steps: [
 				'load page',
@@ -46,10 +49,6 @@
 				falseFn = dep.falseFn,
 				isFailed = false;
 
-			//console.log(cfg);
-
-			//reportItem.setResult(reportItem.results.passed);
-
 			// wait for splash screen hide
 			driver.wait(function () {
 				return driver.findElement({ css: '#splash' }).isDisplayed().then(function (isDisplayed) {
@@ -57,7 +56,15 @@
 				})
 			}, 10000)
 			.then(function () {
-				selector.footerLinks.forEach(function (linkSelector) {
+
+					// login
+					var loginStep = require(dep.path.resolve(dep.util.getStartPath(), dep.mainCfg.folder.test, 'login.js'));
+					loginStep = new loginStep();
+					loginStep.extend('args', args);
+					loginStep.mode = 'step';
+					loginStep.run();
+
+					selector.footerLinks.forEach(function (linkSelector) {
 
 					driver.findElement({ css: linkSelector }).click().then(function () {
 
@@ -69,9 +76,6 @@
 									isFailed = true;
 								})
 								.then(function () {
-									if ( !isFailed ) {
-										reportItem.setResult(reportItem.results.passed);
-									}
 									reportItem.takeScreenShot('url: ' + url + ', by links: ' + linkSelector);
 								});
 
@@ -116,6 +120,65 @@
 							})
 
 					})
+
+			})
+
+			.then(function () {
+				driver.sleep(1000);
+				driver.findElement({ css: selector.openFooter }).click();
+				driver.sleep(1000).then(function () {
+
+					cfg.selector.innerFooterLinks.forEach(function (href) {
+
+						driver.findElement({css: cfg.selector.dataWrapper + ' a[href="' + href + '"]' }).click();
+
+						driver.sleep(1000).then(function () {
+
+							driver.findElement({css: cfg.selector.dataWrapper + ' a[href="' + href + '"]' }).isDisplayed().then(function (isDisplayed) {
+
+								if ( isDisplayed ) {
+									isFailed = true;
+									reportItem.takeScreenShot('ERROR selector1: ' + cfg.selector.dataWrapper + ' a[href="' + href + '"]');
+								}
+
+							},
+							function () {
+								driver.wait(function () {
+									return driver.findElement({ css: cfg.selector.dataWrapper + '> * > *:not(style)' }).then(trueFn, falseFn);
+								}, 10000);
+
+								driver.findElement({ css: cfg.selector.dataWrapper + '> * > *:not(style)' }).then(function (isDisplayed) {
+
+									if ( !isDisplayed ) {
+										isFailed = true;
+										reportItem.takeScreenShot('ERROR selector2: ' + cfg.selector.dataWrapper + ' a[href="' + href + '"]');
+									} else {
+										reportItem.takeScreenShot('PASSED selector: ' + cfg.selector.dataWrapper + ' a[href="' + href + '"]');
+									}
+
+								});
+								driver.findElement({ css: selector.topBarBackButton }).click().then(trueFn, function () {
+									driver.findElement({ css: selector.openFooter }).click();
+								})
+								.then(function () {
+									driver.sleep(1000);
+								})
+
+							})
+
+						});
+
+					});
+
+					driver.findElement({ css: selector.closeFooter }).click().then(function () {
+						driver.sleep(1000);
+					});
+
+
+				})
+				.then(function () {
+					return reportItem.setResult(isFailed ? reportItem.results.failed : reportItem.results.passed);
+				})
 
 			})
 

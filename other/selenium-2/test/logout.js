@@ -33,9 +33,7 @@
 			loginStep = new loginStep();
 			loginStep.extend('args', this.args);
 			loginStep.mode = 'step';
-			loginStep.run().then(function () {
-				console.log('login step - end');
-			});
+			loginStep.run();
 
 			// open footer
 			driver
