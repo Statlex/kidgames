@@ -132,7 +132,7 @@
 
 						driver.findElement({css: cfg.selector.dataWrapper + ' a[href="' + href + '"]' }).click();
 
-						driver.sleep(1000).then(function () {
+						driver.sleep(2000).then(function () {
 
 							driver.findElement({css: cfg.selector.dataWrapper + ' a[href="' + href + '"]' }).isDisplayed().then(function (isDisplayed) {
 
@@ -161,8 +161,8 @@
 									driver.findElement({ css: selector.openFooter }).click();
 								})
 								.then(function () {
-									driver.sleep(1000);
-								})
+									driver.sleep(2000);
+								});
 
 							})
 

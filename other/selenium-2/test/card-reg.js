@@ -23,7 +23,7 @@
 		};
 
 		this.cfg = {
-			cardNumber: this.dep.util.getCardNumber(13)
+			cardNumber: this.dep.util.getCardNumber(16)
 		};
 
 		this.args = {};
@@ -103,7 +103,7 @@
 
 			(function enterCardNumber() {
 				driver.findElement({ css: selector.regVisa.cardNumber }).clear();
-				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber(13));
+				driver.findElement({ css: selector.regVisa.cardNumber }).sendKeys(util.getCardNumber(16));
 				driver.findElement({ css: selector.regVisa.submitCard }).click();
 				driver.sleep(1000);
 
@@ -137,6 +137,11 @@
 					reportItem.takeScreenShot('close footer');
 					reportItem.setResult(reportItem.results.passed);
 				});
+
+
+
+
+
 
 		}
 

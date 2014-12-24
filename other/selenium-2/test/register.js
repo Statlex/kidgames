@@ -11,8 +11,8 @@
 		var now = String(Date.now());
 
 		this.cfg = {
-			eMail: 'viadenTest' + now.substr(-6) + '@gmail.com', // text
-			//eMail: this.dep.mainCfg.mail.regCardUser, // text
+			//eMail: 'viadenTest' + now.substr(-6) + '@gmail.com', // text
+			eMail: this.dep.mainCfg.mail.regCardUser, // text
 			phoneNumber: '+' + now.substr(-9), // tel
 			userName: 'dima' + now.substr(-6), // text
 			password: 'qwerty', // text
@@ -63,13 +63,16 @@
 
 			driver.findElement({css: selector.register.eMail}).sendKeys(cfg.eMail);
 
-			// close modal window if needed
+			// blur email to show modal window with "you already registered"
 			driver.findElement({css: 'body' }).click();
-			driver.sleep(1000).then(function () {
-				driver.findElement({ css: selector.modalClose }).click().then(trueFn, falseFn);
-			});
 
-			driver.sleep(1000);
+			// close modal window if needed
+			driver.wait(function () {
+				return driver.findElement({ css: selector.modalClose }).then(function (elem) {
+					elem.click();
+					return true;
+				}, falseFn);
+			}, 10000).then(trueFn, falseFn);
 
 			driver.findElement({css: selector.register.phoneNumber}).sendKeys(cfg.phoneNumber);
 
@@ -95,14 +98,17 @@
 			driver
 				.wait(function () {
 					return driver.findElement({css: selector.register.postcodeSuggestion}).then(trueFn, falseFn);
-				}, 1000)
+				}, 5000)
 				.then(function () {
-					driver.findElement({css: selector.register.postcodeSuggestion}).click();
+					driver.findElement({css: selector.register.postcodeSuggestion}).click().then(function () {
+						driver.sleep(1000);
+					});
 				});
 
 			driver.findElement({css: selector.register.submit}).then(function (elem) {
-				util.scrollTo(driver, selector.register.submit);
-				elem.click();
+				return util.scrollTo(driver, selector.register.submit).then(function () {
+					elem.click();
+				});
 			});
 
 			driver
