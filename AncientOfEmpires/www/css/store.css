@@ -32,15 +32,18 @@
 
 .buy-unit {
 	opacity: 0.3;
+}
+
+.buy-unit.active {
+	opacity: 1;
+}
+
+.buy-unit-cost {
 	float: left;
 	margin-left: 1.5em;
 	padding-top: 0.2em;
 	font-size: 0.9em;
 	line-height: 1.2em;
-}
-
-.buy-unit.active {
-	opacity: 1;
 }
 
 .store-wrapper button {
