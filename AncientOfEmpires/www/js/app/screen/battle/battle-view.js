@@ -252,10 +252,16 @@
 		goToStore: function(data) {
 
 			// to open store user must have the castle
-			if (!this.controller.getPlayerCastle()) {
-				win.alert('to BUY unit you have to has the castle');
-				return;
-			}
+			//if (!this.controller.getPlayerCastle()) {
+			//	win.alert('to BUY unit you have to has the castle');
+			//	return;
+			//}
+
+			var controller = this.controller;
+
+			controller.focusedUnit = false;
+			controller.unitAvailableActions = {};
+			controller.hideAllActions();
 
 			APP.storeView = new APP.StoreView(data);
 
