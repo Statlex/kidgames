@@ -10,12 +10,24 @@
 
 			el = el || doc.body;
 
-			el.style.display = 'none';
-			el.offsetHeight; // no need to store this anywhere, the reference is enough
+			if ( !el.length ) {
+				el = [el];
+			}
 
-			setTimeout(function () {
-				el.style.display = '';
-			}, 5);
+			var temp;
+
+			el.forEach(function (item) {
+				item.style.display = 'none';
+				temp = item.offsetHeight; // no need to store this anywhere, the reference is enough
+			});
+
+			el.forEach(function (item) {
+				setTimeout(function () {
+					item.style.display = '';
+				}, 0);
+			});
+
+			return temp;
 
 		},
 

@@ -59,11 +59,14 @@
 			$node = this.$el.find('.js-confirm-end-turn-checkbox');
 			if ( setting.endTurnConfirm ) {
 				$node.addClass('input-checked');
+				$node[0].checked = true;
 			} else {
 				$node.removeClass('input-checked');
+				$node[0].checked = false;
 			}
 			$node.on('change', function () {
-				var setting =  win.info.get('setting'),
+				var util = win.util,
+					setting =  win.info.get('setting'),
 					$this = $(this),
 					isChecked = this.checked;
 
@@ -71,7 +74,13 @@
 
 				win.info.set('setting', setting, true);
 
-				return isChecked ? $this.addClass('input-checked') : $this.removeClass('input-checked');
+				if (isChecked) {
+					$this.addClass('input-checked');
+				} else {
+					$this.removeClass('input-checked');
+				}
+
+				return util.forceReDraw($(this.parentNode).find('span'));
 
 			});
 
@@ -79,11 +88,14 @@
 			$node = this.$el.find('.js-music-checkbox');
 			if ( setting.music ) {
 				$node.addClass('input-checked');
+				$node[0].checked = true;
 			} else {
 				$node.removeClass('input-checked');
+				$node[0].checked = false;
 			}
 			$node.on('change', function () {
-				var setting =  win.info.get('setting'),
+				var util = win.util,
+					setting =  win.info.get('setting'),
 					$this = $(this),
 					isChecked = this.checked;
 
@@ -91,7 +103,13 @@
 
 				win.info.set('setting', setting, true);
 
-				return isChecked ? $this.addClass('input-checked') : $this.removeClass('input-checked');
+				if (isChecked) {
+					$this.addClass('input-checked');
+				} else {
+					$this.removeClass('input-checked');
+				}
+
+				return util.forceReDraw($(this.parentNode).find('span'));
 
 			});
 
@@ -110,12 +128,15 @@
 				$('.js-game-speed.input-checked').removeClass('input-checked');
 				$(this).addClass('input-checked');
 
-				var setting =  win.info.get('setting');
+				var setting =  win.info.get('setting'),
+					util = win.util;
 				setting.gameSpeed = this.value;
 				win.info.set('setting', setting, true);
 
 				// set game speed
 				APP.units.info.timer = APP.units.info.timersBySpeed[setting.gameSpeed];
+
+				return util.forceReDraw($(this.parentNode.parentNode).find('span'));
 
 			});
 

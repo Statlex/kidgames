@@ -106,7 +106,7 @@
 
 		setting: {
 			endTurnConfirm: false,
-			music: true,
+			music: false,
 			gameSpeed: 3
 		}
 
