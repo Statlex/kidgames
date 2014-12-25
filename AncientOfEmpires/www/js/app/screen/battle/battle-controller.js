@@ -566,7 +566,48 @@
 		startBattle: function() {
 //			this.endTurn();
 			this.step();
+			this.getFirstBuilding();
 			this.view.showFirstUnit();
+		},
+
+		getFirstBuilding: function () {
+
+			var units = this.units,
+				buildings = this.buildings,
+				knights = [],
+				unit,
+				castles = [],
+				building,
+				key;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					if (unit.type === 'Knight') {
+						knights.push(unit);
+					}
+				}
+			}
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle') {
+						castles.push(building);
+					}
+				}
+			}
+
+			knights.forEach(function (knight) {
+				castles.forEach(function (castle) {
+					if (castle.x === knight.x && castle.y === knight.y) {
+						castle.playerId = knight.playerId;
+						castle.color = knight.color;
+						this.view.setBuildingColor(castle);
+					}
+				}, this);
+			}, this);
+
 		},
 
 		isEqualBy: function (obj) {
