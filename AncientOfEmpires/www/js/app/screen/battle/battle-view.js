@@ -188,7 +188,7 @@
 			}
 
 			animate({
-				duration: APP.units.info.timer.showPath * 0.6,
+				duration: APP.units.info.timer.showPath * 0.5,
 				step: function (progress) {
 					wrapper.scrollTop = beginTop + (endTop - beginTop) * progress;
 					wrapper.scrollLeft = beginLeft + (endLeft - beginLeft) * progress;

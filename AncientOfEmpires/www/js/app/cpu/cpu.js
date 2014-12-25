@@ -166,6 +166,7 @@
 						}, controller);
 
 					controller.view.moveUnit(unit);
+					controller.view.goToXY(unit);
 					moveDelay = APP.units.info.timer.move;
 				}
 
