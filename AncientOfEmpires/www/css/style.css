@@ -683,8 +683,10 @@
 	padding-bottom: 0.5em;
 }
 
-
-
+.not-active {
+	-webkit-pointer-events: none;
+	pointer-events: none;
+}
 
 
 

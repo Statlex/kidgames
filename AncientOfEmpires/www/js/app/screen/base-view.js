@@ -129,7 +129,11 @@
 
 					if ( needShow ) {
 						$block.removeClass('hidden');
+						$block.addClass('not-active');
 						dataStateNode.innerHTML = '[-]';
+						setTimeout(function () {
+							$('.not-active').removeClass('not-active');
+						}, 350);
 					}
 
 				});

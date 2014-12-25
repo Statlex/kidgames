@@ -50,7 +50,9 @@
 
 		},
 		setSettingsState: function () {
+
 			APP.SettingView.prototype.setSettingsState.call(this);
+
 		}
 
 	});
