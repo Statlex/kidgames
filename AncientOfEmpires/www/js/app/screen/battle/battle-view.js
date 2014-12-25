@@ -75,6 +75,30 @@
 			//setTimeout(function () {
 			//	this.drawMap();
 			//}.bind(this), 1000);
+			//this.showFirstUnit();
+
+		},
+
+		showFirstUnit: function () {
+
+			var controller = this.controller,
+				activePlayerId = controller.activePlayer.id,
+				units = controller.units,
+				unit,
+				key;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					if (unit.playerId === activePlayerId) {
+						this.goToXY(unit);
+						return;
+					}
+
+				}
+			}
+
+			
 
 		},
 

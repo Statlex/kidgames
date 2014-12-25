@@ -566,6 +566,7 @@
 		startBattle: function() {
 //			this.endTurn();
 			this.step();
+			this.view.showFirstUnit();
 		},
 
 		isEqualBy: function (obj) {
