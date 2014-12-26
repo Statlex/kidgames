@@ -59,7 +59,8 @@
 				enemyAvailableActions = this.get('enemyAvailableActions'),
 				deniedPlacesForGetBuilding = this.get('deniedPlacesForGetBuilding'),
 				enemyUnits = this.get('enemyUnits'),
-				unit = this.get('unit');
+				unit = this.get('unit'),
+				availableBuildingsType = unit.availableBuildingsType || [];
 
 			for (key in data) {
 				if (data.hasOwnProperty(key)) {
@@ -101,7 +102,13 @@
 
 						case 'nearestNoPlayerBuilding':
 
-							if ( !enemyUnits.length && (unit.availableBuildingsType || []).indexOf('castle') === -1 ) { // in enemy is no and unit can not get building
+							if ( availableBuildingsType.length && availableBuildingsType.indexOf('castle') === -1) { // for soldier
+								if (value.building.type === 'castle') {
+									rate += value.pathLength * rateCost.q[key] * 0.5; // go from enemy building
+								} else {
+									rate += value.pathLength * rateCost.q[key]; // go to enemy building
+								}
+							} else if ( !enemyUnits.length && availableBuildingsType.indexOf('castle') === -1 ) { // if enemy is no and unit can not get building
 								rate += -value.pathLength * rateCost.q[key] * rateCost.big; // go from enemy building
 							} else {
 								rate += value.pathLength * rateCost.q[key]; // go to enemy building
@@ -609,8 +616,6 @@
 					}
 				}
 			}
-
-
 
 			playerUnits.forEach(function (unit) {
 				return unit.availableBuildingsType ? canGetBuildingUnits.push(unit) : canNotGetBuildingUnits.push(unit);
