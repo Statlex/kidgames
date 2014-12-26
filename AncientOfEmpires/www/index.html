@@ -59,6 +59,8 @@
 	<!--<script src="js/app/maps/test-map/map.js" type="text/javascript"></script>-->
 	<!--<script src="js/app/maps/test-map/map2.js" type="text/javascript"></script>-->
 	<script src="js/app/maps/test-map/map3.js" type="text/javascript"></script>
+	<script src="js/app/maps/skirmish/island-cross.js" type="text/javascript"></script>
+	<script src="js/app/maps/skirmish/rocky-bay.js" type="text/javascript"></script>
 
 	<!-- units -->
 	<script src="js/app/unit/units-info.js" type="text/javascript"></script>
@@ -280,15 +282,6 @@
 						<div class="item-wrapper clear-fix transform-0">
 
 							<% maps.forEach(function(map, index) { %>
-
-							<label class="radio-button-wrapper clear-fix">
-								<% if ( index === 0 ) { %>
-								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
-								<% } else { %>
-								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
-								<% }; %>
-								<span class="left relative-opacity"><%= map.name %></span>
-							</label>
 
 							<label class="radio-button-wrapper clear-fix">
 								<% if ( index === 0 ) { %>

@@ -17,8 +17,8 @@
 
 		},
 		size: {
-			width: 10,
-			height: 10
+			width: 17,
+			height: 12
 		},
 		init: function () {
 
@@ -148,9 +148,7 @@
 
 			});
 
-
-
-			console.log(JSON.stringify(map).replace(/\"(\d+ )\"/gi, '$1'));
+			console.log(JSON.stringify(map).replace(/\"(\d+)\"/gi, '$1'));
 
 			return map;
 
