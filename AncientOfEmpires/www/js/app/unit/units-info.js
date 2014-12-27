@@ -21,8 +21,8 @@
 		},
 		bones: {
 			info: lang.units.bones,
-			atk: 4,
-			def: 0,
+			atk: 5,
+			def: 1,
 			mov: 4,
 			cost: 0,
 			attackRange: 1,
