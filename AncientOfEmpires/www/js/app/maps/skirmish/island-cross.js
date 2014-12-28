@@ -7,12 +7,13 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.islandCross = {
+		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Island Cross",
 		"jsName": "islandCross",
 		"units": [
-			{"type": "Knight", "x": 13, "y": 1, playerId: 0},
-			{"type": "Knight", "x": 1, "y": 13, playerId: 1}
+			{"type": "Knight", "x": 1, "y": 13, playerId: 0},
+			{"type": "Knight", "x": 13, "y": 1, playerId: 1}
 		],
 		"buildings": [{"type": "farm", "x": 8, "y": 0}, {"type": "farm", "x": 0, "y": 1}, {"type": "farm", "x": 11, "y": 1}, {"type": "castle", "x": 13, "y": 1}, {"type": "farm", "x": 0, "y": 4}, {"type": "farm", "x": 7, "y": 6}, {"type": "castle", "x": 11, "y": 6}, {"type": "castle", "x": 3, "y": 8}, {"type": "farm", "x": 7, "y": 8}, {"type": "farm", "x": 14, "y": 10}, {"type": "castle", "x": 1, "y": 13}, {"type": "farm", "x": 3, "y": 13}, {"type": "farm", "x": 14, "y": 13}, {"type": "farm", "x": 6, "y": 14}],
 		"terrain": {

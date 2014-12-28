@@ -113,6 +113,19 @@
 		},
 		appendBuilding: function(build) {
 			this.buildings['x' + build.x + 'y' + build.y] = build;
+			if (build.hasOwnProperty('playerId')) {
+
+				var playerId = build.playerId;
+
+				this.players.forEach(function (player) {
+					if (player.id === playerId) {
+						build.color = player.color;
+
+					}
+				});
+				this.view.setBuildingColor(build);
+
+			}
 			return build;
 		},
 

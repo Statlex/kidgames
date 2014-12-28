@@ -71,11 +71,26 @@
 			this.setStyles();
 
 			this.drawMap();
+
+			this.coloringBuildings();
 			// fix, in first time map may not draw
 			//setTimeout(function () {
 			//	this.drawMap();
 			//}.bind(this), 1000);
 			//this.showFirstUnit();
+
+		},
+
+		coloringBuildings: function () {
+
+			var buildings = this.controller.buildings,
+				key;
+
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					this.setBuildingColor(buildings[key]);
+				}
+			}
 
 		},
 
@@ -97,8 +112,6 @@
 
 				}
 			}
-
-			
 
 		},
 

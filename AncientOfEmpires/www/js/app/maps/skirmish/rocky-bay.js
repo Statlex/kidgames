@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.rockyBay = {
+		"type": "skirmish",
 		"size": {"width": 17, "height": 12},
 		"name": "Rocky Bay",
 		"jsName": "rockyBay",

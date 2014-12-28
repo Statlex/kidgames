@@ -125,7 +125,7 @@
 			castle: 3
 		},
 		default: {
-			gold: 1000
+			gold: 300
 		},
 		defence: {
 			farm: 3,
