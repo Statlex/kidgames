@@ -6,18 +6,6 @@
 
 	APP.maps = APP.maps || {};
 
-	/*
-	 *
-	 "type": "mission",
-	 "size": {
-	 "width": 13,
-	 "height": 15
-	 },
-	 "name": "Friends and Enemies",
-	 "jsName": "c02_friendsAndEnemies",
-
-	 * */
-
 	APP.maps.c02_friendsAndEnemies = {
 		"type": "mission",
 		"size": {"width": 13, "height": 15},

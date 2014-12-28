@@ -6,15 +6,6 @@
 
 	APP.maps = APP.maps || {};
 
-	/*
-	 *
-	 "type": "mission",
-	 "size": {"width": 15, "height": 15},
-	 "name": "Escort",
-	 "jsName": "c03_escort",
-
-	 * */
-
 	APP.maps.c03_escort = {
 		"type": "mission",
 		"size": {"width": 15, "height": 15},

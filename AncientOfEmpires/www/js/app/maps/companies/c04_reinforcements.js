@@ -6,16 +6,8 @@
 
 	APP.maps = APP.maps || {};
 
-	/*
-	 *
-	 "type": "mission",
-	 "size": {"width": 15, "height": 15},
-	 "name": "Reinforcements",
-	 "jsName": "c04_reinforcements",
-
-	 * */
-
 	APP.maps.c04_reinforcements = {
+		"type": "mission",
 		"size": {"width": 15, "height": 15},
 		"name": "Reinforcements",
 		"jsName": "c04_reinforcements",
