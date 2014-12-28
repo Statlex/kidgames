@@ -17,8 +17,8 @@
 
 		},
 		size: {
-			width: 15,
-			height: 12
+			width: 14,
+			height: 15
 		},
 		init: function () {
 
