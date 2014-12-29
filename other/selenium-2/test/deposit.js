@@ -23,9 +23,9 @@
 		};
 
 		this.cfg = {
-			userName: 'govnokod',
-			password: 'qwerty',
-			amount: 13,
+			userName: 'viaden13',
+			password: 'qwerty123',
+			amount: 10,
 			cv2: 111
 		};
 
@@ -40,7 +40,7 @@
 				cfg = this.cfg,
 				driver = args.driver,
 				reportItem = args.reportItem,
-				currentAmount,
+				startAmount,
 				isFailed;
 
 			selector.deposit = {
@@ -70,7 +70,7 @@
 
 			// get current amount
 			driver.findElement({ css: selector.deposit.amount }).getInnerHtml().then(function (hmtl) {
-				currentAmount = hmtl.trim();
+				startAmount = parseFloat(hmtl.replace(/[^\d\.]/g, ''));
 			});
 
 			// open footer
@@ -117,6 +117,29 @@
 			driver.findElement({ css: selector.deposit.cv2 }).sendKeys(cfg.cv2);
 			driver.findElement({ css: selector.deposit.submitDeposit }).click();
 
+			driver.wait(function () {
+				return driver.findElement({ css: selector.modalClose }).then(dep.trueFn, dep.falseFn);
+			}, 15e3).then(function () {
+				reportItem.takeScreenShot('Successful deposit');
+				driver.findElement({ css: selector.modalClose }).click();
+			}, dep.falseFn);
+
+			driver.findElement({ css: selector.deposit.amount }).getInnerHtml().then(function (hmtl) {
+				var newAmount = parseFloat(hmtl.replace(/[^\d\.]/g, ''));
+				if (newAmount - startAmount - cfg.amount > 0.1) {
+					isFailed = true;
+					reportItem.takeScreenShot('Deposit: ' + cfg.amount + ', before: ' + startAmount + ', after: ' + newAmount);
+				}
+			});
+
+			driver.findElement({ css: selector.home }).click();
+
+			driver.sleep(1e3).then(function () {
+				if ( !isFailed ) {
+					reportItem.setResult(reportItem.results.passed);
+				}
+				reportItem.takeScreenShot('End deposit test');
+			});
 
 		}
 
