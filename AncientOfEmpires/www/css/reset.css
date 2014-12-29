@@ -161,6 +161,8 @@ header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time
 	overflow: hidden;
 	-webkit-text-overflow: ellipsis;
 	text-overflow: ellipsis;
+	display: block;
+	width: 100%;
 }
 
 /* custom classes */

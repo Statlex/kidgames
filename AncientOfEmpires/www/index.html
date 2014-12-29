@@ -168,8 +168,8 @@
 
 		<div class="js-block-fix-wrapper js-no-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
 			<div class="setting-list-wrapper">
-				<label class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] confirm turn</label>
-				<label class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] sound</label>
+				<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
+				<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
 
 				<div class="setting-item-wrapper game-speed-wrapper">
 					<p class="setting-item-small-header">game speed</p>
@@ -178,7 +178,7 @@
 						<div class="right">fast -></div>
 					</div>
 					<div class="text-align-center">
-						<% window.util.fromTo(function(index){ %><label class="game-speed-input-wrapper"><input class="show-after hidden js-game-speed" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span><span class="show-after-hide">&nbsp;</span>]</label><% }, 1, 6); %>
+						<% window.util.fromTo(function(index){ %><div data-tag="label" class="game-speed-input-wrapper"><input class="show-after hidden js-game-speed" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span>]</div><% }, 1, 6); %>
 					</div>
 
 				</div>
@@ -213,32 +213,32 @@
 
 					<div class="left">&nbsp;</div>
 
-					<label class="left radio-button-wrapper">
+					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="human" checked="checked"/>
 						<span class="left relative-opacity">Human</span>
-					</label>
+					</div>
 
 					<div class="left small-separator">&nbsp;</div>
-					<label class="left radio-button-wrapper">
+					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="cpu"/>
 						<span class="left relative-opacity">CPU</span>
-					</label>
+					</div>
 
 					<div class="left land-clear land-with-padding-left">&nbsp;</div>
 
 					<div class="land-left">
 
 
-					<label class="right radio-button-wrapper">
+					<div data-tag="label" class="right radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="red"/>
 						<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
-					</label>
+					</div>
 
 					<div class="right small-separator">&nbsp;</div>
-					<label class="right radio-button-wrapper">
+					<div data-tag="label" class="right radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="blue" checked="checked"/>
 						<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
-					</label>
+					</div>
 
 					</div>
 
@@ -250,30 +250,30 @@
 
 					<div class="left">&nbsp;</div>
 
-					<label class="left radio-button-wrapper">
+					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="human"/>
 						<span class="left relative-opacity">Human</span>
-					</label>
+					</div>
 
 					<div class="left small-separator">&nbsp;</div>
-					<label class="left radio-button-wrapper">
+					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="cpu" checked="checked"/>
 						<span class="left relative-opacity">CPU</span>
-					</label>
+					</div>
 
 					<div class="left land-clear land-with-padding-left">&nbsp;</div>
 
 					<div class="land-left">
-						<label class="right radio-button-wrapper">
+						<div data-tag="label" class="right radio-button-wrapper">
 							<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="red" checked="checked"/>
 							<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
-						</label>
+						</div>
 
 						<div class="right small-separator">&nbsp;</div>
-						<label class="right radio-button-wrapper">
+						<div data-tag="label" class="right radio-button-wrapper">
 							<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="blue"/>
 							<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
-						</label>
+						</div>
 					</div>
 
 
@@ -292,14 +292,14 @@
 
 							<% maps.forEach(function(map, index) { %>
 
-							<label class="radio-button-wrapper clear-fix">
+							<div data-tag="label" class="radio-button-wrapper clear-fix">
 								<% if ( index === 0 ) { %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
 								<% } else { %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
 								<% }; %>
-								<span class="left relative-opacity"><%= map.name %></span>
-							</label>
+								<span class="left relative-opacity ellipsis"><%= map.name %></span>
+							</div>
 
 							<% }); %>
 
@@ -554,8 +554,8 @@
 
 						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
 						<div class="battle-menu-added-data hidden" data-block="settings">
-							<label class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] confirm turn</label>
-							<label class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span><span class="show-after-hide">&nbsp;</span>] sound</label>
+							<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
+							<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
 						</div>
 
 						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>restart</div>

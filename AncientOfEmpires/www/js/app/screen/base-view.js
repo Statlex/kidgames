@@ -48,11 +48,29 @@
 
 			this.bindShowHideBlock();
 
+			this.labelEvent();
+
 			win.blockFix();
 
 			win.blockFixWithScroll();
 
 
+		},
+
+		labelEvent: function () {
+			this.$el.find('[data-tag="label"]').on('click', function () {
+				var input = this.querySelector('input'),
+					checked = input.checked;
+
+				if (checked && input.type !== "checkbox") {
+					return;
+				}
+
+				input.checked = !checked;
+
+				$(input).on('change');
+
+			});
 		},
 
 		bindBackButton: function() {
