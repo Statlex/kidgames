@@ -267,15 +267,15 @@
 .scale-button {
 	position: fixed;
 	right: 0.25em;
-	top: 50%;
+	top: 100%;
 	padding: 0.75em;
 	text-align: center;
-	margin-top: -1.25em;
+	margin-top: -5.25em;
 	font-size: 1.25em;
 }
 
 .scale-button-second {
-	margin-top: 1.25em;
+	margin-top: -2.75em;
 }
 
 .cpu-running-disable-buttons {
