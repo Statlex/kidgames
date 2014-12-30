@@ -1,0 +1,35 @@
+.notification-wrapper {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5em;
+}
+
+.notification-container {
+	padding: 0.5em 0.6em;
+	border-width: 0.2em;
+	border-style: solid;
+	background-color: #000;
+}
+
+.n-text {
+	font-size: 0.75em;
+	line-height: 1.35em;
+}
+
+.n-image {
+	padding-right: 1.2em;
+	height: 7em;
+	margin-top: -2.2em;
+}
+
+
+
+
+
+
+
+
+

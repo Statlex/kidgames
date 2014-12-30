@@ -91,7 +91,9 @@
 
 	// start of app here
 	function main() {
+
 		templateMaster.init();
+		APP.notificationView = new APP.NotificationView();
 		Backbone.history.start();
 
 		util.setWrapperStyle($('body'));
@@ -105,9 +107,8 @@
 
 		back();
 
-		APP.notificationView = new APP.NotificationView();
-
 	}
+
 
 	win.addEventListener('load', main, false);
 

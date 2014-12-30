@@ -12,6 +12,8 @@
 		events: {},
 		initialize: function(data) {
 
+			$('.js-wrapper').find('.js-notification-wrapper').remove();
+
 			data = data || {};
 
 			var events = this.events,

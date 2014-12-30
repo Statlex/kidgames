@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="css/create-map.css"/>
 	<link rel="stylesheet" href="css/font.css"/>
 	<link rel="stylesheet" href="css/landscape.css"/>
+	<link rel="stylesheet" href="css/notification.css"/>
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
@@ -632,15 +633,18 @@
 
 </script>
 
-<script type="text/x-template" data-name="notification-banner">
+<script type="text/x-template" data-name="n-banner">
 
 	<div class="notification-banner">
 
-		<div>
-			i am notification banner !!!
 
+
+		<div class="n-text">
+			<% if (obj.image) { %>
+			<img src="<%= obj.image.url %>" class="n-image <%= obj.image.cssClass || 'left' %>" alt=""/>
+			<% }; %>
+			<div><%= text %></div>
 		</div>
-
 
 	</div>
 
@@ -651,14 +655,11 @@
 
 
 
-	<div class="notification-wrapper js-notification-wrapper">
+	<div class="notification-wrapper js-notification-wrapper clear-fix">
 
-		<div>
-
-			content is here
+		<div class="notification-container js-notification-container">
 
 		</div>
-
 
 
 

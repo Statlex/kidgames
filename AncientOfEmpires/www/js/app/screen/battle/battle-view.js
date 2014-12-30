@@ -23,6 +23,21 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+
+			setTimeout((function () {
+
+				this.showNotification({
+					image: {
+						url: 'img/face/helper-1.png'
+						//,cssClass: 'left'
+					},
+					text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda cum ducimus ipsam necessitatibus! Ad adipisci officia quis voluptas voluptate.',
+					tmpl: 'n-banner'
+				});
+
+			}.bind(this)), 200);
+
+
 			this.setSquareSize();
 
 			this.startingData = util.createCopy(data);

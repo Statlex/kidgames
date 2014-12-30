@@ -25,7 +25,6 @@
 			// workaround for color selection
 			this.setColorSelectInputs();
 
-			this.showNotification({ data: 'pisdata' });
 
 
 		},
