@@ -54,8 +54,6 @@
 
 			win.blockFixWithScroll();
 
-
-
 		},
 
 		labelEvent: function () {
@@ -158,6 +156,11 @@
 				});
 
 			});
+
+		},
+		showNotification: function (data) {
+
+			APP.notificationView.show(data);
 
 		}
 

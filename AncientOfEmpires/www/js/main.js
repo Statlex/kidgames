@@ -104,6 +104,9 @@
 		}
 
 		back();
+
+		APP.notificationView = new APP.NotificationView();
+
 	}
 
 	win.addEventListener('load', main, false);
