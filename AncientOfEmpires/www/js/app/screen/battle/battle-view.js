@@ -23,37 +23,6 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
-
-			setTimeout(function () {
-
-				APP.NotificationView.prototype.showNotification({
-					image: { // optional
-						url: 'img/face/helper-1.png',
-						cssClass: 'left' // optional
-					},
-					from: 'left', // optional
-					text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda cum ducimus ipsam necessitatibus! Ad adipisci officia quis voluptas voluptate.',
-					tmpl: 'n-banner', // optional
-					onHide: function () {
-						APP.NotificationView.prototype.showNotification({
-
-							image: { // optional
-								url: 'img/face/helper-2.png',
-								cssClass: 'right' // optional
-							},
-							from: 'right', // optional
-							text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda cum ducimus ipsam necessitatibus! Ad adipisci officia quis voluptas voluptate.',
-							tmpl: 'n-banner' // optional
-
-						});
-
-					}
-
-				});
-
-			}, 2000);
-
-
 			this.setSquareSize();
 
 			this.startingData = util.createCopy(data);

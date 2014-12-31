@@ -28,7 +28,7 @@
 
 	APP.NotificationView = APP.BaseView.extend({
 
-		templates: ['notification-wrapper', 'n-banner'],
+		templates: ['notification-wrapper', 'n-banner', 'n-turn'],
 
 		showTimeout: 60e3,
 
@@ -106,7 +106,7 @@
 
 			});
 
-			setTimeout($node.remove.bind($node), 800); // see notification.css
+			setTimeout($node.remove.bind($node), 600); // see notification.css
 
 		}
 

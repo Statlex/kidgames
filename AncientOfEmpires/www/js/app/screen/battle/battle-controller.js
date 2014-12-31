@@ -697,6 +697,12 @@
 
 				this.runCpu();
 
+				APP.NotificationView.prototype.showNotification({
+					color: this.activePlayer.color,
+					text: this.activePlayer.color,
+					tmpl: 'n-turn'
+				});
+
 			}
 
 		},

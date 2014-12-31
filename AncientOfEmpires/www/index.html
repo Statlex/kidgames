@@ -637,11 +637,26 @@
 
 	<div class="notification-banner">
 
-		<div class="n-text">
+		<div class="n-text clear-fix">
 			<% if (obj.image) { %>
 			<img src="<%= obj.image.url %>" class="n-image <%= obj.image.cssClass || 'left' %>" alt=""/>
 			<% }; %>
 			<div><%= text %></div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="n-turn">
+
+	<div class="n-turn">
+
+		<div class="n-text clear-fix">
+			<div class="unit unit-knight unit-color-<%= color %> left"></div>
+			<div class="unit unit-soldier unit-color-<%= color %> right"></div>
+			<div><%= text %> turn!</div>
+
 		</div>
 
 	</div>
