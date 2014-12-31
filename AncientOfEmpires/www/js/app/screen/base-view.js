@@ -12,7 +12,7 @@
 		events: {},
 		initialize: function(data) {
 
-			$('.js-wrapper').find('.js-notification-wrapper').remove();
+			APP.NotificationView.prototype.hideExtraWindows();
 
 			data = data || {};
 

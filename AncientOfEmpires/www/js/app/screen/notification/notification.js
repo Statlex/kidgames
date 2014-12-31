@@ -88,12 +88,11 @@
 		},
 		hideExtraWindows: function (e) {
 
-			if (!e) {
-				$('.js-wrapper').find('.js-notification-wrapper').remove();
+			var $node = e ? $(e.currentTarget.parentNode.parentNode) : $('.js-wrapper').find('.js-notification-wrapper');
+
+			if ( !$node.length ) {
 				return;
 			}
-
-			var $node = $(e.currentTarget.parentNode.parentNode);
 
 			$node.addClass('n-anim-hide');
 
