@@ -28,9 +28,10 @@
 
 				this.showNotification({
 					image: {
-						url: 'img/face/helper-1.png'
-						//,cssClass: 'left'
+						url: 'img/face/helper-1.png',
+						cssClass: 'left'
 					},
+					from: 'left',
 					text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda cum ducimus ipsam necessitatibus! Ad adipisci officia quis voluptas voluptate.',
 					tmpl: 'n-banner'
 				});

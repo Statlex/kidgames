@@ -701,7 +701,7 @@
 
 	Bro.prototype.remove = function () {
 		this.forEach(function (node) {
-			node.parentNode.removeChild(node);
+			return node.parentNode && node.parentNode.removeChild(node);
 		}, this);
 		this.splice(0, this.length);
 		return this;

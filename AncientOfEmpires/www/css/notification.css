@@ -25,6 +25,96 @@
 	margin-top: -2.2em;
 }
 
+.n-anim-show-from-left,
+.n-anim-show-from-right {
+	-webkit-animation-duration: 0.8s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.n-anim-show-from-left {
+	-webkit-animation-name: n-anim-show-from-left;
+	animation-name: n-anim-show-from-left;
+}
+
+.n-anim-show-from-right {
+	-webkit-animation-name: n-anim-show-from-right;
+	animation-name: n-anim-show-from-right;
+}
+
+@-webkit-keyframes n-anim-show-from-left {
+	0% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes n-anim-show-from-left {
+	0% {
+		transform: translate3d(-100%, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes n-anim-show-from-right {
+	0% {
+		-webkit-transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes n-anim-show-from-right {
+	0% {
+		transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.n-anim-hide {
+	-webkit-animation-name: n-anim-hide;
+	-webkit-animation-duration: 0.8s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: n-anim-hide;
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+
+}
+
+@-webkit-keyframes n-anim-hide {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 100%, 0);
+	}
+}
+
+@keyframes n-anim-hide {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 100%, 0);
+	}
+}
+
+
+
 
 
 

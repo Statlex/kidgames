@@ -30,7 +30,7 @@
 
 		templates: ['notification-wrapper', 'n-banner'],
 
-		timeout: 1000e3,
+		showTimeout: 1000e3,
 
 		events: {
 
@@ -48,7 +48,7 @@
 
 		},
 
-		show: function (data) { // template name, data for template, onClose function
+		show: function (data) { // template name, data for template, from left||right
 
 			if (data instanceof String) {
 				data = {
@@ -56,31 +56,48 @@
 				};
 			}
 
-			clearTimeout(this.timeoutId);
-
-			this.timeoutId = setTimeout(this.removeExtraWindows, this.timeout);
-
-			this.removeExtraWindows();
-
-			this.$el = $(this.tmpl['notification-wrapper']());
+			data.from = data.from || 'left';
 
 			data.tmpl = data.tmpl || 'n-banner';
 
+			clearTimeout(this.showTimeoutId);
+
+			this.showTimeoutId = setTimeout(this.hideExtraWindows, this.showTimeout);
+
+			this.hideExtraWindows();
+
+			this.$el = $(this.tmpl['notification-wrapper']());
+
 			var newNode = $(this.tmpl[data.tmpl](data));
 
-			newNode.on('click', this.removeExtraWindows);
+			newNode.on('click', this.hideExtraWindows);
 
 			this.$el.find('.js-notification-container').append(newNode);
 
 			this.$wrapper.append(this.$el);
 
+			this.$el.addClass('n-anim-show-from-' + data.from);
+
+			//debugger;
+
 			console.log('from notification');
 			console.log(data);
 
-		},
-		removeExtraWindows: function () {
+			this.disableScrollNodes();
 
-			$('.js-wrapper').find('.js-notification-wrapper').remove();
+		},
+		hideExtraWindows: function (e) {
+
+			if (!e) {
+				$('.js-wrapper').find('.js-notification-wrapper').remove();
+				return;
+			}
+
+			var $node = $(e.currentTarget.parentNode.parentNode);
+
+			$node.addClass('n-anim-hide');
+
+			setTimeout($node.remove.bind($node), 800); // see notification.css
 
 		}
 
