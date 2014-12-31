@@ -30,7 +30,7 @@
 
 		templates: ['notification-wrapper', 'n-banner'],
 
-		showTimeout: 1000e3,
+		showTimeout: 60e3,
 
 		events: {
 
@@ -68,6 +68,10 @@
 
 			this.$el = $(this.tmpl['notification-wrapper']());
 
+			if (data.onHide) {
+				this.$el.on('hide', data.onHide);
+			}
+
 			var newNode = $(this.tmpl[data.tmpl](data));
 
 			newNode.on('click', this.hideExtraWindows);
@@ -78,10 +82,6 @@
 
 			this.$el.addClass('n-anim-show-from-' + data.from);
 
-			//debugger;
-
-			console.log('from notification');
-			console.log(data);
 
 			this.disableScrollNodes();
 
@@ -95,6 +95,16 @@
 			}
 
 			$node.addClass('n-anim-hide');
+
+			$node.forEach(function (node) {
+
+				if (node.getAttribute('data-is-done')) {
+					return;
+				}
+
+				$(node).attr('data-is-done', 'true').on('hide');
+
+			});
 
 			setTimeout($node.remove.bind($node), 800); // see notification.css
 

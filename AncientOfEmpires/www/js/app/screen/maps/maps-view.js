@@ -13,6 +13,8 @@
 		},
 		init: function () {
 
+			APP.NotificationView.prototype.hideExtraWindows();
+
 			util.clearTimeouts();
 
 			this.$el = $(this.tmpl['select-map']({

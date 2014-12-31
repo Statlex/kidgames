@@ -12,8 +12,6 @@
 		events: {},
 		initialize: function(data) {
 
-			APP.NotificationView.prototype.hideExtraWindows();
-
 			data = data || {};
 
 			var events = this.events,

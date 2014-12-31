@@ -19,6 +19,8 @@
 
 		init: function() {
 
+			APP.NotificationView.prototype.hideExtraWindows();
+
 			this.$el = $(this.tmpl.title());
 
 			this.$wrapper = $('.js-wrapper');
