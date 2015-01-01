@@ -54,14 +54,14 @@
 			if ( /^[\s\S]+?#battle$/.test(event.oldURL) && APP.battleView && !APP.battleView.doNotShowConfirm) {
 
 				if ( confirm('are you sure to leave mission?') ) {
-					APP.mapsView = new APP.MapsView();
+					APP.mapsView = new APP.MapsView({ type: 'skirmish' });
 				} else {
 					history.forward();
 				}
 				return;
 			}
 
-			APP.mapsView = new APP.MapsView();
+			APP.mapsView = new APP.MapsView({ type: 'skirmish' });
 
 		},
 
@@ -72,7 +72,19 @@
 		},
 		companies: function () {
 
-			new APP.CompaniesView();
+			var data = { type: 'mission' };
+
+			if ( /^[\s\S]+?#battle$/.test(event.oldURL) && APP.battleView && !APP.battleView.doNotShowConfirm) {
+
+				if ( confirm('are you sure to leave mission?') ) {
+					APP.mapsView = new APP.MapsView(data);
+				} else {
+					history.forward();
+				}
+				return;
+			}
+
+			APP.mapsView = new APP.MapsView(data);
 
 		},
 		setting: function () {

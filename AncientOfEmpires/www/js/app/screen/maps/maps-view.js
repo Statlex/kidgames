@@ -11,13 +11,14 @@
 		events: {
 			'click .js-go-to-battle': 'goToBattle'
 		},
-		init: function () {
+		init: function (data) {
 
 			APP.NotificationView.prototype.hideExtraWindows();
 
 			util.clearTimeouts();
 
 			this.$el = $(this.tmpl['select-map']({
+				type: data.type,
 				maps: this.getMapsArray()
 			}));
 			this.$wrapper = $('.js-wrapper');

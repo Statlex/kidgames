@@ -48,7 +48,7 @@
 	<script src="js/app/screen/store/store-view.js" type="text/javascript"></script>
 	<script src="js/app/screen/maps/maps-view.js" type="text/javascript"></script>
 	<script src="js/app/screen/create-map/create-map.js" type="text/javascript"></script>
-	<script src="js/app/screen/companies/companies.js" type="text/javascript"></script>
+	<!--<script src="js/app/screen/companies/companies.js" type="text/javascript"></script>-->
 	<script src="js/app/screen/setting/setting.js" type="text/javascript"></script>
 	<script src="js/app/screen/battle-menu/battle-menu-view.js" type="text/javascript"></script>
 	<script src="js/app/screen/notification/notification.js" type="text/javascript"></script>
@@ -135,6 +135,7 @@
 </script>
 
 
+<!--
 <script type="text/x-template" data-name="companies">
 
 	<div class="companies-screen">
@@ -154,6 +155,7 @@
 	</div>
 
 </script>
+-->
 
 
 <script type="text/x-template" data-name="setting">
@@ -205,7 +207,7 @@
 
 		</div>
 
-		<div class="js-block-fix-wrapper js-no-scroll" data-size-land="float: left; width: 50%; height: max" data-size-port="min" data-size-order="2">
+		<div class="js-block-fix-wrapper js-no-scroll <%= type === 'mission' ? 'hidden' : '' %>" data-size-land="float: left; width: 50%; height: max" data-size-port="min" data-size-order="2">
 
 				<p class="text-align-center with-padding-1">Players</p>
 
@@ -283,19 +285,30 @@
 
 		</div>
 
-		<div class="js-block-fix-wrapper relative scroll-arrows-bg" data-size-land="float: left; width: 50%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="3">
+		<div class="js-block-fix-wrapper relative scroll-arrows-bg" data-size-land="float: left; height: max; <%= type === 'mission' ? 'width: 100%; ' : 'width: 50%;' %>" data-size-port="float: none; width: 100%; height: max" data-size-order="3">
 
-				<p class="text-align-center with-padding-1 black-header js-no-scroll">Maps</p>
+				<p class="text-align-center with-padding-1 black-header js-no-scroll">
+					<% if ( type === 'skirmish' ) { %>
+						Maps
+					<% } else { %>
+						Companies
+					<% }; %>
+				</p>
 
 				<div class="maps-list-wrapper js-block-fix-wrapper-with-scroll overflow-auto js-fix-edge-scroll transform-0">
 
 					<div class="maps-list-container clear-fix transform-0">
 						<div class="item-wrapper clear-fix transform-0">
-
+							<% var wasChecked = false; %>
 							<% maps.forEach(function(map, index) { %>
 
+							<% if (map.type !== type) { %>
+								<% return false; %>
+							<% }; %>
+
 							<div data-tag="label" class="radio-button-wrapper clear-fix">
-								<% if ( index === 0 ) { %>
+								<% if ( !wasChecked ) { %>
+								<% wasChecked = true; %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
 								<% } else { %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
