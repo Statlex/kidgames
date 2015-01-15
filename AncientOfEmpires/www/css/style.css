@@ -700,3 +700,35 @@
 .create-map {
 	font-size: 0.5em;
 }
+
+.small-header {
+	width: 50%;
+	box-sizing: border-box;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.instruction-item-list {
+	padding-bottom: 5em;
+}
+
+.instruction-item {
+	padding: 1em 0.7em;
+}
+
+.instruction-item-value {
+	line-height: 1.15;
+	font-size: 0.9em;
+}
+
+.instruction-item-value:first-letter {
+	font-size: 1.7em;
+	float: left;
+	margin: 0 0.25em 0.1em 0;
+}
+
+
+
+
+
+

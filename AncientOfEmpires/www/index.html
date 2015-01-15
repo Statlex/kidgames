@@ -119,7 +119,7 @@
 
 						<div class="js-go-to-select-map main-button">create game</div>
 
-						<div class="js-create-map main-button">js-create-map</div>
+						<div class="js-create-map main-button disable">create_map</div>
 
 						<div class="js-instruction main-button">instruction</div>
 
@@ -168,68 +168,22 @@
 
 			<div class="js-back header-button left"><- Back</div>
 
-			<div class="js-go-to-battle header-button right">Instructions</div>
+			<div class="js-go-to-battle header-button right small-header ellipsis">Instructions</div>
 
 		</div>
 
 		<div class="js-block-fix-wrapper overflow-auto js-fix-edge-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
-			<div>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
+			<div class="instruction-item-list">
+
+				<% lang.instructions.forEach(function(value, index) { %>
+					<div class="instruction-item">
+						<!--<span class="instruction-item-index"><%= index %></span>-->
+						<p class="instruction-item-value"><%= value %></p>
+					</div>
+				<% }); %>
 
 			</div>
 		</div>
-
-
 
 	</div>
 
