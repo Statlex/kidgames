@@ -19,7 +19,8 @@
 			'maps': 'maps',
 			'create-map': 'createMap',
 			'companies': 'companies',
-			'setting': 'setting'
+			'setting': 'setting',
+			'instruction': 'instruction'
 		},
 
 		title: function () {
@@ -89,6 +90,10 @@
 		},
 		setting: function () {
 			new APP.SettingView();
+
+		},
+		instruction: function () {
+			APP.instructionView = new APP.InstructionView();
 
 		}
 

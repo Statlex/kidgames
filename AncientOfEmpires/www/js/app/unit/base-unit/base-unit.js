@@ -268,6 +268,10 @@
 
 			enemyUnit.health = enemyUnit.health - attackValue;
 
+			//todo: add case: archer vs wyvern
+			//archer +30% damage
+			//for example see bonesAttackBonus
+
 			this.setLevel();
 
 			this.setEndTurn();

@@ -14,7 +14,8 @@
 			'click .js-go-to-select-map': 'goToSelectMap',
 			'click .js-create-map': 'goToCreateMap',
 			'click .js-go-to-companies': 'goToCompanies',
-			'click .js-go-to-settings': 'goToSetting'
+			'click .js-go-to-settings': 'goToSetting',
+			'click .js-instruction': 'goToInstruction'
 		},
 
 		init: function() {
@@ -54,8 +55,11 @@
 			var setting =  win.info.get('setting');
 			// set game speed
 			APP.units.info.timer = APP.units.info.timersBySpeed[setting.gameSpeed];
-		}
+		},
 
+		goToInstruction: function () {
+			APP.router.navigate('instruction', { trigger: true });
+		}
 
 	});
 

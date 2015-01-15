@@ -98,7 +98,7 @@
 	function onTouchStart() {
 
 		var wrapperHeight = this.clientHeight,
-			container = this.querySelector('div'),
+			container = this.querySelector('div'), // :scope > div
 			containerHeight = container.clientHeight,
 		//wrapperWidth = this.clientWidth,
 			scrollTop = this.scrollTop;
