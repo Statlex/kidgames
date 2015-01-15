@@ -722,6 +722,7 @@
 }
 
 .instruction-item-value:first-letter {
+	color: #c00;
 	font-size: 1.7em;
 	float: left;
 	margin: 0 0.25em 0.1em 0;

@@ -175,9 +175,8 @@
 		<div class="js-block-fix-wrapper overflow-auto js-fix-edge-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
 			<div class="instruction-item-list">
 
-				<% lang.instructions.forEach(function(value, index) { %>
+				<% lang.instructions.forEach(function(value) { %>
 					<div class="instruction-item">
-						<!--<span class="instruction-item-index"><%= index %></span>-->
 						<p class="instruction-item-value"><%= value %></p>
 					</div>
 				<% }); %>
