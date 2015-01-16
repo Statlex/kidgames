@@ -28,10 +28,14 @@
 		setMap: function(map) {
 			this.map = util.createCopy(map);
 
-			//todo: mission:
-			// if (this.map.gameOverDetect ) {
-			// this.gameOverDetect = this.map.gameOverDetect
-			// }
+			// add extra methods
+			var originalMap = APP.maps[map.jsName];
+
+			if ( originalMap.gameOverDetect ) {
+				this.gameOverDetect = originalMap.gameOverDetect;
+			}
+
+			this.map.steps = originalMap.steps || [];
 
 		},
 
@@ -366,7 +370,7 @@
 
 				}
 
-				if ( this.gameOverDetect() ) {
+				if ( this.gameOverDetect(this) ) {
 					return;
 				}
 
@@ -695,7 +699,7 @@
 			// check list of states for run of state
 			// also: use gameOverDetect from map
 
-			if (this.gameOverDetect()) {
+			if (this.gameOverDetect(this)) {
 				return;
 
 			} else {

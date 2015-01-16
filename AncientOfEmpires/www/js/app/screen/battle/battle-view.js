@@ -23,6 +23,8 @@
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
 
+			// todo: set all steps for all maps to state { isDone: false }
+
 			this.setSquareSize();
 
 			this.startingData = util.createCopy(data);
