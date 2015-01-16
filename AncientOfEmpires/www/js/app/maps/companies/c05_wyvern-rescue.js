@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c05_wyvernRescue = {
+		"missionNumber": 5,
 		"type": "mission",
 		"size": {"width": 15, "height": 12},
 		"name": "Wyvern Rescue!",

@@ -898,7 +898,7 @@
 				}
 			}
 
-			$node = $(this.tmpl['end-game-message']({message: message}));
+			$node = $(this.tmpl['end-game-message']({ message: message, nextMissionNumber: result.nextMissionNumber }));
 
 			$node.find('.js-end-game-restart').on('click', function () {
 				APP.battleView = new APP.BattleView(util.createCopy(APP.battleView.startingData));
@@ -911,6 +911,53 @@
 			});
 
 			this.$el.append($node);
+
+			$node.find('.js-next-mission').on('click', function () {
+
+				var mapNumber = this.getAttribute('data-next-mission-number').trim(),
+					maps = APP.maps,
+					map,
+					key;
+				mapNumber = parseInt(mapNumber, 10);
+
+				for ( key in maps ) {
+					if ( maps.hasOwnProperty(key) ) {
+						map = maps[key];
+						if ( map.missionNumber === mapNumber ) {
+
+
+							APP.router.battle();
+
+							APP.battleView = new APP.BattleView({
+								map: map,
+								players: [
+									{
+										color: "blue",
+										gold: 300,
+										id: 0,
+										type: "human"
+									},
+									{
+										color: "red",
+										gold: 300,
+										id: 1,
+										type: "cpu"
+									}
+								]
+							});
+
+							return;
+
+						}
+
+					}
+				}
+
+
+
+
+			});
+
 
 		}
 

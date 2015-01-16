@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c07_finalAssault = {
+		"missionNumber": 7,
 		"type": "mission",
 		"size": {"width": 14, "height": 15},
 		"name": "Final Assault",

@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c06_siege = {
+		"missionNumber": 6,
 		"type": "mission",
 		"size": {"width": 14, "height": 15},
 		"name": "Siege!",

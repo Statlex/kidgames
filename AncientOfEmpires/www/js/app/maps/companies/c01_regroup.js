@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global APP */
+	/*global APP, util */
 
 	APP.maps = APP.maps || {};
 
@@ -20,7 +20,7 @@
 				return;
 			}
 
-
+			this.isDone = true;
 
 		}
 
@@ -28,6 +28,7 @@
 
 
 	APP.maps.c01_regroup = {
+		"missionNumber": 1,
 		"type": "mission",
 		"size": {
 			"width": 10,
@@ -50,9 +51,21 @@
 		steps: [acrossBridge],
 		gameOverDetect: function (controller) {
 
-			console.log(controller);
+			var result = controller.isGameOver();
 
-			return false;
+			if (result.isEnd) {
+				util.clearTimeouts();
+
+				// get winner player
+				result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+				result.nextMissionNumber = controller.map.missionNumber + 1;
+
+				this.showEndGame(result);
+
+			}
+
+			return result.isEnd;
 
 		}
 	};

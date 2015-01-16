@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c04_reinforcements = {
+		"missionNumber": 4,
 		"type": "mission",
 		"size": {"width": 15, "height": 15},
 		"name": "Reinforcements",

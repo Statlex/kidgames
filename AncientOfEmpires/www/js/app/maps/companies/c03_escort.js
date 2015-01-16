@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c03_escort = {
+		"missionNumber": 3,
 		"type": "mission",
 		"size": {"width": 15, "height": 15},
 		"name": "Escort",

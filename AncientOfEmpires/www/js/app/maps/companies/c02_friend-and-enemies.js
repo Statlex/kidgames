@@ -7,6 +7,7 @@
 	APP.maps = APP.maps || {};
 
 	APP.maps.c02_friendsAndEnemies = {
+		"missionNumber": 2,
 		"type": "mission",
 		"size": {"width": 13, "height": 15},
 		"name": "Friends and Enemies",
