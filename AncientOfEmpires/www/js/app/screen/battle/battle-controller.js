@@ -27,6 +27,12 @@
 
 		setMap: function(map) {
 			this.map = util.createCopy(map);
+
+			//todo: mission:
+			// if (this.map.gameOverDetect ) {
+			// this.gameOverDetect = this.map.gameOverDetect
+			// }
+
 		},
 
 		setView: function(view) {
@@ -683,6 +689,11 @@
 		step: function() {
 
 			this.view.activeButtons(true);
+
+			//todo: mission: add here check for step of mission
+			// get this.map
+			// check list of states for run of state
+			// also: use gameOverDetect from map
 
 			if (this.gameOverDetect()) {
 				return;
